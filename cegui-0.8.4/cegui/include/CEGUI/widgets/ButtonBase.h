@@ -75,8 +75,7 @@ public:
     /** Internal function to set button's pushed state.  Normally you would
      * not call this, except perhaps when building compound widgets.
      */
-    void setPushedState(const bool pushed);
-
+   
 	/*************************************************************************
 		Construction and Destruction
 	*************************************************************************/
@@ -98,12 +97,14 @@ protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
-	virtual void	onMouseMove(MouseEventArgs& e);
+#ifndef PE_NO_MOUSE
+    void setPushedState(const bool pushed);
+    virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
-	virtual void	onCaptureLost(WindowEventArgs& e);
+    virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void	onMouseLeaves(MouseEventArgs& e);
-
+#endif
 
 	/*************************************************************************
 		Implementation Functions

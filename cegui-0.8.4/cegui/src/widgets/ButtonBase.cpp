@@ -79,6 +79,7 @@ bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos)
 /*************************************************************************
 	Handler for when the mouse moves
 *************************************************************************/
+#ifndef PE_NO_MOUSE
 void ButtonBase::onMouseMove(MouseEventArgs& e)
 {
 	// this is needed to discover whether mouse is in the widget area or not.
@@ -118,6 +119,25 @@ void ButtonBase::onMouseButtonDown(MouseEventArgs& e)
 
 }
 
+/*************************************************************************
+Handler for mouse button release events
+*************************************************************************/
+void ButtonBase::onMouseButtonUp(MouseEventArgs& e)
+{
+    // default processing
+    Window::onMouseButtonUp(e);
+
+    if (e.button == LeftButton)
+    {
+        releaseInput();
+
+        // event was handled by us.
+        ++e.handled;
+    }
+
+}
+
+
 //----------------------------------------------------------------------------//
 void ButtonBase::setPushedState(const bool pushed)
 {
@@ -132,23 +152,6 @@ void ButtonBase::setPushedState(const bool pushed)
     invalidate();
 }
 
-/*************************************************************************
-	Handler for mouse button release events
-*************************************************************************/
-void ButtonBase::onMouseButtonUp(MouseEventArgs& e)
-{
-	// default processing
-	Window::onMouseButtonUp(e);
-
-	if (e.button == LeftButton)
-	{
-		releaseInput();
-
-		// event was handled by us.
-		++e.handled;
-	}
-
-}
 
 /*************************************************************************
 	Handler for when mouse capture is lost
@@ -180,5 +183,5 @@ void ButtonBase::onMouseLeaves(MouseEventArgs& e)
 
 	++e.handled;
 }
-
+#endif
 } // End of  CEGUI namespace section
