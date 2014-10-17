@@ -42,8 +42,9 @@ const String ComboDropList::WidgetTypeName("CEGUI/ComboDropList");
 	Constants
 *************************************************************************/
 // Event names
+#ifndef PE_NO_MOUSE
 const String ComboDropList::EventListSelectionAccepted( "ListSelectionAccepted" );
-
+#endif
 
 /*************************************************************************
 	Constructor for ComboDropList base class
@@ -51,7 +52,9 @@ const String ComboDropList::EventListSelectionAccepted( "ListSelectionAccepted" 
 ComboDropList::ComboDropList(const String& type, const String& name) :
 	Listbox(type, name)
 {
+#ifndef PE_NO_MOUSE
 	d_autoArm = false;
+#endif
 	d_armed = false;
     d_lastClickSelected = 0;
 
@@ -105,7 +108,9 @@ void ComboDropList::resizeToContent(bool fit_width, bool fit_height)
 void ComboDropList::onListSelectionAccepted(WindowEventArgs& e)
 {
     d_lastClickSelected = getFirstSelectedItem();
+#ifndef PE_NO_MOUSE
 	fireEvent(EventListSelectionAccepted, e, EventNamespace);
+#endif
 }
 
 /*************************************************************************
@@ -132,6 +137,7 @@ void ComboDropList::onSelectionChanged(WindowEventArgs& e)
     Listbox::onSelectionChanged(e);
 }
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for mouse movement events
 *************************************************************************/
@@ -239,15 +245,17 @@ void ComboDropList::onMouseButtonUp(MouseEventArgs& e)
 	}
 
 }
-
+#endif
 
 /*************************************************************************
 	Handler for when input capture is lost
 *************************************************************************/
 void ComboDropList::onCaptureLost(WindowEventArgs& e)
 {
+#ifndef PE_NO_MOUSE
 	Listbox::onCaptureLost(e);
-	d_armed = false;
+#endif
+    d_armed = false;
 	hide();
 	++e.handled;
 

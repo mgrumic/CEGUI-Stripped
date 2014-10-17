@@ -628,7 +628,9 @@ void System::addStandardWindowFactories()
 {
     // Add types all base elements
     WindowFactoryManager::addWindowType<DefaultWindow>();
+#ifndef PE_NO_MOUSE
     WindowFactoryManager::addWindowType<DragContainer>();
+#endif //PE_NO_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
     WindowFactoryManager::addWindowType<ClippedContainer>();
     WindowFactoryManager::addWindowType<PushButton>();

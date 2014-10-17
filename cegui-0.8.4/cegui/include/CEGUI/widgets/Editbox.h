@@ -602,11 +602,13 @@ protected:
     virtual void onTextAcceptedEvent(WindowEventArgs& e);
 
     // Overridden event handlers
+#ifndef PE_NO_MOUSE
     void onMouseButtonDown(MouseEventArgs& e);
     void onMouseButtonUp(MouseEventArgs& e);
     void onMouseDoubleClicked(MouseEventArgs& e);
     void onMouseTripleClicked(MouseEventArgs& e);
     void onMouseMove(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
     void onCaptureLost(WindowEventArgs& e);
     void onCharacter(KeyEventArgs& e);
     void onKeyDown(KeyEventArgs& e);

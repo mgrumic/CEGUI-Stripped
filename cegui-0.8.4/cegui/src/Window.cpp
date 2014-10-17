@@ -109,7 +109,7 @@ const String Window::EventMouseButtonUp("MouseButtonUp");
 const String Window::EventMouseClick("MouseClick");
 const String Window::EventMouseDoubleClick("MouseDoubleClick");
 const String Window::EventMouseTripleClick("MouseTripleClick");
-#endif
+#endif //PE_NO_MOUSE
 const String Window::EventKeyDown("KeyDown");
 const String Window::EventKeyUp("KeyUp");
 const String Window::EventCharacterKey("CharacterKey");
@@ -204,7 +204,7 @@ Window::Window(const String& type, const String& name):
     d_autoRenderingWindow(false),
 #ifndef PE_NO_MOUSE
     d_mouseCursor(0),
-#endif
+#endif //PE_NO_MOUSE
     // alpha transparency set up
     d_alpha(1.0f),
     d_inheritsAlpha(true),
@@ -248,7 +248,7 @@ Window::Window(const String& type, const String& name):
     d_mousePassThroughEnabled(false),
     d_repeatButton(NoButton),
     d_autoRepeat(false),
-#endif
+#endif //PE_NO_MOUSE
     d_repeatDelay(0.3f),
     d_repeatRate(0.06f),
     
@@ -285,7 +285,7 @@ Window::Window(const String& type, const String& name):
 
     
     d_containsMouse(false),
-#endif
+#endif //PE_NO_MOUSE
     d_guiContext(0),
     d_fontRenderSizeChangeConnection(
         GlobalEventSet::getSingleton().subscribeEvent(
@@ -646,7 +646,7 @@ bool Window::isHitTargetWindow(const Vector2f& position, bool allow_disabled) co
     return 
 #ifndef PE_NO_MOUSE
         !isMousePassThroughEnabled() && 
-#endif
+#endif //PE_NO_MOUSE
         isHit(position, allow_disabled);
 }
 
@@ -700,7 +700,7 @@ void Window::setEnabled(bool setting)
     }
 #ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
-#endif
+#endif //PE_NO_MOUSE
 }
 
 //----------------------------------------------------------------------------//
@@ -722,7 +722,7 @@ void Window::setVisible(bool setting)
 
 #ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
-#endif
+#endif //PE_NO_MOUSE
 }
 
 //----------------------------------------------------------------------------//
@@ -744,7 +744,7 @@ void Window::activate(void)
         WindowEventArgs args(0);
 #ifndef PE_NO_MOUSE
         tmpCapture->onCaptureLost(args);
-#endif
+#endif //PE_NO_MOUSE
     }
 
     moveToFront();
@@ -954,12 +954,12 @@ bool Window::captureInput(void)
 #ifndef PE_NO_MOUSE
         if (current_capture && current_capture != this && !d_restoreOldCapture)
             current_capture->onCaptureLost(args);
-#endif
+#endif //PE_NO_MOUSE
         if (d_restoreOldCapture)
             d_oldCapture = current_capture;
 #ifndef PE_NO_MOUSE
         onCaptureGained(args);
-#endif
+#endif //PE_NO_MOUSE
     }
 
     return true;
@@ -991,7 +991,7 @@ void Window::releaseInput(void)
     WindowEventArgs args(this);
 #ifndef PE_NO_MOUSE
     onCaptureLost(args);
-#endif
+#endif //PE_NO_MOUSE
 }
 
 //----------------------------------------------------------------------------//
@@ -1269,7 +1269,7 @@ void Window::onZChange_impl(void)
 
 #ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
-#endif
+#endif //PE_NO_MOUSE
 }
 #ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
@@ -1310,7 +1310,7 @@ void Window::generateAutoRepeatEvent(MouseButton button)
     ma.wheelChange = 0;
     onMouseButtonDown(ma);
 }
-#endif
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::setID(uint ID)
 {
@@ -1415,7 +1415,7 @@ void Window::addWindowProperties(void)
         &Window::setMouseInputPropagationEnabled, &Window::isMouseInputPropagationEnabled, false
         );
 
-#endif
+#endif //PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(Window, bool,
         "Visible", "Property to get/set the 'visible state' setting for the Window. Value is either \"true\" or \"false\".",
         &Window::setVisible, &Window::isVisible, true
@@ -1564,7 +1564,7 @@ void Window::setMouseAutoRepeatEnabled(bool setting)
     // FIXME: beyond the scope of the bug-fix that originated this
     // FIXME: comment block.  PDT - 30/10/06
 }
-#endif
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 float Window::getAutoRepeatDelay(void) const
@@ -1647,7 +1647,7 @@ void Window::updateSelf(float elapsed)
             }
         }
     }
-#endif
+#endif //PE_NO_MOUSE
     // allow for updates within an assigned WindowRenderer
     if (d_windowRenderer)
         d_windowRenderer->update(elapsed);
@@ -1686,6 +1686,7 @@ void Window::setDistributesCapturedInputs(bool setting)
     d_distCapturedInputs = setting;
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::notifyDragDropItemEnters(DragContainer* item)
 {
@@ -1719,6 +1720,7 @@ void Window::notifyDragDropItemDropped(DragContainer* item)
     onDragDropItemDropped(args);
 }
 
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::destroy(void)
 {
@@ -1881,7 +1883,7 @@ void Window::setArea_impl(const UVector2& pos, const USize& size,
     // FIXME: This is potentially wasteful
 #ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
-#endif
+#endif //PE_NO_MOUSE
     // update geometry position and clipping if nothing from above appears to
     // have done so already (NB: may be occasionally wasteful, but fixes bugs!)
     if (!d_unclippedOuterRect.isCacheValid())
@@ -2421,7 +2423,7 @@ void Window::onCaptureLost(WindowEventArgs& e)
 
     fireEvent(EventInputCaptureLost, e, EventNamespace);
 }
-#endif
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::onInvalidated(WindowEventArgs& e)
 {
@@ -2733,7 +2735,7 @@ void Window::onMouseTripleClicked(MouseEventArgs& e)
 
     ++e.handled;
 }
-#endif
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::onKeyDown(KeyEventArgs& e)
 {
@@ -3639,7 +3641,7 @@ bool Window::isMouseContainedInArea() const
 {
     return d_containsMouse;
 }
-#endif
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 Window* Window::clone(const bool deepCopy) const
 {

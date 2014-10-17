@@ -124,6 +124,7 @@ bool ItemEntry::validateWindowRenderer(const WindowRenderer* renderer) const
 	return dynamic_cast<const ItemEntryWindowRenderer*>(renderer) != 0;
 }
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Handle 'MouseClicked' event
 *************************************************************************/
@@ -140,6 +141,7 @@ void ItemEntry::onMouseClicked(MouseEventArgs& e)
         ++e.handled;
     }
 }
+#endif //PE_NO_MOUSE
 
 /*************************************************************************
     Add ItemEntry specific properties

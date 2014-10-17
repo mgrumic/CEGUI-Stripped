@@ -25,6 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/widgets/DragContainer.h"
+#ifndef PE_NO_MOUSE
 #include "CEGUI/CoordConverter.h"
 #include "CEGUI/RenderingContext.h"
 #include "CEGUI/ImageManager.h"
@@ -592,3 +593,4 @@ bool DragContainer::isUsingFixedDragOffset() const
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_MOUSE

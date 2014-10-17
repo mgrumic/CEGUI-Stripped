@@ -28,6 +28,8 @@
 #define _CEGUIDragContainer_h_
 
 #include "../Window.h"
+
+
 #include "../WindowFactory.h"
 
 #if defined(_MSC_VER)
@@ -80,12 +82,14 @@ namespace CEGUI
          * value has been changed.
          */
         static const String EventDragAlphaChanged;
+
         /** Event fired when the mouse cursor to used when dragging is changed.
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the DragContainer whose dragging
          * mouse cursor image has been changed.
          */
         static const String EventDragMouseCursorChanged;
+
         /** Event fired when the drag pixel threshold is changed.
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the DragContainer whose dragging pixel
@@ -555,7 +559,7 @@ namespace CEGUI
 
 } // End of  CEGUI namespace section
 
-
+#endif
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif

@@ -2043,7 +2043,7 @@ public:
         Internal support method for drag & drop.  You do not normally call
         this directly from client code.  See the DragContainer class.
     */
-    void notifyDragDropItemEnters(DragContainer* item);
+#ifndef PE_NO_MOUSE
 
     /*!
     \brief
@@ -2058,6 +2058,7 @@ public:
         this directly from client code.  See the DragContainer class.
     */
     void notifyDragDropItemDropped(DragContainer* item);
+#endif //PE_NO_MOUSE    void notifyDragDropItemEnters(DragContainer* item);
 
     /*!
     \brief

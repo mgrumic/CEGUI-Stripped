@@ -80,6 +80,8 @@ public:
      * has been changed.
      */
 	static const String EventSortDirectionChanged;
+
+#ifndef PE_NO_MOUSE
     /** Event fired when the user drag-movable setting is changed.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment whose user
@@ -104,22 +106,27 @@ public:
      * changed due to being dragged.
      */
 	static const String EventSegmentDragPositionChanged;
+#endif //PE_NO_MOUSE
     /** Event fired when the segment is sized by the user.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment that has been
      * resized by the user dragging.
      */
 	static const String EventSegmentSized;
+#ifndef PE_NO_MOUSE
     /** Event fired when the clickable setting for the segment is changed.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment whose setting that
      * controls whether the segment is clickable has been changed.
      */
 	static const String EventClickableSettingChanged;
+#endif //PE_NO_MOUSE
 
 	// Defaults
 	static const float	DefaultSizingArea;		//!< Default size of the sizing area.
-	static const float	SegmentMoveThreshold;	//!< Amount the mouse must be dragged before drag-moving is initiated.
+#ifndef PE_NO_MOUSE
+    static const float	SegmentMoveThreshold;	//!< Amount the mouse must be dragged before drag-moving is initiated.
+#endif //PE_NO_MOUSE
 
 
 	/*************************************************************************
@@ -183,7 +190,7 @@ public:
 		Point object describing the drag move offset position.
 	*/
 	const Vector2f& getDragMoveOffset(void) const	{return d_dragPosition;}
-
+#ifndef PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -198,7 +205,7 @@ public:
     /*!
     \brief
         Return whether the segment is currently in its hovering state.
-    */
+    *
     bool    isSegmentHovering(void) const  {return d_segmentHover;}
 
 
@@ -229,9 +236,9 @@ public:
     */
     bool    isBeingDragSized(void) const  {return d_dragSizing;}
 
-
     const Image* getSizingCursorImage() const;
     const Image* getMovingCursorImage() const;
+#endif //PE_NO_MOUSE
 
 
 	/*************************************************************************
@@ -291,13 +298,14 @@ public:
 	\return
 		Nothing.
 	*/
+#ifndef PE_NO_MOUSE
 	void setClickable(bool setting);
-
 
     void setSizingCursorImage(const Image* image);
     void setSizingCursorImage(const String& name);
     void setMovingCursorImage(const Image* image);
     void setMovingCursorImage(const String& name);
+#endif //PE_NO_MOUSE
 
 
 	/*************************************************************************
@@ -318,6 +326,7 @@ public:
 
 
 protected:
+#ifndef PE_NO_MOUSE
 	/*************************************************************************
 		Implementation Methods
 	*************************************************************************/
@@ -367,7 +376,6 @@ protected:
 	*/
 	void	initSegmentHoverState(void);
 
-
 	/*!
 	\brief
 		Return whether the required minimum movement threshold before initiating drag-moving
@@ -398,6 +406,7 @@ protected:
 	*/
 	virtual void	onSplitterDoubleClicked(WindowEventArgs& e);
 
+#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -417,8 +426,8 @@ protected:
 	\brief
 		Handler called when the drag-movable setting is changed.
 	*/
+#ifndef PE_NO_MOUSE
 	virtual void	onMovableSettingChanged(WindowEventArgs& e);
-
 
 	/*!
 	\brief
@@ -439,6 +448,7 @@ protected:
 		Handler called when the drag position changes.
 	*/
 	virtual void	onSegmentDragPositionChanged(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -447,7 +457,7 @@ protected:
 	*/
 	virtual void	onSegmentSized(WindowEventArgs& e);
 
-
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler called when the clickable setting for the segment changes
@@ -463,25 +473,31 @@ protected:
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual void	onMouseDoubleClicked(MouseEventArgs& e);
 	virtual void	onMouseLeaves(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
 	virtual void	onCaptureLost(WindowEventArgs& e);
 
 
 	/*************************************************************************
 		Implementation Data
 	*************************************************************************/
-	const Image*	d_sizingMouseCursor;	//!< Image to use for mouse when sizing (typically set by derived class).
+#ifndef PE_NO_MOUSE
+    const Image*	d_sizingMouseCursor;	//!< Image to use for mouse when sizing (typically set by derived class).
 	const Image*	d_movingMouseCursor;	//!< Image to use for mouse when moving (typically set by derived class).
+#endif //PE_NO_MOUSE
 
 	float	d_splitterSize;		//!< pixel width of the sizing area.
-	bool	d_splitterHover;	//!< True if the mouse is over the splitter
+#ifndef PE_NO_MOUSE
+    bool	d_splitterHover;	//!< True if the mouse is over the splitter
+#endif //PE_NO_MOUSE
 
 	bool	d_dragSizing;		//!< true when we are being sized.
 	Vector2f d_dragPoint;		//!< point we are being dragged at when sizing or moving.
 
 	SortDirection	d_sortDir;	//!< Direction for sorting (used for deciding what icon to display).
-
+#ifndef PE_NO_MOUSE
 	bool	d_segmentHover;		//!< true when the mouse is within the segment area (and not in sizing area).
 	bool	d_segmentPushed;	//!< true when the left mouse button has been pressed within the confines of the segment.
+#endif //PE_NO_MOUSE
 	bool	d_sizingEnabled;	//!< true when sizing is enabled for this segment.
 	bool	d_movingEnabled;	//!< True when drag-moving is enabled for this segment;
 	bool	d_dragMoving;		//!< true when segment is being drag moved.

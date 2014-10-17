@@ -931,10 +931,12 @@ protected:
 		handlers for events we subscribe to from segments
 	*************************************************************************/
 	bool	segmentSizedHandler(const EventArgs& e);
+#ifndef PE_NO_MOUSE
 	bool	segmentMovedHandler(const EventArgs& e);
 	bool	segmentClickedHandler(const EventArgs& e);
 	bool	segmentDoubleClickHandler(const EventArgs& e);
 	bool	segmentDragHandler(const EventArgs& e);
+#endif //PE_NO_MOUSE
 
 
 	/*************************************************************************

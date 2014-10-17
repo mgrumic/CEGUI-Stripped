@@ -52,6 +52,7 @@ namespace CEGUI
         {
             imagery = &wlf.getStateImagery("Disabled");
         }
+#ifndef PE_NO_MOUSE
         else if ((w->isSegmentHovering() != w->isSegmentPushed()) && !w->isSplitterHovering() && w->isClickable())
         {
             imagery = &wlf.getStateImagery("Hover");
@@ -60,6 +61,7 @@ namespace CEGUI
         {
             imagery = &wlf.getStateImagery("SplitterHover");
         }
+#endif //PE_NO_MOUSE
         else
         {
             imagery = &wlf.getStateImagery("Normal");
@@ -80,7 +82,7 @@ namespace CEGUI
             imagery = &wlf.getStateImagery("DescendingSortIcon");
             imagery->render(*w);
         }
-
+#ifndef PE_NO_MOUSE
         // draw ghost copy if the segment is being dragged.
         if (w->isBeingDragMoved())
         {
@@ -102,6 +104,7 @@ namespace CEGUI
                 imagery->render(*w, targetArea);
             }
         }
+#endif //PE_NO_MOUSE
     }
 
 } // End of  CEGUI namespace section

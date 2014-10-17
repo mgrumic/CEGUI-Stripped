@@ -75,11 +75,13 @@ public:
 
 
 protected:
+    // overridden functions from Window base class
+    bool moveToFront_impl(bool wasClicked);
+#ifndef PE_NO_MOUSE
     //! helper to update mouse input handled state
     void updateMouseEventHandled(MouseEventArgs& e) const;
 
-    // overridden functions from Window base class
-    bool moveToFront_impl(bool wasClicked);
+  
 
     // override the mouse event handlers
     void onMouseMove(MouseEventArgs& e);
@@ -89,6 +91,7 @@ protected:
     void onMouseClicked(MouseEventArgs& e);
     void onMouseDoubleClicked(MouseEventArgs& e);
     void onMouseTripleClicked(MouseEventArgs& e);
+#endif
 };
 
 } // End of  CEGUI namespace section

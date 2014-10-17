@@ -211,10 +211,12 @@ protected:
     */
     virtual void onSelectionChanged(WindowEventArgs& e);
 
+#ifndef PE_NO_MOUSE
     /*************************************************************************
 		Overridden Event Handlers
 	*************************************************************************/
 	virtual void onMouseClicked(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
 
     /*************************************************************************
         Implementation Data

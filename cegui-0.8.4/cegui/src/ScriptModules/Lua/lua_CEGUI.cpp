@@ -14248,7 +14248,9 @@ static int tolua_get_CEGUI__DragDropEventArgs_dragDropItem_ptr(lua_State* tolua_
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'dragDropItem'",NULL);
 #endif
+
  tolua_pushusertype(tolua_S,(void*)self->dragDropItem,"CEGUI::DragContainer");
+
  return 1;
 }
 #endif //#ifndef TOLUA_DISABLE
@@ -14264,7 +14266,9 @@ static int tolua_set_CEGUI__DragDropEventArgs_dragDropItem_ptr(lua_State* tolua_
  if (!tolua_isusertype(tolua_S,2,"CEGUI::DragContainer",0,&tolua_err))
  tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
+
   self->dragDropItem = ((CEGUI::DragContainer*)  tolua_tousertype(tolua_S,2,0))
+
 ;
  return 0;
 }
@@ -15065,7 +15069,7 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setImage01(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setImage'",NULL);
 #endif
  {
-  self->setImage(name);
+     self->setImage(name);
  }
  }
  return 0;
@@ -15093,8 +15097,10 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getImage00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getImage'",NULL);
 #endif
  {
-  const CEGUI::Image* tolua_ret = (const CEGUI::Image*)  self->getImage();
+
+ const CEGUI::Image* tolua_ret = (const CEGUI::Image*)  self->getImage();
  tolua_pushusertype(tolua_S,(void*)tolua_ret,"const CEGUI::Image");
+
  }
  }
  return 1;
@@ -15127,7 +15133,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setDefaultImage00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDefaultImage'",NULL);
 #endif
  {
-  self->setDefaultImage(image);
+
+     self->setDefaultImage(image);
+
  }
  }
  return 0;
@@ -15158,7 +15166,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setDefaultImage01(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDefaultImage'",NULL);
 #endif
  {
-  self->setDefaultImage(name);
+
+     self->setDefaultImage(name);
+
  }
  }
  return 0;
@@ -15186,8 +15196,10 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getDefaultImage00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDefaultImage'",NULL);
 #endif
  {
-  const CEGUI::Image* tolua_ret = (const CEGUI::Image*)  self->getDefaultImage();
+
+     const CEGUI::Image* tolua_ret = (const CEGUI::Image*)  self->getDefaultImage();
  tolua_pushusertype(tolua_S,(void*)tolua_ret,"const CEGUI::Image");
+
  }
  }
  return 1;
@@ -15220,7 +15232,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setPosition00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPosition'",NULL);
 #endif
  {
-  self->setPosition(*pos);
+
+     self->setPosition(*pos);
+
  }
  }
  return 0;
@@ -15253,7 +15267,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_offsetPosition00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'offsetPosition'",NULL);
 #endif
  {
-  self->offsetPosition(*offset);
+
+     self->offsetPosition(*offset);
+
  }
  }
  return 0;
@@ -15286,7 +15302,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setConstraintArea00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setConstraintArea'",NULL);
 #endif
  {
-  self->setConstraintArea(area);
+
+     self->setConstraintArea(area);
+
  }
  }
  return 0;
@@ -15317,8 +15335,11 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getPosition00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPosition'",NULL);
 #endif
  {
-  CEGUI::Vector2<float> tolua_ret = (CEGUI::Vector2<float>)  self->getPosition();
- {
+
+     CEGUI::Vector2<float> tolua_ret = (CEGUI::Vector2<float>)  self->getPosition();
+ 
+
+     {
 #ifdef __cplusplus
  void* tolua_obj = new CEGUI::Vector2<float>(tolua_ret);
  tolua_pushusertype_and_takeownership(tolua_S,tolua_obj,"CEGUI::Vector2<float>");
@@ -15357,7 +15378,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getConstraintArea00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getConstraintArea'",NULL);
 #endif
  {
-  CEGUI::Rect<float> tolua_ret = (CEGUI::Rect<float>)  self->getConstraintArea();
+
+     CEGUI::Rect<float> tolua_ret = (CEGUI::Rect<float>)  self->getConstraintArea();
+
  {
 #ifdef __cplusplus
  void* tolua_obj = new CEGUI::Rect<float>(tolua_ret);
@@ -15397,7 +15420,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getDisplayIndependantPosition00(lua_Sta
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDisplayIndependantPosition'",NULL);
 #endif
  {
-  CEGUI::Vector2<float> tolua_ret = (CEGUI::Vector2<float>)  self->getDisplayIndependantPosition();
+
+     CEGUI::Vector2<float> tolua_ret = (CEGUI::Vector2<float>)  self->getDisplayIndependantPosition();
+
  {
 #ifdef __cplusplus
  void* tolua_obj = new CEGUI::Vector2<float>(tolua_ret);
@@ -15439,7 +15464,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setUnifiedConstraintArea00(lua_State* t
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setUnifiedConstraintArea'",NULL);
 #endif
  {
-  self->setUnifiedConstraintArea(area);
+
+     self->setUnifiedConstraintArea(area);
+
  }
  }
  return 0;
@@ -15470,8 +15497,10 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getUnifiedConstraintArea00(lua_State* t
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getUnifiedConstraintArea'",NULL);
 #endif
  {
-  const CEGUI::URect& tolua_ret = (const CEGUI::URect&)  self->getUnifiedConstraintArea();
+
+     const CEGUI::URect& tolua_ret = (const CEGUI::URect&)  self->getUnifiedConstraintArea();
  tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CEGUI::URect");
+
  }
  }
  return 1;
@@ -15502,7 +15531,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_hide00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hide'",NULL);
 #endif
  {
-  self->hide();
+
+     self->hide();
+
  }
  }
  return 0;
@@ -15533,7 +15564,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_show00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'show'",NULL);
 #endif
  {
-  self->show();
+
+     self->show();
+
  }
  }
  return 0;
@@ -15566,7 +15599,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setVisible00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setVisible'",NULL);
 #endif
  {
-  self->setVisible(visible);
+
+     self->setVisible(visible);
+
  }
  }
  return 0;
@@ -15597,8 +15632,10 @@ static int tolua_CEGUI_CEGUI_MouseCursor_isVisible00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'isVisible'",NULL);
 #endif
  {
-  bool tolua_ret = (bool)  self->isVisible();
+
  tolua_pushboolean(tolua_S,(bool)tolua_ret);
+ bool tolua_ret = (bool)  self->isVisible();
+
  }
  }
  return 1;
@@ -15631,7 +15668,9 @@ static int tolua_CEGUI_CEGUI_MouseCursor_setExplicitRenderSize00(lua_State* tolu
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setExplicitRenderSize'",NULL);
 #endif
  {
-  self->setExplicitRenderSize(*size);
+
+     self->setExplicitRenderSize(*size);
+
  }
  }
  return 0;
@@ -15662,8 +15701,10 @@ static int tolua_CEGUI_CEGUI_MouseCursor_getExplicitRenderSize00(lua_State* tolu
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getExplicitRenderSize'",NULL);
 #endif
  {
-  const CEGUI::Size<float>& tolua_ret = (const CEGUI::Size<float>&)  self->getExplicitRenderSize();
+
+     const CEGUI::Size<float>& tolua_ret = (const CEGUI::Size<float>&)  self->getExplicitRenderSize();
  tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CEGUI::Size<float>");
+#endixxf //PE_NO_MOUSE
  }
  }
  return 1;
