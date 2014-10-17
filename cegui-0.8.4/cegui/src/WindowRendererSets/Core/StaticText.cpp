@@ -469,10 +469,11 @@ namespace CEGUI
         d_connections.push_back(
             d_window->subscribeEvent(Window::EventFontChanged,
                 Event::Subscriber(&FalagardStaticText::onFontChanged, this)));
-
+#ifndef PE_HAS_MOUSE
         d_connections.push_back(
             d_window->subscribeEvent(Window::EventMouseWheel,
                 Event::Subscriber(&FalagardStaticText::onMouseWheel, this)));
+#endif //PE_HAS_MOUSE
     }
 
     void FalagardStaticText::onLookNFeelUnassigned()

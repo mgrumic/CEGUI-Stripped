@@ -95,9 +95,10 @@ const String Window::EventWindowRendererAttached("WindowRendererAttached");
 const String Window::EventWindowRendererDetached("WindowRendererDetached");
 const String Window::EventTextParsingChanged("TextParsingChanged");
 const String Window::EventMarginChanged("MarginChanged");
-#ifndef PE_HAS_MOUSE
+
 const String Window::EventInputCaptureGained("InputCaptureGained");
 const String Window::EventInputCaptureLost("InputCaptureLost");
+#ifndef PE_HAS_MOUSE
 const String Window::EventMouseEntersArea("MouseEntersArea");
 const String Window::EventMouseLeavesArea("MouseLeavesArea");
 const String Window::EventMouseEntersSurface( "MouseEntersSurface" );
@@ -124,9 +125,10 @@ const String Window::WindowNameXMLAttributeName("name");
 const String Window::AutoWindowNamePathXMLAttributeName("namePath");
 const String Window::UserStringNameXMLAttributeName("name");
 const String Window::UserStringValueXMLAttributeName("value");
-
+#ifndef PE_HAS_MOUSE
 //----------------------------------------------------------------------------//
 const String Window::TooltipNameSuffix("__auto_tooltip__");
+#endif //PE_HAS_MOUSE
 
 //----------------------------------------------------------------------------//
 BasicRenderedStringParser Window::d_basicStringParser;
@@ -259,9 +261,11 @@ Window::Window(const String& type, const String& name):
     d_dragDropTarget(true),
 
     // tool tip related
+#ifndef PE_HAS_MOUSE
     d_customTip(0),
     d_weOwnTip(false),
     d_inheritsTipText(true),
+#endif //PE_HAS_MOUSE
 
     // XML writing options
     d_allowWriteXML(true),
@@ -1453,6 +1457,7 @@ void Window::addWindowProperties(void)
         &Window::setDistributesCapturedInputs, &Window::distributesCapturedInputs, false
     );
 
+#ifndef PE_HAS_MOUSE
     CEGUI_DEFINE_PROPERTY(Window, String,
        "TooltipType", "Property to get/set the custom tooltip for the window. Value is the type name of the custom tooltip. If \"\", the default System tooltip is used.",
         &Window::setTooltipType, &Window::getTooltipType, ""
@@ -1467,6 +1472,7 @@ void Window::addWindowProperties(void)
         "InheritsTooltipText", "Property to get/set whether the window inherits its parents tooltip text when it has none of its own. Value is either \"true\" or \"false\".",
         &Window::setInheritsTooltipText, &Window::inheritsTooltipText, true
     );
+#endif //PE_HAS_MOUSE
 
     
     addProperty(&d_windowRendererProperty);
@@ -1745,6 +1751,7 @@ void Window::destroy(void)
     releaseInput();
 
     // let go of the tooltip if we have it
+#ifndef PE_HAS_MOUSE
     Tooltip* const tip = getTooltip();
     if (tip && tip->getTargetWindow()==this)
         tip->setTargetWindow(0);
@@ -1752,6 +1759,7 @@ void Window::destroy(void)
     // ensure custom tooltip is cleaned up
     setTooltip(static_cast<Tooltip*>(0));
 
+#endif //PE_HAS_MOUSE
     // clean up looknfeel related things
     if (!d_lookName.empty())
     {
@@ -1778,7 +1786,7 @@ void Window::destroy(void)
     releaseRenderingWindow();
     invalidate();
 }
-
+#ifndef PE_HAS_MOUSE
 //----------------------------------------------------------------------------//
 bool Window::isUsingDefaultTooltip(void) const
 {
@@ -1796,8 +1804,10 @@ Tooltip* Window::getTooltip(void) const
 void Window::setTooltip(Tooltip* tooltip)
 {
     // destroy current custom tooltip if one exists and we created it
+
     if (d_customTip && d_weOwnTip)
         WindowManager::getSingleton().destroyWindow(d_customTip);
+
 
     // set new custom tooltip
     d_weOwnTip = false;
@@ -1808,8 +1818,10 @@ void Window::setTooltip(Tooltip* tooltip)
 void Window::setTooltipType(const String& tooltipType)
 {
     // destroy current custom tooltip if one exists and we created it
+
     if (d_customTip && d_weOwnTip)
         WindowManager::getSingleton().destroyWindow(d_customTip);
+
 
     if (tooltipType.empty())
     {
@@ -1820,10 +1832,12 @@ void Window::setTooltipType(const String& tooltipType)
     {
         CEGUI_TRY
         {
+
             d_customTip = static_cast<Tooltip*>(
                 WindowManager::getSingleton().createWindow(
                     tooltipType, getName() + TooltipNameSuffix));
             d_customTip->setAutoWindow(true);
+
             d_weOwnTip = true;
         }
         CEGUI_CATCH (UnknownObjectException&)
@@ -1871,6 +1885,7 @@ void Window::setInheritsTooltipText(bool setting)
 {
     d_inheritsTipText = setting;
 }
+#endif //PE_HAS_MOUSE
 
 //----------------------------------------------------------------------------//
 void Window::setArea_impl(const UVector2& pos, const USize& size,

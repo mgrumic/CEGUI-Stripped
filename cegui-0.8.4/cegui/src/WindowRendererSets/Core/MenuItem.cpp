@@ -86,18 +86,19 @@ void FalagardMenuItem::render()
 
 	// only show opened imagery if the menu items popup window is not closing
 	// (otherwise it might look odd)
+    suffix = "Normal";
 #ifdef PE_NO_POPUP_MENU_H
 	if (w->isOpened() && !(w->hasAutoPopup() && w->isPopupClosing()))
         suffix = "PopupOpen";
-    else 
 #endif
-	if (w->isPushed())
+#ifndef PE_HAS_MOUSE
+    if (w->isPushed())
         suffix = w->isHovering() ? "Pushed" : "PushedOff";
     else if (w->isHovering())
         suffix = "Hover";
-    else
-        suffix = "Normal";
-
+#endif //PE_HAS_MOUSE
+    
+        
     const StateImagery* imagery;
     // get WidgetLookFeel for the assigned look.
     const WidgetLookFeel& wlf = getLookNFeel();
@@ -105,6 +106,7 @@ void FalagardMenuItem::render()
     // try and get imagery for our current state
     if (wlf.isStateImageryPresent(stateName + suffix))
     {
+        
         imagery = &wlf.getStateImagery(stateName + suffix);
     }
     else

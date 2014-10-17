@@ -442,7 +442,9 @@ public:
         Child Widget name suffix constants
     *************************************************************************/
     //! Widget name suffix for automatically created tooltip widgets.
+#ifndef PE_HAS_MOUSE
     static const String TooltipNameSuffix;
+#endif //PE_HAS_MOUSE
 
     // XML element and attribute names that relate to Window.
 	static const String WindowXMLElementName;
@@ -1154,7 +1156,7 @@ public:
         - false if System should pass captured input events to this window only.
     */
     bool distributesCapturedInputs(void) const;
-
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Return whether this Window is using the system default Tooltip for its
@@ -1209,7 +1211,6 @@ public:
      */
     bool inheritsTooltipText(void) const;
 
-#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Return whether this window will rise to the top of the z-order when
@@ -2074,7 +2075,7 @@ public:
         destroy your Window objects (which will call this for you).
     */
     virtual void destroy(void);
-
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set the custom Tooltip object for this Window.  This value may be 0 to
@@ -2141,7 +2142,6 @@ public:
      */
     void setInheritsTooltipText(bool setting);
 
-#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set whether this window will rise to the top of the z-order when clicked
@@ -3669,7 +3669,7 @@ protected:
 
     //! true if window will receive drag and drop related notifications
     bool d_dragDropTarget;
-
+#ifndef PE_HAS_MOUSE
     //! Text string used as tip for this window.
     String d_tooltipText;
     //! Possible custom Tooltip for this window.
@@ -3678,6 +3678,7 @@ protected:
     bool d_weOwnTip;
     //! whether tooltip text may be inherited from parent.
     bool d_inheritsTipText;
+#endif //PE_HAS_MOUSE
 
     //! true if this window is allowed to write XML, false if not
     bool d_allowWriteXML;

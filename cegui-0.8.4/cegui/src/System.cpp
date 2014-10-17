@@ -660,7 +660,9 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<Thumb>();
     WindowFactoryManager::addWindowType<Titlebar>();
     WindowFactoryManager::addWindowType<ToggleButton>();
+#ifndef PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<Tooltip>();
+#endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ItemListbox>();
     WindowFactoryManager::addWindowType<GroupBox>();
     WindowFactoryManager::addWindowType<Tree>();

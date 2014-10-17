@@ -453,6 +453,7 @@ void ColourPickerControls::reloadColourPickerControlsTexture()
 //----------------------------------------------------------------------------//
 void ColourPickerControls::initialiseComponents()
 {
+#ifndef PE_HAS_MOUSE
     getCancelButton()->subscribeEvent(
         PushButton::EventClicked,
         Event::Subscriber(&ColourPickerControls::handleCancelButtonClicked, this));
@@ -460,6 +461,7 @@ void ColourPickerControls::initialiseComponents()
     getAcceptButton()->subscribeEvent(
         PushButton::EventClicked,
         Event::Subscriber(&ColourPickerControls::handleAcceptButtonClicked, this));
+#endif //PE_HAS_MOUSE
 
     getHexadecimalEditbox()->subscribeEvent(
         Editbox::EventDeactivated,
@@ -581,6 +583,7 @@ void ColourPickerControls::initialiseComponents()
         Slider::EventValueChanged,
         Event::Subscriber(&ColourPickerControls::handleAlphaSliderValueChanged, this));
 
+#ifndef PE_HAS_MOUSE
     getColourPickerStaticImage()->subscribeEvent(
         Window::EventMouseLeavesSurface,
         Event::Subscriber(&ColourPickerControls::handleColourPickerStaticImageMouseLeaves, this));
@@ -596,6 +599,7 @@ void ColourPickerControls::initialiseComponents()
     getColourPickerStaticImage()->subscribeEvent(
         Window::EventMouseMove,
         Event::Subscriber(&ColourPickerControls::handleColourPickerStaticImageMouseMove, this));
+#endif //PE_HAS_MOUSE
 
     initColourPicker();
 
@@ -1355,7 +1359,9 @@ void ColourPickerControls::initColourPicker()
 
     d_colourPickerCursor->setWidth(UDim(0.05f, 0));
     d_colourPickerCursor->setHeight(UDim(0.05f, 0));
+#ifndef PE_HAS_MOUSE
     d_colourPickerCursor->setMousePassThroughEnabled(true);
+#endif //PE_HAS_MOUSE
     d_colourPickerCursor->setClippedByParent(false);
 
     getColourPickerImageSlider()->getThumb()->setHotTracked(false);

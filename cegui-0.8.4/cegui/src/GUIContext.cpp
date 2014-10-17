@@ -181,10 +181,11 @@ void GUIContext::setDefaultTooltipObject(Tooltip* tooltip)
 {
     destroyDefaultTooltipWindowInstance();
 
+#ifndef PE_HAS_MOUSE
     d_defaultTooltipObject = tooltip;
-
     if (d_defaultTooltipObject)
         d_defaultTooltipObject->setWritingXMLAllowed(false);
+#endif //PE_HAS_MOUSE
 }
 
 //----------------------------------------------------------------------------//
@@ -200,7 +201,10 @@ void GUIContext::destroyDefaultTooltipWindowInstance()
 {
     if (d_defaultTooltipObject && d_weCreatedTooltipObject)
     {
+
+#ifndef PE_HAS_MOUSE
         WindowManager::getSingleton().destroyWindow(d_defaultTooltipObject);
+#endif //PE_HAS_MOUSE
         d_defaultTooltipObject = 0;
     }
 
@@ -223,7 +227,7 @@ void GUIContext::createDefaultTooltipWindowInstance() const
 
     if (winmgr.isLocked())
         return;
-
+#ifndef PE_HAS_MOUSE
     d_defaultTooltipObject = dynamic_cast<Tooltip*>(
         winmgr.createWindow(d_defaultTooltipType,
                             "CEGUI::System::default__auto_tooltip__"));
@@ -234,6 +238,7 @@ void GUIContext::createDefaultTooltipWindowInstance() const
         d_defaultTooltipObject->setWritingXMLAllowed(false);
         d_weCreatedTooltipObject = true;
     }
+#endif //PE_HAS_MOUSE
 }
 
 //----------------------------------------------------------------------------//
@@ -447,12 +452,13 @@ bool GUIContext::windowDestroyedHandler(const EventArgs& args)
 
     if (window == d_captureWindow)
         d_captureWindow = 0;
-
+#ifndef PE_HAS_MOUSE
     if (window == d_defaultTooltipObject)
     {
         d_defaultTooltipObject = 0;
         d_weCreatedTooltipObject = false;
     }
+#endif //PE_HAS_MOUSE
 
     return true;
 }

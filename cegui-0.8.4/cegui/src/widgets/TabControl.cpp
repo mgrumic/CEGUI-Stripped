@@ -306,9 +306,9 @@ void TabControl::addButtonForTabContent(Window* wnd)
 #ifndef PE_HAS_MOUSE
     tb->subscribeEvent(TabButton::EventDragged,
         Event::Subscriber(&TabControl::handleDraggedPane, this));
-#endif //PE_HAS_MOUSE
     tb->subscribeEvent(TabButton::EventScrolled,
         Event::Subscriber(&TabControl::handleWheeledPane, this));
+#endif //PE_HAS_MOUSE
 }
 
 /*************************************************************************
