@@ -484,7 +484,7 @@ void ScrollablePane::onSized(ElementEventArgs& e)
     ++e.handled;
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 //----------------------------------------------------------------------------//
 void ScrollablePane::onMouseWheel(MouseEventArgs& e)
 {

@@ -29,13 +29,15 @@
 
 #include "../Window.h"
 
-
-#include "../WindowFactory.h"
-
 #if defined(_MSC_VER)
 #	pragma warning(push)
 #	pragma warning(disable : 4251)
 #endif
+
+#ifndef PE_HAS_MOUSE
+#include "../WindowFactory.h"
+
+
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -559,7 +561,10 @@ namespace CEGUI
 
 } // End of  CEGUI namespace section
 
-#endif
+
+
+#endif //PE_HAS_MOUSE
+
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif

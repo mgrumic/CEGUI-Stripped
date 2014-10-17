@@ -734,21 +734,21 @@ protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	virtual	void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual	void	onMouseDoubleClicked(MouseEventArgs& e);
 	virtual	void	onMouseTripleClicked(MouseEventArgs& e);
 	virtual void	onMouseMove(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 	virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void	onCharacter(KeyEventArgs& e);
 	virtual void	onKeyDown(KeyEventArgs& e);
 	virtual void	onTextChanged(WindowEventArgs& e);
 	virtual void	onSized(ElementEventArgs& e);
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	virtual	void	onMouseWheel(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
     virtual void onFontChanged(WindowEventArgs& e);
 
 

@@ -113,9 +113,9 @@ void FrameWindow::initialiseComponents(void)
     closeButton->banPropertyFromXML("Disabled");
 
     // bind handler to close button 'Click' event
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     closeButton->subscribeEvent(PushButton::EventClicked, Event::Subscriber(&CEGUI::FrameWindow::closeClickHandler, this));
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
     performChildWindowLayout();
 }
@@ -207,9 +207,9 @@ void FrameWindow::toggleRollup(void)
         // event notification.
         WindowEventArgs args(this);
         onRollupToggled(args);
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         getGUIContext().updateWindowContainingMouse();
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
     }
 
 }
@@ -233,7 +233,7 @@ void FrameWindow::offsetPixelPosition(const Vector2f& offset)
     setPosition(d_area.getPosition() + uOffset);
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************	
 	check local pixel co-ordinate point 'pt' and return one of the
 	SizingLocation enumerated values depending where the point falls on
@@ -302,7 +302,7 @@ FrameWindow::SizingLocation FrameWindow::getSizingBorderAtPoint(const Vector2f& 
 	// deafult: None.
 	return SizingNone;
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************
@@ -479,7 +479,7 @@ bool FrameWindow::moveBottomEdge(float delta, URect& out_area)
     return d_verticalAlignment == VA_BOTTOM;
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler to map close button clicks to FrameWindow 'CloseCliked' events
 *************************************************************************/
@@ -531,7 +531,7 @@ void FrameWindow::setCursorForPoint(const Vector2f& pt) const
 	}
 
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************
@@ -557,7 +557,7 @@ void FrameWindow::onCloseClicked(WindowEventArgs& e)
 	fireEvent(EventCloseClicked, e, EventNamespace);
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler for mouse move events
 *************************************************************************/
@@ -677,7 +677,7 @@ void FrameWindow::onMouseButtonUp(MouseEventArgs& e)
 	}
 
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************
@@ -685,10 +685,10 @@ void FrameWindow::onMouseButtonUp(MouseEventArgs& e)
 *************************************************************************/
 void FrameWindow::onCaptureLost(WindowEventArgs& e)
 {
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	// default processing (this is now essential as it controls event firing).
 	Window::onCaptureLost(e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 	// reset sizing state
 	d_beingSized = false;
@@ -795,7 +795,7 @@ void FrameWindow::addFrameWindowProperties(void)
         "SizingBorderThickness", "Property to get/set the setting for the sizing border thickness. Value is a float specifying the border thickness in pixels.",
         &FrameWindow::setSizingBorderThickness, &FrameWindow::getSizingBorderThickness, 8.0f
     );
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     CEGUI_DEFINE_PROPERTY(FrameWindow, Image*,
         "NSSizingCursorImage", "Property to get/set the N-S (up-down) sizing cursor image for the FrameWindow. Value should be \"set:[imageset name] image:[image name]\".",
         &FrameWindow::setNSSizingCursorImage, &FrameWindow::getNSSizingCursorImage, 0
@@ -815,10 +815,10 @@ void FrameWindow::addFrameWindowProperties(void)
         "NESWSizingCursorImage", "Property to get/set the NE-SW diagonal sizing cursor image for the FramwWindow. Value should be \"set:[imageset name] image:[image name]\".",
         &FrameWindow::setNESWSizingCursorImage, &FrameWindow::getNESWSizingCursorImage, 0
     );
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
     return the image used for the north-south sizing cursor.
 *************************************************************************/
@@ -914,7 +914,7 @@ void FrameWindow::setNESWSizingCursorImage(const String& name)
 {
     d_neswSizingCursor = &ImageManager::getSingleton().get(name);
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 /*************************************************************************
     Return a pointer to the Titlebar component widget for this FrameWindow.

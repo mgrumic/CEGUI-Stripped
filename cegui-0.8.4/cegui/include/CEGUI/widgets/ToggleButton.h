@@ -64,10 +64,10 @@ protected:
     //! event triggered internally when toggle button select state changes.
     virtual void onSelectStateChange(WindowEventArgs& e);
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     // base class overriddes
     void onMouseButtonUp(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
     bool d_selected;
 };

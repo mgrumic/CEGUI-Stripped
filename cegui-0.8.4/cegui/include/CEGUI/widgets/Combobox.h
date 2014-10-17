@@ -188,7 +188,7 @@ public:
     bool isHit(const Vector2f& position,
                const bool allow_disabled = false) const;
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	/*!
 	\brief
 		returns the mode of operation for the combo box.
@@ -531,7 +531,7 @@ public:
 	void	hideDropList(void);
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	/*!
 	\brief
 		Set the mode of operation for the combo box.
@@ -892,7 +892,7 @@ protected:
 	*/
 	bool	droplist_HiddenHandler(const EventArgs& e);
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	/*!
 	\brief
 		Mouse button down handler attached to edit box

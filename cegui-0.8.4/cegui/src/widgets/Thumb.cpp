@@ -174,7 +174,7 @@ void Thumb::onThumbTrackEnded(WindowEventArgs& e)
 }
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler for mouse movement events
 *************************************************************************/
@@ -284,7 +284,7 @@ void Thumb::onCaptureLost(WindowEventArgs& e)
 	// send notification whenever thumb is released
 	onThumbPositionChanged(args);
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************

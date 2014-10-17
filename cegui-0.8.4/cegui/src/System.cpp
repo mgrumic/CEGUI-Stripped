@@ -224,7 +224,7 @@ System::System(Renderer& renderer,
 
     // set up defaults
     config.initialiseDefaultFont();
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     config.initialiseDefaultMouseCursor();
 #endif
     config.initialiseDefaulTooltip();
@@ -628,9 +628,9 @@ void System::addStandardWindowFactories()
 {
     // Add types all base elements
     WindowFactoryManager::addWindowType<DefaultWindow>();
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<DragContainer>();
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
     WindowFactoryManager::addWindowType<ClippedContainer>();
     WindowFactoryManager::addWindowType<PushButton>();
@@ -644,7 +644,7 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<ListHeader>();
     WindowFactoryManager::addWindowType<ListHeaderSegment>();
     WindowFactoryManager::addWindowType<Menubar>();
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 	WindowFactoryManager::addWindowType<PopupMenu>();
 #endif
 	WindowFactoryManager::addWindowType<MenuItem>();

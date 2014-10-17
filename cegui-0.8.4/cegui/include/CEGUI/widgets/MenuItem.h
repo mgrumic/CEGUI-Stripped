@@ -61,7 +61,7 @@ namespace CEGUI {
         static const String EventClicked;
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         /*************************************************************************
             Accessor type functions
          *************************************************************************/
@@ -76,7 +76,7 @@ namespace CEGUI {
         bool isHovering(void) const {
             return d_hovering;
         }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
         /*!
         \brief
@@ -94,7 +94,7 @@ namespace CEGUI {
         \brief
             Returns true if the popup menu attached to the menu item is open.
          */
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 
         bool isOpened(void) const {
             return d_opened;
@@ -245,7 +245,7 @@ namespace CEGUI {
         \brief
             handler invoked internally when the MenuItem is clicked.
          */
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
         virtual void onClicked(WindowEventArgs& e);
 
 
@@ -253,23 +253,23 @@ namespace CEGUI {
             Overridden event handlers
          *************************************************************************/
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         virtual void onMouseButtonDown(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
         virtual void updateSelf(float elapsed);
 #endif //PE_NO_POPUP
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         virtual void onMouseMove(MouseEventArgs& e);
 
         virtual void onMouseButtonUp(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
         virtual void onCaptureLost(WindowEventArgs& e);
         virtual void onMouseLeaves(MouseEventArgs& e);
         virtual void onTextChanged(WindowEventArgs& e);
 
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         /*************************************************************************
             Implementation Functions
          *************************************************************************/
@@ -284,7 +284,7 @@ namespace CEGUI {
             Nothing
          */
         void updateInternalState(const Vector2f& mouse_pos);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
         /*!
@@ -308,10 +308,10 @@ namespace CEGUI {
             Nothing.
          */
         bool d_pushed; //!< true when widget is pushed
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         bool d_hovering; //!< true when the button is in 'hover' state and requires the hover rendering.
-#endif //PE_NO_MOUSE
-#ifndef PE_NO_POPUP_MENU_H
+#endif //PE_HAS_MOUSE
+#ifdef PE_NO_POPUP_MENU_H
         void setPopupMenu_impl(PopupMenu* popup, bool add_as_child = true);
 
         /*************************************************************************
@@ -334,7 +334,7 @@ namespace CEGUI {
         /*************************************************************************
             Private methods
          *************************************************************************/
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
         void addMenuItemProperties(void);
 #endif //PE_NO_POPUP_MENU_H
         /*!

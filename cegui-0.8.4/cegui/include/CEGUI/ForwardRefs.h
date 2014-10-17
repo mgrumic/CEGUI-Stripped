@@ -143,9 +143,9 @@ class ClippedContainer;
 class Combobox;
 class ComboDropList;
 class DefaultWindow;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 class DragContainer;
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 class Editbox;
 class FrameWindow;
 class GridLayoutContainer;
@@ -164,9 +164,9 @@ class MenuBase;
 class MenuItem;
 class MultiColumnList;
 class MultiLineEditbox;
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 class ProgressBar;
 class PushButton;
 class RadioButton;

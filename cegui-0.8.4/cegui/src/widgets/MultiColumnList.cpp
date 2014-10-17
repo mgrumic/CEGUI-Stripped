@@ -1917,7 +1917,7 @@ void MultiColumnList::onSized(ElementEventArgs& e)
 }
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler for when mouse button is pressed
 *************************************************************************/
@@ -1992,7 +1992,7 @@ void MultiColumnList::onMouseWheel(MouseEventArgs& e)
 
 	++e.handled;
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************

@@ -38,8 +38,9 @@ namespace CEGUI
 // event strings
 const String PushButton::EventNamespace("PushButton");
 const String PushButton::WidgetTypeName("CEGUI/PushButton");
+#ifndef PE_HAS_MOUSE
 const String PushButton::EventClicked( "Clicked" );
-
+#endif //PE_HAS_MOUSE
 
 /*************************************************************************
 	Constructor
@@ -58,6 +59,7 @@ PushButton::~PushButton(void)
 }
 
 
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	handler invoked internally when the button is clicked.
 *************************************************************************/
@@ -65,9 +67,10 @@ void PushButton::onClicked(WindowEventArgs& e)
 {
 	fireEvent(EventClicked, e, EventNamespace);
 }
+#endif //PE_HAS_MOUSE
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler for mouse button release events
 *************************************************************************/

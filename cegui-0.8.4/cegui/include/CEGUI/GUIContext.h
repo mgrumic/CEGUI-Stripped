@@ -29,7 +29,7 @@
 
 #include "CEGUI/RenderingSurface.h"
 #include "CEGUI/InjectedInputReceiver.h"
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 #include "CEGUI/MouseCursor.h"
 #endif
 #include "CEGUI/SystemKeys.h"
@@ -41,7 +41,7 @@
 
 namespace CEGUI
 {
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 struct MouseClickTracker;
 #endif
 //! EventArgs class passed to subscribers for (most) GUIContext events.
@@ -72,7 +72,7 @@ class CEGUIEXPORT GUIContext : public RenderingSurface,
                                public InjectedInputReceiver
 {
 public:
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     static const float DefaultMouseButtonClickTimeout;
     static const float DefaultMouseButtonMultiClickTimeout;
     static const Sizef DefaultMouseButtonMultiClickTolerance;
@@ -84,7 +84,7 @@ public:
      * obtained by calling GUIContext::getRootWindow).
      */
     static const String EventRootWindowChanged;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /** Name of Event fired when the mouse movement scaling factor is changed.
      * Handlers are passed a const reference to a GUIContextEventArgs struct.
      */
@@ -131,7 +131,7 @@ public:
 
     //! Return a pointer to the Window that is currently set as modal.
     Window* getModalWindow() const;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     Window* getWindowContainingMouse() const;
 #endif
     const Sizef& getSurfaceSize() const;
@@ -153,7 +153,7 @@ public:
         a reference via this method and call a method on the reference
         (in our example that's setDefaultImage).
     */
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     MouseCursor& getMouseCursor();
     const MouseCursor& getMouseCursor() const;
 
@@ -277,7 +277,7 @@ public:
     bool injectCopyRequest();
     bool injectCutRequest();
     bool injectPasteRequest();
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     bool injectMouseMove(float delta_x, float delta_y);
     bool injectMouseLeaves(void);
     bool injectMouseButtonDown(MouseButton button);
@@ -301,7 +301,7 @@ protected:
 
     //! notify windows in a hierarchy using default font, when font changes.
     void notifyDefaultFontChanged(Window* hierarchy_root) const;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     bool mouseMoveInjection_impl(MouseEventArgs& ma);
     //! call some function for a chain of windows: (top, bottom]
     void notifyMouseTransition(Window* top, Window* bottom,
@@ -336,7 +336,7 @@ protected:
 
     Window* d_rootWindow;
     bool d_isDirty;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     MouseCursor d_mouseCursor;
 
     //! Scaling factor applied to injected mouse move deltas.

@@ -1013,7 +1013,7 @@ void MultiLineEditbox::handlePageDown(uint sysKeys)
 }
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 
 /*************************************************************************
         Handler for when a mouse button is pushed
@@ -1130,7 +1130,7 @@ void MultiLineEditbox::onMouseMove(MouseEventArgs& e)
 
     ++e.handled;
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 /*************************************************************************
         Handler for when capture is lost.
@@ -1325,7 +1325,7 @@ void MultiLineEditbox::onSized(ElementEventArgs& e)
     ++e.handled;
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
         Handler for mouse wheel changes
  *************************************************************************/
@@ -1345,7 +1345,7 @@ void MultiLineEditbox::onMouseWheel(MouseEventArgs& e)
 
     ++e.handled;
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 void MultiLineEditbox::onFontChanged(WindowEventArgs& e)
 {

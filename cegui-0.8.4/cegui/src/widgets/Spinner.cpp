@@ -82,16 +82,20 @@ namespace CEGUI
         Editbox* editbox = getEditbox();
 
         // setup component controls
+#ifndef PE_HAS_MOUSE
         increaseButton->setWantsMultiClickEvents(false);
-#ifndef PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
+#ifndef PE_HAS_MOUSE
         increaseButton->setMouseAutoRepeatEnabled(true);
 #endif
+#ifndef PE_HAS_MOUSE
         decreaseButton->setWantsMultiClickEvents(false);
-#ifndef PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
+#ifndef PE_HAS_MOUSE
         decreaseButton->setMouseAutoRepeatEnabled(true);
 #endif
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
         // perform event subscriptions.
         increaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleIncreaseButton, this));
         decreaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleDecreaseButton, this));
@@ -410,7 +414,7 @@ namespace CEGUI
         fireEvent(EventTextInputModeChanged, e, EventNamespace);
     }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     bool Spinner::handleIncreaseButton(const EventArgs& e)
     {
         if (((const MouseEventArgs&)e).button == LeftButton)

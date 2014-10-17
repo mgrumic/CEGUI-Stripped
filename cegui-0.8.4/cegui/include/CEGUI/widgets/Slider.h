@@ -367,13 +367,13 @@ protected:
 	virtual void	onThumbTrackEnded(WindowEventArgs& e);
 
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual	void	onMouseWheel(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 	/*************************************************************************

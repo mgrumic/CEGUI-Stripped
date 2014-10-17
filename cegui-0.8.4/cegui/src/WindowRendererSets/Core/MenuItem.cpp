@@ -53,7 +53,7 @@ const NamedArea& FalagardMenuItem::getContentNamedArea() const
 {
     const WidgetLookFeel& wlf(getLookNFeel());
 
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
     if (static_cast<MenuItem*>(d_window)->getPopupMenu() && !parentIsMenubar() &&
         wlf.isNamedAreaDefined("HasPopupContentSize"))
     {
@@ -86,7 +86,7 @@ void FalagardMenuItem::render()
 
 	// only show opened imagery if the menu items popup window is not closing
 	// (otherwise it might look odd)
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 	if (w->isOpened() && !(w->hasAutoPopup() && w->isPopupClosing()))
         suffix = "PopupOpen";
     else 
@@ -119,7 +119,7 @@ void FalagardMenuItem::render()
     Window* parent_window = w->getParent();
     bool not_menubar = (!parent_window) ? true : !dynamic_cast<Menubar*>(parent_window);
 
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 	if (w->getPopupMenu() && not_menubar)
     {
         // get imagery for popup open/closed state

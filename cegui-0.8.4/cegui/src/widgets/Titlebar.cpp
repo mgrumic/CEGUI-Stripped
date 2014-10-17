@@ -28,9 +28,9 @@
  ***************************************************************************/
 #include "CEGUI/widgets/Titlebar.h"
 #include "CEGUI/widgets/FrameWindow.h"
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 #include "CEGUI/MouseCursor.h"
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 #include "CEGUI/CoordConverter.h"
 
 // Start of CEGUI namespace section
@@ -102,7 +102,7 @@ const Vector2f& Titlebar::getDragPoint() const
     return d_dragPoint;
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler for mouse movement events
 *************************************************************************/
@@ -240,7 +240,7 @@ void Titlebar::onFontChanged(WindowEventArgs& e)
 		getParent()->performChildWindowLayout();
 	}
 }
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************

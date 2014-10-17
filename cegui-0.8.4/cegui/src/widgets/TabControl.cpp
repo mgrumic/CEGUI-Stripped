@@ -101,7 +101,7 @@ TabControl::~TabControl(void)
 void TabControl::initialiseComponents(void)
 {
 	performChildWindowLayout();
-
+#ifndef PE_HAS_MOUSE
     if (isChild(ButtonScrollLeft))
         getChild(ButtonScrollLeft)->subscribeEvent (
             PushButton::EventClicked, Event::Subscriber(
@@ -111,6 +111,7 @@ void TabControl::initialiseComponents(void)
         getChild(ButtonScrollRight)->subscribeEvent (
             PushButton::EventClicked, Event::Subscriber(
                 &CEGUI::TabControl::handleScrollPane, this));
+#endif //PE_HAS_MOUSE
 }
 /*************************************************************************
 Get the number of tabs
@@ -302,8 +303,10 @@ void TabControl::addButtonForTabContent(Window* wnd)
     // Subscribe to clicked event so that we can change tab
     tb->subscribeEvent(TabButton::EventClicked,
         Event::Subscriber(&TabControl::handleTabButtonClicked, this));
+#ifndef PE_HAS_MOUSE
     tb->subscribeEvent(TabButton::EventDragged,
         Event::Subscriber(&TabControl::handleDraggedPane, this));
+#endif //PE_HAS_MOUSE
     tb->subscribeEvent(TabButton::EventScrolled,
         Event::Subscriber(&TabControl::handleWheeledPane, this));
 }
@@ -406,14 +409,18 @@ void TabControl::makeTabVisible_impl(Window* wnd)
     {
         scrollLeftBtn = getChild(ButtonScrollLeft);
         lx = CoordConverter::asAbsolute(scrollLeftBtn->getArea().d_max.d_x, ww);
+#ifndef PE_HAS_MOUSE
         scrollLeftBtn->setWantsMultiClickEvents(false);
+#endif //PE_HAS_MOUSE
     }
 
     if (isChild(ButtonScrollRight))
     {
         scrollRightBtn = getChild(ButtonScrollRight);
         rx = CoordConverter::asAbsolute(scrollRightBtn->getPosition().d_x, ww);
+#ifndef PE_HAS_MOUSE
         scrollRightBtn->setWantsMultiClickEvents(false);
+#endif //PE_HAS_MOUSE
     }
 
     if (x < lx)
@@ -751,7 +758,7 @@ bool TabControl::handleScrollPane(const EventArgs& e)
 	return true;
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 bool TabControl::handleDraggedPane(const EventArgs& e)
 {
     const MouseEventArgs& me = static_cast<const MouseEventArgs&>(e);

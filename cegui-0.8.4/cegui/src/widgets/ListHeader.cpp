@@ -363,13 +363,13 @@ void ListHeader::setSortingEnabled(bool setting)
 	if (d_sortingEnabled != setting)
 	{
 		d_sortingEnabled = setting;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 		// make the setting change for all component segments.
 		for (uint i = 0; i <getColumnCount(); ++i)
 		{
 			d_segments[i]->setClickable(d_sortingEnabled);
 		}
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 		// Fire setting changed event.
 		WindowEventArgs args(this);
@@ -738,18 +738,18 @@ ListHeaderSegment* ListHeader::createInitialisedSegment(const String& text, uint
 	newseg->setID(id);
     newseg->setSizingEnabled(d_sizingEnabled);
     newseg->setDragMovingEnabled(d_movingEnabled);
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     newseg->setClickable(d_sortingEnabled);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 	// subscribe events we listen to
 	newseg->subscribeEvent(ListHeaderSegment::EventSegmentSized, Event::Subscriber(&CEGUI::ListHeader::segmentSizedHandler, this));
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	newseg->subscribeEvent(ListHeaderSegment::EventSegmentClicked, Event::Subscriber(&CEGUI::ListHeader::segmentClickedHandler, this));
     newseg->subscribeEvent(ListHeaderSegment::EventSplitterDoubleClicked, Event::Subscriber(&CEGUI::ListHeader::segmentDoubleClickHandler, this));
     newseg->subscribeEvent(ListHeaderSegment::EventSegmentDragStop, Event::Subscriber(&CEGUI::ListHeader::segmentMovedHandler, this));
 	newseg->subscribeEvent(ListHeaderSegment::EventSegmentDragPositionChanged, Event::Subscriber(&CEGUI::ListHeader::segmentDragHandler, this));
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 	return newseg;
 }
@@ -904,7 +904,7 @@ bool ListHeader::segmentSizedHandler(const EventArgs& e)
 	return true;
 }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 /*************************************************************************
 	Handler method for when a segment is dragged & dropped.
 *************************************************************************/
@@ -1046,7 +1046,7 @@ bool ListHeader::segmentDragHandler(const EventArgs&)
 	return true;
 }
 
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************

@@ -241,7 +241,7 @@ public:
      * was changed.
      */
     static const String EventAlwaysOnTopChanged;
-#ifndef PE_NO_MOUSE
+
     /** Event fired when the Window gains capture of mouse inputs.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the Window that has captured mouse inputs.
@@ -256,7 +256,7 @@ public:
      *   cause of the previous window with capture losing that capture.
      */
     static const String EventInputCaptureLost;
-#endif
+
     /** Event fired when the Window has been invalidated.
      * When a window is invalidated its cached rendering geometry is cleared,
      * the rendering surface that recieves the window's output is invalidated
@@ -336,7 +336,7 @@ public:
      * changed.
      */
     static const String EventMarginChanged;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     // generated externally (inputs)
     /** Event fired when the mouse cursor has entered the Window's area.
      * Handlers are passed a const MouseEventArgs reference with all fields
@@ -1031,7 +1031,7 @@ public:
         return static_cast<Window*>(getParentElement());
     }
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Return a pointer to the mouse cursor image to use when the mouse cursor
@@ -1097,7 +1097,7 @@ public:
           moveToFront, moveToBack, moveInFront and moveBehind are ignored.
     */
     bool isZOrderingEnabled(void) const;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Return whether this window will receive multi-click events or multiple
@@ -1209,7 +1209,7 @@ public:
      */
     bool inheritsTooltipText(void) const;
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Return whether this window will rise to the top of the z-order when
@@ -1306,7 +1306,7 @@ public:
     */
     Window* getActiveSibling();
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Returns whether this window should ignore mouse event and pass them
@@ -1897,7 +1897,7 @@ public:
         Nothing
     */
     void invalidate(const bool recursive);
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set the mouse cursor image to be used when the mouse enters this window.
@@ -1970,7 +1970,7 @@ public:
     */
     void    setZOrderingEnabled(bool setting);
     
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set whether this window will receive multi-click events or multiple
@@ -2043,7 +2043,7 @@ public:
         Internal support method for drag & drop.  You do not normally call
         this directly from client code.  See the DragContainer class.
     */
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 
     /*!
     \brief
@@ -2058,7 +2058,7 @@ public:
         this directly from client code.  See the DragContainer class.
     */
     void notifyDragDropItemDropped(DragContainer* item);
-#endif //PE_NO_MOUSE    void notifyDragDropItemEnters(DragContainer* item);
+#endif //PE_HAS_MOUSE    void notifyDragDropItemEnters(DragContainer* item);
 
     /*!
     \brief
@@ -2141,7 +2141,7 @@ public:
      */
     void setInheritsTooltipText(bool setting);
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set whether this window will rise to the top of the z-order when clicked
@@ -2359,7 +2359,7 @@ public:
     */
     virtual void endInitialisation(void)       {d_initialising = false;}
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Sets whether this window should ignore mouse events and pass them
@@ -2628,7 +2628,7 @@ public:
         mode set for this Window.
     */
     WindowUpdateMode getUpdateMode() const;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set whether mouse input that is not directly handled by this Window
@@ -2872,7 +2872,7 @@ protected:
     */
     virtual void onAlwaysOnTopChanged(WindowEventArgs& e);
 
-#ifndef PE_NO_MOUSE
+
     /*!
     \brief
         Handler called when this window gains capture of mouse inputs.
@@ -2894,7 +2894,6 @@ protected:
         'this'.
     */
     virtual void onCaptureLost(WindowEventArgs& e);
-#endif
     /*!
     \brief
         Handler called when this window gets invalidated.
@@ -3004,7 +3003,7 @@ protected:
     */
     virtual void onChildRemoved(ElementEventArgs& e);
 
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Handler called when the mouse cursor has entered this window's area.
@@ -3642,7 +3641,7 @@ protected:
     bool d_riseOnClick;
     //! true if the Window responds to z-order change requests.
     bool d_zOrderingEnabled;
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     //! true if the Window wishes to hear about multi-click mouse events.
     bool d_wantsMultiClicks;
     //! whether (most) mouse events pass through this window
@@ -3716,7 +3715,7 @@ private:
     //! Not intended for public use, only used as a "Font" property getter
     const Font* property_getFont() const;
     //! Not intended for public use, only used as a "MouseCursor" property getter
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
     const Image* property_getMouseCursor() const;
 #endif
     //! connection for event listener for font render size changes.

@@ -37,6 +37,7 @@
 // Start of CEGUI namespace section
 namespace CEGUI
 {
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Base class for Tooltip window renderer objects.
@@ -322,9 +323,9 @@ namespace CEGUI
         ************************************************************************/
         void updateSelf(float elapsed);
         void onHidden(WindowEventArgs& e);
-#ifndef PE_NO_MOUSE
+
         void onMouseEnters(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+
         void onTextChanged(WindowEventArgs& e);
 
         /************************************************************************
@@ -345,6 +346,7 @@ namespace CEGUI
         *************************************************************************/
         void addTooltipProperties(void);
     };
+#endif //PE_HAS_MOUSE2
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)

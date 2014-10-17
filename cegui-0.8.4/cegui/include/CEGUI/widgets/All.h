@@ -49,7 +49,7 @@
 #include "./MultiColumnList.h"
 #include "./MultiLineEditbox.h"
 
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 #include "./PopupMenu.h"
 #endif
 

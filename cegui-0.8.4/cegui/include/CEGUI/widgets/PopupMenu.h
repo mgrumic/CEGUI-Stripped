@@ -31,7 +31,7 @@
 
 #include "../Base.h"
 
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 #include "../Window.h"
 #include "./MenuBase.h"
 
@@ -196,10 +196,10 @@ protected:
 	virtual void onDestructionStarted(WindowEventArgs& e);
 	virtual void onShown(WindowEventArgs& e);
 	virtual void onHidden(WindowEventArgs& e);
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 	virtual void onMouseButtonDown(MouseEventArgs& e);
 	virtual void onMouseButtonUp(MouseEventArgs& e);
-#endif //PE_NO_MOUSE
+#endif //PE_HAS_MOUSE
 
     /*************************************************************************
         Implementation Data

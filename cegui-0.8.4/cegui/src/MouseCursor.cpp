@@ -29,7 +29,7 @@
 
 
 #include "CEGUI/MouseCursor.h"
-#ifndef PE_NO_MOUSE
+#ifndef PE_HAS_MOUSE
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/Logger.h"
 #include "CEGUI/System.h"

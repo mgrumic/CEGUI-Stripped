@@ -31,12 +31,10 @@
  ***************************************************************************/
 
 #ifndef PE_NO_POPUP_MENU_H
-//#define PE_NO_POPUP_MENU_H
+#define PE_NO_POPUP_MENU_H
 #endif
 
-#ifndef PE_NO_MOUSE
-#define PE_NO_MOUSE
-#endif
+#define PE_HAS_MOUSE
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

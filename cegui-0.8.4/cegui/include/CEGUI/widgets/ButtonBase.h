@@ -97,12 +97,13 @@ protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
-#ifndef PE_NO_MOUSE
+
     void setPushedState(const bool pushed);
+    virtual void	onCaptureLost(WindowEventArgs& e);
+#ifndef PE_HAS_MOUSE
     virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
-    virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void	onMouseLeaves(MouseEventArgs& e);
 #endif
 
