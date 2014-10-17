@@ -84,8 +84,6 @@ const String Window::EventClippedByParentChanged( "ClippedByParentChanged" );
 const String Window::EventDestroyedByParentChanged("DestroyedByParentChanged");
 const String Window::EventInheritsAlphaChanged( "InheritsAlphaChanged" );
 const String Window::EventAlwaysOnTopChanged("AlwaysOnTopChanged");
-const String Window::EventInputCaptureGained( "InputCaptureGained" );
-const String Window::EventInputCaptureLost( "InputCaptureLost" );
 const String Window::EventInvalidated( "Invalidated" );
 const String Window::EventRenderingStarted( "RenderingStarted" );
 const String Window::EventRenderingEnded( "RenderingEnded" );
@@ -97,6 +95,9 @@ const String Window::EventWindowRendererAttached("WindowRendererAttached");
 const String Window::EventWindowRendererDetached("WindowRendererDetached");
 const String Window::EventTextParsingChanged("TextParsingChanged");
 const String Window::EventMarginChanged("MarginChanged");
+#ifndef PE_NO_MOUSE
+const String Window::EventInputCaptureGained("InputCaptureGained");
+const String Window::EventInputCaptureLost("InputCaptureLost");
 const String Window::EventMouseEntersArea("MouseEntersArea");
 const String Window::EventMouseLeavesArea("MouseLeavesArea");
 const String Window::EventMouseEntersSurface( "MouseEntersSurface" );
@@ -108,6 +109,7 @@ const String Window::EventMouseButtonUp("MouseButtonUp");
 const String Window::EventMouseClick("MouseClick");
 const String Window::EventMouseDoubleClick("MouseDoubleClick");
 const String Window::EventMouseTripleClick("MouseTripleClick");
+#endif
 const String Window::EventKeyDown("KeyDown");
 const String Window::EventKeyUp("KeyUp");
 const String Window::EventCharacterKey("CharacterKey");
@@ -200,8 +202,9 @@ Window::Window(const String& type, const String& name):
     d_surface(0),
     d_needsRedraw(true),
     d_autoRenderingWindow(false),
+#ifndef PE_NO_MOUSE
     d_mouseCursor(0),
-
+#endif
     // alpha transparency set up
     d_alpha(1.0f),
     d_inheritsAlpha(true),
@@ -240,12 +243,15 @@ Window::Window(const String& type, const String& name):
     d_zOrderingEnabled(true),
 
     // mouse input options
+#ifndef PE_NO_MOUSE
     d_wantsMultiClicks(true),
     d_mousePassThroughEnabled(false),
+    d_repeatButton(NoButton),
     d_autoRepeat(false),
+#endif
     d_repeatDelay(0.3f),
     d_repeatRate(0.06f),
-    d_repeatButton(NoButton),
+    
     d_repeating(false),
     d_repeatElapsed(0.0f),
 
@@ -274,12 +280,13 @@ Window::Window(const String& type, const String& name):
     d_updateMode(WUM_VISIBLE),
 
     // Don't propagate mouse inputs by default.
+#ifndef PE_NO_MOUSE
     d_propagateMouseInputs(false),
 
-    d_guiContext(0),
-
+    
     d_containsMouse(false),
-
+#endif
+    d_guiContext(0),
     d_fontRenderSizeChangeConnection(
         GlobalEventSet::getSingleton().subscribeEvent(
             "Font/RenderSizeChanged",
@@ -636,7 +643,11 @@ Window* Window::getTargetChildAtPosition(const Vector2f& position,
 //----------------------------------------------------------------------------//
 bool Window::isHitTargetWindow(const Vector2f& position, bool allow_disabled) const
 {
-    return !isMousePassThroughEnabled() && isHit(position, allow_disabled);
+    return 
+#ifndef PE_NO_MOUSE
+        !isMousePassThroughEnabled() && 
+#endif
+        isHit(position, allow_disabled);
 }
 
 //----------------------------------------------------------------------------//
@@ -687,8 +698,9 @@ void Window::setEnabled(bool setting)
     {
         onDisabled(args);
     }
-
+#ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
+#endif
 }
 
 //----------------------------------------------------------------------------//
@@ -708,7 +720,9 @@ void Window::setVisible(bool setting)
     WindowEventArgs args(this);
     d_visible ? onShown(args) : onHidden(args);
 
+#ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
+#endif
 }
 
 //----------------------------------------------------------------------------//
@@ -728,7 +742,9 @@ void Window::activate(void)
         getGUIContext().setInputCaptureWindow(0);
 
         WindowEventArgs args(0);
+#ifndef PE_NO_MOUSE
         tmpCapture->onCaptureLost(args);
+#endif
     }
 
     moveToFront();
@@ -935,13 +951,15 @@ bool Window::captureInput(void)
         WindowEventArgs args(this);
 
         // inform window which previously had capture that it doesn't anymore.
+#ifndef PE_NO_MOUSE
         if (current_capture && current_capture != this && !d_restoreOldCapture)
             current_capture->onCaptureLost(args);
-
+#endif
         if (d_restoreOldCapture)
             d_oldCapture = current_capture;
-
+#ifndef PE_NO_MOUSE
         onCaptureGained(args);
+#endif
     }
 
     return true;
@@ -971,7 +989,9 @@ void Window::releaseInput(void)
         getGUIContext().setInputCaptureWindow(0);
 
     WindowEventArgs args(this);
+#ifndef PE_NO_MOUSE
     onCaptureLost(args);
+#endif
 }
 
 //----------------------------------------------------------------------------//
@@ -1247,10 +1267,13 @@ void Window::onZChange_impl(void)
 
     }
 
+#ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
+#endif
 }
-
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
+
 const Image* Window::getMouseCursor(bool useDefault) const
 {
     if (d_mouseCursor)
@@ -1276,6 +1299,19 @@ void Window::setMouseCursor(const Image* image)
 }
 
 //----------------------------------------------------------------------------//
+void Window::generateAutoRepeatEvent(MouseButton button)
+{
+    MouseEventArgs ma(this);
+    ma.position = getUnprojectedPosition(
+        getGUIContext().getMouseCursor().getPosition());
+    ma.moveDelta = Vector2f(0.0f, 0.0f);
+    ma.button = button;
+    ma.sysKeys = getGUIContext().getSystemKeys().get();
+    ma.wheelChange = 0;
+    onMouseButtonDown(ma);
+}
+#endif
+//----------------------------------------------------------------------------//
 void Window::setID(uint ID)
 {
     if (d_ID == ID)
@@ -1299,18 +1335,7 @@ void Window::setDestroyedByParent(bool setting)
     onParentDestroyChanged(args);
 }
 
-//----------------------------------------------------------------------------//
-void Window::generateAutoRepeatEvent(MouseButton button)
-{
-    MouseEventArgs ma(this);
-    ma.position = getUnprojectedPosition(
-        getGUIContext().getMouseCursor().getPosition());
-    ma.moveDelta = Vector2f(0.0f, 0.0f);
-    ma.button = button;
-    ma.sysKeys = getGUIContext().getSystemKeys().get();
-    ma.wheelChange = 0;
-    onMouseButtonDown(ma);
-}
+
 
 //----------------------------------------------------------------------------//
 void Window::addWindowProperties(void)
@@ -1356,12 +1381,41 @@ void Window::addWindowProperties(void)
         "InheritsAlpha", "Property to get/set the 'inherits alpha' setting for the Window. Value is either \"true\" or \"false\".",
         &Window::setInheritsAlpha, &Window::inheritsAlpha, true
     );
+#ifndef PE_NO_MOUSE
 
     CEGUI_DEFINE_PROPERTY(Window, Image*,
         "MouseCursorImage","Property to get/set the mouse cursor image for the Window.  Value should be \"<image name>\".",
         &Window::setMouseCursor, &Window::property_getMouseCursor, 0
     );
 
+    CEGUI_DEFINE_PROPERTY(Window, bool,
+        "WantsMultiClickEvents", "Property to get/set whether the window will receive double-click and triple-click events. Value is either \"true\" or \"false\".",
+        &Window::setWantsMultiClickEvents, &Window::wantsMultiClickEvents, true
+        );
+
+    CEGUI_DEFINE_PROPERTY(Window, bool,
+        "MouseAutoRepeatEnabled", "Property to get/set whether the window will receive autorepeat mouse button down events. Value is either \"true\" or \"false\".",
+        &Window::setMouseAutoRepeatEnabled, &Window::isMouseAutoRepeatEnabled, false
+        );
+
+    CEGUI_DEFINE_PROPERTY(Window, bool,
+        "RiseOnClickEnabled", "Property to get/set whether the window will come to the top of the Z-order when clicked. Value is either \"true\" or \"false\".",
+        &Window::setRiseOnClickEnabled, &Window::isRiseOnClickEnabled, true
+        );
+
+    CEGUI_DEFINE_PROPERTY(Window, bool,
+        "MousePassThroughEnabled", "Property to get/set whether the window ignores mouse events and pass them through to any windows behind it. Value is either \"true\" or \"false\".",
+        &Window::setMousePassThroughEnabled, &Window::isMousePassThroughEnabled, false
+        );
+
+    CEGUI_DEFINE_PROPERTY(Window, bool,
+        "MouseInputPropagationEnabled", "Property to get/set whether unhandled mouse inputs should be "
+        "propagated back to the Window's parent.  "
+        "Value is either \"true\" or \"false\".",
+        &Window::setMouseInputPropagationEnabled, &Window::isMouseInputPropagationEnabled, false
+        );
+
+#endif
     CEGUI_DEFINE_PROPERTY(Window, bool,
         "Visible", "Property to get/set the 'visible state' setting for the Window. Value is either \"true\" or \"false\".",
         &Window::setVisible, &Window::isVisible, true
@@ -1382,15 +1436,7 @@ void Window::addWindowProperties(void)
         &Window::setZOrderingEnabled, &Window::isZOrderingEnabled, true
     );
 
-    CEGUI_DEFINE_PROPERTY(Window, bool,
-        "WantsMultiClickEvents", "Property to get/set whether the window will receive double-click and triple-click events. Value is either \"true\" or \"false\".",
-        &Window::setWantsMultiClickEvents, &Window::wantsMultiClickEvents, true
-    );
 
-    CEGUI_DEFINE_PROPERTY(Window, bool,
-        "MouseAutoRepeatEnabled", "Property to get/set whether the window will receive autorepeat mouse button down events. Value is either \"true\" or \"false\".",
-        &Window::setMouseAutoRepeatEnabled, &Window::isMouseAutoRepeatEnabled, false
-    );
 
     CEGUI_DEFINE_PROPERTY(Window, float,
         "AutoRepeatDelay", "Property to get/set the autorepeat delay. Value is a floating point number indicating the delay required in seconds.",
@@ -1422,15 +1468,6 @@ void Window::addWindowProperties(void)
         &Window::setInheritsTooltipText, &Window::inheritsTooltipText, true
     );
 
-    CEGUI_DEFINE_PROPERTY(Window, bool,
-        "RiseOnClickEnabled", "Property to get/set whether the window will come to the top of the Z-order when clicked. Value is either \"true\" or \"false\".",
-        &Window::setRiseOnClickEnabled, &Window::isRiseOnClickEnabled, true
-    );
-
-    CEGUI_DEFINE_PROPERTY(Window, bool,
-        "MousePassThroughEnabled", "Property to get/set whether the window ignores mouse events and pass them through to any windows behind it. Value is either \"true\" or \"false\".",
-        &Window::setMousePassThroughEnabled, &Window::isMousePassThroughEnabled, false
-    );
     
     addProperty(&d_windowRendererProperty);
     addProperty(&d_lookNFeelProperty);
@@ -1468,13 +1505,7 @@ void Window::addWindowProperties(void)
         &Window::setUpdateMode,&Window::getUpdateMode, WUM_VISIBLE
     );
 
-    CEGUI_DEFINE_PROPERTY(Window, bool,
-        "MouseInputPropagationEnabled", "Property to get/set whether unhandled mouse inputs should be "
-        "propagated back to the Window's parent.  "
-        "Value is either \"true\" or \"false\".",
-        &Window::setMouseInputPropagationEnabled, &Window::isMouseInputPropagationEnabled, false
-    );
-
+    
     CEGUI_DEFINE_PROPERTY(Window, bool,
         "AutoWindow",
         "Property to access whether the system considers this window to be an "
@@ -1496,6 +1527,7 @@ void Window::setZOrderingEnabled(bool setting)
     d_zOrderingEnabled = setting;
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool Window::wantsMultiClickEvents(void) const
 {
@@ -1513,19 +1545,6 @@ bool Window::isMouseAutoRepeatEnabled(void) const
 {
     return d_autoRepeat;
 }
-
-//----------------------------------------------------------------------------//
-float Window::getAutoRepeatDelay(void) const
-{
-    return d_repeatDelay;
-}
-
-//----------------------------------------------------------------------------//
-float Window::getAutoRepeatRate(void) const
-{
-    return d_repeatRate;
-}
-
 //----------------------------------------------------------------------------//
 void Window::setMouseAutoRepeatEnabled(bool setting)
 {
@@ -1545,6 +1564,21 @@ void Window::setMouseAutoRepeatEnabled(bool setting)
     // FIXME: beyond the scope of the bug-fix that originated this
     // FIXME: comment block.  PDT - 30/10/06
 }
+#endif
+
+//----------------------------------------------------------------------------//
+float Window::getAutoRepeatDelay(void) const
+{
+    return d_repeatDelay;
+}
+
+//----------------------------------------------------------------------------//
+float Window::getAutoRepeatRate(void) const
+{
+    return d_repeatRate;
+}
+
+
 
 //----------------------------------------------------------------------------//
 void Window::setAutoRepeatDelay(float delay)
@@ -1587,6 +1621,7 @@ void Window::update(float elapsed)
 //----------------------------------------------------------------------------//
 void Window::updateSelf(float elapsed)
 {
+#ifndef PE_NO_MOUSE
     // Mouse button autorepeat processing.
     if (d_autoRepeat && d_repeatButton != NoButton)
     {
@@ -1612,7 +1647,7 @@ void Window::updateSelf(float elapsed)
             }
         }
     }
-
+#endif
     // allow for updates within an assigned WindowRenderer
     if (d_windowRenderer)
         d_windowRenderer->update(elapsed);
@@ -1844,8 +1879,9 @@ void Window::setArea_impl(const UVector2& pos, const USize& size,
 
     //if (moved || sized)
     // FIXME: This is potentially wasteful
+#ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
-
+#endif
     // update geometry position and clipping if nothing from above appears to
     // have done so already (NB: may be occasionally wasteful, but fixes bugs!)
     if (!d_unclippedOuterRect.isCacheValid())
@@ -2359,6 +2395,7 @@ void Window::onAlwaysOnTopChanged(WindowEventArgs& e)
     fireEvent(EventAlwaysOnTopChanged, e, EventNamespace);
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::onCaptureGained(WindowEventArgs& e)
 {
@@ -2384,7 +2421,7 @@ void Window::onCaptureLost(WindowEventArgs& e)
 
     fireEvent(EventInputCaptureLost, e, EventNamespace);
 }
-
+#endif
 //----------------------------------------------------------------------------//
 void Window::onInvalidated(WindowEventArgs& e)
 {
@@ -2482,6 +2519,7 @@ void Window::onChildRemoved(ElementEventArgs& e)
     Element::onChildRemoved(e);
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::onMouseEntersArea(MouseEventArgs& e)
 {
@@ -2695,7 +2733,7 @@ void Window::onMouseTripleClicked(MouseEventArgs& e)
 
     ++e.handled;
 }
-
+#endif
 //----------------------------------------------------------------------------//
 void Window::onKeyDown(KeyEventArgs& e)
 {
@@ -3578,7 +3616,7 @@ WindowUpdateMode Window::getUpdateMode() const
 {
     return d_updateMode;
 }
-
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::setMouseInputPropagationEnabled(const bool enabled)
 {
@@ -3591,6 +3629,17 @@ bool Window::isMouseInputPropagationEnabled() const
     return d_propagateMouseInputs;
 }
 
+//----------------------------------------------------------------------------//
+const Image* Window::property_getMouseCursor() const
+{
+    return getMouseCursor();
+}
+//----------------------------------------------------------------------------//
+bool Window::isMouseContainedInArea() const
+{
+    return d_containsMouse;
+}
+#endif
 //----------------------------------------------------------------------------//
 Window* Window::clone(const bool deepCopy) const
 {
@@ -3745,11 +3794,6 @@ const Font* Window::property_getFont() const
     return getFont(false);
 }
 
-//----------------------------------------------------------------------------//
-const Image* Window::property_getMouseCursor() const
-{
-    return getMouseCursor();
-}
 
 //----------------------------------------------------------------------------//
 GUIContext& Window::getGUIContext() const
@@ -3816,11 +3860,7 @@ bool Window::handleFontRenderSizeChange(const EventArgs& args)
         static_cast<const FontEventArgs&>(args).font);
 }
 
-//----------------------------------------------------------------------------//
-bool Window::isMouseContainedInArea() const
-{
-    return d_containsMouse;
-}
+
 
 //----------------------------------------------------------------------------//
 

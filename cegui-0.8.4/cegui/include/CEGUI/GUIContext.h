@@ -29,7 +29,9 @@
 
 #include "CEGUI/RenderingSurface.h"
 #include "CEGUI/InjectedInputReceiver.h"
+#ifndef PE_NO_MOUSE
 #include "CEGUI/MouseCursor.h"
+#endif
 #include "CEGUI/SystemKeys.h"
 
 #if defined (_MSC_VER)
@@ -39,8 +41,9 @@
 
 namespace CEGUI
 {
+#ifndef PE_NO_MOUSE
 struct MouseClickTracker;
-
+#endif
 //! EventArgs class passed to subscribers for (most) GUIContext events.
 class CEGUIEXPORT GUIContextEventArgs : public EventArgs
 {
@@ -69,10 +72,11 @@ class CEGUIEXPORT GUIContext : public RenderingSurface,
                                public InjectedInputReceiver
 {
 public:
+#ifndef PE_NO_MOUSE
     static const float DefaultMouseButtonClickTimeout;
     static const float DefaultMouseButtonMultiClickTimeout;
     static const Sizef DefaultMouseButtonMultiClickTolerance;
-
+#endif
     /** Name of Event fired when the root window is changed to a different
      * Window.
      * Handlers are passed a const WindowEventArgs reference with
@@ -80,6 +84,7 @@ public:
      * obtained by calling GUIContext::getRootWindow).
      */
     static const String EventRootWindowChanged;
+#ifndef PE_NO_MOUSE
     /** Name of Event fired when the mouse movement scaling factor is changed.
      * Handlers are passed a const reference to a GUIContextEventArgs struct.
      */
@@ -101,6 +106,7 @@ public:
      * Handlers are passed a const GUIContextRenderTargetEventArgs struct, with
      * the renderTarget member set to the old RenderTarget.
      */
+#endif
     static const String EventRenderTargetChanged;
     /** Event fired when the default font changes.
      * Handlers are passed a const reference to a generic EventArgs struct.
@@ -125,9 +131,9 @@ public:
 
     //! Return a pointer to the Window that is currently set as modal.
     Window* getModalWindow() const;
-
+#ifndef PE_NO_MOUSE
     Window* getWindowContainingMouse() const;
-
+#endif
     const Sizef& getSurfaceSize() const;
 
     const SystemKeys& getSystemKeys() const;
@@ -147,6 +153,7 @@ public:
         a reference via this method and call a method on the reference
         (in our example that's setDefaultImage).
     */
+#ifndef PE_NO_MOUSE
     MouseCursor& getMouseCursor();
     const MouseCursor& getMouseCursor() const;
 
@@ -194,7 +201,7 @@ public:
 
     //! Tell the context to reconsider which window it thinks the mouse is in.
     void updateWindowContainingMouse();
-
+#endif
     Window* getInputCaptureWindow() const;
     void setInputCaptureWindow(Window* window);
 
@@ -262,23 +269,25 @@ public:
     Font* getDefaultFont() const;
 
     // Implementation of InjectedInputReceiver interface
-    bool injectMouseMove(float delta_x, float delta_y);
-    bool injectMouseLeaves(void);
-    bool injectMouseButtonDown(MouseButton button);
-    bool injectMouseButtonUp(MouseButton button);
+    
     bool injectKeyDown(Key::Scan scan_code);
     bool injectKeyUp(Key::Scan scan_code);
     bool injectChar(String::value_type code_point);
-    bool injectMouseWheelChange(float delta);
-    bool injectMousePosition(float x_pos, float y_pos);
     bool injectTimePulse(float timeElapsed);
-    bool injectMouseButtonClick(const MouseButton button);
-    bool injectMouseButtonDoubleClick(const MouseButton button);
-    bool injectMouseButtonTripleClick(const MouseButton button);
     bool injectCopyRequest();
     bool injectCutRequest();
     bool injectPasteRequest();
-
+#ifndef PE_NO_MOUSE
+    bool injectMouseMove(float delta_x, float delta_y);
+    bool injectMouseLeaves(void);
+    bool injectMouseButtonDown(MouseButton button);
+    bool injectMouseButtonUp(MouseButton button);    
+    bool injectMouseWheelChange(float delta);
+    bool injectMousePosition(float x_pos, float y_pos);
+    bool injectMouseButtonClick(const MouseButton button);
+    bool injectMouseButtonDoubleClick(const MouseButton button);
+    bool injectMouseButtonTripleClick(const MouseButton button);
+#endif
     // public overrides
     void draw();
 
@@ -292,29 +301,33 @@ protected:
 
     //! notify windows in a hierarchy using default font, when font changes.
     void notifyDefaultFontChanged(Window* hierarchy_root) const;
-
+#ifndef PE_NO_MOUSE
     bool mouseMoveInjection_impl(MouseEventArgs& ma);
-    Window* getTargetWindow(const Vector2f& pt, const bool allow_disabled) const;
-    Window* getKeyboardTargetWindow() const;
-    Window* getCommonAncestor(Window* w1, Window* w2) const;
     //! call some function for a chain of windows: (top, bottom]
     void notifyMouseTransition(Window* top, Window* bottom,
-                               void (Window::*func)(MouseEventArgs&),
-                               MouseEventArgs& args) const;
-
-    bool areaChangedHandler(const EventArgs& args);
-    bool windowDestroyedHandler(const EventArgs& args);
-    
+        void (Window::*func)(MouseEventArgs&),
+        MouseEventArgs& args) const;
     //! returns whether the window containing the mouse had changed.
     bool updateWindowContainingMouse_impl() const;
     void resetWindowContainingMouse();
-
-    // event trigger functions.
-    virtual void onRootWindowChanged(WindowEventArgs& args);
     virtual void onMouseMoveScalingFactorChanged(GUIContextEventArgs& args);
     virtual void onMouseButtonClickTimeoutChanged(GUIContextEventArgs& args);
     virtual void onMouseButtonMultiClickTimeoutChanged(GUIContextEventArgs& args);
     virtual void onMouseButtonMultiClickToleranceChanged(GUIContextEventArgs& args);
+#endif
+
+    Window* getTargetWindow(const Vector2f& pt, const bool allow_disabled) const;
+    Window* getKeyboardTargetWindow() const;
+    Window* getCommonAncestor(Window* w1, Window* w2) const;
+    
+    bool areaChangedHandler(const EventArgs& args);
+    bool windowDestroyedHandler(const EventArgs& args);
+    
+    
+
+    // event trigger functions.
+    virtual void onRootWindowChanged(WindowEventArgs& args);
+    
     virtual void onRenderTargetChanged(GUIContextRenderTargetEventArgs& args);
     virtual void onDefaultFontChanged(EventArgs& args);
 
@@ -323,7 +336,9 @@ protected:
 
     Window* d_rootWindow;
     bool d_isDirty;
+#ifndef PE_NO_MOUSE
     MouseCursor d_mouseCursor;
+
     //! Scaling factor applied to injected mouse move deltas.
     float d_mouseMovementScalingFactor;
     //! should mouse click/multi-click events be automatically generated.
@@ -334,6 +349,10 @@ protected:
     float d_mouseButtonMultiClickTimeout;
     //! Movement tolerance used when detecting multi-click events.
     Sizef d_mouseButtonMultiClickTolerance;
+    mutable Window* d_windowContainingMouse;
+    mutable bool    d_windowContainingMouseIsUpToDate;
+    MouseClickTracker* d_mouseClickTrackers;
+#endif
 
     mutable Tooltip* d_defaultTooltipObject;
     mutable bool d_weCreatedTooltipObject;
@@ -344,13 +363,12 @@ protected:
     //! a cache of the target surface size, allows returning by ref.
     Sizef d_surfaceSize;
 
-    mutable Window* d_windowContainingMouse;
-    mutable bool    d_windowContainingMouseIsUpToDate;
+   
     Window* d_modalWindow;
     Window* d_captureWindow;
 
     SystemKeys d_systemKeys;
-    MouseClickTracker* d_mouseClickTrackers;
+    
 
     Event::ScopedConnection d_areaChangedEventConnection;
     Event::ScopedConnection d_windowDestroyedEventConnection;

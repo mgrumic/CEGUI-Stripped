@@ -26,7 +26,10 @@
  *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
+
+
 #include "CEGUI/MouseCursor.h"
+#ifndef PE_NO_MOUSE
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/Logger.h"
 #include "CEGUI/System.h"
@@ -367,3 +370,6 @@ void MouseCursor::onDefaultImageChanged(MouseCursorEventArgs& e)
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+
+
+#endif // PE_NO_MOUSE

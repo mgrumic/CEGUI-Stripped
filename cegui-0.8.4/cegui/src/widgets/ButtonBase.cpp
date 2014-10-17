@@ -68,12 +68,17 @@ void ButtonBase::updateInternalState(const Vector2f& mouse_pos)
 //----------------------------------------------------------------------------//
 bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos)
 {
-	if (const Window* capture_wnd = getCaptureWindow())
+    if (const Window* capture_wnd = getCaptureWindow())
         return
-            (capture_wnd == this ||
-            (capture_wnd->distributesCapturedInputs() && isAncestor(capture_wnd))) && isHit(mouse_pos);
+        (capture_wnd == this ||
+        (capture_wnd->distributesCapturedInputs() && isAncestor(capture_wnd))) && isHit(mouse_pos);
     else
-	    return getGUIContext().getWindowContainingMouse() == this;
+        return
+#ifndef PE_NO_MOUSE
+        getGUIContext().getWindowContainingMouse() == this;
+#else 
+        false;
+#endif
 }
 
 /*************************************************************************

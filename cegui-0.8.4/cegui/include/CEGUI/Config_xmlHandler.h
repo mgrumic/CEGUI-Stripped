@@ -57,7 +57,9 @@ public:
     static const String XMLParserElement;
     static const String ImageCodecElement;
     static const String DefaultFontElement;
+#ifndef PE_NO_MOUSE
     static const String DefaultMouseCursorElement;
+#endif
     static const String DefaultTooltipElement;
     // xml attribute names
     static const String FilenameAttribute;
@@ -91,8 +93,10 @@ public:
     void loadAutoResources() const;
     //! initialise the system default font according to the config.
     void initialiseDefaultFont() const;
+#ifndef PE_NO_MOUSE
     //! initialise the system default mouse cursor image according to the config.
     void initialiseDefaultMouseCursor() const;
+#endif
     //! initialise the system default tooltip according to the config.
     void initialiseDefaulTooltip() const;
     //! execute the init script as specified in the config.
@@ -155,8 +159,9 @@ private:
     void handleImageCodecElement(const XMLAttributes& attr);
     void handleDefaultTooltipElement(const XMLAttributes& attr);
     void handleDefaultFontElement(const XMLAttributes& attr);
+#ifndef PE_NO_MOUSE
     void handleDefaultMouseCursorElement(const XMLAttributes& attr);
-
+#endif
     //! helper to convert resource type string to something more useful.
     ResourceType stringToResourceType(const String& type) const;
     //! helper to auto-load looknfeels
@@ -183,8 +188,10 @@ private:
     String d_imageCodecName;
     //! The name of the default font to be set.
     String d_defaultFont;
+#ifndef PE_NO_MOUSE
     //! The name of the default mouse cursor image to use.
     String d_defaultMouseImage;
+#endif
     //! The name of the default tooltip window type.
     String d_defaultTooltipType;
     //! name of the initialisation script.
