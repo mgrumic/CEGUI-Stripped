@@ -83,7 +83,7 @@ MenuItem::~MenuItem(void)
 {
 }
 
-
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Update the internal state of the Widget
 *************************************************************************/
@@ -145,6 +145,7 @@ void MenuItem::updateInternalState(const Vector2f& mouse_pos)
         invalidate();
     }
 }
+#endif //PE_NO_MOUSE
 
 #ifndef PE_NO_POPUP_MENU_H
 /*************************************************************************
@@ -364,6 +365,7 @@ void MenuItem::closeAllMenuItemPopups()
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     handler invoked internally when the menuitem is clicked.
 *************************************************************************/
@@ -378,8 +380,10 @@ void MenuItem::onClicked(WindowEventArgs& e)
     d_popupWasClosed = false;
     fireEvent(EventClicked, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 #endif
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Handler for when the mouse moves
 *************************************************************************/
@@ -398,11 +402,13 @@ void MenuItem::onMouseMove(MouseEventArgs& e)
     ++e.handled;
 }
 
+#endif //PE_NO_MOUSE
 
 /*************************************************************************
     Handler for mouse button pressed events
 *************************************************************************/
 #ifndef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_MOUSE
 void MenuItem::onMouseButtonDown(MouseEventArgs& e)
 {
     // default processing
@@ -425,8 +431,10 @@ void MenuItem::onMouseButtonDown(MouseEventArgs& e)
     }
 
 }
+#endif //PE_NO_MOUSE
 #endif
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Handler for mouse button release events
 *************************************************************************/
@@ -459,7 +467,9 @@ void MenuItem::onMouseButtonUp(MouseEventArgs& e)
     }
 
 }
+#endif //PE_NO_MOUSE
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Handler for when mouse capture is lost
 *************************************************************************/
@@ -476,8 +486,10 @@ void MenuItem::onCaptureLost(WindowEventArgs& e)
     // event was handled by us.
     ++e.handled;
 }
+#endif //PE_NO_MOUSE
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Handler for when mouse leaves the widget
 *************************************************************************/
@@ -491,6 +503,7 @@ void MenuItem::onMouseLeaves(MouseEventArgs& e)
 
     ++e.handled;
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -524,6 +537,7 @@ void MenuItem::updateSelf(float elapsed)
     if (d_autoPopupTimeout != 0.0f && (d_popupOpening || d_popupClosing))
     {
         // stop timer if the hovering state isn't set appropriately anymore
+#ifndef PE_NO_MOUSE
         if (d_hovering)
         {
             d_popupClosing = false;
@@ -532,6 +546,7 @@ void MenuItem::updateSelf(float elapsed)
         {
             d_popupOpening = false;
         }
+#endif //PE_NO_MOUSE
 
         //check if the timer elapsed and take action appropriately
         d_autoPopupTimeElapsed += elapsed;

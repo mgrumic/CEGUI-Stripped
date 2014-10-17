@@ -85,6 +85,7 @@ namespace CEGUI
 
         d_inPositionSelf = true;
 
+#ifndef PE_NO_MOUSE
         MouseCursor& cursor = getGUIContext().getMouseCursor();
         Rectf screen(Vector2f(0, 0), getRootContainerSize());
         Rectf tipRect(getUnclippedOuterRect().get());
@@ -114,6 +115,7 @@ namespace CEGUI
         {
             tmpPos.d_y = mousePos.d_y - tipRect.getHeight() - 5;
         }
+#endif //PE_NO_MOUSE
 
         // set final position of tooltip window.
         setPosition(
@@ -338,12 +340,14 @@ namespace CEGUI
         }
     }
 
+#ifndef PE_NO_MOUSE
     void Tooltip::onMouseEnters(MouseEventArgs& e)
     {
         positionSelf();
 
         Window::onMouseEnters(e);
     }
+#endif //PE_NO_MOUSE
 
     void Tooltip::onTextChanged(WindowEventArgs& e)
     {

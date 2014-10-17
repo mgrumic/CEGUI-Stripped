@@ -83,6 +83,7 @@ void TabButton::onClicked(WindowEventArgs& e)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for mouse button release events
 *************************************************************************/
@@ -152,5 +153,6 @@ void TabButton::onMouseWheel(MouseEventArgs& e)
 	// default handling
 	ButtonBase::onMouseMove(e);
 }
+#endif
 
 } // End of  CEGUI namespace section

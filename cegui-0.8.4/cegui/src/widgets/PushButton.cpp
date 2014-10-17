@@ -67,6 +67,7 @@ void PushButton::onClicked(WindowEventArgs& e)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for mouse button release events
 *************************************************************************/
@@ -96,5 +97,6 @@ void PushButton::onMouseButtonUp(MouseEventArgs& e)
 	// default handling
 	ButtonBase::onMouseButtonUp(e);
 }
+#endif
 
 } // End of  CEGUI namespace section

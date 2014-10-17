@@ -751,6 +751,7 @@ bool TabControl::handleScrollPane(const EventArgs& e)
 	return true;
 }
 
+#ifndef PE_NO_MOUSE
 bool TabControl::handleDraggedPane(const EventArgs& e)
 {
     const MouseEventArgs& me = static_cast<const MouseEventArgs&>(e);
@@ -793,6 +794,7 @@ bool TabControl::handleWheeledPane(const EventArgs& e)
 
     return true;
 }
+#endif
 
 void TabControl::removeTab_impl(Window* window)
 {

@@ -108,10 +108,12 @@ protected:
 	/*************************************************************************
 		Overridden event handler functions
 	*************************************************************************/
+#ifndef PE_NO_MOUSE
 	virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual void	onMouseDoubleClicked(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
 	virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void	onFontChanged(WindowEventArgs &e);
 

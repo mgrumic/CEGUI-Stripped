@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	13/4/2004
-	author:		Paul D Turner
+        created:	13/4/2004
+        author:		Paul D Turner
 	
-	purpose:	Interface to base class for PushButton widget
-*************************************************************************/
+        purpose:	Interface to base class for PushButton widget
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,71 +33,74 @@
 #include "./ButtonBase.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Base class to provide logic for push button type widgets.
-*/
-class CEGUIEXPORT PushButton : public ButtonBase
-{
-public:
-	static const String EventNamespace;				//!< Namespace for global events
-    static const String WidgetTypeName;             //!< Window factory name
+namespace CEGUI {
 
-	/*************************************************************************
-		Event name constants
-	*************************************************************************/
-	// generated internally by Window
-    /** Event fired when the button is clicked.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the PushButton that was clicked.
+    /*!
+    \brief
+        Base class to provide logic for push button type widgets.
      */
-	static const String EventClicked;
+    class CEGUIEXPORT PushButton : public ButtonBase {
+    public:
+        static const String EventNamespace; //!< Namespace for global events
+        static const String WidgetTypeName; //!< Window factory name
 
-	/*************************************************************************
-		Construction and Destruction
-	*************************************************************************/
-	/*!
-	\brief
-		Constructor for base PushButton class
-	*/
-	PushButton(const String& type, const String& name);
+#ifndef PE_NO_MOUSE
+        /*************************************************************************
+                Event name constants
+         *************************************************************************/
+        // generated internally by Window
+        /** Event fired when the button is clicked.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the PushButton that was clicked.
+         */
+        static const String EventClicked;
+#endif //PE_NO_MOUSE
 
-
-	/*!
-	\brief
-		Destructor for PushButton class
-	*/
-	virtual ~PushButton(void);
-
-
-protected:
-	/*************************************************************************
-		New Event Handlers
-	*************************************************************************/
-	/*!
-	\brief
-		handler invoked internally when the button is clicked.
-	*/
-	virtual void	onClicked(WindowEventArgs& e);
+        /*************************************************************************
+                Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+                Constructor for base PushButton class
+         */
+        PushButton(const String& type, const String& name);
 
 
-	/*************************************************************************
-		Overridden Event Handlers
-	*************************************************************************/
-	virtual void	onMouseButtonUp(MouseEventArgs& e);
-};
+        /*!
+        \brief
+                Destructor for PushButton class
+         */
+        virtual ~PushButton(void);
+
+
+    protected:
+#ifndef PE_NO_MOUSE
+        /*************************************************************************
+                New Event Handlers
+         *************************************************************************/
+        /*!
+        \brief
+                handler invoked internally when the button is clicked.
+         */
+        virtual void onClicked(WindowEventArgs& e);
+
+
+        /*************************************************************************
+                Overridden Event Handlers
+         *************************************************************************/
+        virtual void onMouseButtonUp(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIPushButton_h_

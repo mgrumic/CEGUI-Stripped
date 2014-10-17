@@ -83,13 +83,19 @@ namespace CEGUI
 
         // setup component controls
         increaseButton->setWantsMultiClickEvents(false);
+#ifndef PE_NO_MOUSE
         increaseButton->setMouseAutoRepeatEnabled(true);
+#endif
         decreaseButton->setWantsMultiClickEvents(false);
+#ifndef PE_NO_MOUSE
         decreaseButton->setMouseAutoRepeatEnabled(true);
+#endif
 
+#ifndef PE_NO_MOUSE
         // perform event subscriptions.
         increaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleIncreaseButton, this));
         decreaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleDecreaseButton, this));
+#endif
         editbox->subscribeEvent(Window::EventTextChanged, Event::Subscriber(&Spinner::handleEditTextChange, this));
 
         // final initialisation
@@ -404,6 +410,7 @@ namespace CEGUI
         fireEvent(EventTextInputModeChanged, e, EventNamespace);
     }
 
+#ifndef PE_NO_MOUSE
     bool Spinner::handleIncreaseButton(const EventArgs& e)
     {
         if (((const MouseEventArgs&)e).button == LeftButton)
@@ -425,7 +432,8 @@ namespace CEGUI
 
         return false;
     }
-
+#endif
+    
     bool Spinner::handleEditTextChange(const EventArgs&)
     {
         // set this windows text to match

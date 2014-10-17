@@ -51,7 +51,9 @@ ScrolledContainer::ScrolledContainer(const String& type, const String& name) :
     d_clientChildContentArea(this, static_cast<Element::CachedRectf::DataGenerator>(&ScrolledContainer::getClientChildContentArea_impl))
 {
     addScrolledContainerProperties();
+#ifndef PE_NO_MOUSE
     setMouseInputPropagationEnabled(true);
+#endif
 }
 
 //----------------------------------------------------------------------------//

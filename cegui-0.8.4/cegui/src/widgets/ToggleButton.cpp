@@ -73,6 +73,7 @@ void ToggleButton::onSelectStateChange(WindowEventArgs& e)
     fireEvent(EventSelectStateChanged, e, EventNamespace);
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void ToggleButton::onMouseButtonUp(MouseEventArgs& e)
 {
@@ -94,6 +95,7 @@ void ToggleButton::onMouseButtonUp(MouseEventArgs& e)
 
     ButtonBase::onMouseButtonUp(e);
 }
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 bool ToggleButton::getPostClickSelectState() const

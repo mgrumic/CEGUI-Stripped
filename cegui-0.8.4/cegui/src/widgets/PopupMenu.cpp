@@ -354,7 +354,7 @@ void PopupMenu::onHidden(WindowEventArgs& e)
     MenuBase::onHidden(e);
 }
 
-
+#ifndef PE_NO_MOUSE
 /************************************************************************
 	Handler for mouse button down events
 ************************************************************************/
@@ -364,7 +364,6 @@ void PopupMenu::onMouseButtonDown(MouseEventArgs& e)
         // dont reach our parent
         ++e.handled;
 }
-
 
 /************************************************************************
 	Handler for mouse button up events
@@ -376,6 +375,7 @@ void PopupMenu::onMouseButtonUp(MouseEventArgs& e)
         ++e.handled;
 }
 
+#endif
 
 /*************************************************************************
 	Add PopupMenu specific properties

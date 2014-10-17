@@ -30,7 +30,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #ifndef PE_NO_POPUP_MENU_H
-#define PE_NO_POPUP_MENU_H
+//#define PE_NO_POPUP_MENU_H
 #endif
 
 #ifndef PE_NO_MOUSE

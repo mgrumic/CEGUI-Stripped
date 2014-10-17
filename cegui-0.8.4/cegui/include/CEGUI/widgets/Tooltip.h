@@ -322,7 +322,9 @@ namespace CEGUI
         ************************************************************************/
         void updateSelf(float elapsed);
         void onHidden(WindowEventArgs& e);
+#ifndef PE_NO_MOUSE
         void onMouseEnters(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
         void onTextChanged(WindowEventArgs& e);
 
         /************************************************************************

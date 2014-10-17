@@ -816,9 +816,11 @@ protected:
         Overridden Event handlers
      *************************************************************************/
     virtual void onSized(ElementEventArgs& e);
+#ifndef PE_NO_MOUSE
     virtual void onMouseButtonDown(MouseEventArgs& e);
     virtual	void onMouseWheel(MouseEventArgs& e);
     virtual void onMouseMove(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
 
     /*************************************************************************
         Implementation Data
