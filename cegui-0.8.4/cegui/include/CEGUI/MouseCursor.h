@@ -30,6 +30,7 @@
 #define _CEGUIMouseCursor_h_
 
 #include "CEGUI/Base.h"
+#ifndef PE_NO_MOUSE
 #include "CEGUI/String.h"
 #include "CEGUI/Vector.h"
 #include "CEGUI/Rect.h"
@@ -411,8 +412,11 @@ private:
 
 } // End of  CEGUI namespace section
 
+
+
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
 
+#endif // PE_NO_MOUSE
 #endif	// end of guard _CEGUIMouseCursor_h_

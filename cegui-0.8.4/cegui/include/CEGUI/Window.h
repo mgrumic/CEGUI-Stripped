@@ -241,6 +241,7 @@ public:
      * was changed.
      */
     static const String EventAlwaysOnTopChanged;
+#ifndef PE_NO_MOUSE
     /** Event fired when the Window gains capture of mouse inputs.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the Window that has captured mouse inputs.
@@ -255,6 +256,7 @@ public:
      *   cause of the previous window with capture losing that capture.
      */
     static const String EventInputCaptureLost;
+#endif
     /** Event fired when the Window has been invalidated.
      * When a window is invalidated its cached rendering geometry is cleared,
      * the rendering surface that recieves the window's output is invalidated
@@ -334,7 +336,7 @@ public:
      * changed.
      */
     static const String EventMarginChanged;
-
+#ifndef PE_NO_MOUSE
     // generated externally (inputs)
     /** Event fired when the mouse cursor has entered the Window's area.
      * Handlers are passed a const MouseEventArgs reference with all fields
@@ -408,6 +410,7 @@ public:
      * valid.
      */
     static const String EventMouseTripleClick;
+#endif
     /** Event fired when a key on the keyboard was pressed down while the window
      * had input focus.
      * Handlers are passed a const KeyEventArgs reference with
@@ -1028,6 +1031,7 @@ public:
         return static_cast<Window*>(getParentElement());
     }
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Return a pointer to the mouse cursor image to use when the mouse cursor
@@ -1043,7 +1047,7 @@ public:
         be drawn for this window.
     */
     const Image* getMouseCursor(bool useDefault = true) const;
-
+#endif
     /*!
     \brief
         Return the user data set for this Window.
@@ -1093,7 +1097,7 @@ public:
           moveToFront, moveToBack, moveInFront and moveBehind are ignored.
     */
     bool isZOrderingEnabled(void) const;
-
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Return whether this window will receive multi-click events or multiple
@@ -1118,7 +1122,7 @@ public:
           this window.
     */
     bool isMouseAutoRepeatEnabled(void) const;
-
+#endif
     /*!
     \brief
         Return the current auto-repeat delay setting for this window.
@@ -1205,6 +1209,7 @@ public:
      */
     bool inheritsTooltipText(void) const;
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Return whether this window will rise to the top of the z-order when
@@ -1226,7 +1231,7 @@ public:
           mouse button is pushed within its area.
      */
     bool isRiseOnClickEnabled(void) const   { return d_riseOnClick; }
-
+#endif
     /*!
     \brief
         Return the GeometryBuffer object for this Window.
@@ -1301,6 +1306,7 @@ public:
     */
     Window* getActiveSibling();
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Returns whether this window should ignore mouse event and pass them
@@ -1312,7 +1318,7 @@ public:
         false if mouse pass through is not enabled.
     */
     bool isMousePassThroughEnabled(void) const  {return d_mousePassThroughEnabled;}
-
+#endif
     /*!
     \brief
         Returns whether this window is an auto window.
@@ -1891,7 +1897,7 @@ public:
         Nothing
     */
     void invalidate(const bool recursive);
-
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Set the mouse cursor image to be used when the mouse enters this window.
@@ -1923,7 +1929,7 @@ public:
         thrown if no Image named \a name exists.
     */
     void setMouseCursor(const String& name);
-
+#endif
     /*!
     \brief
         Set the user data set for this Window.
@@ -1964,6 +1970,7 @@ public:
     */
     void    setZOrderingEnabled(bool setting);
     
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Set whether this window will receive multi-click events or multiple
@@ -1992,7 +1999,7 @@ public:
         Nothing.
     */
     void setMouseAutoRepeatEnabled(bool setting);
-
+#endif
     /*!
     \brief
         Set the current auto-repeat delay setting for this window.
@@ -2133,6 +2140,7 @@ public:
      */
     void setInheritsTooltipText(bool setting);
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Set whether this window will rise to the top of the z-order when clicked
@@ -2157,7 +2165,7 @@ public:
         Nothing.
      */
     void setRiseOnClickEnabled(bool setting)    { d_riseOnClick = setting; }
-
+#endif
     /*!
     \brief
         Set the LookNFeel that shoule be used for this window.
@@ -2350,6 +2358,7 @@ public:
     */
     virtual void endInitialisation(void)       {d_initialising = false;}
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Sets whether this window should ignore mouse events and pass them
@@ -2361,7 +2370,7 @@ public:
         false if mouse pass through is not enabled.
     */
     void setMousePassThroughEnabled(bool setting)   {d_mousePassThroughEnabled = setting;}
-
+#endif
     /*!
     \brief
         Assign the WindowRenderer type to be used when rendering this window.
@@ -2618,7 +2627,7 @@ public:
         mode set for this Window.
     */
     WindowUpdateMode getUpdateMode() const;
-
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Set whether mouse input that is not directly handled by this Window
@@ -2643,6 +2652,18 @@ public:
     */
     bool isMouseInputPropagationEnabled() const;
 
+    /*!
+    \brief
+    Return whether Window thinks mouse is currently within its area.
+
+    \note
+    If the mouse cursor has moved or Window's area has changed since the
+    last time the GUIContext updated the window hit information, the value
+    returned here may be inaccurate - this is not a bug, but is required
+    to ensure correct handling of certain events.
+    */
+    bool isMouseContainedInArea() const;
+#endif
     /*!
     \brief
         Clones this Window and returns the result
@@ -2677,17 +2698,7 @@ public:
     */
     void setAutoWindow(bool is_auto);
 
-    /*!
-    \brief
-        Return whether Window thinks mouse is currently within its area.
 
-    \note
-        If the mouse cursor has moved or Window's area has changed since the
-        last time the GUIContext updated the window hit information, the value
-        returned here may be inaccurate - this is not a bug, but is required
-        to ensure correct handling of certain events.
-    */
-    bool isMouseContainedInArea() const;
 
     // overridden from Element
     const Sizef& getRootContainerSize() const;
@@ -2860,6 +2871,7 @@ protected:
     */
     virtual void onAlwaysOnTopChanged(WindowEventArgs& e);
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Handler called when this window gains capture of mouse inputs.
@@ -2881,7 +2893,7 @@ protected:
         'this'.
     */
     virtual void onCaptureLost(WindowEventArgs& e);
-
+#endif
     /*!
     \brief
         Handler called when this window gets invalidated.
@@ -2991,6 +3003,7 @@ protected:
     */
     virtual void onChildRemoved(ElementEventArgs& e);
 
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Handler called when the mouse cursor has entered this window's area.
@@ -3111,6 +3124,13 @@ protected:
     */
     virtual void onMouseTripleClicked(MouseEventArgs& e);
 
+    /*!
+    \brief
+    Fires off a repeated mouse button down event for this window.
+    */
+    void generateAutoRepeatEvent(MouseButton button);
+
+#endif
     /*!
     \brief
         Handler called when a key as been depressed while this window has input
@@ -3296,11 +3316,7 @@ protected:
     */
     virtual void setParent(Element* parent);
 
-    /*!
-    \brief
-        Fires off a repeated mouse button down event for this window.
-    */
-    void generateAutoRepeatEvent(MouseButton button);
+    
 
     /*!
     \brief
@@ -3574,8 +3590,7 @@ protected:
     //! holds setting for automatic creation of of surface (RenderingWindow)
     bool d_autoRenderingWindow;
 
-    //! Holds pointer to the Window objects current mouse cursor image.
-    const Image* d_mouseCursor;
+    
 
     //! Alpha transparency setting for the Window
     float d_alpha;
@@ -3626,19 +3641,27 @@ protected:
     bool d_riseOnClick;
     //! true if the Window responds to z-order change requests.
     bool d_zOrderingEnabled;
-
+#ifndef PE_NO_MOUSE
     //! true if the Window wishes to hear about multi-click mouse events.
     bool d_wantsMultiClicks;
     //! whether (most) mouse events pass through this window
     bool d_mousePassThroughEnabled;
     //! whether pressed mouse button will auto-repeat the down event.
     bool d_autoRepeat;
+    //! Holds pointer to the Window objects current mouse cursor image.
+    const Image* d_mouseCursor;
+    //! button we're tracking for auto-repeat purposes.
+    MouseButton d_repeatButton;
+    //! specifies whether mouse inputs should be propagated to parent(s)
+    bool d_propagateMouseInputs;
+    //! true when mouse is contained within this Window's area.
+    bool d_containsMouse;
+#endif
     //! seconds before first repeat event is fired
     float d_repeatDelay;
     //! seconds between further repeats after delay has expired.
     float d_repeatRate;
-    //! button we're tracking for auto-repeat purposes.
-    MouseButton d_repeatButton;
+    
     //! implements repeating - is true after delay has elapsed,
     bool d_repeating;
     //! implements repeating - tracks time elapsed.
@@ -3675,14 +3698,12 @@ protected:
     //! The mode to use for calling Window::update
     WindowUpdateMode d_updateMode;
 
-    //! specifies whether mouse inputs should be propagated to parent(s)
-    bool d_propagateMouseInputs;
+    
 
     //! GUIContext.  Set when this window is used as a root window.
     GUIContext* d_guiContext;
 
-    //! true when mouse is contained within this Window's area.
-    bool d_containsMouse;
+   
 
 private:
     /*************************************************************************
@@ -3694,8 +3715,9 @@ private:
     //! Not intended for public use, only used as a "Font" property getter
     const Font* property_getFont() const;
     //! Not intended for public use, only used as a "MouseCursor" property getter
+#ifndef PE_NO_MOUSE
     const Image* property_getMouseCursor() const;
-
+#endif
     //! connection for event listener for font render size changes.
     Event::ScopedConnection d_fontRenderSizeChangeConnection;
 };

@@ -45,6 +45,8 @@ namespace CEGUI
     Implementation structure used in tracking up & down mouse button inputs in
     order to generate click, double-click, and triple-click events.
 */
+
+#ifndef PE_NO_MOUSE
 struct MouseClickTracker :
     public AllocatedObject<MouseClickTracker>
 {
@@ -62,17 +64,20 @@ struct MouseClickTracker :
     //! target window for any events generated.
     Window* d_target_window;
 };
-
+#endif
 //----------------------------------------------------------------------------//
+
+
+const String GUIContext::EventRootWindowChanged("RootWindowChanged");
+#ifndef PE_NO_MOUSE
 const float GUIContext::DefaultMouseButtonClickTimeout = 0.0f;
 const float GUIContext::DefaultMouseButtonMultiClickTimeout = 0.3333f;
 const Sizef GUIContext::DefaultMouseButtonMultiClickTolerance(12.0f, 12.0f);
-
-const String GUIContext::EventRootWindowChanged("RootWindowChanged");
 const String GUIContext::EventMouseMoveScalingFactorChanged("MouseMoveScalingFactorChanged");
 const String GUIContext::EventMouseButtonClickTimeoutChanged("MouseButtonClickTimeoutChanged" );
 const String GUIContext::EventMouseButtonMultiClickTimeoutChanged("MouseButtonMultiClickTimeoutChanged" );
 const String GUIContext::EventMouseButtonMultiClickToleranceChanged("MouseButtonMultiClickToleranceChanged" );
+#endif
 const String GUIContext::EventRenderTargetChanged("RenderTargetChanged");
 const String GUIContext::EventDefaultFontChanged("DefaultFontChanged");
 
@@ -81,18 +86,20 @@ GUIContext::GUIContext(RenderTarget& target) :
     RenderingSurface(target),
     d_rootWindow(0),
     d_isDirty(false),
+#ifndef PE_NO_MOUSE
     d_mouseMovementScalingFactor(1.0f),
     d_generateMouseClickEvents(true),
     d_mouseButtonClickTimeout(DefaultMouseButtonClickTimeout),
     d_mouseButtonMultiClickTimeout(DefaultMouseButtonMultiClickTimeout),
     d_mouseButtonMultiClickTolerance(DefaultMouseButtonMultiClickTolerance),
+    d_mouseClickTrackers(new MouseClickTracker[MouseButtonCount]),
+#endif
     d_defaultTooltipObject(0),
     d_weCreatedTooltipObject(false),
     d_defaultFont(0),
     d_surfaceSize(target.getArea().getSize()),
     d_modalWindow(0),
     d_captureWindow(0),
-    d_mouseClickTrackers(new MouseClickTracker[MouseButtonCount]),
     d_areaChangedEventConnection(
         target.subscribeEvent(
             RenderTarget::EventAreaChanged,
@@ -102,15 +109,13 @@ GUIContext::GUIContext(RenderTarget& target) :
             WindowManager::EventWindowDestroyed,
             Event::Subscriber(&GUIContext::windowDestroyedHandler, this)))
 {
+#ifndef PE_NO_MOUSE
     resetWindowContainingMouse();
+#endif
 }
 
 //----------------------------------------------------------------------------//
-void GUIContext::resetWindowContainingMouse()
-{
-    d_windowContainingMouse = 0;
-    d_windowContainingMouseIsUpToDate = true;
-}
+
 
 //----------------------------------------------------------------------------//
 GUIContext::~GUIContext()
@@ -119,8 +124,9 @@ GUIContext::~GUIContext()
 
     if (d_rootWindow)
         d_rootWindow->setGUIContext(0);
-
+#ifndef PE_NO_MOUSE
     delete[] d_mouseClickTrackers;
+#endif
 }
 
 //----------------------------------------------------------------------------//
@@ -242,17 +248,6 @@ Window* GUIContext::getModalWindow() const
     return d_modalWindow;
 }
 
-//----------------------------------------------------------------------------//
-Window* GUIContext::getWindowContainingMouse() const
-{
-    if (!d_windowContainingMouseIsUpToDate)
-    {
-        updateWindowContainingMouse_impl();
-        d_windowContainingMouseIsUpToDate = true;
-    }
-
-    return d_windowContainingMouse;
-}
 
 //----------------------------------------------------------------------------//
 const Sizef& GUIContext::getSurfaceSize() const
@@ -291,8 +286,9 @@ void GUIContext::draw()
 void GUIContext::drawContent()
 {
     RenderingSurface::drawContent();
-
+#ifndef PE_NO_MOUSE
     d_mouseCursor.draw();
+#endif
 }
 
 //----------------------------------------------------------------------------//
@@ -317,6 +313,23 @@ void GUIContext::renderWindowHierarchyToSurfaces()
 
     d_rootWindow->render();
 }
+#ifndef PE_NO_MOUSE
+void GUIContext::resetWindowContainingMouse()
+{
+    d_windowContainingMouse = 0;
+    d_windowContainingMouseIsUpToDate = true;
+}
+//----------------------------------------------------------------------------//
+Window* GUIContext::getWindowContainingMouse() const
+{
+    if (!d_windowContainingMouseIsUpToDate)
+    {
+        updateWindowContainingMouse_impl();
+        d_windowContainingMouseIsUpToDate = true;
+    }
+
+    return d_windowContainingMouse;
+}
 
 //----------------------------------------------------------------------------//
 MouseCursor& GUIContext::getMouseCursor()
@@ -330,7 +343,7 @@ const MouseCursor& GUIContext::getMouseCursor() const
 {
     return d_mouseCursor;
 }
-    
+
 //----------------------------------------------------------------------------//
 void GUIContext::setMouseMoveScalingFactor(float factor)
 {
@@ -402,13 +415,14 @@ bool GUIContext::isMouseClickEventGenerationEnabled() const
 {
     return d_generateMouseClickEvents;
 }
-
+#endif
 //----------------------------------------------------------------------------//
 bool GUIContext::areaChangedHandler(const EventArgs&)
 {
     d_surfaceSize = d_target->getArea().getSize();
+#ifndef PE_NO_MOUSE
     d_mouseCursor.notifyDisplaySizeChanged(d_surfaceSize);
-
+#endif
     if (d_rootWindow)
         updateRootWindowAreaRects();
 
@@ -424,9 +438,10 @@ bool GUIContext::windowDestroyedHandler(const EventArgs& args)
     if (window == d_rootWindow)
         d_rootWindow = 0;
 
+#ifndef PE_NO_MOUSE
     if (window == getWindowContainingMouse())
         resetWindowContainingMouse();
-
+#endif
     if (window == d_modalWindow)
         d_modalWindow = 0;
 
@@ -452,7 +467,7 @@ void GUIContext::onRootWindowChanged(WindowEventArgs& args)
 
     fireEvent(EventRootWindowChanged, args);
 }
-
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void GUIContext::onMouseMoveScalingFactorChanged(GUIContextEventArgs& args)
 {
@@ -573,6 +588,25 @@ bool GUIContext::updateWindowContainingMouse_impl() const
 
     return true;
 }
+//----------------------------------------------------------------------------//
+void GUIContext::notifyMouseTransition(Window* top, Window* bottom,
+    void (Window::*func)(MouseEventArgs&),
+    MouseEventArgs& args) const
+{
+    if (top == bottom)
+        return;
+
+    Window* const parent = bottom->getParent();
+
+    if (parent && parent != top)
+        notifyMouseTransition(top, parent, func, args);
+
+    args.handled = 0;
+    args.window = bottom;
+
+    (bottom->*func)(args);
+}
+#endif
 
 //----------------------------------------------------------------------------//
 Window* GUIContext::getCommonAncestor(Window* w1, Window* w2) const 
@@ -598,24 +632,7 @@ Window* GUIContext::getCommonAncestor(Window* w1, Window* w2) const
     return w1;
 }
 
-//----------------------------------------------------------------------------//
-void GUIContext::notifyMouseTransition(Window* top, Window* bottom,
-                                    void (Window::*func)(MouseEventArgs&),
-                                    MouseEventArgs& args) const
-{
-    if (top == bottom)
-        return;
-    
-    Window* const parent = bottom->getParent();
 
-    if (parent && parent != top)
-        notifyMouseTransition(top, parent, func, args);
-
-    args.handled = 0;
-    args.window = bottom;
-
-    (bottom->*func)(args);
-}
 
 //----------------------------------------------------------------------------//
 Window* GUIContext::getTargetWindow(const Vector2f& pt,
@@ -671,6 +688,7 @@ Window* GUIContext::getKeyboardTargetWindow() const
     return target ? target : d_modalWindow;
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool GUIContext::injectMouseLeaves(void)
 {
@@ -820,57 +838,7 @@ bool GUIContext::injectMouseButtonUp(MouseButton button)
     return (ma.handled + upHandled) != 0;
 }
 
-//----------------------------------------------------------------------------//
-bool GUIContext::injectKeyDown(Key::Scan scan_code)
-{
-    d_systemKeys.keyPressed(scan_code);
 
-    KeyEventArgs args(getKeyboardTargetWindow());
-
-    // if there's no destination window, input can't be handled.
-    if (!args.window)
-        return false;
-
-    args.scancode = scan_code;
-    args.sysKeys = d_systemKeys.get();
-
-    args.window->onKeyDown(args);
-    return args.handled != 0;
-}
-
-//----------------------------------------------------------------------------//
-bool GUIContext::injectKeyUp(Key::Scan scan_code)
-{
-    d_systemKeys.keyReleased(scan_code);
-
-    KeyEventArgs args(getKeyboardTargetWindow());
-
-    // if there's no destination window, input can't be handled.
-    if (!args.window)
-        return false;
-
-    args.scancode = scan_code;
-    args.sysKeys = d_systemKeys.get();
-
-    args.window->onKeyUp(args);
-    return args.handled != 0;
-}
-
-//----------------------------------------------------------------------------//
-bool GUIContext::injectChar(String::value_type code_point)
-{
-    KeyEventArgs args(getKeyboardTargetWindow());
-
-    // if there's no destination window, input can't be handled.
-    if (!args.window)
-        return false;
-
-    args.codepoint = code_point;
-    args.sysKeys = d_systemKeys.get();
-
-    args.window->onCharacter(args);
-    return args.handled != 0;
-}
 
 //----------------------------------------------------------------------------//
 bool GUIContext::injectMouseWheelChange(float delta)
@@ -921,21 +889,6 @@ bool GUIContext::injectMousePosition(float x_pos, float y_pos)
     return mouseMoveInjection_impl(ma);
 }
 
-//----------------------------------------------------------------------------//
-bool GUIContext::injectTimePulse(float timeElapsed)
-{
-    // if no visible active sheet, input can't be handled
-    if (!d_rootWindow || !d_rootWindow->isEffectiveVisible())
-        return false;
-
-    // ensure window containing mouse is now valid
-    getWindowContainingMouse();
-
-    // else pass to sheet for distribution.
-    d_rootWindow->update(timeElapsed);
-    // this input is then /always/ considered handled.
-    return true;
-}
 
 //----------------------------------------------------------------------------//
 bool GUIContext::injectMouseButtonClick(const MouseButton button)
@@ -1005,7 +958,74 @@ bool GUIContext::injectMouseButtonTripleClick(const MouseButton button)
 
     return ma.handled != 0;
 }
+#endif
+//----------------------------------------------------------------------------//
+bool GUIContext::injectTimePulse(float timeElapsed)
+{
+    // if no visible active sheet, input can't be handled
+    if (!d_rootWindow || !d_rootWindow->isEffectiveVisible())
+        return false;
 
+    // ensure window containing mouse is now valid
+#ifndef PE_NO_MOUSE
+    getWindowContainingMouse();
+#endif
+    // else pass to sheet for distribution.
+    d_rootWindow->update(timeElapsed);
+    // this input is then /always/ considered handled.
+    return true;
+}
+//----------------------------------------------------------------------------//
+bool GUIContext::injectKeyDown(Key::Scan scan_code)
+{
+    d_systemKeys.keyPressed(scan_code);
+
+    KeyEventArgs args(getKeyboardTargetWindow());
+
+    // if there's no destination window, input can't be handled.
+    if (!args.window)
+        return false;
+
+    args.scancode = scan_code;
+    args.sysKeys = d_systemKeys.get();
+
+    args.window->onKeyDown(args);
+    return args.handled != 0;
+}
+
+//----------------------------------------------------------------------------//
+bool GUIContext::injectKeyUp(Key::Scan scan_code)
+{
+    d_systemKeys.keyReleased(scan_code);
+
+    KeyEventArgs args(getKeyboardTargetWindow());
+
+    // if there's no destination window, input can't be handled.
+    if (!args.window)
+        return false;
+
+    args.scancode = scan_code;
+    args.sysKeys = d_systemKeys.get();
+
+    args.window->onKeyUp(args);
+    return args.handled != 0;
+}
+
+//----------------------------------------------------------------------------//
+bool GUIContext::injectChar(String::value_type code_point)
+{
+    KeyEventArgs args(getKeyboardTargetWindow());
+
+    // if there's no destination window, input can't be handled.
+    if (!args.window)
+        return false;
+
+    args.codepoint = code_point;
+    args.sysKeys = d_systemKeys.get();
+
+    args.window->onCharacter(args);
+    return args.handled != 0;
+}
 //----------------------------------------------------------------------------//
 bool GUIContext::injectCopyRequest()
 {

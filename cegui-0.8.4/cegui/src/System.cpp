@@ -224,7 +224,9 @@ System::System(Renderer& renderer,
 
     // set up defaults
     config.initialiseDefaultFont();
+#ifndef PE_NO_MOUSE
     config.initialiseDefaultMouseCursor();
+#endif
     config.initialiseDefaulTooltip();
 
     // scripting available?
@@ -978,6 +980,7 @@ GUIContext& System::getDefaultGUIContext() const
 GUIContext& System::createGUIContext(RenderTarget& rt)
 {
     GUIContext* c = CEGUI_NEW_AO GUIContext(rt);
+   
     d_guiContexts.push_back(c);
 
     return *c;
