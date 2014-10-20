@@ -113,8 +113,8 @@ protected:
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual void	onMouseDoubleClicked(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
 	virtual void	onCaptureLost(WindowEventArgs& e);
+#endif //PE_HAS_MOUSE
 	virtual void	onFontChanged(WindowEventArgs &e);
 
 

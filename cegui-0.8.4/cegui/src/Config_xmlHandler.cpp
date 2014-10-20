@@ -53,8 +53,8 @@ const String Config_xmlHandler::ImageCodecElement("DefaultImageCodec");
 const String Config_xmlHandler::DefaultFontElement("DefaultFont");
 #ifndef PE_HAS_MOUSE
 const String Config_xmlHandler::DefaultMouseCursorElement("DefaultMouseCursor");
-#endif
 const String Config_xmlHandler::DefaultTooltipElement("DefaultTooltip");
+#endif
 const String Config_xmlHandler::FilenameAttribute("filename");
 const String Config_xmlHandler::LevelAttribute("level");
 const String Config_xmlHandler::TypeAttribute("type");
@@ -115,9 +115,9 @@ void Config_xmlHandler::elementStart(const String& element,
 #ifndef PE_HAS_MOUSE
     else if (element == DefaultMouseCursorElement)
         handleDefaultMouseCursorElement(attributes);
-#endif
     else if (element == DefaultTooltipElement)
         handleDefaultTooltipElement(attributes);
+#endif
     else
         Logger::getSingleton().logEvent("Config_xmlHandler::elementStart: "
             "Unknown element encountered: <" + element + ">", Errors);
@@ -217,12 +217,12 @@ void Config_xmlHandler::handleDefaultMouseCursorElement(const XMLAttributes& att
 {
     d_defaultMouseImage = attr.getValueAsString(ImageAttribute, "");
 }
-#endif
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::handleDefaultTooltipElement(const XMLAttributes& attr)
 {
     d_defaultTooltipType = attr.getValueAsString(NameAttribute, "");
 }
+#endif
 
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::initialiseXMLParser() const
@@ -358,7 +358,6 @@ void Config_xmlHandler::initialiseDefaultMouseCursor() const
         System::getSingleton().getDefaultGUIContext().getMouseCursor().
             setDefaultImage(d_defaultMouseImage);
 }
-#endif
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::initialiseDefaulTooltip() const
 {
@@ -366,6 +365,7 @@ void Config_xmlHandler::initialiseDefaulTooltip() const
         System::getSingleton().getDefaultGUIContext().
             setDefaultTooltipType(d_defaultTooltipType);
 }
+#endif //PE_HAS_MOUSE
 
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::executeInitScript() const

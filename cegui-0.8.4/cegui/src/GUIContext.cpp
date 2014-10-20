@@ -93,9 +93,9 @@ GUIContext::GUIContext(RenderTarget& target) :
     d_mouseButtonMultiClickTimeout(DefaultMouseButtonMultiClickTimeout),
     d_mouseButtonMultiClickTolerance(DefaultMouseButtonMultiClickTolerance),
     d_mouseClickTrackers(new MouseClickTracker[MouseButtonCount]),
-#endif
     d_defaultTooltipObject(0),
     d_weCreatedTooltipObject(false),
+#endif
     d_defaultFont(0),
     d_surfaceSize(target.getArea().getSize()),
     d_modalWindow(0),
@@ -120,7 +120,9 @@ GUIContext::GUIContext(RenderTarget& target) :
 //----------------------------------------------------------------------------//
 GUIContext::~GUIContext()
 {
+#ifndef PE_HAS_MOUSE
     destroyDefaultTooltipWindowInstance();
+#endif //PE_HAS_MOUSE
 
     if (d_rootWindow)
         d_rootWindow->setGUIContext(0);
@@ -176,6 +178,7 @@ void GUIContext::setInputCaptureWindow(Window* window)
     d_captureWindow = window;
 }
 
+#ifndef PE_HAS_MOUSE
 //----------------------------------------------------------------------------//
 void GUIContext::setDefaultTooltipObject(Tooltip* tooltip)
 {
@@ -235,6 +238,7 @@ void GUIContext::createDefaultTooltipWindowInstance() const
         d_weCreatedTooltipObject = true;
     }
 }
+#endif //PE_HAS_MOUSE
 
 //----------------------------------------------------------------------------//
 void GUIContext::setModalWindow(Window* window)
@@ -448,11 +452,13 @@ bool GUIContext::windowDestroyedHandler(const EventArgs& args)
     if (window == d_captureWindow)
         d_captureWindow = 0;
 
+#ifndef PE_HAS_MOUSE
     if (window == d_defaultTooltipObject)
     {
         d_defaultTooltipObject = 0;
         d_weCreatedTooltipObject = false;
     }
+#endif //PE_HAS_MOUSE
 
     return true;
 }

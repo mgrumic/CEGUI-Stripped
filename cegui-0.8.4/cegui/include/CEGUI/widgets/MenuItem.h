@@ -246,7 +246,9 @@ namespace CEGUI {
             handler invoked internally when the MenuItem is clicked.
          */
 #ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_HAS_MOUSE
         virtual void onClicked(WindowEventArgs& e);
+#endif //PE_HAS_MOUSE
 
 
         /*************************************************************************
@@ -262,9 +264,9 @@ namespace CEGUI {
         virtual void onMouseMove(MouseEventArgs& e);
 
         virtual void onMouseButtonUp(MouseEventArgs& e);
+        virtual void onMouseLeaves(MouseEventArgs& e);
 #endif //PE_HAS_MOUSE
         virtual void onCaptureLost(WindowEventArgs& e);
-        virtual void onMouseLeaves(MouseEventArgs& e);
         virtual void onTextChanged(WindowEventArgs& e);
 
 

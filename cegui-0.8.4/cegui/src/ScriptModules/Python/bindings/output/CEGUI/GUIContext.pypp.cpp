@@ -19,6 +19,7 @@ struct GUIContext_wrapper : CEGUI::GUIContext, bp::wrapper< CEGUI::GUIContext > 
         return CEGUI::GUIContext::areaChangedHandler( boost::ref(args) );
     }
 
+#ifndef PE_HAS_MOUSE
     void createDefaultTooltipWindowInstance(  ) const {
         CEGUI::GUIContext::createDefaultTooltipWindowInstance(  );
     }
@@ -26,6 +27,7 @@ struct GUIContext_wrapper : CEGUI::GUIContext, bp::wrapper< CEGUI::GUIContext > 
     void destroyDefaultTooltipWindowInstance(  ){
         CEGUI::GUIContext::destroyDefaultTooltipWindowInstance(  );
     }
+#endif //PE_HAS_MOUSE
 
     virtual void draw(  ) {
         if( bp::override func_draw = this->get_override( "draw" ) )
@@ -494,6 +496,7 @@ void register_GUIContext_class(){
                 , ( bp::arg("args") ) );
         
         }
+#ifndef PE_HAS_MOUSE
         { //::CEGUI::GUIContext::createDefaultTooltipWindowInstance
         
             typedef void ( GUIContext_wrapper::*createDefaultTooltipWindowInstance_function_type )(  ) const;
@@ -512,6 +515,7 @@ void register_GUIContext_class(){
                 , destroyDefaultTooltipWindowInstance_function_type( &GUIContext_wrapper::destroyDefaultTooltipWindowInstance ) );
         
         }
+#endif //PE_HAS_MOUSE
         { //::CEGUI::GUIContext::draw
         
             typedef void ( ::CEGUI::GUIContext::*draw_function_type )(  ) ;
@@ -570,6 +574,7 @@ void register_GUIContext_class(){
                 *\n" );
         
         }
+#ifndef PE_HAS_MOUSE
         { //::CEGUI::GUIContext::getDefaultTooltipObject
         
             typedef ::CEGUI::Tooltip * ( ::CEGUI::GUIContext::*getDefaultTooltipObject_function_type )(  ) const;
@@ -581,6 +586,7 @@ void register_GUIContext_class(){
                 , "! Returns a pointer to the context's default tooltip object.  May return 0.\n" );
         
         }
+#endif //PE_HAS_MOUSE
         { //::CEGUI::GUIContext::getInputCaptureWindow
         
             typedef ::CEGUI::Window * ( ::CEGUI::GUIContext::*getInputCaptureWindow_function_type )(  ) const;
@@ -1087,6 +1093,7 @@ void register_GUIContext_class(){
                 *\n" );
         
         }
+#ifndef PE_HAS_MOUSE
         { //::CEGUI::GUIContext::setDefaultTooltipObject
         
             typedef void ( ::CEGUI::GUIContext::*setDefaultTooltipObject_function_type )( ::CEGUI::Tooltip * ) ;
@@ -1133,6 +1140,7 @@ void register_GUIContext_class(){
                 *\n" );
         
         }
+#endif //PE_HAS_MOUSE
         { //::CEGUI::GUIContext::setInputCaptureWindow
         
             typedef void ( ::CEGUI::GUIContext::*setInputCaptureWindow_function_type )( ::CEGUI::Window * ) ;

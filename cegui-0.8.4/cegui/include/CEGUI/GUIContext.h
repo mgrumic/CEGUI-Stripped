@@ -201,10 +201,11 @@ public:
 
     //! Tell the context to reconsider which window it thinks the mouse is in.
     void updateWindowContainingMouse();
-#endif
+#endif //PE_HAS_MOUSE
     Window* getInputCaptureWindow() const;
     void setInputCaptureWindow(Window* window);
 
+#ifndef PE_HAS_MOUSE
     /*!
     \brief
         Set the default Tooltip object for this GUIContext. This value may be 0
@@ -237,6 +238,7 @@ public:
 
     //! Returns a pointer to the context's default tooltip object.  May return 0.
     Tooltip* getDefaultTooltipObject() const;
+#endif //PE_HAS_MOUSE
 
     void setRenderTarget(RenderTarget& target);
 
@@ -296,8 +298,10 @@ protected:
     void drawWindowContentToTarget();
     void renderWindowHierarchyToSurfaces();
 
+#ifndef PE_HAS_MOUSE
     void createDefaultTooltipWindowInstance() const;
     void destroyDefaultTooltipWindowInstance();
+#endif //PE_HAS_MOUSE
 
     //! notify windows in a hierarchy using default font, when font changes.
     void notifyDefaultFontChanged(Window* hierarchy_root) const;
@@ -352,11 +356,11 @@ protected:
     mutable Window* d_windowContainingMouse;
     mutable bool    d_windowContainingMouseIsUpToDate;
     MouseClickTracker* d_mouseClickTrackers;
-#endif
 
     mutable Tooltip* d_defaultTooltipObject;
     mutable bool d_weCreatedTooltipObject;
     String d_defaultTooltipType;
+#endif
 
     Font* d_defaultFont;
 

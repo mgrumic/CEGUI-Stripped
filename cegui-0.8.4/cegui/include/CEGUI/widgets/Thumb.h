@@ -297,8 +297,8 @@ protected:
 	*************************************************************************/
 	virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
 	virtual void	onCaptureLost(WindowEventArgs& e);
+#endif //PE_HAS_MOUSE
 
 	/*************************************************************************
 		Implementation Data

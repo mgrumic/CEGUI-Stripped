@@ -96,9 +96,9 @@ public:
 #ifndef PE_HAS_MOUSE
     //! initialise the system default mouse cursor image according to the config.
     void initialiseDefaultMouseCursor() const;
-#endif
     //! initialise the system default tooltip according to the config.
     void initialiseDefaulTooltip() const;
+#endif
     //! execute the init script as specified in the config.
     void executeInitScript() const;
     //! return the name of the terminate script from the config (hacky!)

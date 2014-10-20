@@ -228,6 +228,7 @@ void Titlebar::onCaptureLost(WindowEventArgs& e)
 }
 
 
+#endif //PE_HAS_MOUSE
 /*************************************************************************
 	Handler for when the font for this Window is changed
 *************************************************************************/
@@ -240,7 +241,6 @@ void Titlebar::onFontChanged(WindowEventArgs& e)
 		getParent()->performChildWindowLayout();
 	}
 }
-#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************

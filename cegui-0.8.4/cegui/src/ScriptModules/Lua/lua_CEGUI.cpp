@@ -512,7 +512,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::WidgetComponent");
  tolua_usertype(tolua_S,"CEGUI::Scheme");
  tolua_usertype(tolua_S,"CEGUI::RadioButton");
+#ifndef PE_HAS_MOUSE
  tolua_usertype(tolua_S,"CEGUI::Tooltip");
+#endif //PE_HAS_MOUSE
  tolua_usertype(tolua_S,"CEGUI::ItemEntry");
  tolua_usertype(tolua_S,"CEGUI::ImageManager");
  tolua_usertype(tolua_S,"CEGUI::LayoutContainer");
@@ -22069,6 +22071,7 @@ static int tolua_CEGUI_CEGUI_Window_setDistributesCapturedInputs00(lua_State* to
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_HAS_MOUSE
 /* method: isUsingDefaultTooltip of class  CEGUI::Window */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Window_isUsingDefaultTooltip00
 static int tolua_CEGUI_CEGUI_Window_isUsingDefaultTooltip00(lua_State* tolua_S)
@@ -22360,6 +22363,7 @@ static int tolua_CEGUI_CEGUI_Window_inheritsTooltipText00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_HAS_MOUSE
 
 /* method: isRiseOnClickEnabled of class  CEGUI::Window */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Window_isRiseOnClickEnabled00
@@ -25748,6 +25752,7 @@ static int tolua_CEGUI_CEGUI_GUIContext_getInputCaptureWindow00(lua_State* tolua
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_HAS_MOUSE
 /* method: setDefaultTooltipObject of class  CEGUI::GUIContext */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GUIContext_setDefaultTooltipObject00
 static int tolua_CEGUI_CEGUI_GUIContext_setDefaultTooltipObject00(lua_State* tolua_S)
@@ -25845,6 +25850,7 @@ static int tolua_CEGUI_CEGUI_GUIContext_getDefaultTooltipObject00(lua_State* tol
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_HAS_MOUSE
 
 /* method: setDefaultFont of class  CEGUI::GUIContext */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GUIContext_setDefaultFont00
@@ -35506,6 +35512,7 @@ static int tolua_CEGUI_CEGUI_Tree_isMultiselectEnabled00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_HAS_MOUSE
 /* method: isItemTooltipsEnabled of class  CEGUI::Tree */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Tree_isItemTooltipsEnabled00
 static int tolua_CEGUI_CEGUI_Tree_isItemTooltipsEnabled00(lua_State* tolua_S)
@@ -35537,6 +35544,7 @@ static int tolua_CEGUI_CEGUI_Tree_isItemTooltipsEnabled00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_HAS_MOUSE
 
 /* method: findFirstItemWithText of class  CEGUI::Tree */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Tree_findFirstItemWithText00
@@ -37719,6 +37727,7 @@ static int tolua_CEGUI_CEGUI_TreeItem_getText00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_HAS_MOUSE
 /* method: getTooltipText of class  CEGUI::TreeItem */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TreeItem_getTooltipText00
 static int tolua_CEGUI_CEGUI_TreeItem_getTooltipText00(lua_State* tolua_S)
@@ -37750,6 +37759,7 @@ static int tolua_CEGUI_CEGUI_TreeItem_getTooltipText00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_HAS_MOUSE
 
 /* method: getID of class  CEGUI::TreeItem */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TreeItem_getID00
@@ -38048,6 +38058,7 @@ static int tolua_CEGUI_CEGUI_TreeItem_setText00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_HAS_MOUSE
 /* method: setTooltipText of class  CEGUI::TreeItem */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TreeItem_setTooltipText00
 static int tolua_CEGUI_CEGUI_TreeItem_setTooltipText00(lua_State* tolua_S)
@@ -38080,6 +38091,7 @@ static int tolua_CEGUI_CEGUI_TreeItem_setTooltipText00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_HAS_MOUSE
 
 /* method: setID of class  CEGUI::TreeItem */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TreeItem_setID00
@@ -39279,6 +39291,7 @@ static int tolua_CEGUI_CEGUI_FrameWindow_offsetPixelPosition00(lua_State* tolua_
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_HAS_MOUSE
 /* method: setTargetWindow of class  CEGUI::Tooltip */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Tooltip_setTargetWindow00
 static int tolua_CEGUI_CEGUI_Tooltip_setTargetWindow00(lua_State* tolua_S)
@@ -39606,6 +39619,7 @@ static int tolua_CEGUI_CEGUI_Tooltip_getTextSize00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_HAS_MOUSE
 
 /* method: isDraggingEnabled of class  CEGUI::DragContainer */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_DragContainer_isDraggingEnabled00
@@ -66276,18 +66290,25 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"isBehind",tolua_CEGUI_CEGUI_Window_isBehind00);
    tolua_function(tolua_S,"wantsMultiClickEvents",tolua_CEGUI_CEGUI_Window_wantsMultiClickEvents00);
    tolua_function(tolua_S,"setWantsMultiClickEvents",tolua_CEGUI_CEGUI_Window_setWantsMultiClickEvents00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"isMouseAutoRepeatEnabled",tolua_CEGUI_CEGUI_Window_isMouseAutoRepeatEnabled00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"getAutoRepeatDelay",tolua_CEGUI_CEGUI_Window_getAutoRepeatDelay00);
    tolua_function(tolua_S,"getAutoRepeatRate",tolua_CEGUI_CEGUI_Window_getAutoRepeatRate00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"setMouseAutoRepeatEnabled",tolua_CEGUI_CEGUI_Window_setMouseAutoRepeatEnabled00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"setAutoRepeatDelay",tolua_CEGUI_CEGUI_Window_setAutoRepeatDelay00);
    tolua_function(tolua_S,"setAutoRepeatRate",tolua_CEGUI_CEGUI_Window_setAutoRepeatRate00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"isMouseInputPropagationEnabled",tolua_CEGUI_CEGUI_Window_isMouseInputPropagationEnabled00);
    tolua_function(tolua_S,"setMouseInputPropagationEnabled",tolua_CEGUI_CEGUI_Window_setMouseInputPropagationEnabled00);
-   tolua_function(tolua_S,"isMousePassThroughEnabled",tolua_CEGUI_CEGUI_Window_isMousePassThroughEnabled00);
    tolua_function(tolua_S,"setMousePassThroughEnabled",tolua_CEGUI_CEGUI_Window_setMousePassThroughEnabled00);
+   tolua_function(tolua_S,"isMousePassThroughEnabled",tolua_CEGUI_CEGUI_Window_isMousePassThroughEnabled00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"distributesCapturedInputs",tolua_CEGUI_CEGUI_Window_distributesCapturedInputs00);
    tolua_function(tolua_S,"setDistributesCapturedInputs",tolua_CEGUI_CEGUI_Window_setDistributesCapturedInputs00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"isUsingDefaultTooltip",tolua_CEGUI_CEGUI_Window_isUsingDefaultTooltip00);
    tolua_function(tolua_S,"getTooltip",tolua_CEGUI_CEGUI_Window_getTooltip00);
    tolua_function(tolua_S,"setTooltip",tolua_CEGUI_CEGUI_Window_setTooltip00);
@@ -66297,6 +66318,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setTooltipText",tolua_CEGUI_CEGUI_Window_setTooltipText00);
    tolua_function(tolua_S,"setInheritsTooltipText",tolua_CEGUI_CEGUI_Window_setInheritsTooltipText00);
    tolua_function(tolua_S,"inheritsTooltipText",tolua_CEGUI_CEGUI_Window_inheritsTooltipText00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"isRiseOnClickEnabled",tolua_CEGUI_CEGUI_Window_isRiseOnClickEnabled00);
    tolua_function(tolua_S,"setRiseOnClickEnabled",tolua_CEGUI_CEGUI_Window_setRiseOnClickEnabled00);
    tolua_function(tolua_S,"getGeometryBuffer",tolua_CEGUI_CEGUI_Window_getGeometryBuffer00);
@@ -66405,6 +66427,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getSystemKeys",tolua_CEGUI_CEGUI_GUIContext_getSystemKeys00);
    tolua_function(tolua_S,"markAsDirty",tolua_CEGUI_CEGUI_GUIContext_markAsDirty00);
    tolua_function(tolua_S,"isDirty",tolua_CEGUI_CEGUI_GUIContext_isDirty00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"getMouseCursor",tolua_CEGUI_CEGUI_GUIContext_getMouseCursor00);
    tolua_function(tolua_S,"setMouseMoveScalingFactor",tolua_CEGUI_CEGUI_GUIContext_setMouseMoveScalingFactor00);
    tolua_function(tolua_S,"getMouseMoveScalingFactor",tolua_CEGUI_CEGUI_GUIContext_getMouseMoveScalingFactor00);
@@ -66416,6 +66439,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getMouseButtonMultiClickTolerance",tolua_CEGUI_CEGUI_GUIContext_getMouseButtonMultiClickTolerance00);
    tolua_function(tolua_S,"setMouseClickEventGenerationEnabled",tolua_CEGUI_CEGUI_GUIContext_setMouseClickEventGenerationEnabled00);
    tolua_function(tolua_S,"isMouseClickEventGenerationEnabled",tolua_CEGUI_CEGUI_GUIContext_isMouseClickEventGenerationEnabled00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"updateWindowContainingMouse",tolua_CEGUI_CEGUI_GUIContext_updateWindowContainingMouse00);
    tolua_function(tolua_S,"getInputCaptureWindow",tolua_CEGUI_CEGUI_GUIContext_getInputCaptureWindow00);
    tolua_function(tolua_S,"setDefaultTooltipObject",tolua_CEGUI_CEGUI_GUIContext_setDefaultTooltipObject00);
@@ -66424,19 +66448,25 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setDefaultFont",tolua_CEGUI_CEGUI_GUIContext_setDefaultFont00);
    tolua_function(tolua_S,"setDefaultFont",tolua_CEGUI_CEGUI_GUIContext_setDefaultFont01);
    tolua_function(tolua_S,"getDefaultFont",tolua_CEGUI_CEGUI_GUIContext_getDefaultFont00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"injectMouseMove",tolua_CEGUI_CEGUI_GUIContext_injectMouseMove00);
    tolua_function(tolua_S,"injectMouseLeaves",tolua_CEGUI_CEGUI_GUIContext_injectMouseLeaves00);
    tolua_function(tolua_S,"injectMouseButtonDown",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonDown00);
    tolua_function(tolua_S,"injectMouseButtonUp",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonUp00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"injectKeyDown",tolua_CEGUI_CEGUI_GUIContext_injectKeyDown00);
    tolua_function(tolua_S,"injectKeyUp",tolua_CEGUI_CEGUI_GUIContext_injectKeyUp00);
    tolua_function(tolua_S,"injectChar",tolua_CEGUI_CEGUI_GUIContext_injectChar00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"injectMouseWheelChange",tolua_CEGUI_CEGUI_GUIContext_injectMouseWheelChange00);
    tolua_function(tolua_S,"injectMousePosition",tolua_CEGUI_CEGUI_GUIContext_injectMousePosition00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"injectTimePulse",tolua_CEGUI_CEGUI_GUIContext_injectTimePulse00);
+#ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"injectMouseButtonClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonClick00);
    tolua_function(tolua_S,"injectMouseButtonDoubleClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonDoubleClick00);
    tolua_function(tolua_S,"injectMouseButtonTripleClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonTripleClick00);
+#endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"injectCopyRequest",tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00);
    tolua_function(tolua_S,"injectCutRequest",tolua_CEGUI_CEGUI_GUIContext_injectCutRequest00);
    tolua_function(tolua_S,"injectPasteRequest",tolua_CEGUI_CEGUI_GUIContext_injectPasteRequest00);

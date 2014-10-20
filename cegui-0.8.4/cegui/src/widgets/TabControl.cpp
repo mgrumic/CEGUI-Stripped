@@ -306,9 +306,9 @@ void TabControl::addButtonForTabContent(Window* wnd)
 #ifndef PE_HAS_MOUSE
     tb->subscribeEvent(TabButton::EventDragged,
         Event::Subscriber(&TabControl::handleDraggedPane, this));
-#endif //PE_HAS_MOUSE
     tb->subscribeEvent(TabButton::EventScrolled,
         Event::Subscriber(&TabControl::handleWheeledPane, this));
+#endif //PE_HAS_MOUSE
 }
 
 /*************************************************************************
@@ -801,7 +801,7 @@ bool TabControl::handleWheeledPane(const EventArgs& e)
 
     return true;
 }
-#endif
+#endif //PE_HAS_MOUSE
 
 void TabControl::removeTab_impl(Window* window)
 {

@@ -472,7 +472,6 @@ void MenuItem::onMouseButtonUp(MouseEventArgs& e)
 }
 #endif //PE_HAS_MOUSE
 
-#ifndef PE_HAS_MOUSE
 /*************************************************************************
     Handler for when mouse capture is lost
 *************************************************************************/
@@ -482,15 +481,15 @@ void MenuItem::onCaptureLost(WindowEventArgs& e)
     ItemEntry::onCaptureLost(e);
 
     d_pushed = false;
+#ifndef PE_HAS_MOUSE
     updateInternalState(getUnprojectedPosition(
         getGUIContext().getMouseCursor().getPosition()));
+#endif //PE_HAS_MOUSE
     invalidate();
 
     // event was handled by us.
     ++e.handled;
 }
-#endif //PE_HAS_MOUSE
-
 
 #ifndef PE_HAS_MOUSE
 /*************************************************************************
