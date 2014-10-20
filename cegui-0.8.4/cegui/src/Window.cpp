@@ -124,7 +124,7 @@ const String Window::WindowNameXMLAttributeName("name");
 const String Window::AutoWindowNamePathXMLAttributeName("namePath");
 const String Window::UserStringNameXMLAttributeName("name");
 const String Window::UserStringValueXMLAttributeName("value");
-
+#ifndef PE_HAS_MOUSE
 //----------------------------------------------------------------------------//
 #ifndef PE_HAS_MOUSE
 const String Window::TooltipNameSuffix("__auto_tooltip__");
@@ -261,9 +261,11 @@ Window::Window(const String& type, const String& name):
     d_dragDropTarget(true),
 
     // tool tip related
+#ifndef PE_HAS_MOUSE
     d_customTip(0),
     d_weOwnTip(false),
     d_inheritsTipText(true),
+#endif //PE_HAS_MOUSE
 
     // XML writing options
     d_allowWriteXML(true),
@@ -1749,6 +1751,7 @@ void Window::destroy(void)
 
 #ifndef PE_HAS_MOUSE
     // let go of the tooltip if we have it
+#ifndef PE_HAS_MOUSE
     Tooltip* const tip = getTooltip();
     if (tip && tip->getTargetWindow()==this)
         tip->setTargetWindow(0);
@@ -1757,6 +1760,7 @@ void Window::destroy(void)
     setTooltip(static_cast<Tooltip*>(0));
 #endif //PE_HAS_MOUSE
 
+#endif //PE_HAS_MOUSE
     // clean up looknfeel related things
     if (!d_lookName.empty())
     {
@@ -1802,8 +1806,10 @@ Tooltip* Window::getTooltip(void) const
 void Window::setTooltip(Tooltip* tooltip)
 {
     // destroy current custom tooltip if one exists and we created it
+
     if (d_customTip && d_weOwnTip)
         WindowManager::getSingleton().destroyWindow(d_customTip);
+
 
     // set new custom tooltip
     d_weOwnTip = false;
@@ -1814,8 +1820,10 @@ void Window::setTooltip(Tooltip* tooltip)
 void Window::setTooltipType(const String& tooltipType)
 {
     // destroy current custom tooltip if one exists and we created it
+
     if (d_customTip && d_weOwnTip)
         WindowManager::getSingleton().destroyWindow(d_customTip);
+
 
     if (tooltipType.empty())
     {
@@ -1826,10 +1834,12 @@ void Window::setTooltipType(const String& tooltipType)
     {
         CEGUI_TRY
         {
+
             d_customTip = static_cast<Tooltip*>(
                 WindowManager::getSingleton().createWindow(
                     tooltipType, getName() + TooltipNameSuffix));
             d_customTip->setAutoWindow(true);
+
             d_weOwnTip = true;
         }
         CEGUI_CATCH (UnknownObjectException&)

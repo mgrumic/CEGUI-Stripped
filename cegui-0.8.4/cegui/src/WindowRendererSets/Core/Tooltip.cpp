@@ -28,7 +28,7 @@
 #include "CEGUI/falagard/WidgetLookManager.h"
 #include "CEGUI/falagard/WidgetLookFeel.h"
 #include "CEGUI/CoordConverter.h"
-
+#ifndef PE_HAS_MOUSE
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -66,3 +66,4 @@ namespace CEGUI
     }
 
 } // End of  CEGUI namespace section
+#endif //PE_HAS_MOUSE

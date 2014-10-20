@@ -49,6 +49,7 @@ namespace CEGUI
     /*************************************************************************
         TooltipWindowRenderer
     *************************************************************************/
+
     TooltipWindowRenderer::TooltipWindowRenderer(const String& name) :
         WindowRenderer(name, Tooltip::EventNamespace)
     {

@@ -270,6 +270,7 @@ void Thumb::onMouseButtonDown(MouseEventArgs& e)
 /*************************************************************************
 	Handler for event triggered when we lose capture of mouse input
 *************************************************************************/
+#endif //PE_HAS_MOUSE
 void Thumb::onCaptureLost(WindowEventArgs& e)
 {
 	// default handling
@@ -284,7 +285,6 @@ void Thumb::onCaptureLost(WindowEventArgs& e)
 	// send notification whenever thumb is released
 	onThumbPositionChanged(args);
 }
-#endif //PE_HAS_MOUSE
 
 
 /*************************************************************************

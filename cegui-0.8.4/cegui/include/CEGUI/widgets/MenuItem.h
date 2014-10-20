@@ -255,7 +255,6 @@ namespace CEGUI {
             Overridden event handlers
          *************************************************************************/
 
-#ifndef PE_HAS_MOUSE
         virtual void onMouseButtonDown(MouseEventArgs& e);
 #endif //PE_HAS_MOUSE
         virtual void updateSelf(float elapsed);
