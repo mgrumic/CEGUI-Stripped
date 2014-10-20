@@ -22406,7 +22406,7 @@ static int tolua_CEGUI_CEGUI_Window_inheritsTooltipText00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 #endif //PE_HAS_MOUSE
-
+#ifndef PE_HAS_MOUSE
 /* method: isRiseOnClickEnabled of class  CEGUI::Window */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Window_isRiseOnClickEnabled00
 static int tolua_CEGUI_CEGUI_Window_isRiseOnClickEnabled00(lua_State* tolua_S)
@@ -39697,7 +39697,7 @@ static int tolua_CEGUI_CEGUI_Tooltip_getTextSize00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 #endif //PE_HAS_MOUSE
-
+#ifndef PE_HAS_MOUSE
 /* method: isDraggingEnabled of class  CEGUI::DragContainer */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_DragContainer_isDraggingEnabled00
 static int tolua_CEGUI_CEGUI_DragContainer_isDraggingEnabled00(lua_State* tolua_S)
@@ -66544,13 +66544,14 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getMouseButtonMultiClickTolerance",tolua_CEGUI_CEGUI_GUIContext_getMouseButtonMultiClickTolerance00);
    tolua_function(tolua_S,"setMouseClickEventGenerationEnabled",tolua_CEGUI_CEGUI_GUIContext_setMouseClickEventGenerationEnabled00);
    tolua_function(tolua_S,"isMouseClickEventGenerationEnabled",tolua_CEGUI_CEGUI_GUIContext_isMouseClickEventGenerationEnabled00);
-#endif //PE_HAS_MOUSE
+
    tolua_function(tolua_S,"updateWindowContainingMouse",tolua_CEGUI_CEGUI_GUIContext_updateWindowContainingMouse00);
    tolua_function(tolua_S,"getInputCaptureWindow",tolua_CEGUI_CEGUI_GUIContext_getInputCaptureWindow00);
-#endif //PE_HAS_MOUSE
+
    tolua_function(tolua_S,"setDefaultTooltipObject",tolua_CEGUI_CEGUI_GUIContext_setDefaultTooltipObject00);
    tolua_function(tolua_S,"setDefaultTooltipType",tolua_CEGUI_CEGUI_GUIContext_setDefaultTooltipType00);
    tolua_function(tolua_S,"getDefaultTooltipObject",tolua_CEGUI_CEGUI_GUIContext_getDefaultTooltipObject00);
+  #endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"setDefaultFont",tolua_CEGUI_CEGUI_GUIContext_setDefaultFont00);
    tolua_function(tolua_S,"setDefaultFont",tolua_CEGUI_CEGUI_GUIContext_setDefaultFont01);
    tolua_function(tolua_S,"getDefaultFont",tolua_CEGUI_CEGUI_GUIContext_getDefaultFont00);
@@ -66985,7 +66986,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getLastSelectedItem",tolua_CEGUI_CEGUI_Tree_getLastSelectedItem00);
    tolua_function(tolua_S,"isSortEnabled",tolua_CEGUI_CEGUI_Tree_isSortEnabled00);
    tolua_function(tolua_S,"isMultiselectEnabled",tolua_CEGUI_CEGUI_Tree_isMultiselectEnabled00);
+  #ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"isItemTooltipsEnabled",tolua_CEGUI_CEGUI_Tree_isItemTooltipsEnabled00);
+   #endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"findFirstItemWithText",tolua_CEGUI_CEGUI_Tree_findFirstItemWithText00);
    tolua_function(tolua_S,"findNextItemWithText",tolua_CEGUI_CEGUI_Tree_findNextItemWithText00);
    tolua_function(tolua_S,"findFirstItemWithID",tolua_CEGUI_CEGUI_Tree_findFirstItemWithID00);
@@ -67075,7 +67078,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setTextColours",tolua_CEGUI_CEGUI_TreeItem_setTextColours01);
    tolua_function(tolua_S,"setTextColours",tolua_CEGUI_CEGUI_TreeItem_setTextColours02);
    tolua_function(tolua_S,"getText",tolua_CEGUI_CEGUI_TreeItem_getText00);
+   #ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"getTooltipText",tolua_CEGUI_CEGUI_TreeItem_getTooltipText00);
+   #endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"getID",tolua_CEGUI_CEGUI_TreeItem_getID00);
    tolua_function(tolua_S,"getUserData",tolua_CEGUI_CEGUI_TreeItem_getUserData00);
    tolua_function(tolua_S,"isSelected",tolua_CEGUI_CEGUI_TreeItem_isSelected00);
@@ -67085,8 +67090,10 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getSelectionColours",tolua_CEGUI_CEGUI_TreeItem_getSelectionColours00);
    tolua_function(tolua_S,"getSelectionBrushImage",tolua_CEGUI_CEGUI_TreeItem_getSelectionBrushImage00);
    tolua_function(tolua_S,"setText",tolua_CEGUI_CEGUI_TreeItem_setText00);
+  #ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"setTooltipText",tolua_CEGUI_CEGUI_TreeItem_setTooltipText00);
-   tolua_function(tolua_S,"setID",tolua_CEGUI_CEGUI_TreeItem_setID00);
+#endif //PE_HAS_MOUSE  
+  tolua_function(tolua_S,"setID",tolua_CEGUI_CEGUI_TreeItem_setID00);
    tolua_function(tolua_S,"setUserData",tolua_CEGUI_CEGUI_TreeItem_setUserData00);
    tolua_function(tolua_S,"setSelected",tolua_CEGUI_CEGUI_TreeItem_setSelected00);
    tolua_function(tolua_S,"setDisabled",tolua_CEGUI_CEGUI_TreeItem_setDisabled00);

@@ -124,7 +124,6 @@ const String Window::WindowNameXMLAttributeName("name");
 const String Window::AutoWindowNamePathXMLAttributeName("namePath");
 const String Window::UserStringNameXMLAttributeName("name");
 const String Window::UserStringValueXMLAttributeName("value");
-#ifndef PE_HAS_MOUSE
 //----------------------------------------------------------------------------//
 #ifndef PE_HAS_MOUSE
 const String Window::TooltipNameSuffix("__auto_tooltip__");

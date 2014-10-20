@@ -410,7 +410,7 @@ public:
      * valid.
      */
     static const String EventMouseTripleClick;
-#endif
+#endif //PE_HAS_MOUSE
     /** Event fired when a key on the keyboard was pressed down while the window
      * had input focus.
      * Handlers are passed a const KeyEventArgs reference with
@@ -1049,7 +1049,7 @@ public:
         be drawn for this window.
     */
     const Image* getMouseCursor(bool useDefault = true) const;
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Return the user data set for this Window.
@@ -1124,7 +1124,7 @@ public:
           this window.
     */
     bool isMouseAutoRepeatEnabled(void) const;
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Return the current auto-repeat delay setting for this window.
@@ -1232,7 +1232,7 @@ public:
           mouse button is pushed within its area.
      */
     bool isRiseOnClickEnabled(void) const   { return d_riseOnClick; }
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Return the GeometryBuffer object for this Window.
@@ -1319,7 +1319,7 @@ public:
         false if mouse pass through is not enabled.
     */
     bool isMousePassThroughEnabled(void) const  {return d_mousePassThroughEnabled;}
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Returns whether this window is an auto window.
@@ -1930,7 +1930,7 @@ public:
         thrown if no Image named \a name exists.
     */
     void setMouseCursor(const String& name);
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Set the user data set for this Window.
@@ -2000,7 +2000,7 @@ public:
         Nothing.
     */
     void setMouseAutoRepeatEnabled(bool setting);
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Set the current auto-repeat delay setting for this window.
@@ -2166,7 +2166,7 @@ public:
         Nothing.
      */
     void setRiseOnClickEnabled(bool setting)    { d_riseOnClick = setting; }
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Set the LookNFeel that shoule be used for this window.
@@ -2371,7 +2371,7 @@ public:
         false if mouse pass through is not enabled.
     */
     void setMousePassThroughEnabled(bool setting)   {d_mousePassThroughEnabled = setting;}
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Assign the WindowRenderer type to be used when rendering this window.
@@ -2664,7 +2664,7 @@ public:
     to ensure correct handling of certain events.
     */
     bool isMouseContainedInArea() const;
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Clones this Window and returns the result
@@ -3130,7 +3130,7 @@ protected:
     */
     void generateAutoRepeatEvent(MouseButton button);
 
-#endif
+#endif //PE_HAS_MOUSE
     /*!
     \brief
         Handler called when a key as been depressed while this window has input
@@ -3656,7 +3656,7 @@ protected:
     bool d_propagateMouseInputs;
     //! true when mouse is contained within this Window's area.
     bool d_containsMouse;
-#endif
+#endif //PE_HAS_MOUSE
     //! seconds before first repeat event is fired
     float d_repeatDelay;
     //! seconds between further repeats after delay has expired.

@@ -270,7 +270,7 @@ void Thumb::onMouseButtonDown(MouseEventArgs& e)
 /*************************************************************************
 	Handler for event triggered when we lose capture of mouse input
 *************************************************************************/
-#endif //PE_HAS_MOUSE
+
 void Thumb::onCaptureLost(WindowEventArgs& e)
 {
 	// default handling
@@ -286,7 +286,7 @@ void Thumb::onCaptureLost(WindowEventArgs& e)
 	onThumbPositionChanged(args);
 }
 
-
+#endif //PE_HAS_MOUSE
 /*************************************************************************
 	Return a std::pair that describes the current range set for the
 	vertical movement.	

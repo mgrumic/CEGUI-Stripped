@@ -210,7 +210,7 @@ void Titlebar::onMouseDoubleClicked(MouseEventArgs& e)
 	}
 
 }
-#endif //PE_HAS_MOUSE
+
 
 /*************************************************************************
 	Handler for if the window loses capture of the mouse.
@@ -224,12 +224,10 @@ void Titlebar::onCaptureLost(WindowEventArgs& e)
 	d_dragging = false;
 
 	// restore old constraint area
-#ifndef PE_HAS_MOUSE
 	getGUIContext().
         getMouseCursor().setConstraintArea(&d_oldCursorArea);
-#endif //PE_HAS_MOUSE
-}
 
+}
 
 #endif //PE_HAS_MOUSE
 /*************************************************************************

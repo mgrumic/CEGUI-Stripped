@@ -248,7 +248,6 @@ namespace CEGUI {
 #ifdef PE_NO_POPUP_MENU_H
 #ifndef PE_HAS_MOUSE
         virtual void onClicked(WindowEventArgs& e);
-#endif //PE_HAS_MOUSE
 
 
         /*************************************************************************
