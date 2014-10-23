@@ -67007,7 +67007,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ButtonBase","CEGUI::ButtonBase","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"ButtonBase");
+ #ifndef PE_HAS_MOUSE
    tolua_function(tolua_S,"isHovering",tolua_CEGUI_CEGUI_ButtonBase_isHovering00);
+ #endif //PE_HAS_MOUSE
    tolua_function(tolua_S,"isPushed",tolua_CEGUI_CEGUI_ButtonBase_isPushed00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ToggleButton","CEGUI::ToggleButton","CEGUI::ButtonBase",NULL);
@@ -67134,9 +67136,10 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"toggleRollup",tolua_CEGUI_CEGUI_FrameWindow_toggleRollup00);
    tolua_function(tolua_S,"offsetPixelPosition",tolua_CEGUI_CEGUI_FrameWindow_offsetPixelPosition00);
   tolua_endmodule(tolua_S);
+#ifndef PE_HAS_MOUSE
   tolua_cclass(tolua_S,"Tooltip","CEGUI::Tooltip","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"Tooltip");
-#ifndef PE_HAS_MOUSE
+
   tolua_function(tolua_S,"setTargetWindow",tolua_CEGUI_CEGUI_Tooltip_setTargetWindow00);
    tolua_function(tolua_S,"getTargetWindow",tolua_CEGUI_CEGUI_Tooltip_getTargetWindow00);
    tolua_function(tolua_S,"resetTimer",tolua_CEGUI_CEGUI_Tooltip_resetTimer00);
@@ -67147,9 +67150,10 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"positionSelf",tolua_CEGUI_CEGUI_Tooltip_positionSelf00);
    tolua_function(tolua_S,"sizeSelf",tolua_CEGUI_CEGUI_Tooltip_sizeSelf00);
    tolua_function(tolua_S,"getTextSize",tolua_CEGUI_CEGUI_Tooltip_getTextSize00);
-#endif //PE_HAS_MOUSE
+
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"DragContainer","CEGUI::DragContainer","CEGUI::Window",NULL);
+#endif //PE_HAS_MOUSE 
+ tolua_cclass(tolua_S,"DragContainer","CEGUI::DragContainer","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"DragContainer");
 #ifndef PE_HAS_MOUSE
   tolua_function(tolua_S,"isDraggingEnabled",tolua_CEGUI_CEGUI_DragContainer_isDraggingEnabled00);
