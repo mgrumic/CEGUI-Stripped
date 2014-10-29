@@ -36,10 +36,10 @@
 
 #define PE_HAS_MOUSE
 #define PE_NO_VERTEX
-
-#ifndef PE_NO_VERTEX
-#endif //PE_NO_VERTEX
-
+#define PE_NO_WGT_PROGRESS_BAR
+#define PE_NO_WGT_TOOLTIP
+#define PE_NO_WGT_MULTILINE_EDITBOX
+#define PE_NO_WGT_CLIPPED_CONTAINER
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

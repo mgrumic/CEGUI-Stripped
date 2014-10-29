@@ -35,6 +35,9 @@
 
 #include <vector>
 
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
+
+
 #if defined(_MSC_VER)
 #	pragma warning(push)
 #	pragma warning(disable : 4251)
@@ -788,5 +791,5 @@ private:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
 #endif	// end of guard _CEGUIMultiLineEditbox_h_

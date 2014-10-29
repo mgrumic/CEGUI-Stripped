@@ -632,7 +632,9 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<DragContainer>();
 #endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
+    #ifndef PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<ClippedContainer>();
+    #endif //PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<PushButton>();
     WindowFactoryManager::addWindowType<RadioButton>();
     WindowFactoryManager::addWindowType<Combobox>();
@@ -649,8 +651,12 @@ void System::addStandardWindowFactories()
 #endif
 	WindowFactoryManager::addWindowType<MenuItem>();
     WindowFactoryManager::addWindowType<MultiColumnList>();
+    #ifndef PE_NO_WGT_MULTILINE_EDITBOX
     WindowFactoryManager::addWindowType<MultiLineEditbox>();
+    #endif //PE_NO_WGT_MULTILINE_EDITBOX
+    #ifndef PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ProgressBar>();
+    #endif //PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ScrollablePane>();
     WindowFactoryManager::addWindowType<Scrollbar>();
     WindowFactoryManager::addWindowType<Slider>();

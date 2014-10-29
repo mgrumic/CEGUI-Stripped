@@ -32,6 +32,7 @@
 #include "../Base.h"
 #include "../Window.h"
 
+#ifndef PE_NO_WGT_PROGRESS_BAR
 
 #if defined(_MSC_VER)
 #	pragma warning(push)
@@ -195,5 +196,6 @@ private:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
+#endif //PE_NO_WGT_PROGRESS_BAR
 
 #endif	// end of guard _CEGUIProgressBar_h_

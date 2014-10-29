@@ -141,7 +141,9 @@ class XMLSerializer;
     Forward declare window / widget classes.
 *************************************************************************/
 class ButtonBase;
+#ifndef PE_NO_WGT_CLIPPED_CONTAINER
 class ClippedContainer;
+#endif //PE_NO_WGT_CLIPPED_CONTAINER
 class Combobox;
 class ComboDropList;
 class DefaultWindow;
@@ -165,11 +167,15 @@ class Menubar;
 class MenuBase;
 class MenuItem;
 class MultiColumnList;
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
 class MultiLineEditbox;
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
 #ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
 #endif //PE_HAS_MOUSE
+#ifndef PE_NO_WGT_PROGRESS_BAR
 class ProgressBar;
+#endif //PE_NO_WGT_PROGRESS_BAR
 class PushButton;
 class RadioButton;
 class ScrollablePane;
