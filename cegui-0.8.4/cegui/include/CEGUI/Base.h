@@ -35,6 +35,8 @@
 #endif
 
 #define PE_HAS_MOUSE
+#define PE_NO_WGT_SPINNER
+#define PE_NO_WGT_SLIDER
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

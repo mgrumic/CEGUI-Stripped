@@ -59,6 +59,7 @@ namespace CEGUI
               Indicates whether this slider will operate in the vertical or
               horizontal direction.  Default is for horizontal.  Optional.
     */
+#ifndef PE_NO_WGT_SLIDER
     class COREWRSET_API FalagardSlider : public SliderWindowRenderer
     {
     public:
@@ -89,7 +90,7 @@ namespace CEGUI
         float getValueFromThumb(void) const;
         float getAdjustDirectionFromPoint(const Vector2f& pt) const;
     };
-
+#endif // PE_NO_WGT_SLIDER
 } // End of  CEGUI namespace section
 
 

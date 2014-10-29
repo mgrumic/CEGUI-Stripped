@@ -41820,7 +41820,7 @@ static int tolua_CEGUI_CEGUI_ScrollablePane_getHorzScrollbar00(lua_State* tolua_
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_WGT_SLIDER
 /* method: getCurrentValue of class  CEGUI::Slider */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Slider_getCurrentValue00
 static int tolua_CEGUI_CEGUI_Slider_getCurrentValue00(lua_State* tolua_S)
@@ -41852,7 +41852,6 @@ static int tolua_CEGUI_CEGUI_Slider_getCurrentValue00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
 /* method: getMaxValue of class  CEGUI::Slider */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Slider_getMaxValue00
 static int tolua_CEGUI_CEGUI_Slider_getMaxValue00(lua_State* tolua_S)
@@ -42015,7 +42014,9 @@ static int tolua_CEGUI_CEGUI_Slider_setClickStep00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_SLIDER
 
+#ifndef PE_NO_WGT_SPINNER
 /* method: getCurrentValue of class  CEGUI::Spinner */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_getCurrentValue00
 static int tolua_CEGUI_CEGUI_Spinner_getCurrentValue00(lua_State* tolua_S)
@@ -42047,7 +42048,9 @@ static int tolua_CEGUI_CEGUI_Spinner_getCurrentValue00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_SPINNER
 
+#ifndef  PE_NO_WGT_SPINNER
 /* method: getStepSize of class  CEGUI::Spinner */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_getStepSize00
 static int tolua_CEGUI_CEGUI_Spinner_getStepSize00(lua_State* tolua_S)
@@ -42077,9 +42080,11 @@ static int tolua_CEGUI_CEGUI_Spinner_getStepSize00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'getStepSize'.",&tolua_err);
  return 0;
 #endif
+#endif //PE_NO_WGT_SPINNER
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_NO_WGT_SPINNER
 /* method: getMaximumValue of class  CEGUI::Spinner */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_getMaximumValue00
 static int tolua_CEGUI_CEGUI_Spinner_getMaximumValue00(lua_State* tolua_S)
@@ -42148,6 +42153,7 @@ static int tolua_CEGUI_CEGUI_Spinner_getMinimumValue00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_getTextInputMode00
 static int tolua_CEGUI_CEGUI_Spinner_getTextInputMode00(lua_State* tolua_S)
 {
+
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
@@ -42173,6 +42179,7 @@ static int tolua_CEGUI_CEGUI_Spinner_getTextInputMode00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'getTextInputMode'.",&tolua_err);
  return 0;
 #endif
+
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -42180,6 +42187,7 @@ static int tolua_CEGUI_CEGUI_Spinner_getTextInputMode00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_setCurrentValue00
 static int tolua_CEGUI_CEGUI_Spinner_setCurrentValue00(lua_State* tolua_S)
 {
+
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
@@ -42206,6 +42214,7 @@ static int tolua_CEGUI_CEGUI_Spinner_setCurrentValue00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'setCurrentValue'.",&tolua_err);
  return 0;
 #endif
+
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -42213,6 +42222,7 @@ static int tolua_CEGUI_CEGUI_Spinner_setCurrentValue00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_setStepSize00
 static int tolua_CEGUI_CEGUI_Spinner_setStepSize00(lua_State* tolua_S)
 {
+
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
@@ -42239,9 +42249,12 @@ static int tolua_CEGUI_CEGUI_Spinner_setStepSize00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'setStepSize'.",&tolua_err);
  return 0;
 #endif
+
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_SPINNER
 
+#ifndef PE_NO_WGT_SPINNER
 /* method: setMaximumValue of class  CEGUI::Spinner */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_setMaximumValue00
 static int tolua_CEGUI_CEGUI_Spinner_setMaximumValue00(lua_State* tolua_S)
@@ -42272,9 +42285,11 @@ static int tolua_CEGUI_CEGUI_Spinner_setMaximumValue00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'setMaximumValue'.",&tolua_err);
  return 0;
 #endif
+
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif //PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_SPINNER
 /* method: setMinimumValue of class  CEGUI::Spinner */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_setMinimumValue00
 static int tolua_CEGUI_CEGUI_Spinner_setMinimumValue00(lua_State* tolua_S)
@@ -42307,11 +42322,14 @@ static int tolua_CEGUI_CEGUI_Spinner_setMinimumValue00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_SPINNER
 
+#ifndef PE_NO_WGT_SPINNER
 /* method: setTextInputMode of class  CEGUI::Spinner */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Spinner_setTextInputMode00
 static int tolua_CEGUI_CEGUI_Spinner_setTextInputMode00(lua_State* tolua_S)
 {
+
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
@@ -42338,9 +42356,10 @@ static int tolua_CEGUI_CEGUI_Spinner_setTextInputMode00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'setTextInputMode'.",&tolua_err);
  return 0;
 #endif
+
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif //PE_NO_WGT_SPINNER
 /* method: getProgress of class  CEGUI::ProgressBar */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_ProgressBar_getProgress00
 static int tolua_CEGUI_CEGUI_ProgressBar_getProgress00(lua_State* tolua_S)
@@ -67232,6 +67251,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getVertScrollbar",tolua_CEGUI_CEGUI_ScrollablePane_getVertScrollbar00);
    tolua_function(tolua_S,"getHorzScrollbar",tolua_CEGUI_CEGUI_ScrollablePane_getHorzScrollbar00);
   tolua_endmodule(tolua_S);
+  #ifndef PE_NO_WGT_SLIDER
   tolua_cclass(tolua_S,"Slider","CEGUI::Slider","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"Slider");
    tolua_function(tolua_S,"getCurrentValue",tolua_CEGUI_CEGUI_Slider_getCurrentValue00);
@@ -67241,6 +67261,8 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setCurrentValue",tolua_CEGUI_CEGUI_Slider_setCurrentValue00);
    tolua_function(tolua_S,"setClickStep",tolua_CEGUI_CEGUI_Slider_setClickStep00);
   tolua_endmodule(tolua_S);
+#endif // PE_NO_WGT_SLIDER
+#ifndef PE_NO_WGT_SPINNER
   tolua_cclass(tolua_S,"Spinner","CEGUI::Spinner","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"Spinner");
    tolua_constant(tolua_S,"FloatingPoint",CEGUI::Spinner::FloatingPoint);
@@ -67258,6 +67280,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setMinimumValue",tolua_CEGUI_CEGUI_Spinner_setMinimumValue00);
    tolua_function(tolua_S,"setTextInputMode",tolua_CEGUI_CEGUI_Spinner_setTextInputMode00);
   tolua_endmodule(tolua_S);
+  #endif //PE_NO_WGT_SPINNER
   tolua_cclass(tolua_S,"ProgressBar","CEGUI::ProgressBar","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"ProgressBar");
    tolua_function(tolua_S,"getProgress",tolua_CEGUI_CEGUI_ProgressBar_getProgress00);
