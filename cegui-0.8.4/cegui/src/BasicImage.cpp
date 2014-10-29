@@ -185,6 +185,7 @@ const Vector2f& BasicImage::getRenderedOffset() const
 void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
                         const Rectf* clip_area, const ColourRect& colours) const
 {
+    #ifndef PE_NO_VERTEX
     const QuadSplitMode quad_split_mode(TopLeftToBottomRight);
 
     Rectf dest(dest_area);
@@ -213,7 +214,6 @@ void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
     final_rect.d_max.d_y = CoordConverter::alignToPixels(final_rect.d_max.d_y);
 
     Vertex vbuffer[6];
-
     // vertex 0
     vbuffer[0].position   = Vector3f(final_rect.left(), final_rect.top(), 0.0f);
     vbuffer[0].colour_val = colours.d_top_left;
@@ -274,6 +274,7 @@ void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
 
     buffer.setActiveTexture(d_texture);
     buffer.appendGeometry(vbuffer, 6);
+    #endif //PE_NO_VERTEX
 }
 
 //----------------------------------------------------------------------------//

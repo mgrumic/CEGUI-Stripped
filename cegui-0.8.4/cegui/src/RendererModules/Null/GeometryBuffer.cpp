@@ -91,7 +91,7 @@ void NullGeometryBuffer::setClippingRegion(const Rectf& region)
     d_clipRect.left(ceguimax(0.0f, region.left()));
     d_clipRect.right(ceguimax(0.0f, region.right()));
 }
-
+#ifndef PE_NO_VERTEX
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::appendVertex(const Vertex& vertex)
 {
@@ -108,29 +108,34 @@ void NullGeometryBuffer::appendGeometry(const Vertex* const vbuff,
         d_vertices.push_back(vbuff[i]);
     }
 }
+#endif //PE_NO_VERTEX
 
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setActiveTexture(Texture* texture)
 {
     d_activeTexture = static_cast<NullTexture*>(texture);
 }
-
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::reset()
 {
+#ifndef PE_NO_VERTEX
     d_vertices.clear();
+#endif //PE_NO_VERTEX
 }
-
 //----------------------------------------------------------------------------//
 Texture* NullGeometryBuffer::getActiveTexture() const
 {
+#ifndef PE_NO_VERTEX
     return d_activeTexture;
+#endif //PE_NO_VERTEX
 }
 
 //----------------------------------------------------------------------------//
 uint NullGeometryBuffer::getVertexCount() const
 {
+#ifndef PE_NO_VERTEX
     return d_vertices.size();
+#endif //PE_NO_VERTEX
 }
 
 //----------------------------------------------------------------------------//

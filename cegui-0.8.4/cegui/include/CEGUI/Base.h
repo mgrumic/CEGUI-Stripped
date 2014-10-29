@@ -35,11 +35,13 @@
 #endif
 
 #define PE_HAS_MOUSE
+#define PE_NO_VERTEX
 #define PE_NO_WGT_PROGRESS_BAR
 #define PE_NO_WGT_TOOLTIP
 #define PE_NO_WGT_MULTILINE_EDITBOX
 #define PE_NO_WGT_CLIPPED_CONTAINER
-
+#define PE_NO_WGT_GROUP_BOX
+#define PE_NO_COM_DIALOGS_COLOUR_PICKER
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_
