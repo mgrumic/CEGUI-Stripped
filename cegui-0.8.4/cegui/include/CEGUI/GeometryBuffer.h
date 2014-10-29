@@ -95,6 +95,7 @@ public:
     \param vertex
         Vertex object describing the vertex to be added to the GeometryBuffer.
     */
+    #ifndef PE_NO_VERTEX
     virtual void appendVertex(const Vertex& vertex) = 0;
 
     /*!
@@ -120,6 +121,7 @@ public:
         vertices.  This may be 0, in which case texturing will be disabled for
         subsequently added vertices.
     */
+    #endif //PE_NO_VERTEX
     virtual void setActiveTexture(Texture* texture) = 0;
 
     /*!
