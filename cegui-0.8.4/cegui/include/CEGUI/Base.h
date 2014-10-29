@@ -36,6 +36,8 @@
 
 #define PE_HAS_MOUSE
 #define PE_NO_WGT_PROGRESS_BAR
+#define PE_NO_WGT_TOOLTIP
+#define PE_NO_WGT_MULTILINE_EDITBOX
 
 
 #ifndef _CEGUIBase_h_

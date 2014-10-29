@@ -649,7 +649,9 @@ void System::addStandardWindowFactories()
 #endif
 	WindowFactoryManager::addWindowType<MenuItem>();
     WindowFactoryManager::addWindowType<MultiColumnList>();
+    #ifndef PE_NO_WGT_MULTILINE_EDITBOX
     WindowFactoryManager::addWindowType<MultiLineEditbox>();
+    #endif //PE_NO_WGT_MULTILINE_EDITBOX
     #ifndef PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ProgressBar>();
     #endif //PE_NO_WGT_PROGRESS_BAR

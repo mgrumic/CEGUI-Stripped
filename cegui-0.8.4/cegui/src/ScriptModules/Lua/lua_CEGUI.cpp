@@ -586,7 +586,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::GlobalEventSet");
  tolua_usertype(tolua_S,"CEGUI::PropertyInitialiser");
  tolua_usertype(tolua_S,"CEGUI::MCLGridRef");
+ #ifndef PE_NO_WGT_MULTILINE_EDITBOX
  tolua_usertype(tolua_S,"CEGUI::MultiLineEditbox");
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
  tolua_usertype(tolua_S,"CEGUI::PropertyDim");
  tolua_usertype(tolua_S,"CEGUI::MultiColumnList");
  tolua_usertype(tolua_S,"CEGUI::ImagePropertyDim");
@@ -43124,7 +43126,7 @@ static int tolua_CEGUI_CEGUI_Editbox_setMaxTextLength00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
 /* method: hasInputFocus of class  CEGUI::MultiLineEditbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_MultiLineEditbox_hasInputFocus00
 static int tolua_CEGUI_CEGUI_MultiLineEditbox_hasInputFocus00(lua_State* tolua_S)
@@ -43846,6 +43848,7 @@ static int tolua_CEGUI_CEGUI_MultiLineEditbox_getSelectionBrushImage00(lua_State
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
 
 /* method: getText of class  CEGUI::ListboxItem */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_ListboxItem_getText00
@@ -67295,6 +67298,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setMaskCodePoint",tolua_CEGUI_CEGUI_Editbox_setMaskCodePoint00);
    tolua_function(tolua_S,"setMaxTextLength",tolua_CEGUI_CEGUI_Editbox_setMaxTextLength00);
   tolua_endmodule(tolua_S);
+  #ifndef PE_NO_WGT_MULTILINE_EDITBOX
   tolua_cclass(tolua_S,"MultiLineEditbox","CEGUI::MultiLineEditbox","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"MultiLineEditbox");
    tolua_function(tolua_S,"hasInputFocus",tolua_CEGUI_CEGUI_MultiLineEditbox_hasInputFocus00);
@@ -67320,6 +67324,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setSelectionBrushImage",tolua_CEGUI_CEGUI_MultiLineEditbox_setSelectionBrushImage00);
    tolua_function(tolua_S,"getSelectionBrushImage",tolua_CEGUI_CEGUI_MultiLineEditbox_getSelectionBrushImage00);
   tolua_endmodule(tolua_S);
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
   tolua_cclass(tolua_S,"ListboxItem","CEGUI::ListboxItem","",NULL);
   tolua_beginmodule(tolua_S,"ListboxItem");
    tolua_function(tolua_S,"getText",tolua_CEGUI_CEGUI_ListboxItem_getText00);

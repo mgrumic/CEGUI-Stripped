@@ -28,6 +28,8 @@
 #define _CEGUITooltip_h_
 
 #include "../Window.h"
+#ifndef PE_NO_WGT_TOOLTIP
+
 
 #if defined(_MSC_VER)
 #	pragma warning(push)
@@ -352,5 +354,5 @@ namespace CEGUI
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif //PE_NO_WGT_TOOLTIP
 #endif  // end of guard _CEGUITooltip_h_

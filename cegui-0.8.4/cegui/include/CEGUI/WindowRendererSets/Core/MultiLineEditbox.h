@@ -29,6 +29,8 @@
 
 #include "CEGUI/WindowRendererSets/Core/Module.h"
 #include "CEGUI/widgets/MultiLineEditbox.h"
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
+
 
 #if defined(_MSC_VER)
 #	pragma warning(push)
@@ -197,3 +199,4 @@ protected:
 #endif
 
 #endif  // end of guard _FalMultiLineEditbox_h_
+#endif //PE_NO_WGT_MULTILINE_EDITBOX

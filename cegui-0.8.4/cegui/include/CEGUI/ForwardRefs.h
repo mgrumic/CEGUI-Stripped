@@ -163,7 +163,9 @@ class Menubar;
 class MenuBase;
 class MenuItem;
 class MultiColumnList;
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
 class MultiLineEditbox;
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
 #ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
 #endif //PE_HAS_MOUSE
