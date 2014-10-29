@@ -139,7 +139,9 @@ class XMLSerializer;
     Forward declare window / widget classes.
 *************************************************************************/
 class ButtonBase;
+#ifndef PE_NO_WGT_CLIPPED_CONTAINER
 class ClippedContainer;
+#endif //PE_NO_WGT_CLIPPED_CONTAINER
 class Combobox;
 class ComboDropList;
 class DefaultWindow;

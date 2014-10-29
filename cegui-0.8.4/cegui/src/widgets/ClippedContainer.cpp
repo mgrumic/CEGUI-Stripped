@@ -27,6 +27,7 @@
 #include "CEGUI/widgets/ClippedContainer.h"
 #include "CEGUI/CoordConverter.h"
 
+#ifndef PE_NO_WGT_CLIPPED_CONTAINER
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -86,3 +87,5 @@ void ClippedContainer::setClipperWindow(Window* w)
 }
 
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_WGT_CLIPPED_CONTAINER

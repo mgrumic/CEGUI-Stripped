@@ -632,7 +632,9 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<DragContainer>();
 #endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
+    #ifndef PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<ClippedContainer>();
+    #endif //PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<PushButton>();
     WindowFactoryManager::addWindowType<RadioButton>();
     WindowFactoryManager::addWindowType<Combobox>();
