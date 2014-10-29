@@ -29530,6 +29530,7 @@ static int tolua_CEGUI_CEGUI_RegexMatcher_getMatchStateOfString00(lua_State* tol
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__Vertex_position
 static int tolua_get_CEGUI__Vertex_position(lua_State* tolua_S)
 {
+#ifndef PE_NO_VERTEX
   CEGUI::Vertex* self = (CEGUI::Vertex*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'position'",NULL);
@@ -29537,10 +29538,12 @@ static int tolua_get_CEGUI__Vertex_position(lua_State* tolua_S)
  tolua_pushusertype(tolua_S,(void*)&self->position,"CEGUI::Vector3<float>");
  return 1;
 }
+#endif //PE_NO_VERTEX
 #endif //#ifndef TOLUA_DISABLE
 
 /* set function: position of class  CEGUI::Vertex */
 #ifndef TOLUA_DISABLE_tolua_set_CEGUI__Vertex_position
+#ifndef PE_NO_VERTEX
 static int tolua_set_CEGUI__Vertex_position(lua_State* tolua_S)
 {
   CEGUI::Vertex* self = (CEGUI::Vertex*)  tolua_tousertype(tolua_S,1,0);
@@ -29553,6 +29556,7 @@ static int tolua_set_CEGUI__Vertex_position(lua_State* tolua_S)
   self->position = *((CEGUI::Vector3<float>*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
+#endif //PE_NO_VERTEX
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -29560,17 +29564,20 @@ static int tolua_set_CEGUI__Vertex_position(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__Vertex_tex_coords
 static int tolua_get_CEGUI__Vertex_tex_coords(lua_State* tolua_S)
 {
+#ifndef PE_NO_VERTEX
   CEGUI::Vertex* self = (CEGUI::Vertex*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'tex_coords'",NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'tex_coords'",NULL);
 #endif
  tolua_pushusertype(tolua_S,(void*)&self->tex_coords,"CEGUI::Vector2<float>");
  return 1;
 }
+#endif //PE_NO_VERTEX 
 #endif //#ifndef TOLUA_DISABLE
 
 /* set function: tex_coords of class  CEGUI::Vertex */
 #ifndef TOLUA_DISABLE_tolua_set_CEGUI__Vertex_tex_coords
+#ifndef PE_NO_VERTEX
 static int tolua_set_CEGUI__Vertex_tex_coords(lua_State* tolua_S)
 {
   CEGUI::Vertex* self = (CEGUI::Vertex*)  tolua_tousertype(tolua_S,1,0);
@@ -29583,11 +29590,13 @@ static int tolua_set_CEGUI__Vertex_tex_coords(lua_State* tolua_S)
   self->tex_coords = *((CEGUI::Vector2<float>*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
+#endif //PE_NO_VERTEX
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* get function: colour_val of class  CEGUI::Vertex */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__Vertex_colour_val
+#ifndef PE_NO_VERTEX
 static int tolua_get_CEGUI__Vertex_colour_val(lua_State* tolua_S)
 {
   CEGUI::Vertex* self = (CEGUI::Vertex*)  tolua_tousertype(tolua_S,1,0);
@@ -29597,10 +29606,12 @@ static int tolua_get_CEGUI__Vertex_colour_val(lua_State* tolua_S)
  tolua_pushusertype(tolua_S,(void*)&self->colour_val,"CEGUI::Colour");
  return 1;
 }
+#endif //PE_NO_VERTEX
 #endif //#ifndef TOLUA_DISABLE
 
 /* set function: colour_val of class  CEGUI::Vertex */
 #ifndef TOLUA_DISABLE_tolua_set_CEGUI__Vertex_colour_val
+#ifndef PE_NO_VERTEX
 static int tolua_set_CEGUI__Vertex_colour_val(lua_State* tolua_S)
 {
   CEGUI::Vertex* self = (CEGUI::Vertex*)  tolua_tousertype(tolua_S,1,0);
@@ -29614,6 +29625,7 @@ static int tolua_set_CEGUI__Vertex_colour_val(lua_State* tolua_S)
 ;
  return 0;
 }
+#endif //PE_NO_VERTEX
 #endif //#ifndef TOLUA_DISABLE
 
 /* get function: surface of class  CEGUI::RenderingContext */
@@ -29821,6 +29833,7 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_setPivot00(lua_State* tolua_S)
 
 /* method: appendVertex of class  CEGUI::GeometryBuffer */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GeometryBuffer_appendVertex00
+#ifndef PE_NO_VERTEX
 static int tolua_CEGUI_CEGUI_GeometryBuffer_appendVertex00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
@@ -29850,10 +29863,12 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_appendVertex00(lua_State* tolua_S)
  return 0;
 #endif
 }
+#endif //PE_NO_VERTEX
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: appendGeometry of class  CEGUI::GeometryBuffer */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GeometryBuffer_appendGeometry00
+#ifndef PE_NO_VERTEX
 static int tolua_CEGUI_CEGUI_GeometryBuffer_appendGeometry00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
@@ -29885,6 +29900,7 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_appendGeometry00(lua_State* tolua_S)
  return 0;
 #endif
 }
+#endif //PE_NO_VERTEX
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setActiveTexture of class  CEGUI::GeometryBuffer */
@@ -66710,9 +66726,11 @@ int tolua_CEGUI_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Vertex","CEGUI::Vertex","",NULL);
   tolua_beginmodule(tolua_S,"Vertex");
+  #ifndef PE_NO_VERTEX
    tolua_variable(tolua_S,"position",tolua_get_CEGUI__Vertex_position,tolua_set_CEGUI__Vertex_position);
    tolua_variable(tolua_S,"tex_coords",tolua_get_CEGUI__Vertex_tex_coords,tolua_set_CEGUI__Vertex_tex_coords);
    tolua_variable(tolua_S,"colour_val",tolua_get_CEGUI__Vertex_colour_val,tolua_set_CEGUI__Vertex_colour_val);
+  #endif //PE_NO_VERTEX
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"RenderingContext","CEGUI::RenderingContext","",NULL);
   tolua_beginmodule(tolua_S,"RenderingContext");
@@ -66729,8 +66747,10 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setTranslation",tolua_CEGUI_CEGUI_GeometryBuffer_setTranslation00);
    tolua_function(tolua_S,"setRotation",tolua_CEGUI_CEGUI_GeometryBuffer_setRotation00);
    tolua_function(tolua_S,"setPivot",tolua_CEGUI_CEGUI_GeometryBuffer_setPivot00);
+   #ifndef PE_NO_VERTEX
    tolua_function(tolua_S,"appendVertex",tolua_CEGUI_CEGUI_GeometryBuffer_appendVertex00);
    tolua_function(tolua_S,"appendGeometry",tolua_CEGUI_CEGUI_GeometryBuffer_appendGeometry00);
+   #endif //PE_NO_VERTEX
    tolua_function(tolua_S,"setActiveTexture",tolua_CEGUI_CEGUI_GeometryBuffer_setActiveTexture00);
    tolua_function(tolua_S,"reset",tolua_CEGUI_CEGUI_GeometryBuffer_reset00);
    tolua_function(tolua_S,"getActiveTexture",tolua_CEGUI_CEGUI_GeometryBuffer_getActiveTexture00);

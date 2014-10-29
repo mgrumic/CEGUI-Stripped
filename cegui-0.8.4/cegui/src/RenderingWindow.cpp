@@ -249,10 +249,10 @@ void RenderingWindow::realiseGeometry()
 
     d_geometryValid = true;
  }
-
 //----------------------------------------------------------------------------//
 void RenderingWindow::realiseGeometry_impl()
 {
+#ifndef PE_NO_VERTEX
    Texture& tex = d_textarget.getTexture();
 
     const float tu = d_size.d_width * tex.getTexelScaling().d_x;
@@ -297,6 +297,7 @@ void RenderingWindow::realiseGeometry_impl()
 
     d_geometry->setActiveTexture(&tex);
     d_geometry->appendGeometry(vbuffer, 6);
+#endif //PE_NO_VERTEX
 }
 
 //----------------------------------------------------------------------------//

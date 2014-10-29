@@ -35,6 +35,11 @@
 #endif
 
 #define PE_HAS_MOUSE
+#define PE_NO_VERTEX
+
+#ifndef PE_NO_VERTEX
+#endif //PE_NO_VERTEX
+
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_
