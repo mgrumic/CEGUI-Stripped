@@ -354,7 +354,7 @@ void PopupMenu::onHidden(WindowEventArgs& e)
     MenuBase::onHidden(e);
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /************************************************************************
 	Handler for mouse button down events
 ************************************************************************/

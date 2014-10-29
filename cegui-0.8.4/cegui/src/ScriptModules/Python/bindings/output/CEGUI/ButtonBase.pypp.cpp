@@ -31,6 +31,7 @@ struct ButtonBase_wrapper : CEGUI::ButtonBase, bp::wrapper< CEGUI::ButtonBase > 
         CEGUI::ButtonBase::onCaptureLost( boost::ref(e) );
     }
 
+#ifndef PE_NO_MOUSE
     virtual void onMouseButtonDown( ::CEGUI::MouseEventArgs & e ){
         if( bp::override func_onMouseButtonDown = this->get_override( "onMouseButtonDown" ) )
             func_onMouseButtonDown( boost::ref(e) );
@@ -78,6 +79,7 @@ struct ButtonBase_wrapper : CEGUI::ButtonBase, bp::wrapper< CEGUI::ButtonBase > 
     virtual void default_onMouseMove( ::CEGUI::MouseEventArgs & e ){
         CEGUI::ButtonBase::onMouseMove( boost::ref(e) );
     }
+#endif //PE_NO_MOUSE
 
     void updateInternalState( ::CEGUI::Vector2f const & mouse_pos ){
         CEGUI::ButtonBase::updateInternalState( boost::ref(mouse_pos) );

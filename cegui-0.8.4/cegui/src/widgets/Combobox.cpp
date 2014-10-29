@@ -117,7 +117,7 @@ void Combobox::initialiseComponents(void)
     editbox->banPropertyFromXML("MaxTextLength");
 
 	// internal event wiring
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     button->subscribeEvent(PushButton::EventMouseButtonDown, Event::Subscriber(&CEGUI::Combobox::button_PressHandler, this));
     editbox->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&CEGUI::Combobox::editbox_MouseDownHandler, this));
     droplist->subscribeEvent(ComboDropList::EventListSelectionAccepted, Event::Subscriber(&CEGUI::Combobox::droplist_SelectionAcceptedHandler, this));
@@ -627,7 +627,7 @@ void Combobox::onHorzScrollbarModeChanged(WindowEventArgs& e)
 *************************************************************************/
 void Combobox::onDropListDisplayed(WindowEventArgs& e)
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     getGUIContext().updateWindowContainingMouse();
 
     getPushButton()->setPushedState(true);
@@ -641,7 +641,7 @@ void Combobox::onDropListDisplayed(WindowEventArgs& e)
 *************************************************************************/
 void Combobox::onDroplistRemoved(WindowEventArgs& e)
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     getGUIContext().updateWindowContainingMouse();
 
     getPushButton()->setPushedState(false);
@@ -801,7 +801,7 @@ bool Combobox::droplist_HiddenHandler(const EventArgs&)
 	return true;
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /*************************************************************************
 	Handler for mouse button down events in editbox
 *************************************************************************/
@@ -902,7 +902,7 @@ void Combobox::addComboboxProperties(void)
           "ForceHorzScrollbar","Property to get/set the 'always show' setting for the horizontal scroll bar of the list box.  Value is either \"true\" or \"false\".",
           &Combobox::setShowHorzScrollbar, &Combobox::isHorzScrollbarAlwaysShown, false /* TODO: Inconsistency between setter, getter and property name */
     );
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     CEGUI_DEFINE_PROPERTY(Combobox, bool,
           "SingleClickMode","Property to get/set the 'single click mode' setting for the combo box.  Value is either \"true\" or \"false\".",
           &Combobox::setSingleClickEnabled, &Combobox::getSingleClickEnabled, false /* TODO: Inconsistency between setter, getter and property name */
@@ -964,7 +964,7 @@ void Combobox::onSized(ElementEventArgs& e)
     Window::onSized(e);
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /*************************************************************************
 	Return operation mode for the combo box
 *************************************************************************/
@@ -982,7 +982,7 @@ bool Combobox::isDropDownListVisible(void) const
 	return getDropList()->isEffectiveVisible();
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /*************************************************************************
 	Set the operation mode for the combo box.
 *************************************************************************/

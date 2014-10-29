@@ -1658,10 +1658,10 @@ protected:
 	*************************************************************************/
 	virtual	void	onFontChanged(WindowEventArgs& e);
 	virtual void	onSized(ElementEventArgs& e);
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual	void	onMouseWheel(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 
 	/*************************************************************************

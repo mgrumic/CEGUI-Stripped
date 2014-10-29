@@ -52,7 +52,7 @@ public:
     static const String WidgetTypeName;             //!< Window factory name
 
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	/*************************************************************************
 		Constants
 	*************************************************************************/
@@ -77,7 +77,7 @@ public:
 	*/
 	virtual void	initialiseComponents(void);
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	/*!
 	\brief
 		Set whether the drop-list is 'armed' for selection.
@@ -111,7 +111,7 @@ public:
 	*/
 	bool	isArmed(void) const		{ return d_armed; }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	/*!
 	\brief
 		Set the mode of operation for the ComboDropList.
@@ -170,7 +170,7 @@ protected:
 	/*************************************************************************
 		Overridden Event handling
 	*************************************************************************/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
@@ -183,7 +183,7 @@ protected:
 	/*************************************************************************
 		Implementation Data
 	*************************************************************************/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     bool	d_autoArm;		//!< true if the box auto-arms when the mouse enters it.
 #endif
     bool	d_armed;		//!< true when item selection has been armed.

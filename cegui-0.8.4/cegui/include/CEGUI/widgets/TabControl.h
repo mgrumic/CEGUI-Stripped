@@ -504,10 +504,10 @@ protected:
     bool handleContentWindowTextChanged(const EventArgs& args);
     bool handleTabButtonClicked(const EventArgs& args);
     bool handleScrollPane(const EventArgs& e);
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     bool handleDraggedPane(const EventArgs& e); 	
     bool handleWheeledPane(const EventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 };
 
 template<>

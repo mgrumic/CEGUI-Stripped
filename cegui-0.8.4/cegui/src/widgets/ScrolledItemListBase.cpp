@@ -63,7 +63,7 @@ ScrolledItemListBase::ScrolledItemListBase(const String& type, const String& nam
     d_pane->setAutoWindow(true);
     static_cast<ClippedContainer*>(d_pane)->setClipperWindow(this);
 #endif //PE_NO_WGT_CLIPPED_CONTAINER
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     d_pane->setMouseInputPropagationEnabled(true);
 #endif
     addChild(d_pane);
@@ -193,7 +193,7 @@ void ScrolledItemListBase::configureScrollbars(const Sizef& doc_size)
     h->setScrollPosition(h->getScrollPosition());
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /************************************************************************
     Handle mouse wheel event
 ************************************************************************/

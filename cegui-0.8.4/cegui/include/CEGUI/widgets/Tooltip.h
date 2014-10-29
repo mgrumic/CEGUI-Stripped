@@ -39,7 +39,7 @@
 // Start of CEGUI namespace section
 namespace CEGUI
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     /*!
     \brief
         Base class for Tooltip window renderer objects.
@@ -348,7 +348,7 @@ namespace CEGUI
         *************************************************************************/
         void addTooltipProperties(void);
     };
-#endif //PE_HAS_MOUSE2
+#endif //PE_NO_MOUSE 2
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)

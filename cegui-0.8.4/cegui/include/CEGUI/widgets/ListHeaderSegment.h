@@ -81,7 +81,7 @@ public:
      */
 	static const String EventSortDirectionChanged;
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     /** Event fired when the user drag-movable setting is changed.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment whose user
@@ -106,27 +106,27 @@ public:
      * changed due to being dragged.
      */
 	static const String EventSegmentDragPositionChanged;
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
     /** Event fired when the segment is sized by the user.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment that has been
      * resized by the user dragging.
      */
 	static const String EventSegmentSized;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     /** Event fired when the clickable setting for the segment is changed.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment whose setting that
      * controls whether the segment is clickable has been changed.
      */
 	static const String EventClickableSettingChanged;
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 	// Defaults
 	static const float	DefaultSizingArea;		//!< Default size of the sizing area.
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     static const float	SegmentMoveThreshold;	//!< Amount the mouse must be dragged before drag-moving is initiated.
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 
 	/*************************************************************************
@@ -147,6 +147,8 @@ public:
 	/*************************************************************************
 		Accessor Methods
 	*************************************************************************/
+#ifndef PE_NO_MOUSE 
+
 	/*!
 	\brief
 		Return whether this segment can be sized.
@@ -155,6 +157,7 @@ public:
 		true if the segment can be horizontally sized, false if the segment can not be horizontally sized.
 	*/
 	bool	isSizingEnabled(void) const			{return d_sizingEnabled;}
+#endif //PE_NO_MOUSE 
 
 
 	/*!
@@ -172,6 +175,7 @@ public:
 	SortDirection	getSortDirection(void) const	{return d_sortDir;}
 
 
+#ifndef PE_NO_MOUSE 
 	/*!
 	\brief
 		Return whether drag moving is enabled for this segment.
@@ -190,7 +194,6 @@ public:
 		Point object describing the drag move offset position.
 	*/
 	const Vector2f& getDragMoveOffset(void) const	{return d_dragPosition;}
-#ifndef PE_HAS_MOUSE
 
 	/*!
 	\brief
@@ -202,43 +205,43 @@ public:
 	bool	isClickable(void) const		{return d_allowClicks;}
 
 
-    /*!
-    \brief
-        Return whether the segment is currently in its hovering state.
-    *
-    bool    isSegmentHovering(void) const  {return d_segmentHover;}
+        /*!
+        \brief
+            Return whether the segment is currently in its hovering state.
+        *
+        bool    isSegmentHovering(void) const  {return d_segmentHover;}
 
 
-    /*!
-    \brief
-        Return whether the segment is currently in its pushed state.
-    */
-    bool    isSegmentPushed(void) const  {return d_segmentPushed;}
+        /*!
+        \brief
+            Return whether the segment is currently in its pushed state.
+        */
+        bool    isSegmentPushed(void) const  {return d_segmentPushed;}
 
 
-    /*!
-    \brief
-        Return whether the splitter is currently in its hovering state.
-    */
-    bool    isSplitterHovering(void) const  {return d_splitterHover;}
+        /*!
+        \brief
+            Return whether the splitter is currently in its hovering state.
+        */
+        bool    isSplitterHovering(void) const  {return d_splitterHover;}
 
 
-    /*!
-    \brief
-        Return whether the segment is currently being drag-moved.
-    */
-    bool    isBeingDragMoved(void) const  {return d_dragMoving;}
+        /*!
+        \brief
+            Return whether the segment is currently being drag-moved.
+        */
+        bool    isBeingDragMoved(void) const  {return d_dragMoving;}
 
 
-    /*!
-    \brief
-        Return whether the segment is currently being drag-moved.
-    */
-    bool    isBeingDragSized(void) const  {return d_dragSizing;}
+        /*!
+        \brief
+            Return whether the segment is currently being drag-moved.
+        */
+        bool    isBeingDragSized(void) const  {return d_dragSizing;}
 
-    const Image* getSizingCursorImage() const;
-    const Image* getMovingCursorImage() const;
-#endif //PE_HAS_MOUSE
+        const Image* getSizingCursorImage() const;
+        const Image* getMovingCursorImage() const;
+#endif //PE_NO_MOUSE 
 
 
 	/*************************************************************************
@@ -275,6 +278,7 @@ public:
 	void	setSortDirection(SortDirection sort_dir);
 
 
+#ifndef PE_NO_MOUSE 
 	/*!
 	\brief
 		Set whether drag moving is allowed for this segment.
@@ -298,14 +302,13 @@ public:
 	\return
 		Nothing.
 	*/
-#ifndef PE_HAS_MOUSE
 	void setClickable(bool setting);
 
-    void setSizingCursorImage(const Image* image);
-    void setSizingCursorImage(const String& name);
-    void setMovingCursorImage(const Image* image);
-    void setMovingCursorImage(const String& name);
-#endif //PE_HAS_MOUSE
+        void setSizingCursorImage(const Image* image);
+        void setSizingCursorImage(const String& name);
+        void setMovingCursorImage(const Image* image);
+        void setMovingCursorImage(const String& name);
+#endif //PE_NO_MOUSE 
 
 
 	/*************************************************************************
@@ -326,7 +329,7 @@ public:
 
 
 protected:
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	/*************************************************************************
 		Implementation Methods
 	*************************************************************************/
@@ -406,7 +409,7 @@ protected:
 	*/
 	virtual void	onSplitterDoubleClicked(WindowEventArgs& e);
 
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 	/*!
 	\brief
@@ -426,7 +429,7 @@ protected:
 	\brief
 		Handler called when the drag-movable setting is changed.
 	*/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	virtual void	onMovableSettingChanged(WindowEventArgs& e);
 
 	/*!
@@ -448,7 +451,7 @@ protected:
 		Handler called when the drag position changes.
 	*/
 	virtual void	onSegmentDragPositionChanged(WindowEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 
 	/*!
@@ -457,7 +460,7 @@ protected:
 	*/
 	virtual void	onSegmentSized(WindowEventArgs& e);
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	/*!
 	\brief
 		Handler called when the clickable setting for the segment changes
@@ -473,36 +476,36 @@ protected:
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual void	onMouseDoubleClicked(MouseEventArgs& e);
 	virtual void	onMouseLeaves(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 	virtual void	onCaptureLost(WindowEventArgs& e);
 
 
 	/*************************************************************************
 		Implementation Data
 	*************************************************************************/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     const Image*	d_sizingMouseCursor;	//!< Image to use for mouse when sizing (typically set by derived class).
 	const Image*	d_movingMouseCursor;	//!< Image to use for mouse when moving (typically set by derived class).
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 	float	d_splitterSize;		//!< pixel width of the sizing area.
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     bool	d_splitterHover;	//!< True if the mouse is over the splitter
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
-	bool	d_dragSizing;		//!< true when we are being sized.
-	Vector2f d_dragPoint;		//!< point we are being dragged at when sizing or moving.
 
 	SortDirection	d_sortDir;	//!< Direction for sorting (used for deciding what icon to display).
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
+	bool	d_dragSizing;		//!< true when we are being sized.
+	Vector2f d_dragPoint;		//!< point we are being dragged at when sizing or moving.
 	bool	d_segmentHover;		//!< true when the mouse is within the segment area (and not in sizing area).
 	bool	d_segmentPushed;	//!< true when the left mouse button has been pressed within the confines of the segment.
-#endif //PE_HAS_MOUSE
-	bool	d_sizingEnabled;	//!< true when sizing is enabled for this segment.
-	bool	d_movingEnabled;	//!< True when drag-moving is enabled for this segment;
 	bool	d_dragMoving;		//!< true when segment is being drag moved.
 	Vector2f d_dragPosition;		//!< position of dragged segment.
 	bool	d_allowClicks;		//!< true if the segment can be clicked.
+	bool	d_movingEnabled;	//!< True when drag-moving is enabled for this segment;
+	bool	d_sizingEnabled;	//!< true when sizing is enabled for this segment.
+#endif //PE_NO_MOUSE 
 
 private:
 	/*************************************************************************
@@ -524,45 +527,32 @@ public:
     static const String& getDataTypeName()
     {
         static String type("SortDirection");
-
         return type;
     }
 
     static return_type fromString(const String& str)
     {
-        if (str == "Ascending")
-        {
-            return ListHeaderSegment::Ascending;
-        }
-        else if (str == "Descending")
-        {
-            return ListHeaderSegment::Descending;
-        }
-        else
-        {
-            return ListHeaderSegment::None;
-        }
+        if (str == "Ascending") {
+                return ListHeaderSegment::Ascending;
+            } else if (str == "Descending") {
+                return ListHeaderSegment::Descending;
+            } else {
+                return ListHeaderSegment::None;
+            }
     }
 
     static string_return_type toString(pass_type val)
     {
-        if (val == ListHeaderSegment::None)
-        {
-            return "None";
-        }
-        else if (val == ListHeaderSegment::Ascending)
-        {
-            return "Ascending";
-        }
-        else if (val == ListHeaderSegment::Descending)
-        {
-            return "Descending";
-        }
-        else
-        {
-            assert(false && "Invalid Sort Direction");
-            return "Ascending";
-        }
+        if (val == ListHeaderSegment::None) {
+                return "None";
+            } else if (val == ListHeaderSegment::Ascending) {
+                return "Ascending";
+            } else if (val == ListHeaderSegment::Descending) {
+                return "Descending";
+            } else {
+                assert(false && "Invalid Sort Direction");
+                return "Ascending";
+            }
     }
 };
 

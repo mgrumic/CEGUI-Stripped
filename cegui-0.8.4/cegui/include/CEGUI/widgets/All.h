@@ -67,8 +67,10 @@
 #include "./Titlebar.h"
 #include "./ToggleButton.h"
 #include "./Tooltip.h"
+#ifndef PE_NO_WGT_TREE
 #include "./Tree.h"
 #include "./TreeItem.h"
+#endif //PE_NO_WGT_TREE
 #include "./VerticalLayoutContainer.h"
 
 #endif // End of guard _CEGUIAll_h_

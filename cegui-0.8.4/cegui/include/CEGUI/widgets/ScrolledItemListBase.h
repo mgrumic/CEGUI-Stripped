@@ -173,12 +173,12 @@ protected:
     virtual void onVertScrollbarModeChanged(WindowEventArgs& e);
     virtual void onHorzScrollbarModeChanged(WindowEventArgs& e);
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     /************************************************************************
         Overridden event handlers
     ************************************************************************/
     virtual void onMouseWheel(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
     /************************************************************************
         Event subscribers

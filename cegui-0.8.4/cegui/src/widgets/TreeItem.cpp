@@ -28,8 +28,11 @@
 #   include "config.h"
 #endif
 
-#include "CEGUI/widgets/Tree.h"
+#include "CEGUI/Base.h"
+
+#ifndef PE_NO_WGT_TREE
 #include "CEGUI/widgets/TreeItem.h"
+#include "CEGUI/widgets/Tree.h"
 #include "CEGUI/System.h"
 #include "CEGUI/ImageManager.h"
 #include "CEGUI/Image.h"
@@ -399,3 +402,4 @@ bool TreeItem::handleFontRenderSizeChange(const Font* const font)
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TREE

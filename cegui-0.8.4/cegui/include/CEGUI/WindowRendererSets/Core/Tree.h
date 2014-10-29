@@ -27,6 +27,9 @@ author:		Jonathan Welch (Based on Code by David Durant)
 #ifndef _FalTree_h_
 #define _FalTree_h_
 
+#include "CEGUI/Base.h"
+#ifndef PE_NO_WGT_TREE
+
 #include "CEGUI/WindowRendererSets/Core/Module.h"
 #include "CEGUI/WindowFactory.h"
 #include "CEGUI/widgets/Tree.h"
@@ -78,5 +81,7 @@ namespace CEGUI
 
 } // End of  CEGUI namespace section
 
+
+#endif //PE_NO_WGT_TREE
 
 #endif  // end of guard _FalTree_h_

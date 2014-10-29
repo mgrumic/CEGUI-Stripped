@@ -291,14 +291,14 @@ protected:
 
 
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	/*************************************************************************
 		Overridden event handling routines
 	*************************************************************************/
 	virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onCaptureLost(WindowEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 	/*************************************************************************
 		Implementation Data

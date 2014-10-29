@@ -34,7 +34,7 @@
 #	pragma warning(disable : 4251)
 #endif
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 #include "../WindowFactory.h"
 
 
@@ -563,7 +563,7 @@ namespace CEGUI
 
 
 
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 #if defined(_MSC_VER)
 #	pragma warning(pop)

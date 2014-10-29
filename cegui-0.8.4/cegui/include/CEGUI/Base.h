@@ -34,7 +34,7 @@
 #define PE_NO_POPUP_MENU_H
 #endif
 
-#define PE_HAS_MOUSE
+#define PE_NO_MOUSE
 //#define PE_NO_VERTEX
 #define PE_NO_WGT_SPINNER
 #define PE_NO_WGT_SLIDER
@@ -45,7 +45,7 @@
 #define PE_NO_WGT_CLIPPED_CONTAINER
 #define PE_NO_WGT_GROUP_BOX
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
-
+#define PE_NO_WGT_TREE
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

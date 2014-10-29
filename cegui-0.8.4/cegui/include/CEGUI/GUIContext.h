@@ -29,7 +29,7 @@
 
 #include "CEGUI/RenderingSurface.h"
 #include "CEGUI/InjectedInputReceiver.h"
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 #include "CEGUI/MouseCursor.h"
 #endif
 #include "CEGUI/SystemKeys.h"
@@ -41,7 +41,7 @@
 
 namespace CEGUI
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 struct MouseClickTracker;
 #endif
 //! EventArgs class passed to subscribers for (most) GUIContext events.
@@ -72,7 +72,7 @@ class CEGUIEXPORT GUIContext : public RenderingSurface,
                                public InjectedInputReceiver
 {
 public:
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     static const float DefaultMouseButtonClickTimeout;
     static const float DefaultMouseButtonMultiClickTimeout;
     static const Sizef DefaultMouseButtonMultiClickTolerance;
@@ -84,7 +84,7 @@ public:
      * obtained by calling GUIContext::getRootWindow).
      */
     static const String EventRootWindowChanged;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     /** Name of Event fired when the mouse movement scaling factor is changed.
      * Handlers are passed a const reference to a GUIContextEventArgs struct.
      */
@@ -131,7 +131,7 @@ public:
 
     //! Return a pointer to the Window that is currently set as modal.
     Window* getModalWindow() const;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     Window* getWindowContainingMouse() const;
 #endif
     const Sizef& getSurfaceSize() const;
@@ -153,7 +153,7 @@ public:
         a reference via this method and call a method on the reference
         (in our example that's setDefaultImage).
     */
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     MouseCursor& getMouseCursor();
     const MouseCursor& getMouseCursor() const;
 
@@ -201,11 +201,11 @@ public:
 
     //! Tell the context to reconsider which window it thinks the mouse is in.
     void updateWindowContainingMouse();
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
     Window* getInputCaptureWindow() const;
     void setInputCaptureWindow(Window* window);
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     /*!
     \brief
         Set the default Tooltip object for this GUIContext. This value may be 0
@@ -238,7 +238,7 @@ public:
 
     //! Returns a pointer to the context's default tooltip object.  May return 0.
     Tooltip* getDefaultTooltipObject() const;
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
     void setRenderTarget(RenderTarget& target);
 
@@ -279,7 +279,7 @@ public:
     bool injectCopyRequest();
     bool injectCutRequest();
     bool injectPasteRequest();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     bool injectMouseMove(float delta_x, float delta_y);
     bool injectMouseLeaves(void);
     bool injectMouseButtonDown(MouseButton button);
@@ -298,14 +298,14 @@ protected:
     void drawWindowContentToTarget();
     void renderWindowHierarchyToSurfaces();
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     void createDefaultTooltipWindowInstance() const;
     void destroyDefaultTooltipWindowInstance();
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
     //! notify windows in a hierarchy using default font, when font changes.
     void notifyDefaultFontChanged(Window* hierarchy_root) const;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     bool mouseMoveInjection_impl(MouseEventArgs& ma);
     //! call some function for a chain of windows: (top, bottom]
     void notifyMouseTransition(Window* top, Window* bottom,
@@ -340,7 +340,7 @@ protected:
 
     Window* d_rootWindow;
     bool d_isDirty;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     MouseCursor d_mouseCursor;
 
     //! Scaling factor applied to injected mouse move deltas.
