@@ -231,8 +231,10 @@ protected:
     Window* getHexadecimalDescription();
     Editbox* getHexadecimalEditbox();
     Titlebar* getTitleBar();
+#ifndef PE_NO_WGT_SLIDER
     Slider* getColourPickerImageSlider();
     Slider* getColourPickerAlphaSlider();
+#endif //PE_NO_SLIDER
     Window* getColourPickerStaticImage();
     Window* getNewColourDescription();
     Window* getOldColourDescription();

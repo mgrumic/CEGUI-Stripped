@@ -183,8 +183,12 @@ class Scrollbar;
 class ScrolledContainer;
 class ScrolledItemListBase;
 class SequentialLayoutContainer;
+#ifndef PE_NO_WGT_SLIDER
 class Slider;
+#endif // PE_NO_WGT_SLIDER
+#ifndef PE_NO_WGT_SPINNER
 class Spinner;
+#endif  //PE_NO_WGT_SPINNER
 class TabButton;
 class TabControl;
 class Thumb;

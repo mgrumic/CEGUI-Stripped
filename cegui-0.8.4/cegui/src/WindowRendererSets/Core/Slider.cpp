@@ -34,6 +34,7 @@
 
 
 // Start of CEGUI namespace section
+    #ifndef PE_NO_WGT_SLIDER
 namespace CEGUI
 {
     const String FalagardSlider::TypeName("Core/Slider");
@@ -209,3 +210,4 @@ namespace CEGUI
     }
 
 } // End of  CEGUI namespace section
+#endif // PE_NO_WGT_SLIDER

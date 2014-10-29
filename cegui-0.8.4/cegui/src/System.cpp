@@ -659,8 +659,12 @@ void System::addStandardWindowFactories()
     #endif //PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ScrollablePane>();
     WindowFactoryManager::addWindowType<Scrollbar>();
+#ifndef PE_NO_WGT_SLIDER
     WindowFactoryManager::addWindowType<Slider>();
+#endif //PE_NO_WGT_SLIDER
+    #ifndef PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<Spinner>();
+    #endif  //PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<TabButton>();
     WindowFactoryManager::addWindowType<TabControl>();
     WindowFactoryManager::addWindowType<Thumb>();

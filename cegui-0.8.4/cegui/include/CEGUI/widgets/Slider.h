@@ -28,7 +28,7 @@
  ***************************************************************************/
 #ifndef _CEGUISlider_h_
 #define _CEGUISlider_h_
-
+#ifndef PE_NO_WGT_SLIDER
 #include "../Base.h"
 #include "../Window.h"
 
@@ -396,5 +396,5 @@ private:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif // PE_NO_WGT_SLIDER
 #endif	// end of guard _CEGUISlider_h_
