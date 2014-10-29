@@ -67749,7 +67749,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"GroupBox");
    tolua_function(tolua_S,"drawAroundWidget",tolua_CEGUI_CEGUI_GroupBox_drawAroundWidget00);
   tolua_endmodule(tolua_S);
-#endif //PE_NO_WGT_GROUP_BOX
+  #endif //PE_NO_WGT_GROUP_BOX
   tolua_cclass(tolua_S,"LayoutContainer","CEGUI::LayoutContainer","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"LayoutContainer");
    tolua_function(tolua_S,"markNeedsLayouting",tolua_CEGUI_CEGUI_LayoutContainer_markNeedsLayouting00);

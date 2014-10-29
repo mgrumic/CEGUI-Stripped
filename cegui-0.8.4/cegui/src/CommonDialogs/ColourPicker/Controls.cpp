@@ -1197,7 +1197,9 @@ void ColourPickerControls::onCancelButtonClicked(WindowEventArgs& e)
 //----------------------------------------------------------------------------//
 void ColourPickerControls::onAcceptButtonClicked(WindowEventArgs& e)
 {
+    #ifndef PE_NO_COM_DIALOGS_COLOUR_PICKER
     d_callingColourPicker->setColour(d_selectedColour);
+    #endif //PE_NO_COM_DIALOGS_COLOUR_PICKER
 
     if (this->getParent() != 0)
         this->getParent()->removeChild(this);
