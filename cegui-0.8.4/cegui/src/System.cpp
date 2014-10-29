@@ -650,7 +650,9 @@ void System::addStandardWindowFactories()
 	WindowFactoryManager::addWindowType<MenuItem>();
     WindowFactoryManager::addWindowType<MultiColumnList>();
     WindowFactoryManager::addWindowType<MultiLineEditbox>();
+    #ifndef PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ProgressBar>();
+    #endif //PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ScrollablePane>();
     WindowFactoryManager::addWindowType<Scrollbar>();
     WindowFactoryManager::addWindowType<Slider>();

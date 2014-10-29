@@ -568,7 +568,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::FileStream");
  tolua_usertype(tolua_S,"CEGUI::NamedElement");
  tolua_usertype(tolua_S,"CEGUI::ImagerySection");
+ #ifndef PE_NO_WGT_PROGRESS_BAR
  tolua_usertype(tolua_S,"CEGUI::ProgressBar");
+ #endif //PE_NO_WGT_PROGRESS_BAR
  tolua_usertype(tolua_S,"CEGUI::TextureTarget");
  tolua_usertype(tolua_S,"CEGUI::Tree");
  tolua_usertype(tolua_S,"CEGUI::OutStream");
@@ -42342,6 +42344,7 @@ static int tolua_CEGUI_CEGUI_Spinner_setTextInputMode00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getProgress of class  CEGUI::ProgressBar */
+#ifndef PE_NO_WGT_PROGRESS_BAR
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_ProgressBar_getProgress00
 static int tolua_CEGUI_CEGUI_ProgressBar_getProgress00(lua_State* tolua_S)
 {
@@ -42372,7 +42375,8 @@ static int tolua_CEGUI_CEGUI_ProgressBar_getProgress00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif //PE_NO_WGT_PROGRESS_BAR
+#ifndef PE_NO_WGT_PROGRESS_BAR
 /* method: getStepSize of class  CEGUI::ProgressBar */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_ProgressBar_getStepSize00
 static int tolua_CEGUI_CEGUI_ProgressBar_getStepSize00(lua_State* tolua_S)
@@ -42534,6 +42538,7 @@ static int tolua_CEGUI_CEGUI_ProgressBar_adjustProgress00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_PROGRESS_BAR
 
 /* method: hasInputFocus of class  CEGUI::Editbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Editbox_hasInputFocus00
@@ -67258,6 +67263,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setMinimumValue",tolua_CEGUI_CEGUI_Spinner_setMinimumValue00);
    tolua_function(tolua_S,"setTextInputMode",tolua_CEGUI_CEGUI_Spinner_setTextInputMode00);
   tolua_endmodule(tolua_S);
+  #ifndef PE_NO_WGT_PROGRESS_BAR
   tolua_cclass(tolua_S,"ProgressBar","CEGUI::ProgressBar","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"ProgressBar");
    tolua_function(tolua_S,"getProgress",tolua_CEGUI_CEGUI_ProgressBar_getProgress00);
@@ -67267,6 +67273,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"step",tolua_CEGUI_CEGUI_ProgressBar_step00);
    tolua_function(tolua_S,"adjustProgress",tolua_CEGUI_CEGUI_ProgressBar_adjustProgress00);
   tolua_endmodule(tolua_S);
+  #endif //PE_NO_WGT_PROGRESS_BAR
   tolua_cclass(tolua_S,"Editbox","CEGUI::Editbox","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"Editbox");
    tolua_function(tolua_S,"hasInputFocus",tolua_CEGUI_CEGUI_Editbox_hasInputFocus00);

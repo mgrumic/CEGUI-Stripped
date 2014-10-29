@@ -31,6 +31,8 @@
 #include "CEGUI/CoordConverter.h"
 #include "CEGUI/TplWindowRendererProperty.h"
 
+#ifndef PE_NO_WGT_PROGRESS_BAR
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -126,3 +128,5 @@ namespace CEGUI
     }
 
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_WGT_PROGRESS_BAR

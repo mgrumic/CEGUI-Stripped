@@ -82,7 +82,9 @@ CoreWindowRendererModule::CoreWindowRendererModule()
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMultiColumnList>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMultiLineEditbox>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardPopupMenu>());
+    #ifndef PE_NO_WGT_PROGRESS_BAR
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardProgressBar>());
+    #endif //PE_NO_WGT_PROGRESS_BAR
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollablePane>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollbar>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardSlider>());

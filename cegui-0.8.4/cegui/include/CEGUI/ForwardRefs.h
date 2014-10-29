@@ -167,7 +167,9 @@ class MultiLineEditbox;
 #ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
 #endif //PE_HAS_MOUSE
+#ifndef PE_NO_WGT_PROGRESS_BAR
 class ProgressBar;
+#endif //PE_NO_WGT_PROGRESS_BAR
 class PushButton;
 class RadioButton;
 class ScrollablePane;

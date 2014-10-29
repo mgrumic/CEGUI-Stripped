@@ -35,6 +35,8 @@
 #endif
 
 #define PE_HAS_MOUSE
+#define PE_NO_WGT_PROGRESS_BAR
+
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_
