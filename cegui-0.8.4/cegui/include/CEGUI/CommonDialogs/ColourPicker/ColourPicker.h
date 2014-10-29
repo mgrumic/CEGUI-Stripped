@@ -33,6 +33,8 @@
 #include "CEGUI/CommonDialogs/ColourPicker/Controls.h"
 #include "CEGUI/Window.h"
 
+#ifndef PE_NO_COM_DIALOGS_COLOUR_PICKER
+
 #if defined(_MSC_VER)
 #   pragma warning(push)
 #   pragma warning(disable : 4251)
@@ -151,6 +153,7 @@ protected:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
+#endif //PE_NO_COM_DIALOGS_COLOUR_PICKER
 
 #endif
 

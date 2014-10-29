@@ -30,6 +30,10 @@
 #include "../Window.h"
 #include "../WindowFactory.h"
 
+#ifndef PE_NO_WGT_CLIPPED_CONTAINER
+
+
+
 #if defined(_MSC_VER)
 #   pragma warning(push)
 #   pragma warning(disable : 4251)
@@ -129,5 +133,5 @@ protected:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
-
+#endif //PE_NO_WGT_CLIPPED_CONTAINER
 #endif	// end of guard _CEGUIClippedContainer_h_

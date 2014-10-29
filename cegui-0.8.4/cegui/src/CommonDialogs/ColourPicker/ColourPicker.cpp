@@ -33,7 +33,7 @@
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/CoordConverter.h"
-
+#ifndef PE_NO_COM_DIALOGS_COLOUR_PICKER
 #include "CEGUI/CommonDialogs/ColourPicker/ColourPicker.h"
 #include "CEGUI/CommonDialogs/ColourPicker/Conversions.h"
 
@@ -220,3 +220,4 @@ void ColourPicker::onColourRectClicked(WindowEventArgs& e)
 
 }
 
+#endif //PE_NO_COM_DIALOGS_COLOUR_PICKER

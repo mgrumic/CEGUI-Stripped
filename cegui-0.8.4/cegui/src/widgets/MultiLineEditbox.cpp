@@ -35,6 +35,9 @@
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/Clipboard.h"
 
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
+
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -1570,3 +1573,4 @@ bool MultiLineEditbox::handle_vertScrollbarVisibilityChanged(const EventArgs&)
 
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
