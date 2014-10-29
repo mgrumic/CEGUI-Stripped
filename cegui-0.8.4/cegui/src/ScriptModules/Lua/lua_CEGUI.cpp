@@ -563,7 +563,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::FontDim");
  tolua_usertype(tolua_S,"CEGUI::ListboxItem");
  tolua_usertype(tolua_S,"CEGUI::Rect<float>");
+ #ifndef PE_NO_WGT_GROUP_BOX
  tolua_usertype(tolua_S,"CEGUI::GroupBox");
+ #endif //PE_NO_WGT_GROUP_BOX
  tolua_usertype(tolua_S,"CEGUI::UBox");
  tolua_usertype(tolua_S,"CEGUI::FileStream");
  tolua_usertype(tolua_S,"CEGUI::NamedElement");
@@ -54445,6 +54447,7 @@ static int tolua_CEGUI_CEGUI_ItemListbox_selectAllItems00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_NO_WGT_GROUP_BOX
 /* method: drawAroundWidget of class  CEGUI::GroupBox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GroupBox_drawAroundWidget00
 static int tolua_CEGUI_CEGUI_GroupBox_drawAroundWidget00(lua_State* tolua_S)
@@ -54478,6 +54481,7 @@ static int tolua_CEGUI_CEGUI_GroupBox_drawAroundWidget00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_GROUP_BOX
 
 /* method: markNeedsLayouting of class  CEGUI::LayoutContainer */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_LayoutContainer_markNeedsLayouting00
@@ -67740,10 +67744,12 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"selectRange",tolua_CEGUI_CEGUI_ItemListbox_selectRange00);
    tolua_function(tolua_S,"selectAllItems",tolua_CEGUI_CEGUI_ItemListbox_selectAllItems00);
   tolua_endmodule(tolua_S);
+  #ifndef PE_NO_WGT_GROUP_BOX
   tolua_cclass(tolua_S,"GroupBox","CEGUI::GroupBox","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"GroupBox");
    tolua_function(tolua_S,"drawAroundWidget",tolua_CEGUI_CEGUI_GroupBox_drawAroundWidget00);
   tolua_endmodule(tolua_S);
+#endif //PE_NO_WGT_GROUP_BOX
   tolua_cclass(tolua_S,"LayoutContainer","CEGUI::LayoutContainer","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"LayoutContainer");
    tolua_function(tolua_S,"markNeedsLayouting",tolua_CEGUI_CEGUI_LayoutContainer_markNeedsLayouting00);

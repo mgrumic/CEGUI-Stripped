@@ -39,6 +39,7 @@
 #define PE_NO_WGT_TOOLTIP
 #define PE_NO_WGT_MULTILINE_EDITBOX
 #define PE_NO_WGT_CLIPPED_CONTAINER
+#define PE_NO_WGT_GROUP_BOX
 
 
 #ifndef _CEGUIBase_h_

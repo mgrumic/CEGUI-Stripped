@@ -670,7 +670,9 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<Tooltip>();
 #endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ItemListbox>();
+    #ifndef PE_NO_WGT_GROUP_BOX
     WindowFactoryManager::addWindowType<GroupBox>();
+    #endif //PE_NO_WGT_GROUP_BOX
     WindowFactoryManager::addWindowType<Tree>();
     WindowFactoryManager::addWindowType<LayoutCell>();
     WindowFactoryManager::addWindowType<HorizontalLayoutContainer>();
