@@ -87,8 +87,10 @@ void Image::computeScalingFactors(AutoScaledMode mode,
 void Image::elementStartLocal(const String& element,
                               const XMLAttributes& /*attributes*/)
 {
+#ifndef PE_NO_LOGGER
      Logger::getSingleton().logEvent(
         "    [Image] Unknown XML tag encountered: " + element);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

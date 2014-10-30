@@ -57,8 +57,10 @@ AnimationManager::AnimationManager(void)
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::AnimationManager singleton created " + String(addr_buff));
+#endif //PE_NO_LOGGER
 
     // todo: is this too dirty?
 #   define addBasicInterpolator(i) { Interpolator* in = i; addInterpolator(in); d_basicInterpolators.push_back(in); }
@@ -107,8 +109,10 @@ AnimationManager::~AnimationManager()
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::AnimationManager singleton destroyed " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -369,10 +373,12 @@ void AnimationManager::loadAnimationsFromXML(const String& filename,
     }
     CEGUI_CATCH(...)
     {
+        #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "AnimationManager::loadAnimationsFromXML: "
             "loading of animations from file '" + filename + "' has failed.",
             Errors);
+        #endif //PE_NO_LOGGER   
 
         CEGUI_RETHROW;
     }
@@ -389,7 +395,9 @@ void AnimationManager::loadAnimationsFromString(const String& source)
     }
     CEGUI_CATCH(...)
     {
+        #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("AnimationManager::loadAnimationsFromString - loading of animations from string failed.", Errors);
+        #endif //PE_NO_LOGGER
         CEGUI_RETHROW;
     }
 }
@@ -423,8 +431,10 @@ String AnimationManager::generateUniqueAnimationName()
 
     // log if we ever wrap-around (which should be pretty unlikely)
     if (d_uid_counter < old_uid)
+        #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("UID counter for generated Animation "
             "names has wrapped around - the fun shall now commence!");
+        #endif //PE_NO_LOGGER
 
     return ret;
 }

@@ -237,15 +237,19 @@ Sizef Element::calculatePixelSize(bool skipAllPixelAlignment) const
     if (absMax.d_width != 0.0f && absMin.d_width > absMax.d_width)
     {
         absMin.d_width = absMax.d_width;
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("MinSize resulted in an absolute pixel size with "
                         "width larger than what MaxSize resulted in");
+#endif //PE_NO_LOGGER
     }
 
     if (absMax.d_height != 0.0f && absMin.d_height > absMax.d_height)
     {
         absMin.d_height = absMax.d_height;
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("MinSize resulted in an absolute pixel size with "
                         "height larger than what MaxSize resulted in");
+#endif //PE_NO_LOGGER
     }
 
     // limit new pixel size to: minSize <= newSize <= maxSize

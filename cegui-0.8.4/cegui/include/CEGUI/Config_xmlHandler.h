@@ -181,7 +181,9 @@ private:
     //! The name to use for the CEGUI log file.
     String d_logFileName;
     //! The logging level to be set.
+#ifndef PE_NO_LOGGER
     LoggingLevel d_logLevel;
+#endif //PE_NO_LOGGER
     //! The name of the XML parser module to initialise.
     String d_xmlParserName;
     //! The name of the image codec module to initialise.

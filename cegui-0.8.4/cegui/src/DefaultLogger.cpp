@@ -31,6 +31,7 @@
 #include "CEGUI/System.h"
 #include <ctime>
 #include <iomanip>
+#ifndef PE_NO_LOGGER
 
 namespace CEGUI
 {
@@ -46,6 +47,7 @@ DefaultLogger::DefaultLogger(void) :
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
     logEvent("CEGUI::Logger singleton created. " + String(addr_buff));
+
 }
 
 //----------------------------------------------------------------------------//
@@ -159,7 +161,6 @@ void DefaultLogger::setLogFilename(const String& filename, bool append)
     if (d_caching)
     {
         d_caching = false;
-
         Cache::iterator iter = d_cache.begin();
 
         while (iter != d_cache.end())
@@ -183,4 +184,4 @@ void DefaultLogger::setLogFilename(const String& filename, bool append)
 //----------------------------------------------------------------------------//
 
 }
-
+#endif //PE_NO_LOGGER

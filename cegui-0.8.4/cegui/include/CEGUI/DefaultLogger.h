@@ -30,6 +30,7 @@
 #define _CEGUIDefaultLogger_h_
 
 #include "CEGUI/Logger.h"
+#ifndef PE_NO_LOGGER
 
 #if defined(_MSC_VER)
 #   pragma warning(push)
@@ -61,12 +62,13 @@ protected:
     std::ofstream d_ostream;
     //! Used to build log entry strings. 
     std::ostringstream d_workstream;
-
+#ifndef PE_NO_LOGGER
     typedef std::pair<String, LoggingLevel> CacheItem;
     typedef std::vector<CacheItem
         CEGUI_VECTOR_ALLOC(CacheItem)> Cache;
     //! Used to cache log entries before log file is created. 
     Cache d_cache;
+#endif //PE_NO_LOGGER
     //! true while log entries are beign cached (prior to logfile creation)
     bool d_caching;
 };
@@ -77,5 +79,6 @@ protected:
 #   pragma warning(pop)
 #endif
 
+#endif //PE_NO_LOGGER
 #endif
 

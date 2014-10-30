@@ -125,11 +125,13 @@ void EventAction::cleanupWidget(Window& widget) const
 
     if (i != d_connections.end())
         d_connections.erase(i);
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent("EventAction::cleanupWidget: "
             "An event connection with key '" + keyname + "' was not "
             "found.  This may be harmless, but most likely could point "
             "to a double-deletion or some other serious issue.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

@@ -46,7 +46,9 @@ class Clipboard;
 class Colour;
 class ColourRect;
 class CoordConverter;
+#ifndef PE_NO_LOGGER
 class DefaultLogger;
+#endif //PE_NO_LOGGER
 class DefaultRenderedStringParser;
 class DefaultResourceProvider;
 class DynamicModule;
@@ -75,7 +77,9 @@ class KeyFrame;
 class LeftAlignedRenderedString;
 class LinkedEvent;
 class LinkedEventArgs;
+#ifndef PE_NO_LOGGER
 class Logger;
+#endif //PE_NO_LOGGER
 #ifndef PE_NO_MOUSE 
 class MouseCursor;
 #endif //PE_NO_MOUSE 

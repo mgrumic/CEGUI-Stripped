@@ -55,6 +55,7 @@ namespace CEGUI
 // Font objects usage count
 static int ft_usage_count = 0;
 // A handle to the FreeType library
+
 static FT_Library ft_lib;
 
 //----------------------------------------------------------------------------//
@@ -88,7 +89,9 @@ FreeTypeFont::FreeTypeFont(const String& font_name, const float point_size,
     char tmp[50];
     snprintf(tmp, sizeof(tmp), "Successfully loaded %d glyphs",
              static_cast<int>(d_cp_map.size()));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(tmp, Informative);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -229,7 +232,9 @@ void FreeTypeFont::rasterise(utf32 start_codepoint, utf32 end_codepoint) const
                     err << "Font::loadFreetypeGlyph - Failed to load glyph for codepoint: ";
                     err << static_cast<unsigned int>(s->first);
                     err << ".  Will use an empty image for this glyph!";
+#ifndef PE_NO_LOGGER
                     Logger::getSingleton().logEvent(err.str().c_str(), Errors);
+#endif //PE_NO_LOGGER
 
                     // Create a 'null' image for this glyph so we do not seg later
                     Rectf area(0, 0, 0, 0);

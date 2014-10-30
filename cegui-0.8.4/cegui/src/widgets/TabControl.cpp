@@ -237,8 +237,10 @@ void TabControl::addTab(Window* wnd)
     // abort attempts to add null window pointers, but log it for tracking.
     if (!wnd)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Attempt to add null window pointer as "
             "tab to TabControl '" + getName() + "'.  Ignoring!", Informative);
+#endif //PE_NO_LOGGER
 
         return;
     }

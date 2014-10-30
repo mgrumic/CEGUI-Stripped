@@ -132,9 +132,11 @@ void Font_xmlHandler::elementStart(const String& element,
     else if (element == MappingElement)
         elementMappingStart(attributes);
     // anything else is a non-fatal error.
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent("Font_xmlHandler::elementStart: "
             "Unknown element encountered: <" + element + ">", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -153,8 +155,10 @@ void Font_xmlHandler::elementFontStart(const XMLAttributes& attributes)
     const String font_type(attributes.getValueAsString(FontTypeAttribute));
 
     // log the start of font creation.
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE(
         "Started creation of Font from XML specification:");
+#endif //PE_NO_LOGGER
 
     if (font_type == FontTypeFreeType)
         createFreeTypeFont(attributes);
@@ -186,8 +190,10 @@ void Font_xmlHandler::elementFontEnd()
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(d_font));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Finished creation of Font '" +
         d_font->getName() + "' via XML file. " + addr_buff, Informative);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -199,9 +205,13 @@ void Font_xmlHandler::elementMappingStart(const XMLAttributes& attributes)
 
     // double-check font type just in case - report issues as 'soft' errors
     if (d_font->getTypeName() != FontTypePixmap)
+    {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "Imageset_xmlHandler::elementMappingStart: <Mapping> element is "
             "only valid for Pixmap type fonts.", Errors);
+#endif //PE_NO_LOGGER
+    }
     else
         static_cast<PixmapFont*>(d_font)->defineMapping(
             attributes.getValueAsInteger(MappingCodepointAttribute),
@@ -217,6 +227,7 @@ void Font_xmlHandler::createFreeTypeFont(const XMLAttributes& attributes)
     const String resource_group(attributes.getValueAsString(FontResourceGroupAttribute));
 
 #ifdef CEGUI_HAS_FREETYPE
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE("---- CEGUI font name: " + name);
     CEGUI_LOGINSANE("----       Font type: FreeType");
     CEGUI_LOGINSANE("----     Source file: " + filename +
@@ -224,6 +235,7 @@ void Font_xmlHandler::createFreeTypeFont(const XMLAttributes& attributes)
                                               "(Default)" : resource_group));
     CEGUI_LOGINSANE("---- Real point size: " +
             attributes.getValueAsString(FontSizeAttribute, "12"));
+#endif //PE_NO_LOGGER
 
     d_font = CEGUI_NEW_AO FreeTypeFont(name,
         attributes.getValueAsFloat(FontSizeAttribute, 12.0f),
@@ -246,11 +258,12 @@ void Font_xmlHandler::createPixmapFont(const XMLAttributes& attributes)
     const String name(attributes.getValueAsString(FontNameAttribute));
     const String filename(attributes.getValueAsString(FontFilenameAttribute));
     const String resource_group(attributes.getValueAsString(FontResourceGroupAttribute));
-
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE("---- CEGUI font name: " + name);
     CEGUI_LOGINSANE("----       Font type: Pixmap");
     CEGUI_LOGINSANE("----     Source file: " + filename +
                     " in resource group: " + (resource_group.empty() ? "(Default)" : resource_group));
+#endif //PE_NO_LOGGER
 
     d_font = CEGUI_NEW_AO PixmapFont(name, filename, resource_group,
         PropertyHelper<AutoScaledMode>::fromString(

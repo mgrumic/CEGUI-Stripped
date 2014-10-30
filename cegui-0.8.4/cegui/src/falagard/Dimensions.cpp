@@ -505,12 +505,16 @@ float WidgetDim::getValue(const Window& wnd) const
             break;
 
         case DT_X_OFFSET:
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WigetDim::getValue - Nonsensical DimensionType of DT_X_OFFSET specified!  returning 0.0f");
+#endif //PE_NO_LOGGER
             return 0.0f;
             break;
 
         case DT_Y_OFFSET:
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WigetDim::getValue - Nonsensical DimensionType of DT_Y_OFFSET specified!  returning 0.0f");
+#endif //PE_NO_LOGGER
             return 0.0f;
             break;
 

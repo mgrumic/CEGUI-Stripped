@@ -31,6 +31,7 @@
 // Start of CEGUI namespace section
 namespace CEGUI
 {
+#ifndef PE_NO_LOGGER
     /*************************************************************************
         Static Data Definitions
     *************************************************************************/
@@ -53,4 +54,5 @@ namespace CEGUI
     {
     }
 
+#endif //PE_NO_LOGGER
 } // End of  CEGUI namespace section

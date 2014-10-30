@@ -362,9 +362,11 @@ void NamedXMLResourceManager<T, U>::destroyObject(
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(ob->second));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Object of type '" + d_resourceType +
         "' named '" + ob->first + "' has been destroyed. " +
         addr_buff, Informative);
+#endif //PE_NO_LOGGER
 
     // Set up event args for event notification
     ResourceEventArgs args(d_resourceType, ob->first);
@@ -390,17 +392,21 @@ T& NamedXMLResourceManager<T, U>::doExistingObjectAction(
         switch (action)
         {
         case XREA_RETURN:
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("---- Returning existing instance "
                 "of " + d_resourceType + " named '" + object_name + "'.");
+#endif //PE_NO_LOGGER
             // delete any new object we already had created
             CEGUI_DELETE_AO object;
             // return existing instance of object.
             return *d_objects[object_name];
 
         case XREA_REPLACE:
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("---- Replacing existing instance "
                 "of " + d_resourceType + " named '" + object_name +
                 "' (DANGER!).");
+#endif //PE_NO_LOGGER
             destroy(object_name);
             event_name = EventResourceReplaced;
             break;

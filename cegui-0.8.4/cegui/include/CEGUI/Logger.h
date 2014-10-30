@@ -37,6 +37,8 @@
 #include <utility>
 #include "CEGUI/Singleton.h"
 
+#ifndef PE_NO_LOGGER
+
 
 #if defined(_MSC_VER)
 #	pragma warning(push)
@@ -171,4 +173,5 @@ private:
 #	pragma warning(pop)
 #endif
 
+#endif //PE_NO_LOGGER
 #endif	// end of guard _CEGUILogger_h_

@@ -2460,8 +2460,10 @@ int MultiColumnList::writePropertiesXML(XMLSerializer& xml_stream) const
 		}
 		CEGUI_CATCH (InvalidRequestException&)
 		{
+#ifndef PE_NO_LOGGER
 			// This catches error(s) from the MultiLineColumnList for example
 			Logger::getSingleton().logEvent("MultiColumnList::writePropertiesXML - invalid sort column requested. Continuing...", Errors);
+#endif //PE_NO_LOGGER
 		}
 
     return propCnt;

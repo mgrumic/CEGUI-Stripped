@@ -494,7 +494,9 @@ static int tolua_collect_CEGUI__WindowEventArgs (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+#ifndef PE_NO_LOGGER
  tolua_usertype(tolua_S,"CEGUI::Logger");
+#endif //PE_NO_LOGGER
  tolua_usertype(tolua_S,"CEGUI::Renderer");
  tolua_usertype(tolua_S,"CEGUI::FalagardComponentBase");
  tolua_usertype(tolua_S,"CEGUI::WidgetDim");
@@ -7671,7 +7673,7 @@ static int tolua_set_CEGUI__UBox_right(lua_State* tolua_S)
  return 0;
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_LOGGER
 /* method: getSingleton of class  CEGUI::Logger */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Logger_getSingleton00
 static int tolua_CEGUI_CEGUI_Logger_getSingleton00(lua_State* tolua_S)
@@ -7799,6 +7801,7 @@ static int tolua_CEGUI_CEGUI_Logger_logEvent00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_LOGGER
 
 /* method: setProperty of class  CEGUI::Font */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Font_setProperty00
@@ -65433,6 +65436,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"bottom",tolua_get_CEGUI__UBox_bottom,tolua_set_CEGUI__UBox_bottom);
    tolua_variable(tolua_S,"right",tolua_get_CEGUI__UBox_right,tolua_set_CEGUI__UBox_right);
   tolua_endmodule(tolua_S);
+#ifndef PE_NO_LOGGER
   tolua_constant(tolua_S,"Errors",CEGUI::Errors);
   tolua_constant(tolua_S,"Warnings",CEGUI::Warnings);
   tolua_constant(tolua_S,"Standard",CEGUI::Standard);
@@ -65445,6 +65449,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getLoggingLevel",tolua_CEGUI_CEGUI_Logger_getLoggingLevel00);
    tolua_function(tolua_S,"logEvent",tolua_CEGUI_CEGUI_Logger_logEvent00);
   tolua_endmodule(tolua_S);
+#endif //PE_NO_LOGGER
   tolua_cclass(tolua_S,"Font","CEGUI::Font","",NULL);
   tolua_beginmodule(tolua_S,"Font");
    tolua_function(tolua_S,"setProperty",tolua_CEGUI_CEGUI_Font_setProperty00);
