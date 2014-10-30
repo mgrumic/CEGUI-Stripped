@@ -125,9 +125,7 @@ class UBox;
 class UDim;
 template<typename T> class Vector2;
 template<typename T> class Vector3;
-#ifndef PE_NO_VERTEX
 struct Vertex;
-#endif //PE_NO_VERTEX
 class WidgetLookFeel;
 class Window;
 class WindowFactory;

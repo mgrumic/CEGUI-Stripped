@@ -30,7 +30,6 @@
 #include "CEGUI/Vector.h"
 #include "CEGUI/Colour.h"
 
-#ifndef PE_NO_VERTEX
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -51,5 +50,4 @@ struct Vertex :
 
 } // End of  CEGUI namespace section
 
-#endif //PE_NO_VERTEX
 #endif  // end of guard _CEGUIVertex_h_
