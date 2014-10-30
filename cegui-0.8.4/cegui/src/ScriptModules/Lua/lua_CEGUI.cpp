@@ -36755,7 +36755,7 @@ static int tolua_CEGUI_CEGUI_Thumb_setHorzRange00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_WGT_RADIOBUTTON
 /* method: getGroupID of class  CEGUI::RadioButton */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_RadioButton_getGroupID00
 static int tolua_CEGUI_CEGUI_RadioButton_getGroupID00(lua_State* tolua_S)
@@ -36787,7 +36787,6 @@ static int tolua_CEGUI_CEGUI_RadioButton_getGroupID00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
 /* method: setGroupID of class  CEGUI::RadioButton */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_RadioButton_setGroupID00
 static int tolua_CEGUI_CEGUI_RadioButton_setGroupID00(lua_State* tolua_S)
@@ -36852,6 +36851,7 @@ static int tolua_CEGUI_CEGUI_RadioButton_getSelectedButtonInGroup00(lua_State* t
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif // PE_NO_WGT_RADIOBUTTON
 
 /* method: isSelected of class  CEGUI::TabButton */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabButton_isSelected00
@@ -67107,11 +67107,13 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setHorzRange",tolua_CEGUI_CEGUI_Thumb_setHorzRange00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"RadioButton","CEGUI::RadioButton","CEGUI::ToggleButton",NULL);
+#ifndef PE_NO_WGT_RADIOBUTTON
   tolua_beginmodule(tolua_S,"RadioButton");
    tolua_function(tolua_S,"getGroupID",tolua_CEGUI_CEGUI_RadioButton_getGroupID00);
    tolua_function(tolua_S,"setGroupID",tolua_CEGUI_CEGUI_RadioButton_setGroupID00);
    tolua_function(tolua_S,"getSelectedButtonInGroup",tolua_CEGUI_CEGUI_RadioButton_getSelectedButtonInGroup00);
   tolua_endmodule(tolua_S);
+#endif //PE_NO_WGT_RADIOBUTTON
   tolua_cclass(tolua_S,"TabButton","CEGUI::TabButton","CEGUI::ButtonBase",NULL);
   tolua_beginmodule(tolua_S,"TabButton");
    tolua_function(tolua_S,"isSelected",tolua_CEGUI_CEGUI_TabButton_isSelected00);

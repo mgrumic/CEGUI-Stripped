@@ -49,6 +49,7 @@
 #define PE_NO_VECTOR3D
 #define PE_NO_WGT_TREE
 #define PE_NO_CLIPBOARD
+#define PE_NO_WGT_RADIOBUTTON
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_
