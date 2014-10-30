@@ -220,9 +220,9 @@ System::System(Renderer& renderer,
     // add the window factories for the core window types
     addStandardWindowFactories();
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     logger.logEvent("CEGUI::System singleton created. " + String(addr_buff));
     logger.logEvent("---- CEGUI System initialisation completed ----");
     logger.logEvent("");
@@ -306,9 +306,9 @@ System::~System(void)
     if (d_ourResourceProvider)
         CEGUI_DELETE_AO d_resourceProvider;
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
 	Logger::getSingleton().logEvent("CEGUI::System singleton destroyed. " +
 #endif //PE_NO_LOGGER
 #ifndef PE_NO_LOGGER
