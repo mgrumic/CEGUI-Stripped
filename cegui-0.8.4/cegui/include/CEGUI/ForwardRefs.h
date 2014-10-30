@@ -222,4 +222,3 @@ class WindowEventArgs;
 } // End of  CEGUI namespace section
 
 #endif	// end of guard _CEGUIForwardRefs_h_
-

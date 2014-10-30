@@ -1027,4 +1027,3 @@ const StringTranscoder& System::getStringTranscoder()
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
-

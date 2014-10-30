@@ -28,7 +28,7 @@
  ***************************************************************************/
 #ifndef _CEGUICombobox_h_
 #define _CEGUICombobox_h_
-
+#ifndef PE_NO_WGT_COMBOBOX
 #include "CEGUI/Base.h"
 #include "CEGUI/Window.h"
 #include "CEGUI/RegexMatcher.h"
@@ -1073,5 +1073,5 @@ private:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif //PE_NO_WGT_COMBOBOX
 #endif	// end of guard _CEGUICombobox_h_
