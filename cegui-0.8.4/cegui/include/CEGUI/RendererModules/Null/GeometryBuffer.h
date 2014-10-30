@@ -56,9 +56,13 @@ public:
 
     // implement CEGUI::GeometryBuffer interface.
     void draw() const;
+#ifndef PE_NO_VECTOR3D
     void setTranslation(const Vector3f& v);
+#endif  // PE_NO_VECTOR3D
     void setRotation(const Quaternion& r);
+#ifndef PE_NO_VECTOR3D
     void setPivot(const Vector3f& p);
+#endif  // PE_NO_VECTOR3D
     void setClippingRegion(const Rectf& region);
     void appendGeometry(const Vertex* const vbuff, uint vertex_count);
     void appendVertex(const Vertex& vertex);
@@ -80,11 +84,15 @@ protected:
     //! whether clipping will be active for the current batch
     bool d_clippingActive;
     //! translation vector
+#ifndef PE_NO_VECTOR3D
     Vector3f d_translation;
+#endif  // PE_NO_VECTOR3D
     //! rotation quaternion
     Quaternion d_rotation;
     //! pivot point for rotation
+#ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;
+#endif  // PE_NO_VECTOR3D
     //! RenderEffect that will be used by the GeometryBuffer
     RenderEffect* d_effect;
     //! type of container used to queue the geometry

@@ -209,6 +209,7 @@ typedef Vector2<UDim> UVector2;
     For a simple Vector3 of floats (what was called Vector3 before), use Vector3f
     as the T template parameter defaults to float to save fingertips.
 */
+#ifndef PE_NO_VECTOR3D
 template<typename T>
 class Vector3:
     public AllocatedObject<Vector3<T> >
@@ -308,7 +309,7 @@ public:
 
 // the main reason for this is to keep C++ API in sync with other languages
 typedef Vector3<float> Vector3f;
-
+#endif  // PE_NO_VECTOR3D
 } // End of  CEGUI namespace section
 
 #endif	// end of guard _CEGUIVector_h_

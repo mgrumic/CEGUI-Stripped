@@ -78,7 +78,7 @@ void RenderingWindow::setClippingRegion(const Rectf& region)
 void RenderingWindow::setPosition(const Vector2f& position)
 {
     d_position = position;
-
+#ifndef PE_NO_VECTOR3D
     Vector3f trans(d_position.d_x, d_position.d_y, 0.0f);
     // geometry position must be offset according to our owner position, if
     // that is a RenderingWindow.
@@ -89,6 +89,7 @@ void RenderingWindow::setPosition(const Vector2f& position)
     }
 
     d_geometry->setTranslation(trans);
+#endif  // PE_NO_VECTOR3D
 }
 
 //----------------------------------------------------------------------------//
@@ -109,14 +110,14 @@ void RenderingWindow::setRotation(const Quaternion& rotation)
     d_rotation = rotation;
     d_geometry->setRotation(d_rotation);
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void RenderingWindow::setPivot(const Vector3f& pivot)
 {
     d_pivot = pivot;
     d_geometry->setPivot(d_pivot);
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const Vector2f& RenderingWindow::getPosition() const
 {
@@ -134,13 +135,13 @@ const Quaternion& RenderingWindow::getRotation() const
 {
     return d_rotation;
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const Vector3f& RenderingWindow::getPivot() const
 {
     return d_pivot;
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const TextureTarget& RenderingWindow::getTextureTarget() const
 {
@@ -265,32 +266,56 @@ void RenderingWindow::realiseGeometry_impl()
     Vertex vbuffer[6];
 
     // vertex 0
+#ifndef PE_NO_VECTOR3D
     vbuffer[0].position   = Vector3f(area.d_min.d_x, area.d_min.d_y, 0.0f);
+#else
+    vbuffer[0].position   = Vector2f(area.d_min.d_x, area.d_min.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[0].colour_val = c;
     vbuffer[0].tex_coords = Vector2f(tex_rect.d_min.d_x, tex_rect.d_min.d_y);
 
     // vertex 1
+#ifndef PE_NO_VECTOR3D
     vbuffer[1].position   = Vector3f(area.d_min.d_x, area.d_max.d_y, 0.0f);
+#else
+    vbuffer[1].position   = Vector2f(area.d_min.d_x, area.d_max.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[1].colour_val = c;
     vbuffer[1].tex_coords = Vector2f(tex_rect.d_min.d_x, tex_rect.d_max.d_y);
 
     // vertex 2
+#ifndef PE_NO_VECTOR3D
     vbuffer[2].position   = Vector3f(area.d_max.d_x, area.d_max.d_y, 0.0f);
+#else
+    vbuffer[2].position   = Vector2f(area.d_max.d_x, area.d_max.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[2].colour_val = c;
     vbuffer[2].tex_coords = Vector2f(tex_rect.d_max.d_x, tex_rect.d_max.d_y);
 
     // vertex 3
+#ifndef PE_NO_VECTOR3D
     vbuffer[3].position   = Vector3f(area.d_max.d_x, area.d_min.d_y, 0.0f);
+#else
+    vbuffer[3].position   = Vector2f(area.d_max.d_x, area.d_min.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[3].colour_val = c;
     vbuffer[3].tex_coords = Vector2f(tex_rect.d_max.d_x, tex_rect.d_min.d_y);
 
     // vertex 4
+#ifndef PE_NO_VECTOR3D
     vbuffer[4].position   = Vector3f(area.d_min.d_x, area.d_min.d_y, 0.0f);
+#else
+    vbuffer[4].position   = Vector2f(area.d_min.d_x, area.d_min.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[4].colour_val = c;
     vbuffer[4].tex_coords = Vector2f(tex_rect.d_min.d_x, tex_rect.d_min.d_y);
 
     // vertex 5
+#ifndef PE_NO_VECTOR3D
     vbuffer[5].position   = Vector3f(area.d_max.d_x, area.d_max.d_y, 0.0f);
+#else
+    vbuffer[5].position   = Vector2f(area.d_max.d_x, area.d_max.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[5].colour_val = c;
     vbuffer[5].tex_coords = Vector2f(tex_rect.d_max.d_x, tex_rect.d_max.d_y);
 
