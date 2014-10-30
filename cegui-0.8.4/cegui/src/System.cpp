@@ -637,7 +637,9 @@ void System::addStandardWindowFactories()
     #endif //PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<PushButton>();
     WindowFactoryManager::addWindowType<RadioButton>();
+#ifndef PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<Combobox>();
+#endif // PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<ComboDropList>();
     WindowFactoryManager::addWindowType<Editbox>();
     WindowFactoryManager::addWindowType<FrameWindow>();

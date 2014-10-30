@@ -44903,7 +44903,7 @@ static int tolua_CEGUI_CEGUI_Combobox_getSingleClickEnabled00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 #endif //PE_NO_MOUSE 
-
+#ifndef PE_NO_WGT_COMBOBOX
 /* method: isDropDownListVisible of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_isDropDownListVisible00
 static int tolua_CEGUI_CEGUI_Combobox_isDropDownListVisible00(lua_State* tolua_S)
@@ -44935,7 +44935,8 @@ static int tolua_CEGUI_CEGUI_Combobox_isDropDownListVisible00(lua_State* tolua_S
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif // PE_NO_WGT_COMBOBOX
+#ifndef PE_NO_WGT_COMBOBOX
 /* method: getEditbox of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_getEditbox00
 static int tolua_CEGUI_CEGUI_Combobox_getEditbox00(lua_State* tolua_S)
@@ -44967,7 +44968,6 @@ static int tolua_CEGUI_CEGUI_Combobox_getEditbox00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
 /* method: getPushButton of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_getPushButton00
 static int tolua_CEGUI_CEGUI_Combobox_getPushButton00(lua_State* tolua_S)
@@ -44999,7 +44999,8 @@ static int tolua_CEGUI_CEGUI_Combobox_getPushButton00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif // PE_NO_WGT_COMBOBOX
+#ifndef PE_NO_WGT_COMBOBOX
 /* method: getDropList of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_getDropList00
 static int tolua_CEGUI_CEGUI_Combobox_getDropList00(lua_State* tolua_S)
@@ -45031,7 +45032,6 @@ static int tolua_CEGUI_CEGUI_Combobox_getDropList00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
 /* method: hasInputFocus of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_hasInputFocus00
 static int tolua_CEGUI_CEGUI_Combobox_hasInputFocus00(lua_State* tolua_S)
@@ -45516,7 +45516,9 @@ static int tolua_CEGUI_CEGUI_Combobox_isItemSelected00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif // PE_NO_WGT_COMBOBOX
 
+#ifndef PE_NO_WGT_COMBOBOX
 /* method: findItemWithText of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_findItemWithText00
 static int tolua_CEGUI_CEGUI_Combobox_findItemWithText00(lua_State* tolua_S)
@@ -45551,8 +45553,10 @@ static int tolua_CEGUI_CEGUI_Combobox_findItemWithText00(lua_State* tolua_S)
  return 0;
 #endif
 }
+#endif // PE_NO_WGT_COMBOBOX
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_NO_WGT_COMBOBOX
 /* method: isListboxItemInList of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_isListboxItemInList00
 static int tolua_CEGUI_CEGUI_Combobox_isListboxItemInList00(lua_State* tolua_S)
@@ -46102,6 +46106,7 @@ static int tolua_CEGUI_CEGUI_Combobox_hideDropList00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif // PE_NO_WGT_COMBOBOX
 #ifndef PE_NO_MOUSE 
 /* method: setSingleClickEnabled of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_setSingleClickEnabled00
@@ -46136,7 +46141,7 @@ static int tolua_CEGUI_CEGUI_Combobox_setSingleClickEnabled00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 #endif //PE_NO_MOUSE 
-
+#ifndef PE_NO_WGT_COMBOBOX
 /* method: setReadOnly of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_setReadOnly00
 static int tolua_CEGUI_CEGUI_Combobox_setReadOnly00(lua_State* tolua_S)
@@ -46169,7 +46174,6 @@ static int tolua_CEGUI_CEGUI_Combobox_setReadOnly00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
 /* method: setValidationString of class  CEGUI::Combobox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Combobox_setValidationString00
 static int tolua_CEGUI_CEGUI_Combobox_setValidationString00(lua_State* tolua_S)
@@ -46464,6 +46468,7 @@ static int tolua_CEGUI_CEGUI_Combobox_updateAutoSizedDropList00(lua_State* tolua
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif // PE_NO_WGT_COMBOBOX
 
 /* method: getItemCount of class  CEGUI::Listbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Listbox_getItemCount00
@@ -67416,6 +67421,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
 #ifndef PE_NO_MOUSE 
   tolua_function(tolua_S,"getSingleClickEnabled",tolua_CEGUI_CEGUI_Combobox_getSingleClickEnabled00);
 #endif //PE_NO_MOUSE 
+#ifndef PE_NO_WGT_COMBOBOX
    tolua_function(tolua_S,"isDropDownListVisible",tolua_CEGUI_CEGUI_Combobox_isDropDownListVisible00);
    tolua_function(tolua_S,"getEditbox",tolua_CEGUI_CEGUI_Combobox_getEditbox00);
    tolua_function(tolua_S,"getPushButton",tolua_CEGUI_CEGUI_Combobox_getPushButton00);
@@ -67453,9 +67459,11 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"isHorzScrollbarAlwaysShown",tolua_CEGUI_CEGUI_Combobox_isHorzScrollbarAlwaysShown00);
    tolua_function(tolua_S,"showDropList",tolua_CEGUI_CEGUI_Combobox_showDropList00);
    tolua_function(tolua_S,"hideDropList",tolua_CEGUI_CEGUI_Combobox_hideDropList00);
+#endif // PE_NO_WGT_COMBOBOX
 #ifndef PE_NO_MOUSE 
    tolua_function(tolua_S,"setSingleClickEnabled",tolua_CEGUI_CEGUI_Combobox_setSingleClickEnabled00);
 #endif //PE_NO_MOUSE 
+#ifndef PE_NO_WGT_COMBOBOX
    tolua_function(tolua_S,"setReadOnly",tolua_CEGUI_CEGUI_Combobox_setReadOnly00);
    tolua_function(tolua_S,"setValidationString",tolua_CEGUI_CEGUI_Combobox_setValidationString00);
    tolua_function(tolua_S,"setCaretIndex",tolua_CEGUI_CEGUI_Combobox_setCaretIndex00);
@@ -67466,6 +67474,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setAutoSizeListHeightToContent",tolua_CEGUI_CEGUI_Combobox_setAutoSizeListHeightToContent00);
    tolua_function(tolua_S,"setAutoSizeListWidthToContent",tolua_CEGUI_CEGUI_Combobox_setAutoSizeListWidthToContent00);
    tolua_function(tolua_S,"updateAutoSizedDropList",tolua_CEGUI_CEGUI_Combobox_updateAutoSizedDropList00);
+#endif // PE_NO_WGT_COMBOBOX
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Listbox","CEGUI::Listbox","CEGUI::Window",NULL);
   tolua_beginmodule(tolua_S,"Listbox");
