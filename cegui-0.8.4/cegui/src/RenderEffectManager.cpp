@@ -36,9 +36,9 @@ RenderEffectManager* Singleton<RenderEffectManager>::ms_Singleton = 0;
 //---------------------------------------------------------------------------//
 RenderEffectManager::RenderEffectManager()
 {
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::RenderEffectManager singleton created " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -55,9 +55,9 @@ RenderEffectManager::~RenderEffectManager()
     while (!d_effectRegistry.empty())
         removeEffect(d_effectRegistry.begin()->first);
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::RenderEffectManager singleton destroyed " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -101,9 +101,9 @@ RenderEffect& RenderEffectManager::create(const String& name, Window* window)
     // here we keep track of the factory used to create the effect object.
     d_effects[&effect] = i->second;
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "%p", static_cast<void*>(&effect));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("RenderEffectManager::create: Created "
         "instance of effect '" + name + "' at " + String(addr_buff));
 #endif //PE_NO_LOGGER

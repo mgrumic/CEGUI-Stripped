@@ -68,9 +68,9 @@ WindowManager::WindowManager(void) :
     d_uid_counter(0),
     d_lockCount(0)
 {
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowManager singleton created " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -85,9 +85,9 @@ WindowManager::~WindowManager(void)
 	destroyAllWindows();
     cleanDeadPool();
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowManager singleton destroyed " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -111,9 +111,9 @@ Window* WindowManager::createWindow(const String& type, const String& name)
 
     Window* newWindow = factory->createWindow(finalName);
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(newWindow));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Window '" + finalName +"' of type '" +
         type + "' has been created. " + addr_buff, Informative);
 #endif //PE_NO_LOGGER
@@ -202,6 +202,7 @@ void WindowManager::initialiseRenderEffect(
 *************************************************************************/
 void WindowManager::destroyWindow(Window* window)
 {
+#ifndef PE_NO_LOGGER
 	WindowVector::iterator iter =
         std::find(d_windowRegistry.begin(),
                   d_windowRegistry.end(),
@@ -212,17 +213,15 @@ void WindowManager::destroyWindow(Window* window)
 
 	if (iter == d_windowRegistry.end())
     {
-#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("[WindowManager] Attempt to delete "
             "Window that does not exist!  Address was: " + String(addr_buff) +
             ". WARNING: This could indicate a double-deletion issue!!",
             Errors);
-#endif //PE_NO_LOGGER
         return;
     }
 
     d_windowRegistry.erase(iter);
-#ifndef PE_NO_LOGGER
+    
     Logger::getSingleton().logEvent("Window at '" + window->getNamePath() +
         "' will be added to dead pool. " + addr_buff, Informative);
 #endif //PE_NO_LOGGER
