@@ -245,7 +245,9 @@ public:
     \exception UnknownObjectException
         Thrown if the ComboDropList component does not exist.
     */
+#ifndef PE_NO_WGT_COMBODROPLIST
     ComboDropList* getDropList() const;
+#endif //PE_NO_WGT_COMBODROPLIST
 
     //! return whether the drop-list will vertically auto size to content.
     bool getAutoSizeListHeightToContent() const;

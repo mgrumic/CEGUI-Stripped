@@ -151,8 +151,12 @@ class ButtonBase;
 #ifndef PE_NO_WGT_CLIPPED_CONTAINER
 class ClippedContainer;
 #endif //PE_NO_WGT_CLIPPED_CONTAINER
+#ifndef PE_NO_WGT_COMBOBOX
 class Combobox;
+#endif //PE_NO_WGT_COMBOBOX
+#ifndef PE_NO_WGT_COMBODROPLIST
 class ComboDropList;
+#endif // PE_NO_WGT_COMBODROPLIST
 class DefaultWindow;
 #ifndef PE_NO_MOUSE 
 class DragContainer;

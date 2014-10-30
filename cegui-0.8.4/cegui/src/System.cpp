@@ -670,7 +670,9 @@ void System::addStandardWindowFactories()
 #ifndef PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<Combobox>();
 #endif // PE_NO_WGT_COMBOBOX
+#ifndef PE_NO_WGT_COMBODROPLIST
     WindowFactoryManager::addWindowType<ComboDropList>();
+#endif //PE_NO_WGT_COMBODROPLIST
     WindowFactoryManager::addWindowType<Editbox>();
     WindowFactoryManager::addWindowType<FrameWindow>();
     WindowFactoryManager::addWindowType<ItemEntry>();

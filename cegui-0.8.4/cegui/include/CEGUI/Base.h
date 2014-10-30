@@ -36,8 +36,6 @@
 
 #define PE_NO_MOUSE
 #define PE_NO_LOGGER
-
-
 #define PE_NO_WGT_SPINNER
 #define PE_NO_WGT_SLIDER
 #define PE_NO_WGT_PROGRESS_BAR
@@ -49,6 +47,8 @@
 #define PE_NO_VECTOR3D
 #define PE_NO_WGT_TREE
 #define PE_NO_WGT_RADIOBUTTON
+#define PE_NO_WGT_COMBOBOX
+#define PE_NO_WGT_COMBODROPLIST
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

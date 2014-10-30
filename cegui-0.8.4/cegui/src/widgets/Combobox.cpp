@@ -32,7 +32,7 @@
 #include "CEGUI/widgets/ComboDropList.h"
 #include "CEGUI/widgets/ListboxItem.h"
 #include "CEGUI/WindowManager.h"
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	General information.
 
@@ -107,13 +107,19 @@ Combobox::~Combobox(void)
 void Combobox::initialiseComponents(void)
 {
 	Editbox* editbox        = getEditbox();
+#ifndef PE_NO_WGT_COMBODROPLIST
 	ComboDropList* droplist = getDropList();
+#endif //PE_NO_WGT_COMBODROPLIST
 	PushButton* button      = getPushButton();
+#ifndef PE_NO_WGT_COMBODROPLIST
     droplist->setFont(d_font);
+#endif //PE_NO_WGT_COMBODROPLIST
     editbox->setFont(d_font);
 
     // ban properties forwarded from here
+#ifndef PE_NO_WGT_COMBODROPLIST
     droplist->banPropertyFromXML("Visible");
+#endif //PE_NO_WGT_COMBODROPLIST
     editbox->banPropertyFromXML("MaxTextLength");
 
 	// internal event wiring
@@ -122,8 +128,10 @@ void Combobox::initialiseComponents(void)
     editbox->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&CEGUI::Combobox::editbox_MouseDownHandler, this));
     droplist->subscribeEvent(ComboDropList::EventListSelectionAccepted, Event::Subscriber(&CEGUI::Combobox::droplist_SelectionAcceptedHandler, this));
 #endif
+#ifndef PE_NO_WGT_COMBODROPLIST
 	droplist->subscribeEvent(Window::EventHidden, Event::Subscriber(&CEGUI::Combobox::droplist_HiddenHandler, this));
-
+#endif //PE_NO_WGT_COMBODROPLIST
+#ifndef PE_NO_WGT_COMBOBOX
 	// event forwarding setup
 	editbox->subscribeEvent(Editbox::EventReadOnlyModeChanged, Event::Subscriber(&CEGUI::Combobox::editbox_ReadOnlyChangedHandler, this));
 	editbox->subscribeEvent(Editbox::EventValidationStringChanged, Event::Subscriber(&CEGUI::Combobox::editbox_ValidationStringChangedHandler, this));
@@ -139,12 +147,13 @@ void Combobox::initialiseComponents(void)
 	droplist->subscribeEvent(Listbox::EventSortModeChanged, Event::Subscriber(&CEGUI::Combobox::listbox_SortModeChangedHandler, this));
 	droplist->subscribeEvent(Listbox::EventVertScrollbarModeChanged, Event::Subscriber(&CEGUI::Combobox::listbox_VertScrollModeChangedHandler, this));
 	droplist->subscribeEvent(Listbox::EventHorzScrollbarModeChanged, Event::Subscriber(&CEGUI::Combobox::listbox_HorzScrollModeChangedHandler, this));
+#endif //PE_NO_WGT_COMBOBOX
 
 	// put components in their initial positions
 	performChildWindowLayout();
 }
 
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	Show the drop-down list
 *************************************************************************/
@@ -174,7 +183,7 @@ void Combobox::hideDropList(void)
 	getDropList()->releaseInput();
 }
 
-
+#endif //PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	return true if the Editbox has input focus.
 *************************************************************************/
@@ -316,7 +325,7 @@ void Combobox::setMaxTextLength(size_t max_len)
 	getEditbox()->setMaxTextLength(max_len);
 }
 
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	Return number of items attached to the list box
 *************************************************************************/
@@ -503,6 +512,7 @@ void Combobox::handleUpdatedListItemData(void)
     getDropList()->handleUpdatedItemData();
 }
 
+#endif //PE_NO_WGT_COMBODROPLIST
 
 /*************************************************************************
 	Handler for when
@@ -572,7 +582,9 @@ void Combobox::onEditboxFullEvent(WindowEventArgs& e)
 *************************************************************************/
 void Combobox::onTextAcceptedEvent(WindowEventArgs& e)
 {
+    #ifndef PE_NO_WGT_COMBODROPLIST
     selectListItemWithEditboxText();
+#endif //PE_NO_WGT_COMBODROPLIST
 	fireEvent(EventTextAccepted, e, EventNamespace);
 }
 
@@ -666,7 +678,9 @@ void Combobox::onFontChanged(WindowEventArgs& e)
 {
     // Propagate to children
     getEditbox()->setFont(d_font);
+#ifndef PE_NO_WGT_COMBODROPLIST
     getDropList()->setFont(d_font);
+#endif //PE_NO_WGT_COMBODROPLIST
 
     // Call base class handler
     Window::onFontChanged(e);
@@ -706,7 +720,7 @@ bool Combobox::button_PressHandler(const EventArgs&)
 
 	return true;
 }
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 //----------------------------------------------------------------------------//
 void Combobox::selectListItemWithEditboxText()
 {
@@ -720,7 +734,7 @@ void Combobox::selectListItemWithEditboxText()
     else
         droplist->clearAllSelections();
 }
-
+#endif //PE_NO_WGT_COMBODROPLIST
 //----------------------------------------------------------------------------//
 bool Combobox::getAutoSizeListHeightToContent() const
 {
@@ -732,7 +746,7 @@ bool Combobox::getAutoSizeListWidthToContent() const
 {
     return d_autoSizeWidth;
 }
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 //----------------------------------------------------------------------------//
 void Combobox::setAutoSizeListHeightToContent(bool auto_size)
 {
@@ -741,7 +755,6 @@ void Combobox::setAutoSizeListHeightToContent(bool auto_size)
     if (d_autoSizeHeight && isDropDownListVisible())
         updateAutoSizedDropList();
 }
-
 //----------------------------------------------------------------------------//
 void Combobox::setAutoSizeListWidthToContent(bool auto_size)
 {
@@ -750,13 +763,13 @@ void Combobox::setAutoSizeListWidthToContent(bool auto_size)
     if (d_autoSizeWidth && isDropDownListVisible())
         updateAutoSizedDropList();
 }
-
+#endif //PE_NO_WGT_COMBODROPLIST
+#ifndef PE_NO_WGT_COMBODROPLIST
 //----------------------------------------------------------------------------//
 void Combobox::updateAutoSizedDropList()
 {
     getDropList()->resizeToContent(d_autoSizeWidth, d_autoSizeHeight);
 }
-
 /*************************************************************************
 	Handler for selections made in the drop-list
 *************************************************************************/
@@ -789,6 +802,7 @@ bool Combobox::droplist_SelectionAcceptedHandler(const EventArgs& e)
 	return true;
 }
 
+#endif //PE_NO_WGT_COMBODROPLIST
 
 /*************************************************************************
 	Handler for when drop-list hides itself
@@ -840,7 +854,7 @@ bool Combobox::editbox_MouseDownHandler(const EventArgs& e)
 	return false;
 }
 #endif 
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	Return whether the vertical scroll bar is always shown.
 *************************************************************************/
@@ -858,7 +872,7 @@ bool Combobox::isHorzScrollbarAlwaysShown(void) const
 	return getDropList()->isHorzScrollbarAlwaysShown();
 }
 
-
+#endif //PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	Add properties for this class
 *************************************************************************/
@@ -954,7 +968,7 @@ void Combobox::onActivated(ActivationEventArgs& e)
 	}
 
 }
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 //----------------------------------------------------------------------------//
 void Combobox::onSized(ElementEventArgs& e)
 {
@@ -963,7 +977,7 @@ void Combobox::onSized(ElementEventArgs& e)
 
     Window::onSized(e);
 }
-
+#endif //PE_NO_WGT_COMBODROPLIST
 #ifndef PE_NO_MOUSE
 /*************************************************************************
 	Return operation mode for the combo box
@@ -973,7 +987,7 @@ bool Combobox::getSingleClickEnabled(void) const
 	return d_singleClickOperation;
 }
 #endif
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 /*************************************************************************
 	Return whether drop-list is visible.
 *************************************************************************/
@@ -981,7 +995,7 @@ bool Combobox::isDropDownListVisible(void) const
 {
 	return getDropList()->isEffectiveVisible();
 }
-
+#endif //PE_NO_WGT_COMBODROPLIST
 #ifndef PE_NO_MOUSE
 /*************************************************************************
 	Set the operation mode for the combo box.
@@ -1008,7 +1022,7 @@ PushButton* Combobox::getPushButton() const
 {
     return static_cast<PushButton*>(getChild(ButtonName));
 }
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 /************************************************************************
     Return a pointer to the ComboDropList component widget for this
     Combobox.
@@ -1017,7 +1031,7 @@ ComboDropList* Combobox::getDropList() const
 {
     return static_cast<ComboDropList*>(getChild(DropListName));
 }
-
+#endif //PE_NO_WGT_COMBODROPLIST
 //----------------------------------------------------------------------------//
 void Combobox::itemSelectChangeTextUpdate(const ListboxItem* const item,
     bool new_state, bool old_state)
@@ -1127,7 +1141,7 @@ bool Combobox::editbox_TextChangedEventHandler(const EventArgs& e)
 	return true;
 }
 
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 bool Combobox::listbox_ListContentsChangedHandler(const EventArgs&)
 {
     if (isDropDownListVisible())
@@ -1138,7 +1152,7 @@ bool Combobox::listbox_ListContentsChangedHandler(const EventArgs&)
 
 	return true;
 }
-
+#endif //PE_NO_WGT_COMBODROPLIST
 
 bool Combobox::listbox_ListSelectionChangedHandler(const EventArgs&)
 {
@@ -1174,5 +1188,5 @@ bool Combobox::listbox_HorzScrollModeChangedHandler(const EventArgs&)
 
 	return true;
 }
-
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_COMBODROPLIST

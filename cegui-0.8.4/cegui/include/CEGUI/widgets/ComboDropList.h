@@ -28,7 +28,7 @@
  ***************************************************************************/
 #ifndef _CEGUIComboDropList_h_
 #define _CEGUIComboDropList_h_
-
+#ifndef PE_NO_WGT_COMBODROPLIST
 #include "./Listbox.h"
 
 
@@ -195,5 +195,5 @@ protected:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif //PE_NO_WGT_COMBODROPLIST
 #endif	// end of guard _CEGUIComboDropList_h_
