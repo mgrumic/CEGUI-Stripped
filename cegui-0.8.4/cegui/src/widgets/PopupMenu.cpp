@@ -28,7 +28,7 @@
  ***************************************************************************/
 #include "CEGUI/widgets/PopupMenu.h"
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/MenuItem.h"
 #include "CEGUI/CoordConverter.h"
 
@@ -354,7 +354,7 @@ void PopupMenu::onHidden(WindowEventArgs& e)
     MenuBase::onHidden(e);
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /************************************************************************
 	Handler for mouse button down events
 ************************************************************************/

@@ -32,7 +32,9 @@
 extern "C"
 void initialiseCEGUICommonDialogs()
 {
+    #ifndef PE_NO_COM_DIALOGS_COLOUR_PICKER
     CEGUI::WindowFactoryManager::addWindowType<CEGUI::ColourPicker>();
+    #endif //PE_NO_COM_DIALOGS_COLOUR_PICKER
     CEGUI::WindowFactoryManager::addWindowType<CEGUI::ColourPickerControls>();
 }
 

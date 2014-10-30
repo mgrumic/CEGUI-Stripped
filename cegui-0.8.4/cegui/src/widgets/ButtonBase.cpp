@@ -27,7 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/widgets/ButtonBase.h"
+#ifndef PE_NO_MOUSE 
 #include "CEGUI/MouseCursor.h"
+#endif //PE_NO_MOUSE 
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -74,7 +76,7 @@ bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos)
         (capture_wnd->distributesCapturedInputs() && isAncestor(capture_wnd))) && isHit(mouse_pos);
     else
         return
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
         getGUIContext().getWindowContainingMouse() == this;
 #else 
         false;
@@ -84,7 +86,7 @@ bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos)
 /*************************************************************************
 	Handler for when the mouse moves
 *************************************************************************/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 void ButtonBase::onMouseMove(MouseEventArgs& e)
 {
 	// this is needed to discover whether mouse is in the widget area or not.
@@ -157,7 +159,7 @@ void ButtonBase::setPushedState(const bool pushed)
     invalidate();
 }
 
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 /*************************************************************************
 	Handler for when mouse capture is lost
 *************************************************************************/
@@ -167,16 +169,16 @@ void ButtonBase::onCaptureLost(WindowEventArgs& e)
 	Window::onCaptureLost(e);
 
 	d_pushed = false;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     getGUIContext().updateWindowContainingMouse();
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 	invalidate();
 
 	// event was handled by us.
 	++e.handled;
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 
 /*************************************************************************
 	Handler for when mouse leaves the widget

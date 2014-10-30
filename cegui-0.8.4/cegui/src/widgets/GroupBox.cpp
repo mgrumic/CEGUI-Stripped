@@ -28,7 +28,7 @@
  ***************************************************************************/
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/widgets/GroupBox.h"
-
+#ifndef PE_NO_WGT_GROUP_BOX
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -95,3 +95,5 @@ bool GroupBox::drawAroundWidget(const String& name)
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_WGT_GROUP_BOX

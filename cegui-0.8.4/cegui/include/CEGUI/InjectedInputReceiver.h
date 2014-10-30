@@ -52,7 +52,7 @@ public:
         - true if the input was processed by the input receiver.
         - false if the input was not processed by the input receiver.
     */
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     virtual bool injectMouseMove(float delta_x, float delta_y) = 0;
 
     /*!

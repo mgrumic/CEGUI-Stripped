@@ -27,6 +27,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/widgets/ProgressBar.h"
+#ifndef PE_NO_WGT_PROGRESS_BAR
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -126,3 +127,5 @@ void ProgressBar::addProgressBarProperties(void)
 
 
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_WGT_PROGRESS_BAR

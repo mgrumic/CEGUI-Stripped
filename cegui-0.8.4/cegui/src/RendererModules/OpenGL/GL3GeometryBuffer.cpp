@@ -123,7 +123,7 @@ void OpenGL3GeometryBuffer::draw() const
     if (d_effect)
         d_effect->performPostRenderFunctions();
 }
-
+#ifndef PE_NO_VERTEX
 //----------------------------------------------------------------------------//
 void OpenGL3GeometryBuffer::appendGeometry(const Vertex* const vbuff,
     uint vertex_count)
@@ -131,6 +131,7 @@ void OpenGL3GeometryBuffer::appendGeometry(const Vertex* const vbuff,
     OpenGLGeometryBufferBase::appendGeometry(vbuff, vertex_count);
     updateOpenGLBuffers();
 }
+#endif //PE_NO_VERTEX
 
 //----------------------------------------------------------------------------//
 void OpenGL3GeometryBuffer::reset()

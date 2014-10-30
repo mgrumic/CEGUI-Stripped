@@ -132,6 +132,7 @@ private:
     Event* d_event;                 //! The event to which the slot was attached
 };
 
+
 } // End of  CEGUI namespace section
 
 #endif  // end of guard _CEGUIBoundSlot_h_

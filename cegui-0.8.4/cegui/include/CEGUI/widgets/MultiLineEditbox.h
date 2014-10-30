@@ -35,6 +35,9 @@
 
 #include <vector>
 
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
+
+
 #if defined(_MSC_VER)
 #	pragma warning(push)
 #	pragma warning(disable : 4251)
@@ -734,21 +737,21 @@ protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	virtual	void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual	void	onMouseDoubleClicked(MouseEventArgs& e);
 	virtual	void	onMouseTripleClicked(MouseEventArgs& e);
 	virtual void	onMouseMove(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 	virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void	onCharacter(KeyEventArgs& e);
 	virtual void	onKeyDown(KeyEventArgs& e);
 	virtual void	onTextChanged(WindowEventArgs& e);
 	virtual void	onSized(ElementEventArgs& e);
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 	virtual	void	onMouseWheel(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
     virtual void onFontChanged(WindowEventArgs& e);
 
 
@@ -788,5 +791,5 @@ private:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
 #endif	// end of guard _CEGUIMultiLineEditbox_h_

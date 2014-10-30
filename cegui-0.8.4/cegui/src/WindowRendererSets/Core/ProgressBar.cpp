@@ -24,12 +24,15 @@
  *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
+#include "CEGUI\Base.h"
+#ifndef PE_NO_WGT_PROGRESS_BAR
 #include "CEGUI/WindowRendererSets/Core/ProgressBar.h"
 #include "CEGUI/falagard/WidgetLookManager.h"
 #include "CEGUI/falagard/WidgetLookFeel.h"
 #include "CEGUI/widgets/ProgressBar.h"
 #include "CEGUI/CoordConverter.h"
 #include "CEGUI/TplWindowRendererProperty.h"
+
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -126,3 +129,5 @@ namespace CEGUI
     }
 
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_WGT_PROGRESS_BAR

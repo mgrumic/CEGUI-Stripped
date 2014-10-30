@@ -56,12 +56,14 @@ ScrolledItemListBase::ScrolledItemListBase(const String& type, const String& nam
     d_forceVScroll(false),
     d_forceHScroll(false)
 {
+#ifndef PE_NO_WGT_CLIPPED_CONTAINER
     d_pane = WindowManager::getSingletonPtr()->
         createWindow("ClippedContainer", ContentPaneName);
 
     d_pane->setAutoWindow(true);
     static_cast<ClippedContainer*>(d_pane)->setClipperWindow(this);
-#ifndef PE_HAS_MOUSE
+#endif //PE_NO_WGT_CLIPPED_CONTAINER
+#ifndef PE_NO_MOUSE
     d_pane->setMouseInputPropagationEnabled(true);
 #endif
     addChild(d_pane);
@@ -174,7 +176,9 @@ void ScrolledItemListBase::configureScrollbars(const Sizef& doc_size)
     render_area_size = render_area.getSize();
 
     // update the pane clipper area
+    #ifndef PE_NO_WGT_CLIPPED_CONTAINER
     static_cast<ClippedContainer*>(d_pane)->setClipArea(render_area);
+    #endif //PE_NO_WGT_CLIPPED_CONTAINER
 
     // setup vertical scrollbar
     v->setDocumentSize(doc_size.d_height);
@@ -189,7 +193,7 @@ void ScrolledItemListBase::configureScrollbars(const Sizef& doc_size)
     h->setScrollPosition(h->getScrollPosition());
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /************************************************************************
     Handle mouse wheel event
 ************************************************************************/

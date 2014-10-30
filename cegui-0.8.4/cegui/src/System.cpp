@@ -224,7 +224,7 @@ System::System(Renderer& renderer,
 
     // set up defaults
     config.initialiseDefaultFont();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     config.initialiseDefaultMouseCursor();
     config.initialiseDefaulTooltip();
 #endif
@@ -631,11 +631,13 @@ void System::addStandardWindowFactories()
 {
     // Add types all base elements
     WindowFactoryManager::addWindowType<DefaultWindow>();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     WindowFactoryManager::addWindowType<DragContainer>();
 #endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
+#ifndef PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<ClippedContainer>();
+#endif //PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<PushButton>();
     WindowFactoryManager::addWindowType<RadioButton>();
     WindowFactoryManager::addWindowType<Combobox>();
@@ -652,12 +654,20 @@ void System::addStandardWindowFactories()
 #endif
 	WindowFactoryManager::addWindowType<MenuItem>();
     WindowFactoryManager::addWindowType<MultiColumnList>();
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
     WindowFactoryManager::addWindowType<MultiLineEditbox>();
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
+#ifndef PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ProgressBar>();
+#endif //PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ScrollablePane>();
     WindowFactoryManager::addWindowType<Scrollbar>();
+#ifndef PE_NO_WGT_SLIDER
     WindowFactoryManager::addWindowType<Slider>();
+#endif //PE_NO_WGT_SLIDER
+    #ifndef PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<Spinner>();
+    #endif  //PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<TabButton>();
     WindowFactoryManager::addWindowType<TabControl>();
     WindowFactoryManager::addWindowType<Thumb>();
@@ -667,8 +677,12 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<Tooltip>();
 #endif //PE_HAS_MOUSE
     WindowFactoryManager::addWindowType<ItemListbox>();
+#ifndef PE_NO_WGT_GROUP_BOX
     WindowFactoryManager::addWindowType<GroupBox>();
+#endif //PE_NO_WGT_GROUP_BOX
+#ifndef PE_NO_WGT_TREE
     WindowFactoryManager::addWindowType<Tree>();
+#endif //PE_NO_WGT_TREE
     WindowFactoryManager::addWindowType<LayoutCell>();
     WindowFactoryManager::addWindowType<HorizontalLayoutContainer>();
     WindowFactoryManager::addWindowType<VerticalLayoutContainer>();
@@ -684,9 +698,9 @@ void System::createSingletons()
     CEGUI_NEW_AO WindowManager();
     CEGUI_NEW_AO SchemeManager();
     CEGUI_NEW_AO GlobalEventSet();
-    #ifndef PE_NO_ANIMATION
+#ifndef PE_NO_ANIMATION
     CEGUI_NEW_AO AnimationManager();
-    #endif //PE_NO_ANIMATION
+#endif //PE_NO_ANIMATION
     CEGUI_NEW_AO WidgetLookManager();
     CEGUI_NEW_AO WindowRendererManager();
     CEGUI_NEW_AO RenderEffectManager();
@@ -699,9 +713,9 @@ void System::destroySingletons()
     CEGUI_DELETE_AO WindowFactoryManager::getSingletonPtr();
     CEGUI_DELETE_AO WidgetLookManager::getSingletonPtr();
     CEGUI_DELETE_AO WindowRendererManager::getSingletonPtr();
-    #ifndef PE_NO_ANIMATION
+#ifndef PE_NO_ANIMATION
     CEGUI_DELETE_AO AnimationManager::getSingletonPtr();
-    #endif //PE_NO_ANIMATION
+#endif //PE_NO_ANIMATION
     CEGUI_DELETE_AO RenderEffectManager::getSingletonPtr();
     CEGUI_DELETE_AO FontManager::getSingletonPtr();
     CEGUI_DELETE_AO ImageManager::getSingletonPtr();

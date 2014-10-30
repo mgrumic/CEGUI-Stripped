@@ -46,7 +46,7 @@ DefaultWindow::DefaultWindow(const String& type, const String& name) :
     setMaxSize(sz);
     setSize(sz);
 }
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 //----------------------------------------------------------------------------//
 void DefaultWindow::onMouseMove(MouseEventArgs& e)
 {
@@ -120,7 +120,7 @@ bool DefaultWindow::moveToFront_impl(bool wasClicked)
     const bool took_action = Window::moveToFront_impl(wasClicked);
 
     if (!d_parent
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
         && d_mousePassThroughEnabled
 #endif
         )

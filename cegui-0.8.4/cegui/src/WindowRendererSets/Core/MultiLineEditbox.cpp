@@ -33,6 +33,8 @@
 #include "CEGUI/Image.h"
 #include "CEGUI/TplWindowRendererProperty.h"
 
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -418,3 +420,4 @@ bool FalagardMultiLineEditbox::handleFontRenderSizeChange(const Font* const font
 }
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_MULTILINE_EDITBOX

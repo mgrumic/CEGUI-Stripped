@@ -297,7 +297,9 @@ namespace pyplusplus
         typedef CEGUI::Singleton<CEGUI::FontManager> SingletonFontManager;
         typedef CEGUI::Singleton<CEGUI::GlobalEventSet> SingletonGlobalEventSet;
         typedef CEGUI::Singleton<CEGUI::ImageManager> SingletonImageManager;
+#ifndef PE_NO_MOUSE 
         typedef CEGUI::Singleton<CEGUI::MouseCursor> SingletonMouseCursor;
+#endif //PE_NO_MOUSE 
         typedef CEGUI::Singleton<CEGUI::RenderEffectManager> SingletonRenderEffectManager;
         typedef CEGUI::Singleton<CEGUI::SchemeManager> SingletonSchemeManager;
         typedef CEGUI::Singleton<CEGUI::System> SingletonSystem;

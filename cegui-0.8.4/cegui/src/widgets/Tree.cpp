@@ -24,6 +24,10 @@
  *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
+
+#include "CEGUI/Base.h"
+#ifndef PE_NO_WGT_TREE
+
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/CoordConverter.h"
@@ -1067,7 +1071,7 @@ void Tree::onSized(ElementEventArgs& e)
     ++e.handled;
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
 /*************************************************************************
     Handler for when mouse button is pressed
 *************************************************************************/
@@ -1210,7 +1214,7 @@ void Tree::onMouseMove(MouseEventArgs& e)
     
     Window::onMouseMove(e);
 }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
 // Recursive!
 bool Tree::getHeightToItemInList(const LBItemList &itemList, const TreeItem *treeItem, int itemDepth, float *height) const
@@ -1404,3 +1408,5 @@ bool lbi_greater(const TreeItem* a, const TreeItem* b)
 }
 
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_WGT_TREE

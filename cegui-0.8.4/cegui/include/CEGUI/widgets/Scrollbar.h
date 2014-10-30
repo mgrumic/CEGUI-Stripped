@@ -537,11 +537,11 @@ protected:
     //! Handler triggered when the scroll bar data configuration changes
     virtual void onScrollConfigChanged(WindowEventArgs& e);
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE 
     // Overridden event handlers
     virtual void onMouseButtonDown(MouseEventArgs& e);
     virtual void onMouseWheel(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE 
 
     // base class overrides
     void banPropertiesForAutoWindow();
