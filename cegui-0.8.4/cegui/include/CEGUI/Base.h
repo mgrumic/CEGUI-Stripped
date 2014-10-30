@@ -30,12 +30,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 
-#ifndef _CEGUIBase_h_
-#define _CEGUIBase_h_
-
-#ifndef PE_NO_POPUP_MENU_H
 #define PE_NO_POPUP_MENU_H
-#endif
 #define PE_NO_MOUSE
 //#define PE_NO_VERTEX
 #define PE_NO_WGT_SPINNER
@@ -50,6 +45,10 @@
 #define PE_NO_WGT_TREE
 #define PE_NO_WGT_COMBOBOX
 #define PE_NO_ANIMATION
+#define PE_NO_REGEX_MATCHER
+
+#ifndef PE_NO_REGEX_MATCHER
+#endif //PE_NO_REGEX_MATCHER
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

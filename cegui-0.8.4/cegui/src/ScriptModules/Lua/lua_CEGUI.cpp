@@ -168,8 +168,10 @@ static int tolua_collect_CEGUI__ImageryComponent (lua_State* tolua_S)
 
 static int tolua_collect_CEGUI__RegexMatchStateEventArgs (lua_State* tolua_S)
 {
+#ifndef PE_NO_REGEX_MATCHER
  CEGUI::RegexMatchStateEventArgs* self = (CEGUI::RegexMatchStateEventArgs*) tolua_tousertype(tolua_S,1,0);
  delete self;
+#endif //PE_NO_REGEX_MATCHER
  return 0;
 }
 
@@ -29365,11 +29367,13 @@ static int tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00(lua_State* tolua_S)
 #endif
  {
   CEGUI::Window* wnd = ((CEGUI::Window*)  tolua_tousertype(tolua_S,2,0));
+#ifndef PE_NO_REGEX_MATCHER
   CEGUI::RegexMatcher::MatchState state = ((CEGUI::RegexMatcher::MatchState) (int)  tolua_tonumber(tolua_S,3,0));
  {
   CEGUI::RegexMatchStateEventArgs* tolua_ret = (CEGUI::RegexMatchStateEventArgs*)  new CEGUI::RegexMatchStateEventArgs(wnd,state);
  tolua_pushusertype(tolua_S,(void*)tolua_ret,"CEGUI::RegexMatchStateEventArgs");
  }
+#endif //PE_NO_REGEX_MATCHER
  }
  return 1;
 #ifndef TOLUA_RELEASE
@@ -29397,11 +29401,13 @@ static int tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local(lua_State* tol
 #endif
  {
   CEGUI::Window* wnd = ((CEGUI::Window*)  tolua_tousertype(tolua_S,2,0));
+#ifndef PE_NO_REGEX_MATCHER
   CEGUI::RegexMatcher::MatchState state = ((CEGUI::RegexMatcher::MatchState) (int)  tolua_tonumber(tolua_S,3,0));
  {
   CEGUI::RegexMatchStateEventArgs* tolua_ret = (CEGUI::RegexMatchStateEventArgs*)  new CEGUI::RegexMatchStateEventArgs(wnd,state);
  tolua_pushusertype_and_takeownership(tolua_S,(void *)tolua_ret,"CEGUI::RegexMatchStateEventArgs");
  }
+#endif //PE_NO_REGEX_MATCHER
  }
  return 1;
 #ifndef TOLUA_RELEASE
@@ -29411,7 +29417,7 @@ static int tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local(lua_State* tol
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_REGEX_MATCHER
 /* get function: matchState of class  CEGUI::RegexMatchStateEventArgs */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__RegexMatchStateEventArgs_matchState
 static int tolua_get_CEGUI__RegexMatchStateEventArgs_matchState(lua_State* tolua_S)
@@ -29424,7 +29430,9 @@ static int tolua_get_CEGUI__RegexMatchStateEventArgs_matchState(lua_State* tolua
  return 1;
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_REGEX_MATCHER
 
+#ifndef PE_NO_REGEX_MATCHER
 /* set function: matchState of class  CEGUI::RegexMatchStateEventArgs */
 #ifndef TOLUA_DISABLE_tolua_set_CEGUI__RegexMatchStateEventArgs_matchState
 static int tolua_set_CEGUI__RegexMatchStateEventArgs_matchState(lua_State* tolua_S)
@@ -29540,6 +29548,7 @@ static int tolua_CEGUI_CEGUI_RegexMatcher_getMatchStateOfString00(lua_State* tol
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_REGEX_MATCHER
 
 /* get function: position of class  CEGUI::Vertex */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__Vertex_position
@@ -42696,10 +42705,12 @@ static int tolua_CEGUI_CEGUI_Editbox_getTextMatchState00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTextMatchState'",NULL);
 #endif
+#ifndef PE_NO_REGEX_MATCHER
  {
   CEGUI::RegexMatcher::MatchState tolua_ret = (CEGUI::RegexMatcher::MatchState)  self->getTextMatchState();
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
  }
+#endif //PE_NO_REGEX_MATCHER
  }
  return 1;
 #ifndef TOLUA_RELEASE
@@ -66763,16 +66774,19 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"new",tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00);
    tolua_function(tolua_S,"new_local",tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local);
    tolua_function(tolua_S,".call",tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local);
+#ifndef PE_NO_REGEX_MATCHER
    tolua_variable(tolua_S,"matchState",tolua_get_CEGUI__RegexMatchStateEventArgs_matchState,tolua_set_CEGUI__RegexMatchStateEventArgs_matchState);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"RegexMatcher","CEGUI::RegexMatcher","",NULL);
   tolua_beginmodule(tolua_S,"RegexMatcher");
+
    tolua_constant(tolua_S,"MS_VALID",CEGUI::RegexMatcher::MS_VALID);
    tolua_constant(tolua_S,"MS_INVALID",CEGUI::RegexMatcher::MS_INVALID);
    tolua_constant(tolua_S,"MS_PARTIAL",CEGUI::RegexMatcher::MS_PARTIAL);
    tolua_function(tolua_S,"setRegexString",tolua_CEGUI_CEGUI_RegexMatcher_setRegexString00);
    tolua_function(tolua_S,"getRegexString",tolua_CEGUI_CEGUI_RegexMatcher_getRegexString00);
    tolua_function(tolua_S,"getMatchStateOfString",tolua_CEGUI_CEGUI_RegexMatcher_getMatchStateOfString00);
+#endif //PE_NO_REGEX_MATCHER
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Vertex","CEGUI::Vertex","",NULL);
   tolua_beginmodule(tolua_S,"Vertex");

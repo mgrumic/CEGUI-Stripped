@@ -197,10 +197,12 @@ bool Combobox::isReadOnly(void) const
 	return true if the Editbox text is valid given the currently set
 	validation string.
 *************************************************************************/
+#ifndef PE_NO_REGEX_MATCHER
 Combobox::MatchState Combobox::getTextMatchState() const
 {
 	return getEditbox()->getTextMatchState();
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 /*************************************************************************
@@ -534,10 +536,12 @@ void Combobox::onMaximumTextLengthChanged(WindowEventArgs& e)
 /*************************************************************************
 	Handler for when
 *************************************************************************/
+#ifndef PE_NO_REGEX_MATCHER
 void Combobox::onTextValidityChanged(RegexMatchStateEventArgs& e)
 {
 	fireEvent(EventTextValidityChanged, e, EventNamespace);
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 /*************************************************************************
@@ -1075,11 +1079,13 @@ bool Combobox::editbox_MaximumTextLengthChangedHandler(const EventArgs&)
 
 bool Combobox::editbox_TextValidityChangedHandler(const EventArgs& e)
 {
+#ifndef PE_NO_REGEX_MATCHER
 	RegexMatchStateEventArgs args(
         this, static_cast<const RegexMatchStateEventArgs&>(e).matchState);
 	onTextValidityChanged(args);
 
 	return args.handled > 0;
+#endif //PE_NO_REGEX_MATCHER
 }
 
 

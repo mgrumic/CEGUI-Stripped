@@ -50,7 +50,9 @@ namespace CEGUI
 class CEGUIEXPORT Combobox : public Window
 {
 public:
+#ifndef PE_NO_REGEX_MATCHER
     typedef RegexMatcher::MatchState MatchState;
+#endif //PE_NO_REGEX_MATCHER
 
 	static const String EventNamespace;				//!< Namespace for global events
     static const String WidgetTypeName;             //!< Window factory name
@@ -291,7 +293,9 @@ public:
         One of the MatchState enumerated values indicating the current match
         state.
     */
+#ifndef PE_NO_REGEX_MATCHER
     MatchState getTextMatchState() const;
+#endif //PE_NO_REGEX_MATCHER
 
 
 	/*!
@@ -955,7 +959,9 @@ protected:
         Handler called when something has caused the validity state of the
         current text to change.
     */
+#ifndef PE_NO_REGEX_MATCHER
     virtual void onTextValidityChanged(RegexMatchStateEventArgs& e);
+#endif //PE_NO_REGEX_MATCHER
 
 
 	/*!

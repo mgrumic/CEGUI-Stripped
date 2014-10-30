@@ -301,7 +301,9 @@ protected:
     RGB_Colour* d_colourPickingTexture;
 
     bool d_ignoreEvents;
+#ifndef PE_NO_REGEX_MATCHER
     RegexMatcher& d_regexMatcher;
+#endif //PE_NO_REGEX_MATCHER
 };
 
 }

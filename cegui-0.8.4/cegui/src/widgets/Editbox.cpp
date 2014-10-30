@@ -70,7 +70,9 @@ Editbox::Editbox(const String& type, const String& name) :
     d_validator(System::getSingleton().createRegexMatcher()),
     d_weOwnValidator(true),
     d_dragging(false),
+#ifndef PE_NO_REGEX_MATCHER
     d_validatorMatchState(RegexMatcher::MS_VALID),
+#endif //PE_NO_REGEX_MATCHER
     d_previousValidityChangeResponse(true)
 {
     addEditboxProperties();
@@ -91,8 +93,10 @@ Editbox::Editbox(const String& type, const String& name) :
 //----------------------------------------------------------------------------//
 Editbox::~Editbox(void)
 {
+#ifndef PE_NO_REGEX_MATCHER
     if (d_weOwnValidator && d_validator)
         System::getSingleton().destroyRegexMatcher(d_validator);
+#endif //PE_NO_REGEX_MATCHER
 }
 
 //----------------------------------------------------------------------------//
@@ -100,12 +104,13 @@ bool Editbox::hasInputFocus(void) const
 {
     return isActive();
 }
-
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 Editbox::MatchState Editbox::getTextMatchState() const
 {
     return d_validatorMatchState;
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 size_t Editbox::getSelectionStartIndex(void) const
@@ -163,13 +168,16 @@ void Editbox::setValidationString(const String& validation_string)
             "' because it does not currently have a RegexMatcher validator."));
 
     d_validationString = validation_string;
+#ifndef PE_NO_REGEX_MATCHER
     d_validator->setRegexString(validation_string);
+#endif //PE_NO_REGEX_MATCHER
 
     // notification
     WindowEventArgs args(this);
     onValidationStringChanged(args);
-
+#ifndef PE_NO_REGEX_MATCHER
     handleValidityChangeForString(getText());
+#endif //PE_NO_REGEX_MATCHER
 }
 
 //----------------------------------------------------------------------------//
@@ -268,7 +276,7 @@ void Editbox::setMaxTextLength(size_t max_len)
             newText.resize(d_maxTextLen);
             setText(newText);
             onTextChanged(args);
-
+#ifndef PE_NO_REGEX_MATCHER
             const MatchState state = getStringMatchState(getText());
             if (d_validatorMatchState != state)
             {
@@ -276,6 +284,7 @@ void Editbox::setMaxTextLength(size_t max_len)
                 onTextValidityChanged(rms_args);
                 d_validatorMatchState = state;
             }
+#endif //PE_NO_REGEX_MATCHER
         }
 
     }
@@ -314,7 +323,7 @@ void Editbox::eraseSelectedText(bool modify_text)
     }
 
 }
-
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 Editbox::MatchState Editbox::getStringMatchState(const String& str) const
 {
@@ -338,6 +347,7 @@ void Editbox::setValidator(RegexMatcher* validator)
         d_weOwnValidator = true;
     }
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 bool Editbox::performCopy(Clipboard& clipboard)
@@ -364,7 +374,7 @@ bool Editbox::performCut(Clipboard& clipboard)
     handleDelete();
     return true;
 }
-
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 bool Editbox::handleValidityChangeForString(const String& str)
 {
@@ -385,6 +395,7 @@ bool Editbox::handleValidityChangeForString(const String& str)
 
     return response;
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 bool Editbox::performPaste(Clipboard& clipboard)
@@ -405,7 +416,7 @@ bool Editbox::performPaste(Clipboard& clipboard)
     if (tmp.length() < d_maxTextLen)
     {
         tmp.insert(getSelectionStartIndex(), clipboardText);
-        
+#ifndef PE_NO_REGEX_MATCHER
         if (handleValidityChangeForString(tmp))
         {
             // erase selection using mode that does not modify getText()
@@ -421,6 +432,7 @@ bool Editbox::performPaste(Clipboard& clipboard)
             
             return true;
         }
+#endif //PE_NO_REGEX_MATCHER
     }
 
     return false;
@@ -573,7 +585,7 @@ void Editbox::onCharacter(KeyEventArgs& e)
         if (tmp.length() < d_maxTextLen)
         {
             tmp.insert(getSelectionStartIndex(), 1, e.codepoint);
-
+#ifndef PE_NO_REGEX_MATCHER
             if (handleValidityChangeForString(tmp))
             {
                 // erase selection using mode that does not modify getText()
@@ -590,6 +602,7 @@ void Editbox::onCharacter(KeyEventArgs& e)
                 // char was accepted into the Editbox - mark event as handled.
                 ++e.handled;
             }
+#endif //PE_NO_REGEX_MATCHER
         }
         else
         {
@@ -683,7 +696,7 @@ void Editbox::handleBackspace(void)
         if (getSelectionLength() != 0)
         {
             tmp.erase(getSelectionStartIndex(), getSelectionLength());
-
+#ifndef PE_NO_REGEX_MATCHER
             if (handleValidityChangeForString(tmp))
             {
                 // erase selection using mode that does not modify getText()
@@ -693,11 +706,12 @@ void Editbox::handleBackspace(void)
                 // set text to the newly modified string
                 setText(tmp);
             }
+#endif //PE_NO_REGEX_MATCHER
         }
         else if (getCaretIndex() > 0)
         {
             tmp.erase(d_caretPos - 1, 1);
-
+#ifndef PE_NO_REGEX_MATCHER
             if (handleValidityChangeForString(tmp))
             {
                 setCaretIndex(d_caretPos - 1);
@@ -705,6 +719,7 @@ void Editbox::handleBackspace(void)
                 // set text to the newly modified string
                 setText(tmp);
             }
+#endif //PE_NO_REGEX_MATCHER
         }
 
     }
@@ -721,7 +736,7 @@ void Editbox::handleDelete(void)
         if (getSelectionLength() != 0)
         {
             tmp.erase(getSelectionStartIndex(), getSelectionLength());
-
+#ifndef PE_NO_REGEX_MATCHER
             if (handleValidityChangeForString(tmp))
             {
                 // erase selection using mode that does not modify getText()
@@ -731,16 +746,18 @@ void Editbox::handleDelete(void)
                 // set text to the newly modified string
                 setText(tmp);
             }
+#endif //PE_NO_REGEX_MATCHER
         }
         else if (getCaretIndex() < tmp.length())
         {
             tmp.erase(d_caretPos, 1);
-
+#ifndef PE_NO_REGEX_MATCHER
             if (handleValidityChangeForString(tmp))
             {
                 // set text to the newly modified string
                 setText(tmp);
             }
+#endif //PE_NO_REGEX_MATCHER
         }
 
     }
@@ -860,13 +877,14 @@ void Editbox::onMaximumTextLengthChanged(WindowEventArgs& e)
 {
     fireEvent(EventMaximumTextLengthChanged , e, EventNamespace);
 }
-
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 void Editbox::onTextValidityChanged(RegexMatchStateEventArgs& e)
 {
     fireEvent(EventTextValidityChanged, e, EventNamespace);
 }
 
+#endif //PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 void Editbox::onCaretMoved(WindowEventArgs& e)
 {

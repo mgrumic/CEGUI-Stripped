@@ -69,7 +69,10 @@ public:
 class CEGUIEXPORT Editbox : public Window
 {
 public:
+    
+#ifndef PE_NO_REGEX_MATCHER
     typedef RegexMatcher::MatchState MatchState;
+#endif //PE_NO_REGEX_MATCHER
 
     //! Namespace for global events
     static const String EventNamespace;
@@ -198,7 +201,9 @@ public:
     \return
         One of the MatchState enumerated values indicating the current match state.
     */
+#ifndef PE_NO_REGEX_MATCHER
     MatchState getTextMatchState() const;
+#endif //PE_NO_REGEX_MATCHER
 
     /*!
     \brief
@@ -497,7 +502,9 @@ protected:
         return the match state of the given string for the validation regular
         expression.
     */
+#ifndef PE_NO_REGEX_MATCHER
     MatchState getStringMatchState(const String& str) const;
+#endif //PE_NO_REGEX_MATCHER
 
     /** Helper to update validator match state as needed for the given string
      * and event handler return codes.
@@ -573,7 +580,9 @@ protected:
         Handler called when something has caused the validity state of the
         current text to change.
     */
+#ifndef PE_NO_REGEX_MATCHER
     virtual void onTextValidityChanged(RegexMatchStateEventArgs& e);
+#endif //PE_NO_REGEX_MATCHER
 
     /*!
     \brief
@@ -639,7 +648,9 @@ protected:
     //! Selection index for drag selection anchor point.
     size_t d_dragAnchorIdx;
     //! Current match state of EditboxText
+#ifndef PE_NO_REGEX_MATCHER
     MatchState d_validatorMatchState;
+#endif //PE_NO_REGEX_MATCHER
     //! Previous match state change response
     bool d_previousValidityChangeResponse;
 

@@ -586,7 +586,9 @@ void System::executeScriptString(const String& str) const
 *************************************************************************/
 bool System::injectTimePulse(float timeElapsed)
 {
+#ifndef PE_NO_ANIMATION
     AnimationManager::getSingleton().autoStepInstances(timeElapsed);
+#endif //PE_NO_ANIMATION    
     return true;
 }
 
@@ -1017,12 +1019,13 @@ RegexMatcher* System::createRegexMatcher() const
     return 0;
 #endif
 }
-
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 void System::destroyRegexMatcher(RegexMatcher* rm) const
 {
     CEGUI_DELETE_AO rm;
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 GUIContext& System::getDefaultGUIContext() const

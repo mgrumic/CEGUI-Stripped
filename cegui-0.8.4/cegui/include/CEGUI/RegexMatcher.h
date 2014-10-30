@@ -30,7 +30,7 @@
 #include "CEGUI/Base.h"
 #include "CEGUI/String.h"
 #include "CEGUI/InputEvent.h"
-
+#ifndef PE_NO_REGEX_MATCHER
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -80,4 +80,5 @@ public:
 
 } // End of  CEGUI namespace section
 
+#endif //PE_NO_REGEX_MATCHER
 #endif  // end of guard _CEGUIRegexMatcher_h_
