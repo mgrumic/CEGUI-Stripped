@@ -87,8 +87,13 @@ public:
     \brief
     	Retrieves the parent animation of this keyframe
     */
-#ifndef PE_NO_ANIMATION
+<<<<<<< HEAD
+    #ifndef PE_NO_ANIMATION
     inline Animation* getParent() const
+=======
+    
+    Animation* getParent() const
+>>>>>>> 955731514719985b3cbfd63f4db9a87e773a2032
     {
     	return d_parent;
     }

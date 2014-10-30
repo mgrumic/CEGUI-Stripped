@@ -167,8 +167,8 @@ const String& WidgetLookFeel::getName() const
 //---------------------------------------------------------------------------//
 void WidgetLookFeel::addImagerySection(const ImagerySection& section)
 {
-    if (d_imagerySections.find(section.getName()) != d_imagerySections.end())
 #ifndef PE_NO_LOGGER
+    if (d_imagerySections.find(section.getName()) != d_imagerySections.end())
         Logger::getSingleton().logEvent(
             "WidgetLookFeel::addImagerySection - Defintion for imagery "
             "section '" + section.getName() + "' already exists.  "
@@ -210,8 +210,8 @@ void WidgetLookFeel::addWidgetComponent(const WidgetComponent& widget)
 //---------------------------------------------------------------------------//
 void WidgetLookFeel::addStateSpecification(const StateImagery& state)
 {
-    if (d_stateImagery.find(state.getName()) != d_stateImagery.end())
 #ifndef PE_NO_LOGGER
+    if (d_stateImagery.find(state.getName()) != d_stateImagery.end())
         Logger::getSingleton().logEvent(
             "WidgetLookFeel::addStateSpecification - Defintion for state '" +
             state.getName() + "' already exists.  Replacing previous "
@@ -408,8 +408,8 @@ bool WidgetLookFeel::isStateImageryPresent(const String& state) const
 //---------------------------------------------------------------------------//
 void WidgetLookFeel::addNamedArea(const NamedArea& area)
 {
-    if (d_namedAreas.find(area.getName()) != d_namedAreas.end())
 #ifndef PE_NO_LOGGER
+    if (d_namedAreas.find(area.getName()) != d_namedAreas.end())
         Logger::getSingleton().logEvent(
             "WidgetLookFeel::addNamedArea - Defintion for area '" +
             area.getName() + "' already exists.  Replacing previous "
