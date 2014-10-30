@@ -99,13 +99,11 @@ CoreWindowRendererModule::CoreWindowRendererModule()
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabControl>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTitlebar>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardToggleButton>());
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTooltip>());
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemListbox>());
-#ifndef PE_NO_WGT_TREE
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTree>());
-#endif //PE_NO_WGT_TREE
 }
 
 //----------------------------------------------------------------------------//

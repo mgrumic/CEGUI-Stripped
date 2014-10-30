@@ -843,7 +843,7 @@ void Listbox::onSized(ElementEventArgs& e)
 	++e.handled;
 }
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for when mouse button is pressed
 *************************************************************************/
@@ -957,7 +957,7 @@ void Listbox::onMouseMove(MouseEventArgs& e)
     Window::onMouseMove(e);
 }
 
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
 /*************************************************************************
 	Ensure the item at the specified index is visible within the list box.

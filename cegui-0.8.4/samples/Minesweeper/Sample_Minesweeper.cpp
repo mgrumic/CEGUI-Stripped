@@ -122,11 +122,14 @@ bool MinesweeperSample::initialise(CEGUI::GUIContext* guiContext)
     // Load the scheme to initialse the VanillaSkin which we use in this sample
     SchemeManager::getSingleton().createFromFile("VanillaSkin.scheme");
     SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+#ifndef PE_NO_WGT_TOOLTIP
     guiContext->setDefaultTooltipType("TaharezLook/Tooltip");
-
+#endif //PE_NO_WGT_TOOLTIP
     // set default mouse image
-    guiContext->getMouseCursor().setDefaultImage("Vanilla-Images/MouseArrow");
 
+#ifndef PE_NO_MOUSE
+    guiContext->getMouseCursor().setDefaultImage("Vanilla-Images/MouseArrow");
+#endif //PE_NO_MOUSE
     // load an image to use as a background
     if( !ImageManager::getSingleton().isDefined("SpaceBackgroundImage") )
         ImageManager::getSingleton().addFromImageFile("SpaceBackgroundImage", "SpaceBackground.jpg");

@@ -27,8 +27,6 @@
 #ifndef _CEGUITreeItem_h_
 #define _CEGUITreeItem_h_
 
-#ifndef PE_NO_WGT_TREE
-
 #include "../Base.h"
 #include "../String.h"
 #include "../ColourRect.h"
@@ -696,7 +694,5 @@ protected:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
-
-#endif //PE_NO_WGT_TREE
 
 #endif   // end of guard _CEGUITreeItem_h_

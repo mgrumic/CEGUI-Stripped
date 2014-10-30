@@ -29,9 +29,7 @@
 #include "CEGUI/widgets/PushButton.h"
 #include "CEGUI/widgets/Editbox.h"
 
-#ifndef PE_NO_MOUSE 
 #include "CEGUI/MouseCursor.h"
-#endif //PE_NO_MOUSE 
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/CoordConverter.h"
@@ -95,12 +93,12 @@ void ColourPicker::initialiseComponents(void)
 {
     // get component windows
     Window* colourRect = getColourRect();
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     // bind handler to close button 'Click' event
     colourRect->subscribeEvent(Window::EventMouseClick,
         Event::Subscriber(&ColourPicker::colourRect_ColourRectClickedHandler,
                           this));
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     performChildWindowLayout();
 
     d_selectedColour =

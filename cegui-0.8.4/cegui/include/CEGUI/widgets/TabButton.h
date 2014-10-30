@@ -56,14 +56,14 @@ public:
      * WindowEventArgs::window set to the TabButton that was clicked.
      */
 	static const String EventClicked;
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     /** Event fired when use user attempts to drag the button with middle mouse
      * button.
      * Handlers are passed a const MouseEventArgs reference with all fields
      * valid.
      */
 	static const String EventDragged;
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     /** Event fired when the scroll wheel is used on top of the button.
      * Handlers are passed a const MouseEventArgs reference with all fields
      * valid.
@@ -129,7 +129,7 @@ protected:
 	virtual void	onClicked(WindowEventArgs& e);
 
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 	/*************************************************************************
 		Overridden Event Handlers
 	*************************************************************************/
@@ -137,7 +137,7 @@ protected:
     virtual void onMouseButtonDown(MouseEventArgs& e);
     virtual void onMouseWheel(MouseEventArgs& e);
     virtual void onMouseMove(MouseEventArgs& e);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 };
 
 

@@ -65,7 +65,6 @@ ListboxTextItem* ceguiLua_createListboxTextItem(const String& text, uint item_id
 	return new ListboxTextItem(text,item_id,item_data,disabled,auto_delete);
 }
 
-#ifndef PE_NO_WGT_TREE
 /*************************************************************************
 Functions for creating tree items
 *************************************************************************/
@@ -75,7 +74,6 @@ TreeItem* ceguiLua_createTreeItem(const String& text, uint item_id, void* item_d
 {
 	return new TreeItem(text,item_id,item_data,disabled,auto_delete);
 }
-#endif //PE_NO_WGT_TREE
 
 
 /************************************************************************
