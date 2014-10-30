@@ -33,6 +33,7 @@
 #include "CEGUI/Event.h"
 #include <map>
 #include <vector>
+#ifndef PE_NO_ANIMATION
 
 #if defined(_MSC_VER)
 #   pragma warning(push)
@@ -454,5 +455,6 @@ private:
 #   pragma warning(pop)
 #endif
 
+#endif //PE_NO_ANIMATION
 #endif  // end of guard _CEGUIAnimationInstance_h_
 

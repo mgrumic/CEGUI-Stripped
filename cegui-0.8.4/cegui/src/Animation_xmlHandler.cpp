@@ -34,6 +34,8 @@
 #include "CEGUI/Affector.h"
 #include "CEGUI/KeyFrame.h"
 
+    #ifndef PE_NO_ANIMATION
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -358,6 +360,6 @@ void AnimationSubscriptionHandler::elementEndLocal(const String& element)
 }
 
 //----------------------------------------------------------------------------//
-
 } // End of  CEGUI namespace section
 
+#endif //PE_NO_ANIMATION

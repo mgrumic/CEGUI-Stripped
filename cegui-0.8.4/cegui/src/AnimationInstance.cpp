@@ -32,11 +32,11 @@
 #include "CEGUI/Window.h"
 #include "CEGUI/Affector.h"
 #include "CEGUI/Logger.h"
+#ifndef PE_NO_ANIMATION
 
 // Start of CEGUI namespace section
 namespace CEGUI
 {
-
 //----------------------------------------------------------------------------//
 const String AnimationInstance::EventNamespace("AnimationInstance");
 
@@ -94,6 +94,7 @@ void AnimationInstance::setTarget(PropertySet* target)
         start();
     }
 }
+
 
 //----------------------------------------------------------------------------//
 PropertySet* AnimationInstance::getTarget() const
@@ -593,6 +594,6 @@ void AnimationInstance::onAnimationLooped()
 }
 
 //----------------------------------------------------------------------------//
-
 } // End of  CEGUI namespace section
 
+#endif //PE_NO_ANIMATION

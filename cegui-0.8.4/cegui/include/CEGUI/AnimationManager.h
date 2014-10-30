@@ -33,7 +33,8 @@
 #include "CEGUI/String.h"
 #include <map>
 #include <vector>
-
+#ifndef PE_NO_ANIMATION
+    
 #if defined(_MSC_VER)
 #   pragma warning(push)
 #   pragma warning(disable : 4251)
@@ -107,13 +108,17 @@ public:
     \see
         Animation
     */
+    #ifndef PE_NO_ANIMATION
     Animation* createAnimation(const String& name = "");
+    #endif //PE_NO_ANIMATION    
 
     /*!
     \brief
         Destroys given animation definition
     */
+    #ifndef PE_NO_ANIMATION
     void destroyAnimation(Animation* animation);
+    #endif //PE_NO_ANIMATION  
 
     /*!
     \brief
@@ -332,6 +337,6 @@ private:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
-
+#endif //PE_NO_ANIMATION  
 #endif  // end of guard _CEGUIAnimationManager_h_
 

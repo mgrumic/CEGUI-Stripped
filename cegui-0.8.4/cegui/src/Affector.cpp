@@ -39,6 +39,7 @@
 // Start of CEGUI namespace section
 namespace CEGUI
 {
+#ifndef PE_NO_ANIMATION
 
 //----------------------------------------------------------------------------//
 Affector::Affector(Animation* parent):
@@ -47,6 +48,7 @@ Affector::Affector(Animation* parent):
     d_targetProperty(""),
     d_interpolator(0)
 {}
+#endif //PE_NO_ANIMATION
 
 //----------------------------------------------------------------------------//
 Affector::~Affector(void)
@@ -56,7 +58,7 @@ Affector::~Affector(void)
         destroyKeyFrame(getKeyFrameAtIdx(0));
     }
 }
-
+#ifndef PE_NO_ANIMATION
 //----------------------------------------------------------------------------//
 size_t Affector::getIdxInParent() const
 {
@@ -77,6 +79,7 @@ size_t Affector::getIdxInParent() const
     CEGUI_THROW(UnknownObjectException(
         "Affector wasn't found in parent, therefore its index is unknown!"));
 }
+#endif //PE_NO_ANIMATION
 
 //----------------------------------------------------------------------------//
 void Affector::setApplicationMethod(ApplicationMethod method)
@@ -112,7 +115,9 @@ void Affector::setInterpolator(Interpolator* interpolator)
 //----------------------------------------------------------------------------//
 void Affector::setInterpolator(const String& name)
 {
+    #ifndef PE_NO_ANIMATION
     d_interpolator = AnimationManager::getSingleton().getInterpolator(name);
+    #endif //PE_NO_ANIMATION
 }
 
 //----------------------------------------------------------------------------//
@@ -243,6 +248,7 @@ void Affector::moveKeyFrameToPosition(float oldPosition, float newPosition)
 }
 
 //----------------------------------------------------------------------------//
+#ifndef PE_NO_ANIMATION
 void Affector::savePropertyValues(AnimationInstance* instance)
 {
     switch (d_applicationMethod)
@@ -263,8 +269,10 @@ void Affector::savePropertyValues(AnimationInstance* instance)
         it->second->savePropertyValue(instance);
     }
 }
+#endif //PE_NO_ANIMATION
 
 //----------------------------------------------------------------------------//
+#ifndef PE_NO_ANIMATION
 void Affector::apply(AnimationInstance* instance)
 {
     PropertySet* target = instance->getTarget();
@@ -388,9 +396,11 @@ void Affector::apply(AnimationInstance* instance)
         assert(0);
     }
 }
+#endif //PE_NO_ANIMATION
 
 void Affector::writeXMLToStream(XMLSerializer& xml_stream) const
 {
+    #ifndef PE_NO_ANIMATION
     xml_stream.openTag(AnimationAffectorHandler::ElementName);
 
     String applicationMethod;
@@ -427,6 +437,7 @@ void Affector::writeXMLToStream(XMLSerializer& xml_stream) const
     }
 
     xml_stream.closeTag();
+#endif //PE_NO_ANIMATION
 }
 
 //----------------------------------------------------------------------------//

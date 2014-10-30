@@ -35,6 +35,11 @@
 #endif
 
 #define PE_HAS_MOUSE
+#define PE_NO_ANIMATION
+
+
+#ifndef PE_NO_ANIMATION
+#endif //PE_NO_ANIMATION
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

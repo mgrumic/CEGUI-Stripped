@@ -33288,7 +33288,7 @@ static int tolua_CEGUI_CEGUI_Affector_getNumKeyFrames00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_ANIMATION
 /* get function: instance of class  CEGUI::AnimationEventArgs */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__AnimationEventArgs_instance_ptr
 static int tolua_get_CEGUI__AnimationEventArgs_instance_ptr(lua_State* tolua_S)
@@ -35277,6 +35277,7 @@ static int tolua_CEGUI_CEGUI_AnimationManager_getDefaultResourceGroup00(lua_Stat
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_ANIMATION
 
 /* method: getType of class  CEGUI::Interpolator */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Interpolator_getType00
@@ -66502,7 +66503,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"executeScriptString",tolua_CEGUI_CEGUI_System_executeScriptString00);
    tolua_function(tolua_S,"notifyDisplaySizeChanged",tolua_CEGUI_CEGUI_System_notifyDisplaySizeChanged00);
    tolua_function(tolua_S,"invalidateAllCachedRendering",tolua_CEGUI_CEGUI_System_invalidateAllCachedRendering00);
+#ifndef PE_NO_ANIMATION
    tolua_function(tolua_S,"injectTimePulse",tolua_CEGUI_CEGUI_System_injectTimePulse00);
+#endif //PE_NO_ANIMATION
    tolua_function(tolua_S,"createGUIContext",tolua_CEGUI_CEGUI_System_createGUIContext00);
    tolua_function(tolua_S,"destroyGUIContext",tolua_CEGUI_CEGUI_System_destroyGUIContext00);
    tolua_function(tolua_S,"addStandardWindowFactories",tolua_CEGUI_CEGUI_System_addStandardWindowFactories00);
@@ -66897,6 +66900,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getKeyFrameAtIdx",tolua_CEGUI_CEGUI_Affector_getKeyFrameAtIdx00);
    tolua_function(tolua_S,"getNumKeyFrames",tolua_CEGUI_CEGUI_Affector_getNumKeyFrames00);
   tolua_endmodule(tolua_S);
+#ifndef PE_NO_ANIMATION
   tolua_cclass(tolua_S,"AnimationEventArgs","CEGUI::AnimationEventArgs","CEGUI::EventArgs",NULL);
   tolua_beginmodule(tolua_S,"AnimationEventArgs");
    tolua_variable(tolua_S,"instance",tolua_get_CEGUI__AnimationEventArgs_instance_ptr,tolua_set_CEGUI__AnimationEventArgs_instance_ptr);
@@ -66968,6 +66972,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getAnimationDefinitionAsString",tolua_CEGUI_CEGUI_AnimationManager_getAnimationDefinitionAsString00);
    tolua_function(tolua_S,"setDefaultResourceGroup",tolua_CEGUI_CEGUI_AnimationManager_setDefaultResourceGroup00);
    tolua_function(tolua_S,"getDefaultResourceGroup",tolua_CEGUI_CEGUI_AnimationManager_getDefaultResourceGroup00);
+#endif //PE_NO_ANIMATION
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Interpolator","CEGUI::Interpolator","",NULL);
   tolua_beginmodule(tolua_S,"Interpolator");

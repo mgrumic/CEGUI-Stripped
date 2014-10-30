@@ -115,7 +115,7 @@ const String& KeyFrame::getSourceProperty() const
 {
     return d_sourceProperty;
 }
-
+#ifndef PE_NO_ANIMATION
 //----------------------------------------------------------------------------//
 const String& KeyFrame::getValueForAnimation(AnimationInstance* instance) const
 {
@@ -128,6 +128,7 @@ const String& KeyFrame::getValueForAnimation(AnimationInstance* instance) const
         return d_value;
     }
 }
+#endif //PE_NO_ANIMATION
 
 //----------------------------------------------------------------------------//
 void KeyFrame::setProgression(Progression p)
@@ -163,7 +164,7 @@ float KeyFrame::alterInterpolationPosition(float position)
     assert(0);
     return position;
 }
-
+#ifndef PE_NO_ANIMATION
 //----------------------------------------------------------------------------//
 void KeyFrame::savePropertyValue(AnimationInstance* instance)
 {
@@ -173,6 +174,7 @@ void KeyFrame::savePropertyValue(AnimationInstance* instance)
     }
 }
 
+#endif //PE_NO_ANIMATION
 //----------------------------------------------------------------------------//
 void KeyFrame::notifyPositionChanged(float newPosition)
 {
@@ -181,6 +183,7 @@ void KeyFrame::notifyPositionChanged(float newPosition)
 
 void KeyFrame::writeXMLToStream(XMLSerializer& xml_stream) const
 {
+#ifndef PE_NO_ANIMATION
     xml_stream.openTag(AnimationKeyFrameHandler::ElementName);
 
     xml_stream.attribute(AnimationKeyFrameHandler::PositionAttribute, PropertyHelper<float>::toString(getPosition()));
@@ -217,6 +220,7 @@ void KeyFrame::writeXMLToStream(XMLSerializer& xml_stream) const
     xml_stream.attribute(AnimationKeyFrameHandler::ProgressionAttribute, progression);
 
     xml_stream.closeTag();
+#endif //PE_NO_ANIMATION
 }
 
 //----------------------------------------------------------------------------//

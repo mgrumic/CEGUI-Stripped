@@ -36,6 +36,8 @@
 #include "CEGUI/XMLParser.h"
 #include "CEGUI/Animation_xmlHandler.h"
 
+    #ifndef PE_NO_ANIMATION
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -428,5 +430,6 @@ String AnimationManager::generateUniqueAnimationName()
 
     return ret;
 }
-
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_ANIMATION

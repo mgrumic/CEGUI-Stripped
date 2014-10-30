@@ -29,7 +29,7 @@
 
 #include "CEGUI/ChainedXMLHandler.h"
 #include "CEGUI/String.h"
-
+#ifndef PE_NO_ANIMATION
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -41,7 +41,10 @@ public:
     static const String ElementName;
 
     Animation_xmlHandler();
+    
+    #ifndef PE_NO_ANIMATION
     virtual ~Animation_xmlHandler();
+    #endif //PE_NO_ANIMATION
 
     // XMLHandler overrides
     const String& getSchemaName() const;
@@ -83,7 +86,9 @@ protected:
     void elementEndLocal(const String& element);
 
     //! Pointer to the Animation created by this handler.
+    #ifndef PE_NO_ANIMATION
     Animation* d_anim;
+    #endif //PE_NO_ANIMATION
 };
 
 //----------------------------------------------------------------------------//
@@ -101,9 +106,12 @@ public:
     static const String ApplicationMethodAbsolute;
     static const String ApplicationMethodRelative;
     static const String ApplicationMethodRelativeMultiply;
-
+    
+    #ifndef PE_NO_ANIMATION
     AnimationAffectorHandler(const XMLAttributes& attributes,
                              Animation& anim);
+    
+    #endif //PE_NO_ANIMATION
     virtual ~AnimationAffectorHandler();
 
 protected:
@@ -156,8 +164,10 @@ public:
     static const String EventAttribute;
     static const String ActionAttribute;
 
+    #ifndef PE_NO_ANIMATION
     AnimationSubscriptionHandler(const XMLAttributes& attributes,
                                  Animation& anim);
+    #endif //PE_NO_ANIMATION
     virtual ~AnimationSubscriptionHandler();
 
 protected:
@@ -169,5 +179,6 @@ protected:
 
 } // End of  CEGUI namespace section
 
+#endif //PE_NO_ANIMATION
 #endif  // end of guard _CEGUIAnimation_xmlHandler_h_
 

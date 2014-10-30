@@ -559,11 +559,14 @@ void System::executeScriptString(const String& str) const
 /*************************************************************************
 	Method to inject time pulses into the system.
 *************************************************************************/
+#ifndef PE_NO_ANIMATION
+
 bool System::injectTimePulse(float timeElapsed)
 {
     AnimationManager::getSingleton().autoStepInstances(timeElapsed);
     return true;
 }
+#endif //PE_NO_ANIMATION
 
 System&	System::getSingleton(void)
 {
@@ -681,7 +684,9 @@ void System::createSingletons()
     CEGUI_NEW_AO WindowManager();
     CEGUI_NEW_AO SchemeManager();
     CEGUI_NEW_AO GlobalEventSet();
+    #ifndef PE_NO_ANIMATION
     CEGUI_NEW_AO AnimationManager();
+    #endif //PE_NO_ANIMATION
     CEGUI_NEW_AO WidgetLookManager();
     CEGUI_NEW_AO WindowRendererManager();
     CEGUI_NEW_AO RenderEffectManager();
@@ -694,7 +699,9 @@ void System::destroySingletons()
     CEGUI_DELETE_AO WindowFactoryManager::getSingletonPtr();
     CEGUI_DELETE_AO WidgetLookManager::getSingletonPtr();
     CEGUI_DELETE_AO WindowRendererManager::getSingletonPtr();
+    #ifndef PE_NO_ANIMATION
     CEGUI_DELETE_AO AnimationManager::getSingletonPtr();
+    #endif //PE_NO_ANIMATION
     CEGUI_DELETE_AO RenderEffectManager::getSingletonPtr();
     CEGUI_DELETE_AO FontManager::getSingletonPtr();
     CEGUI_DELETE_AO ImageManager::getSingletonPtr();

@@ -216,7 +216,9 @@ namespace CEGUI
         registerElementStartHandler(FontPropertyElement, &Falagard_xmlHandler::elementFontPropertyStart);
         registerElementStartHandler(ColourElement, &Falagard_xmlHandler::elementColourStart);
         registerElementStartHandler(PropertyLinkTargetElement, &Falagard_xmlHandler::elementPropertyLinkTargetStart);
+        #ifndef PE_NO_ANIMATION
         registerElementStartHandler(AnimationDefinitionHandler::ElementName, &Falagard_xmlHandler::elementAnimationDefinitionStart);
+        #endif //PE_NO_ANIMATION
         registerElementStartHandler(EventLinkDefinitionElement, &Falagard_xmlHandler::elementEventLinkDefinitionStart);
         registerElementStartHandler(EventLinkTargetElement, &Falagard_xmlHandler::elementEventLinkTargetStart);
         registerElementStartHandler(NamedAreaSourceElement, &Falagard_xmlHandler::elementNamedAreaSourceStart);
@@ -1586,7 +1588,7 @@ namespace CEGUI
         const String anim_name(anim_name_prefix +
                         attributes.getValueAsString(NameAttribute));
 
-
+#ifndef PE_NO_ANIMATION
         if (AnimationManager::getSingleton().isAnimationPresent(anim_name))
         {
             Logger::getSingleton().logEvent(
@@ -1597,6 +1599,7 @@ namespace CEGUI
             d_chainedHandler = CEGUI_NEW_AO AnimationDefinitionHandler(
                 attributes, anim_name_prefix);
         }
+#endif //PE_NO_ANIMATION
 
         // This is a little bit of abuse here, ideally we would get the name
         // somewhere else.

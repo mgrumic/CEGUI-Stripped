@@ -1,0 +1,1613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="cegui">
+        <df name="src">
+          <df name="CommonDialogs">
+            <df name="ColourPicker">
+              <in>ColourPicker.cpp</in>
+              <in>Controls.cpp</in>
+              <in>Conversions.cpp</in>
+              <in>Types.cpp</in>
+            </df>
+            <in>Module.cpp</in>
+          </df>
+          <df name="falagard">
+            <in>ComponentBase.cpp</in>
+            <in>Dimensions.cpp</in>
+            <in>EventAction.cpp</in>
+            <in>EventLinkDefinition.cpp</in>
+            <in>FormattingSetting.cpp</in>
+            <in>FrameComponent.cpp</in>
+            <in>ImageryComponent.cpp</in>
+            <in>ImagerySection.cpp</in>
+            <in>LayerSpecification.cpp</in>
+            <in>NamedArea.cpp</in>
+            <in>PropertyDefinitionBase.cpp</in>
+            <in>PropertyInitialiser.cpp</in>
+            <in>SectionSpecification.cpp</in>
+            <in>StateImagery.cpp</in>
+            <in>TextComponent.cpp</in>
+            <in>WidgetComponent.cpp</in>
+            <in>WidgetLookFeel.cpp</in>
+            <in>WidgetLookManager.cpp</in>
+            <in>XMLEnumHelper.cpp</in>
+            <in>XMLHandler.cpp</in>
+          </df>
+          <df name="widgets">
+            <in>ButtonBase.cpp</in>
+            <in>ClippedContainer.cpp</in>
+            <in>ComboDropList.cpp</in>
+            <in>Combobox.cpp</in>
+            <in>DefaultWindow.cpp</in>
+            <in>DragContainer.cpp</in>
+            <in>Editbox.cpp</in>
+            <in>FrameWindow.cpp</in>
+            <in>GridLayoutContainer.cpp</in>
+            <in>GroupBox.cpp</in>
+            <in>HorizontalLayoutContainer.cpp</in>
+            <in>ItemEntry.cpp</in>
+            <in>ItemListBase.cpp</in>
+            <in>ItemListbox.cpp</in>
+            <in>LayoutCell.cpp</in>
+            <in>LayoutContainer.cpp</in>
+            <in>ListHeader.cpp</in>
+            <in>ListHeaderSegment.cpp</in>
+            <in>Listbox.cpp</in>
+            <in>ListboxItem.cpp</in>
+            <in>ListboxTextItem.cpp</in>
+            <in>MenuBase.cpp</in>
+            <in>MenuItem.cpp</in>
+            <in>Menubar.cpp</in>
+            <in>MultiColumnList.cpp</in>
+            <in>MultiLineEditbox.cpp</in>
+            <in>PopupMenu.cpp</in>
+            <in>ProgressBar.cpp</in>
+            <in>PushButton.cpp</in>
+            <in>RadioButton.cpp</in>
+            <in>ScrollablePane.cpp</in>
+            <in>Scrollbar.cpp</in>
+            <in>ScrolledContainer.cpp</in>
+            <in>ScrolledItemListBase.cpp</in>
+            <in>SequentialLayoutContainer.cpp</in>
+            <in>Slider.cpp</in>
+            <in>Spinner.cpp</in>
+            <in>TabButton.cpp</in>
+            <in>TabControl.cpp</in>
+            <in>Thumb.cpp</in>
+            <in>Titlebar.cpp</in>
+            <in>ToggleButton.cpp</in>
+            <in>Tooltip.cpp</in>
+            <in>Tree.cpp</in>
+            <in>TreeItem.cpp</in>
+            <in>VerticalLayoutContainer.cpp</in>
+          </df>
+          <df name="WindowRendererSets">
+            <df name="Core">
+              <in>Button.cpp</in>
+              <in>Default.cpp</in>
+              <in>Editbox.cpp</in>
+              <in>FrameWindow.cpp</in>
+              <in>ItemEntry.cpp</in>
+              <in>ItemListbox.cpp</in>
+              <in>ListHeader.cpp</in>
+              <in>ListHeaderSegment.cpp</in>
+              <in>Listbox.cpp</in>
+              <in>MenuItem.cpp</in>
+              <in>Menubar.cpp</in>
+              <in>Module.cpp</in>
+              <in>MultiColumnList.cpp</in>
+              <in>MultiLineEditbox.cpp</in>
+              <in>PopupMenu.cpp</in>
+              <in>ProgressBar.cpp</in>
+              <in>ScrollablePane.cpp</in>
+              <in>Scrollbar.cpp</in>
+              <in>Slider.cpp</in>
+              <in>Static.cpp</in>
+              <in>StaticImage.cpp</in>
+              <in>StaticText.cpp</in>
+              <in>TabButton.cpp</in>
+              <in>TabControl.cpp</in>
+              <in>Titlebar.cpp</in>
+              <in>ToggleButton.cpp</in>
+              <in>Tooltip.cpp</in>
+              <in>Tree.cpp</in>
+            </df>
+          </df>
+          <in>Affector.cpp</in>
+          <in>Animation.cpp</in>
+          <in>AnimationInstance.cpp</in>
+          <in>AnimationManager.cpp</in>
+          <in>Animation_xmlHandler.cpp</in>
+          <in>Base.cpp</in>
+          <in>BasicImage.cpp</in>
+          <in>BasicRenderedStringParser.cpp</in>
+          <in>BidiVisualMapping.cpp</in>
+          <in>BoundSlot.cpp</in>
+          <in>CentredRenderedString.cpp</in>
+          <in>ChainedXMLHandler.cpp</in>
+          <in>Clipboard.cpp</in>
+          <in>Colour.cpp</in>
+          <in>ColourRect.cpp</in>
+          <in>CompositeResourceProvider.cpp</in>
+          <in>Config_xmlHandler.cpp</in>
+          <in>CoordConverter.cpp</in>
+          <in>DataContainer.cpp</in>
+          <in>DefaultLogger.cpp</in>
+          <in>DefaultRenderedStringParser.cpp</in>
+          <in>DefaultResourceProvider.cpp</in>
+          <in>DynamicModule.cpp</in>
+          <in>Element.cpp</in>
+          <in>Event.cpp</in>
+          <in>EventArgs.cpp</in>
+          <in>EventSet.cpp</in>
+          <in>Exceptions.cpp</in>
+          <in>FactoryModule.cpp</in>
+          <in>FactoryRegisterer.cpp</in>
+          <in>Font.cpp</in>
+          <in>FontManager.cpp</in>
+          <in>Font_xmlHandler.cpp</in>
+          <in>FormattedRenderedString.cpp</in>
+          <in>GUIContext.cpp</in>
+          <in>GUILayout_xmlHandler.cpp</in>
+          <in>GeometryBuffer.cpp</in>
+          <in>GlobalEventSet.cpp</in>
+          <in>Image.cpp</in>
+          <in>ImageCodec.cpp</in>
+          <in>ImageManager.cpp</in>
+          <in>JustifiedRenderedString.cpp</in>
+          <in>JustifiedRenderedStringWordWrapper.cpp</in>
+          <in>KeyFrame.cpp</in>
+          <in>LeftAlignedRenderedString.cpp</in>
+          <in>LinkedEvent.cpp</in>
+          <in>Logger.cpp</in>
+          <in>MouseCursor.cpp</in>
+          <in>NamedElement.cpp</in>
+          <in>NamedXMLResourceManager.cpp</in>
+          <in>PixmapFont.cpp</in>
+          <in>Property.cpp</in>
+          <in>PropertyHelper.cpp</in>
+          <in>PropertySet.cpp</in>
+          <in>Quaternion.cpp</in>
+          <in>Rect.cpp</in>
+          <in>RenderEffectManager.cpp</in>
+          <in>RenderQueue.cpp</in>
+          <in>RenderTarget.cpp</in>
+          <in>RenderedString.cpp</in>
+          <in>RenderedStringComponent.cpp</in>
+          <in>RenderedStringImageComponent.cpp</in>
+          <in>RenderedStringTextComponent.cpp</in>
+          <in>RenderedStringWidgetComponent.cpp</in>
+          <in>RenderingSurface.cpp</in>
+          <in>RenderingWindow.cpp</in>
+          <in>RightAlignedRenderedString.cpp</in>
+          <in>Scheme.cpp</in>
+          <in>SchemeManager.cpp</in>
+          <in>Scheme_xmlHandler.cpp</in>
+          <in>ScriptModule.cpp</in>
+          <in>SimpleTimer.cpp</in>
+          <in>String.cpp</in>
+          <in>SubscriberSlot.cpp</in>
+          <in>System.cpp</in>
+          <in>SystemKeys.cpp</in>
+          <in>TextUtils.cpp</in>
+          <in>Win32StringTranscoder.cpp</in>
+          <in>Window.cpp</in>
+          <in>WindowFactory.cpp</in>
+          <in>WindowFactoryManager.cpp</in>
+          <in>WindowManager.cpp</in>
+          <in>WindowRenderer.cpp</in>
+          <in>WindowRendererManager.cpp</in>
+          <in>XMLAttributes.cpp</in>
+          <in>XMLHandler.cpp</in>
+          <in>XMLParser.cpp</in>
+          <in>XMLSerializer.cpp</in>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>cegui/include</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>NOMINMAX</Elem>
+              <Elem>_CRT_SECURE_NO_WARNINGS</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="cegui/src/Affector.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Animation.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/AnimationInstance.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/AnimationManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Animation_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Base.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/BasicImage.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/BasicRenderedStringParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/BidiVisualMapping.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/BoundSlot.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/CentredRenderedString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ChainedXMLHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Clipboard.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Colour.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ColourRect.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/CommonDialogs/ColourPicker/ColourPicker.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/CommonDialogs/ColourPicker/Controls.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/CommonDialogs/ColourPicker/Conversions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/CommonDialogs/ColourPicker/Types.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/CommonDialogs/Module.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/CompositeResourceProvider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Config_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/CoordConverter.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/DataContainer.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/DefaultLogger.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/DefaultRenderedStringParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/DefaultResourceProvider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/DynamicModule.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Element.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Event.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/EventArgs.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/EventSet.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Exceptions.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/FactoryModule.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/FactoryRegisterer.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Font.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/FontManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Font_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/FormattedRenderedString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/GUIContext.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/GUILayout_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/GeometryBuffer.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/GlobalEventSet.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Image.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ImageCodec.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ImageManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/JustifiedRenderedString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/JustifiedRenderedStringWordWrapper.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/KeyFrame.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/LeftAlignedRenderedString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/LinkedEvent.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Logger.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/MouseCursor.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/NamedElement.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/NamedXMLResourceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/PixmapFont.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Property.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/PropertyHelper.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/PropertySet.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Quaternion.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Rect.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderEffectManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderQueue.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderTarget.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderedString.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderedStringComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderedStringImageComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderedStringTextComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderedStringWidgetComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderingSurface.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderingWindow.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RightAlignedRenderedString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Scheme.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/SchemeManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Scheme_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ScriptModule.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/SimpleTimer.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/String.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/SubscriberSlot.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/System.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/SystemKeys.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/TextUtils.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Win32StringTranscoder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Window.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/WindowFactory.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/WindowFactoryManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/WindowRenderer.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/WindowRendererManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Button.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Default.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Editbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/FrameWindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ItemEntry.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ItemListbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ListHeader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ListHeaderSegment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Listbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/MenuItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Menubar.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Module.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/MultiColumnList.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/MultiLineEditbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/PopupMenu.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ProgressBar.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ScrollablePane.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Scrollbar.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Slider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Static.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/StaticImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/StaticText.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/TabButton.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/TabControl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Titlebar.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/ToggleButton.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Tooltip.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/WindowRendererSets/Core/Tree.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/XMLAttributes.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/XMLHandler.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/XMLParser.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/XMLSerializer.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/falagard/ComponentBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/Dimensions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/EventAction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/EventLinkDefinition.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/FormattingSetting.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/FrameComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/ImageryComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/ImagerySection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/LayerSpecification.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/NamedArea.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/PropertyDefinitionBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/PropertyInitialiser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/SectionSpecification.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/StateImagery.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/TextComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/WidgetComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/WidgetLookFeel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/WidgetLookManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/XMLEnumHelper.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/falagard/XMLHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ButtonBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ClippedContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ComboDropList.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Combobox.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/DefaultWindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/DragContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Editbox.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/FrameWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/GridLayoutContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/GroupBox.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/HorizontalLayoutContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ItemEntry.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ItemListBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ItemListbox.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/LayoutCell.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/LayoutContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ListHeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ListHeaderSegment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Listbox.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ListboxItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ListboxTextItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/MenuBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/MenuItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Menubar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/MultiColumnList.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/MultiLineEditbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/PopupMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ProgressBar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/PushButton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/RadioButton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ScrollablePane.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Scrollbar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ScrolledContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ScrolledItemListBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/SequentialLayoutContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Slider.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Spinner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/TabButton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/TabControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Thumb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Titlebar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/ToggleButton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Tooltip.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/Tree.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/TreeItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cegui/src/widgets/VerticalLayoutContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <folder path="0/cegui/src/CommonDialogs">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/include/CommonDialogs</pElem>
+            <pElem>cegui/src/CommonDialogs</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUICOMMONDIALOGS_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/WindowRendererSets">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/include/WindowRendererSets/Core</pElem>
+            <pElem>cegui/src/WindowRendererSets/Core</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUICOREWINDOWRENDERERSET_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/falagard">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/widgets">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>CEGUIBASE_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>

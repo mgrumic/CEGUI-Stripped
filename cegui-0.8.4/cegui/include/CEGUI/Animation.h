@@ -33,6 +33,8 @@
 #include <vector>
 #include <map>
 
+#ifndef PE_NO_ANIMATION
+
 #if defined(_MSC_VER)
 #   pragma warning(push)
 #   pragma warning(disable : 4251)
@@ -302,6 +304,8 @@ private:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
+
+#endif //PE_NO_ANIMATION
 
 #endif  // end of guard _CEGUIAnimation_h_
 

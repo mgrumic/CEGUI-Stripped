@@ -288,6 +288,7 @@ void WidgetLookFeel::initialiseWidget(Window& widget) const
     // create animation instances
     AnimationNameSet ans;
     appendAnimationNames(ans);
+    #ifndef PE_NO_ANIMATION
     for (AnimationNameSet::const_iterator ani = ans.begin();
          ani != ans.end();
          ++ani)
@@ -298,6 +299,7 @@ void WidgetLookFeel::initialiseWidget(Window& widget) const
         d_animationInstances.insert(std::make_pair(&widget, instance));
         instance->setTargetWindow(&widget);
     }
+    #endif //PE_NO_ANIMATION
 }
 
 //---------------------------------------------------------------------------//
@@ -355,7 +357,9 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
     AnimationInstanceMap::iterator anim;
     while ((anim = d_animationInstances.find(&widget)) != d_animationInstances.end())
     {
+        #ifndef PE_NO_ANIMATION
         AnimationManager::getSingleton().destroyAnimationInstance(anim->second);
+        #endif //PE_NO_ANIMATION
         d_animationInstances.erase(anim);
     }
 }

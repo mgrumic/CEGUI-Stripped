@@ -1,0 +1,3 @@
+D:/projekat/CEGUI/CEGUI-Stripped/cegui-0.8.4/cegui/src/CMakeFiles/CEGUIBase-0.dir
+D:/projekat/CEGUI/CEGUI-Stripped/cegui-0.8.4/cegui/src/CommonDialogs/CMakeFiles/CEGUICommonDialogs-0.dir
+D:/projekat/CEGUI/CEGUI-Stripped/cegui-0.8.4/cegui/src/WindowRendererSets/Core/CMakeFiles/CEGUICoreWindowRendererSet.dir

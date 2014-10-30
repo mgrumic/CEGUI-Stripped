@@ -36,6 +36,7 @@
 #include "CEGUI/PropertyHelper.h"
 #include <algorithm>
 
+#ifndef PE_NO_ANIMATION
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -335,6 +336,7 @@ void Animation::writeXMLToStream(XMLSerializer& xml_stream, const String& name_o
 }
 
 //----------------------------------------------------------------------------//
-
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_ANIMATION
 
