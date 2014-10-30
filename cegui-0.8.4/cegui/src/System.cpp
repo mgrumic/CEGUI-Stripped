@@ -646,7 +646,7 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<ListHeader>();
     WindowFactoryManager::addWindowType<ListHeaderSegment>();
     WindowFactoryManager::addWindowType<Menubar>();
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 	WindowFactoryManager::addWindowType<PopupMenu>();
 #endif
 	WindowFactoryManager::addWindowType<MenuItem>();

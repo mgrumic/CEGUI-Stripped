@@ -94,7 +94,7 @@ namespace CEGUI {
         \brief
             Returns true if the popup menu attached to the menu item is open.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
         bool isOpened(void) const {
             return d_opened;
@@ -245,7 +245,7 @@ namespace CEGUI {
         \brief
             handler invoked internally when the MenuItem is clicked.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef PE_NO_MOUSE 
         virtual void onClicked(WindowEventArgs& e);
 
@@ -311,7 +311,7 @@ namespace CEGUI {
 #ifndef PE_NO_MOUSE 
         bool d_hovering; //!< true when the button is in 'hover' state and requires the hover rendering.
 #endif //PE_NO_MOUSE 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         void setPopupMenu_impl(PopupMenu* popup, bool add_as_child = true);
 
         /*************************************************************************
@@ -334,7 +334,7 @@ namespace CEGUI {
         /*************************************************************************
             Private methods
          *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         void addMenuItemProperties(void);
 #endif //PE_NO_POPUP_MENU_H
         /*!

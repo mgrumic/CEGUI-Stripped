@@ -1748,14 +1748,12 @@ void Window::destroy(void)
 
 #ifndef PE_NO_MOUSE 
     // let go of the tooltip if we have it
-#ifndef PE_NO_MOUSE 
     Tooltip* const tip = getTooltip();
     if (tip && tip->getTargetWindow()==this)
         tip->setTargetWindow(0);
 
     // ensure custom tooltip is cleaned up
     setTooltip(static_cast<Tooltip*>(0));
-#endif //PE_NO_MOUSE 
 
 #endif //PE_NO_MOUSE 
     // clean up looknfeel related things

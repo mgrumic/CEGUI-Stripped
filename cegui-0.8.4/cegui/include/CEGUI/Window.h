@@ -2063,7 +2063,8 @@ public:
         this directly from client code.  See the DragContainer class.
     */
     void notifyDragDropItemDropped(DragContainer* item);
-#endif //PE_NO_MOUSE     void notifyDragDropItemEnters(DragContainer* item);
+    void notifyDragDropItemEnters(DragContainer* item);
+#endif //PE_NO_MOUSE     
 
     /*!
     \brief

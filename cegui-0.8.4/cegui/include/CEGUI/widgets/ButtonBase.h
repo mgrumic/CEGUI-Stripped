@@ -51,7 +51,7 @@ class CEGUIEXPORT ButtonBase : public Window
 {
 public:
 
-#ifdef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE 
 	/*************************************************************************
 		Accessor type functions
 	*************************************************************************/
@@ -95,13 +95,13 @@ public:
 	*/
 	virtual ~ButtonBase(void);
 
+    void setPushedState(const bool pushed);
 
 protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
 
-    void setPushedState(const bool pushed);
     virtual void	onCaptureLost(WindowEventArgs& e);
 #ifndef PE_NO_MOUSE 
     virtual void	onMouseMove(MouseEventArgs& e);

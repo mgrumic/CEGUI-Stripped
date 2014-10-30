@@ -31,7 +31,7 @@
 
 #include "../Base.h"
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "../Window.h"
 #include "./MenuBase.h"
 
