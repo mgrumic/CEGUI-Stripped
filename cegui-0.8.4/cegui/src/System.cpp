@@ -664,8 +664,12 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<ClippedContainer>();
     #endif //PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<PushButton>();
+#ifndef PE_NO_WGT_RADIOBUTTON
     WindowFactoryManager::addWindowType<RadioButton>();
+#endif // PE_NO_WGT_RADIOBUTTON
+#ifndef PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<Combobox>();
+#endif // PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<ComboDropList>();
     WindowFactoryManager::addWindowType<Editbox>();
     WindowFactoryManager::addWindowType<FrameWindow>();
@@ -690,9 +694,9 @@ void System::addStandardWindowFactories()
 #ifndef PE_NO_WGT_SLIDER
     WindowFactoryManager::addWindowType<Slider>();
 #endif //PE_NO_WGT_SLIDER
-    #ifndef PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<Spinner>();
-    #endif  //PE_NO_WGT_SPINNER
+#endif  //PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<TabButton>();
     WindowFactoryManager::addWindowType<TabControl>();
     WindowFactoryManager::addWindowType<Thumb>();
