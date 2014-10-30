@@ -84,7 +84,8 @@ public:
     \brief
     	Retrieves the parent animation of this keyframe
     */
-    inline Animation* getParent() const
+    
+    Animation* getParent() const
     {
     	return d_parent;
     }

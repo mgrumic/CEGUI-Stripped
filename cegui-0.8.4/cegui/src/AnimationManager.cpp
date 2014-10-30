@@ -432,8 +432,8 @@ String AnimationManager::generateUniqueAnimationName()
     ++d_uid_counter;
 
     // log if we ever wrap-around (which should be pretty unlikely)
-    if (d_uid_counter < old_uid)
 #ifndef PE_NO_LOGGER
+    if (d_uid_counter < old_uid)
         Logger::getSingleton().logEvent("UID counter for generated Animation "
             "names has wrapped around - the fun shall now commence!");
 #endif //PE_NO_LOGGER

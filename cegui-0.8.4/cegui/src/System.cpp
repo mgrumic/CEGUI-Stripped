@@ -145,8 +145,8 @@ System::System(Renderer& renderer,
     // the user to fully customize the logger as he sees fit without fear of
     // seeing its configuration overwritten by this.
 #ifdef CEGUI_HAS_DEFAULT_LOGGER
-    if (d_ourLogger)
 #ifndef PE_NO_LOGGER
+    if (d_ourLogger)
         CEGUI_NEW_AO DefaultLogger();
 #endif //PE_NO_LOGGER
 #endif
