@@ -115,9 +115,9 @@ ImageManager::~ImageManager()
     while (!d_factories.empty())
         removeImageType(d_factories.begin()->first);
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     std::sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
        "[CEGUI::ImageManager] Singleton destroyed " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -162,9 +162,9 @@ Image& ImageManager::create(const String& type, const String& name)
     Image& image = factory->create(name);
     d_images[name] = std::make_pair(&image, factory);
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "%p", static_cast<void*>(&image));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ImageManager] Created image: '" + name + "' (" + addr_buff + 
         ") of type: " + type);
@@ -213,9 +213,9 @@ Image& ImageManager::create(const XMLAttributes& attributes)
 
     d_images[name] = std::make_pair(&image, factory);
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "%p", static_cast<void*>(&image));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ImageManager] Created image: '" + name + "' (" + addr_buff + 
         ") of type: " + type);

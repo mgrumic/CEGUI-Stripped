@@ -73,7 +73,7 @@ Quaternion Quaternion::eulerAnglesDegrees(const float x, const float y, const fl
 
     return eulerAnglesRadians(x * d2r, y * d2r, z * d2r);
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 Quaternion Quaternion::axisAngleRadians(const Vector3f& axis, const float rotation)
 {
@@ -91,7 +91,7 @@ Quaternion Quaternion::axisAngleDegrees(const Vector3f& axis, const float rotati
 
     return axisAngleRadians(axis, rotation * d2r);
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 Quaternion Quaternion::slerp(const Quaternion& left, const Quaternion& right,
     float position, const bool shortestPath)

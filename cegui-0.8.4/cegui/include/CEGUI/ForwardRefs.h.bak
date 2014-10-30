@@ -27,6 +27,13 @@ purpose: Forward declares all core system classes
 ***************************************************************************/
 #ifndef _CEGUIForwardRefs_h_
 #define _CEGUIForwardRefs_h_
+<<<<<<< HEAD
+=======
+
+#include "Base.h"
+
+
+>>>>>>> 03eea92ee6dc3330ea8f10582b005846f9db6f85
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -79,11 +86,7 @@ class LinkedEvent;
 class LinkedEventArgs;
 #ifndef PE_NO_LOGGER
 class Logger;
-<<<<<<< HEAD
 #endif //PE_NO_LOGGER
-=======
-#endif //PE_NO_LOGGER 
->>>>>>> 9253684e6878f5316d2d6ee52015e2b79669f5ad
 class MouseCursor;
 class NamedElement;
 class NamedElementEventArgs;
@@ -128,7 +131,9 @@ class TextUtils;
 class UBox;
 class UDim;
 template<typename T> class Vector2;
+#ifndef PE_NO_VECTOR3D
 template<typename T> class Vector3;
+#endif  // PE_NO_VECTOR3D
 struct Vertex;
 class WidgetLookFeel;
 class Window;
@@ -222,13 +227,8 @@ class ResourceEventArgs;
 class TreeEventArgs;
 class UpdateEventArgs;
 class WindowEventArgs;
-<<<<<<< HEAD
-} // End of CEGUI namespace section
-#endif // end of guard _CEGUIForwardRefs_h_
-=======
 
 } // End of  CEGUI namespace section
 
 #endif	// end of guard _CEGUIForwardRefs_h_
 
->>>>>>> 9253684e6878f5316d2d6ee52015e2b79669f5ad

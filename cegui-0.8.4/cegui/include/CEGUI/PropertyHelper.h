@@ -559,7 +559,7 @@ public:
         return String(buff);
     }
 };
-
+#ifndef PE_NO_VECTOR3D
 template<>
 class PropertyHelper<Vector3f >
 {
@@ -592,7 +592,7 @@ public:
         return String(buff);
     }
 };
-
+#endif  // PE_NO_VECTOR3D
 template<>
 class PropertyHelper<Quaternion>
 {

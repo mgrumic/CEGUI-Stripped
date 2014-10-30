@@ -55,9 +55,9 @@ WindowRendererManager* WindowRendererManager::getSingletonPtr(void)
 *************************************************************************/
 WindowRendererManager::WindowRendererManager()
 {
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowRendererManager singleton created " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -79,9 +79,9 @@ WindowRendererManager::WindowRendererManager()
 
 WindowRendererManager::~WindowRendererManager()
 {
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowRendererManager singleton destroyed " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -122,9 +122,9 @@ void WindowRendererManager::addFactory(WindowRendererFactory* wr)
         CEGUI_THROW(AlreadyExistsException("A WindowRendererFactory named '"+wr->getName()+"' already exist"));
     }
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(wr));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("WindowRendererFactory '"+wr->getName()+
         "' added. " + addr_buff);
 #endif //PE_NO_LOGGER

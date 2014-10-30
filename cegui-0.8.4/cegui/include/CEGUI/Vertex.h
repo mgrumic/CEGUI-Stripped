@@ -41,7 +41,11 @@ struct Vertex :
     public AllocatedObject<Vertex>
 {
     //! Position of the vertex in 3D space.
+#ifndef PE_NO_VECTOR3D
     Vector3f position;
+#else
+    Vector2f position;
+#endif  // PE_NO_VECTOR3D
     //! Texture co-ords to be applied to the vertex.
     Vector2f tex_coords;
     //! colour to be applied to the vertex.

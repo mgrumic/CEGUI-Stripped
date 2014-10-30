@@ -214,18 +214,28 @@ void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
 
     Vertex vbuffer[6];
     // vertex 0
+#ifndef PE_NO_VECTOR3D
     vbuffer[0].position   = Vector3f(final_rect.left(), final_rect.top(), 0.0f);
+#else
+    vbuffer[0].position   = Vector2f(final_rect.left(), final_rect.top());
+#endif  // PE_NO_VECTOR3D
     vbuffer[0].colour_val = colours.d_top_left;
     vbuffer[0].tex_coords = Vector2f(tex_rect.left(), tex_rect.top());
 
     // vertex 1
+#ifndef PE_NO_VECTOR3D
     vbuffer[1].position   = Vector3f(final_rect.left(), final_rect.bottom(), 0.0f);
+#else
+    vbuffer[1].position   = Vector2f(final_rect.left(), final_rect.bottom());
+#endif  // PE_NO_VECTOR3D
     vbuffer[1].colour_val = colours.d_bottom_left;
     vbuffer[1].tex_coords = Vector2f(tex_rect.left(), tex_rect.bottom());
 
     // vertex 2
     vbuffer[2].position.d_x   = final_rect.right();
+#ifndef PE_NO_VECTOR3D
     vbuffer[2].position.d_z   = 0.0f;
+#endif  // PE_NO_VECTOR3D
     vbuffer[2].colour_val     = colours.d_bottom_right;
     vbuffer[2].tex_coords.d_x = tex_rect.right();
 
@@ -243,13 +253,19 @@ void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
     }
 
     // vertex 3
+#ifndef PE_NO_VECTOR3D
     vbuffer[3].position   = Vector3f(final_rect.right(), final_rect.top(), 0.0f);
+#else
+    vbuffer[3].position   = Vector2f(final_rect.right(), final_rect.top());
+#endif  // PE_NO_VECTOR3D
     vbuffer[3].colour_val = colours.d_top_right;
     vbuffer[3].tex_coords = Vector2f(tex_rect.right(), tex_rect.top());
 
     // vertex 4
     vbuffer[4].position.d_x   = final_rect.left();
+#ifndef PE_NO_VECTOR3D
     vbuffer[4].position.d_z   = 0.0f;
+#endif  // PE_NO_VECTOR3D
     vbuffer[4].colour_val     = colours.d_top_left;
     vbuffer[4].tex_coords.d_x = tex_rect.left();
 
@@ -267,7 +283,11 @@ void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
     }
 
     // vertex 5
+#ifndef PE_NO_VECTOR3D
     vbuffer[5].position = Vector3f(final_rect.right(), final_rect.bottom(), 0.0f);
+#else
+    vbuffer[5].position = Vector2f(final_rect.right(), final_rect.bottom());
+#endif  // PE_NO_VECTOR3D
     vbuffer[5].colour_val= colours.d_bottom_right;
     vbuffer[5].tex_coords = Vector2f(tex_rect.right(), tex_rect.bottom());
 
