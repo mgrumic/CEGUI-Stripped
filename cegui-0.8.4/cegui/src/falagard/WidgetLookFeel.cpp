@@ -55,7 +55,9 @@ WidgetLookFeel::WidgetLookFeel(const WidgetLookFeel& other) :
     d_properties(other.d_properties),
     d_namedAreas(other.d_namedAreas),
     d_animations(other.d_animations),
+#ifndef PE_NO_ANIMATION
     d_animationInstances(other.d_animationInstances),
+#endif //PE_NO_ANIMATION
     d_eventLinkDefinitions(other.d_eventLinkDefinitions)
 {
     for (PropertyDefinitionList::iterator i = other.d_propertyDefinitions.begin();
@@ -98,7 +100,9 @@ void WidgetLookFeel::swap(WidgetLookFeel& other)
     std::swap(d_propertyDefinitions, other.d_propertyDefinitions);
     std::swap(d_propertyLinkDefinitions, other.d_propertyLinkDefinitions);
     std::swap(d_animations, other.d_animations);
+#ifndef PE_NO_ANIMATION
     std::swap(d_animationInstances, other.d_animationInstances);
+#endif //PE_NO_ANIMATION
     std::swap(d_eventLinkDefinitions, other.d_eventLinkDefinitions);
 }
 
@@ -352,7 +356,7 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
         // remove the property from the window
         widget.removeProperty((*pldi)->getPropertyName());
     }
-
+#ifndef PE_NO_ANIMATION
     // clean up animation instances assoicated wit the window.
     AnimationInstanceMap::iterator anim;
     while ((anim = d_animationInstances.find(&widget)) != d_animationInstances.end())
@@ -362,6 +366,7 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
         #endif //PE_NO_ANIMATION
         d_animationInstances.erase(anim);
     }
+#endif //PE_NO_ANIMATION
 }
 
 //---------------------------------------------------------------------------//

@@ -227,7 +227,9 @@ public:
         So their values are still known after
         they've been affected.
      */
+#ifndef PE_NO_ANIMATION
     void savePropertyValues(AnimationInstance* instance);
+#endif //PE_NO_ANIMATION
 
     /*!
     \brief
@@ -241,7 +243,9 @@ public:
     \see
         AnimationInstance
     */
+#ifndef PE_NO_ANIMATION
     void apply(AnimationInstance* instance);
+#endif //PE_NO_ANIMATION
 
     /*!
     \brief

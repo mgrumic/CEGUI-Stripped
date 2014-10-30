@@ -1715,11 +1715,6 @@
             <in>SILLYTGAImageContext.h</in>
             <in>SILLYTGAImageLoader.h</in>
           </df>
-          <df name="minizip">
-            <in>ioapi.h</in>
-            <in>unzip.h</in>
-            <in>zip.h</in>
-          </df>
           <in>SILLY.h</in>
           <in>SILLYBase.h</in>
           <in>SILLYDataSource.h</in>
