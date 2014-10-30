@@ -93,7 +93,10 @@ const String& Font_xmlHandler::getObjectName() const
 {
     if (!d_font)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Attempt to access null object."));
+#endif //PE_NO_THROW_MSGS
 
     return d_font->getName();
 }
@@ -103,7 +106,10 @@ Font& Font_xmlHandler::getObject() const
 {
     if (!d_font)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Attempt to access null object."));
+#endif //PE_NO_THROW_MSGS
 
     d_objectRead = true;
     return *d_font;
@@ -166,7 +172,10 @@ void Font_xmlHandler::elementFontStart(const XMLAttributes& attributes)
         createPixmapFont(attributes);
     else
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Encountered unknown font type of '" + font_type + "'"));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -179,10 +188,13 @@ void Font_xmlHandler::validateFontFileVersion(const XMLAttributes& attrs)
         return;
 
     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
         "You are attempting to load a font of version '" + version + "' but "
         "this CEGUI version is only meant to load fonts of version '" +
         NativeVersion + "'. Consider using the migrate.py script bundled with "
         "CEGUI Unified Editor to migrate your data."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -201,7 +213,10 @@ void Font_xmlHandler::elementMappingStart(const XMLAttributes& attributes)
 {
     if (!d_font)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Attempt to access null object."));
+#endif //PE_NO_THROW_MSGS
 
     // double-check font type just in case - report issues as 'soft' errors
     if (d_font->getTypeName() != FontTypePixmap)
@@ -248,7 +263,10 @@ void Font_xmlHandler::createFreeTypeFont(const XMLAttributes& attributes)
         attributes.getValueAsFloat(FontLineSpacingAttribute, 0.0f));
 #else
     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
         "CEGUI was compiled without freetype support."));
+#endif //PE_NO_THROW_MSGS
 #endif
 }
 

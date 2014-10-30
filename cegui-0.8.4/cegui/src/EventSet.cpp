@@ -63,7 +63,10 @@ void EventSet::addEvent(Event& event)
         CEGUI_DELETE_AO &event;
 
         CEGUI_THROW(AlreadyExistsException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "An event named '" + name + "' already exists in the EventSet."));
+#endif //PE_NO_THROW_MSGS
     }
 
     d_events.insert(std::make_pair(name, &event));
@@ -129,7 +132,10 @@ ScriptModule* EventSet::getScriptModule() const
         return sm;
 
     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
         "No scripting module is available."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//

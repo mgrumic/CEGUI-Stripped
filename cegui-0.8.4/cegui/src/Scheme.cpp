@@ -229,9 +229,12 @@ void Scheme::loadFonts()
         {
             fntmgr.destroy(font);
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "The Font created by file '" + (*pos).filename +
                 "' is named '" + realname + "', not '" + (*pos).name +
                 "' as required by Scheme '" + d_name + "'."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 }
@@ -276,9 +279,12 @@ void Scheme::loadWindowFactories()
 
             if (!getWindowFactoryModuleFunc)
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "Required function export "
                     "'FactoryModule& ""getWindowFactoryModule()' "
                     "was not found in module '" + (*cmod).name + "'."));
+#endif //PE_NO_THROW_MSGS
 
             // get the WindowRendererModule object for this module.
             (*cmod).factoryModule = &getWindowFactoryModuleFunc();
@@ -331,9 +337,12 @@ void Scheme::loadWindowRendererFactories()
 
             if (!getWRFactoryModuleFunc)
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "Required function export "
                     "'FactoryModule& getWindowRendererFactoryModule()' "
                     "was not found in module '" + (*cmod).name + "'."));
+#endif //PE_NO_THROW_MSGS
 
             // get the WindowRendererModule object for this module.
             (*cmod).factoryModule = &getWRFactoryModuleFunc();

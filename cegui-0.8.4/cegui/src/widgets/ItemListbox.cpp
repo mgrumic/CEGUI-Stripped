@@ -309,7 +309,10 @@ bool ItemListbox::isItemSelected(size_t index) const
     if (index >= d_listItems.size())
     {
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "The index given is out of range for this ItemListbox"));
+#endif //PE_NO_THROW_MSGS
     }
     ItemEntry *li = d_listItems[index];
     return li->isSelected();

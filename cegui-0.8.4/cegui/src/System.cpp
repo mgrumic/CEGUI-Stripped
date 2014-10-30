@@ -27,7 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/System.h"
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
+#endif  // PE_NO_CLIPBOARD
 #include "CEGUI/DefaultLogger.h"
 #include "CEGUI/ImageManager.h"
 #include "CEGUI/FontManager.h"
@@ -120,7 +122,9 @@ System::System(Renderer& renderer,
 : d_renderer(&renderer),
   d_resourceProvider(resourceProvider),
   d_ourResourceProvider(false),
+#ifndef PE_NO_CLIPBOARD
   d_clipboard(CEGUI_NEW_AO Clipboard()),
+#endif  // PE_NO_CLIPBOARD
   d_scriptModule(scriptModule),
   d_xmlParser(xmlParser),
   d_ourXmlParser(false),
@@ -323,8 +327,9 @@ System::~System(void)
         CEGUI_DELETE_AO Logger::getSingletonPtr();
 #endif //PE_NO_LOGGER
 #endif
-    
+#ifndef PE_NO_CLIPBOARD
     CEGUI_DELETE_AO d_clipboard;
+#endif  // PE_NO_CLIPBOARD
 }
 
 //---------------------------------------------------------------------------//
@@ -500,7 +505,10 @@ void System::executeScriptFile(const String& filename, const String& resourceGro
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An exception was thrown during the execution of the script file."));
+#endif //PE_NO_THROW_MSGS
 		}
 
 	}
@@ -534,7 +542,10 @@ int	System::executeScriptGlobal(const String& function_name) const
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An exception was thrown during execution of the scripted function."));
+#endif //PE_NO_THROW_MSGS
 		}
 
 	}
@@ -569,7 +580,10 @@ void System::executeScriptString(const String& str) const
         CEGUI_CATCH(...)
         {
             CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An exception was thrown during execution of the script code."));
+#endif //PE_NO_THROW_MSGS
         }
 
     }
@@ -944,7 +958,10 @@ void System::performVersionTest(const int expected, const int received,
                                 const String& func)
 {
     if (expected != received)
-        CEGUI_THROW(InvalidRequestException("Version mismatch detected! "
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Version mismatch detected! "
             "Called from function: " + func +
             " Expected abi: " + PropertyHelper<int>::toString(expected) +
             " received abi: " + PropertyHelper<int>::toString(received) +
@@ -952,6 +969,7 @@ void System::performVersionTest(const int expected, const int received,
             "against a CEGUI version that is incompatible with the library "
             "containing the function. Usually this means that you have "
             "old binary library versions that have been used by mistake."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//

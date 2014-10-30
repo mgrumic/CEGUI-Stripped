@@ -125,7 +125,10 @@ void MinizipResourceProvider::openArchive()
     if (d_pimpl->d_zfile == 0)
     {
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "'" + d_pimpl->d_archive + "' does not exist"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
@@ -164,14 +167,21 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (d_pimpl->d_zfile == 0)
     {
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "'" + final_filename + "' cannot be "
             "loaded because the archive has not been set"));
+#endif //PE_NO_THROW_MSGS
     }
 
     if (unzLocateFile(d_pimpl->d_zfile, final_filename.c_str(), 0) != UNZ_OK)
     {
-        CEGUI_THROW(InvalidRequestException("'" + final_filename +
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "'" + final_filename +
             "' does not exist"));
+#endif //PE_NO_THROW_MSGS
     }
 
     unz_file_info file_info;
@@ -179,14 +189,22 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (unzGetCurrentFileInfo(d_pimpl->d_zfile, &file_info,
                               0, 0, 0, 0, 0, 0) != UNZ_OK)
     {
-        CEGUI_THROW(FileIOException("'" + final_filename +
+        CEGUI_THROW(FileIOException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "'" + final_filename +
             "' error reading file header"));
+#endif //PE_NO_THROW_MSGS
     }
 
     if (unzOpenCurrentFile(d_pimpl->d_zfile) != Z_OK)
     {
-        CEGUI_THROW(FileIOException("'" + final_filename +
+        CEGUI_THROW(FileIOException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "'" + final_filename +
             "' error opening file"));
+#endif //PE_NO_THROW_MSGS
     }
 
     ulong size = file_info.uncompressed_size;
@@ -194,14 +212,22 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
 
     if (unzReadCurrentFile(d_pimpl->d_zfile, buffer, size) < 0)
     {
-        CEGUI_THROW(FileIOException("'" + final_filename +
+        CEGUI_THROW(FileIOException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "'" + final_filename +
             "' error reading file"));
+#endif //PE_NO_THROW_MSGS
     }
 
     if (unzCloseCurrentFile(d_pimpl->d_zfile) != UNZ_OK)
     {
-        CEGUI_THROW(GenericException("'" + final_filename +
+        CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "'" + final_filename +
             "' error validating file"));
+#endif //PE_NO_THROW_MSGS
     }
 
     output.setData(buffer);

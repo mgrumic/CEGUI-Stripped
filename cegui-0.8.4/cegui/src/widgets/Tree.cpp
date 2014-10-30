@@ -362,7 +362,10 @@ void Tree::insertItem(TreeItem* item, const TreeItem* position)
             if (ins_pos == d_listItems.end())
             {
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "the specified TreeItem for parameter 'position' is not attached to this Tree."));
+#endif //PE_NO_THROW_MSGS
             }
         }
         
@@ -528,8 +531,12 @@ void Tree::setItemSelectState(TreeItem* item, bool state)
     }
     else
     {
-        CEGUI_THROW(InvalidRequestException("the specified TreeItem is not "
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "the specified TreeItem is not "
             "attached to this Tree or not visible."));
+#endif //PE_NO_THROW_MSGS
     }
     }
 
@@ -580,7 +587,10 @@ void Tree::setItemSelectState(size_t item_index, bool state)
     else
     {
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "the value passed in the 'item_index' parameter is out of range for this Tree."));
+#endif //PE_NO_THROW_MSGS
     }
     
 }

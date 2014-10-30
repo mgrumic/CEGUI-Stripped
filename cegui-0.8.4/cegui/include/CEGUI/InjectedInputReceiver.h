@@ -262,6 +262,7 @@ public:
         - true if the copy was successful
         - false if the copy was denied
     */
+#ifndef PE_NO_CLIPBOARD
     virtual bool injectCopyRequest() = 0;
     
     /*!
@@ -283,6 +284,7 @@ public:
         - false if the paste was denied
     */
     virtual bool injectPasteRequest() = 0;
+#endif  // PE_NO_CLIPBOARD
 };
 
 }

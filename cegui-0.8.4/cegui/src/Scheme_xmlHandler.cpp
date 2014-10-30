@@ -89,7 +89,10 @@ const String& Scheme_xmlHandler::getObjectName() const
 {
     if (!d_scheme)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Attempt to access null object."));
+#endif //PE_NO_THROW_MSGS
 
     return d_scheme->getName();
 }
@@ -99,7 +102,10 @@ Scheme& Scheme_xmlHandler::getObject() const
 {
     if (!d_scheme)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Attempt to access null object."));
+#endif //PE_NO_THROW_MSGS
 
     d_objectRead = true;
     return *d_scheme;
@@ -184,10 +190,13 @@ void Scheme_xmlHandler::validateSchemeFileVersion(const XMLAttributes& attrs)
         return;
 
     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
         "You are attempting to load a GUI scheme of version '" + version +
         "' but this CEGUI version is only meant to load GUI schemes of version '" +
         NativeVersion + "'. Consider using the migrate.py script bundled with "
         "CEGUI Unified Editor to migrate your data."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -307,7 +316,10 @@ void Scheme_xmlHandler::elementGUISchemeEnd()
 {
     if (!d_scheme)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Attempt to access null object."));
+#endif //PE_NO_THROW_MSGS
 
 #ifndef PE_NO_LOGGER
     char addr_buff[32];

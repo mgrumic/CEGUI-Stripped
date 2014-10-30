@@ -200,7 +200,10 @@ namespace CEGUI
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "An unknown TextInputMode was specified."));
+#endif //PE_NO_THROW_MSGS
             }
 
             d_inputMode = mode;
@@ -273,7 +276,10 @@ namespace CEGUI
             break;
         default:
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An unknown TextInputMode was encountered."));
+#endif //PE_NO_THROW_MSGS
         }
 
         if (res)
@@ -282,8 +288,11 @@ namespace CEGUI
         }
 
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "The string '" + getEditbox()->getText() +
             "' can not be converted to numerical representation."));
+#endif //PE_NO_THROW_MSGS
     }
 
     String Spinner::getTextFromValue(void) const
@@ -306,7 +315,10 @@ namespace CEGUI
             break;
         default:
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An unknown TextInputMode was encountered."));
+#endif //PE_NO_THROW_MSGS
         }
 
         return String(tmp.str().c_str());

@@ -215,8 +215,9 @@ public:
     \brief
         Retrieves internal CEGUI clipboard, optionally synced with system wide clipboard
     */
+#ifndef PE_NO_CLIPBOARD
     Clipboard* getClipboard() const         {return d_clipboard;}
-
+#endif  // PE_NO_CLIPBOARD
     GUIContext& getDefaultGUIContext() const;
 
     /*!
@@ -613,9 +614,10 @@ protected:
 	Renderer*	d_renderer;			//!< Holds the pointer to the Renderer object given to us in the constructor
     ResourceProvider* d_resourceProvider;      //!< Holds the pointer to the ResourceProvider object given to us by the renderer or the System constructor.
 	bool d_ourResourceProvider;
-
+#ifndef PE_NO_CLIPBOARD
     Clipboard* d_clipboard;         //!< Internal clipboard with optional sync with native clipboard
-
+#endif  // PE_NO_CLIPBOARD
+    
 	// scripting
 	ScriptModule*	d_scriptModule;			//!< Points to the scripting support module.
 	String			d_termScriptName;		//!< Name of the script to run upon system shutdown.

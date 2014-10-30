@@ -124,8 +124,11 @@ const StateImagery& WidgetLookFeel::getStateImagery(
         return (*imagery).second;
 
     if (d_inheritedLookName.empty())
-        CEGUI_THROW(UnknownObjectException("unknown state '" + state +
-            "' in look '" + d_lookName + "'."));
+        CEGUI_THROW(UnknownObjectException(
+                            ""));
+#ifndef PE_NO_THROW_MSGS
+            "unknown state '" + state + "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     return WidgetLookManager::getSingleton().
         getWidgetLook(d_inheritedLookName).getStateImagery(state);
@@ -141,8 +144,11 @@ const ImagerySection& WidgetLookFeel::getImagerySection(
         return (*imgSect).second;
 
     if (d_inheritedLookName.empty())
-        CEGUI_THROW(UnknownObjectException("unknown imagery section '" +
-            section +  "' in look '" + d_lookName + "'."));
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+            "unknown imagery section '" + section +  "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     return WidgetLookManager::getSingleton().
         getWidgetLook(d_inheritedLookName).getImagerySection(section);
@@ -172,12 +178,19 @@ void WidgetLookFeel::renameImagerySection(const String& oldName, const String& n
 {
 	ImageryList::iterator oldsection = d_imagerySections.find(oldName);
     if (oldsection == d_imagerySections.end())
-        CEGUI_THROW(UnknownObjectException("unknown imagery section: '" +
-            oldName + "' in look '" + d_lookName + "'."));
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "unknown imagery section: '" + oldName + "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     if (d_imagerySections.find(newName) != d_imagerySections.end())
-        CEGUI_THROW(UnknownObjectException("imagery section: '" + newName +
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "imagery section: '" + newName +
             "' already exists in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     oldsection->second.setName(newName);
     d_imagerySections[newName] = d_imagerySections[oldName];
@@ -309,8 +322,12 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
 {
     if (widget.getLookNFeel() != getName())
     {
-        CEGUI_THROW(InvalidRequestException("The window '" + 
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "The window '" + 
             widget.getNamePath() + "' does not have this WidgetLook assigned"));
+#endif //PE_NO_THROW_MSGS
     }
 
     // remove added child widgets
@@ -400,12 +417,20 @@ void WidgetLookFeel::renameNamedArea(const String& oldName, const String& newNam
     NamedAreaList::iterator oldarea = d_namedAreas.find(oldName);
     NamedAreaList::const_iterator newarea = d_namedAreas.find(newName);
     if (oldarea == d_namedAreas.end())
-        CEGUI_THROW(UnknownObjectException("unknown named area: '" + oldName +
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "unknown named area: '" + oldName +
             "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     if (newarea != d_namedAreas.end())
-        CEGUI_THROW(UnknownObjectException("named area: '" + newName +
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "named area: '" + newName +
             "' already exists in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     oldarea->second.setName(newName);
     d_namedAreas[newName] = d_namedAreas[oldName];
@@ -426,8 +451,12 @@ const NamedArea& WidgetLookFeel::getNamedArea(const String& name) const
         return (*area).second;
 
     if (d_inheritedLookName.empty())
-        CEGUI_THROW(UnknownObjectException("unknown named area: '" + name +
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "unknown named area: '" + name +
             "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     return WidgetLookManager::getSingleton().
         getWidgetLook(d_inheritedLookName).getNamedArea(name);
