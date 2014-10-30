@@ -28,7 +28,7 @@
  ***************************************************************************/
 #include "CEGUI/widgets/MenuItem.h"
 #include "CEGUI/widgets/Menubar.h"
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/PopupMenu.h"
 #endif
 #include "CEGUI/Logger.h"
@@ -54,7 +54,7 @@ MenuItem::MenuItem(const String& type, const String& name)
 #ifndef PE_NO_MOUSE 
       d_hovering(false),
 #endif //PE_NO_MOUSE 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 	  d_opened(false),
       d_popupClosing(false),
       d_popupOpening(false),
@@ -69,7 +69,7 @@ MenuItem::MenuItem(const String& type, const String& name)
     setWantsMultiClickEvents(false);
 #endif //PE_NO_MOUSE 
     // add the new properties
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
     addMenuItemProperties();
 	d_popupOffset.d_x = cegui_absdim(0);
@@ -113,7 +113,7 @@ void MenuItem::updateInternalState(const Vector2f& mouse_pos)
         MenuBase* menu = dynamic_cast<MenuBase*>(d_ownerList);
         if (menu)
         {
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 			if (d_hovering)
             {
                 // does this menubar only allow one popup open? and is there a popup open?
@@ -150,7 +150,7 @@ void MenuItem::updateInternalState(const Vector2f& mouse_pos)
 }
 #endif //PE_NO_MOUSE 
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 /*************************************************************************
     Set the popup menu for this item.
 *************************************************************************/
@@ -410,7 +410,7 @@ void MenuItem::onMouseMove(MouseEventArgs& e)
 /*************************************************************************
     Handler for mouse button pressed events
 *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef PE_NO_MOUSE 
 void MenuItem::onMouseButtonDown(MouseEventArgs& e)
 {
@@ -453,14 +453,14 @@ void MenuItem::onMouseButtonUp(MouseEventArgs& e)
         // was the button released over this window?
         // (use mouse position, as e.position in args has been unprojected)
 		if (
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         !d_popupWasClosed &&
 #endif //PE_NO_POPUP_MENU_H
 		getGUIContext().getRootWindow()->getTargetChildAtPosition(
                     getGUIContext().getMouseCursor().getPosition()) == this)
         {
             WindowEventArgs we(this);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
             onClicked(we);
 #endif //PE_NO_POPUP_MENU_H
         }
@@ -530,7 +530,7 @@ void MenuItem::onTextChanged(WindowEventArgs& e)
 /*************************************************************************
 Perform actual update processing for this Window.
 *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 void MenuItem::updateSelf(float elapsed)
 {
     ItemEntry::updateSelf(elapsed);
@@ -582,7 +582,7 @@ void MenuItem::addChild_impl(Element* element)
             "(Window path: " + getNamePath() + ")."));
     
     ItemEntry::addChild_impl(wnd);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     PopupMenu* pop = dynamic_cast<PopupMenu*>(wnd);
     // if this is a PopupMenu we add it like one
     if (pop)
@@ -595,7 +595,7 @@ void MenuItem::addChild_impl(Element* element)
 /*************************************************************************
 Add MenuItem specific properties
 *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 void MenuItem::addMenuItemProperties(void)
 {
     const String& propertyOrigin = WidgetTypeName;

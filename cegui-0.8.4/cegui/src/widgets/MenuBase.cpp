@@ -27,7 +27,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/widgets/MenuBase.h"
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/PopupMenu.h"
 #endif
 #include "CEGUI/widgets/MenuItem.h"
@@ -41,7 +41,7 @@ namespace CEGUI
 *************************************************************************/
 // event strings
 const String MenuBase::EventNamespace("MenuBase");
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 const String MenuBase::EventPopupOpened("PopupOpened");
 const String MenuBase::EventPopupClosed("PopupClosed");
 #endif
@@ -51,7 +51,7 @@ const String MenuBase::EventPopupClosed("PopupClosed");
 MenuBase::MenuBase(const String& type, const String& name)
     : ItemListBase(type, name),
       d_itemSpacing(0.0f)
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 	  ,
       d_popupItem(0),
       d_allowMultiplePopups(false),
@@ -69,7 +69,7 @@ MenuBase::~MenuBase(void)
 {
 }
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
 /*************************************************************************
     Change the currently open MenuItem PopupMenu
@@ -129,7 +129,7 @@ void MenuBase::addMenuBaseProperties(void)
         "ItemSpacing", "Property to get/set the item spacing of the menu.  Value is a float.",
         &MenuBase::setItemSpacing, &MenuBase::getItemSpacing, 10.0f
     );
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
     CEGUI_DEFINE_PROPERTY(MenuBase, bool,
         "AllowMultiplePopups", "Property to get/set the state of the allow multiple popups setting for the menu.  Value is either \"true\" or \"false\".",
@@ -147,7 +147,7 @@ void MenuBase::addMenuBaseProperties(void)
 /************************************************************************
     Set if multiple child popup menus are allowed simultaneously
 *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
 void MenuBase::setAllowMultiplePopups(bool setting)
 {
@@ -182,7 +182,7 @@ void MenuBase::onHidden(WindowEventArgs&)
 {
     if (!getAutoCloseNestedPopups())
         return;
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
     changePopupMenuItem(0);
 #endif
@@ -196,7 +196,7 @@ void MenuBase::onHidden(WindowEventArgs&)
             MenuItem* menuItem = dynamic_cast<MenuItem*>(d_listItems[i]);
             if (!menuItem)
                 continue;
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
             if (!menuItem->getPopupMenu())
                 continue;

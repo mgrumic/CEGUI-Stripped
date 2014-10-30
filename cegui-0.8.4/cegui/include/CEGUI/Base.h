@@ -30,10 +30,15 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 
+
+
+#ifndef _CEGUIBase_h_
+#define _CEGUIBase_h_
+
+
 #ifndef PE_NO_POPUP_MENU_H
 #define PE_NO_POPUP_MENU_H
 #endif
-
 #define PE_NO_MOUSE
 //#define PE_NO_VERTEX
 #define PE_NO_WGT_SPINNER
@@ -47,9 +52,6 @@
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
 #define PE_NO_WGT_TREE
 #define PE_NO_WGT_COMBOBOX
-
-#ifndef _CEGUIBase_h_
-#define _CEGUIBase_h_
 
 // bring in configuration options
 #include "CEGUI/Config.h"

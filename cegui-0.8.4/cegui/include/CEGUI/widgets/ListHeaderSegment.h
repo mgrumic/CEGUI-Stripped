@@ -208,7 +208,7 @@ public:
         /*!
         \brief
             Return whether the segment is currently in its hovering state.
-        *
+        */
         bool    isSegmentHovering(void) const  {return d_segmentHover;}
 
 

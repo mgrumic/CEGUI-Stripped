@@ -174,7 +174,7 @@ class MultiColumnList;
 #ifndef PE_NO_WGT_MULTILINE_EDITBOX
 class MultiLineEditbox;
 #endif //PE_NO_WGT_MULTILINE_EDITBOX
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 class PopupMenu;
 #endif //PE_NO_MOUSE
 #ifndef PE_NO_WGT_PROGRESS_BAR

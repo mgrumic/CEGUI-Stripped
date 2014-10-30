@@ -32,6 +32,7 @@
 #include "CEGUI/Window.h"
 #include "CEGUI/widgets/Tooltip.h"
 #include "CEGUI/SimpleTimer.h"
+#include "CEGUI\Base.h"
 
 #if defined(_MSC_VER)
 #   pragma warning(push)
