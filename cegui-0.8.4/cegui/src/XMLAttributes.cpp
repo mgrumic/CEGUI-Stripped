@@ -66,7 +66,10 @@ namespace CEGUI
         if (index >= d_attrs.size())
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "The specified index is out of range for this XMLAttributes block."));
+#endif //PE_NO_THROW_MSGS
         }
 
         AttributeMap::const_iterator iter = d_attrs.begin();
@@ -80,7 +83,10 @@ namespace CEGUI
         if (index >= d_attrs.size())
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "The specified index is out of range for this XMLAttributes block."));
+#endif //PE_NO_THROW_MSGS
         }
 
         AttributeMap::const_iterator iter = d_attrs.begin();
@@ -100,7 +106,10 @@ namespace CEGUI
         else
         {
             CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "no value exists for an attribute named '" + attrName + "'."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 
@@ -130,7 +139,10 @@ namespace CEGUI
         else
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to bool."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 
@@ -150,7 +162,10 @@ namespace CEGUI
         if(strm.fail() || !strm.eof())
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to integer."));
+#endif //PE_NO_THROW_MSGS
         }
 
         return val;
@@ -172,7 +187,10 @@ namespace CEGUI
         if(strm.fail() || !strm.eof())
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to float."));
+#endif //PE_NO_THROW_MSGS
         }
 
         return val;

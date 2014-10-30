@@ -500,7 +500,10 @@ void System::executeScriptFile(const String& filename, const String& resourceGro
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An exception was thrown during the execution of the script file."));
+#endif //PE_NO_THROW_MSGS
 		}
 
 	}
@@ -534,7 +537,10 @@ int	System::executeScriptGlobal(const String& function_name) const
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An exception was thrown during execution of the scripted function."));
+#endif //PE_NO_THROW_MSGS
 		}
 
 	}
@@ -569,7 +575,10 @@ void System::executeScriptString(const String& str) const
         CEGUI_CATCH(...)
         {
             CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "An exception was thrown during execution of the script code."));
+#endif //PE_NO_THROW_MSGS
         }
 
     }
@@ -940,7 +949,10 @@ void System::performVersionTest(const int expected, const int received,
                                 const String& func)
 {
     if (expected != received)
-        CEGUI_THROW(InvalidRequestException("Version mismatch detected! "
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Version mismatch detected! "
             "Called from function: " + func +
             " Expected abi: " + PropertyHelper<int>::toString(expected) +
             " received abi: " + PropertyHelper<int>::toString(received) +
@@ -948,6 +960,7 @@ void System::performVersionTest(const int expected, const int received,
             "against a CEGUI version that is incompatible with the library "
             "containing the function. Usually this means that you have "
             "old binary library versions that have been used by mistake."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//

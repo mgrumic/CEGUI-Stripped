@@ -36,6 +36,7 @@
 
 #define PE_NO_MOUSE
 #define PE_NO_LOGGER
+#define PE_NO_THROW_MSGS
 
 
 #define PE_NO_WGT_SPINNER

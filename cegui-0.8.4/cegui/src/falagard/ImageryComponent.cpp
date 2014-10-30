@@ -155,7 +155,10 @@ namespace CEGUI
 
             default:
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "An unknown HorizontalFormatting value was specified."));
+#endif //PE_NO_THROW_MSGS
         }
 
         // calculate initial y co-ordinate and vertical tile count according to formatting options
@@ -190,7 +193,10 @@ namespace CEGUI
 
             default:
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "An unknown VerticalFormatting value was specified."));
+#endif //PE_NO_THROW_MSGS
         }
 
         // perform final rendering (actually is now a caching of the images which will be drawn)

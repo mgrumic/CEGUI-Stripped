@@ -113,8 +113,11 @@ void LayoutCell::addChild_impl(Element* element)
     
     if (!wnd)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "LayoutCell can only have Elements of type Window added as children "
             "(Window path: " + getNamePath() + ")."));
+#endif //PE_NO_THROW_MSGS
     
     Window::addChild_impl(wnd);
 
@@ -157,7 +160,10 @@ bool LayoutCell::handleChildAdded(const EventArgs&)
     if (getChildCount() > 0)
     {
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "You can't add more than one widget to a layout cell!"));
+#endif //PE_NO_THROW_MSGS
     }
 
     //markNeedsLayouting();

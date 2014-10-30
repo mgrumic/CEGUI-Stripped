@@ -54,7 +54,11 @@ struct EventActionFunctor
             return true;
 
         default:
-            CEGUI_THROW(InvalidRequestException("invalid action."));
+            CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                    "invalid action."));
+#endif //PE_NO_THROW_MSGS
         }
 
         return false;
@@ -108,7 +112,10 @@ void EventAction::initialiseWidget(Window& widget) const
 
     if (!parent)
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "EvenAction can only be initialised on child widgets."));
+#endif //PE_NO_THROW_MSGS
 
     d_connections.insert(
         std::make_pair(makeConnectionKeyName(widget),

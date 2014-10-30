@@ -103,7 +103,10 @@ namespace CEGUI
         if (filename.empty())
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "Filename supplied for look & feel file must be valid"));
+#endif //PE_NO_THROW_MSGS
         }
 
         // create handler object
@@ -160,7 +163,10 @@ namespace CEGUI
         }
 
         CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "WidgetLook '" + widget + "' does not exist."));
+#endif //PE_NO_THROW_MSGS
     }
 
     void WidgetLookManager::eraseWidgetLook(const String& widget)

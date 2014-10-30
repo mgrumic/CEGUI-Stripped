@@ -327,7 +327,10 @@ namespace CEGUI
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "Invalid DimensionType specified for area component."));
+#endif //PE_NO_THROW_MSGS
             }
         }
     }
@@ -384,10 +387,13 @@ namespace CEGUI
         if (version != NativeVersion)
         {
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "You are attempting to load a looknfeel of version '" + version +
                 "' but this CEGUI version is only meant to load looknfeels of "
                 "version '" + NativeVersion + "'. Consider using the migrate.py "
                 "script bundled with CEGUI Unified Editor to migrate your data."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 
@@ -593,11 +599,14 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                         VertFormatElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "LeftEdge, RightEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -641,11 +650,14 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                         HorzFormatElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "TopEdge, BottomEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -1168,11 +1180,14 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                         VertFormatPropertyElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "LeftEdge, RightEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -1208,11 +1223,14 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                         HorzFormatPropertyElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "TopEdge, BottomEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
