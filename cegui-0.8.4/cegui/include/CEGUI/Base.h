@@ -51,6 +51,7 @@
 #define PE_NO_WGT_GROUP_BOX
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
 #define PE_NO_WGT_TREE
+#define PE_NO_WGT_COMBOBOX
 #define PE_NO_ANIMATION
 
 // bring in configuration options

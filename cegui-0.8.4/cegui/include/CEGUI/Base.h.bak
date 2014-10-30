@@ -31,19 +31,28 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 
-#ifndef PE_NO_POPUP_MENU_H
-#define PE_NO_POPUP_MENU_H
-#endif
 
-#define PE_HAS_MOUSE
-#define PE_NO_ANIMATION
-
-
-#ifndef PE_NO_ANIMATION
-#endif //PE_NO_ANIMATION
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_
+
+
+#ifndef PE_NO_POPUP_MENU_H
+#define PE_NO_POPUP_MENU_H
+#endif
+#define PE_NO_MOUSE
+//#define PE_NO_VERTEX
+#define PE_NO_WGT_SPINNER
+#define PE_NO_WGT_SLIDER
+#define PE_NO_VERTEX
+#define PE_NO_WGT_PROGRESS_BAR
+#define PE_NO_WGT_TOOLTIP
+#define PE_NO_WGT_MULTILINE_EDITBOX
+#define PE_NO_WGT_CLIPPED_CONTAINER
+#define PE_NO_WGT_GROUP_BOX
+#define PE_NO_COM_DIALOGS_COLOUR_PICKER
+#define PE_NO_WGT_TREE
+#define PE_NO_ANIMATION
 
 // bring in configuration options
 #include "CEGUI/Config.h"
@@ -259,6 +268,7 @@ typedef std::ostream OutStream;     //!< Output stream class.
 #define PE_NO_WGT_GROUP_BOX
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
 #define PE_NO_WGT_TREE
+#define PE_NO_WGT_COMBOBOX
 
 // bring in configuration options
 #include "CEGUI/Config.h"
@@ -420,4 +430,4 @@ typedef std::ostream OutStream;     //!< Output stream class.
 #include "CEGUI/MemoryAllocation.h"
 
 #endif	// end of guard _CEGUIBase_h_
->>>>>>> e29c46f424737f7c265c3129acccff23b09193e5
+>>>>>>> d05b2615183d14d2cdfcd5ea739896daaa86f5fb
