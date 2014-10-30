@@ -747,8 +747,9 @@ public:
 		if ((d_cplength < idx) || (str.d_cplength < str_idx))
 			CEGUI_THROW(
                                 std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -826,15 +827,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (std_str.size() < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for std::string"));
 #endif //PE_NO_THROW_MSGS
 
@@ -948,15 +951,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (str_cplen == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1050,15 +1055,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1128,8 +1135,9 @@ public:
 	{
 		if (d_cplength <= idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1152,8 +1160,9 @@ public:
 	{
 		if (d_cplength <= idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1244,8 +1253,9 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1280,8 +1290,9 @@ public:
 
 		if (d_cplength < idx)
 			CEGUI_THROW(out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index was out of range for CEGUI::String object"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1330,8 +1341,9 @@ public:
 	{
 		if (str.d_cplength < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index was out of range for CEGUI::String object"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1393,8 +1405,9 @@ public:
 	{
 		if (std_str.size() < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index was out of range for std::string object"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1483,8 +1496,9 @@ public:
 	{
 		if (str_num == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1530,8 +1544,9 @@ public:
 	{
 		if (num == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Code point count can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1691,8 +1706,9 @@ public:
 	{
 		if (str.d_cplength < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1754,8 +1770,9 @@ public:
 	{
 		if (std_str.size() < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for std::string"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1847,8 +1864,9 @@ public:
 	{
 		if (len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -1899,8 +1917,9 @@ public:
 	{
 		if (num == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Code point count can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2010,8 +2029,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2080,8 +2100,9 @@ public:
 	{
 		if ((d_cplength < idx) || (str.d_cplength < str_idx))
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2152,15 +2173,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (std_str.size() < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for std::string"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2238,15 +2261,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length of utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2284,15 +2309,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (num == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Code point count can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2424,15 +2451,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length of char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2521,8 +2550,9 @@ public:
 
 		if (d_cplength <= idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2699,8 +2729,9 @@ public:
 	{
 		if ((d_cplength < idx) || (str.d_cplength < str_idx))
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2815,15 +2846,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (std_str.size() < str_idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for std::string"));
 #endif //PE_NO_THROW_MSGS
 
@@ -2945,15 +2978,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -3035,15 +3070,17 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (num == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Code point count can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -3229,16 +3266,18 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
-                                "Length for the char array can not be 'npos'"));
+            #else
+                    "Length for the char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
 		if (((len + idx) > d_cplength) || (len == npos))
@@ -3602,8 +3641,9 @@ public:
 	{
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -3657,8 +3697,9 @@ public:
 	{
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -3752,8 +3793,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -3800,8 +3842,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4050,8 +4093,9 @@ public:
 	{
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
                                             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4102,8 +4146,9 @@ public:
 	{
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4245,8 +4290,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4290,8 +4336,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4548,8 +4595,9 @@ public:
 	{
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4603,8 +4651,9 @@ public:
 	{
 		if (str_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for utf8 encoded string can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4750,8 +4799,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4798,8 +4848,9 @@ public:
 	{
 		if (chars_len == npos)
 			CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Length for char array can not be 'npos'"));
 #endif //PE_NO_THROW_MSGS
 
@@ -4845,8 +4896,9 @@ public:
 	{
 		if (d_cplength < idx)
 			CEGUI_THROW(std::out_of_range(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                                 "Index is out of range for this CEGUI::String"));
 #endif //PE_NO_THROW_MSGS
 

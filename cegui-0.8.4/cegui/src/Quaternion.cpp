@@ -183,8 +183,9 @@ String QuaternionSlerpInterpolator::interpolateRelativeMultiply(
                                             float /*position*/)
 {
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "AM_RelativeMultiply doesn't make sense "
         "with Quaternions! Please use absolute or relative application method."));
 #endif //PE_NO_THROW_MSGS

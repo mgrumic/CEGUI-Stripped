@@ -200,8 +200,9 @@ namespace CEGUI
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "An unknown TextInputMode was specified."));
 #endif //PE_NO_THROW_MSGS
             }
@@ -276,8 +277,9 @@ namespace CEGUI
             break;
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "An unknown TextInputMode was encountered."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -288,8 +290,9 @@ namespace CEGUI
         }
 
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "The string '" + getEditbox()->getText() +
             "' can not be converted to numerical representation."));
 #endif //PE_NO_THROW_MSGS
@@ -315,8 +318,9 @@ namespace CEGUI
             break;
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "An unknown TextInputMode was encountered."));
 #endif //PE_NO_THROW_MSGS
         }

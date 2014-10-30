@@ -120,8 +120,9 @@ void WindowRendererManager::addFactory(WindowRendererFactory* wr)
     if (d_wrReg.insert(std::make_pair(wr->getName(), wr)).second == false)
     {
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "A WindowRendererFactory named '"+wr->getName()+"' already exist"));
 #endif //PE_NO_THROW_MSGS
     }

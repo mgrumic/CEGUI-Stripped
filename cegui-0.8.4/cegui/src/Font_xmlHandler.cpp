@@ -93,8 +93,9 @@ const String& Font_xmlHandler::getObjectName() const
 {
     if (!d_font)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Attempt to access null object."));
 #endif //PE_NO_THROW_MSGS
 
@@ -106,8 +107,9 @@ Font& Font_xmlHandler::getObject() const
 {
     if (!d_font)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Attempt to access null object."));
 #endif //PE_NO_THROW_MSGS
 
@@ -172,8 +174,9 @@ void Font_xmlHandler::elementFontStart(const XMLAttributes& attributes)
         createPixmapFont(attributes);
     else
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Encountered unknown font type of '" + font_type + "'"));
 #endif //PE_NO_THROW_MSGS
 }
@@ -188,8 +191,9 @@ void Font_xmlHandler::validateFontFileVersion(const XMLAttributes& attrs)
         return;
 
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "You are attempting to load a font of version '" + version + "' but "
         "this CEGUI version is only meant to load fonts of version '" +
         NativeVersion + "'. Consider using the migrate.py script bundled with "
@@ -213,8 +217,9 @@ void Font_xmlHandler::elementMappingStart(const XMLAttributes& attributes)
 {
     if (!d_font)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Attempt to access null object."));
 #endif //PE_NO_THROW_MSGS
 
@@ -263,8 +268,9 @@ void Font_xmlHandler::createFreeTypeFont(const XMLAttributes& attributes)
         attributes.getValueAsFloat(FontLineSpacingAttribute, 0.0f));
 #else
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "CEGUI was compiled without freetype support."));
 #endif //PE_NO_THROW_MSGS
 #endif

@@ -89,8 +89,9 @@ RapidXMLDocument::RapidXMLDocument(XMLHandler& handler,
         // error detected, cleanup out buffers
         delete[] buf;
         CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "an error occurred while "
                               "parsing the XML data - check it for "
                               "potential errors!."));

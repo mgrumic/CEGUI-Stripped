@@ -156,8 +156,9 @@ void LayoutContainer::addChild_impl(Element* element)
     
     if (!wnd)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "LayoutContainer can only have Elements of type Window added as "
             "children (Window path: " + getNamePath() + ")."));
 #endif //PE_NO_THROW_MSGS

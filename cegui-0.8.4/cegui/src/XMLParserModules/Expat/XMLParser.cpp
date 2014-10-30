@@ -54,8 +54,9 @@ void ExpatParser::parseXML(XMLHandler& handler, const RawDataContainer& source, 
     if (!parser)
     {
         CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Unable to create a new Expat Parser"));
 #endif //PE_NO_THROW_MSGS
     }

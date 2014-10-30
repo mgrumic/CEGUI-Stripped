@@ -58,8 +58,9 @@ void PCRERegexMatcher::setRegexString(const String& regex)
     // handle failure
     if (!d_regex)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Bad RegEx set: '" + regex + "'.  Additional Information: " +
             prce_error));
 #endif //PE_NO_THROW_MSGS
@@ -81,8 +82,9 @@ RegexMatcher::MatchState PCRERegexMatcher::getMatchStateOfString(
     // if the regex is not valid, then an exception is thrown
     if (!d_regex)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Attempt to use invalid RegEx '" + d_string + "'."));
 #endif //PE_NO_THROW_MSGS
 
@@ -119,8 +121,9 @@ RegexMatcher::MatchState PCRERegexMatcher::getMatchStateOfString(
 
     // anything else is an error
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "PCRE Error: " + PropertyHelper<int>::toString(result) +
         " occurred while attempting to match the RegEx '" +
         d_string + "'."));

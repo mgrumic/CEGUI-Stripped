@@ -329,8 +329,9 @@ namespace CEGUI
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "Invalid DimensionType specified for area component."));
 #endif //PE_NO_THROW_MSGS
             }
@@ -389,8 +390,9 @@ namespace CEGUI
         if (version != NativeVersion)
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "You are attempting to load a looknfeel of version '" + version +
                 "' but this CEGUI version is only meant to load looknfeels of "
                 "version '" + NativeVersion + "'. Consider using the migrate.py "
@@ -601,8 +603,9 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         VertFormatElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "LeftEdge, RightEdge or Background components. "
@@ -652,8 +655,9 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         HorzFormatElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "TopEdge, BottomEdge or Background components. "
@@ -1186,8 +1190,9 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         VertFormatPropertyElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "LeftEdge, RightEdge or Background components. "
@@ -1229,8 +1234,9 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         HorzFormatPropertyElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "TopEdge, BottomEdge or Background components. "

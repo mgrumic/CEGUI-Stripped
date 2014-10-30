@@ -125,8 +125,9 @@ void MinizipResourceProvider::openArchive()
     if (d_pimpl->d_zfile == 0)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "'" + d_pimpl->d_archive + "' does not exist"));
 #endif //PE_NO_THROW_MSGS
     }
@@ -167,8 +168,9 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (d_pimpl->d_zfile == 0)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "'" + final_filename + "' cannot be "
             "loaded because the archive has not been set"));
 #endif //PE_NO_THROW_MSGS
@@ -177,8 +179,9 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (unzLocateFile(d_pimpl->d_zfile, final_filename.c_str(), 0) != UNZ_OK)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "'" + final_filename +
             "' does not exist"));
 #endif //PE_NO_THROW_MSGS
@@ -190,8 +193,9 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
                               0, 0, 0, 0, 0, 0) != UNZ_OK)
     {
         CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "'" + final_filename +
             "' error reading file header"));
 #endif //PE_NO_THROW_MSGS
@@ -200,8 +204,9 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (unzOpenCurrentFile(d_pimpl->d_zfile) != Z_OK)
     {
         CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "'" + final_filename +
             "' error opening file"));
 #endif //PE_NO_THROW_MSGS
@@ -213,8 +218,9 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (unzReadCurrentFile(d_pimpl->d_zfile, buffer, size) < 0)
     {
         CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "'" + final_filename +
             "' error reading file"));
 #endif //PE_NO_THROW_MSGS
@@ -223,8 +229,9 @@ void MinizipResourceProvider::loadRawDataContainer(const String& filename,
     if (unzCloseCurrentFile(d_pimpl->d_zfile) != UNZ_OK)
     {
         CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "'" + final_filename +
             "' error validating file"));
 #endif //PE_NO_THROW_MSGS

@@ -178,8 +178,9 @@ void RenderEffectManager::addEffect(const String& name)
 {
     if (isEffectAvailable(name))
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "A RenderEffect is already registered under the name '" +
             name + "'"));
 #endif //PE_NO_THROW_MSGS

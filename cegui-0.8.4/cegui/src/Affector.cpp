@@ -77,8 +77,9 @@ size_t Affector::getIdxInParent() const
     }
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "Affector wasn't found in parent, therefore its index is unknown!"));
 #endif //PE_NO_THROW_MSGS
 }
@@ -135,8 +136,9 @@ KeyFrame* Affector::createKeyFrame(float position)
     if (d_keyFrames.find(position) != d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "Unable to create KeyFrame at given position, there "
                         "already is a KeyFrame on that position."));
 #endif //PE_NO_THROW_MSGS
@@ -168,8 +170,9 @@ void Affector::destroyKeyFrame(KeyFrame* keyframe)
     if (it == d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "Unable to destroy given KeyFrame! "
                         "No such KeyFrame was found."));
 #endif //PE_NO_THROW_MSGS
@@ -187,8 +190,9 @@ KeyFrame* Affector::getKeyFrameAtPosition(float position) const
     if (it == d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "Can't find a KeyFrame with given position."));
 #endif //PE_NO_THROW_MSGS
     }
@@ -208,8 +212,9 @@ KeyFrame* Affector::getKeyFrameAtIdx(size_t index) const
     if (index >= d_keyFrames.size())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Out of bounds!"));
 #endif //PE_NO_THROW_MSGS
     }
@@ -235,8 +240,9 @@ void Affector::moveKeyFrameToPosition(KeyFrame* keyframe, float newPosition)
     if (d_keyFrames.find(newPosition) != d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "There is already a key frame at position: " +
                     PropertyHelper<float>::toString(newPosition) + "."));
 #endif //PE_NO_THROW_MSGS
@@ -255,8 +261,9 @@ void Affector::moveKeyFrameToPosition(KeyFrame* keyframe, float newPosition)
     }
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "passed key frame wasn't found within this affector"));
 #endif //PE_NO_THROW_MSGS
 }

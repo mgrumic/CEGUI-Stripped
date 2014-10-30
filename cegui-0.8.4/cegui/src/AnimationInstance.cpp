@@ -150,8 +150,9 @@ void AnimationInstance::setPosition(float position)
     if (position < 0.0 || position > d_definition->getDuration())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "Unable to set position of this animation instance "
                         "because given position isn't in interval "
                         "[0.0, duration of animation]."));
@@ -174,8 +175,9 @@ void AnimationInstance::setSpeed(float speed)
     if (speed < 0.0f)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "You can't set playback speed to a value that's lower "
                         "than 0.0"));
 #endif //PE_NO_THROW_MSGS
@@ -184,8 +186,9 @@ void AnimationInstance::setSpeed(float speed)
     if (speed == 0.0f)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "AnimationInstance::setSpeed: You can't set playback speed "
                         "to zero, please use AnimationInstance::pause instead"));
 #endif //PE_NO_THROW_MSGS
@@ -339,8 +342,9 @@ void AnimationInstance::step(float delta)
     if (delta < 0.0f)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "You can't step the Animation Instance with negative "
                         "delta! You can't reverse the flow of time, stop "
                         "trying!"));

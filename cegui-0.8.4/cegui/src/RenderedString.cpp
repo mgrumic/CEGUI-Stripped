@@ -107,8 +107,9 @@ void RenderedString::split(const Window* ref_wnd, const size_t line,
 
     if (line >= getLineCount())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "line number specified is invalid."));
 #endif //PE_NO_THROW_MSGS
 
@@ -249,8 +250,9 @@ Sizef RenderedString::getPixelSize(const Window* ref_wnd,
 {
     if (line >= getLineCount())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "line number specified is invalid."));
 #endif //PE_NO_THROW_MSGS
 
@@ -274,8 +276,9 @@ size_t RenderedString::getSpaceCount(const size_t line) const
 {
     if (line >= getLineCount())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "line number specified is invalid."));
 #endif //PE_NO_THROW_MSGS
 
@@ -296,8 +299,9 @@ void RenderedString::draw(const Window* ref_wnd, const size_t line,
 {
     if (line >= getLineCount())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "line number specified is invalid."));
 #endif //PE_NO_THROW_MSGS
 

@@ -83,8 +83,9 @@ public:
             setNative_impl(receiver,value);
         else
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     String("Property ") + d_origin + ":" + d_name + " is not writable!"));
 #endif //PE_NO_THROW_MSGS
     }
@@ -98,8 +99,9 @@ public:
             return getNative_impl(receiver);
         else
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     String("Property ") + d_origin + ":" + d_name+" is not readable!"));
 #endif //PE_NO_THROW_MSGS
     }

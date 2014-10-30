@@ -129,8 +129,9 @@ const StateImagery& WidgetLookFeel::getStateImagery(
 
     if (d_inheritedLookName.empty())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
                             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "unknown state '" + state + "' in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS
 
@@ -149,8 +150,9 @@ const ImagerySection& WidgetLookFeel::getImagerySection(
 
     if (d_inheritedLookName.empty())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "unknown imagery section '" + section +  "' in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS
 
@@ -183,15 +185,17 @@ void WidgetLookFeel::renameImagerySection(const String& oldName, const String& n
 	ImageryList::iterator oldsection = d_imagerySections.find(oldName);
     if (oldsection == d_imagerySections.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "unknown imagery section: '" + oldName + "' in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS
 
     if (d_imagerySections.find(newName) != d_imagerySections.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "imagery section: '" + newName +
             "' already exists in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS
@@ -329,8 +333,9 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
     if (widget.getLookNFeel() != getName())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "The window '" + 
             widget.getNamePath() + "' does not have this WidgetLook assigned"));
 #endif //PE_NO_THROW_MSGS
@@ -427,16 +432,18 @@ void WidgetLookFeel::renameNamedArea(const String& oldName, const String& newNam
     NamedAreaList::const_iterator newarea = d_namedAreas.find(newName);
     if (oldarea == d_namedAreas.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "unknown named area: '" + oldName +
             "' in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS
 
     if (newarea != d_namedAreas.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "named area: '" + newName +
             "' already exists in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS
@@ -461,8 +468,9 @@ const NamedArea& WidgetLookFeel::getNamedArea(const String& name) const
 
     if (d_inheritedLookName.empty())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "unknown named area: '" + name +
             "' in look '" + d_lookName + "'."));
 #endif //PE_NO_THROW_MSGS

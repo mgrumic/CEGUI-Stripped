@@ -68,8 +68,9 @@ void NamedElement::setName(const String& name)
         if (parent && parent->isChild(name))
         {
             CEGUI_THROW(AlreadyExistsException(
-            ""));
-#ifndef PE_NO_THROW_MSGS
+#ifdef PE_NO_THROW_MSGS
+                ""));
+#else
                     "Failed to rename "
                 "NamedElement at: " + getNamePath() + " as: " + name + ". A Window "
                 "with that name is already attached as a sibling."));
@@ -151,8 +152,9 @@ NamedElement* NamedElement::getChildElement(const String& name_path) const
         return e;
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "The Element object "
         "referenced by '" + name_path + "' is not attached to Element at '"
         + getNamePath() + "'."));
@@ -174,8 +176,9 @@ void NamedElement::removeChild(const String& name_path)
         removeChild(e);
     else
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "The Element object "
             "referenced by '" + name_path + "' is not attached to Element at '"
             + getNamePath() + "'."));
@@ -193,8 +196,9 @@ void NamedElement::addChild_impl(Element* element)
 
         if (existing && named_element != existing)
             CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "Failed to add "
                 "Element named: " + named_element->getName() + " to element at: " +
                 getNamePath() + " since an Element with that name is already "

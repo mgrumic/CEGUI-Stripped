@@ -150,8 +150,9 @@ Image& ImageManager::create(const String& type, const String& name)
 {
     if (d_images.find(name) != d_images.end())
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Image already exists: " + name));
 #endif //PE_NO_THROW_MSGS
 
@@ -159,8 +160,9 @@ Image& ImageManager::create(const String& type, const String& name)
 
     if (i == d_factories.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Unknown Image type: " + type));
 #endif //PE_NO_THROW_MSGS
 
@@ -189,15 +191,17 @@ Image& ImageManager::create(const XMLAttributes& attributes)
 
     if (name.empty())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Invalid (empty) image name passed to create."));
 #endif //PE_NO_THROW_MSGS
 
     if (d_images.find(name) != d_images.end())
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Image already exists: " + name));
 #endif //PE_NO_THROW_MSGS
 
@@ -205,8 +209,9 @@ Image& ImageManager::create(const XMLAttributes& attributes)
 
     if (i == d_factories.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Unknown Image type: " + type));
 #endif //PE_NO_THROW_MSGS
 
@@ -282,8 +287,9 @@ Image& ImageManager::get(const String& name) const
     
     if (i == d_images.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Image not defined: " + name));
 #endif //PE_NO_THROW_MSGS
 
@@ -459,8 +465,9 @@ void ImageManager::validateImagesetFileVersion(const XMLAttributes& attrs)
         return;
 
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "You are attempting to load an imageset of version '" + version +
         "' but this CEGUI version is only meant to load imagesets of version '" +
         NativeVersion + "'. Consider using the migrate.py script bundled with "

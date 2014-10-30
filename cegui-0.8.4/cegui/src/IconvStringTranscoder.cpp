@@ -49,8 +49,9 @@ public:
     {
         if (d_cd == reinterpret_cast<iconv_t>(-1))
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     String(
                 "Failed to create conversion descriptor from \"") +
                 d_fromCode.c_str() + "\" to \"" + d_toCode.c_str() + "\"."));
@@ -88,8 +89,9 @@ public:
             reason = "Unknown error.";
 
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 String(
             "Failed to convert from \"") + d_fromCode.c_str() +
             "\" to \"" + d_toCode.c_str() + "\": " + reason.c_str()));
@@ -290,8 +292,9 @@ String IconvStringTranscoder::stringFromStdWString(const std::wstring& input) co
 
     if (result == Converter::error || result == Converter::partial)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "conversion failed."));
 #endif //PE_NO_THROW_MSGS
 #else

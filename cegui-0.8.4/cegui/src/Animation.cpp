@@ -134,8 +134,9 @@ void Animation::destroyAffector(Affector* affector)
     if (it == d_affectors.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Given affector not found!"));
 #endif //PE_NO_THROW_MSGS
     }
@@ -150,8 +151,9 @@ Affector* Animation::getAffectorAtIdx(size_t index) const
     if (index >= d_affectors.size())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Out of bounds."));
 #endif //PE_NO_THROW_MSGS
     }
@@ -179,8 +181,9 @@ void Animation::defineAutoSubscription(const String& eventName,
         if (it->second == action)
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                             "Unable to define given Auto Subscription - exactly "
                             "the same auto subscription is already there!"));
 #endif //PE_NO_THROW_MSGS
@@ -210,8 +213,9 @@ void Animation::undefineAutoSubscription(const String& eventName,
     }
 
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "Unable to undefine given Auto Subscription - not found!"));
 #endif //PE_NO_THROW_MSGS
 }
@@ -268,8 +272,9 @@ void Animation::autoSubscribe(AnimationInstance* instance)
         else
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                             "Unable to auto subscribe! "
                             "'" + a + "' is not a valid action."));
 #endif //PE_NO_THROW_MSGS

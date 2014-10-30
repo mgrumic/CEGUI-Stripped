@@ -347,8 +347,9 @@ void FreeTypeFont::drawGlyphToBuffer(argb_t *buffer, uint buf_width) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "The glyph could not be drawn because the pixel mode is "
                 "unsupported."));
 #endif //PE_NO_THROW_MSGS
@@ -396,8 +397,9 @@ void FreeTypeFont::updateFont()
                            static_cast<FT_Long>(d_fontData.getSize()), 0,
                            &d_fontFace)) != 0)
         CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Failed to create face from font file '" +
             d_filename + "' error was: " +
             ((error < FT_Err_Max) ? ft_errors[error] : "unknown error")));
@@ -409,8 +411,9 @@ void FreeTypeFont::updateFont()
         FT_Done_Face(d_fontFace);
         d_fontFace = 0;
         CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "The font '" + d_name + "' does not have a Unicode charmap, and "
             "cannot be used."));
 #endif //PE_NO_THROW_MSGS
@@ -451,8 +454,9 @@ void FreeTypeFont::updateFont()
             char size [20];
             snprintf(size, sizeof(size), "%g", d_ptSize);
             CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "The font '" + d_name + "' cannot be "
                 "rasterised at a size of " + size + " points, and cannot be "
                 "used."));

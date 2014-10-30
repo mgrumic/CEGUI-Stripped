@@ -49,8 +49,9 @@ void FactoryModule::registerFactory(const String& type_name)
     }
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "No factory for type '" +
         type_name + "' in this module."));
 #endif //PE_NO_THROW_MSGS

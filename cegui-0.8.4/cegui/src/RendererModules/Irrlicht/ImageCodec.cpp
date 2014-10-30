@@ -55,8 +55,9 @@ Texture* IrrlichtImageCodec::load(const RawDataContainer& data, Texture* result)
 
     if (!image)
         CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Irrlicht failed to create irr::video::IImage from file data."));
 #endif //PE_NO_THROW_MSGS
 
@@ -78,8 +79,9 @@ Texture* IrrlichtImageCodec::load(const RawDataContainer& data, Texture* result)
         default:
             image->drop();
             CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "File data was of an unsupported format."));
 #endif //PE_NO_THROW_MSGS
     }

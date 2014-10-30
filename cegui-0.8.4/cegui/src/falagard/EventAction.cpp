@@ -55,8 +55,9 @@ struct EventActionFunctor
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "invalid action."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -112,8 +113,9 @@ void EventAction::initialiseWidget(Window& widget) const
 
     if (!parent)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "EvenAction can only be initialised on child widgets."));
 #endif //PE_NO_THROW_MSGS
 

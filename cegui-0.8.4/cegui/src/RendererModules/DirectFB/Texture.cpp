@@ -85,8 +85,9 @@ void DirectFBTexture::loadFromFile(const String& filename,
     if (!res)
         // It's an error
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             sys->getImageCodec().getIdentifierString() +
             " failed to load image '" + filename + "'."));
 #endif //PE_NO_THROW_MSGS
@@ -99,8 +100,9 @@ void DirectFBTexture::loadFromMemory(const void* buffer,
 {
     if (!isPixelFormatSupported(pixel_format))
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Data was supplied in an unsupported pixel format."));
 #endif //PE_NO_THROW_MSGS
 
@@ -213,8 +215,9 @@ DirectFBTexture::DirectFBTexture(IDirectFB& directfb,
 
     if (d_directfb.CreateSurface(&d_directfb, &desc, &d_texture))
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Failed to create texture of specified size."));
 #endif //PE_NO_THROW_MSGS
 

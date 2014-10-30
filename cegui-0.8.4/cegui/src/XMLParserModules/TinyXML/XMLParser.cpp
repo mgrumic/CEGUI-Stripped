@@ -82,8 +82,9 @@ namespace CEGUI
 
             // throw exception
             CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "an error occurred while "
                 "parsing the XML document - check it for potential errors!."));
 #endif //PE_NO_THROW_MSGS

@@ -503,8 +503,9 @@ void FalagardEditbox::setTextFormatting(const HorizontalTextFormatting format)
 {
     if (isUnsupportedFormat(format))
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "currently only HTF_LEFT_ALIGNED, HTF_RIGHT_ALIGNED and "
             "HTF_CENTRE_ALIGNED are accepted for Editbox formatting"));
 #endif //PE_NO_THROW_MSGS

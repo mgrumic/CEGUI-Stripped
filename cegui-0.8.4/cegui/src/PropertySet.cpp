@@ -42,8 +42,9 @@ void PropertySet::addProperty(Property* property)
 	if (!property)
 	{
 		CEGUI_THROW(NullObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "The given Property object pointer is invalid."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -51,8 +52,9 @@ void PropertySet::addProperty(Property* property)
 	if (!d_properties.insert(std::make_pair(property->getName(), property)).second)
 	{
 		CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "A Property named '" + property->getName() + "' already exists in the PropertySet."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -83,8 +85,9 @@ Property* PropertySet::getPropertyInstance(const String& name) const
     if (pos == d_properties.end())
     {
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
     }
@@ -118,8 +121,9 @@ const String& PropertySet::getPropertyHelp(const String& name) const
 	if (pos == d_properties.end())
 	{
 		CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -137,8 +141,9 @@ String PropertySet::getProperty(const String& name) const
 	if (pos == d_properties.end())
 	{
 		CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -156,8 +161,9 @@ void PropertySet::setProperty(const String& name,const String& value)
 	if (pos == d_properties.end())
 	{
 		CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -186,8 +192,9 @@ bool PropertySet::isPropertyDefault(const String& name) const
 	if (pos == d_properties.end())
 	{
 		CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -206,8 +213,9 @@ String PropertySet::getPropertyDefault(const String& name) const
 	if (pos == d_properties.end())
 	{
 		CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                         "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
 	}

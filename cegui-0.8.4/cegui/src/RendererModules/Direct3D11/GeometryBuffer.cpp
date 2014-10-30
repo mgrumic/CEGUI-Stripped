@@ -272,8 +272,9 @@ void Direct3D11GeometryBuffer::syncHardwareBuffer() const
 		D3D11_MAPPED_SUBRESOURCE SubRes;
         if (FAILED(d_device.d_context->Map(d_vertexBuffer,0,D3D11_MAP_WRITE_DISCARD, 0, &SubRes)))
             CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "failed to map buffer."));
 #endif //PE_NO_THROW_MSGS
 		buff=SubRes.pData;
@@ -297,8 +298,9 @@ void Direct3D11GeometryBuffer::allocateVertexBuffer(const size_t count) const
 
     if (FAILED(d_device.d_device->CreateBuffer(&buffer_desc, 0, &d_vertexBuffer)))
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "failed to allocate vertex buffer."));
 #endif //PE_NO_THROW_MSGS
 

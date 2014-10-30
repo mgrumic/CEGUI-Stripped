@@ -60,8 +60,9 @@ bool String::grow(size_type new_size)
     // check for too big
     if (max_size() <= new_size)
         CEGUI_THROW(std::length_error(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Resulting CEGUI::String would be too big"));
 #endif //PE_NO_THROW_MSGS
 

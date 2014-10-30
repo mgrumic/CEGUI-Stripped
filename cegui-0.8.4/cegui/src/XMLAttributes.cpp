@@ -66,8 +66,9 @@ namespace CEGUI
         if (index >= d_attrs.size())
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "The specified index is out of range for this XMLAttributes block."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -83,8 +84,9 @@ namespace CEGUI
         if (index >= d_attrs.size())
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "The specified index is out of range for this XMLAttributes block."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -106,8 +108,9 @@ namespace CEGUI
         else
         {
             CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "no value exists for an attribute named '" + attrName + "'."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -139,8 +142,9 @@ namespace CEGUI
         else
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to bool."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -162,8 +166,9 @@ namespace CEGUI
         if(strm.fail() || !strm.eof())
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to integer."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -187,8 +192,9 @@ namespace CEGUI
         if(strm.fail() || !strm.eof())
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to float."));
 #endif //PE_NO_THROW_MSGS
         }

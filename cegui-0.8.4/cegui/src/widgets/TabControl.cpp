@@ -163,8 +163,9 @@ size_t TabControl::getSelectedTabIndex() const
             return i;
 
 	CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Current tab not in list?"));
 #endif //PE_NO_THROW_MSGS
 }
@@ -327,8 +328,9 @@ TabButton* TabControl::getButtonForTabContents(Window* wnd) const
             return d_tabButtonVector [i];
 
 	CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "The Window object is not a tab contents."));
 #endif //PE_NO_THROW_MSGS
 }
@@ -475,8 +477,9 @@ void TabControl::addChild_impl(Element* element)
     
     if (!wnd)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "TabControl can only have Elements of type Window added as "
             "children (Window path: " + getNamePath() + ")."));
 #endif //PE_NO_THROW_MSGS
@@ -724,8 +727,9 @@ TabButton* TabControl::createTabButton(const String& name) const
     {
         //return createTabButton_impl(name);
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "This function must be implemented by the window renderer module"));
 #endif //PE_NO_THROW_MSGS
     }

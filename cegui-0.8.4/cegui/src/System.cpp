@@ -149,8 +149,8 @@ System::System(Renderer& renderer,
     // the user to fully customize the logger as he sees fit without fear of
     // seeing its configuration overwritten by this.
 #ifdef CEGUI_HAS_DEFAULT_LOGGER
-#ifndef PE_NO_LOGGER
     if (d_ourLogger)
+#ifndef PE_NO_LOGGER
         CEGUI_NEW_AO DefaultLogger();
 #endif //PE_NO_LOGGER
 #endif
@@ -505,8 +505,9 @@ void System::executeScriptFile(const String& filename, const String& resourceGro
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "An exception was thrown during the execution of the script file."));
 #endif //PE_NO_THROW_MSGS
 		}
@@ -542,8 +543,9 @@ int	System::executeScriptGlobal(const String& function_name) const
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "An exception was thrown during execution of the scripted function."));
 #endif //PE_NO_THROW_MSGS
 		}
@@ -580,8 +582,9 @@ void System::executeScriptString(const String& str) const
         CEGUI_CATCH(...)
         {
             CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "An exception was thrown during execution of the script code."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -600,9 +603,7 @@ void System::executeScriptString(const String& str) const
 *************************************************************************/
 bool System::injectTimePulse(float timeElapsed)
 {
-#ifndef PE_NO_ANIMATION
     AnimationManager::getSingleton().autoStepInstances(timeElapsed);
-#endif //PE_NO_ANIMATION    
     return true;
 }
 
@@ -741,13 +742,9 @@ void System::createSingletons()
     CEGUI_NEW_AO FontManager();
     CEGUI_NEW_AO WindowFactoryManager();
     CEGUI_NEW_AO WindowManager();
-#ifndef PE_NO_ANIMATION
     CEGUI_NEW_AO SchemeManager();
-#endif //PE_NO_ANIMATION
     CEGUI_NEW_AO GlobalEventSet();
-#ifndef PE_NO_ANIMATION
     CEGUI_NEW_AO AnimationManager();
-#endif //PE_NO_ANIMATION
     CEGUI_NEW_AO WidgetLookManager();
     CEGUI_NEW_AO WindowRendererManager();
     CEGUI_NEW_AO RenderEffectManager();
@@ -760,9 +757,7 @@ void System::destroySingletons()
     CEGUI_DELETE_AO WindowFactoryManager::getSingletonPtr();
     CEGUI_DELETE_AO WidgetLookManager::getSingletonPtr();
     CEGUI_DELETE_AO WindowRendererManager::getSingletonPtr();
-#ifndef PE_NO_ANIMATION
     CEGUI_DELETE_AO AnimationManager::getSingletonPtr();
-#endif //PE_NO_ANIMATION
     CEGUI_DELETE_AO RenderEffectManager::getSingletonPtr();
     CEGUI_DELETE_AO FontManager::getSingletonPtr();
     CEGUI_DELETE_AO ImageManager::getSingletonPtr();
@@ -967,8 +962,9 @@ void System::performVersionTest(const int expected, const int received,
 {
     if (expected != received)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "Version mismatch detected! "
             "Called from function: " + func +
             " Expected abi: " + PropertyHelper<int>::toString(expected) +
@@ -1039,13 +1035,12 @@ RegexMatcher* System::createRegexMatcher() const
     return 0;
 #endif
 }
-#ifndef PE_NO_REGEX_MATCHER
+
 //----------------------------------------------------------------------------//
 void System::destroyRegexMatcher(RegexMatcher* rm) const
 {
     CEGUI_DELETE_AO rm;
 }
-#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 GUIContext& System::getDefaultGUIContext() const
@@ -1088,3 +1083,4 @@ const StringTranscoder& System::getStringTranscoder()
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+

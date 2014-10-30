@@ -386,8 +386,9 @@ Window* Window::getChild(uint ID) const
     char strbuf[16];
     sprintf(strbuf, "%X", ID);
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "A Window with ID: '" +
         String(strbuf) + "' is not attached to Window '" + d_name + "'."));
 #endif //PE_NO_THROW_MSGS
@@ -1209,8 +1210,9 @@ void Window::addChild_impl(Element* element)
     
     if (!wnd)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Window can only have Elements of type Window added as children "
             "(Window path: " + getNamePath() + ")."));
 #endif //PE_NO_THROW_MSGS
@@ -1935,8 +1937,9 @@ void Window::setLookNFeel(const String& look)
 
     if (!d_windowRenderer)
         CEGUI_THROW(NullObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "There must be a "
             "window renderer assigned to the window '" + d_name +
             "' to set its look'n'feel"));
@@ -2036,8 +2039,9 @@ const String& Window::getUserString(const String& name) const
 
     if (iter == d_userStrings.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "a user string named '" + name + "' is not defined for Window '" +
             d_name + "'."));
 #endif //PE_NO_THROW_MSGS
@@ -2871,8 +2875,9 @@ void Window::setWindowRenderer(const String& name)
     }
     else
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Attempt to assign a 'null' window renderer to window '" +
             d_name + "'."));
 #endif //PE_NO_THROW_MSGS
@@ -2889,8 +2894,9 @@ void Window::onWindowRendererAttached(WindowEventArgs& e)
 {
     if (!validateWindowRenderer(d_windowRenderer))
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "The window renderer '" + d_windowRenderer->getName() + "' is not "
             "compatible with this widget type (" + getType() + ")"));
 #endif //PE_NO_THROW_MSGS
@@ -3799,8 +3805,9 @@ size_t Window::getZIndex() const
 
     if (i == getParent()->d_drawList.end())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Window is not in its parent's draw list."));
 #endif //PE_NO_THROW_MSGS
 

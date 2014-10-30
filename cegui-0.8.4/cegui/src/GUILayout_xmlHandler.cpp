@@ -196,8 +196,9 @@ void GUILayout_xmlHandler::elementGUILayoutStart(const XMLAttributes& attributes
     if (version != NativeVersion)
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "You are attempting to load a layout of version '" + version +
             "' but this CEGUI version is only meant to load layouts of "
             "version '" + NativeVersion + "'. Consider using the "
@@ -243,8 +244,9 @@ void GUILayout_xmlHandler::elementWindowStart(const XMLAttributes& attributes)
 
         // signal error - with more info about what we have done.
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "layout loading has been aborted since Window named '" + windowName + "' already exists."));
 #endif //PE_NO_THROW_MSGS
     }
@@ -255,8 +257,9 @@ void GUILayout_xmlHandler::elementWindowStart(const XMLAttributes& attributes)
 
         // signal error - with more info about what we have done.
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "layout loading has been aborted since no WindowFactory is available for '" + windowType + "' objects."));
 #endif //PE_NO_THROW_MSGS
     }
@@ -288,8 +291,9 @@ void GUILayout_xmlHandler::elementAutoWindowStart(const XMLAttributes& attribute
 
         // signal error - with more info about what we have done.
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "layout loading has been aborted since auto window '" +
             name_path + "' could not be referenced."));
 #endif //PE_NO_THROW_MSGS
@@ -422,7 +426,11 @@ void GUILayout_xmlHandler::elementLayoutImportStart(const XMLAttributes& attribu
 
         // signal error - with more info about what we have done.
         CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "layout loading aborted due to imported layout load failure (see error(s) above)."));
+#endif //PE_NO_THROW_MSGS
     }
 }
 

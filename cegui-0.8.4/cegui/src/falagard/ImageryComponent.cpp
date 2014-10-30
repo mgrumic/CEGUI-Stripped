@@ -155,8 +155,9 @@ namespace CEGUI
 
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "An unknown HorizontalFormatting value was specified."));
 #endif //PE_NO_THROW_MSGS
         }
@@ -193,8 +194,9 @@ namespace CEGUI
 
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                     "An unknown VerticalFormatting value was specified."));
 #endif //PE_NO_THROW_MSGS
         }

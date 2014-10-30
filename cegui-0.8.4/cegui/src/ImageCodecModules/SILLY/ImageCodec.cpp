@@ -41,8 +41,9 @@ SILLYImageCodec::SILLYImageCodec()
     d_supportedFormat = "tga jpg png";
     if (! SILLY::SILLYInit())
         CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
                 ""));
-#ifndef PE_NO_THROW_MSGS
+#else
         "Unable to initialize SILLY library"));
 #endif //PE_NO_THROW_MSGS
 

@@ -75,8 +75,9 @@ void WindowFactoryManager::addFactory(WindowFactory* factory)
 	if (!factory)
 	{
 		CEGUI_THROW(NullObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "The provided WindowFactory pointer was invalid."));
 #endif //PE_NO_THROW_MSGS
 	}
@@ -85,8 +86,9 @@ void WindowFactoryManager::addFactory(WindowFactory* factory)
 	if (d_factoryRegistry.find(factory->getTypeName()) != d_factoryRegistry.end())
 	{
 		CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "A WindowFactory for type '" + factory->getTypeName() +
             "' is already registered."));
 #endif //PE_NO_THROW_MSGS
@@ -195,8 +197,9 @@ WindowFactory* WindowFactoryManager::getFactory(const String& type) const
         else
         {
             CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
                 "A WindowFactory object, an alias, or mapping for '" + type +
                 "' Window objects is not registered with the system."));
 #endif //PE_NO_THROW_MSGS
@@ -388,8 +391,9 @@ const String& WindowFactoryManager::getMappedLookForType(const String& type) con
     else
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Window factory type '" + type +
             "' is not a falagard mapped type (or an alias for one)."));
 #endif //PE_NO_THROW_MSGS
@@ -409,8 +413,9 @@ const String& WindowFactoryManager::getMappedRendererForType(const String& type)
     else
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Window factory type '" + type +
             "' is not a falagard mapped type (or an alias for one)."));
 #endif //PE_NO_THROW_MSGS
@@ -443,8 +448,9 @@ const WindowFactoryManager::FalagardWindowMapping& WindowFactoryManager::getFala
     else
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "Window factory type '" + type +
             "' is not a falagard mapped type (or an alias for one)."));
 #endif //PE_NO_THROW_MSGS

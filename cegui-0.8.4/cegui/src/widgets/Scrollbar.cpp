@@ -379,8 +379,9 @@ void Scrollbar::updateThumb(void)
 {
     if (!d_windowRenderer)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "This function must be implemented by the window renderer object "
             "(no window renderer is assigned.)"));
 #endif //PE_NO_THROW_MSGS
@@ -393,8 +394,9 @@ float Scrollbar::getValueFromThumb(void) const
 {
     if (!d_windowRenderer)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "This function must be implemented by the window renderer object "
             "(no window renderer is assigned.)"));
 #endif //PE_NO_THROW_MSGS
@@ -408,8 +410,9 @@ float Scrollbar::getAdjustDirectionFromPoint(const Vector2f& pt) const
 {
     if (!d_windowRenderer)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
             ""));
-#ifndef PE_NO_THROW_MSGS
+#else
             "This function must be implemented by the window renderer object "
             "(no window renderer is assigned.)"));
 #endif //PE_NO_THROW_MSGS
