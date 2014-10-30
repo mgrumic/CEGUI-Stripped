@@ -91,12 +91,12 @@ void FalagardMenuItem::render()
 	if (w->isOpened() && !(w->hasAutoPopup() && w->isPopupClosing()))
         suffix = "PopupOpen";
 #endif
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     if (w->isPushed())
         suffix = w->isHovering() ? "Pushed" : "PushedOff";
     else if (w->isHovering())
         suffix = "Hover";
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     
         
     const StateImagery* imagery;

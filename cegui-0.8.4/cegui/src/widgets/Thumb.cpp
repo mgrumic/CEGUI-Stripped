@@ -174,7 +174,7 @@ void Thumb::onThumbTrackEnded(WindowEventArgs& e)
 }
 
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for mouse movement events
 *************************************************************************/
@@ -286,7 +286,7 @@ void Thumb::onCaptureLost(WindowEventArgs& e)
 	onThumbPositionChanged(args);
 }
 
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 /*************************************************************************
 	Return a std::pair that describes the current range set for the
 	vertical movement.	

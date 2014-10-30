@@ -40,7 +40,9 @@ bool EditboxValidation::initialise(CEGUI::GUIContext* guiContext)
     guiContext->setDefaultFont(&defaultFont);
 
     SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
+#ifndef PE_NO_MOUSE
     guiContext->getMouseCursor().setDefaultImage("AlfiskoSkin/MouseArrow");
+#endif //PE_NO_MOUSE
     WindowManager& winMgr = WindowManager::getSingleton();
 
     Window* root = winMgr.createWindow("DefaultWindow");

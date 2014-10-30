@@ -196,10 +196,10 @@ protected:
 	virtual void onDestructionStarted(WindowEventArgs& e);
 	virtual void onShown(WindowEventArgs& e);
 	virtual void onHidden(WindowEventArgs& e);
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 	virtual void onMouseButtonDown(MouseEventArgs& e);
 	virtual void onMouseButtonUp(MouseEventArgs& e);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
     /*************************************************************************
         Implementation Data

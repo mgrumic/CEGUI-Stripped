@@ -51,7 +51,7 @@ class CEGUIEXPORT ButtonBase : public Window
 {
 public:
 
-#ifdef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 	/*************************************************************************
 		Accessor type functions
 	*************************************************************************/
@@ -63,7 +63,7 @@ public:
 		true if the user is hovering or if the button is pushed and the mouse is not over the button.  Otherwise return false.
 	*/
 	bool	isHovering(void) const			{return d_hovering;}
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -103,12 +103,12 @@ protected:
 
     void setPushedState(const bool pushed);
     virtual void	onCaptureLost(WindowEventArgs& e);
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
 	virtual void	onMouseLeaves(MouseEventArgs& e);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
 	/*************************************************************************
 		Implementation Functions

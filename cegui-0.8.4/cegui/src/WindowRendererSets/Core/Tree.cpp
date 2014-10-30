@@ -24,8 +24,6 @@ author:		Jonathan Welch (Based on Code by David Durant)
 *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 *   OTHER DEALINGS IN THE SOFTWARE.
 ***************************************************************************/
-#include "CEGUI/Base.h"
-#ifndef PE_NO_WGT_TREE
 #include "CEGUI/WindowRendererSets/Core/Tree.h"
 #include "CEGUI/falagard/WidgetLookManager.h"
 #include "CEGUI/falagard/WidgetLookFeel.h"
@@ -104,4 +102,3 @@ namespace CEGUI
 		tree->doTreeRender();
 	}
 } // End of  CEGUI namespace section
-#endif //PE_NO_WGT_TREE

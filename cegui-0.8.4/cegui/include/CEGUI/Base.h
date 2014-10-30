@@ -35,12 +35,12 @@
 #endif
 
 #define PE_NO_MOUSE
-//#define PE_NO_VERTEX
 #define PE_NO_LOGGER
+
 
 #define PE_NO_WGT_SPINNER
 #define PE_NO_WGT_SLIDER
-#define PE_NO_VERTEX
+//#define PE_NO_VERTEX
 #define PE_NO_WGT_PROGRESS_BAR
 #define PE_NO_WGT_TOOLTIP
 #define PE_NO_WGT_MULTILINE_EDITBOX

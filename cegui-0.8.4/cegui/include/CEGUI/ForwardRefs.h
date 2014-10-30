@@ -79,10 +79,8 @@ class LinkedEvent;
 class LinkedEventArgs;
 #ifndef PE_NO_LOGGER
 class Logger;
-#endif //PE_NO_LOGGER
-#ifndef PE_NO_MOUSE 
+#endif //PE_NO_LOGGER 
 class MouseCursor;
-#endif //PE_NO_MOUSE 
 class NamedElement;
 class NamedElementEventArgs;
 class NativeClipboardProvider;
@@ -200,11 +198,9 @@ class TabControl;
 class Thumb;
 class Titlebar;
 class ToggleButton;
-#ifndef PE_NO_WGT_TREE
 class Tooltip;
 class Tree;
 class TreeItem;
-#endif //PE_NO_WGT_TREE
 class VerticalLayoutContainer;
 
 /*************************************************************************
@@ -212,17 +208,13 @@ class VerticalLayoutContainer;
 *************************************************************************/
 class ActivationEventArgs;
 class DisplayEventArgs;
-#ifndef PE_NO_MOUSE
 class DragDropEventArgs;
-#endif //PE_NO_MOUSE
 class FontEventArgs;
 class GUIContextEventArgs;
 class HeaderSequenceEventArgs;
 class KeyEventArgs;
-#ifndef PE_NO_MOUSE 
 class MouseCursorEventArgs;
 class MouseEventArgs;
-#endif //PE_NO_MOUSE 
 class RegexMatchStateArgs;
 class RenderQueueEventArgs;
 class RenderTargetEventArgs;

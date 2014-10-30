@@ -72,9 +72,7 @@
 #include "CEGUI/LeftAlignedRenderedString.h"
 #include "CEGUI/LinkedEvent.h"
 #include "CEGUI/Logger.h"
-#ifndef PE_NO_MOUSE 
 #include "CEGUI/MouseCursor.h"
-#endif //PE_NO_MOUSE 
 #include "CEGUI/NamedElement.h"
 #include "CEGUI/Property.h"
 #include "CEGUI/PropertyHelper.h"
