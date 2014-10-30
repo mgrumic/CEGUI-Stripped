@@ -1037,6 +1037,7 @@ bool GUIContext::injectChar(String::value_type code_point)
     args.window->onCharacter(args);
     return args.handled != 0;
 }
+#ifndef PE_NO_CLIPBOARD
 //----------------------------------------------------------------------------//
 bool GUIContext::injectCopyRequest()
 {
@@ -1057,7 +1058,7 @@ bool GUIContext::injectPasteRequest()
     Window* target = getKeyboardTargetWindow();
     return target ? target->performPaste(*System::getSingleton().getClipboard()) : false;
 }
-
+#endif  // PE_NO_CLIPBOARD
 //----------------------------------------------------------------------------//
 void GUIContext::setRenderTarget(RenderTarget& target)
 {

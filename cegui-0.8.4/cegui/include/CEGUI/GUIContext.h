@@ -276,9 +276,11 @@ public:
     bool injectKeyUp(Key::Scan scan_code);
     bool injectChar(String::value_type code_point);
     bool injectTimePulse(float timeElapsed);
+#ifndef PE_NO_CLIPBOARD
     bool injectCopyRequest();
     bool injectCutRequest();
     bool injectPasteRequest();
+#endif  // PE_NO_CLIPBOARD
 #ifndef PE_NO_MOUSE
     bool injectMouseMove(float delta_x, float delta_y);
     bool injectMouseLeaves(void);

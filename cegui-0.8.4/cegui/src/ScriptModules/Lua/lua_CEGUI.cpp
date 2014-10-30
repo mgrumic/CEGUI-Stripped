@@ -26472,6 +26472,7 @@ static int tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonTripleClick00(lua_State
 #endif //#ifndef TOLUA_DISABLE
 #endif //PE_NO_MOUSE
 
+#ifndef PE_NO_CLIPBOARD
 /* method: injectCopyRequest of class  CEGUI::GUIContext */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00
 static int tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00(lua_State* tolua_S)
@@ -26567,6 +26568,7 @@ static int tolua_CEGUI_CEGUI_GUIContext_injectPasteRequest00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif  // PE_NO_CLIPBOARD
 
 /* method: getSingleton of class  CEGUI::WindowManager */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_WindowManager_getSingleton00
@@ -66637,9 +66639,11 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"injectMouseButtonDoubleClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonDoubleClick00);
    tolua_function(tolua_S,"injectMouseButtonTripleClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonTripleClick00);
 #endif //PE_NO_MOUSE
+#ifndef PE_NO_CLIPBOARD
    tolua_function(tolua_S,"injectCopyRequest",tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00);
    tolua_function(tolua_S,"injectCutRequest",tolua_CEGUI_CEGUI_GUIContext_injectCutRequest00);
    tolua_function(tolua_S,"injectPasteRequest",tolua_CEGUI_CEGUI_GUIContext_injectPasteRequest00);
+#endif  // PE_NO_CLIPBOARD
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"WindowManager","CEGUI::WindowManager","CEGUI::EventSet",NULL);
   tolua_beginmodule(tolua_S,"WindowManager");

@@ -27,7 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/System.h"
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
+#endif  // PE_NO_CLIPBOARD
 #include "CEGUI/DefaultLogger.h"
 #include "CEGUI/ImageManager.h"
 #include "CEGUI/FontManager.h"
@@ -120,7 +122,9 @@ System::System(Renderer& renderer,
 : d_renderer(&renderer),
   d_resourceProvider(resourceProvider),
   d_ourResourceProvider(false),
+#ifndef PE_NO_CLIPBOARD
   d_clipboard(CEGUI_NEW_AO Clipboard()),
+#endif  // PE_NO_CLIPBOARD
   d_scriptModule(scriptModule),
   d_xmlParser(xmlParser),
   d_ourXmlParser(false),
@@ -323,8 +327,9 @@ System::~System(void)
         CEGUI_DELETE_AO Logger::getSingletonPtr();
 #endif //PE_NO_LOGGER
 #endif
-    
+#ifndef PE_NO_CLIPBOARD
     CEGUI_DELETE_AO d_clipboard;
+#endif  // PE_NO_CLIPBOARD
 }
 
 //---------------------------------------------------------------------------//
