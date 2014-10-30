@@ -37,9 +37,13 @@ NullGeometryBuffer::NullGeometryBuffer() :
     d_activeTexture(0),
     d_clipRect(0, 0, 0, 0),
     d_clippingActive(true),
+#ifndef PE_NO_VECTOR3D
     d_translation(0, 0, 0),
+#endif  // PE_NO_VECTOR3D
     d_rotation(),
+#ifndef PE_NO_VECTOR3D
     d_pivot(0, 0, 0),
+#endif
     d_effect(0)
 {
 }
@@ -64,25 +68,25 @@ void NullGeometryBuffer::draw() const
     if (d_effect)
         d_effect->performPostRenderFunctions();
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setTranslation(const Vector3f& v)
 {
     d_translation = v;
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setRotation(const Quaternion& r)
 {
     d_rotation = r;
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setPivot(const Vector3f& p)
 {
     d_pivot = p;
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setClippingRegion(const Rectf& region)
 {

@@ -78,7 +78,7 @@ void RenderingWindow::setClippingRegion(const Rectf& region)
 void RenderingWindow::setPosition(const Vector2f& position)
 {
     d_position = position;
-
+#ifndef PE_NO_VECTOR3D
     Vector3f trans(d_position.d_x, d_position.d_y, 0.0f);
     // geometry position must be offset according to our owner position, if
     // that is a RenderingWindow.
@@ -89,6 +89,7 @@ void RenderingWindow::setPosition(const Vector2f& position)
     }
 
     d_geometry->setTranslation(trans);
+#endif  // PE_NO_VECTOR3D
 }
 
 //----------------------------------------------------------------------------//
@@ -109,14 +110,14 @@ void RenderingWindow::setRotation(const Quaternion& rotation)
     d_rotation = rotation;
     d_geometry->setRotation(d_rotation);
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void RenderingWindow::setPivot(const Vector3f& pivot)
 {
     d_pivot = pivot;
     d_geometry->setPivot(d_pivot);
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const Vector2f& RenderingWindow::getPosition() const
 {
@@ -134,13 +135,13 @@ const Quaternion& RenderingWindow::getRotation() const
 {
     return d_rotation;
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const Vector3f& RenderingWindow::getPivot() const
 {
     return d_pivot;
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const TextureTarget& RenderingWindow::getTextureTarget() const
 {

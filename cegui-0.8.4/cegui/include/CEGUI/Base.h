@@ -42,6 +42,7 @@
 #define PE_NO_WGT_CLIPPED_CONTAINER
 #define PE_NO_WGT_GROUP_BOX
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
+#define PE_NO_VECTOR3D
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

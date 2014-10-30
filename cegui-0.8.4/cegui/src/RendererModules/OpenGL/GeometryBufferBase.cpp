@@ -45,9 +45,13 @@ OpenGLGeometryBufferBase::OpenGLGeometryBufferBase(OpenGLRendererBase& owner) :
     d_activeTexture(0),
     d_clipRect(0, 0, 0, 0),
     d_clippingActive(true),
+#ifndef PE_NO_VECTOR3D
     d_translation(0, 0, 0),
+#endif  // PE_NO_VECTOR3D
     d_rotation(Quaternion::IDENTITY),
+#ifndef PE_NO_VECTOR3D
     d_pivot(0, 0, 0),
+#endif  // PE_NO_VECTOR3D
     d_effect(0),
     d_matrix(new mat4Pimpl()),
     d_matrixValid(false)
@@ -67,27 +71,28 @@ void OpenGLGeometryBufferBase::appendVertex(const Vertex& vertex)
 }
 
 #endif //PE_NO_VERTEX
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setTranslation(const Vector3f& v)
 {
     d_translation = v;
     d_matrixValid = false;
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setRotation(const Quaternion& r)
 {
     d_rotation = r;
     d_matrixValid = false;
 }
-
+#ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setPivot(const Vector3f& p)
 {
     d_pivot = Vector3f(p.d_x, p.d_y, p.d_z);
     d_matrixValid = false;
 }
-
+#endif  // PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setClippingRegion(const Rectf& region)
 {
@@ -203,22 +208,23 @@ void OpenGLGeometryBufferBase::updateMatrix() const
 {
     glm::mat4& modelMatrix = d_matrix->d_matrix;
     modelMatrix = glm::mat4(1.f);
-
+#ifndef PE_NO_VECTOR3D
     const glm::vec3 final_trans(d_translation.d_x + d_pivot.d_x,
                                 d_translation.d_y + d_pivot.d_y,
                                 d_translation.d_z + d_pivot.d_z);
 
     modelMatrix = glm::translate(modelMatrix, final_trans);
-
+#endif  // PE_NO_VECTOR3D
     glm::quat rotationQuat = glm::quat(d_rotation.d_w, d_rotation.d_x, d_rotation.d_y, d_rotation.d_z);
     glm::mat4 rotation_matrix = glm::mat4_cast(rotationQuat);
 
     modelMatrix = modelMatrix * rotation_matrix;
-
+#ifndef PE_NO_VECTOR3D
     glm::vec3 transl = glm::vec3(-d_pivot.d_x, -d_pivot.d_y, -d_pivot.d_z);
     glm::mat4 translMatrix = glm::translate(glm::mat4(1.f), transl);
     modelMatrix =  modelMatrix * translMatrix;
-
+#endif  // PE_NO_VECTOR3D
+    
     d_matrixValid = true;
 }
 
