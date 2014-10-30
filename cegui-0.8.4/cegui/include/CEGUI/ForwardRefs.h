@@ -49,7 +49,9 @@ class Clipboard;
 class Colour;
 class ColourRect;
 class CoordConverter;
+#ifndef PE_NO_LOGGER
 class DefaultLogger;
+#endif //PE_NO_LOGGER
 class DefaultRenderedStringParser;
 class DefaultResourceProvider;
 class DynamicModule;
@@ -78,7 +80,9 @@ class KeyFrame;
 class LeftAlignedRenderedString;
 class LinkedEvent;
 class LinkedEventArgs;
+#ifndef PE_NO_LOGGER
 class Logger;
+#endif //PE_NO_LOGGER 
 class MouseCursor;
 class NamedElement;
 class NamedElementEventArgs;
@@ -126,9 +130,7 @@ template<typename T> class Vector2;
 #ifndef PE_NO_VECTOR3D
 template<typename T> class Vector3;
 #endif  // PE_NO_VECTOR3D
-#ifndef PE_NO_VERTEX
 struct Vertex;
-#endif //PE_NO_VERTEX
 class WidgetLookFeel;
 class Window;
 class WindowFactory;
@@ -152,9 +154,9 @@ class ClippedContainer;
 class Combobox;
 class ComboDropList;
 class DefaultWindow;
-#ifndef PE_NO_MOUSE
+#ifndef PE_NO_MOUSE 
 class DragContainer;
-#endif //PE_NO_MOUSE
+#endif //PE_NO_MOUSE 
 class Editbox;
 class FrameWindow;
 class GridLayoutContainer;
@@ -227,3 +229,4 @@ class WindowEventArgs;
 } // End of  CEGUI namespace section
 
 #endif	// end of guard _CEGUIForwardRefs_h_
+

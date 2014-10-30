@@ -189,7 +189,9 @@ void LuaScriptModule::executeString(const String& str)
 *************************************************************************/
 void LuaScriptModule::createBindings(void)
 {
+#ifndef PE_NO_LOGGER
 	CEGUI::Logger::getSingleton().logEvent( "---- Creating Lua bindings ----" );
+#endif //PE_NO_LOGGER
 	// init CEGUI module
 	tolua_CEGUI_open(d_state);
 }
@@ -200,7 +202,9 @@ void LuaScriptModule::createBindings(void)
 *************************************************************************/
 void LuaScriptModule::destroyBindings(void)
 {
+#ifndef PE_NO_LOGGER
 	CEGUI::Logger::getSingleton().logEvent( "---- Destroying Lua bindings ----" );
+#endif //PE_NO_LOGGER
 	// is this ok ?
 	lua_pushnil(d_state);
 	lua_setglobal(d_state,"CEGUI");

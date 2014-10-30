@@ -128,7 +128,9 @@ System::System(Renderer& renderer,
   d_imageCodec(imageCodec),
   d_ourImageCodec(false),
   d_imageCodecModule(0),
+#ifndef PE_NO_LOGGER
   d_ourLogger(Logger::getSingletonPtr() == 0),
+#endif //PE_NO_LOGGER
   d_customRenderedStringParser(0)
 {
     // Start out by fixing the numeric locale to C (we depend on this behaviour)
@@ -144,10 +146,13 @@ System::System(Renderer& renderer,
     // seeing its configuration overwritten by this.
 #ifdef CEGUI_HAS_DEFAULT_LOGGER
     if (d_ourLogger)
+#ifndef PE_NO_LOGGER
         CEGUI_NEW_AO DefaultLogger();
+#endif //PE_NO_LOGGER
 #endif
-
+#ifndef PE_NO_LOGGER
     Logger& logger(Logger::getSingleton());
+#endif //PE_NO_LOGGER
 
     // create default resource provider, unless one was already provided
     if (!d_resourceProvider)
@@ -201,7 +206,9 @@ System::System(Renderer& renderer,
     outputLogHeader();
 
     // beginning main init
+#ifndef PE_NO_LOGGER
     logger.logEvent("---- Begining CEGUI System initialisation ----");
+#endif //PE_NO_LOGGER
 
     // create the core system singleton objects
     createSingletons();
@@ -215,16 +222,18 @@ System::System(Renderer& renderer,
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     logger.logEvent("CEGUI::System singleton created. " + String(addr_buff));
     logger.logEvent("---- CEGUI System initialisation completed ----");
     logger.logEvent("");
+#endif //PE_NO_LOGGER
 
     // autoload resources specified in config
     config.loadAutoResources();
 
     // set up defaults
     config.initialiseDefaultFont();
-#ifndef PE_NO_MOUSE
+#ifndef PE_NO_MOUSE 
     config.initialiseDefaultMouseCursor();
     config.initialiseDefaulTooltip();
 #endif
@@ -244,7 +253,9 @@ System::System(Renderer& renderer,
 *************************************************************************/
 System::~System(void)
 {
+#ifndef PE_NO_LOGGER
 	Logger::getSingleton().logEvent("---- Begining CEGUI System destruction ----");
+#endif //PE_NO_LOGGER
 
 	// execute shut-down script
 	if (!d_termScriptName.empty())
@@ -297,14 +308,20 @@ System::~System(void)
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
 	Logger::getSingleton().logEvent("CEGUI::System singleton destroyed. " +
+#endif //PE_NO_LOGGER
+#ifndef PE_NO_LOGGER
        String(addr_buff));
 	Logger::getSingleton().logEvent("---- CEGUI System destruction completed ----");
+#endif //PE_NO_LOGGER
 
 #ifdef CEGUI_HAS_DEFAULT_LOGGER
     // delete the Logger object only if we created it.
+#ifndef PE_NO_LOGGER
     if (d_ourLogger)
         CEGUI_DELETE_AO Logger::getSingletonPtr();
+#endif //PE_NO_LOGGER
 #endif
     
     CEGUI_DELETE_AO d_clipboard;
@@ -444,9 +461,11 @@ void System::setScriptingModule(ScriptModule* scriptModule)
 
     if (d_scriptModule)
     {
+#ifndef PE_NO_LOGGER
         // log the new ScriptModule ID string
         Logger::getSingleton().logEvent("---- Scripting module is now: "
             + d_scriptModule->getIdentifierString() + " ----");
+#endif //PE_NO_LOGGER
 
         // create bindings on the new scriptModule
         d_scriptModule->createBindings();
@@ -487,7 +506,9 @@ void System::executeScriptFile(const String& filename, const String& resourceGro
 	}
 	else
 	{
+#ifndef PE_NO_LOGGER
 		Logger::getSingleton().logEvent("System::executeScriptFile - the script named '" + filename +"' could not be executed as no ScriptModule is available.", Errors);
+#endif //PE_NO_LOGGER
 	}
 
 }
@@ -519,7 +540,9 @@ int	System::executeScriptGlobal(const String& function_name) const
 	}
 	else
 	{
+#ifndef PE_NO_LOGGER
 		Logger::getSingleton().logEvent("System::executeScriptGlobal - the global script function named '" + function_name +"' could not be executed as no ScriptModule is available.", Errors);
+#endif //PE_NO_LOGGER
 	}
 
 	return 0;
@@ -552,7 +575,9 @@ void System::executeScriptString(const String& str) const
     }
     else
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("System::executeScriptString - the script code could not be executed as no ScriptModule is available.", Errors);
+#endif //PE_NO_LOGGER
     }
 }
 
@@ -591,17 +616,19 @@ void System::notifyDisplaySizeChanged(const Sizef& new_size)
     // Fire event
     DisplayEventArgs args(new_size);
     fireEvent(EventDisplaySizeChanged, args, EventNamespace);
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "Display resize:"
         " w=" + PropertyHelper<float>::toString(new_size.d_width) +
         " h=" + PropertyHelper<float>::toString(new_size.d_height));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
 
 void System::outputLogHeader()
 {
+#ifndef PE_NO_LOGGER
     Logger& l(Logger::getSingleton());
     l.logEvent("");
     l.logEvent("********************************************************************************");
@@ -622,15 +649,16 @@ void System::outputLogHeader()
     l.logEvent("* -------- END OF ESSENTIAL SECTION TO BE POSTED ON THE FORUM         -------- *");
     l.logEvent("********************************************************************************");
     l.logEvent("");
+#endif //PE_NO_LOGGER
 }
 
 void System::addStandardWindowFactories()
 {
     // Add types all base elements
     WindowFactoryManager::addWindowType<DefaultWindow>();
-#ifndef PE_NO_MOUSE
+#ifndef PE_NO_MOUSE 
     WindowFactoryManager::addWindowType<DragContainer>();
-#endif //PE_NO_MOUSE
+#endif //PE_NO_MOUSE 
     WindowFactoryManager::addWindowType<ScrolledContainer>();
     #ifndef PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<ClippedContainer>();
@@ -670,14 +698,16 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<Thumb>();
     WindowFactoryManager::addWindowType<Titlebar>();
     WindowFactoryManager::addWindowType<ToggleButton>();
-#ifndef PE_NO_MOUSE
+#ifndef PE_NO_MOUSE 
     WindowFactoryManager::addWindowType<Tooltip>();
-#endif //PE_NO_MOUSE
+#endif //PE_NO_MOUSE 
     WindowFactoryManager::addWindowType<ItemListbox>();
     #ifndef PE_NO_WGT_GROUP_BOX
     WindowFactoryManager::addWindowType<GroupBox>();
     #endif //PE_NO_WGT_GROUP_BOX
+#ifndef PE_NO_WGT_TREE
     WindowFactoryManager::addWindowType<Tree>();
+#endif //PE_NO_WGT_TREE
     WindowFactoryManager::addWindowType<LayoutCell>();
     WindowFactoryManager::addWindowType<HorizontalLayoutContainer>();
     WindowFactoryManager::addWindowType<VerticalLayoutContainer>();
@@ -1027,3 +1057,4 @@ const StringTranscoder& System::getStringTranscoder()
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+

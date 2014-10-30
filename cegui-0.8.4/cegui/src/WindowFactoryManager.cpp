@@ -45,8 +45,10 @@ WindowFactoryManager::OwnedWindowFactoryList WindowFactoryManager::d_ownedFactor
 //----------------------------------------------------------------------------//
 WindowFactoryManager::WindowFactoryManager(void)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowFactoryManager singleton created");
+#endif //PE_NO_LOGGER
 
     // complete addition of any pre-added WindowFactory objects
     WindowFactoryManager::OwnedWindowFactoryList::iterator i =
@@ -54,8 +56,10 @@ WindowFactoryManager::WindowFactoryManager(void)
 
     if (d_ownedFactories.end() != i)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
         "---- Adding pre-registered WindowFactory objects ----");
+#endif //PE_NO_LOGGER
 
         for (; d_ownedFactories.end() != i; ++i)
             addFactory(*i);
@@ -87,8 +91,10 @@ void WindowFactoryManager::addFactory(WindowFactory* factory)
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(factory));
+#ifndef PE_NO_LOGGER
 	Logger::getSingleton().logEvent("WindowFactory for '" +
        factory->getTypeName() +"' windows added. " + addr_buff);
+#endif //PE_NO_LOGGER
 }
 
 
@@ -112,16 +118,19 @@ void WindowFactoryManager::removeFactory(const String& name)
     sprintf(addr_buff, "(%p)", static_cast<void*>((*i).second));
 
 	d_factoryRegistry.erase(name);
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("WindowFactory for '" + name +
                                     "' windows removed. " + addr_buff);
+#endif //PE_NO_LOGGER
 
     // delete factory object if we created it
     if (j != d_ownedFactories.end())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Deleted WindowFactory for '" +
                                         (*j)->getTypeName() +
                                         "' windows.");
+#endif //PE_NO_LOGGER
 
         CEGUI_DELETE_AO (*j);
         d_ownedFactories.erase(j);
@@ -245,8 +254,9 @@ void WindowFactoryManager::addWindowTypeAlias(const String& aliasName, const Str
 	{
 		pos->second.d_targetStack.push_back(targetType);
 	}
-
+#ifndef PE_NO_LOGGER
 	Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' added for window type '" + targetType +"'.");
+#endif //PE_NO_LOGGER
 }
 
 
@@ -269,16 +279,18 @@ void WindowFactoryManager::removeWindowTypeAlias(const String& aliasName, const 
 		{
 			// erase the target mapping
 			pos->second.d_targetStack.erase(aliasPos);
-
+#ifndef PE_NO_LOGGER
 			Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' removed for window type '" + targetType +"'.");
+#endif //PE_NO_LOGGER
 
 			// if the list of targets for this alias is now empty
 			if (pos->second.d_targetStack.empty())
 			{
 				// erase the alias name also
 				d_aliasRegistry.erase(aliasName);
-
+#ifndef PE_NO_LOGGER
 				Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' has no more targets and has been removed.", Informative);
+#endif //PE_NO_LOGGER
 			}
 
 		}
@@ -308,16 +320,20 @@ void WindowFactoryManager::addFalagardWindowMapping(const String& newType,
     // see if the type we're creating already exists
     if (d_falagardRegistry.find(newType) != d_falagardRegistry.end())
     {
+#ifndef PE_NO_LOGGER
         // type already exists, log the fact that it's going to be replaced.
         Logger::getSingleton().logEvent("Falagard mapping for type '" + newType + "' already exists - current mapping will be replaced.");
+#endif //PE_NO_LOGGER
     }
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(&mapping));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Creating falagard mapping for type '" +
         newType + "' using base type '" + targetType + "', window renderer '" +
         renderer + "' Look'N'Feel '" + lookName + "' and RenderEffect '" +
         effectName + "'. " + addr_buff);
+#endif //PE_NO_LOGGER
 
     d_falagardRegistry[newType] = mapping;
 }
@@ -328,7 +344,9 @@ void WindowFactoryManager::removeFalagardWindowMapping(const String& type)
 
     if (iter != d_falagardRegistry.end())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Removing falagard mapping for type '" + type + "'.");
+#endif //PE_NO_LOGGER
         d_falagardRegistry.erase(iter);
     }
 }

@@ -41,22 +41,28 @@ SchemeManager::SchemeManager() :
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
     "CEGUI::SchemeManager singleton created. " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
 SchemeManager::~SchemeManager()
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "---- Begining cleanup of GUI Scheme system ----");
+#endif //PE_NO_LOGGER
 
     destroyAll();
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::SchemeManager singleton destroyed. " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

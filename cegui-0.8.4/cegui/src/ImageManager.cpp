@@ -98,8 +98,10 @@ ImageManager::ImageManager()
 {
     char addr_buff[32];
     std::sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[CEGUI::ImageManager] Singleton created " + String(addr_buff));
+#endif //PE_NO_LOGGER
 
     // self-register the built in 'BasicImage' type.
     addImageType<BasicImage>("BasicImage");
@@ -115,8 +117,10 @@ ImageManager::~ImageManager()
 
     char addr_buff[32];
     std::sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
        "[CEGUI::ImageManager] Singleton destroyed " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -126,9 +130,10 @@ void ImageManager::removeImageType(const String& name)
 
     if (i == d_factories.end())
         return;
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[CEGUI::ImageManager] Unregistered Image type: " + name);
+#endif //PE_NO_LOGGER
 
     CEGUI_DELETE_AO i->second;
 	d_factories.erase(name);
@@ -159,10 +164,11 @@ Image& ImageManager::create(const String& type, const String& name)
 
     char addr_buff[32];
     sprintf(addr_buff, "%p", static_cast<void*>(&image));
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ImageManager] Created image: '" + name + "' (" + addr_buff + 
         ") of type: " + type);
+#endif //PE_NO_LOGGER
 
     return image;
 }
@@ -209,10 +215,11 @@ Image& ImageManager::create(const XMLAttributes& attributes)
 
     char addr_buff[32];
     sprintf(addr_buff, "%p", static_cast<void*>(&image));
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ImageManager] Created image: '" + name + "' (" + addr_buff + 
         ") of type: " + type);
+#endif //PE_NO_LOGGER
 
     return image;
 }
@@ -235,8 +242,10 @@ void ImageManager::destroy(const String& name)
 //----------------------------------------------------------------------------//
 void ImageManager::destroy(ImageMap::iterator& iter)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ImageManager] Deleted image: " + iter->first);
+#endif //PE_NO_LOGGER
 
     // use the stored factory to destroy the image it created.
     iter->second.second->destroy(*iter->second.first);
@@ -295,8 +304,10 @@ void ImageManager::loadImagesetFromString(const String& source)
 void ImageManager::destroyImageCollection(const String& prefix,
                                           const bool delete_texture)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ImageManager] Destroying image collection with prefix: " + prefix);
+#endif //PE_NO_LOGGER
 
     ImagePrefixMatchPred p(prefix);
 
@@ -356,10 +367,12 @@ void ImageManager::elementStartLocal(const String& element,
         elementImageStart(attributes);
     else if (element == ImagesetElement)
         elementImagesetStart(attributes);
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent(
             "[ImageManager] Unknown XML element encountered: <" +
             element + ">", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -378,13 +391,14 @@ void ImageManager::elementImagesetStart(const XMLAttributes& attributes)
     // get resource group to use for image file.
     const String resource_group(
         attributes.getValueAsString(ImagesetResourceGroupAttribute));
-
+#ifndef PE_NO_LOGGER
     Logger& logger(Logger::getSingleton());
     logger.logEvent("[ImageManager] Started creation of Imageset from XML specification:");
     logger.logEvent("[ImageManager] ---- CEGUI Imageset name: " + name);
     logger.logEvent("[ImageManager] ---- Source texture file: " + filename);
     logger.logEvent("[ImageManager] ---- Source texture resource group: " +
                     (resource_group.empty() ? "(Default)" : resource_group));
+#endif //PE_NO_LOGGER
 
     validateImagesetFileVersion(attributes);
 
@@ -393,8 +407,10 @@ void ImageManager::elementImagesetStart(const XMLAttributes& attributes)
     // if the texture already exists, 
     if (renderer->isTextureDefined(name))
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "[ImageManager] WARNING: Using existing texture: " + name);
+#endif //PE_NO_LOGGER
         s_texture = &renderer->getTexture(name);
     }
     else
@@ -439,8 +455,10 @@ void ImageManager::elementImageStart(const XMLAttributes& attributes)
 
     if (isDefined(image_name))
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "[ImageManager] WARNING: Using existing image :" + image_name);
+#endif //PE_NO_LOGGER
         return;
     }
 

@@ -63,15 +63,17 @@ OpenGLGeometryBufferBase::~OpenGLGeometryBufferBase()
 {
     delete d_matrix;
 }
-#ifndef PE_NO_VERTEX
+
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::appendVertex(const Vertex& vertex)
 {
     appendGeometry(&vertex, 1);
 }
 
-#endif //PE_NO_VERTEX
+
+//#endif //PE_NO_VERTEX
 #ifndef PE_NO_VECTOR3D
+
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setTranslation(const Vector3f& v)
 {
@@ -103,7 +105,6 @@ void OpenGLGeometryBufferBase::setClippingRegion(const Rectf& region)
 }
 
 //----------------------------------------------------------------------------//
-#ifndef PE_NO_VERTEX
 void OpenGLGeometryBufferBase::appendGeometry(const Vertex* const vbuff,
     uint vertex_count)
 {
@@ -127,12 +128,13 @@ void OpenGLGeometryBufferBase::appendGeometry(const Vertex* const vbuff,
         vd.colour[3]   = vs->colour_val.getAlpha();
         vd.position[0] = vs->position.d_x;
         vd.position[1] = vs->position.d_y;
+#ifndef PE_NO_VECTOR3D
         vd.position[2] = vs->position.d_z;
+#endif  // PE_NO_VECTOR3D
         d_vertices.push_back(vd);
     }
 }
 
-#endif //PE_NO_VERTEX
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setActiveTexture(Texture* texture)
 {

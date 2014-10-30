@@ -55,8 +55,10 @@ Texture* SILLYImageCodec::load(const RawDataContainer& data, Texture* result)
     SILLY::Image img(md);
     if (!img.loadImageHeader())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Invalid image header", Errors);
         return 0;
+#endif //PE_NO_LOGGER
     }
 
     SILLY::PixelFormat dstfmt;
@@ -73,13 +75,17 @@ Texture* SILLYImageCodec::load(const RawDataContainer& data, Texture* result)
         cefmt = Texture::PF_RGBA;
         break;
     default:
+#ifndef PE_NO_LOGGER
         Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Unsupported pixel format", Errors);
+#endif //PE_NO_LOGGER
         return 0;
     }
 
     if (!img.loadImageData(dstfmt, SILLY::PO_TOP_LEFT))
     { 
+#ifndef PE_NO_LOGGER
         Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Invalid image data", Errors);
+#endif //PE_NO_LOGGER
         return 0;
     }
 

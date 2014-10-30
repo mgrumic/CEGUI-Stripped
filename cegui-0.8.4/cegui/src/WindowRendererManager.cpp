@@ -57,16 +57,20 @@ WindowRendererManager::WindowRendererManager()
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowRendererManager singleton created " + String(addr_buff));
+#endif //PE_NO_LOGGER
 
     // complete addition of any pre-added WindowRendererFactory objects
     OwnedFactoryList::iterator i = d_ownedFactories.begin();
 
     if (d_ownedFactories.end() != i)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
         "---- Adding pre-registered WindowRendererFactory objects ----");
+#endif //PE_NO_LOGGER
 
         for (; d_ownedFactories.end() != i; ++i)
             addFactory(*i);
@@ -77,8 +81,10 @@ WindowRendererManager::~WindowRendererManager()
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowRendererManager singleton destroyed " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 /*************************************************************************
@@ -118,8 +124,10 @@ void WindowRendererManager::addFactory(WindowRendererFactory* wr)
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(wr));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("WindowRendererFactory '"+wr->getName()+
         "' added. " + addr_buff);
+#endif //PE_NO_LOGGER
 }
 
 /*************************************************************************
@@ -145,16 +153,19 @@ void WindowRendererManager::removeFactory(const String& name)
     sprintf(addr_buff, "(%p)", static_cast<void*>((*i).second));
 
     d_wrReg.erase(name);
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("WindowRendererFactory for '" + name +
                                     "' WindowRenderers removed. " + addr_buff);
+#endif //PE_NO_LOGGER
 
     // delete factory object if we created it
     if (j != d_ownedFactories.end())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Deleted WindowRendererFactory for '" +
                                         (*j)->getName() +
                                         "' WindowRenderers.");
+#endif //PE_NO_LOGGER
 
         CEGUI_DELETE_AO (*j);
         d_ownedFactories.erase(j);

@@ -35,9 +35,11 @@
 #endif
 
 #define PE_NO_MOUSE
+#define PE_NO_LOGGER
+
+
 #define PE_NO_WGT_SPINNER
 #define PE_NO_WGT_SLIDER
-//#define PE_NO_VERTEX
 #define PE_NO_WGT_PROGRESS_BAR
 #define PE_NO_WGT_TOOLTIP
 #define PE_NO_WGT_MULTILINE_EDITBOX
@@ -45,7 +47,7 @@
 #define PE_NO_WGT_GROUP_BOX
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
 #define PE_NO_VECTOR3D
-
+#define PE_NO_WGT_TREE
 
 #ifndef _CEGUIBase_h_
 #define _CEGUIBase_h_

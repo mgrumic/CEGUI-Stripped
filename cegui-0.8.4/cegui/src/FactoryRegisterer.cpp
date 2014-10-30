@@ -43,10 +43,14 @@ FactoryRegisterer::~FactoryRegisterer()
 void FactoryRegisterer::registerFactory() const
 {
     if (this->isAlreadyRegistered())
+    {
+#ifndef PE_NO_LOGGER
         CEGUI::Logger::getSingleton().logEvent(
             "Factory for '" + CEGUI::String(d_type) +
             "' appears to be  already registered, skipping.",
             CEGUI::Informative);
+#endif //PE_NO_LOGGER
+    }
     else
         this->doFactoryAdd();
 }

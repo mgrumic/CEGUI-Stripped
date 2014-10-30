@@ -67,8 +67,10 @@ const String Config_xmlHandler::ImageAttribute("image");
 const String Config_xmlHandler::NameAttribute("name");
 
 //----------------------------------------------------------------------------//
-Config_xmlHandler::Config_xmlHandler() :
-    d_logLevel(Standard)
+Config_xmlHandler::Config_xmlHandler() 
+#ifndef PE_NO_LOGGER
+:d_logLevel(Standard)
+#endif //PE_NO_LOGGER
 {
 }
 
@@ -118,24 +120,30 @@ void Config_xmlHandler::elementStart(const String& element,
     else if (element == DefaultTooltipElement)
         handleDefaultTooltipElement(attributes);
 #endif
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent("Config_xmlHandler::elementStart: "
             "Unknown element encountered: <" + element + ">", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::elementEnd(const String& element)
 {
+#ifndef PE_NO_LOGGER
     if (element == CEGUIConfigElement)
         Logger::getSingleton().logEvent(
             "---- Finished parse of CEGUI config file ----");
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::handleCEGUIConfigElement(const XMLAttributes& /*attr*/)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "---- Started parse of CEGUI config file ----");
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -144,7 +152,7 @@ void Config_xmlHandler::handleLoggingElement(const XMLAttributes& attr)
     d_logFileName = attr.getValueAsString(FilenameAttribute, "");
 
     const String logLevel(attr.getValueAsString(LevelAttribute, ""));
-
+#ifndef PE_NO_LOGGER
     if (logLevel == "Errors")
         d_logLevel = Errors;
     else if (logLevel == "Informative")
@@ -153,6 +161,7 @@ void Config_xmlHandler::handleLoggingElement(const XMLAttributes& attr)
         d_logLevel = Insane;
     else
         d_logLevel = Standard;
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -241,9 +250,11 @@ void Config_xmlHandler::initialiseImageCodec() const
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::initialiseLogger(const String& default_filename) const
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().setLoggingLevel(d_logLevel);
     Logger::getSingleton().setLogFilename(
         d_logFileName.empty() ? default_filename : d_logFileName);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

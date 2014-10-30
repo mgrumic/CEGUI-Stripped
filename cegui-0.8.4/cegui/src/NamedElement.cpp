@@ -72,10 +72,11 @@ void NamedElement::setName(const String& name)
                 "with that name is already attached as a sibling."));
         }
     }
-
+#ifndef PE_NO_LOGGER
     // log this under informative level
     Logger::getSingleton().logEvent("Renamed element at: " + getNamePath() +
                                     " as: " + name, Informative);
+#endif //PE_NO_LOGGER
 
     d_name = name;
 

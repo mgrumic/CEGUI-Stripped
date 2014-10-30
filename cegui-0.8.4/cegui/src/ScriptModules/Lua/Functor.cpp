@@ -145,7 +145,9 @@ bool LuaFunctor::operator()(const EventArgs& args) const
         // reference function
         index = luaL_ref(L, LUA_REGISTRYINDEX);
         needs_lookup = false;
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("Late binding of callback '"+function_name+"' performed");
+#endif //PE_NO_LOGGER
         function_name.clear();
     }
 

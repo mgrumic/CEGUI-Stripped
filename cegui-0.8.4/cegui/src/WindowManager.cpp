@@ -70,8 +70,10 @@ WindowManager::WindowManager(void) :
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowManager singleton created " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 
@@ -85,8 +87,10 @@ WindowManager::~WindowManager(void)
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::WindowManager singleton destroyed " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 
@@ -109,8 +113,10 @@ Window* WindowManager::createWindow(const String& type, const String& name)
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(newWindow));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Window '" + finalName +"' of type '" +
         type + "' has been created. " + addr_buff, Informative);
+#endif //PE_NO_LOGGER
 
     // see if we need to assign a look to this window
     if (wfMgr.isFalagardMappedType(type))
@@ -138,7 +144,9 @@ Window* WindowManager::createWindow(const String& type, const String& name)
 void WindowManager::initialiseRenderEffect(
         Window* wnd, const String& effect) const
 {
+#ifndef PE_NO_LOGGER
     Logger& logger(Logger::getSingleton());
+#endif //PE_NO_LOGGER
 
     // nothing to do if effect is empty string
     if (effect.empty())
@@ -147,9 +155,11 @@ void WindowManager::initialiseRenderEffect(
     // if requested RenderEffect is not available, log that and continue
     if (!RenderEffectManager::getSingleton().isEffectAvailable(effect))
     {
+#ifndef PE_NO_LOGGER
         logger.logEvent("Missing RenderEffect '" + effect + "' requested for "
             "window '" + wnd->getName() + "' - continuing without effect...",
             Errors);
+#endif //PE_NO_LOGGER
 
        return;
     }
@@ -158,8 +168,10 @@ void WindowManager::initialiseRenderEffect(
     // try and create one
     if (!wnd->getRenderingSurface())
     {
+#ifndef PE_NO_LOGGER
         logger.logEvent("Enabling AutoRenderingSurface on '" +
             wnd->getName() + "' for RenderEffect support.");
+#endif //PE_NO_LOGGER
 
         wnd->setUsingAutoRenderingSurface(true);
     }
@@ -176,10 +188,12 @@ void WindowManager::initialiseRenderEffect(
     // log fact that we could not get a usable RenderingSurface
     else
     {
+#ifndef PE_NO_LOGGER
         logger.logEvent("Unable to set effect for window '" +
             wnd->getName() + "' since RenderingSurface is either missing "
             "or of wrong type (i.e. not a RenderingWindow).",
             Errors);
+#endif //PE_NO_LOGGER
     }
 }
 
@@ -198,17 +212,20 @@ void WindowManager::destroyWindow(Window* window)
 
 	if (iter == d_windowRegistry.end())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("[WindowManager] Attempt to delete "
             "Window that does not exist!  Address was: " + String(addr_buff) +
             ". WARNING: This could indicate a double-deletion issue!!",
             Errors);
+#endif //PE_NO_LOGGER
         return;
     }
 
     d_windowRegistry.erase(iter);
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Window at '" + window->getNamePath() +
         "' will be added to dead pool. " + addr_buff, Informative);
+#endif //PE_NO_LOGGER
 
     // do 'safe' part of cleanup
     window->destroy();
@@ -245,8 +262,10 @@ bool WindowManager::isAlive(const Window* window) const
 
 Window* WindowManager::loadLayoutFromContainer(const RawDataContainer& source, PropertyCallback* callback, void* userdata)
 {
+#ifndef PE_NO_LOGGER
     // log the fact we are about to load a layout
     Logger::getSingleton().logEvent("---- Beginning loading of GUI layout from a RawDataContainer ----", Informative);
+#endif //PE_NO_LOGGER
 
     // create handler object
     GUILayout_xmlHandler handler(callback, userdata);
@@ -258,12 +277,15 @@ Window* WindowManager::loadLayoutFromContainer(const RawDataContainer& source, P
     }
     CEGUI_CATCH(...)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("WindowManager::loadWindowLayout - loading of layout from a RawDataContainer failed.", Errors);
+#endif //PE_NO_LOGGER
         CEGUI_RETHROW;
     }
-
+#ifndef PE_NO_LOGGER
     // log the completion of loading
     Logger::getSingleton().logEvent("---- Successfully completed loading of GUI layout from a RawDataContainer ----", Standard);
+#endif //PE_NO_LOGGER
 
     return handler.getLayoutRootWindow();
 }
@@ -275,9 +297,10 @@ Window* WindowManager::loadLayoutFromFile(const String& filename, const String& 
 		CEGUI_THROW(InvalidRequestException(
             "Filename supplied for gui-layout loading must be valid."));
 	}
-
+#ifndef PE_NO_LOGGER
 	// log the fact we are about to load a layout
 	Logger::getSingleton().logEvent("---- Beginning loading of GUI layout from '" + filename + "' ----", Informative);
+#endif //PE_NO_LOGGER
 
     // create handler object
     GUILayout_xmlHandler handler(callback, userdata);
@@ -290,20 +313,25 @@ Window* WindowManager::loadLayoutFromFile(const String& filename, const String& 
 	}
 	CEGUI_CATCH(...)
 	{
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("WindowManager::loadLayoutFromFile - loading of layout from file '" + filename +"' failed.", Errors);
+#endif //PE_NO_LOGGER
         CEGUI_RETHROW;
 	}
-
+#ifndef PE_NO_LOGGER
     // log the completion of loading
     Logger::getSingleton().logEvent("---- Successfully completed loading of GUI layout from '" + filename + "' ----", Standard);
+#endif //PE_NO_LOGGER
 
 	return handler.getLayoutRootWindow();
 }
 
 Window* WindowManager::loadLayoutFromString(const String& source, PropertyCallback* callback, void* userdata)
 {
+#ifndef PE_NO_LOGGER
     // log the fact we are about to load a layout
     Logger::getSingleton().logEvent("---- Beginning loading of GUI layout from string ----", Informative);
+#endif //PE_NO_LOGGER
 
     // create handler object
     GUILayout_xmlHandler handler(callback, userdata);
@@ -315,12 +343,15 @@ Window* WindowManager::loadLayoutFromString(const String& source, PropertyCallba
     }
     CEGUI_CATCH(...)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("WindowManager::loadLayoutFromString - loading of layout from string failed.", Errors);
+#endif //PE_NO_LOGGER
         CEGUI_RETHROW;
     }
-
+#ifndef PE_NO_LOGGER
     // log the completion of loading
     Logger::getSingleton().logEvent("---- Successfully completed loading of GUI layout from string ----", Standard);
+#endif //PE_NO_LOGGER
 
     return handler.getLayoutRootWindow();
 }
@@ -337,7 +368,9 @@ void WindowManager::cleanDeadPool(void)
     {
 // in debug mode, log what gets cleaned from the dead pool (insane level)
 #if defined(DEBUG) || defined (_DEBUG)
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("Window '" + (*curr)->getName() + "' about to be finally destroyed from dead pool.");
+#endif //PE_NO_LOGGER
 #endif
 
         WindowFactory* factory = WindowFactoryManager::getSingleton().getFactory((*curr)->getType());
@@ -392,12 +425,13 @@ String WindowManager::generateUniqueWindowName()
     // update counter for next time
     unsigned long old_uid = d_uid_counter;
     ++d_uid_counter;
-
+#ifndef PE_NO_LOGGER
     // log if we ever wrap-around (which should be pretty unlikely)
     if (d_uid_counter < old_uid)
         Logger::getSingleton().logEvent("UID counter for generated Window "
             "names has wrapped around - the fun shall now commence!");
 
+#endif //PE_NO_LOGGER
     return ret;
 }
 
@@ -415,6 +449,7 @@ WindowManager::WindowIterator WindowManager::getIterator(void) const
 *************************************************************************/
 void WindowManager::DEBUG_dumpWindowNames(String zone) const
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("WINDOW NAMES DUMP (" + zone + ")");
     Logger::getSingleton().logEvent("-----------------");
 
@@ -422,9 +457,11 @@ void WindowManager::DEBUG_dumpWindowNames(String zone) const
          i != d_windowRegistry.end();
          ++i)
     {
+
         Logger::getSingleton().logEvent("Window : " + (*i)->getNamePath());
     }
     Logger::getSingleton().logEvent("-----------------");
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

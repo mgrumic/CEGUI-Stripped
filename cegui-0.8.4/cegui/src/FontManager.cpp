@@ -53,22 +53,28 @@ FontManager::FontManager() :
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::FontManager singleton created. " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
 FontManager::~FontManager()
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "---- Begining cleanup of Font system ----");
+#endif //PE_NO_LOGGER
 
     destroyAll();
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::FontManager singleton destroyed. " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -83,8 +89,10 @@ Font& FontManager::createFreeTypeFont(const String& font_name,
                                       XMLResourceExistsAction action)
 {
 #ifdef CEGUI_HAS_FREETYPE
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE("Attempting to create FreeType font '" +
         font_name + "' using font file '" + font_filename + "'.");
+#endif //PE_NO_LOGGER
 
     // create new object ahead of time
     Font* object = CEGUI_NEW_AO FreeTypeFont(font_name, point_size, anti_aliased,
@@ -108,8 +116,10 @@ Font& FontManager::createPixmapFont(const String& font_name,
                                     const Sizef& native_res,
                                     XMLResourceExistsAction action)
 {
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE("Attempting to create Pixmap font '" +
         font_name + "' using imageset file '" + imageset_filename + "'.");
+#endif //PE_NO_LOGGER
 
     // create new object ahead of time
     Font* object = CEGUI_NEW_AO PixmapFont(font_name, imageset_filename, resource_group,

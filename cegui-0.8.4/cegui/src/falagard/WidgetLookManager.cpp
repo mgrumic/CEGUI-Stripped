@@ -45,16 +45,20 @@ namespace CEGUI
     {
         char addr_buff[32];
         sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("CEGUI::WidgetLookManager singleton "
             "created. " + String(addr_buff));
+#endif //PE_NO_LOGGER
     }
 
     WidgetLookManager::~ WidgetLookManager()
     {
         char addr_buff[32];
         sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("CEGUI::WidgetLookManager singleton "
             "destroyed. " + String(addr_buff));
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -86,7 +90,9 @@ namespace CEGUI
         }
         CEGUI_CATCH(...)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecificationFromContainer - loading of look and feel data from raw data container has failed.", Errors);
+#endif //PE_NO_LOGGER
             CEGUI_RETHROW;
         }
     }
@@ -112,7 +118,9 @@ namespace CEGUI
         }
         CEGUI_CATCH(...)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecification - loading of look and feel data from file '" + filename +"' has failed.", Errors);
+#endif //PE_NO_LOGGER
             CEGUI_RETHROW;
         }
     }
@@ -130,7 +138,9 @@ namespace CEGUI
         }
         CEGUI_CATCH(...)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecification - loading of look and feel data from string has failed.", Errors);
+#endif //PE_NO_LOGGER
             CEGUI_RETHROW;
         }
     }
@@ -162,8 +172,10 @@ namespace CEGUI
         }
         else
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
                 "WidgetLookManager::eraseWidgetLook - Widget look and feel '" + widget + "' did not exist.");
+#endif //PE_NO_LOGGER
         }
     }
 
@@ -177,8 +189,10 @@ namespace CEGUI
     {
         if (isWidgetLookAvailable(look.getName()))
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
                 "WidgetLookManager::addWidgetLook - Widget look and feel '" + look.getName() + "' already exists.  Replacing previous definition.");
+#endif //PE_NO_LOGGER
         }
 
         d_widgetLooks[look.getName()] = look;
@@ -200,7 +214,9 @@ namespace CEGUI
         }
         CEGUI_CATCH (UnknownObjectException&)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::writeWidgetLookToStream - Failed to write widget look XML data to stream.", Errors);
+#endif //PE_NO_LOGGER
         }
 
         // close the root tags to terminate the file

@@ -86,9 +86,11 @@ protected:
         }
         CEGUI_CATCH (UnknownObjectException&)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
                 "PropertyDefiniton::get: Defining new user string: " +
                 d_userStringName);
+#endif //PE_NO_LOGGER
 
             // HACK: FIXME: TODO: This const_cast is basically to allow the
             // above mentioned performance measure; the alternative would be

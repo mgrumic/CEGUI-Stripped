@@ -220,9 +220,11 @@ Texture& OpenGLRendererBase::createTexture(const String& name, const Sizef& size
 //----------------------------------------------------------------------------//
 void OpenGLRendererBase::logTextureCreation(const String& name)
 {
+#ifndef PE_NO_LOGGER
     Logger* logger = Logger::getSingletonPtr();
     if (logger)
         logger->logEvent("[OpenGLRenderer] Created texture: " + name);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -247,9 +249,11 @@ void OpenGLRendererBase::destroyTexture(const String& name)
 //----------------------------------------------------------------------------//
 void OpenGLRendererBase::logTextureDestruction(const String& name)
 {
+#ifndef PE_NO_LOGGER
     Logger* logger = Logger::getSingletonPtr();
     if (logger)
         logger->logEvent("[OpenGLRenderer] Destroyed texture: " + name);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

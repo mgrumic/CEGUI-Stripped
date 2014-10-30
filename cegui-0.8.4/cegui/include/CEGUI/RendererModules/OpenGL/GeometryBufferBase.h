@@ -63,10 +63,8 @@ public:
 #endif  // PE_NO_VECTOR3D
     void setRotation(const Quaternion& r);
     void setClippingRegion(const Rectf& region);
-    #ifndef PE_NO_VERTEX
     void appendVertex(const Vertex& vertex);
     void appendGeometry(const Vertex* const vbuff, uint vertex_count);
-    #endif //PE_NO_VERTEX
     void setActiveTexture(Texture* texture);
     void reset();
     Texture* getActiveTexture() const;

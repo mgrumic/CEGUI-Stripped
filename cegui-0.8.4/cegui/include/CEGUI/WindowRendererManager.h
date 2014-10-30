@@ -141,9 +141,11 @@ void WindowRendererManager::addFactory()
     // only do the actual add now if our singleton has already been created
     if (WindowRendererManager::getSingletonPtr())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Created WindowRendererFactory for '" +
                                         factory->getName() +
                                         "' WindowRenderers.");
+#endif //PE_NO_LOGGER
         // add the factory we just created
         CEGUI_TRY
         {
@@ -151,9 +153,11 @@ void WindowRendererManager::addFactory()
         }
         CEGUI_CATCH (Exception&)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("Deleted WindowRendererFactory for "
                                             "'" + factory->getName() +
                                             "' WindowRenderers.");
+#endif //PE_NO_LOGGER
             // delete the factory object
             CEGUI_DELETE_AO factory;
             CEGUI_RETHROW;

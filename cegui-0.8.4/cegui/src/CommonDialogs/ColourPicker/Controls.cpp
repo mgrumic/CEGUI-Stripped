@@ -426,8 +426,10 @@ void ColourPickerControls::deinitColourPickerControlsTexture()
 //----------------------------------------------------------------------------//
 void ColourPickerControls::refreshColourPickerControlsTextures()
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[ColourPicker] Refreshing ColourPickerTexture");
+#endif //PE_NO_LOGGER
 #ifndef PE_NO_WGT_SLIDER
     refreshColourPickingImage();
 #endif //PE_NO_WGT_SLIDER
@@ -1473,8 +1475,10 @@ void ColourPickerControls::refreshColourSliderPosition()
         break;
 
     default:
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "[ColourPicker] Unknown slider mode - action not processed");
+#endif //PE_NO_LOGGER
         break;
     }
 
@@ -1508,8 +1512,10 @@ void ColourPickerControls::refreshColourSliderPosition()
         break;
 
     default:
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "[ColourPicker] Unknown slider mode - action not processed");
+#endif //PE_NO_LOGGER
         break;
     }
 

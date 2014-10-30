@@ -64,9 +64,8 @@ public:
     void setPivot(const Vector3f& p);
 #endif  // PE_NO_VECTOR3D
     void setClippingRegion(const Rectf& region);
-    #ifndef PE_NO_VERTEX
     void appendGeometry(const Vertex* const vbuff, uint vertex_count);
-    #endif //PE_NO_VERTEXvoid appendVertex(const Vertex& vertex);
+    void appendVertex(const Vertex& vertex);
     void setActiveTexture(Texture* texture);
     void reset();
     Texture* getActiveTexture() const;
@@ -97,11 +96,9 @@ protected:
     //! RenderEffect that will be used by the GeometryBuffer
     RenderEffect* d_effect;
     //! type of container used to queue the geometry
-    #ifndef PE_NO_VERTEX
     typedef std::vector<Vertex> VertexList;
     //! container where added geometry is stored.
     VertexList d_vertices;
-    #endif //PE_NO_VERTEX
 };
 
 

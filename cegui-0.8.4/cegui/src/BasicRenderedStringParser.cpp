@@ -126,9 +126,11 @@ RenderedString BasicRenderedStringParser::parse(const String& input_string,
 
         if (!parse_section(input_iter, input_string.end(), ']', tag_string))
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
                 "BasicRenderedStringParser::parse: Ignoring unterminated tag : [" +
                 tag_string);
+#endif //PE_NO_LOGGER
 
             return rs;
         }
@@ -210,9 +212,11 @@ void BasicRenderedStringParser::processControlString(RenderedString& rs,
     // so do a quick check for the = char and abort if it's not there.
     if (String::npos == ctrl_str.find('='))
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "BasicRenderedStringParser::processControlString: unable to make "
             "sense of control string '" + ctrl_str + "'.  Ignoring!");
+#endif //PE_NO_LOGGER
         
         return;
     }
@@ -229,10 +233,12 @@ void BasicRenderedStringParser::processControlString(RenderedString& rs,
     // despatch handler, or log error
     if (i != d_tagHandlers.end())
         (this->*(*i).second)(rs, val_str);
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent(
             "BasicRenderedStringParser::processControlString: unknown "
             "control variable '" + var_str + "'.  Ignoring!");
+#endif //PE_NO_LOGGER    
 }
 
 //----------------------------------------------------------------------------//
@@ -337,10 +343,12 @@ void BasicRenderedStringParser::handleVertAlignment(RenderedString&, const Strin
         d_vertAlignment = VF_CENTRE_ALIGNED;
     else if (value == StretchAlignedValueName)
         d_vertAlignment = VF_STRETCHED;
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent(
             "BasicRenderedStringParser::handleVertAlignment: unknown "
             "vertical alignment '" + value + "'.  Ignoring!");
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

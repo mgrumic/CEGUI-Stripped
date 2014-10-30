@@ -185,7 +185,6 @@ const Vector2f& BasicImage::getRenderedOffset() const
 void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
                         const Rectf* clip_area, const ColourRect& colours) const
 {
-    #ifndef PE_NO_VERTEX
     const QuadSplitMode quad_split_mode(TopLeftToBottomRight);
 
     Rectf dest(dest_area);
@@ -294,7 +293,6 @@ void BasicImage::render(GeometryBuffer& buffer, const Rectf& dest_area,
 
     buffer.setActiveTexture(d_texture);
     buffer.appendGeometry(vbuffer, 6);
-    #endif //PE_NO_VERTEX
 }
 
 //----------------------------------------------------------------------------//
