@@ -52,7 +52,10 @@ void DefaultResourceProvider::loadRawDataContainer(const String& filename,
 {
     if (filename.empty())
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Filename supplied for data loading must be valid"));
+#endif //PE_NO_THROW_MSGS
 
     const String final_filename(getFinalFilename(filename, resourceGroup));
 
@@ -79,7 +82,10 @@ void DefaultResourceProvider::loadRawDataContainer(const String& filename,
         CEGUI_DELETE_ARRAY_PT(buffer, unsigned char, size, BufferAllocator);
 
         CEGUI_THROW(FileIOException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "A problem occurred while reading file: " + final_filename));
+#endif //PE_NO_THROW_MSGS
     }
 
     output.setData(buffer);

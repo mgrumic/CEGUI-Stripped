@@ -75,7 +75,10 @@ size_t KeyFrame::getIdxInParent() const
     }
 
     CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
         "KeyFrame wasn't found in parent, therefore its index is unknown!"));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//

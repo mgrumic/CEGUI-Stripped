@@ -71,7 +71,10 @@ void CompositeResourceProvider::loadRawDataContainer(const String& filename,
 {
   if (filename.empty())
     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
       "Filename supplied for data loading must be valid"));
+#endif //PE_NO_THROW_MSGS
   ProviderIterator it=getIterator();
   for(it.toStart(); !it.isAtEnd(); ++it)
   {

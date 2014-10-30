@@ -347,8 +347,11 @@ void FreeTypeFont::drawGlyphToBuffer(argb_t *buffer, uint buf_width) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                 "The glyph could not be drawn because the pixel mode is "
                 "unsupported."));
+#endif //PE_NO_THROW_MSGS
             break;
         }
 
@@ -392,9 +395,13 @@ void FreeTypeFont::updateFont()
     if ((error = FT_New_Memory_Face(ft_lib, d_fontData.getDataPtr(),
                            static_cast<FT_Long>(d_fontData.getSize()), 0,
                            &d_fontFace)) != 0)
-        CEGUI_THROW(GenericException("Failed to create face from font file '" +
+        CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Failed to create face from font file '" +
             d_filename + "' error was: " +
             ((error < FT_Err_Max) ? ft_errors[error] : "unknown error")));
+#endif //PE_NO_THROW_MSGS
 
     // check that default Unicode character map is available
     if (!d_fontFace->charmap)
@@ -402,8 +409,11 @@ void FreeTypeFont::updateFont()
         FT_Done_Face(d_fontFace);
         d_fontFace = 0;
         CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "The font '" + d_name + "' does not have a Unicode charmap, and "
             "cannot be used."));
+#endif //PE_NO_THROW_MSGS
     }
 
     uint horzdpi = static_cast<uint>(System::getSingleton().getRenderer()->getDisplayDPI().d_x);
@@ -440,9 +450,13 @@ void FreeTypeFont::updateFont()
         {
             char size [20];
             snprintf(size, sizeof(size), "%g", d_ptSize);
-            CEGUI_THROW(GenericException("The font '" + d_name + "' cannot be "
+            CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                    "The font '" + d_name + "' cannot be "
                 "rasterised at a size of " + size + " points, and cannot be "
                 "used."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 

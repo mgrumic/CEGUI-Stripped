@@ -184,7 +184,9 @@ class PopupMenu;
 class ProgressBar;
 #endif //PE_NO_WGT_PROGRESS_BAR
 class PushButton;
+#ifndef PE_NO_WGT_RADIOBUTTON
 class RadioButton;
+#endif //PE_NO_WGT_RADIOBUTTON
 class ScrollablePane;
 class Scrollbar;
 class ScrolledContainer;

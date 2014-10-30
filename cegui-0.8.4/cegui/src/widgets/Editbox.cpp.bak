@@ -349,9 +349,12 @@ void Editbox::setValidator(RegexMatcher* validator)
         d_weOwnValidator = true;
     }
 }
+<<<<<<< HEAD
 #endif //PE_NO_REGEX_MATCHER
 
+=======
 #ifndef PE_NO_CLIPBOARD
+>>>>>>> 14366e6cfcdd0a53d96d6c60abb58f43d039579d
 //----------------------------------------------------------------------------//
 bool Editbox::performCopy(Clipboard& clipboard)
 {
@@ -377,9 +380,11 @@ bool Editbox::performCut(Clipboard& clipboard)
     handleDelete();
     return true;
 }
-#endif  // PE_NO_CLIPBOARD
-
+<<<<<<< HEAD
 #ifndef PE_NO_REGEX_MATCHER
+=======
+#endif  // PE_NO_CLIPBOARD
+>>>>>>> 14366e6cfcdd0a53d96d6c60abb58f43d039579d
 //----------------------------------------------------------------------------//
 bool Editbox::handleValidityChangeForString(const String& str)
 {
@@ -400,8 +405,12 @@ bool Editbox::handleValidityChangeForString(const String& str)
 
     return response;
 }
+<<<<<<< HEAD
 #endif //PE_NO_REGEX_MATCHER
+
+=======
 #ifndef PE_NO_CLIPBOARD
+>>>>>>> 14366e6cfcdd0a53d96d6c60abb58f43d039579d
 //----------------------------------------------------------------------------//
 bool Editbox::performPaste(Clipboard& clipboard)
 {

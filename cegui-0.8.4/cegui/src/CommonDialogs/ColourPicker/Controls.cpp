@@ -512,7 +512,7 @@ void ColourPickerControls::initialiseComponents()
     getAlphaEditBox()->subscribeEvent(
         Editbox::EventDeactivated,
         Event::Subscriber(&ColourPickerControls::handleEditboxDeactivated, this));
-
+#ifndef PE_NO_WGT_RADIOBUTTON
     getHSVRadioButtonH()->subscribeEvent(
         RadioButton::EventSelectStateChanged,
         Event::Subscriber(&ColourPickerControls::handleRadioButtonModeSelection, this));
@@ -536,7 +536,7 @@ void ColourPickerControls::initialiseComponents()
     getLabRadioButtonB()->subscribeEvent(
         RadioButton::EventSelectStateChanged,
         Event::Subscriber(&ColourPickerControls::handleRadioButtonModeSelection, this));
-
+#endif //PE_NO_WGT_RADIOBUTTON
     getHexadecimalEditbox()->subscribeEvent(
         Editbox::EventTextChanged,
         Event::Subscriber(&ColourPickerControls::handleHexadecimalEditboxTextChanged, this));
@@ -776,7 +776,7 @@ Editbox* ColourPickerControls::getColourEditBoxB()
 {
     return static_cast<Editbox*>(getChild(ColourEditBoxBName));
 }
-
+#ifndef PE_NO_WGT_RADIOBUTTON
 //----------------------------------------------------------------------------//
 RadioButton* ColourPickerControls::getHSVRadioButtonH()
 {
@@ -794,7 +794,7 @@ RadioButton* ColourPickerControls::getHSVRadioButtonV()
 {
     return static_cast<RadioButton*>(getChild(HSVRadioButtonVName));
 }
-
+#endif //PE_NO_WGT_RADIOBUTTON
 //----------------------------------------------------------------------------//
 Editbox* ColourPickerControls::getHSVEditBoxH()
 {
@@ -813,7 +813,7 @@ Editbox* ColourPickerControls::getHSVEditBoxV()
     return static_cast<Editbox*>(getChild(HSVEditBoxVName));
 }
 
-
+#ifndef PE_NO_WGT_RADIOBUTTON
 //----------------------------------------------------------------------------//
 RadioButton* ColourPickerControls::getLabRadioButtonL()
 {
@@ -831,7 +831,7 @@ RadioButton* ColourPickerControls::getLabRadioButtonB()
 {
     return static_cast<RadioButton*>(getChild(LabRadioButtonBName));
 }
-
+#endif //PE_NO_WGT_RADIOBUTTON
 //----------------------------------------------------------------------------//
 Editbox* ColourPickerControls::getLabEditBoxL()
 {
@@ -1051,6 +1051,7 @@ bool ColourPickerControls::handleAcceptButtonClicked(const EventArgs&)
     return true;
 }
 #endif //PE_NO_WGT_SLIDER
+#ifndef PE_NO_WGT_RADIOBUTTON
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleRadioButtonModeSelection(const EventArgs& args)
 {
@@ -1078,7 +1079,7 @@ bool ColourPickerControls::handleRadioButtonModeSelection(const EventArgs& args)
 
     return true;
 }
-
+#endif //PE_NO_WGT_RADIOBUTTON
 #ifndef PE_NO_WGT_SLIDER
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleColourPickerSliderValueChanged(
@@ -1356,7 +1357,9 @@ void ColourPickerControls::initColourPicker()
     initColourPickerControlsImageSet();
 
     d_sliderMode = SliderMode_Lab_L;
+#ifndef PE_NO_WGT_RADIOBUTTON
     getLabRadioButtonL()->setSelected(true);
+#endif //PE_NO_WGT_RADIOBUTTON
 
     d_colourPickerCursor = WindowManager::getSingleton().createWindow(
         getProperty("ColourPickerCursorStyle"),

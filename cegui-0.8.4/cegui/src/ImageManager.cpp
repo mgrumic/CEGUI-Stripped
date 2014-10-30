@@ -150,13 +150,19 @@ Image& ImageManager::create(const String& type, const String& name)
 {
     if (d_images.find(name) != d_images.end())
         CEGUI_THROW(AlreadyExistsException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Image already exists: " + name));
+#endif //PE_NO_THROW_MSGS
 
     ImageFactoryRegistry::iterator i(d_factories.find(type));
 
     if (i == d_factories.end())
         CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Unknown Image type: " + type));
+#endif //PE_NO_THROW_MSGS
 
     ImageFactory* factory = i->second;
     Image& image = factory->create(name);
@@ -183,17 +189,26 @@ Image& ImageManager::create(const XMLAttributes& attributes)
 
     if (name.empty())
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Invalid (empty) image name passed to create."));
+#endif //PE_NO_THROW_MSGS
 
     if (d_images.find(name) != d_images.end())
         CEGUI_THROW(AlreadyExistsException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Image already exists: " + name));
+#endif //PE_NO_THROW_MSGS
 
     ImageFactoryRegistry::iterator i(d_factories.find(type));
 
     if (i == d_factories.end())
         CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Unknown Image type: " + type));
+#endif //PE_NO_THROW_MSGS
 
     ImageFactory* factory = i->second;
     Image& image = factory->create(attributes);
@@ -267,7 +282,10 @@ Image& ImageManager::get(const String& name) const
     
     if (i == d_images.end())
         CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "Image not defined: " + name));
+#endif //PE_NO_THROW_MSGS
 
     return *i->second.first;
 }
@@ -441,10 +459,13 @@ void ImageManager::validateImagesetFileVersion(const XMLAttributes& attrs)
         return;
 
     CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
         "You are attempting to load an imageset of version '" + version +
         "' but this CEGUI version is only meant to load imagesets of version '" +
         NativeVersion + "'. Consider using the migrate.py script bundled with "
         "CEGUI Unified Editor to migrate your data."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//

@@ -627,7 +627,10 @@ public:
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifndef PE_NO_THROW_MSGS
                 "Invalid enumeration value given."));
+#endif //PE_NO_THROW_MSGS
+            ""));
         }
     }
 
@@ -640,8 +643,12 @@ public:
             return CEA_LAYOUT;
 
         CEGUI_THROW(InvalidRequestException(
+                ""
+#ifndef PE_NO_THROW_MSGS
             "'" + str +
-            "' does not represent a ChildEventAction enumerated value."));
+            "' does not represent a ChildEventAction enumerated value."
+#endif //PE_NO_THROW_MSGS
+                ));
     }
 
     static const CEGUI::String Redraw;

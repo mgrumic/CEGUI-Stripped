@@ -26,6 +26,8 @@
  *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
+#include <CEGUI/Base.h>
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
 
 // Start of CEGUI namespace section
@@ -172,3 +174,4 @@ String Clipboard::getText()
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+#endif  // PE_NO_CLIPBOARD

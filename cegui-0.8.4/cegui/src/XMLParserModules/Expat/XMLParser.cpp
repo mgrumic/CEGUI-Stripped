@@ -53,7 +53,11 @@ void ExpatParser::parseXML(XMLHandler& handler, const RawDataContainer& source, 
 
     if (!parser)
     {
-        CEGUI_THROW(GenericException("Unable to create a new Expat Parser"));
+        CEGUI_THROW(GenericException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Unable to create a new Expat Parser"));
+#endif //PE_NO_THROW_MSGS
     }
 
     XML_SetUserData(parser, (void*)&handler); // Initialise user data

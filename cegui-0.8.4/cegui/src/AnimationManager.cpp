@@ -124,8 +124,12 @@ void AnimationManager::addInterpolator(Interpolator* interpolator)
 {
     if (d_interpolators.find(interpolator->getType()) != d_interpolators.end())
     {
-        CEGUI_THROW(AlreadyExistsException("Interpolator of type '"
+        CEGUI_THROW(AlreadyExistsException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Interpolator of type '"
             + interpolator->getType() + "' already exists."));
+#endif //PE_NO_THROW_MSGS
     }
 
     d_interpolators.insert(
@@ -139,8 +143,12 @@ void AnimationManager::removeInterpolator(Interpolator* interpolator)
 
     if (it == d_interpolators.end())
     {
-        CEGUI_THROW(UnknownObjectException("Interpolator of type '"
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Interpolator of type '"
             + interpolator->getType() + "' not found."));
+#endif //PE_NO_THROW_MSGS
     }
 
     d_interpolators.erase(it);
@@ -153,8 +161,12 @@ Interpolator* AnimationManager::getInterpolator(const String& type) const
 
     if (it == d_interpolators.end())
     {
-        CEGUI_THROW(UnknownObjectException("Interpolator of type '" + type +
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Interpolator of type '" + type +
             "' not found."));
+#endif //PE_NO_THROW_MSGS
     }
 
     return it->second;
@@ -165,8 +177,12 @@ Animation* AnimationManager::createAnimation(const String& name)
 {
     if (isAnimationPresent(name))
     {
-        CEGUI_THROW(UnknownObjectException("Animation with name '"
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Animation with name '"
             + name + "' already exists."));
+#endif //PE_NO_THROW_MSGS
     }
 
     String finalName(name.empty() ? generateUniqueAnimationName() : name);
@@ -190,8 +206,12 @@ void AnimationManager::destroyAnimation(const String& name)
 
     if (it == d_animations.end())
     {
-        CEGUI_THROW(UnknownObjectException("Animation with name '" + name
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Animation with name '" + name
             + "' not found."));
+#endif //PE_NO_THROW_MSGS
     }
 
     Animation* animation = it->second;
@@ -225,8 +245,12 @@ Animation* AnimationManager::getAnimation(const String& name) const
 
     if (it == d_animations.end())
     {
-        CEGUI_THROW(UnknownObjectException("Animation with name '" + name
+        CEGUI_THROW(UnknownObjectException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Animation with name '" + name
             + "' not found."));
+#endif //PE_NO_THROW_MSGS
     }
 
     return it->second;
@@ -243,7 +267,11 @@ Animation* AnimationManager::getAnimationAtIdx(size_t index) const
 {
     if (index >= d_animations.size())
     {
-        CEGUI_THROW(InvalidRequestException("Out of bounds."));
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Out of bounds."));
+#endif //PE_NO_THROW_MSGS
     }
 
     AnimationMap::const_iterator it = d_animations.begin();
@@ -263,8 +291,12 @@ AnimationInstance* AnimationManager::instantiateAnimation(Animation* animation)
 {
 	if (!animation)
 	{
-		CEGUI_THROW(InvalidRequestException("I refuse to instantiate NULL "
+		CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                        "I refuse to instantiate NULL "
             "animation, please provide a valid pointer."));
+#endif //PE_NO_THROW_MSGS
 	}
 
     AnimationInstance* ret = CEGUI_NEW_AO AnimationInstance(animation);
@@ -295,7 +327,11 @@ void AnimationManager::destroyAnimationInstance(AnimationInstance* instance)
         }
     }
 
-    CEGUI_THROW(InvalidRequestException("Given animation instance not found."));
+    CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+            "Given animation instance not found."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -331,7 +367,11 @@ AnimationInstance* AnimationManager::getAnimationInstanceAtIdx(size_t index) con
 {
     if (index >= d_animationInstances.size())
     {
-        CEGUI_THROW(InvalidRequestException("Out of bounds."));
+        CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
+                "Out of bounds."));
+#endif //PE_NO_THROW_MSGS
     }
 
     AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
@@ -363,7 +403,10 @@ void AnimationManager::loadAnimationsFromXML(const String& filename,
 {
     if (filename.empty())
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "filename supplied for file loading must be valid."));
+#endif //PE_NO_THROW_MSGS
 
     Animation_xmlHandler handler;
 

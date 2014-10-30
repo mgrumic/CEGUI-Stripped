@@ -177,7 +177,10 @@ ListboxItem* Listbox::getListboxItemFromIndex(size_t index) const
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "the specified index is out of range for this Listbox."));
+#endif //PE_NO_THROW_MSGS
 	}
 }
 
@@ -196,7 +199,10 @@ size_t Listbox::getItemIndex(const ListboxItem* item) const
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "the specified ListboxItem is not attached to this Listbox."));
+#endif //PE_NO_THROW_MSGS
 	}
 
 }
@@ -214,7 +220,10 @@ bool Listbox::isItemSelected(size_t index) const
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "the specified index is out of range for this Listbox."));
+#endif //PE_NO_THROW_MSGS
 	}
 
 }
@@ -332,7 +341,10 @@ void Listbox::insertItem(ListboxItem* item, const ListboxItem* position)
 			if (ins_pos == d_listItems.end())
 			{
 				CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
                     "the specified ListboxItem for parameter 'position' is not attached to this Listbox."));
+#endif //PE_NO_THROW_MSGS
 			}
 
 		}
@@ -510,7 +522,10 @@ void Listbox::setItemSelectState(ListboxItem* item, bool state)
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "the specified ListboxItem is not attached to this Listbox."));
+#endif //PE_NO_THROW_MSGS
 	}
 }
 
@@ -540,7 +555,10 @@ void Listbox::setItemSelectState(size_t item_index, bool state)
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "the value passed in the 'item_index' parameter is out of range for this Listbox."));
+#endif //PE_NO_THROW_MSGS
 	}
 
 }
@@ -1148,7 +1166,10 @@ Rectf Listbox::getListRenderArea() const
     else
     {
         CEGUI_THROW(InvalidRequestException(
+            ""));
+#ifndef PE_NO_THROW_MSGS
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
