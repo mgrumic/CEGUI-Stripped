@@ -197,8 +197,6 @@ protected:
     bool handleColourPickerStaticImageMouseButtonUp(const EventArgs& args);
     bool handleColourPickerStaticImageMouseButtonDown(const EventArgs& args);
     bool handleColourPickerStaticImageMouseMove(const EventArgs& args);
-#ifndef PE_NO_MOUSE
-#endif //PE_NO_MOUSE
 
     virtual void onCancelButtonClicked(WindowEventArgs& e);
     virtual void onAcceptButtonClicked(WindowEventArgs& e);
@@ -206,9 +204,7 @@ protected:
     void onColourCursorPositionChanged();
     void onColourSliderChanged();
 
-#ifndef PE_NO_MOUSE
     void refreshColourPickerCursorPosition(const MouseEventArgs& mouseEventArgs);
-#endif //PE_NO_MOUSE
     void refreshAlpha();
 
     void refreshOnlyColourSliderImage();

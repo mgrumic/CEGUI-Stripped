@@ -90,12 +90,10 @@ void ceguiLua_Thumb_getVertRange(Thumb* wnd, float* min, float* max);
 *************************************************************************/
 ListboxTextItem* ceguiLua_createListboxTextItem(const String& text, uint item_id, void* item_data, bool disabled, bool auto_delete);
 
-#ifndef PE_NO_WGT_TREE
 /*************************************************************************
 Functions for creating tree items
 *************************************************************************/
 TreeItem* ceguiLua_createTreeItem(const String& text, uint item_id, void* item_data, bool disabled, bool auto_delete);
-#endif //PE_NO_WGT_TREE 
 
 /************************************************************************
     Stuff needed to make the iterators work

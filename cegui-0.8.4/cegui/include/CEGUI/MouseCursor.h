@@ -30,7 +30,7 @@
 #define _CEGUIMouseCursor_h_
 
 #include "CEGUI/Base.h"
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 #include "CEGUI/String.h"
 #include "CEGUI/Vector.h"
 #include "CEGUI/Rect.h"

@@ -56,8 +56,10 @@ namespace CEGUI
             state = "Selected";
         else if (w->isPushed())
             state = "Pushed";
+#ifndef PE_NO_MOUSE
         else if (w->isHovering())
             state = "Hover";
+#endif //PE_NO_MOUSE
         else
             state = "Normal";
 

@@ -193,7 +193,7 @@ void ScrolledItemListBase::configureScrollbars(const Sizef& doc_size)
     h->setScrollPosition(h->getScrollPosition());
 }
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 /************************************************************************
     Handle mouse wheel event
 ************************************************************************/

@@ -33,9 +33,7 @@
 #include "CEGUI/widgets/Slider.h"
 #include "CEGUI/widgets/Thumb.h"
 
-#ifndef PE_NO_MOUSE 
 #include "CEGUI/MouseCursor.h"
-#endif //PE_NO_MOUSE 
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/ImageManager.h"
@@ -457,7 +455,7 @@ void ColourPickerControls::reloadColourPickerControlsTexture()
 //----------------------------------------------------------------------------//
 void ColourPickerControls::initialiseComponents()
 {
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     getCancelButton()->subscribeEvent(
         PushButton::EventClicked,
         Event::Subscriber(&ColourPickerControls::handleCancelButtonClicked, this));
@@ -465,7 +463,7 @@ void ColourPickerControls::initialiseComponents()
     getAcceptButton()->subscribeEvent(
         PushButton::EventClicked,
         Event::Subscriber(&ColourPickerControls::handleAcceptButtonClicked, this));
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
     getHexadecimalEditbox()->subscribeEvent(
         Editbox::EventDeactivated,
@@ -603,7 +601,7 @@ void ColourPickerControls::initialiseComponents()
     getColourPickerStaticImage()->subscribeEvent(
         Window::EventMouseMove,
         Event::Subscriber(&ColourPickerControls::handleColourPickerStaticImageMouseMove, this));
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
     initColourPicker();
 
@@ -1142,7 +1140,6 @@ bool ColourPickerControls::handleAlphaSliderValueChanged(const EventArgs& args)
     return true;
 }
 
-#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleColourPickerStaticImageMouseButtonUp(
     const EventArgs& args)
@@ -1191,7 +1188,6 @@ bool ColourPickerControls::handleColourPickerStaticImageMouseLeaves(
 
     return true;
 }
-#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void ColourPickerControls::onCancelButtonClicked(WindowEventArgs& e)
@@ -1369,9 +1365,9 @@ void ColourPickerControls::initColourPicker()
 
     d_colourPickerCursor->setWidth(UDim(0.05f, 0));
     d_colourPickerCursor->setHeight(UDim(0.05f, 0));
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_colourPickerCursor->setMousePassThroughEnabled(true);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     d_colourPickerCursor->setClippedByParent(false);
 #ifndef PE_NO_WGT_SLIDER
     getColourPickerImageSlider()->getThumb()->setHotTracked(false);
@@ -1417,7 +1413,6 @@ void ColourPickerControls::refreshColourPickerCursorPosition()
     positionColourPickerCursorRelative(pos.d_x, pos.d_y);
 }
 
-#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void ColourPickerControls::refreshColourPickerCursorPosition(
     const MouseEventArgs& mouseEventArgs)
@@ -1445,7 +1440,6 @@ void ColourPickerControls::refreshColourPickerCursorPosition(
 
     onColourCursorPositionChanged();
 }
-#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void ColourPickerControls::refreshColourSliderPosition()

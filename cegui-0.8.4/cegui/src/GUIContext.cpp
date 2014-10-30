@@ -32,7 +32,6 @@
 #include "CEGUI/Window.h"
 #include "CEGUI/widgets/Tooltip.h"
 #include "CEGUI/SimpleTimer.h"
-#include "CEGUI\Base.h"
 
 #if defined(_MSC_VER)
 #   pragma warning(push)
@@ -47,7 +46,7 @@ namespace CEGUI
     order to generate click, double-click, and triple-click events.
 */
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 struct MouseClickTracker :
     public AllocatedObject<MouseClickTracker>
 {
@@ -70,7 +69,7 @@ struct MouseClickTracker :
 
 
 const String GUIContext::EventRootWindowChanged("RootWindowChanged");
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 const float GUIContext::DefaultMouseButtonClickTimeout = 0.0f;
 const float GUIContext::DefaultMouseButtonMultiClickTimeout = 0.3333f;
 const Sizef GUIContext::DefaultMouseButtonMultiClickTolerance(12.0f, 12.0f);
@@ -87,7 +86,7 @@ GUIContext::GUIContext(RenderTarget& target) :
     RenderingSurface(target),
     d_rootWindow(0),
     d_isDirty(false),
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_mouseMovementScalingFactor(1.0f),
     d_generateMouseClickEvents(true),
     d_mouseButtonClickTimeout(DefaultMouseButtonClickTimeout),
@@ -110,7 +109,7 @@ GUIContext::GUIContext(RenderTarget& target) :
             WindowManager::EventWindowDestroyed,
             Event::Subscriber(&GUIContext::windowDestroyedHandler, this)))
 {
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     resetWindowContainingMouse();
 #endif
 }
@@ -121,13 +120,13 @@ GUIContext::GUIContext(RenderTarget& target) :
 //----------------------------------------------------------------------------//
 GUIContext::~GUIContext()
 {
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     destroyDefaultTooltipWindowInstance();
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
     if (d_rootWindow)
         d_rootWindow->setGUIContext(0);
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     delete[] d_mouseClickTrackers;
 #endif
 }
@@ -179,17 +178,17 @@ void GUIContext::setInputCaptureWindow(Window* window)
     d_captureWindow = window;
 }
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void GUIContext::setDefaultTooltipObject(Tooltip* tooltip)
 {
     destroyDefaultTooltipWindowInstance();
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_defaultTooltipObject = tooltip;
     if (d_defaultTooltipObject)
         d_defaultTooltipObject->setWritingXMLAllowed(false);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 }
 
 //----------------------------------------------------------------------------//
@@ -206,9 +205,9 @@ void GUIContext::destroyDefaultTooltipWindowInstance()
     if (d_defaultTooltipObject && d_weCreatedTooltipObject)
     {
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
         WindowManager::getSingleton().destroyWindow(d_defaultTooltipObject);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
         d_defaultTooltipObject = 0;
     }
 
@@ -231,7 +230,7 @@ void GUIContext::createDefaultTooltipWindowInstance() const
 
     if (winmgr.isLocked())
         return;
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_defaultTooltipObject = dynamic_cast<Tooltip*>(
         winmgr.createWindow(d_defaultTooltipType,
                             "CEGUI::System::default__auto_tooltip__"));
@@ -242,9 +241,9 @@ void GUIContext::createDefaultTooltipWindowInstance() const
         d_defaultTooltipObject->setWritingXMLAllowed(false);
         d_weCreatedTooltipObject = true;
     }
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 }
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void GUIContext::setModalWindow(Window* window)
@@ -296,7 +295,7 @@ void GUIContext::draw()
 void GUIContext::drawContent()
 {
     RenderingSurface::drawContent();
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_mouseCursor.draw();
 #endif
 }
@@ -323,7 +322,7 @@ void GUIContext::renderWindowHierarchyToSurfaces()
 
     d_rootWindow->render();
 }
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 void GUIContext::resetWindowContainingMouse()
 {
     d_windowContainingMouse = 0;
@@ -430,7 +429,7 @@ bool GUIContext::isMouseClickEventGenerationEnabled() const
 bool GUIContext::areaChangedHandler(const EventArgs&)
 {
     d_surfaceSize = d_target->getArea().getSize();
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     d_mouseCursor.notifyDisplaySizeChanged(d_surfaceSize);
 #endif
     if (d_rootWindow)
@@ -448,7 +447,7 @@ bool GUIContext::windowDestroyedHandler(const EventArgs& args)
     if (window == d_rootWindow)
         d_rootWindow = 0;
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     if (window == getWindowContainingMouse())
         resetWindowContainingMouse();
 #endif
@@ -458,13 +457,13 @@ bool GUIContext::windowDestroyedHandler(const EventArgs& args)
     if (window == d_captureWindow)
         d_captureWindow = 0;
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     if (window == d_defaultTooltipObject)
     {
         d_defaultTooltipObject = 0;
         d_weCreatedTooltipObject = false;
     }
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
     return true;
 }
@@ -479,7 +478,7 @@ void GUIContext::onRootWindowChanged(WindowEventArgs& args)
 
     fireEvent(EventRootWindowChanged, args);
 }
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void GUIContext::onMouseMoveScalingFactorChanged(GUIContextEventArgs& args)
 {
@@ -700,7 +699,7 @@ Window* GUIContext::getKeyboardTargetWindow() const
     return target ? target : d_modalWindow;
 }
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool GUIContext::injectMouseLeaves(void)
 {
@@ -979,7 +978,7 @@ bool GUIContext::injectTimePulse(float timeElapsed)
         return false;
 
     // ensure window containing mouse is now valid
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     getWindowContainingMouse();
 #endif
     // else pass to sheet for distribution.

@@ -62,7 +62,7 @@ public:
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the PopupMenu that was opened.
      */
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
     static const String EventPopupOpened;
     /** Event fired when a MenuItem attached to this menu closed a PopupMenu.
      * Handlers are passed a const WindowEventArgs reference with
@@ -118,7 +118,7 @@ public:
     \return
         Pointer to the MenuItem currently open.
     */
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
     MenuItem*   getPopupMenuItem(void) const
     {
         return d_popupItem;
@@ -146,7 +146,7 @@ public:
     \param item
         Pointer to a MenuItem to open or NULL to close any opened.
     */
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
     void    changePopupMenuItem(MenuItem* item);
 
 
@@ -196,7 +196,7 @@ protected:
     \brief
         handler invoked internally when the a MenuItem attached to this menu opens its popup.
     */
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
     virtual void    onPopupOpened(WindowEventArgs& e);
 
 

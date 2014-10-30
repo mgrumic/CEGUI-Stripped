@@ -224,7 +224,7 @@ System::System(Renderer& renderer,
 
     // set up defaults
     config.initialiseDefaultFont();
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     config.initialiseDefaultMouseCursor();
     config.initialiseDefaulTooltip();
 #endif
@@ -628,9 +628,9 @@ void System::addStandardWindowFactories()
 {
     // Add types all base elements
     WindowFactoryManager::addWindowType<DefaultWindow>();
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     WindowFactoryManager::addWindowType<DragContainer>();
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
     #ifndef PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<ClippedContainer>();
@@ -646,7 +646,7 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<ListHeader>();
     WindowFactoryManager::addWindowType<ListHeaderSegment>();
     WindowFactoryManager::addWindowType<Menubar>();
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 	WindowFactoryManager::addWindowType<PopupMenu>();
 #endif
 	WindowFactoryManager::addWindowType<MenuItem>();
@@ -670,16 +670,14 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<Thumb>();
     WindowFactoryManager::addWindowType<Titlebar>();
     WindowFactoryManager::addWindowType<ToggleButton>();
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     WindowFactoryManager::addWindowType<Tooltip>();
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     WindowFactoryManager::addWindowType<ItemListbox>();
     #ifndef PE_NO_WGT_GROUP_BOX
     WindowFactoryManager::addWindowType<GroupBox>();
     #endif //PE_NO_WGT_GROUP_BOX
-#ifndef PE_NO_WGT_TREE
     WindowFactoryManager::addWindowType<Tree>();
-#endif //PE_NO_WGT_TREE
     WindowFactoryManager::addWindowType<LayoutCell>();
     WindowFactoryManager::addWindowType<HorizontalLayoutContainer>();
     WindowFactoryManager::addWindowType<VerticalLayoutContainer>();

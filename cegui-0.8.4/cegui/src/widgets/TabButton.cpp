@@ -39,9 +39,9 @@ const String TabButton::WidgetTypeName("CEGUI/TabButton");
 	Event name constants
 *************************************************************************/
 const String TabButton::EventClicked( "Clicked" );
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 const String TabButton::EventDragged( "Dragged" );
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 const String TabButton::EventScrolled( "Scrolled" );
 
 
@@ -85,7 +85,7 @@ void TabButton::onClicked(WindowEventArgs& e)
 }
 
 
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for mouse button release events
 *************************************************************************/

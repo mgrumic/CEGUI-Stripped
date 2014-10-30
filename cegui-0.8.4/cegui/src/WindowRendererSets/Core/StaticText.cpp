@@ -402,7 +402,6 @@ namespace CEGUI
     }
 
 
-#ifndef PE_NO_MOUSE
     /*************************************************************************
         Handler for mouse wheel changes
     *************************************************************************/
@@ -427,7 +426,6 @@ namespace CEGUI
 
         return vertScrollbarVisible || horzScrollbarVisible;
     }
-#endif //PE_NO_MOUSE
 
 
     /*************************************************************************
@@ -471,11 +469,11 @@ namespace CEGUI
         d_connections.push_back(
             d_window->subscribeEvent(Window::EventFontChanged,
                 Event::Subscriber(&FalagardStaticText::onFontChanged, this)));
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
         d_connections.push_back(
             d_window->subscribeEvent(Window::EventMouseWheel,
                 Event::Subscriber(&FalagardStaticText::onMouseWheel, this)));
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
     }
 
     void FalagardStaticText::onLookNFeelUnassigned()

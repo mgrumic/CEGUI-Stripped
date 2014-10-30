@@ -37,17 +37,13 @@ public:
     enum SystemKey
     {
         None          = 0x0000,
-#ifndef PE_NO_MOUSE 
         LeftMouse     = 0x0001,
         RightMouse    = 0x0002,
-#endif //PE_NO_MOUSE 
         Shift         = 0x0004,
         Control       = 0x0008,
-#ifndef PE_NO_MOUSE 
         MiddleMouse   = 0x0010,
         X1Mouse       = 0x0020,
         X2Mouse       = 0x0040,
-#endif //PE_NO_MOUSE 
         Alt           = 0x0080
     };
 
@@ -62,14 +58,12 @@ public:
     void keyPressed(Key::Scan key);
     //! notify that the given key was released.
     void keyReleased(Key::Scan key);
-#ifndef PE_NO_MOUSE 
     //! notify that the given mouse button was pressed.
     void mouseButtonPressed(MouseButton button);
     //! notify that the given mouse button was released.
     void mouseButtonReleased(MouseButton button);
 
     static SystemKey mouseButtonToSystemKey(MouseButton button);
-#endif //PE_NO_MOUSE 
     static SystemKey keyCodeToSystemKey(Key::Scan key);
 
 private:

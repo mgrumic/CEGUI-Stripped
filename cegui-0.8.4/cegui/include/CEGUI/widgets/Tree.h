@@ -27,7 +27,6 @@
 #ifndef _CEGUITree_h_
 #define _CEGUITree_h_
 
-#ifndef PE_NO_WGT_TREE
 #include "../Base.h"
 #include "../Window.h"
 #include "../WindowManager.h"
@@ -817,11 +816,11 @@ protected:
         Overridden Event handlers
      *************************************************************************/
     virtual void onSized(ElementEventArgs& e);
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
     virtual void onMouseButtonDown(MouseEventArgs& e);
     virtual	void onMouseWheel(MouseEventArgs& e);
     virtual void onMouseMove(MouseEventArgs& e);
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 
     /*************************************************************************
         Implementation Data
@@ -876,7 +875,5 @@ bool lbi_greater(const TreeItem* a, const TreeItem* b);
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
-#endif //PE_NO_WGT_TREE
 
 #endif	// end of guard _CEGUITree_h_

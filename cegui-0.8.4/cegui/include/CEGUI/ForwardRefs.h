@@ -76,9 +76,7 @@ class LeftAlignedRenderedString;
 class LinkedEvent;
 class LinkedEventArgs;
 class Logger;
-#ifndef PE_NO_MOUSE 
 class MouseCursor;
-#endif //PE_NO_MOUSE 
 class NamedElement;
 class NamedElementEventArgs;
 class NativeClipboardProvider;
@@ -149,9 +147,9 @@ class ClippedContainer;
 class Combobox;
 class ComboDropList;
 class DefaultWindow;
-#ifndef PE_NO_MOUSE 
+#ifndef PE_NO_MOUSE
 class DragContainer;
-#endif //PE_NO_MOUSE 
+#endif //PE_NO_MOUSE
 class Editbox;
 class FrameWindow;
 class GridLayoutContainer;
@@ -172,7 +170,7 @@ class MultiColumnList;
 #ifndef PE_NO_WGT_MULTILINE_EDITBOX
 class MultiLineEditbox;
 #endif //PE_NO_WGT_MULTILINE_EDITBOX
-#ifndef PE_NO_POPUP_MENU_H
+#ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
 #endif //PE_NO_MOUSE
 #ifndef PE_NO_WGT_PROGRESS_BAR
@@ -196,11 +194,9 @@ class TabControl;
 class Thumb;
 class Titlebar;
 class ToggleButton;
-#ifndef PE_NO_WGT_TREE
 class Tooltip;
 class Tree;
 class TreeItem;
-#endif //PE_NO_WGT_TREE
 class VerticalLayoutContainer;
 
 /*************************************************************************
@@ -208,17 +204,13 @@ class VerticalLayoutContainer;
 *************************************************************************/
 class ActivationEventArgs;
 class DisplayEventArgs;
-#ifndef PE_NO_MOUSE
 class DragDropEventArgs;
-#endif //PE_NO_MOUSE
 class FontEventArgs;
 class GUIContextEventArgs;
 class HeaderSequenceEventArgs;
 class KeyEventArgs;
-#ifndef PE_NO_MOUSE 
 class MouseCursorEventArgs;
 class MouseEventArgs;
-#endif //PE_NO_MOUSE 
 class RegexMatchStateArgs;
 class RenderQueueEventArgs;
 class RenderTargetEventArgs;

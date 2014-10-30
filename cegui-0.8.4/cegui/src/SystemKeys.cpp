@@ -149,7 +149,6 @@ void SystemKeys::updatePressedStateForKey(Key::Scan key, bool state)
     }
 }
 
-#ifndef PE_NO_MOUSE 
 //----------------------------------------------------------------------------//
 void SystemKeys::mouseButtonPressed(MouseButton button)
 {
@@ -187,6 +186,5 @@ SystemKeys::SystemKey SystemKeys::mouseButtonToSystemKey(MouseButton button)
 	}
 }
 //----------------------------------------------------------------------------//
-#endif //PE_NO_MOUSE 
 }
 
