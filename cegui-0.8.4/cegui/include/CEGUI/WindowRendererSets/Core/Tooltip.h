@@ -29,7 +29,7 @@
 
 #include "CEGUI/WindowRendererSets/Core/Module.h"
 #include "CEGUI/widgets/Tooltip.h"
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -65,5 +65,5 @@ namespace CEGUI
 } // End of  CEGUI namespace section
 
 
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 #endif  // end of guard _FalTooltip_h_

@@ -152,9 +152,9 @@ class ClippedContainer;
 class Combobox;
 class ComboDropList;
 class DefaultWindow;
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 class DragContainer;
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 class Editbox;
 class FrameWindow;
 class GridLayoutContainer;
@@ -177,7 +177,7 @@ class MultiLineEditbox;
 #endif //PE_NO_WGT_MULTILINE_EDITBOX
 #ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 #ifndef PE_NO_WGT_PROGRESS_BAR
 class ProgressBar;
 #endif //PE_NO_WGT_PROGRESS_BAR
@@ -188,8 +188,12 @@ class Scrollbar;
 class ScrolledContainer;
 class ScrolledItemListBase;
 class SequentialLayoutContainer;
+#ifndef PE_NO_WGT_SLIDER
 class Slider;
+#endif // PE_NO_WGT_SLIDER
+#ifndef PE_NO_WGT_SPINNER
 class Spinner;
+#endif  //PE_NO_WGT_SPINNER
 class TabButton;
 class TabControl;
 class Thumb;
@@ -223,4 +227,3 @@ class WindowEventArgs;
 } // End of  CEGUI namespace section
 
 #endif	// end of guard _CEGUIForwardRefs_h_
-

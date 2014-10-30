@@ -52,12 +52,22 @@ namespace CEGUI
 		}
 		else if (w->isPushed())
 		{
-            state = w->isHovering() ? "Pushed" : "PushedOff";
+            state = 
+#ifndef PE_NO_MOUSE
+                w->isHovering() ?
+#endif //PE_NO_MOUSE
+                "Pushed"
+#ifndef PE_NO_MOUSE
+                : "PushedOff"
+#endif //PE_NO_MOUSE
+                ;
 		}
+#ifndef PE_NO_MOUSE
         else if (w->isHovering())
 		{
 		    state = "Hover";
 		}
+#endif //PE_NO_MOUSE
 		else
 		{
 		    state = "Normal";

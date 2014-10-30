@@ -224,7 +224,7 @@ System::System(Renderer& renderer,
 
     // set up defaults
     config.initialiseDefaultFont();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     config.initialiseDefaultMouseCursor();
     config.initialiseDefaulTooltip();
 #endif
@@ -628,9 +628,9 @@ void System::addStandardWindowFactories()
 {
     // Add types all base elements
     WindowFactoryManager::addWindowType<DefaultWindow>();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     WindowFactoryManager::addWindowType<DragContainer>();
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
     WindowFactoryManager::addWindowType<ScrolledContainer>();
     #ifndef PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<ClippedContainer>();
@@ -659,16 +659,20 @@ void System::addStandardWindowFactories()
     #endif //PE_NO_WGT_PROGRESS_BAR
     WindowFactoryManager::addWindowType<ScrollablePane>();
     WindowFactoryManager::addWindowType<Scrollbar>();
+#ifndef PE_NO_WGT_SLIDER
     WindowFactoryManager::addWindowType<Slider>();
+#endif //PE_NO_WGT_SLIDER
+    #ifndef PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<Spinner>();
+    #endif  //PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<TabButton>();
     WindowFactoryManager::addWindowType<TabControl>();
     WindowFactoryManager::addWindowType<Thumb>();
     WindowFactoryManager::addWindowType<Titlebar>();
     WindowFactoryManager::addWindowType<ToggleButton>();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     WindowFactoryManager::addWindowType<Tooltip>();
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
     WindowFactoryManager::addWindowType<ItemListbox>();
     #ifndef PE_NO_WGT_GROUP_BOX
     WindowFactoryManager::addWindowType<GroupBox>();
@@ -1023,4 +1027,3 @@ const StringTranscoder& System::getStringTranscoder()
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
-

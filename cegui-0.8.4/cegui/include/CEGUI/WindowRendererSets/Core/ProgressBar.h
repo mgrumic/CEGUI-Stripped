@@ -26,7 +26,8 @@
  ***************************************************************************/
 #ifndef _FalProgressBar_h_
 #define _FalProgressBar_h_
-
+#include "CEGUI\Base.h"
+#ifndef PE_NO_WGT_PROGRESS_BAR
 #include "CEGUI/WindowRendererSets/Core/Module.h"
 
 #if defined(_MSC_VER)
@@ -78,9 +79,7 @@ namespace CEGUI
 
         void setVertical(bool setting);
         void setReversed(bool setting);
-
         void render();
-
     protected:
         // settings to make this class universal.
         bool d_vertical;    //!< True if progress bar operates on the vertical plane.
@@ -93,5 +92,6 @@ namespace CEGUI
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
+#endif //PE_NO_WGT_PROGRESS_BAR
 
 #endif  // end of guard _FalProgressBar_h_

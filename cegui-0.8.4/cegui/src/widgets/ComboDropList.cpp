@@ -42,7 +42,7 @@ const String ComboDropList::WidgetTypeName("CEGUI/ComboDropList");
 	Constants
 *************************************************************************/
 // Event names
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 const String ComboDropList::EventListSelectionAccepted( "ListSelectionAccepted" );
 #endif
 
@@ -52,7 +52,7 @@ const String ComboDropList::EventListSelectionAccepted( "ListSelectionAccepted" 
 ComboDropList::ComboDropList(const String& type, const String& name) :
 	Listbox(type, name)
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 	d_autoArm = false;
 #endif
 	d_armed = false;
@@ -108,7 +108,7 @@ void ComboDropList::resizeToContent(bool fit_width, bool fit_height)
 void ComboDropList::onListSelectionAccepted(WindowEventArgs& e)
 {
     d_lastClickSelected = getFirstSelectedItem();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 	fireEvent(EventListSelectionAccepted, e, EventNamespace);
 #endif
 }
@@ -137,7 +137,7 @@ void ComboDropList::onSelectionChanged(WindowEventArgs& e)
     Listbox::onSelectionChanged(e);
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for mouse movement events
 *************************************************************************/
@@ -252,7 +252,7 @@ void ComboDropList::onMouseButtonUp(MouseEventArgs& e)
 *************************************************************************/
 void ComboDropList::onCaptureLost(WindowEventArgs& e)
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 	Listbox::onCaptureLost(e);
 #endif
     d_armed = false;

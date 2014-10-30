@@ -93,12 +93,12 @@ void ColourPicker::initialiseComponents(void)
 {
     // get component windows
     Window* colourRect = getColourRect();
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     // bind handler to close button 'Click' event
     colourRect->subscribeEvent(Window::EventMouseClick,
         Event::Subscriber(&ColourPicker::colourRect_ColourRectClickedHandler,
                           this));
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
     performChildWindowLayout();
 
     d_selectedColour =

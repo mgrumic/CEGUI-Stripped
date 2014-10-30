@@ -94,7 +94,7 @@ public:
 	\brief
 		Enumeration that defines the set of possible locations for the mouse on a frame windows sizing border.
 	*/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     enum SizingLocation {
 		SizingNone,			//!< Position is not a sizing location.
 		SizingTopLeft,		//!< Position will size from the top-left.
@@ -106,7 +106,7 @@ public:
 		SizingBottom,		//!< Position will size from the bottom.
 		SizingRight         //!< Position will size from the right.
 	};
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -323,7 +323,7 @@ public:
 	*/
 	void	setDragMovingEnabled(bool setting);
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     /*!
     \brief
         Return a pointer to the currently set Image to be used for the north-south
@@ -471,7 +471,7 @@ public:
     // overridden from Window class
     bool isHit(const Vector2f& position, const bool /*allow_disabled*/) const
         { return Window::isHit(position) && !d_rolledup; }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
     /*!
     \brief
@@ -571,7 +571,7 @@ protected:
 		One of the SizingLocation enumerated values that describe which part of
 		the sizing border that \a pt corresponded to, if any.
 	*/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 	SizingLocation	getSizingBorderAtPoint(const Vector2f& pt) const;
 
  
@@ -640,7 +640,7 @@ protected:
 	*/
 	void	setCursorForPoint(const Vector2f& pt) const;
 
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -674,11 +674,11 @@ protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 	virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void    onTextChanged(WindowEventArgs& e);
 	virtual void	onActivated(ActivationEventArgs& e);

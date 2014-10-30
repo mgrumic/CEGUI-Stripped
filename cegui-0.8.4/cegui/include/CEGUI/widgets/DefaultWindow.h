@@ -77,7 +77,7 @@ public:
 protected:
     // overridden functions from Window base class
     bool moveToFront_impl(bool wasClicked);
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     //! helper to update mouse input handled state
     void updateMouseEventHandled(MouseEventArgs& e) const;
 

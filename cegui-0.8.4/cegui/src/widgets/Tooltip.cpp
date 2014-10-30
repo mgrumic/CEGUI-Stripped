@@ -32,7 +32,7 @@
 // Start of CEGUI namespace section
 namespace CEGUI
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     const String Tooltip::WidgetTypeName("CEGUI/Tooltip");
 
     //////////////////////////////////////////////////////////////////////////
@@ -387,5 +387,5 @@ namespace CEGUI
     {
         fireEvent(EventTooltipTransition, e, EventNamespace);
     }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 } // End of  CEGUI namespace section

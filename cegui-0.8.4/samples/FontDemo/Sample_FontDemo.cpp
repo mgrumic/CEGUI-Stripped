@@ -179,7 +179,9 @@ bool FontDemo::initialise(CEGUI::GUIContext* guiContext)
 
     // load scheme and set up defaults
     SchemeManager::getSingleton().createFromFile("VanillaSkin.scheme");
+#ifndef PE_NO_MOUSE
     d_guiContext->getMouseCursor().setDefaultImage("Vanilla-Images/MouseArrow");
+#endif //PE_NO_MOUSE
 
     // Create a custom font which we use to draw the list items. This custom
     // font won't get effected by the scaler and such.
@@ -205,8 +207,9 @@ bool FontDemo::initialise(CEGUI::GUIContext* guiContext)
     retrieveFontFileNames();
 
     // set tooltip styles (by default there is none)
+#ifndef PE_NO_WGT_TOOLTIP
     d_guiContext->setDefaultTooltipType("Vanilla/Tooltip");
-
+#endif //
     // Load the GUI layout and attach it to the context as root window
     d_root = winMgr.loadLayoutFromFile("FontDemo.layout");
     d_guiContext->setRootWindow(d_root);

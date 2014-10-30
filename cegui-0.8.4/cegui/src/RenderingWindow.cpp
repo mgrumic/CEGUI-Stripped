@@ -267,32 +267,56 @@ void RenderingWindow::realiseGeometry_impl()
     Vertex vbuffer[6];
 
     // vertex 0
+#ifndef PE_NO_VECTOR3D
     vbuffer[0].position   = Vector3f(area.d_min.d_x, area.d_min.d_y, 0.0f);
+#else
+    vbuffer[0].position   = Vector2f(area.d_min.d_x, area.d_min.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[0].colour_val = c;
     vbuffer[0].tex_coords = Vector2f(tex_rect.d_min.d_x, tex_rect.d_min.d_y);
 
     // vertex 1
+#ifndef PE_NO_VECTOR3D
     vbuffer[1].position   = Vector3f(area.d_min.d_x, area.d_max.d_y, 0.0f);
+#else
+    vbuffer[1].position   = Vector2f(area.d_min.d_x, area.d_max.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[1].colour_val = c;
     vbuffer[1].tex_coords = Vector2f(tex_rect.d_min.d_x, tex_rect.d_max.d_y);
 
     // vertex 2
+#ifndef PE_NO_VECTOR3D
     vbuffer[2].position   = Vector3f(area.d_max.d_x, area.d_max.d_y, 0.0f);
+#else
+    vbuffer[2].position   = Vector2f(area.d_max.d_x, area.d_max.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[2].colour_val = c;
     vbuffer[2].tex_coords = Vector2f(tex_rect.d_max.d_x, tex_rect.d_max.d_y);
 
     // vertex 3
+#ifndef PE_NO_VECTOR3D
     vbuffer[3].position   = Vector3f(area.d_max.d_x, area.d_min.d_y, 0.0f);
+#else
+    vbuffer[3].position   = Vector2f(area.d_max.d_x, area.d_min.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[3].colour_val = c;
     vbuffer[3].tex_coords = Vector2f(tex_rect.d_max.d_x, tex_rect.d_min.d_y);
 
     // vertex 4
+#ifndef PE_NO_VECTOR3D
     vbuffer[4].position   = Vector3f(area.d_min.d_x, area.d_min.d_y, 0.0f);
+#else
+    vbuffer[4].position   = Vector2f(area.d_min.d_x, area.d_min.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[4].colour_val = c;
     vbuffer[4].tex_coords = Vector2f(tex_rect.d_min.d_x, tex_rect.d_min.d_y);
 
     // vertex 5
+#ifndef PE_NO_VECTOR3D
     vbuffer[5].position   = Vector3f(area.d_max.d_x, area.d_max.d_y, 0.0f);
+#else
+    vbuffer[5].position   = Vector2f(area.d_max.d_x, area.d_max.d_y);
+#endif  // PE_NO_VECTOR3D
     vbuffer[5].colour_val = c;
     vbuffer[5].tex_coords = Vector2f(tex_rect.d_max.d_x, tex_rect.d_max.d_y);
 

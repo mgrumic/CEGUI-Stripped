@@ -28,7 +28,7 @@
  ***************************************************************************/
 #ifndef _CEGUISlider_h_
 #define _CEGUISlider_h_
-
+#ifndef PE_NO_WGT_SLIDER
 #include "../Base.h"
 #include "../Window.h"
 
@@ -367,13 +367,13 @@ protected:
 	virtual void	onThumbTrackEnded(WindowEventArgs& e);
 
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual	void	onMouseWheel(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 
 	/*************************************************************************
@@ -396,5 +396,5 @@ private:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif // PE_NO_WGT_SLIDER
 #endif	// end of guard _CEGUISlider_h_

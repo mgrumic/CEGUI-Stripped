@@ -88,7 +88,7 @@ void Scrollbar::initialiseComponents(void)
                       Event::Subscriber(&CEGUI::Scrollbar::handleThumbTrackEnded,
                                         this));
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     // set up Increase button
     getIncreaseButton()->
     subscribeEvent(PushButton::EventMouseButtonDown,
@@ -213,7 +213,7 @@ void Scrollbar::onScrollConfigChanged(WindowEventArgs& e)
     fireEvent(EventScrollConfigChanged, e, EventNamespace);
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Scrollbar::onMouseButtonDown(MouseEventArgs& e)
 {
@@ -256,7 +256,7 @@ bool Scrollbar::handleThumbMoved(const EventArgs&)
     return true;
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool Scrollbar::handleIncreaseClicked(const EventArgs& e)
 {

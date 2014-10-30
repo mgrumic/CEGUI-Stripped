@@ -1067,7 +1067,7 @@ void Tree::onSized(ElementEventArgs& e)
     ++e.handled;
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 /*************************************************************************
     Handler for when mouse button is pressed
 *************************************************************************/
@@ -1210,7 +1210,7 @@ void Tree::onMouseMove(MouseEventArgs& e)
     
     Window::onMouseMove(e);
 }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 // Recursive!
 bool Tree::getHeightToItemInList(const LBItemList &itemList, const TreeItem *treeItem, int itemDepth, float *height) const

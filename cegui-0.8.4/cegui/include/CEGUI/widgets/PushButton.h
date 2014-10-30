@@ -49,7 +49,7 @@ namespace CEGUI {
         static const String EventNamespace; //!< Namespace for global events
         static const String WidgetTypeName; //!< Window factory name
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
         /*************************************************************************
                 Event name constants
          *************************************************************************/
@@ -59,7 +59,7 @@ namespace CEGUI {
          * WindowEventArgs::window set to the PushButton that was clicked.
          */
         static const String EventClicked;
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
         /*************************************************************************
                 Construction and Destruction
@@ -79,7 +79,7 @@ namespace CEGUI {
 
 
     protected:
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
         /*************************************************************************
                 New Event Handlers
          *************************************************************************/
@@ -94,7 +94,7 @@ namespace CEGUI {
                 Overridden Event Handlers
          *************************************************************************/
         virtual void onMouseButtonUp(MouseEventArgs& e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
     };
 
 } // End of  CEGUI namespace section

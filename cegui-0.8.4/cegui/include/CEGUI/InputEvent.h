@@ -342,9 +342,9 @@ class CEGUIEXPORT DragDropEventArgs : public WindowEventArgs
 {
 public:
 	DragDropEventArgs(Window* wnd) : WindowEventArgs(wnd) {}
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 	DragContainer*	dragDropItem; //!< pointer to the DragContainer window being dragged / dropped.
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 };
 
 /*!

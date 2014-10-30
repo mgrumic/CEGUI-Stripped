@@ -425,7 +425,7 @@ bool Editbox::performPaste(Clipboard& clipboard)
 
     return false;
 }
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Editbox::onMouseButtonDown(MouseEventArgs& e)
 {
@@ -535,7 +535,7 @@ void Editbox::onMouseMove(MouseEventArgs& e)
 
     ++e.handled;
 }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void Editbox::onCaptureLost(WindowEventArgs& e)
@@ -543,9 +543,9 @@ void Editbox::onCaptureLost(WindowEventArgs& e)
     d_dragging = false;
 
     // base class processing
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     Window::onCaptureLost(e);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
     ++e.handled;
 }

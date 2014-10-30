@@ -174,7 +174,7 @@ void Slider::onThumbTrackEnded(WindowEventArgs& e)
 	fireEvent(EventThumbTrackEnded, e, EventNamespace);
 }
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for when a mouse button is pressed
 *************************************************************************/
@@ -197,9 +197,9 @@ void Slider::onMouseButtonDown(MouseEventArgs& e)
 	}
 
 }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler for scroll wheel changes
 *************************************************************************/
@@ -214,7 +214,7 @@ void Slider::onMouseWheel(MouseEventArgs& e)
 	// ensure the message does not go to our parent.
 	++e.handled;
 }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************

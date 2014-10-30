@@ -26,7 +26,7 @@
  ***************************************************************************/
 #ifndef _CEGUISpinner_h_
 #define _CEGUISpinner_h_
-
+#ifndef PE_NO_WGT_SPINNER
 #include "../Base.h"
 #include "../Window.h"
 
@@ -490,5 +490,5 @@ public:
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
+#endif  //PE_NO_WGT_SPINNER
 #endif	// end of guard _CEGUISpinner_h_

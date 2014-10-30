@@ -51,7 +51,7 @@ const String Config_xmlHandler::ScriptingElement("Scripting");
 const String Config_xmlHandler::XMLParserElement("DefaultXMLParser");
 const String Config_xmlHandler::ImageCodecElement("DefaultImageCodec");
 const String Config_xmlHandler::DefaultFontElement("DefaultFont");
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 const String Config_xmlHandler::DefaultMouseCursorElement("DefaultMouseCursor");
 const String Config_xmlHandler::DefaultTooltipElement("DefaultTooltip");
 #endif
@@ -112,7 +112,7 @@ void Config_xmlHandler::elementStart(const String& element,
         handleImageCodecElement(attributes);
     else if (element == DefaultFontElement)
         handleDefaultFontElement(attributes);
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     else if (element == DefaultMouseCursorElement)
         handleDefaultMouseCursorElement(attributes);
     else if (element == DefaultTooltipElement)
@@ -212,7 +212,7 @@ void Config_xmlHandler::handleDefaultFontElement(const XMLAttributes& attr)
 }
 
 //----------------------------------------------------------------------------//
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 void Config_xmlHandler::handleDefaultMouseCursorElement(const XMLAttributes& attr)
 {
     d_defaultMouseImage = attr.getValueAsString(ImageAttribute, "");
@@ -351,7 +351,7 @@ void Config_xmlHandler::initialiseDefaultFont() const
 
 //----------------------------------------------------------------------------//
 
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
 void Config_xmlHandler::initialiseDefaultMouseCursor() const
 {
     if (!d_defaultMouseImage.empty())
@@ -365,7 +365,7 @@ void Config_xmlHandler::initialiseDefaulTooltip() const
         System::getSingleton().getDefaultGUIContext().
             setDefaultTooltipType(d_defaultTooltipType);
 }
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::executeInitScript() const

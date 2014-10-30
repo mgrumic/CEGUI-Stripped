@@ -399,14 +399,14 @@ void ColourPickerControls::initColourPickerControlsImageSet()
         Rectf(Vector2f(0.0f, static_cast<float>(d_colourPickerPickingImageHeight + d_colourPickerImageOffset)),
               Sizef(static_cast<float>(d_colourPickerAlphaSliderImageWidth),
                     static_cast<float>(d_colourPickerAlphaSliderImageHeight))));
-
+#ifndef PE_NO_WGT_SLIDER
     getColourPickerStaticImage()->setProperty(
         "Image", baseName + '/' + ColourPickerControlsPickingTextureImageName);
     getColourPickerImageSlider()->setProperty(
         "ScrollImage", baseName + '/' + ColourPickerControlsColourSliderTextureImageName);
     getColourPickerAlphaSlider()->setProperty(
         "ScrollImage", baseName + '/' + ColourPickerControlsAlphaSliderTextureImageName);
-
+#endif //PE_NO_WGT_SLIDER
     refreshColourPickerControlsTextures();
 }
 
@@ -428,8 +428,9 @@ void ColourPickerControls::refreshColourPickerControlsTextures()
 {
     Logger::getSingleton().logEvent(
         "[ColourPicker] Refreshing ColourPickerTexture");
-
+#ifndef PE_NO_WGT_SLIDER
     refreshColourPickingImage();
+#endif //PE_NO_WGT_SLIDER
     refreshColourSliderImage();
     refreshAlphaSliderImage();
 
@@ -444,16 +445,17 @@ void ColourPickerControls::reloadColourPickerControlsTexture()
         Sizef(static_cast<float>(d_colourPickerControlsTextureSize),
               static_cast<float>(d_colourPickerControlsTextureSize)),
         Texture::PF_RGB);
-
+#ifndef PE_NO_WGT_SLIDER
     getColourPickerImageSlider()->invalidate();
     getColourPickerAlphaSlider()->invalidate();
+#endif //PE_NO_SLIDER
     getColourPickerStaticImage()->invalidate();
 }
 
 //----------------------------------------------------------------------------//
 void ColourPickerControls::initialiseComponents()
 {
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     getCancelButton()->subscribeEvent(
         PushButton::EventClicked,
         Event::Subscriber(&ColourPickerControls::handleCancelButtonClicked, this));
@@ -461,7 +463,7 @@ void ColourPickerControls::initialiseComponents()
     getAcceptButton()->subscribeEvent(
         PushButton::EventClicked,
         Event::Subscriber(&ColourPickerControls::handleAcceptButtonClicked, this));
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
     getHexadecimalEditbox()->subscribeEvent(
         Editbox::EventDeactivated,
@@ -574,7 +576,7 @@ void ColourPickerControls::initialiseComponents()
     getAlphaEditBox()->subscribeEvent(
         Editbox::EventTextChanged,
         Event::Subscriber(&ColourPickerControls::handleAlphaEditboxTextChanged, this));
-
+#ifndef PE_NO_WGT_SLIDER
     getColourPickerImageSlider()->subscribeEvent(
         Slider::EventValueChanged,
         Event::Subscriber(&ColourPickerControls::handleColourPickerSliderValueChanged, this));
@@ -582,8 +584,8 @@ void ColourPickerControls::initialiseComponents()
     getColourPickerAlphaSlider()->subscribeEvent(
         Slider::EventValueChanged,
         Event::Subscriber(&ColourPickerControls::handleAlphaSliderValueChanged, this));
-
-#ifndef PE_HAS_MOUSE
+#endif //PE_NO_WGT_SLIDER
+#ifndef PE_NO_MOUSE
     getColourPickerStaticImage()->subscribeEvent(
         Window::EventMouseLeavesSurface,
         Event::Subscriber(&ColourPickerControls::handleColourPickerStaticImageMouseLeaves, this));
@@ -599,7 +601,7 @@ void ColourPickerControls::initialiseComponents()
     getColourPickerStaticImage()->subscribeEvent(
         Window::EventMouseMove,
         Event::Subscriber(&ColourPickerControls::handleColourPickerStaticImageMouseMove, this));
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
 
     initColourPicker();
 
@@ -698,7 +700,7 @@ Window* ColourPickerControls::getColourPickerStaticImage()
 {
     return getChild(ColourPickerStaticImageName);
 }
-
+#ifndef PE_NO_WGT_SLIDER
 //----------------------------------------------------------------------------//
 Slider* ColourPickerControls::getColourPickerImageSlider()
 {
@@ -710,7 +712,7 @@ Slider* ColourPickerControls::getColourPickerAlphaSlider()
 {
     return static_cast<Slider*>(getChild(ColourPickerAlphaSliderName));
 }
-
+#endif //PE_NO_WGT_SLIDER
 //----------------------------------------------------------------------------//
 Window* ColourPickerControls::getNewColourDescription()
 {
@@ -857,14 +859,15 @@ Window* ColourPickerControls::getColourPickerCursorStaticImage()
     return d_colourPickerCursor;
 }
 
+
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleCancelButtonClicked(const EventArgs&)
 {
     WindowEventArgs args(this);
     onCancelButtonClicked(args);
-
     return true;
 }
+
 
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleEditboxDeactivated(const EventArgs& args)
@@ -1022,7 +1025,7 @@ void ColourPickerControls::setColourAlpha(float alphaValue)
 {
     d_selectedColour.setAlpha(alphaValue);
 }
-
+#ifndef PE_NO_WGT_SLIDER
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleAcceptButtonClicked(const EventArgs&)
 {
@@ -1031,7 +1034,7 @@ bool ColourPickerControls::handleAcceptButtonClicked(const EventArgs&)
 
     return true;
 }
-
+#endif //PE_NO_WGT_SLIDER
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleRadioButtonModeSelection(const EventArgs& args)
 {
@@ -1060,16 +1063,15 @@ bool ColourPickerControls::handleRadioButtonModeSelection(const EventArgs& args)
     return true;
 }
 
+#ifndef PE_NO_WGT_SLIDER
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleColourPickerSliderValueChanged(
     const EventArgs& args)
 {
     if (d_ignoreEvents == true)
         return true;
-
     Slider* imageSlider = static_cast<Slider*>(
         static_cast<const WindowEventArgs&>(args).window);
-
     float sliderValue = imageSlider->getCurrentValue();
 
     Lab_Colour colourLAB = d_selectedColourLAB;
@@ -1115,18 +1117,20 @@ bool ColourPickerControls::handleColourPickerSliderValueChanged(
 
     return true;
 }
+#endif //PE_NO_WGT_SLIDER
 
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleAlphaSliderValueChanged(const EventArgs& args)
 {
     if (d_ignoreEvents == true)
         return true;
-
+#ifndef PE_NO_WGT_SLIDER
     Slider* imageSlider = static_cast<Slider*>(
         static_cast<const WindowEventArgs&>(args).window);
     float sliderValue = 1.0f - imageSlider->getCurrentValue();
 
     setColourAlpha(sliderValue);
+#endif //PE_NO_WGT_SLIDER
 
     refreshAlpha();
 
@@ -1361,13 +1365,13 @@ void ColourPickerControls::initColourPicker()
 
     d_colourPickerCursor->setWidth(UDim(0.05f, 0));
     d_colourPickerCursor->setHeight(UDim(0.05f, 0));
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     d_colourPickerCursor->setMousePassThroughEnabled(true);
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
     d_colourPickerCursor->setClippedByParent(false);
-
+#ifndef PE_NO_WGT_SLIDER
     getColourPickerImageSlider()->getThumb()->setHotTracked(false);
-
+#endif //PE_NO_WGT_SLIDER
     getColourPickerStaticImage()->addChild(d_colourPickerCursor);
 }
 
@@ -1510,7 +1514,9 @@ void ColourPickerControls::refreshColourSliderPosition()
     }
 
     d_ignoreEvents = true;
+#ifndef PE_NO_WGT_SLIDER
     getColourPickerImageSlider()->setCurrentValue(sliderValue);
+#endif //PE_NO_WGT_SLIDER
     d_ignoreEvents = false;
 }
 
@@ -1518,10 +1524,10 @@ void ColourPickerControls::refreshColourSliderPosition()
 void ColourPickerControls::refreshAlpha()
 {
     d_ignoreEvents = true;
-
+#ifndef PE_NO_WGT_SLIDER
     getColourPickerAlphaSlider()->setCurrentValue(
         1.0f - d_selectedColour.getAlpha());
-
+#endif //PE_NO_WGT_SLIDER
     std::stringstream floatStringStream;
     floatStringStream.precision(4);
     floatStringStream.setf(std::ios::fixed, std::ios::floatfield);

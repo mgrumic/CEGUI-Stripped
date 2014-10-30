@@ -915,8 +915,10 @@ namespace CEGUI
             prop = CEGUI_NEW_AO PropertyDefinition<double>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if(type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<TabControl::TabPanePosition>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+        #ifndef PE_NO_WGT_SPINNER
         else if(type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Spinner::TextInputMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+        #endif  //PE_NO_WGT_SPINNER
         else if(type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<ItemListBase::SortMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if(type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())
@@ -1052,10 +1054,12 @@ namespace CEGUI
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
                     TabControl::TabPanePosition>(name, widget, target, init,
                     d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+        #ifndef PE_NO_WGT_SPINNER
         else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
                     Spinner::TextInputMode>(name, widget, target, init,
                     d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+        #endif  //PE_NO_WGT_SPINNER
         else if (type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
                     ItemListBase::SortMode>(name, widget, target, init,
@@ -1559,8 +1563,10 @@ namespace CEGUI
                 dynamic_cast<PropertyLinkDefinition<double>* >(d_propertyLink)->addLinkTarget(w, p);
             else if(type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<TabControl::TabPanePosition>* >(d_propertyLink)->addLinkTarget(w, p);
+            #ifndef PE_NO_WGT_SPINNER
             else if(type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<Spinner::TextInputMode>* >(d_propertyLink)->addLinkTarget(w, p);
+            #endif  //PE_NO_WGT_SPINNER
             else if(type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<ItemListBase::SortMode>* >(d_propertyLink)->addLinkTarget(w, p);
             else if(type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())

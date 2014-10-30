@@ -89,7 +89,9 @@ CoreWindowRendererModule::CoreWindowRendererModule()
     #endif //PE_NO_WGT_PROGRESS_BAR
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollablePane>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollbar>());
+    #ifndef PE_NO_WGT_SLIDER
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardSlider>());
+    #endif // PE_NO_WGT_SLIDER
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStatic>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticImage>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticText>());
@@ -97,9 +99,9 @@ CoreWindowRendererModule::CoreWindowRendererModule()
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabControl>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTitlebar>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardToggleButton>());
-#ifndef PE_HAS_MOUSE
+#ifndef PE_NO_MOUSE
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTooltip>());
-#endif //PE_HAS_MOUSE
+#endif //PE_NO_MOUSE
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemListbox>());
     d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTree>());
 }
