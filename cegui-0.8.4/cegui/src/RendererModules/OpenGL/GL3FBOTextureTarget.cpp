@@ -255,10 +255,11 @@ void OpenGL3FBOTextureTarget::checkFramebufferStatus()
             stringStream << "Undefined Framebuffer error\n";
             break;
         }
-
+#ifndef PE_NO_LOGGER
         if (CEGUI::Logger* logger = CEGUI::Logger::getSingletonPtr())
             logger->logEvent(stringStream.str().c_str());
         else
+#endif //PE_NO_LOGGER
             std::cerr << stringStream.str() << std::endl;
     }
 }

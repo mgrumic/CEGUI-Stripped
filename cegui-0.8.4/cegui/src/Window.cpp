@@ -1940,8 +1940,10 @@ void Window::setLookNFeel(const String& look)
     }
 
     d_lookName = look;
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Assigning LookNFeel '" + look +
         "' to window '" + d_name + "'.", Informative);
+#endif //PE_NO_LOGGER
 
     // Work to initialise the look and feel...
     const WidgetLookFeel& wlf = wlMgr.getWidgetLook(look);
@@ -2008,9 +2010,11 @@ void Window::layoutLookNFeelChildWidgets()
     }
     CEGUI_CATCH (UnknownObjectException&)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "Window::layoutLookNFeelChildWidgets: "
             "WidgetLook '" + d_lookName + "' was not found.", Errors);
+#endif //PE_NO_LOGGER
     }
 }
 
@@ -2085,10 +2089,12 @@ int Window::writePropertiesXML(XMLSerializer& xml_stream) const
             }
             CEGUI_CATCH (InvalidRequestException&)
             {
+#ifndef PE_NO_LOGGER
                 // This catches errors from the MultiLineColumnList for example
                 Logger::getSingleton().logEvent(
                     "Window::writePropertiesXML: property receiving failed.  "
                     "Continuing...", Errors);
+#endif //PE_NO_LOGGER
             }
         }
 
@@ -2841,8 +2847,10 @@ void Window::setWindowRenderer(const String& name)
 
     if (!name.empty())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Assigning the window renderer '" +
             name + "' to the window '" + d_name + "'", Informative);
+#endif //PE_NO_LOGGER
         d_windowRenderer = wrm.createWindowRenderer(name);
         WindowEventArgs e(this);
         onWindowRendererAttached(e);
@@ -2903,18 +2911,22 @@ void Window::banPropertyFromXML(const String& property_name)
 	Property* instance = getPropertyInstance(property_name);
 	if (!instance->isWritable())
 	{
+#ifndef PE_NO_LOGGER
 		Logger::getSingleton().logEvent("Property '" + property_name + "' "
 				"is not writable so it's implicitly banned from XML. No need "
 				"to ban it manually", Warnings);
+#endif //PE_NO_LOGGER
 
 		return;
 	}
 
     // check if the insertion failed
+#ifndef PE_NO_LOGGER
     if (!d_bannedXMLProperties.insert(property_name).second)
         // just log the incidence
         CEGUI_LOGINSANE("Window::banPropertyFromXML: The property '" +
             property_name + "' is already banned in window '" + d_name + "'");
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -3295,9 +3307,11 @@ void Window::allocateRenderingWindow()
         // TextureTargets may not be available, so check that first.
         if (!t)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("Window::allocateRenderingWindow - "
                 "Failed to create a suitable TextureTarget for use by Window '"
                 + d_name + "'", Errors);
+#endif //PE_NO_LOGGER
 
             d_surface = 0;
             return;
@@ -3389,19 +3403,23 @@ void Window::onRotated(ElementEventArgs& e)
     // if we have no surface set, enable the auto surface
     if (!d_surface)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Window::setRotation - "
             "Activating AutoRenderingSurface on Window '" + d_name +
             "' to enable rotation support.");
+#endif //PE_NO_LOGGER
 
         setUsingAutoRenderingSurface(true);
 
         // still no surface?  Renderer or HW must not support what we need :(
         if (!d_surface)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("Window::setRotation - "
                 "Failed to obtain a suitable ReneringWindow surface for "
                 "Window '" + d_name + "'.  Rotation will not be available.",
                 Errors);
+#endif //PE_NO_LOGGER
 
             return;
         }
@@ -3410,9 +3428,11 @@ void Window::onRotated(ElementEventArgs& e)
     // ensure surface we have is the right type
     if (!d_surface->isRenderingWindow())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Window::setRotation - "
             "Window '" + d_name + "' has a manual RenderingSurface that is not "
             "a RenderingWindow.  Rotation will not be available.", Errors);
+#endif //PE_NO_LOGGER
 
         return;
     }

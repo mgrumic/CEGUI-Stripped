@@ -148,9 +148,9 @@ class ClippedContainer;
 class Combobox;
 class ComboDropList;
 class DefaultWindow;
-#ifndef PE_NO_MOUSE
+#ifndef PE_NO_MOUSE 
 class DragContainer;
-#endif //PE_NO_MOUSE
+#endif //PE_NO_MOUSE 
 class Editbox;
 class FrameWindow;
 class GridLayoutContainer;
@@ -218,5 +218,8 @@ class ResourceEventArgs;
 class TreeEventArgs;
 class UpdateEventArgs;
 class WindowEventArgs;
-} // End of CEGUI namespace section
-#endif // end of guard _CEGUIForwardRefs_h_
+
+} // End of  CEGUI namespace section
+
+#endif	// end of guard _CEGUIForwardRefs_h_
+

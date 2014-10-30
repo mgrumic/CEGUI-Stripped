@@ -124,9 +124,11 @@ void RenderedStringWidgetComponent::draw(const Window* ref_wnd,
         break;
 
     case VF_STRETCHED:
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("RenderedStringWidgetComponent::draw: "
             "VF_STRETCHED specified but is unsupported for Widget types; "
             "defaulting to VF_CENTRE_ALIGNED instead.");
+#endif //PE_NO_LOGGER
         
         // intentional fall-through.
         

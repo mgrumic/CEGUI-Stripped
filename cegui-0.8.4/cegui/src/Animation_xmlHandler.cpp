@@ -101,15 +101,20 @@ void Animation_xmlHandler::elementStartLocal(const String& element,
 {
     if (element == ElementName)
     {
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("===== Begin Animations parsing =====");
+#endif //PE_NO_LOGGER
     }
     else if (element == AnimationDefinitionHandler::ElementName)
     {
         d_chainedHandler = CEGUI_NEW_AO AnimationDefinitionHandler(attributes, "");
     }
+#ifndef PE_NO_LOGGER
     else
+
         Logger::getSingleton().logEvent("Animation_xmlHandler::elementStart: "
             "<" + element + "> is invalid at this location.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -117,11 +122,15 @@ void Animation_xmlHandler::elementEndLocal(const String& element)
 {
     if (element == ElementName)
     {
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("===== End Animations parsing =====");
+#endif //PE_NO_LOGGER
     }
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent("Animation_xmlHandler::elementEnd: "
             "</" + element + "> is invalid at this location.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -133,7 +142,7 @@ AnimationDefinitionHandler::AnimationDefinitionHandler(
 {
     const String anim_name(name_prefix +
                            attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE(
         "Defining animation named: " +
         anim_name +
@@ -143,6 +152,7 @@ AnimationDefinitionHandler::AnimationDefinitionHandler(
         attributes.getValueAsString(ReplayModeAttribute) +
         "  Auto start: " +
         attributes.getValueAsString(AutoStartAttribute, "false"));
+#endif //PE_NO_LOGGER
 
     d_anim = AnimationManager::getSingleton().createAnimation(anim_name);
 
@@ -174,10 +184,12 @@ void AnimationDefinitionHandler::elementStartLocal(
         d_chainedHandler = CEGUI_NEW_AO AnimationAffectorHandler(attributes, *d_anim);
     else if (element == AnimationSubscriptionHandler::ElementName)
         d_chainedHandler = CEGUI_NEW_AO AnimationSubscriptionHandler(attributes, *d_anim);
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent(
             "AnimationDefinitionHandler::elementStart: "
             "<" + element + "> is invalid at this location.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -195,6 +207,7 @@ AnimationAffectorHandler::AnimationAffectorHandler(
                                             Animation& anim) :
     d_affector(0)
 {
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE(
         "\tAdding affector for property: " +
         attributes.getValueAsString(TargetPropertyAttribute) +
@@ -202,6 +215,7 @@ AnimationAffectorHandler::AnimationAffectorHandler(
         attributes.getValueAsString(InterpolatorAttribute) +
         "  Application method: " +
         attributes.getValueAsString(ApplicationMethodAttribute, "absolute"));
+#endif //PE_NO_LOGGER
 
     d_affector = anim.createAffector(
         attributes.getValueAsString(TargetPropertyAttribute),
@@ -235,10 +249,12 @@ void AnimationAffectorHandler::elementStartLocal(
 {
     if (element == AnimationKeyFrameHandler::ElementName)
         d_chainedHandler = CEGUI_NEW_AO AnimationKeyFrameHandler(attributes, *d_affector);
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent(
             "AnimationAffectorHandler::elementStart: "
             "<" + element + "> is invalid at this location.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -267,8 +283,9 @@ AnimationKeyFrameHandler::AnimationKeyFrameHandler(
     if (!progressionStr.empty())
         log_event.append("  Progression: " +
             attributes.getValueAsString(ProgressionAttribute, ProgressionLinear));
-
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE(log_event);
+#endif //PE_NO_LOGGER
 
     KeyFrame::Progression progression;
     if (progressionStr == ProgressionDiscrete)
@@ -287,9 +304,11 @@ AnimationKeyFrameHandler::AnimationKeyFrameHandler(
         attributes.getValueAsString(SourcePropertyAttribute));
     
     if (affector.getNumKeyFrames() == 1 && !progressionStr.empty())
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "WARNING: progression type specified for first keyframe in "
             "animation will be ignored.");
+#endif //PE_NO_LOGGER        
 
     d_completed = true;
 }
@@ -304,9 +323,11 @@ void AnimationKeyFrameHandler::elementStartLocal(
                                         const String& element,
                                         const XMLAttributes& /*attributes*/)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "AnimationAffectorHandler::elementStart: "
         "<" + element + "> is invalid at this location.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -323,11 +344,13 @@ AnimationSubscriptionHandler::AnimationSubscriptionHandler(
                                         const XMLAttributes& attributes,
                                         Animation& anim)
 {
+#ifndef PE_NO_LOGGER
     CEGUI_LOGINSANE(
         "\tAdding subscription to event: " +
         attributes.getValueAsString(EventAttribute) + 
         "  Action: " +
         attributes.getValueAsString(ActionAttribute));
+#endif //PE_NO_LOGGER
 
     anim.defineAutoSubscription(
         attributes.getValueAsString(EventAttribute),
@@ -346,9 +369,11 @@ void AnimationSubscriptionHandler::elementStartLocal(
                                             const String& element,
                                             const XMLAttributes& /*attributes*/)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "AnimationAffectorHandler::elementStart: "
         "</" + element + "> is invalid at this location.", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

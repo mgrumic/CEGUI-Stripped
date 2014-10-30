@@ -284,17 +284,22 @@ void Affector::apply(AnimationInstance* instance)
         return;
     }
 
+
     if (d_targetProperty.empty())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "Affector can't be applied when target property is empty!", Warnings);
+#endif //PE_NO_LOGGER
         return;
     }
 
     if (!d_interpolator)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "Affector can't be applied when no interpolator is set!", Warnings);
+#endif //PE_NO_LOGGER
         return;
     }
 

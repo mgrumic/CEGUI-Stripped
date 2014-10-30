@@ -87,8 +87,10 @@ Scheme::~Scheme(void)
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("GUI scheme '" + d_name + "' has been "
         "unloaded (object destructor). " + addr_buff, Informative);
+#endif //PE_NO_LOGGER
 }
 
 
@@ -97,7 +99,9 @@ Scheme::~Scheme(void)
 *************************************************************************/
 void Scheme::loadResources(void)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("---- Begining resource loading for GUI scheme '" + d_name + "' ----", Informative);
+#endif //PE_NO_LOGGER
 
     // load all resources specified for this scheme.
     loadXMLImagesets();
@@ -108,8 +112,9 @@ void Scheme::loadResources(void)
     loadWindowFactories();
     loadFactoryAliases();
     loadFalagardMappings();
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("---- Resource loading for GUI scheme '" + d_name + "' completed ----", Informative);
+#endif //PE_NO_LOGGER
 }
 
 
@@ -118,7 +123,9 @@ void Scheme::loadResources(void)
 *************************************************************************/
 void Scheme::unloadResources(void)
 {
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("---- Begining resource cleanup for GUI scheme '" + d_name + "' ----", Informative);
+#endif //PE_NO_LOGGER
 
     // unload all resources specified for this scheme.
     //unloadFonts(); FIXME: Prevent unloading of cross-used fonts
@@ -129,8 +136,9 @@ void Scheme::unloadResources(void)
     unloadFactoryAliases();
     unloadFalagardMappings();
     unloadLookNFeels();
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("---- Resource cleanup for GUI scheme '" + d_name + "' completed ----", Informative);
+#endif //PE_NO_LOGGER
 }
 
 
@@ -283,10 +291,12 @@ void Scheme::loadWindowFactories()
         // (i.e. No factories explicitly specified)
         if ((*cmod).types.size() == 0)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("No Window factories "
                                             "specified for module '" +
                                             (*cmod).name + "' - adding all "
                                             "available factories...");
+#endif //PE_NO_LOGGER
             (*cmod).factoryModule->registerAllFactories();
         }
         // some names were explicitly given, so only register those.
@@ -336,10 +346,12 @@ void Scheme::loadWindowRendererFactories()
         // (i.e. No factories explicitly specified)
         if ((*cmod).types.size() == 0)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("No window renderer factories "
                                             "specified for module '" +
                                             (*cmod).name + "' - adding all "
                                             "available factories...");
+#endif //PE_NO_LOGGER
             (*cmod).factoryModule->registerAllFactories();
         }
         // some names were explicitly given, so only register those.

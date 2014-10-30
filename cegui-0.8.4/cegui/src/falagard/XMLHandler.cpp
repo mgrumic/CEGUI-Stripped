@@ -269,7 +269,9 @@ namespace CEGUI
         // no handler existed
         else
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("Falagard::xmlHandler::elementStart - The unknown XML element '" + element + "' was encountered while processing the look and feel file.", Errors);
+#endif //PE_NO_LOGGER
         }
     }
 
@@ -375,7 +377,9 @@ namespace CEGUI
     *************************************************************************/
     void Falagard_xmlHandler::elementFalagardStart(const XMLAttributes& attributes)
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("===== Falagard 'root' element: look and feel parsing begins =====");
+#endif //PE_NO_LOGGER
 
         const String version = attributes.getValueAsString(VersionAttribute, "unknown");
 
@@ -397,8 +401,9 @@ namespace CEGUI
         assert(d_widgetlook == 0);
         d_widgetlook = CEGUI_NEW_AO WidgetLookFeel(attributes.getValueAsString(NameAttribute),
                                                    attributes.getValueAsString(InheritsAttribute));
-
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("---> Start of definition for widget look '" + d_widgetlook->getName() + "'.", Informative);
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -413,12 +418,13 @@ namespace CEGUI
             attributes.getValueAsString(NameSuffixAttribute),
             attributes.getValueAsString(RendererAttribute),
             attributes.getValueAsBool(AutoWindowAttribute, true));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Start of definition for child widget."
             " Type: " + d_childcomponent->getBaseWidgetType() +
             " Name: " + d_childcomponent->getWidgetName() +
             " Look: " + d_childcomponent->getWidgetLookName() +
             " Auto: " + (d_childcomponent->isAutoWindow() ? "Yes" : "No"));
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -428,8 +434,9 @@ namespace CEGUI
     {
         assert(d_imagerysection == 0);
         d_imagerysection = CEGUI_NEW_AO ImagerySection(attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Start of definition for imagery section '" + d_imagerysection->getName() + "'.");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -440,8 +447,9 @@ namespace CEGUI
         assert(d_stateimagery == 0);
         d_stateimagery = CEGUI_NEW_AO StateImagery(attributes.getValueAsString(NameAttribute));
         d_stateimagery->setClippedToDisplay(!attributes.getValueAsBool(ClippedAttribute, true));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Start of definition for imagery for state '" + d_stateimagery->getName() + "'.");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -451,8 +459,9 @@ namespace CEGUI
     {
         assert(d_layer == 0);
         d_layer = CEGUI_NEW_AO LayerSpecification(attributes.getValueAsInteger(PriorityAttribute, 0));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-------> Start of definition of new imagery layer, priority: " + attributes.getValueAsString(PriorityAttribute, "0"));
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -469,8 +478,9 @@ namespace CEGUI
                                      attributes.getValueAsString(ControlPropertyAttribute),
                                      attributes.getValueAsString(ControlValueAttribute),
                                      attributes.getValueAsString(ControlWidgetAttribute));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("---------> Layer references imagery section '" + d_section->getSectionName() + "'.");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -480,8 +490,9 @@ namespace CEGUI
     {
         assert(d_imagerycomponent == 0);
         d_imagerycomponent = CEGUI_NEW_AO ImageryComponent();
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-------> Image component definition...");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -491,8 +502,9 @@ namespace CEGUI
     {
         assert(d_textcomponent == 0);
         d_textcomponent = CEGUI_NEW_AO TextComponent();
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-------> Text component definition...");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -502,8 +514,9 @@ namespace CEGUI
     {
         assert(d_framecomponent == 0);
         d_framecomponent = CEGUI_NEW_AO FrameComponent();
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-------> Frame component definition...");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -523,7 +536,9 @@ namespace CEGUI
         if (d_imagerycomponent)
         {
             d_imagerycomponent->setImage(attributes.getValueAsString(NameAttribute));
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image: " + attributes.getValueAsString(NameAttribute));
+#endif //PE_NO_LOGGER            
         }
         else if (d_framecomponent)
         {
@@ -531,10 +546,11 @@ namespace CEGUI
                 FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute)),
                 attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image: " +
                 attributes.getValueAsString(NameAttribute) + " for: " +
                 attributes.getValueAsString(ComponentAttribute));
+#endif //PE_NO_LOGGER
         }
     }
 
@@ -681,12 +697,16 @@ namespace CEGUI
         if (d_childcomponent)
         {
             d_childcomponent->addPropertyInitialiser(prop);
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Added property initialiser for property: " + prop.getTargetPropertyName() + " with value: " + prop.getInitialiserValue());
+#endif //PE_NO_LOGGER            
         }
         else
         {
             d_widgetlook->addPropertyInitialiser(prop);
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---> Added property initialiser for property: " + prop.getTargetPropertyName() + " with value: " + prop.getInitialiserValue());
+#endif //PE_NO_LOGGER            
         }
     }
 
@@ -839,8 +859,9 @@ namespace CEGUI
     {
         assert(d_namedArea == 0);
         d_namedArea = CEGUI_NEW_AO NamedArea(attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Creating named area: " + d_namedArea->getName());
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -935,14 +956,17 @@ namespace CEGUI
         {
             if (type != GenericDataType && type != "String")
             {
+#ifndef PE_NO_LOGGER
                 // type was specified but wasn't recognised
                 Logger::getSingleton().logEvent("Type '" + type + "' wasn't recognized in property definition (name: '" + name + "').", Warnings);
+#endif //PE_NO_LOGGER                
             }
 
             prop = CEGUI_NEW_AO PropertyDefinition<String>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         }
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Adding PropertyDefiniton. Name: " + name + " Default Value: " + init);
+#endif //PE_NO_LOGGER
 
         d_widgetlook->addPropertyDefinition(prop);
     }
@@ -1085,20 +1109,26 @@ namespace CEGUI
         {
             if (type != GenericDataType && type != PropertyHelper<String>::getDataTypeName())
             {
+#ifndef PE_NO_LOGGER
                 // type was specified but wasn't recognised
                 Logger::getSingleton().logEvent("Type '" + type + "' wasn't recognized in property link definition (name: '" + name + "').", Warnings);
+#endif //PE_NO_LOGGER                
             }
 
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<String>(name,
                     widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         }
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Adding PropertyLinkDefiniton. Name: " +
                         name);
+#endif //PE_NO_LOGGER        
 
         if (!widget.empty() || !target.empty())
         {
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Adding link target to property: " + target +
                         " on widget: " + widget);
+#endif //PE_NO_LOGGER            
         }
     }
 
@@ -1214,9 +1244,10 @@ namespace CEGUI
         {
             d_imagerycomponent->setImagePropertySource(
                 attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image via property: " +
                 attributes.getValueAsString(NameAttribute));
+#endif //PE_NO_LOGGER
         }
         else if (d_framecomponent)
         {
@@ -1224,10 +1255,11 @@ namespace CEGUI
                 FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute)),
                 attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image via property: " +
                 attributes.getValueAsString(NameAttribute) + " for: " +
                 attributes.getValueAsString(ComponentAttribute));
+#endif //PE_NO_LOGGER
         }
     }
 
@@ -1265,7 +1297,9 @@ namespace CEGUI
     *************************************************************************/
     void Falagard_xmlHandler::elementFalagardEnd()
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("===== Look and feel parsing completed =====");
+#endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
@@ -1275,7 +1309,9 @@ namespace CEGUI
     {
         if (d_widgetlook)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("---< End of definition for widget look '" + d_widgetlook->getName() + "'.", Informative);
+#endif //PE_NO_LOGGER            
             d_manager->addWidgetLook(*d_widgetlook);
             CEGUI_DELETE_AO d_widgetlook;
             d_widgetlook = 0;
@@ -1291,7 +1327,9 @@ namespace CEGUI
 
         if (d_childcomponent)
         {
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for child widget. Type: " + d_childcomponent->getBaseWidgetType() + ".");
+#endif //PE_NO_LOGGER
             d_widgetlook->addWidgetComponent(*d_childcomponent);
             CEGUI_DELETE_AO d_childcomponent;
             d_childcomponent = 0;
@@ -1307,7 +1345,9 @@ namespace CEGUI
 
         if (d_imagerysection)
         {
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for imagery section '" + d_imagerysection->getName() + "'.");
+#endif //PE_NO_LOGGER            
             d_widgetlook->addImagerySection(*d_imagerysection);
             CEGUI_DELETE_AO d_imagerysection;
             d_imagerysection = 0;
@@ -1323,7 +1363,9 @@ namespace CEGUI
 
         if (d_stateimagery)
         {
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for imagery for state '" + d_stateimagery->getName() + "'.");
+#endif //PE_NO_LOGGER            
             d_widgetlook->addStateSpecification(*d_stateimagery);
             CEGUI_DELETE_AO d_stateimagery;
             d_stateimagery = 0;
@@ -1339,7 +1381,9 @@ namespace CEGUI
 
         if (d_layer)
         {
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------< End of definition of imagery layer.");
+#endif //PE_NO_LOGGER            
             d_stateimagery->addLayer(*d_layer);
             CEGUI_DELETE_AO d_layer;
             d_layer = 0;
@@ -1484,9 +1528,10 @@ namespace CEGUI
     {
         assert(d_propertyLink);
         d_widgetlook->addPropertyLinkDefinition(d_propertyLink);
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("<----- End of PropertyLinkDefiniton. Name: " +
                         d_propertyLink->getPropertyName());
+#endif //PE_NO_LOGGER
         d_propertyLink = 0;
     }
 
@@ -1577,9 +1622,10 @@ namespace CEGUI
                 dynamic_cast<PropertyLinkDefinition<Range>* >(d_propertyLink)->addLinkTarget(w, p);
             else
                 dynamic_cast<PropertyLinkDefinition<String>* >(d_propertyLink)->addLinkTarget(w, p);
-
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Adding link target to property: " + p +
                         " on widget: " + w);
+#endif //PE_NO_LOGGER
         }
     }
 
@@ -1597,8 +1643,10 @@ namespace CEGUI
 #ifndef PE_NO_ANIMATION
         if (AnimationManager::getSingleton().isAnimationPresent(anim_name))
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
                 "[XMLHandler] WARNING: Using existing Animation :" + anim_name);
+#endif //PE_NO_LOGGER            
         }
         else
         {
@@ -1626,9 +1674,10 @@ namespace CEGUI
 
         d_eventLink = CEGUI_NEW_AO EventLinkDefinition(
             attributes.getValueAsString(NameAttribute));
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Adding EventLinkDefiniton. Name: " +
                         d_eventLink->getName());
+#endif //PE_NO_LOGGER
 
         processEventLinkTarget(widget, event);
     }
@@ -1640,8 +1689,10 @@ namespace CEGUI
         if (!widget.empty() || !event.empty())
         {
             d_eventLink->addLinkTarget(widget, event);
+#ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Adding link target to event: " + event +
                         " on widget: " + widget);
+#endif //PE_NO_LOGGER            
         }
     }
 
@@ -1658,9 +1709,10 @@ namespace CEGUI
     {
         assert(d_eventLink);
         d_widgetlook->addEventLinkDefinition(*d_eventLink);
-
+#ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("<----- End of EventLinkDefiniton. Name: " +
                         d_eventLink->getName());
+#endif //PE_NO_LOGGER
 
         CEGUI_DELETE_AO d_eventLink;
         d_eventLink = 0;

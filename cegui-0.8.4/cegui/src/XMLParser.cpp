@@ -66,9 +66,11 @@ namespace CEGUI
         }
         catch (const Exception&)
         {
+#ifndef PE_NO_LOGGER
             // hint the related file name in the log
             Logger::getSingleton().logEvent("The last thrown exception was related to XML file '" +
                                             filename + "' from resource group '" + resourceGroup + "'.", Errors);
+#endif //PE_NO_LOGGER
 
             // exception safety
             System::getSingleton().getResourceProvider()->unloadRawDataContainer(rawXMLData);

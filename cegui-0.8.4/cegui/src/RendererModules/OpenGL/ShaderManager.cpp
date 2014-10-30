@@ -83,8 +83,10 @@ namespace CEGUI
             }
 
             const CEGUI::String notify("OpenGL3Renderer: Notification - Successfully initialised OpenGL3Renderer shader programs.");
+#ifndef PE_NO_LOGGER
             if (CEGUI::Logger* logger = CEGUI::Logger::getSingletonPtr())
                 logger->logEvent(notify);
+#endif //PE_NO_LOGGER
 
             return;
         }

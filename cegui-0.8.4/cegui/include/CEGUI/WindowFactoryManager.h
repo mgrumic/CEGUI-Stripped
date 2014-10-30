@@ -142,7 +142,9 @@ public:
 	*/
 	~WindowFactoryManager(void)
 	{
+#ifndef PE_NO_LOGGER
 		Logger::getSingleton().logEvent("CEGUI::WindowFactoryManager singleton destroyed");
+#endif //PE_NO_LOGGER
 	}
 
 
@@ -512,9 +514,11 @@ void WindowFactoryManager::addFactory()
     // only do the actual add now if our singleton has already been created
     if (WindowFactoryManager::getSingletonPtr())
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("Created WindowFactory for '" +
                                         factory->getTypeName() +
                                         "' windows.");
+#endif //PE_NO_LOGGER
         // add the factory we just created
         CEGUI_TRY
         {
@@ -522,9 +526,11 @@ void WindowFactoryManager::addFactory()
         }
         CEGUI_CATCH (Exception&)
         {
+#ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("Deleted WindowFactory for '" +
                                             factory->getTypeName() +
                                             "' windows.");
+#endif //PE_NO_LOGGER
             // delete the factory object
             CEGUI_DELETE_AO factory;
             CEGUI_RETHROW;

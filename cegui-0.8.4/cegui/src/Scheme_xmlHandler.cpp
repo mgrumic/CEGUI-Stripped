@@ -144,9 +144,11 @@ void Scheme_xmlHandler::elementStart(const String& element,
     else if (element == LookNFeelElement)
         elementLookNFeelStart(attributes);
     // anything else is a non-fatal error.
+#ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent("Scheme_xmlHandler::elementStart: "
             "Unknown element encountered: <" + element + ">", Errors);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -160,9 +162,11 @@ void Scheme_xmlHandler::elementEnd(const String& element)
 void Scheme_xmlHandler::elementGUISchemeStart(const XMLAttributes& attributes)
 {
     const String name(attributes.getValueAsString(NameAttribute));
+#ifndef PE_NO_LOGGER
     Logger& logger(Logger::getSingleton());
     logger.logEvent("Started creation of Scheme from XML specification:");
     logger.logEvent("---- CEGUI GUIScheme name: " + name);
+#endif //PE_NO_LOGGER
 
     validateSchemeFileVersion(attributes);
 
@@ -307,8 +311,10 @@ void Scheme_xmlHandler::elementGUISchemeEnd()
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(d_scheme));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Finished creation of GUIScheme '" +
         d_scheme->getName() + "' via XML file. " + addr_buff, Informative);
+#endif //PE_NO_LOGGER
 }
 
 } // End of  CEGUI namespace section

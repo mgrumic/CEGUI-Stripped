@@ -59,14 +59,13 @@ OpenGLGeometryBufferBase::~OpenGLGeometryBufferBase()
 {
     delete d_matrix;
 }
-#ifndef PE_NO_VERTEX
+
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::appendVertex(const Vertex& vertex)
 {
     appendGeometry(&vertex, 1);
 }
 
-#endif //PE_NO_VERTEX
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setTranslation(const Vector3f& v)
 {
@@ -98,7 +97,6 @@ void OpenGLGeometryBufferBase::setClippingRegion(const Rectf& region)
 }
 
 //----------------------------------------------------------------------------//
-#ifndef PE_NO_VERTEX
 void OpenGLGeometryBufferBase::appendGeometry(const Vertex* const vbuff,
     uint vertex_count)
 {
@@ -127,7 +125,6 @@ void OpenGLGeometryBufferBase::appendGeometry(const Vertex* const vbuff,
     }
 }
 
-#endif //PE_NO_VERTEX
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setActiveTexture(Texture* texture)
 {

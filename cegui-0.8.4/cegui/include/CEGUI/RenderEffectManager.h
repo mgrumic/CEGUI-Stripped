@@ -183,9 +183,10 @@ void RenderEffectManager::addEffect(const String& name)
 
     // create an instance of a factory to create effects of type T
     d_effectRegistry[name] = CEGUI_NEW_AO TplRenderEffectFactory<T>;
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "Registered RenderEffect named '" + name + "'");
+#endif //PE_NO_LOGGER
 }
 
 //---------------------------------------------------------------------------//

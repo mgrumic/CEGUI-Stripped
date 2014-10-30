@@ -38,8 +38,10 @@ RenderEffectManager::RenderEffectManager()
 {
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::RenderEffectManager singleton created " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //---------------------------------------------------------------------------//
@@ -55,8 +57,10 @@ RenderEffectManager::~RenderEffectManager()
 
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "CEGUI::RenderEffectManager singleton destroyed " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //---------------------------------------------------------------------------//
@@ -67,9 +71,10 @@ void RenderEffectManager::removeEffect(const String& name)
     // exit if no factory exists for this type
     if (i == d_effectRegistry.end())
         return;
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "Unregistered RenderEffect named '" + name + "'");
+#endif //PE_NO_LOGGER
 
     CEGUI_DELETE_AO i->second;
 	d_effectRegistry.erase(name);
@@ -98,8 +103,10 @@ RenderEffect& RenderEffectManager::create(const String& name, Window* window)
 
     char addr_buff[32];
     sprintf(addr_buff, "%p", static_cast<void*>(&effect));
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("RenderEffectManager::create: Created "
         "instance of effect '" + name + "' at " + String(addr_buff));
+#endif //PE_NO_LOGGER
 
     return effect;
 }
@@ -124,9 +131,10 @@ void RenderEffectManager::destroy(RenderEffect& effect)
 
     // erase record of the object now it's gone
     d_effects.erase(i);
-
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("RenderEffectManager::destroy: Destroyed "
         "RenderEffect object at " + String(addr_buff));
+#endif //PE_NO_LOGGER
 }
 
 //---------------------------------------------------------------------------//

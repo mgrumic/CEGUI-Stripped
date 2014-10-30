@@ -181,11 +181,13 @@ Exception::Exception(const String& message, const String& name,
            message)
 {
     // Log exception if possible
+#ifndef PE_NO_LOGGER
     if (Logger* const logger = Logger::getSingletonPtr())
     {
         logger->logEvent(d_what, Errors);
         dumpBacktrace(64);
     }
+#endif //PE_NO_LOGGER
 
     if (d_stdErrEnabled)
     {

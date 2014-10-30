@@ -49,9 +49,7 @@ public:
 
     // implementation/overrides of members from GeometryBuffer
     void draw() const;
-    #ifndef PE_NO_VERTEX
     void appendGeometry(const Vertex* const vbuff, uint vertex_count);
-    #endif //PE_NO_VERTE
     void reset();
 
 protected:

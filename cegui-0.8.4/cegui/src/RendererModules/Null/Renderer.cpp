@@ -214,9 +214,11 @@ void NullRenderer::throwIfNameExists(const String& name) const
 //----------------------------------------------------------------------------//
 void NullRenderer::logTextureCreation(const String& name)
 {
+#ifndef PE_NO_LOGGER
     Logger* logger = Logger::getSingletonPtr();
     if (logger)
         logger->logEvent("[NullRenderer] Created texture: " + name);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//
@@ -241,9 +243,11 @@ void NullRenderer::destroyTexture(const String& name)
 //----------------------------------------------------------------------------//
 void NullRenderer::logTextureDestruction(const String& name)
 {
+#ifndef PE_NO_LOGGER
     Logger* logger = Logger::getSingletonPtr();
     if (logger)
         logger->logEvent("[NullRenderer] Destroyed texture: " + name);
+#endif //PE_NO_LOGGER
 }
 
 //----------------------------------------------------------------------------//

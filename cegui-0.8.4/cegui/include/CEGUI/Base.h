@@ -37,12 +37,9 @@
 #define PE_NO_POPUP_MENU_H
 #endif
 #define PE_NO_MOUSE
-#ifndef PE_NO_ANIMATION
-#endif //PE_NO_ANIMATION
 //#define PE_NO_VERTEX
 #define PE_NO_WGT_SPINNER
 #define PE_NO_WGT_SLIDER
-#define PE_NO_VERTEX
 #define PE_NO_WGT_PROGRESS_BAR
 #define PE_NO_WGT_TOOLTIP
 #define PE_NO_WGT_MULTILINE_EDITBOX

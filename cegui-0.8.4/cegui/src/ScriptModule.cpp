@@ -57,7 +57,9 @@ bool ScriptFunctor::operator()(const EventArgs& e) const
 	}
 	else
 	{
+#ifndef PE_NO_LOGGER
 		Logger::getSingleton().logEvent("Scripted event handler '" + scriptFunctionName + "' could not be called as no ScriptModule is available.", Errors);
+#endif //PE_NO_LOGGER
 
 		return false;
 	}

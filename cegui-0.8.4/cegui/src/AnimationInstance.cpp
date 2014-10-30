@@ -240,9 +240,11 @@ void AnimationInstance::start(bool skipNextStep)
     }
     else
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "AnimationInstance::start - Starting an animation instance with "
             "no animation definition or 0 duration has no effect!", Warnings);
+#endif //PE_NO_LOGGER
         onAnimationStarted();
         onAnimationEnded();
     }
@@ -275,9 +277,11 @@ void AnimationInstance::unpause(bool skipNextStep)
     }
     else
     {
+#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
             "AnimationInstance::unpause - Unpausing an animation instance with "
             "no animation definition or 0 duration has no effect!", Warnings);
+#endif //PE_NO_LOGGER
         onAnimationUnpaused();
         onAnimationEnded();
     }

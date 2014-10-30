@@ -275,10 +275,11 @@ void getGLErrors(const char *location)
         default:
             stringStream << "GL_ERROR: Unknown error." << std::endl;
         }
-
+#ifndef PE_NO_LOGGER
         if (CEGUI::Logger* logger = CEGUI::Logger::getSingletonPtr())
             logger->logEvent(stringStream.str().c_str());
         else
+#endif //PE_NO_LOGGER
             std::cerr << stringStream.str() << std::endl;
     }
 }

@@ -241,8 +241,10 @@ void ImageManager::addImageType(const String& name)
 
     d_factories[name] = CEGUI_NEW_AO TplImageFactory<T>;
 
+#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(
         "[CEGUI::ImageManager] Registered Image type: " + name);
+#endif //PE_NO_LOGGER
 }
 
 //---------------------------------------------------------------------------//
