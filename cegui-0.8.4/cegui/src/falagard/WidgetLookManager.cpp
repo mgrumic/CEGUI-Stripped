@@ -43,9 +43,9 @@ namespace CEGUI
 
     WidgetLookManager::WidgetLookManager()
     {
+#ifndef PE_NO_LOGGER
         char addr_buff[32];
         sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("CEGUI::WidgetLookManager singleton "
             "created. " + String(addr_buff));
 #endif //PE_NO_LOGGER
@@ -53,9 +53,9 @@ namespace CEGUI
 
     WidgetLookManager::~ WidgetLookManager()
     {
+#ifndef PE_NO_LOGGER
         char addr_buff[32];
         sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("CEGUI::WidgetLookManager singleton "
             "destroyed. " + String(addr_buff));
 #endif //PE_NO_LOGGER

@@ -90,7 +90,11 @@ namespace CEGUI
         //
         // Render list items
         //
+#ifndef PE_NO_VECTOR3D
         Vector3f itemPos;
+#else
+        Vector2f itemPos;
+#endif  // PE_NO_VECTOR3D
         Sizef itemSize;
         Rectf itemClipper, itemRect;
 
@@ -99,7 +103,9 @@ namespace CEGUI
 
         // set up initial positional details for items
         itemPos.d_y = itemsArea.top() - vertScrollbar->getScrollPosition();
+#ifndef PE_NO_VECTOR3D
         itemPos.d_z = 0.0f;
+#endif  // PE_NO_VECTOR3D
 
         const float alpha = w->getEffectiveAlpha();
 

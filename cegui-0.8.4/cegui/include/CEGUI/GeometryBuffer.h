@@ -60,8 +60,9 @@ public:
     \param v
         Vector3 describing the three axis translation vector to be used.
     */
+#ifndef PE_NO_VECTOR3D
     virtual void setTranslation(const Vector3f& v) = 0;
-
+#endif  // PE_NO_VECTOR3D
     /*!
     \brief
         Set the rotations to be applied to the geometry in the buffer when it is
@@ -80,8 +81,9 @@ public:
         Vector3 describing the location of the pivot point to be used when
         applying the rotation to the geometry.
     */
+#ifndef PE_NO_VECTOR3D
     virtual void setPivot(const Vector3f& p) = 0;
-
+#endif  // PE_NO_VECTOR3D
     /*!
     \brief
         Set the clipping region to be used when rendering this buffer.

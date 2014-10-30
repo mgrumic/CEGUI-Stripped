@@ -27,7 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/System.h"
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
+#endif  // PE_NO_CLIPBOARD
 #include "CEGUI/DefaultLogger.h"
 #include "CEGUI/ImageManager.h"
 #include "CEGUI/FontManager.h"
@@ -120,7 +122,9 @@ System::System(Renderer& renderer,
 : d_renderer(&renderer),
   d_resourceProvider(resourceProvider),
   d_ourResourceProvider(false),
+#ifndef PE_NO_CLIPBOARD
   d_clipboard(CEGUI_NEW_AO Clipboard()),
+#endif  // PE_NO_CLIPBOARD
   d_scriptModule(scriptModule),
   d_xmlParser(xmlParser),
   d_ourXmlParser(false),
@@ -220,9 +224,9 @@ System::System(Renderer& renderer,
     // add the window factories for the core window types
     addStandardWindowFactories();
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     logger.logEvent("CEGUI::System singleton created. " + String(addr_buff));
     logger.logEvent("---- CEGUI System initialisation completed ----");
     logger.logEvent("");
@@ -306,9 +310,9 @@ System::~System(void)
     if (d_ourResourceProvider)
         CEGUI_DELETE_AO d_resourceProvider;
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
 	Logger::getSingleton().logEvent("CEGUI::System singleton destroyed. " +
 #endif //PE_NO_LOGGER
 #ifndef PE_NO_LOGGER
@@ -323,8 +327,9 @@ System::~System(void)
         CEGUI_DELETE_AO Logger::getSingletonPtr();
 #endif //PE_NO_LOGGER
 #endif
-    
+#ifndef PE_NO_CLIPBOARD
     CEGUI_DELETE_AO d_clipboard;
+#endif  // PE_NO_CLIPBOARD
 }
 
 //---------------------------------------------------------------------------//
@@ -673,8 +678,12 @@ void System::addStandardWindowFactories()
     WindowFactoryManager::addWindowType<ClippedContainer>();
     #endif //PE_NO_WGT_CLIPPED_CONTAINER
     WindowFactoryManager::addWindowType<PushButton>();
+#ifndef PE_NO_WGT_RADIOBUTTON
     WindowFactoryManager::addWindowType<RadioButton>();
+#endif // PE_NO_WGT_RADIOBUTTON
+#ifndef PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<Combobox>();
+#endif // PE_NO_WGT_COMBOBOX
     WindowFactoryManager::addWindowType<ComboDropList>();
     WindowFactoryManager::addWindowType<Editbox>();
     WindowFactoryManager::addWindowType<FrameWindow>();
@@ -699,9 +708,9 @@ void System::addStandardWindowFactories()
 #ifndef PE_NO_WGT_SLIDER
     WindowFactoryManager::addWindowType<Slider>();
 #endif //PE_NO_WGT_SLIDER
-    #ifndef PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<Spinner>();
-    #endif  //PE_NO_WGT_SPINNER
+#endif  //PE_NO_WGT_SPINNER
     WindowFactoryManager::addWindowType<TabButton>();
     WindowFactoryManager::addWindowType<TabControl>();
     WindowFactoryManager::addWindowType<Thumb>();

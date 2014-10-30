@@ -335,9 +335,9 @@ void WindowFactoryManager::addFalagardWindowMapping(const String& newType,
 #endif //PE_NO_LOGGER
     }
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(&mapping));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Creating falagard mapping for type '" +
         newType + "' using base type '" + targetType + "', window renderer '" +
         renderer + "' Look'N'Feel '" + lookName + "' and RenderEffect '" +

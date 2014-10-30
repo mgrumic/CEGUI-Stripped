@@ -29,6 +29,9 @@
 #ifndef _CEGUIForwardRefs_h_
 #define _CEGUIForwardRefs_h_
 
+#include "Base.h"
+
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -124,7 +127,9 @@ class TextUtils;
 class UBox;
 class UDim;
 template<typename T> class Vector2;
+#ifndef PE_NO_VECTOR3D
 template<typename T> class Vector3;
+#endif  // PE_NO_VECTOR3D
 struct Vertex;
 class WidgetLookFeel;
 class Window;
@@ -179,7 +184,9 @@ class PopupMenu;
 class ProgressBar;
 #endif //PE_NO_WGT_PROGRESS_BAR
 class PushButton;
+#ifndef PE_NO_WGT_RADIOBUTTON
 class RadioButton;
+#endif //PE_NO_WGT_RADIOBUTTON
 class ScrollablePane;
 class Scrollbar;
 class ScrolledContainer;

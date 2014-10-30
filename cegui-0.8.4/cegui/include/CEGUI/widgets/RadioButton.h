@@ -26,7 +26,7 @@
  ***************************************************************************/
 #ifndef _CEGUIRadioButton_h_
 #define _CEGUIRadioButton_h_
-
+#ifndef PE_NO_WGT_RADIOBUTTON
 #include "CEGUI/widgets/ToggleButton.h"
 
 #if defined(_MSC_VER)
@@ -94,6 +94,6 @@ protected:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
-
+#endif // PE_NO_WGT_RADIOBUTTON
 #endif
 

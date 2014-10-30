@@ -30,7 +30,9 @@
 #include "CEGUI/TextUtils.h"
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/Font.h"
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
+#endif  // PE_NO_CLIPBOARD
 #include "CEGUI/BidiVisualMapping.h"
 #include <string.h>
 
@@ -338,7 +340,7 @@ void Editbox::setValidator(RegexMatcher* validator)
         d_weOwnValidator = true;
     }
 }
-
+#ifndef PE_NO_CLIPBOARD
 //----------------------------------------------------------------------------//
 bool Editbox::performCopy(Clipboard& clipboard)
 {
@@ -364,7 +366,7 @@ bool Editbox::performCut(Clipboard& clipboard)
     handleDelete();
     return true;
 }
-
+#endif  // PE_NO_CLIPBOARD
 //----------------------------------------------------------------------------//
 bool Editbox::handleValidityChangeForString(const String& str)
 {
@@ -385,7 +387,7 @@ bool Editbox::handleValidityChangeForString(const String& str)
 
     return response;
 }
-
+#ifndef PE_NO_CLIPBOARD
 //----------------------------------------------------------------------------//
 bool Editbox::performPaste(Clipboard& clipboard)
 {
@@ -425,6 +427,7 @@ bool Editbox::performPaste(Clipboard& clipboard)
 
     return false;
 }
+#endif  // PE_NO_CLIPBOARD
 #ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Editbox::onMouseButtonDown(MouseEventArgs& e)

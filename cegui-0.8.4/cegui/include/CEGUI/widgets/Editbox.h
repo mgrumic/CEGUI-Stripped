@@ -448,7 +448,7 @@ public:
         previous custom validator is deleted.
     */
     void setValidator(RegexMatcher* matcher);
-
+#ifndef PE_NO_CLIPBOARD
     //! \copydoc Window::performCopy
     virtual bool performCopy(Clipboard& clipboard);
 
@@ -457,7 +457,7 @@ public:
     
     //! \copydoc Window::performPaste
     virtual bool performPaste(Clipboard& clipboard);
-    
+#endif  // PE_NO_CLIPBOARD
     //! Constructor for Editbox class.
     Editbox(const String& type, const String& name);
 

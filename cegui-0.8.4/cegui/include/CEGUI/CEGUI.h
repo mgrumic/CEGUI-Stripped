@@ -39,7 +39,9 @@
 #include "CEGUI/BidiVisualMapping.h"
 #include "CEGUI/BoundSlot.h"
 #include "CEGUI/CentredRenderedString.h"
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
+#endif  // PE_NO_CLIPBOARD
 #include "CEGUI/Colour.h"
 #include "CEGUI/ColourRect.h"
 #include "CEGUI/CoordConverter.h"

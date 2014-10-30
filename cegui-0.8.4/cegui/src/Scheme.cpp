@@ -85,9 +85,9 @@ Scheme::~Scheme(void)
 {
     unloadResources();
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("GUI scheme '" + d_name + "' has been "
         "unloaded (object destructor). " + addr_buff, Informative);
 #endif //PE_NO_LOGGER

@@ -138,8 +138,9 @@ public:
         Vector3 describing the three dimensional point around which the
         RenderingWindow will be rotated.
     */
+#ifndef PE_NO_VECTOR3D
     void setPivot(const Vector3f& pivot);
-
+#endif  // PE_NO_VECTOR3D
     /*!
     \brief
         Return the current pixel position of the RenderingWindow.  The origin is
@@ -181,8 +182,9 @@ public:
         Vector3 object describing the current location of the pivot point used
         when rotating the RenderingWindow.
     */
+#ifndef PE_NO_VECTOR3D
     const Vector3f& getPivot() const;
-
+#endif  // PE_NO_VECTOR3D
     /*!
     \brief
         Return the TextureTarget object that is the target for content rendered
@@ -309,7 +311,9 @@ protected:
     //! Rotation for this RenderingWindow
     Quaternion d_rotation;
     //! Pivot point used for the rotation.
+#ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;
+#endif  // PE_NO_VECTOR3D
 };
 
 } // End of  CEGUI namespace section

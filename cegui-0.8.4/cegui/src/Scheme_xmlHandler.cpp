@@ -321,9 +321,9 @@ void Scheme_xmlHandler::elementGUISchemeEnd()
             "Attempt to access null object."));
 #endif //PE_NO_THROW_MSGS
 
+#ifndef PE_NO_LOGGER
     char addr_buff[32];
     sprintf(addr_buff, "(%p)", static_cast<void*>(d_scheme));
-#ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent("Finished creation of GUIScheme '" +
         d_scheme->getName() + "' via XML file. " + addr_buff, Informative);
 #endif //PE_NO_LOGGER

@@ -57,9 +57,11 @@ public:
     virtual ~OpenGLGeometryBufferBase();
 
     // implementation of abstract members from GeometryBuffer
+#ifndef PE_NO_VECTOR3D
     void setTranslation(const Vector3f& t);
-    void setRotation(const Quaternion& r);
     void setPivot(const Vector3f& p);
+#endif  // PE_NO_VECTOR3D
+    void setRotation(const Quaternion& r);
     void setClippingRegion(const Rectf& region);
     void appendVertex(const Vertex& vertex);
     void appendGeometry(const Vertex* const vbuff, uint vertex_count);
@@ -116,11 +118,15 @@ protected:
     //! whether clipping will be active for the current batch
     bool d_clippingActive;
     //! translation vector
+#ifndef PE_NO_VECTOR3D
     Vector3f d_translation;
+#endif  // PE_NO_VECTOR3D
     //! rotation quaternion
     Quaternion d_rotation;
     //! pivot point for rotation
+#ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;
+#endif  // PE_NO_VECTOR3D
     //! RenderEffect that will be used by the GeometryBuffer
     RenderEffect* d_effect;
     //! model matrix cache - we use double because gluUnproject takes double

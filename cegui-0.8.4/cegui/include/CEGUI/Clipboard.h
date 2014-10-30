@@ -29,6 +29,9 @@
 #ifndef _CEGUIClipboard_h_
 #define _CEGUIClipboard_h_
 
+#include <CEGUI/Base.h>
+#ifndef PE_NO_CLIPBOARD
+
 #include "CEGUI/String.h"
 
 #if defined(_MSC_VER)
@@ -157,6 +160,6 @@ private:
 #if defined(_MSC_VER)
 #   pragma warning(pop)
 #endif
-
+#endif  // PE_NO_CLIPBOARD
 #endif  // end of guard _CEGUIClipboard_h_
 

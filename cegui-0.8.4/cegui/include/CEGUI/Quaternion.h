@@ -131,6 +131,7 @@ public:
     \param rotation
         Anticlockwise rotation around given axis
     */
+#ifndef PE_NO_VECTOR3D
     static Quaternion axisAngleRadians(const Vector3f& axis, float rotation);
 
     /*!
@@ -142,7 +143,7 @@ public:
         Anticlockwise rotation around given axis
     */
     static Quaternion axisAngleDegrees(const Vector3f& axis, float rotation);
-
+#endif  // PE_NO_VECTOR3D
     //! equality operator
     inline bool operator == (const Quaternion& v) const
 	{
