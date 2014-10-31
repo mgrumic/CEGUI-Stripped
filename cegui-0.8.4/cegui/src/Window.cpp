@@ -88,9 +88,11 @@ const String Window::EventInvalidated( "Invalidated" );
 const String Window::EventRenderingStarted( "RenderingStarted" );
 const String Window::EventRenderingEnded( "RenderingEnded" );
 const String Window::EventDestructionStarted( "DestructionStarted" );
+#ifndef PE_NO_MOUSE
 const String Window::EventDragDropItemEnters("DragDropItemEnters");
 const String Window::EventDragDropItemLeaves("DragDropItemLeaves");
 const String Window::EventDragDropItemDropped("DragDropItemDropped");
+#endif //PE_NO_MOUSE
 const String Window::EventWindowRendererAttached("WindowRendererAttached");
 const String Window::EventWindowRendererDetached("WindowRendererDetached");
 const String Window::EventTextParsingChanged("TextParsingChanged");
@@ -256,8 +258,10 @@ Window::Window(const String& type, const String& name):
     d_repeating(false),
     d_repeatElapsed(0.0f),
 
+#ifndef PE_NO_MOUSE
     // drag and drop
     d_dragDropTarget(true),
+#endif //PE_NO_MOUSE
 
     // tool tip related
 #ifndef PE_NO_MOUSE
@@ -1485,10 +1489,12 @@ void Window::addWindowProperties(void)
     addProperty(&d_windowRendererProperty);
     addProperty(&d_lookNFeelProperty);
 
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(Window, bool,
         "DragDropTarget", "Property to get/set whether the Window will receive drag and drop related notifications.  Value is either \"true\" or \"false\".",
         &Window::setDragDropTarget, &Window::isDragDropTarget, true
     );
+#endif //PE_NO_MOUSE
 
     CEGUI_DEFINE_PROPERTY(Window, bool,
         "AutoRenderingSurface", "Property to get/set whether the Window will automatically attempt to "
@@ -1732,8 +1738,8 @@ void Window::notifyDragDropItemDropped(DragContainer* item)
     args.dragDropItem = item;
     onDragDropItemDropped(args);
 }
-
 #endif //PE_NO_MOUSE
+
 //----------------------------------------------------------------------------//
 void Window::destroy(void)
 {
@@ -2827,6 +2833,7 @@ void Window::onCharacter(KeyEventArgs& e)
     }
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Window::onDragDropItemEnters(DragDropEventArgs& e)
 {
@@ -2844,6 +2851,7 @@ void Window::onDragDropItemDropped(DragDropEventArgs& e)
 {
     fireEvent(EventDragDropItemDropped, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void Window::setWindowRenderer(const String& name)
@@ -3117,6 +3125,7 @@ void Window::updateGeometryRenderSettings()
     initialiseClippers(ctx);
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool Window::isDragDropTarget() const
 {
@@ -3128,6 +3137,7 @@ void Window::setDragDropTarget(bool setting)
 {
     d_dragDropTarget = setting;
 }
+#endif //PE_NO_MOUSE
 
 //-----------------------------------------------------------------------
 void Window::setFalagardType(const String& type, const String& rendererType)

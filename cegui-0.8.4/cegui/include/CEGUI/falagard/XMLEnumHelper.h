@@ -648,7 +648,7 @@ public:
                 ""));
 #else
             "'" + str +
-            "' does not represent a ChildEventAction enumerated value."
+            "' does not represent a ChildEventAction enumerated value."));
 #endif //PE_NO_THROW_MSGS
     }
 

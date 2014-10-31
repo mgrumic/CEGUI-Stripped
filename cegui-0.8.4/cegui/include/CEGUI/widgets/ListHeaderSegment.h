@@ -53,6 +53,7 @@ public:
     static const String WidgetTypeName;             //!< Window factory name
 
 
+#ifndef PE_NO_MOUSE
 	/*************************************************************************
 		Constants
 	*************************************************************************/
@@ -74,6 +75,7 @@ public:
      * setting has been changed.
      */
 	static const String EventSizingSettingChanged;
+#endif //PE_NO_MOUSE
     /** Event fired when the sort direction value is changed.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment whose sort direction
@@ -106,13 +108,13 @@ public:
      * changed due to being dragged.
      */
 	static const String EventSegmentDragPositionChanged;
-#endif //PE_NO_MOUSE
     /** Event fired when the segment is sized by the user.
      * Hanlders are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeaderSegment that has been
      * resized by the user dragging.
      */
 	static const String EventSegmentSized;
+#endif //PE_NO_MOUSE
 #ifndef PE_NO_MOUSE
     /** Event fired when the clickable setting for the segment is changed.
      * Hanlders are passed a const WindowEventArgs reference with
@@ -147,6 +149,7 @@ public:
 	/*************************************************************************
 		Accessor Methods
 	*************************************************************************/
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return whether this segment can be sized.
@@ -155,6 +158,7 @@ public:
 		true if the segment can be horizontally sized, false if the segment can not be horizontally sized.
 	*/
 	bool	isSizingEnabled(void) const			{return d_sizingEnabled;}
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -172,6 +176,7 @@ public:
 	SortDirection	getSortDirection(void) const	{return d_sortDir;}
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return whether drag moving is enabled for this segment.
@@ -190,7 +195,6 @@ public:
 		Point object describing the drag move offset position.
 	*/
 	const Vector2f& getDragMoveOffset(void) const	{return d_dragPosition;}
-#ifndef PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -205,9 +209,8 @@ public:
     /*!
     \brief
         Return whether the segment is currently in its hovering state.
-    *
+    */
     bool    isSegmentHovering(void) const  {return d_segmentHover;}
-
 
     /*!
     \brief
@@ -275,6 +278,7 @@ public:
 	void	setSortDirection(SortDirection sort_dir);
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Set whether drag moving is allowed for this segment.
@@ -286,6 +290,7 @@ public:
 		Nothing.
 	*/
 	void	setDragMovingEnabled(bool setting);
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -406,13 +411,13 @@ protected:
 	*/
 	virtual void	onSplitterDoubleClicked(WindowEventArgs& e);
 
-#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
 		Handler called when sizing setting changes.
 	*/
 	virtual void	onSizingSettingChanged(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -422,11 +427,11 @@ protected:
 	virtual void	onSortDirectionChanged(WindowEventArgs& e);
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler called when the drag-movable setting is changed.
 	*/
-#ifndef PE_NO_MOUSE
 	virtual void	onMovableSettingChanged(WindowEventArgs& e);
 
 	/*!
@@ -451,13 +456,13 @@ protected:
 #endif //PE_NO_MOUSE
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler called when the segment is sized.
 	*/
 	virtual void	onSegmentSized(WindowEventArgs& e);
 
-#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler called when the clickable setting for the segment changes
@@ -490,18 +495,20 @@ protected:
     bool	d_splitterHover;	//!< True if the mouse is over the splitter
 #endif //PE_NO_MOUSE
 
+#ifndef PE_NO_MOUSE
 	bool	d_dragSizing;		//!< true when we are being sized.
 	Vector2f d_dragPoint;		//!< point we are being dragged at when sizing or moving.
+#endif //PE_NO_MOUSE
 
 	SortDirection	d_sortDir;	//!< Direction for sorting (used for deciding what icon to display).
 #ifndef PE_NO_MOUSE
 	bool	d_segmentHover;		//!< true when the mouse is within the segment area (and not in sizing area).
 	bool	d_segmentPushed;	//!< true when the left mouse button has been pressed within the confines of the segment.
-#endif //PE_NO_MOUSE
 	bool	d_sizingEnabled;	//!< true when sizing is enabled for this segment.
 	bool	d_movingEnabled;	//!< True when drag-moving is enabled for this segment;
 	bool	d_dragMoving;		//!< true when segment is being drag moved.
 	Vector2f d_dragPosition;		//!< position of dragged segment.
+#endif //PE_NO_MOUSE
 	bool	d_allowClicks;		//!< true if the segment can be clicked.
 
 private:

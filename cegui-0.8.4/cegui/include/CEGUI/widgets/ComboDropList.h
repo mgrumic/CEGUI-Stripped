@@ -63,7 +63,7 @@ public:
      * confirmed by the user.
      */
 	static const String EventListSelectionAccepted;
-#endif
+#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -97,7 +97,7 @@ public:
 		Nothing.
 	*/
 	void	setArmed(bool setting)		{ d_armed = setting; }
-#endif
+#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -135,7 +135,7 @@ public:
 		- false if the user must click to arm the box.
 	*/
 	bool	isAutoArmEnabled(void) const		{ return d_autoArm; }
-#endif
+#endif //PE_NO_MOUSE
     //! resize the widget such that the content is shown without scrollbars.
     void resizeToContent(bool fit_width, bool fit_height);
 
@@ -174,7 +174,7 @@ protected:
 	virtual void	onMouseMove(MouseEventArgs& e);
 	virtual void	onMouseButtonDown(MouseEventArgs& e);
 	virtual void	onMouseButtonUp(MouseEventArgs& e);
-#endif
+#endif //PE_NO_MOUSE
     virtual void	onCaptureLost(WindowEventArgs& e);
 	virtual void	onActivated(ActivationEventArgs& e);
     virtual void    onListContentsChanged(WindowEventArgs& e);
@@ -185,7 +185,7 @@ protected:
 	*************************************************************************/
 #ifndef PE_NO_MOUSE
     bool	d_autoArm;		//!< true if the box auto-arms when the mouse enters it.
-#endif
+#endif //PE_NO_MOUSE
     bool	d_armed;		//!< true when item selection has been armed.
     ListboxItem* d_lastClickSelected; //!< Item last accepted by user.
 };

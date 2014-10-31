@@ -38,8 +38,10 @@ const String Scrollbar::WidgetTypeName("CEGUI/Scrollbar");
 
 //----------------------------------------------------------------------------//
 const String Scrollbar::EventScrollPositionChanged("ScrollPositionChanged");
+#ifndef PE_NO_MOUSE
 const String Scrollbar::EventThumbTrackStarted("ThumbTrackStarted");
 const String Scrollbar::EventThumbTrackEnded("ThumbTrackEnded");
+#endif //PE_NO_MOUSE
 const String Scrollbar::EventScrollConfigChanged("ScrollConfigChanged");
 
 //----------------------------------------------------------------------------//
@@ -80,6 +82,7 @@ void Scrollbar::initialiseComponents(void)
                       Event::Subscriber(&CEGUI::Scrollbar::handleThumbMoved,
                                         this));
 
+#ifndef PE_NO_MOUSE
     t->subscribeEvent(Thumb::EventThumbTrackStarted,
                       Event::Subscriber(&CEGUI::Scrollbar::handleThumbTrackStarted,
                                         this));
@@ -88,7 +91,6 @@ void Scrollbar::initialiseComponents(void)
                       Event::Subscriber(&CEGUI::Scrollbar::handleThumbTrackEnded,
                                         this));
 
-#ifndef PE_NO_MOUSE
     // set up Increase button
     getIncreaseButton()->
     subscribeEvent(PushButton::EventMouseButtonDown,
@@ -100,7 +102,7 @@ void Scrollbar::initialiseComponents(void)
     subscribeEvent(PushButton::EventMouseButtonDown,
                    Event::Subscriber(&CEGUI::Scrollbar::handleDecreaseClicked,
                                      this));
-#endif
+#endif //PE_NO_MOUSE
     
     // do initial layout
     performChildWindowLayout();
@@ -194,6 +196,7 @@ void Scrollbar::onScrollPositionChanged(WindowEventArgs& e)
     fireEvent(EventScrollPositionChanged, e, EventNamespace);
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Scrollbar::onThumbTrackStarted(WindowEventArgs& e)
 {
@@ -205,6 +208,7 @@ void Scrollbar::onThumbTrackEnded(WindowEventArgs& e)
 {
     fireEvent(EventThumbTrackEnded, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void Scrollbar::onScrollConfigChanged(WindowEventArgs& e)
@@ -245,7 +249,7 @@ void Scrollbar::onMouseWheel(MouseEventArgs& e)
     // ensure the message does not go to our parent.
     ++e.handled;
 }
-#endif
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 bool Scrollbar::handleThumbMoved(const EventArgs&)
@@ -276,7 +280,6 @@ bool Scrollbar::handleDecreaseClicked(const EventArgs& e)
     scrollBackwardsByStep();
     return true;
 }
-#endif
 
 //----------------------------------------------------------------------------//
 bool Scrollbar::handleThumbTrackStarted(const EventArgs&)
@@ -298,6 +301,7 @@ bool Scrollbar::handleThumbTrackEnded(const EventArgs&)
     return true;
 }
 
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void Scrollbar::addScrollbarProperties(void)
 {

@@ -53,7 +53,7 @@ ScrolledContainer::ScrolledContainer(const String& type, const String& name) :
     addScrolledContainerProperties();
 #ifndef PE_NO_MOUSE
     setMouseInputPropagationEnabled(true);
-#endif
+#endif //PE_NO_MOUSE
 }
 
 //----------------------------------------------------------------------------//

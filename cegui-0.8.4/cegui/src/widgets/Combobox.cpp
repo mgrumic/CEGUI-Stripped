@@ -647,33 +647,32 @@ void Combobox::onHorzScrollbarModeChanged(WindowEventArgs& e)
 	fireEvent(EventHorzScrollbarModeChanged, e, EventNamespace);
 }
 
-
 /*************************************************************************
 	Handler for when
 *************************************************************************/
+#ifndef PE_NO_MOUSE
 void Combobox::onDropListDisplayed(WindowEventArgs& e)
 {
-#ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
 
     getPushButton()->setPushedState(true);
-#endif
     fireEvent(EventDropListDisplayed, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
 	Handler for when
 *************************************************************************/
+#ifndef PE_NO_MOUSE
 void Combobox::onDroplistRemoved(WindowEventArgs& e)
 {
-#ifndef PE_NO_MOUSE
     getGUIContext().updateWindowContainingMouse();
 
     getPushButton()->setPushedState(false);
-#endif
     fireEvent(EventDropListRemoved, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -937,7 +936,7 @@ void Combobox::addComboboxProperties(void)
           "SingleClickMode","Property to get/set the 'single click mode' setting for the combo box.  Value is either \"true\" or \"false\".",
           &Combobox::setSingleClickEnabled, &Combobox::getSingleClickEnabled, false /* TODO: Inconsistency between setter, getter and property name */
     );
-#endif
+#endif //PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(Combobox, bool,
           "AutoSizeListHeight",
           "Property to get/set whether the drop down list will vertically "
@@ -1021,7 +1020,7 @@ void Combobox::setSingleClickEnabled(bool setting)
 	d_singleClickOperation = setting;
 	getDropList()->setAutoArmEnabled(setting);
 }
-#endif
+#endif //PE_NO_MOUSE
 
 /************************************************************************
     Return a pointer to the Editbox component widget for this Combobox.

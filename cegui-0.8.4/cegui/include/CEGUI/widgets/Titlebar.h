@@ -53,6 +53,7 @@ public:
 	static const String EventNamespace;				//!< Namespace for global events
     static const String WidgetTypeName;             //!< Window factory name
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return whether this title bar will respond to dragging.
@@ -86,6 +87,7 @@ public:
         Gets the point at which the title bar widget is/was being dragged
     */
     const Vector2f& getDragPoint() const;
+#endif //PE_NO_MOUSE
 
 	/*************************************************************************
 		Construction / Destruction
@@ -117,6 +119,7 @@ protected:
 #endif //PE_NO_MOUSE
 	virtual void	onFontChanged(WindowEventArgs &e);
 
+#ifndef PE_NO_MOUSE
 
 	/*************************************************************************
 		New event handlers for title bar
@@ -138,6 +141,7 @@ protected:
 	bool d_dragEnabled;		//!< true when dragging for the widget is enabled.
 
 	Rectf d_oldCursorArea;	//!< Used to backup cursor restraint area.
+#endif //PE_NO_MOUSE
 
 private:
 	/*************************************************************************

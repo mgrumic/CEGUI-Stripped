@@ -183,7 +183,7 @@ class MultiLineEditbox;
 #endif //PE_NO_WGT_MULTILINE_EDITBOX
 #ifdef PE_NO_POPUP_MENU_H
 class PopupMenu;
-#endif //PE_NO_MOUSE
+#endif //PE_NO_POPUP_MENU_H
 #ifndef PE_NO_WGT_PROGRESS_BAR
 class ProgressBar;
 #endif //PE_NO_WGT_PROGRESS_BAR

@@ -109,6 +109,7 @@ public:
      * WindowEventArgs::window set to the Slider whose value has changed.
      */
 	static const String EventValueChanged;
+#ifndef PE_NO_MOUSE
     /** Event fired when the user begins dragging the thumb.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the Slider whose thumb has started to
@@ -120,6 +121,7 @@ public:
      * WindowEventArgs::window set to the Slider whose thumb has been released.
      */
 	static const String EventThumbTrackEnded;
+#endif //PE_NO_MOUSE
 
     /*************************************************************************
         Child Widget name suffix constants
@@ -353,6 +355,7 @@ protected:
 	virtual void	onValueChanged(WindowEventArgs& e);
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler triggered when the user begins to drag the slider thumb. 
@@ -365,6 +368,7 @@ protected:
 		Handler triggered when the slider thumb is released
 	*/
 	virtual void	onThumbTrackEnded(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
 
 #ifndef PE_NO_MOUSE

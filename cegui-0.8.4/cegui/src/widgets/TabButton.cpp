@@ -50,8 +50,10 @@ const String TabButton::EventScrolled( "Scrolled" );
 *************************************************************************/
 TabButton::TabButton(const String& type, const String& name) :
 	ButtonBase(type, name),
-    d_selected(false),
-    d_dragging(false)
+#ifndef PE_NO_MOUSE
+    d_dragging(false),
+#endif //PE_NO_MOUSE
+    d_selected(false)
 {
 }
 
@@ -155,6 +157,6 @@ void TabButton::onMouseWheel(MouseEventArgs& e)
 	// default handling
 	ButtonBase::onMouseMove(e);
 }
-#endif
+#endif //PE_NO_MOUSE
 
 } // End of  CEGUI namespace section

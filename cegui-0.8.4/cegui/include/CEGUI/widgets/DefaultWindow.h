@@ -91,7 +91,7 @@ protected:
     void onMouseClicked(MouseEventArgs& e);
     void onMouseDoubleClicked(MouseEventArgs& e);
     void onMouseTripleClicked(MouseEventArgs& e);
-#endif
+#endif //PE_NO_MOUSE
 };
 
 } // End of  CEGUI namespace section

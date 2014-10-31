@@ -65,7 +65,7 @@ ScrolledItemListBase::ScrolledItemListBase(const String& type, const String& nam
 #endif //PE_NO_WGT_CLIPPED_CONTAINER
 #ifndef PE_NO_MOUSE
     d_pane->setMouseInputPropagationEnabled(true);
-#endif
+#endif //PE_NO_MOUSE
     addChild(d_pane);
 
     // add properties for this class
@@ -216,7 +216,7 @@ void ScrolledItemListBase::onMouseWheel(MouseEventArgs& e)
     v->setScrollPosition(v->getScrollPosition() + delta);
     ++e.handled;
 }
-#endif
+#endif //PE_NO_MOUSE
 
 /************************************************************************
     Event subscribers for scrolling

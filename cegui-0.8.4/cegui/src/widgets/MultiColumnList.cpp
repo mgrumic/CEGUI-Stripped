@@ -118,6 +118,7 @@ bool MultiColumnList::isUserSortControlEnabled(void) const
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Return whether the user may size column segments.
 *************************************************************************/
@@ -134,6 +135,7 @@ bool MultiColumnList::isUserColumnDraggingEnabled(void) const
 {
 	return getListHeader()->isColumnDraggingEnabled();
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -2192,6 +2194,7 @@ void MultiColumnList::setUserSortControlEnabled(bool setting)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Set whether the user may size column segments.
 *************************************************************************/
@@ -2208,6 +2211,7 @@ void MultiColumnList::setUserColumnDraggingEnabled(bool setting)
 {
 	getListHeader()->setColumnDraggingEnabled(setting);
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -2298,6 +2302,7 @@ void MultiColumnList::addMultiColumnListProperties(void)
 {
     const String& propertyOrigin = WidgetTypeName;
 
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(MultiColumnList, bool,
         "ColumnsSizable", "Property to get/set the setting for user sizing of the column headers.  Value is either \"true\" or \"false\".",
         &MultiColumnList::setUserColumnSizingEnabled, &MultiColumnList::isUserColumnSizingEnabled, true /* TODO: Inconsistency */
@@ -2307,6 +2312,7 @@ void MultiColumnList::addMultiColumnListProperties(void)
         "ColumnsMovable", "Property to get/set the setting for user moving of the column headers.  Value is either \"true\" or \"false\".",
         &MultiColumnList::setUserColumnDraggingEnabled, &MultiColumnList::isUserColumnDraggingEnabled, true /* TODO: Inconsistency */
     );
+#endif //PE_NO_MOUSE
     
     CEGUI_DEFINE_PROPERTY(MultiColumnList, bool,
         "SortSettingEnabled", "Property to get/set the setting for for user modification of the sort column & direction."

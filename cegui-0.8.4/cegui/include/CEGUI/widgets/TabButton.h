@@ -117,7 +117,9 @@ protected:
     Implementation Data
     *************************************************************************/
     bool    d_selected;             //!< Is this button selected?
+#ifndef PE_NO_MOUSE
     bool    d_dragging;             //!< In drag mode or not
+#endif //PE_NO_MOUSE
     Window* d_targetWindow;         //!< The target window which this button is representing
 	/*************************************************************************
 		New Event Handlers

@@ -348,7 +348,7 @@ namespace CEGUI
         *************************************************************************/
         void addTooltipProperties(void);
     };
-#endif //PE_NO_MOUSE2
+#endif //PE_NO_MOUSE
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)

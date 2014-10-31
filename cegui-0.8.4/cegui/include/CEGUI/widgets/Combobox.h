@@ -200,7 +200,7 @@ public:
 		- false if the user must click to show the list and then click again to select an item.
 	*/
 	bool	getSingleClickEnabled(void) const;
-#endif
+#endif //PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -550,7 +550,7 @@ public:
 		Nothing.
 	*/
 	void	setSingleClickEnabled(bool setting);
-#endif
+#endif //PE_NO_MOUSE
     //! Select item in list matching editbox text, clear selection if none match
     void selectListItemWithEditboxText();
 
@@ -904,7 +904,7 @@ protected:
 		Mouse button down handler attached to edit box
 	*/
 	bool	editbox_MouseDownHandler(const EventArgs& e);
-#endif 
+#endif //PE_NO_MOUSE
     /*!
     \brief
         Update the Combobox text to reflect programmatically made changes to

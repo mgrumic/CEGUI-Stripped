@@ -40,8 +40,10 @@ const String Thumb::WidgetTypeName("CEGUI/Thumb");
 *************************************************************************/
 // generated internally by Window
 const String Thumb::EventThumbPositionChanged( "ThumbPositionChanged" );
+#ifndef PE_NO_MOUSE
 const String Thumb::EventThumbTrackStarted( "ThumbTrackStarted" );
 const String Thumb::EventThumbTrackEnded( "ThumbTrackEnded" );
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -54,9 +56,11 @@ Thumb::Thumb(const String& type, const String& name) :
 	d_horzFree(false),
 	d_vertMin(0.0f),
 	d_vertMax(1.0f),
-    d_horzMin(0.0f),
-	d_horzMax(1.0f),
-    d_beingDragged(false)
+        d_horzMin(0.0f),
+#ifndef PE_NO_MOUSE
+        d_beingDragged(false),
+#endif //PE_NO_MOUSE
+	d_horzMax(1.0f)
 {
 	addThumbProperties();
 }
@@ -156,6 +160,7 @@ void Thumb::onThumbPositionChanged(WindowEventArgs& e)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler triggered when the user begins to drag the thumb. 	
 *************************************************************************/
@@ -172,6 +177,7 @@ void Thumb::onThumbTrackEnded(WindowEventArgs& e)
 {
 	fireEvent(EventThumbTrackEnded, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 
 #ifndef PE_NO_MOUSE

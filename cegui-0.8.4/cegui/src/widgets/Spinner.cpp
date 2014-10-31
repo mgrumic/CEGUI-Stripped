@@ -94,7 +94,7 @@ namespace CEGUI
         // perform event subscriptions.
         increaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleIncreaseButton, this));
         decreaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleDecreaseButton, this));
-#endif
+#endif //PE_NO_MOUSE
         editbox->subscribeEvent(Window::EventTextChanged, Event::Subscriber(&Spinner::handleEditTextChange, this));
 
         // final initialisation
@@ -449,7 +449,7 @@ namespace CEGUI
 
         return false;
     }
-#endif
+#endif //PE_NO_MOUSE
     
     bool Spinner::handleEditTextChange(const EventArgs&)
     {

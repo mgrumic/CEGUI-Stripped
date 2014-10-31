@@ -113,7 +113,7 @@ void DefaultWindow::updateMouseEventHandled(MouseEventArgs& e) const
     if (!d_parent && e.handled && d_mousePassThroughEnabled)
         --e.handled;
 }
-#endif
+#endif //PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool DefaultWindow::moveToFront_impl(bool wasClicked)
 {
@@ -122,7 +122,7 @@ bool DefaultWindow::moveToFront_impl(bool wasClicked)
     if (!d_parent
 #ifndef PE_NO_MOUSE
         && d_mousePassThroughEnabled
-#endif
+#endif //PE_NO_MOUSE
         )
         return false;
     else

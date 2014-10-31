@@ -69,7 +69,9 @@ Editbox::Editbox(const String& type, const String& name) :
     d_maskCodePoint('*'),
     d_maxTextLen(String().max_size()),
     d_caretPos(0),
+#ifndef PE_NO_MOUSE
     d_dragging(false),
+#endif //PE_NO_MOUSE
 #ifndef PE_NO_REGEX_MATCHER
     d_validator(System::getSingleton().createRegexMatcher()),
     d_weOwnValidator(true),
@@ -560,12 +562,12 @@ void Editbox::onMouseMove(MouseEventArgs& e)
 //----------------------------------------------------------------------------//
 void Editbox::onCaptureLost(WindowEventArgs& e)
 {
+#ifndef PE_NO_MOUSE
     d_dragging = false;
+#endif //PE_NO_MOUSE
 
     // base class processing
-#ifndef PE_NO_MOUSE
     Window::onCaptureLost(e);
-#endif //PE_NO_MOUSE
 
     ++e.handled;
 }
@@ -641,11 +643,13 @@ void Editbox::onKeyDown(KeyEventArgs& e)
         WindowEventArgs args(this);
         switch (e.scancode)
         {
+#ifndef PE_NO_MOUSE
         case Key::LeftShift:
         case Key::RightShift:
             if (getSelectionLength() == 0)
                 d_dragAnchorIdx = d_caretPos;
             break;
+#endif //PE_NO_MOUSE
 
         case Key::Backspace:
             handleBackspace();
@@ -778,9 +782,11 @@ void Editbox::handleCharLeft(uint sysKeys)
     if (d_caretPos > 0)
         setCaretIndex(d_caretPos - 1);
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift)
         setSelection(d_caretPos, d_dragAnchorIdx);
     else
+#endif //PE_NO_MOUSE
         clearSelection();
 }
 
@@ -790,9 +796,11 @@ void Editbox::handleWordLeft(uint sysKeys)
     if (d_caretPos > 0)
         setCaretIndex(TextUtils::getWordStartIdx(getText(), d_caretPos));
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift)
         setSelection(d_caretPos, d_dragAnchorIdx);
     else
+#endif //PE_NO_MOUSE
         clearSelection();
 }
 
@@ -802,9 +810,11 @@ void Editbox::handleCharRight(uint sysKeys)
     if (d_caretPos < getText().length())
         setCaretIndex(d_caretPos + 1);
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift)
         setSelection(d_caretPos, d_dragAnchorIdx);
     else
+#endif //PE_NO_MOUSE
         clearSelection();
 }
 
@@ -814,9 +824,11 @@ void Editbox::handleWordRight(uint sysKeys)
     if (d_caretPos < getText().length())
         setCaretIndex(TextUtils::getNextWordStartIdx(getText(), d_caretPos));
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift)
         setSelection(d_caretPos, d_dragAnchorIdx);
     else
+#endif //PE_NO_MOUSE
         clearSelection();
 }
 
@@ -826,9 +838,11 @@ void Editbox::handleHome(uint sysKeys)
     if (d_caretPos > 0)
         setCaretIndex(0);
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift)
         setSelection(d_caretPos, d_dragAnchorIdx);
     else
+#endif //PE_NO_MOUSE
         clearSelection();
 }
 
@@ -838,9 +852,11 @@ void Editbox::handleEnd(uint sysKeys)
     if (d_caretPos < getText().length())
         setCaretIndex(getText().length());
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift)
         setSelection(d_caretPos, d_dragAnchorIdx);
     else
+#endif //PE_NO_MOUSE
         clearSelection();
 }
 

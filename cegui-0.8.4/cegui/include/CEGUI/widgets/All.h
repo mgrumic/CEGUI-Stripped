@@ -31,7 +31,9 @@
 #include "./Combobox.h"
 #include "./ComboDropList.h"
 #include "./DefaultWindow.h"
+#ifndef PE_NO_MOUSE
 #include "./DragContainer.h"
+#endif //PE_NO_MOUSE
 #include "./Editbox.h"
 #include "./FrameWindow.h"
 #include "./GridLayoutContainer.h"

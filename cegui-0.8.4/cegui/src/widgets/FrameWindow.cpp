@@ -49,8 +49,10 @@ const String FrameWindow::WidgetTypeName("CEGUI/FrameWindow");
 // additional event names for this window
 const String FrameWindow::EventRollupToggled( "RollupToggled" );
 const String FrameWindow::EventCloseClicked( "CloseClicked" );
+#ifndef PE_NO_MOUSE
 const String FrameWindow::EventDragSizingStarted("DragSizingStarted");
 const String FrameWindow::EventDragSizingEnded("DragSizingEnded");
+#endif //PE_NO_MOUSE
 
 // other bits
 const float FrameWindow::DefaultSizingBorderSize	= 8.0f;
@@ -71,11 +73,13 @@ FrameWindow::FrameWindow(const String& type, const String& name) :
 	d_frameEnabled		= true;
 	d_rollupEnabled		= true;
 	d_rolledup			= false;
+#ifndef PE_NO_MOUSE
 	d_sizingEnabled		= true;
 	d_beingSized		= false;
 	d_dragMovable		= true;
 
 	d_borderSize		= DefaultSizingBorderSize;
+#endif //PE_NO_MOUSE
 
 	d_nsSizingCursor = d_ewSizingCursor = d_neswSizingCursor = d_nwseSizingCursor = 0;
 
@@ -100,8 +104,10 @@ void FrameWindow::initialiseComponents(void)
     Titlebar* titlebar = getTitlebar();
     PushButton* closeButton = getCloseButton();
 
+#ifndef PE_NO_MOUSE
     // configure titlebar
     titlebar->setDraggingEnabled(d_dragMovable);
+#endif //PE_NO_MOUSE
     titlebar->setText(getText());
 
     // ban some properties on components, since they are linked to settings
@@ -139,6 +145,7 @@ bool FrameWindow::isCloseButtonEnabled(void) const
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Enables or disables sizing for this window.	
 *************************************************************************/
@@ -146,6 +153,7 @@ void FrameWindow::setSizingEnabled(bool setting)
 {
 	d_sizingEnabled = setting;
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -385,8 +393,10 @@ bool FrameWindow::moveRightEdge(float delta, URect& out_area)
         out_area.d_min.d_x.d_offset += adjustment * 0.5f;
     }
 
+#ifndef PE_NO_MOUSE
     // move the dragging point so mouse remains 'attached' to edge of window
     d_dragPoint.d_x += adjustment;
+#endif //PE_NO_MOUSE
 
     return d_horizontalAlignment == HA_RIGHT;
 }
@@ -473,8 +483,10 @@ bool FrameWindow::moveBottomEdge(float delta, URect& out_area)
         out_area.d_min.d_y.d_offset += adjustment * 0.5f;
     }
 
+#ifndef PE_NO_MOUSE
     // move the dragging point so mouse remains 'attached' to edge of window
     d_dragPoint.d_y += adjustment;
+#endif //PE_NO_MOUSE
 
     return d_verticalAlignment == VA_BOTTOM;
 }
@@ -688,14 +700,14 @@ void FrameWindow::onCaptureLost(WindowEventArgs& e)
 #ifndef PE_NO_MOUSE
 	// default processing (this is now essential as it controls event firing).
 	Window::onCaptureLost(e);
-#endif //PE_NO_MOUSE
 
 	// reset sizing state
 	d_beingSized = false;
 
-    // do drag-sizing ended notification
+        // do drag-sizing ended notification
     WindowEventArgs args(this);
     onDragSizingEnded(args);
+#endif //PE_NO_MOUSE
 
 	++e.handled;
 }
@@ -734,6 +746,7 @@ void FrameWindow::onDeactivated(ActivationEventArgs& e)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Set whether this FrameWindow can be moved by dragging the title bar.	
 *************************************************************************/
@@ -747,6 +760,7 @@ void FrameWindow::setDragMovingEnabled(bool setting)
     }
 
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -756,10 +770,12 @@ void FrameWindow::addFrameWindowProperties(void)
 {
     const String& propertyOrigin = WidgetTypeName;
 
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(FrameWindow, bool,
         "SizingEnabled", "Property to get/set the state of the sizable setting for the FrameWindow. Value is either \"true\" or \"false\".",
         &FrameWindow::setSizingEnabled, &FrameWindow::isSizingEnabled, true
     );
+#endif //PE_NO_MOUSE
 
     CEGUI_DEFINE_PROPERTY(FrameWindow, bool,
         "FrameEnabled", "Property to get/set the setting for whether the window frame will be displayed. Value is either \"true\" or \"false\".",
@@ -786,16 +802,18 @@ void FrameWindow::addFrameWindowProperties(void)
         &FrameWindow::setRolledup, &FrameWindow::isRolledup, false /* TODO: Inconsistency */
     );
 
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(FrameWindow, bool,
         "DragMovingEnabled", "Property to get/set the setting for whether the user may drag the window around by its title bar. Value is either \"true\" or \"false\".",
         &FrameWindow::setDragMovingEnabled, &FrameWindow::isDragMovingEnabled, true
     );
 
+#endif //PE_NO_MOUSE
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(FrameWindow, float,
         "SizingBorderThickness", "Property to get/set the setting for the sizing border thickness. Value is a float specifying the border thickness in pixels.",
         &FrameWindow::setSizingBorderThickness, &FrameWindow::getSizingBorderThickness, 8.0f
     );
-#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(FrameWindow, Image*,
         "NSSizingCursorImage", "Property to get/set the N-S (up-down) sizing cursor image for the FrameWindow. Value should be \"set:[imageset name] image:[image name]\".",
         &FrameWindow::setNSSizingCursorImage, &FrameWindow::getNSSizingCursorImage, 0
@@ -933,6 +951,7 @@ PushButton* FrameWindow::getCloseButton() const
     return static_cast<PushButton*>(getChild(CloseButtonName));
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 void FrameWindow::onDragSizingStarted(WindowEventArgs& e)
 {
@@ -944,6 +963,7 @@ void FrameWindow::onDragSizingEnded(WindowEventArgs& e)
 {
 	fireEvent(EventDragSizingEnded, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 

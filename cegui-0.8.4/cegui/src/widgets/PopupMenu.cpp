@@ -375,7 +375,7 @@ void PopupMenu::onMouseButtonUp(MouseEventArgs& e)
         ++e.handled;
 }
 
-#endif
+#endif //PE_NO_MOUSE
 
 /*************************************************************************
 	Add PopupMenu specific properties

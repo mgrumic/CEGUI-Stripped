@@ -300,7 +300,9 @@ protected:
 
     int d_colourPickerControlsTextureSize;
 
+#ifndef PE_NO_MOUSE
     bool d_draggingColourPickerCursor;
+#endif //PE_NO_MOUSE
 
     RGB_Colour* d_colourPickingTexture;
 

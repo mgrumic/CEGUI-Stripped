@@ -199,7 +199,7 @@ public:
     */
     virtual bool injectMouseButtonTripleClick(const MouseButton button) = 0;
 
-#endif
+#endif //PE_NO_MOUSE
     /*!
     \brief
         Function that injects a key down event into the receiver.

@@ -41,9 +41,11 @@ const String ListHeaderSegment::WidgetTypeName("CEGUI/ListHeaderSegment");
 	Constants
 *************************************************************************/
 // Event names
+#ifndef PE_NO_MOUSE
 const String ListHeaderSegment::EventSegmentClicked( "SegmentClicked" );
 const String ListHeaderSegment::EventSplitterDoubleClicked( "SplitterDoubleClicked" );
 const String ListHeaderSegment::EventSizingSettingChanged( "SizingSettingChanged" );
+#endif //PE_NO_MOUSE
 const String ListHeaderSegment::EventSortDirectionChanged( "SortDirectionChanged" );
 #ifndef PE_NO_MOUSE
 const String ListHeaderSegment::EventMovableSettingChanged( "MovableSettingChanged" );
@@ -52,8 +54,8 @@ const String ListHeaderSegment::EventSegmentDragStop( "SegmentDragStop" );
 const String ListHeaderSegment::EventSegmentDragPositionChanged( "SegmentDragPositionChanged" );
 const String ListHeaderSegment::EventClickableSettingChanged( "ClickableSettingChanged" );
 const float	ListHeaderSegment::SegmentMoveThreshold	= 12.0f;
-#endif //PE_NO_MOUSE
 const String ListHeaderSegment::EventSegmentSized( "SegmentSized" );
+#endif //PE_NO_MOUSE
 
 // Defaults
 const float	ListHeaderSegment::DefaultSizingArea	= 8.0f;
@@ -72,11 +74,13 @@ ListHeaderSegment::ListHeaderSegment(const String& type, const String& name) :
 	d_segmentPushed(false),
 #endif //PE_NO_MOUSE
 	d_splitterSize(DefaultSizingArea),
-	d_dragSizing(false),
 	d_sortDir(None),
+#ifndef PE_NO_MOUSE
+	d_dragSizing(false),
 	d_sizingEnabled(true),
 	d_movingEnabled(true),
 	d_dragMoving(false),
+#endif //PE_NO_MOUSE
 	d_allowClicks(true)
 {
 	addHeaderSegmentProperties();
@@ -91,6 +95,7 @@ ListHeaderSegment::~ListHeaderSegment(void)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Set whether this segment can be sized.
 *************************************************************************/
@@ -111,6 +116,7 @@ void ListHeaderSegment::setSizingEnabled(bool setting)
 	}
 
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -131,6 +137,7 @@ void ListHeaderSegment::setSortDirection(SortDirection sort_dir)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Set whether drag moving is allowed for this segment.	
 *************************************************************************/
@@ -141,13 +148,11 @@ void ListHeaderSegment::setDragMovingEnabled(bool setting)
 		d_movingEnabled = setting;
 
 		WindowEventArgs args(this);
-#ifndef PE_NO_MOUSE
 		onMovableSettingChanged(args);
-#endif //PE_NO_MOUSE
 	}
 
 }
-#ifndef PE_NO_MOUSE
+
 
 /*************************************************************************
 	Set whether the segment is clickable.
@@ -181,7 +186,6 @@ void ListHeaderSegment::onSplitterDoubleClicked(WindowEventArgs& e)
 	fireEvent(EventSplitterDoubleClicked, e, EventNamespace);
 }
 
-#endif //PE_NO_MOUSE
 
 /*************************************************************************
 	Handler called when sizing setting changes.
@@ -190,6 +194,7 @@ void ListHeaderSegment::onSizingSettingChanged(WindowEventArgs& e)
 {
 	fireEvent(EventSizingSettingChanged, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -239,7 +244,6 @@ void ListHeaderSegment::onSegmentDragPositionChanged(WindowEventArgs& e)
 	fireEvent(EventSegmentDragPositionChanged, e, EventNamespace);
 }
 
-#endif //PE_NO_MOUSE
 
 /*************************************************************************
 	Handler called when the segment is sized.
@@ -250,7 +254,6 @@ void ListHeaderSegment::onSegmentSized(WindowEventArgs& e)
 	fireEvent(EventSegmentSized, e, EventNamespace);
 }
 
-#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler called when the clickable setting for the segment changes
 *************************************************************************/
@@ -609,11 +612,11 @@ void ListHeaderSegment::onCaptureLost(WindowEventArgs& e)
 	// base class processing
 	Window::onCaptureLost(e);
 	d_segmentPushed = false;
-#endif //PE_NO_MOUSE
 
 	// reset segment state
 	d_dragSizing = false;
 	d_dragMoving = false;
+#endif //PE_NO_MOUSE
 
 	++e.handled;
 }
@@ -625,21 +628,20 @@ void ListHeaderSegment::addHeaderSegmentProperties(void)
 {
     const String& propertyOrigin = WidgetTypeName;
 
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(ListHeaderSegment, bool,
         "Sizable", "Property to get/set the sizable setting of the header segment.  Value is either \"true\" or \"false\".",
         &ListHeaderSegment::setSizingEnabled, &ListHeaderSegment::isSizingEnabled, true /* TODO: Inconsistency */
     );
-#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(ListHeaderSegment, bool,
         "Clickable", "Property to get/set the click-able setting of the header segment.  Value is either \"true\" or \"false\".",
         &ListHeaderSegment::setClickable, &ListHeaderSegment::isClickable, true
     );
-#endif //PE_NO_MOUSE
-    
     CEGUI_DEFINE_PROPERTY(ListHeaderSegment, bool,
         "Dragable", "Property to get/set the drag-able setting of the header segment.  Value is either \"true\" or \"false\".",
         &ListHeaderSegment::setDragMovingEnabled, &ListHeaderSegment::isDragMovingEnabled, true /* TODO: Inconsistency */
     );
+#endif //PE_NO_MOUSE
     
     CEGUI_DEFINE_PROPERTY(ListHeaderSegment, ListHeaderSegment::SortDirection,
         "SortDirection", "Property to get/set the sort direction setting of the header segment.  Value is the text of one of the SortDirection enumerated value names.",

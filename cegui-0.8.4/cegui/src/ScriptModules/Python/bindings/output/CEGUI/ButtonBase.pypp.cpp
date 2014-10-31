@@ -579,6 +579,7 @@ struct ButtonBase_wrapper : CEGUI::ButtonBase, bp::wrapper< CEGUI::ButtonBase > 
         CEGUI::Window::onDisabled( boost::ref(e) );
     }
 
+#ifndef PE_NO_MOUSE
     virtual void onDragDropItemDropped( ::CEGUI::DragDropEventArgs & e ){
         if( bp::override func_onDragDropItemDropped = this->get_override( "onDragDropItemDropped" ) )
             func_onDragDropItemDropped( boost::ref(e) );
@@ -614,6 +615,7 @@ struct ButtonBase_wrapper : CEGUI::ButtonBase, bp::wrapper< CEGUI::ButtonBase > 
     virtual void default_onDragDropItemLeaves( ::CEGUI::DragDropEventArgs & e ){
         CEGUI::Window::onDragDropItemLeaves( boost::ref(e) );
     }
+#endif //PE_NO_MOUSE
 
     virtual void onEnabled( ::CEGUI::WindowEventArgs & e ){
         if( bp::override func_onEnabled = this->get_override( "onEnabled" ) )

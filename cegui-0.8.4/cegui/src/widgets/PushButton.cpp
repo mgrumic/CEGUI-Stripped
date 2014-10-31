@@ -100,6 +100,6 @@ void PushButton::onMouseButtonUp(MouseEventArgs& e)
 	// default handling
 	ButtonBase::onMouseButtonUp(e);
 }
-#endif
+#endif //PE_NO_MOUSE
 
 } // End of  CEGUI namespace section

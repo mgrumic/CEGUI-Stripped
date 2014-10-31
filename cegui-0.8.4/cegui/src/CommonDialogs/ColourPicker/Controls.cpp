@@ -134,7 +134,9 @@ ColourPickerControls::ColourPickerControls(const String& type, const String& nam
     d_colourPickerAlphaSliderImageWidth(260),
     d_colourPickerAlphaSliderImageHeight(60),
     d_colourPickerControlsTextureSize(512),
+#ifndef PE_NO_MOUSE
     d_draggingColourPickerCursor(false),
+#endif //PE_NO_MOUSE
     d_colourPickingTexture(new RGB_Colour[d_colourPickerControlsTextureSize *
                                           d_colourPickerControlsTextureSize]),
     d_ignoreEvents(false)
@@ -1157,6 +1159,7 @@ bool ColourPickerControls::handleAlphaSliderValueChanged(const EventArgs& args)
     return true;
 }
 
+#ifndef PE_NO_MOUSE
 //----------------------------------------------------------------------------//
 bool ColourPickerControls::handleColourPickerStaticImageMouseButtonUp(
     const EventArgs& args)
@@ -1205,6 +1208,7 @@ bool ColourPickerControls::handleColourPickerStaticImageMouseLeaves(
 
     return true;
 }
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void ColourPickerControls::onCancelButtonClicked(WindowEventArgs& e)

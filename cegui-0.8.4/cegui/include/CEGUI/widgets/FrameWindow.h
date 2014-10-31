@@ -67,6 +67,7 @@ public:
      * clicked.
      */
 	static const String EventCloseClicked;
+#ifndef PE_NO_MOUSE
     /** Event fired when drag-sizing of the window starts.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the FrameWindow that has started to be
@@ -79,6 +80,7 @@ public:
      * ended.
      */
     static const String EventDragSizingEnded;
+#endif //PE_NO_MOUSE
 
 	// other bits
 	static const float	DefaultSizingBorderSize;	//!< Default size for the sizing border (in pixels)
@@ -121,6 +123,7 @@ public:
 	virtual void	initialiseComponents(void);
 	
 	
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return whether this window is sizable.  Note that this requires that the window have an enabled frame and that sizing itself is enabled
@@ -129,6 +132,7 @@ public:
 		true if the window can be sized, false if the window can not be sized
 	*/
 	bool	isSizingEnabled(void) const					{return d_sizingEnabled && isFrameEnabled();}
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -189,6 +193,7 @@ public:
 	bool	isRolledup(void) const						{return d_rolledup;}
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return the thickness of the sizing border.
@@ -197,6 +202,7 @@ public:
 		float value describing the thickness of the sizing border in screen pixels.
 	*/
 	float	getSizingBorderThickness(void) const		{return d_borderSize;}
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -273,6 +279,7 @@ public:
 	*/
 	void	toggleRollup(void);
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Set the size of the sizing border for this window.
@@ -284,6 +291,7 @@ public:
 		Nothing.
 	*/
 	void	setSizingBorderThickness(float pixels)		{d_borderSize = pixels;}
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -300,6 +308,7 @@ public:
 	*/
 	void	offsetPixelPosition(const Vector2f& offset);
 
+#ifndef PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -322,6 +331,7 @@ public:
 		Nothing.
 	*/
 	void	setDragMovingEnabled(bool setting);
+#endif //PE_NO_MOUSE
 
 #ifndef PE_NO_MOUSE
     /*!
@@ -665,11 +675,13 @@ protected:
 	*/
 	virtual void	onCloseClicked(WindowEventArgs& e);
 
+#ifndef PE_NO_MOUSE
     //! Handler called when drag-sizing of the FrameWindow starts.
     virtual void onDragSizingStarted(WindowEventArgs& e);
 
     //! Handler called when drag-sizing of the FrameWindow ends.
     virtual void onDragSizingEnded(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
 	/*************************************************************************
 		Overridden event handlers
@@ -695,11 +707,13 @@ protected:
 	bool	d_rollupEnabled;	//!< true if roll-up of window is allowed.
 	bool	d_rolledup;			//!< true if window is rolled up.
 
+#ifndef PE_NO_MOUSE
 	// drag-sizing data
 	bool	d_sizingEnabled;	//!< true if sizing is enabled for this window.
 	bool	d_beingSized;		//!< true if window is being sized.
 	float	d_borderSize;		//!< thickness of the sizing border around this window
 	Vector2f d_dragPoint;		//!< point window is being dragged at.
+#endif //PE_NO_MOUSE
 
 	// images for cursor when on sizing border
 	const Image*	d_nsSizingCursor;		//!< North/South sizing cursor image.
@@ -707,7 +721,9 @@ protected:
 	const Image*	d_nwseSizingCursor;		//!< North-West/South-East cursor image.
 	const Image*	d_neswSizingCursor;		//!< North-East/South-West cursor image.
 
+#ifndef PE_NO_MOUSE
 	bool	d_dragMovable;		//!< true if the window will move when dragged by the title bar.
+#endif //PE_NO_MOUSE
 
 
 private:

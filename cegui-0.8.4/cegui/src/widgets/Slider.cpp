@@ -49,8 +49,10 @@ SliderWindowRenderer::SliderWindowRenderer(const String& name) :
 	Event name constants
 *************************************************************************/
 const String Slider::EventValueChanged( "ValueChanged" );
+#ifndef PE_NO_MOUSE
 const String Slider::EventThumbTrackStarted( "ThumbTrackStarted" );
 const String Slider::EventThumbTrackEnded( "ThumbTrackEnded" );
+#endif //PE_NO_MOUSE
 
 /*************************************************************************
     Child Widget name constants
@@ -88,8 +90,10 @@ void Slider::initialiseComponents(void)
 
 	// bind handler to thumb events
 	thumb->subscribeEvent(Thumb::EventThumbPositionChanged, Event::Subscriber(&CEGUI::Slider::handleThumbMoved, this));
+#ifndef PE_NO_MOUSE
 	thumb->subscribeEvent(Thumb::EventThumbTrackStarted, Event::Subscriber(&CEGUI::Slider::handleThumbTrackStarted, this));
 	thumb->subscribeEvent(Thumb::EventThumbTrackEnded, Event::Subscriber(&CEGUI::Slider::handleThumbTrackEnded, this));
+#endif //PE_NO_MOUSE
 
 	performChildWindowLayout();
 }
@@ -156,6 +160,7 @@ void Slider::onValueChanged(WindowEventArgs& e)
 	fireEvent(EventValueChanged, e, EventNamespace);
 }
 
+#ifndef PE_NO_MOUSE
 
 /*************************************************************************
 	Handler triggered when the user begins to drag the slider thumb.
@@ -174,7 +179,7 @@ void Slider::onThumbTrackEnded(WindowEventArgs& e)
 	fireEvent(EventThumbTrackEnded, e, EventNamespace);
 }
 
-#ifndef PE_NO_MOUSE
+
 /*************************************************************************
 	Handler for when a mouse button is pressed
 *************************************************************************/
@@ -228,6 +233,7 @@ bool Slider::handleThumbMoved(const EventArgs&)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	handler function for when thumb tracking begins
 *************************************************************************/
@@ -252,6 +258,7 @@ bool Slider::handleThumbTrackEnded(const EventArgs&)
 
 	return true;
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************

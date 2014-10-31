@@ -651,10 +651,12 @@ protected:
     //! specifies whether validator was created by us, or supplied by user.
     bool d_weOwnValidator;
 #endif //PE_NO_REGEX_MATCHER
+#ifndef PE_NO_MOUSE
     //! true when a selection is being dragged.
     bool d_dragging;
     //! Selection index for drag selection anchor point.
     size_t d_dragAnchorIdx;
+#endif //PE_NO_MOUSE
     //! Current match state of EditboxText
 #ifndef PE_NO_REGEX_MATCHER
     MatchState d_validatorMatchState;

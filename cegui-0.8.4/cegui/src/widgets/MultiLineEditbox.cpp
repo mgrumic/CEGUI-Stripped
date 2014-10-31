@@ -104,8 +104,10 @@ d_maxTextLen(String().max_size()),
 d_caretPos(0),
 d_selectionStart(0),
 d_selectionEnd(0),
+#ifndef PE_NO_MOUSE
 d_dragging(false),
 d_dragAnchorIdx(0),
+#endif //PE_NO_MOUSE
 d_wordWrap(true),
 d_widestExtent(0.0f),
 d_forceVertScroll(false),
@@ -763,11 +765,15 @@ void MultiLineEditbox::handleCharLeft(uint sysKeys)
         setCaretIndex(d_caretPos - 1);
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -780,11 +786,15 @@ void MultiLineEditbox::handleWordLeft(uint sysKeys)
         setCaretIndex(TextUtils::getWordStartIdx(getText(), getCaretIndex()));
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -797,11 +807,15 @@ void MultiLineEditbox::handleCharRight(uint sysKeys)
         setCaretIndex(d_caretPos + 1);
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -814,11 +828,15 @@ void MultiLineEditbox::handleWordRight(uint sysKeys)
         setCaretIndex(TextUtils::getNextWordStartIdx(getText(), getCaretIndex()));
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -831,11 +849,15 @@ void MultiLineEditbox::handleDocHome(uint sysKeys)
         setCaretIndex(0);
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -848,11 +870,15 @@ void MultiLineEditbox::handleDocEnd(uint sysKeys)
         setCaretIndex(getText().length() - 1);
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -870,11 +896,15 @@ void MultiLineEditbox::handleLineHome(uint sysKeys)
             setCaretIndex(lineStartIdx);
         }
 
+#ifndef PE_NO_MOUSE
         if (sysKeys & Shift) {
             setSelection(d_caretPos, d_dragAnchorIdx);
         } else {
+#endif //PE_NO_MOUSE
             clearSelection();
+#ifndef PE_NO_MOUSE
         }
+#endif //PE_NO_MOUSE
 
     }
 
@@ -894,11 +924,15 @@ void MultiLineEditbox::handleLineEnd(uint sysKeys)
             setCaretIndex(lineEndIdx);
         }
 
+#ifndef PE_NO_MOUSE
         if (sysKeys & Shift) {
             setSelection(d_caretPos, d_dragAnchorIdx);
         } else {
+#endif //PE_NO_MOUSE
             clearSelection();
+#ifndef PE_NO_MOUSE
         }
+#endif //PE_NO_MOUSE
 
     }
 
@@ -921,11 +955,15 @@ void MultiLineEditbox::handleLineUp(uint sysKeys)
         setCaretIndex(d_lines[caretLine].d_startIdx + newLineIndex);
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -946,11 +984,15 @@ void MultiLineEditbox::handleLineDown(uint sysKeys)
         setCaretIndex(d_lines[caretLine].d_startIdx + newLineIndex);
     }
 
+#ifndef PE_NO_MOUSE
     if (sysKeys & Shift) {
         setSelection(d_caretPos, d_dragAnchorIdx);
     } else {
+#endif //PE_NO_MOUSE
         clearSelection();
+#ifndef PE_NO_MOUSE
     }
+#endif //PE_NO_MOUSE
 
 }
 
@@ -1144,7 +1186,9 @@ void MultiLineEditbox::onMouseMove(MouseEventArgs& e)
  *************************************************************************/
 void MultiLineEditbox::onCaptureLost(WindowEventArgs& e)
 {
+#ifndef PE_NO_MOUSE
     d_dragging = false;
+#endif //PE_NO_MOUSE
 
     // base class processing
     Window::onCaptureLost(e);
@@ -1209,12 +1253,14 @@ void MultiLineEditbox::onKeyDown(KeyEventArgs& e)
 
         WindowEventArgs args(this);
         switch (e.scancode) {
+#ifndef PE_NO_MOUSE
         case Key::LeftShift:
         case Key::RightShift:
             if (getSelectionLength() == 0) {
                 d_dragAnchorIdx = getCaretIndex();
             }
             break;
+#endif //PE_NO_MOUSE
 
         case Key::Backspace:
             handleBackspace();

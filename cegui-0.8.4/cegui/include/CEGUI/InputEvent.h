@@ -334,6 +334,7 @@ public:
 	Window*	otherWindow;	//!< Pointer to the other window involved in the activation change.
 };
 
+#ifndef PE_NO_MOUSE
 /*!
 \brief
 	EventArgs based class used for certain drag/drop notifications
@@ -342,10 +343,9 @@ class CEGUIEXPORT DragDropEventArgs : public WindowEventArgs
 {
 public:
 	DragDropEventArgs(Window* wnd) : WindowEventArgs(wnd) {}
-#ifndef PE_NO_MOUSE
 	DragContainer*	dragDropItem; //!< pointer to the DragContainer window being dragged / dropped.
-#endif //PE_NO_MOUSE
 };
+#endif //PE_NO_MOUSE
 
 /*!
 \brief

@@ -68,6 +68,7 @@ public:
      * WindowEventArgs::window set to the Thumb whose position has changed.
      */
 	static const String EventThumbPositionChanged;
+#ifndef PE_NO_MOUSE
     /** Event fired when the user begins dragging the thumb.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the Thumb that has started to be dragged
@@ -79,6 +80,7 @@ public:
      * WindowEventArgs::window set to the Thumb that has been released.
      */
 	static const String EventThumbTrackEnded;
+#endif //PE_NO_MOUSE
 
 
 	/*************************************************************************
@@ -276,6 +278,7 @@ protected:
 	virtual void	onThumbPositionChanged(WindowEventArgs& e);
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler triggered when the user begins to drag the thumb. 
@@ -288,6 +291,7 @@ protected:
 		Handler triggered when the thumb is released
 	*/
 	virtual void	onThumbTrackEnded(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
 
 
@@ -312,9 +316,11 @@ protected:
 	float	d_vertMin, d_vertMax;		//!< vertical range
 	float	d_horzMin, d_horzMax;		//!< horizontal range
 
+#ifndef PE_NO_MOUSE
 	// internal state
 	bool	d_beingDragged;				//!< true if thumb is being dragged
 	Vector2f d_dragPoint;				//!< point where we are being dragged at.
+#endif //PE_NO_MOUSE
 
 
 private:

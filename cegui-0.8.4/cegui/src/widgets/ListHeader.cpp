@@ -58,8 +58,10 @@ const String ListHeader::EventSegmentSequenceChanged( "SegmentSequenceChanged" )
 const String ListHeader::EventSegmentAdded( "SegmentAdded" );
 const String ListHeader::EventSegmentRemoved( "SegmentRemoved" );
 const String ListHeader::EventSortSettingChanged( "SortSettingChanged" );
+#ifndef PE_NO_MOUSE
 const String ListHeader::EventDragMoveSettingChanged( "DragMoveSettingChanged" );
 const String ListHeader::EventDragSizeSettingChanged( "DragSizeSettingChanged" );
+#endif //PE_NO_MOUSE
 const String ListHeader::EventSegmentRenderOffsetChanged( "SegmentRenderOffsetChanged" );
 
 // values
@@ -79,9 +81,11 @@ const String ListHeader::SegmentNameSuffix("__auto_seg_");
 ListHeader::ListHeader(const String& type, const String& name) :
 	Window(type, name),
 	d_sortSegment(0),
+#ifndef PE_NO_MOUSE
 	d_sizingEnabled(true),
-	d_sortingEnabled(true),
 	d_movingEnabled(true),
+#endif //PE_NO_MOUSE
+	d_sortingEnabled(true),
 	d_uniqueIDNumber(0),
 	d_segmentOffset(0.0f),
 	d_sortDir(ListHeaderSegment::None)
@@ -373,6 +377,7 @@ bool ListHeader::isSortingEnabled(void) const
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Return whether segment sizing is enabled for this header
 *************************************************************************/
@@ -389,6 +394,7 @@ bool ListHeader::isColumnDraggingEnabled(void) const
 {
 	return d_movingEnabled;
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -495,6 +501,7 @@ void ListHeader::setSortColumnFromID(uint id)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Set whether or not segments may be sized.
 *************************************************************************/
@@ -539,6 +546,7 @@ void ListHeader::setColumnDraggingEnabled(bool setting)
 	}
 
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -788,19 +796,17 @@ ListHeaderSegment* ListHeader::createInitialisedSegment(const String& text, uint
 	newseg->setMinSize(USize(cegui_absdim(MinimumSegmentPixelWidth), cegui_absdim(0)));
 	newseg->setText(text);
 	newseg->setID(id);
+#ifndef PE_NO_MOUSE
     newseg->setSizingEnabled(d_sizingEnabled);
     newseg->setDragMovingEnabled(d_movingEnabled);
-#ifndef PE_NO_MOUSE
     newseg->setClickable(d_sortingEnabled);
-#endif //PE_NO_MOUSE
 
-	// subscribe events we listen to
-	newseg->subscribeEvent(ListHeaderSegment::EventSegmentSized, Event::Subscriber(&CEGUI::ListHeader::segmentSizedHandler, this));
-#ifndef PE_NO_MOUSE
-	newseg->subscribeEvent(ListHeaderSegment::EventSegmentClicked, Event::Subscriber(&CEGUI::ListHeader::segmentClickedHandler, this));
-    newseg->subscribeEvent(ListHeaderSegment::EventSplitterDoubleClicked, Event::Subscriber(&CEGUI::ListHeader::segmentDoubleClickHandler, this));
+    // subscribe events we listen to
+    newseg->subscribeEvent(ListHeaderSegment::EventSegmentSized, Event::Subscriber(&CEGUI::ListHeader::segmentSizedHandler, this));
+    newseg->subscribeEvent(ListHeaderSegment::EventSegmentClicked, Event::Subscriber(&CEGUI::ListHeader::segmentClickedHandler, this));
+newseg->subscribeEvent(ListHeaderSegment::EventSplitterDoubleClicked, Event::Subscriber(&CEGUI::ListHeader::segmentDoubleClickHandler, this));
     newseg->subscribeEvent(ListHeaderSegment::EventSegmentDragStop, Event::Subscriber(&CEGUI::ListHeader::segmentMovedHandler, this));
-	newseg->subscribeEvent(ListHeaderSegment::EventSegmentDragPositionChanged, Event::Subscriber(&CEGUI::ListHeader::segmentDragHandler, this));
+    newseg->subscribeEvent(ListHeaderSegment::EventSegmentDragPositionChanged, Event::Subscriber(&CEGUI::ListHeader::segmentDragHandler, this));
 #endif //PE_NO_MOUSE
 
 	return newseg;
@@ -912,6 +918,7 @@ void ListHeader::onSortSettingChanged(WindowEventArgs& e)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Handler called when the setting that controls the users ability to
 	drag and drop segments changes.
@@ -930,6 +937,7 @@ void ListHeader::onDragSizeSettingChanged(WindowEventArgs& e)
 {
 	fireEvent(EventDragSizeSettingChanged, e, EventNamespace);
 }
+#endif //PE_NO_MOUSE
 
 
 /*************************************************************************
@@ -1097,7 +1105,6 @@ bool ListHeader::segmentDragHandler(const EventArgs&)
 
 	return true;
 }
-
 #endif //PE_NO_MOUSE
 
 
@@ -1113,6 +1120,7 @@ void ListHeader::addHeaderProperties(void)
         &ListHeader::setSortingEnabled, &ListHeader::isSortingEnabled, true /* TODO: Inconsistency */
     );
     
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(ListHeader, bool,
         "ColumnsSizable", "Property to get/set the setting for user sizing of the column headers.  Value is either \"true\" or \"false\".",
         &ListHeader::setColumnSizingEnabled, &ListHeader::isColumnSizingEnabled, true /* TODO: Inconsistency */
@@ -1122,6 +1130,7 @@ void ListHeader::addHeaderProperties(void)
         "ColumnsMovable", "Property to get/set the setting for user moving of the column headers.  Value is either \"true\" or \"false\".",
         &ListHeader::setColumnDraggingEnabled, &ListHeader::isColumnDraggingEnabled, true /* TODO: Inconsistency */
     );
+#endif //PE_NO_MOUSE
     
     CEGUI_DEFINE_PROPERTY(ListHeader, uint,
         "SortColumnID", "Property to get/set the current sort column (via ID code).  Value is an unsigned integer number.",

@@ -31,7 +31,7 @@
 #include "CEGUI/InjectedInputReceiver.h"
 #ifndef PE_NO_MOUSE
 #include "CEGUI/MouseCursor.h"
-#endif
+#endif //PE_NO_MOUSE
 #include "CEGUI/SystemKeys.h"
 
 #if defined (_MSC_VER)
@@ -43,7 +43,7 @@ namespace CEGUI
 {
 #ifndef PE_NO_MOUSE
 struct MouseClickTracker;
-#endif
+#endif //PE_NO_MOUSE
 //! EventArgs class passed to subscribers for (most) GUIContext events.
 class CEGUIEXPORT GUIContextEventArgs : public EventArgs
 {
@@ -76,7 +76,7 @@ public:
     static const float DefaultMouseButtonClickTimeout;
     static const float DefaultMouseButtonMultiClickTimeout;
     static const Sizef DefaultMouseButtonMultiClickTolerance;
-#endif
+#endif //PE_NO_MOUSE
     /** Name of Event fired when the root window is changed to a different
      * Window.
      * Handlers are passed a const WindowEventArgs reference with
@@ -106,7 +106,7 @@ public:
      * Handlers are passed a const GUIContextRenderTargetEventArgs struct, with
      * the renderTarget member set to the old RenderTarget.
      */
-#endif
+#endif //PE_NO_MOUSE
     static const String EventRenderTargetChanged;
     /** Event fired when the default font changes.
      * Handlers are passed a const reference to a generic EventArgs struct.
@@ -133,7 +133,7 @@ public:
     Window* getModalWindow() const;
 #ifndef PE_NO_MOUSE
     Window* getWindowContainingMouse() const;
-#endif
+#endif //PE_NO_MOUSE
     const Sizef& getSurfaceSize() const;
 
     const SystemKeys& getSystemKeys() const;
@@ -291,7 +291,7 @@ public:
     bool injectMouseButtonClick(const MouseButton button);
     bool injectMouseButtonDoubleClick(const MouseButton button);
     bool injectMouseButtonTripleClick(const MouseButton button);
-#endif
+#endif //PE_NO_MOUSE
     // public overrides
     void draw();
 
@@ -320,7 +320,7 @@ protected:
     virtual void onMouseButtonClickTimeoutChanged(GUIContextEventArgs& args);
     virtual void onMouseButtonMultiClickTimeoutChanged(GUIContextEventArgs& args);
     virtual void onMouseButtonMultiClickToleranceChanged(GUIContextEventArgs& args);
-#endif
+#endif //PE_NO_MOUSE
 
     Window* getTargetWindow(const Vector2f& pt, const bool allow_disabled) const;
     Window* getKeyboardTargetWindow() const;
@@ -362,7 +362,7 @@ protected:
     mutable Tooltip* d_defaultTooltipObject;
     mutable bool d_weCreatedTooltipObject;
     String d_defaultTooltipType;
-#endif
+#endif //PE_NO_MOUSE
 
     Font* d_defaultFont;
 

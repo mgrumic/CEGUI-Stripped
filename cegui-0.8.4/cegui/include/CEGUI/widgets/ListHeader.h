@@ -166,7 +166,8 @@ public:
      * setting has been changed.
      */
 	static const String EventSortSettingChanged;
-    /** Event fired when setting that controls user drag & drop of segments is
+#ifndef PE_NO_MOUSE
+/** Event fired when setting that controls user drag & drop of segments is
      * changed.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeader whose drag & drop enabled
@@ -180,6 +181,7 @@ public:
      * has changed.
      */
 	static const String EventDragSizeSettingChanged;
+#endif //PE_NO_MOUSE
     /** Event fired when the rendering offset for the segments changes.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the ListHeader whose segment rendering
@@ -402,6 +404,7 @@ public:
 	bool	isSortingEnabled(void) const;
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return whether the user may size column segments.
@@ -420,6 +423,7 @@ public:
 		true if the user may interactively modify the order of the column segments, false if they may not.
 	*/
 	bool	isColumnDraggingEnabled(void) const;
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -507,6 +511,7 @@ public:
 	*/
 	void	setSortColumnFromID(uint id);
 
+#ifndef PE_NO_MOUSE
 
 	/*!
 	\brief
@@ -534,6 +539,7 @@ public:
 		Nothing.
 	*/
 	void	setColumnDraggingEnabled(bool setting);
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -907,6 +913,7 @@ protected:
 	virtual	void	onSortSettingChanged(WindowEventArgs& e);
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Handler called when the setting that controls the users ability to drag and drop segments changes.
@@ -919,6 +926,7 @@ protected:
 		Handler called when the setting that controls the users ability to size segments changes.
 	*/
 	virtual	void	onDragSizeSettingChanged(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -946,9 +954,11 @@ protected:
         CEGUI_VECTOR_ALLOC(ListHeaderSegment*)> SegmentList;
 	SegmentList	d_segments;			//!< Attached segment windows in header order.
 	ListHeaderSegment*	d_sortSegment;	//!< Pointer to the segment that is currently set as the sork-key,
-	bool	d_sizingEnabled;		//!< true if segments can be sized by the user.
 	bool	d_sortingEnabled;		//!< true if the sort criteria modifications by user are enabled (no sorting is actuall done)
+#ifndef PE_NO_MOUSE
+	bool	d_sizingEnabled;		//!< true if segments can be sized by the user.
 	bool	d_movingEnabled;		//!< true if drag & drop moving of columns / segments is enabled.
+#endif //PE_NO_MOUSE
 	uint	d_uniqueIDNumber;		//!< field used to create unique names.
 	float	d_segmentOffset;		//!< Base offset used to layout the segments (allows scrolling within the window area)
 	ListHeaderSegment::SortDirection	d_sortDir;		//!< Brief copy of the current sort direction.

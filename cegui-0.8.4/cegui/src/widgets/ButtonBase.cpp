@@ -78,7 +78,7 @@ bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos)
         getGUIContext().getWindowContainingMouse() == this;
 #else 
         false;
-#endif
+#endif //PE_NO_MOUSE
 }
 
 /*************************************************************************
@@ -191,5 +191,5 @@ void ButtonBase::onMouseLeaves(MouseEventArgs& e)
 
 	++e.handled;
 }
-#endif
+#endif //PE_NO_MOUSE
 } // End of  CEGUI namespace section

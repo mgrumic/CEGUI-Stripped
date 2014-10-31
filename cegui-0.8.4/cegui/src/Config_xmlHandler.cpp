@@ -54,7 +54,7 @@ const String Config_xmlHandler::DefaultFontElement("DefaultFont");
 #ifndef PE_NO_MOUSE
 const String Config_xmlHandler::DefaultMouseCursorElement("DefaultMouseCursor");
 const String Config_xmlHandler::DefaultTooltipElement("DefaultTooltip");
-#endif
+#endif //PE_NO_MOUSE
 const String Config_xmlHandler::FilenameAttribute("filename");
 const String Config_xmlHandler::LevelAttribute("level");
 const String Config_xmlHandler::TypeAttribute("type");
@@ -119,7 +119,7 @@ void Config_xmlHandler::elementStart(const String& element,
         handleDefaultMouseCursorElement(attributes);
     else if (element == DefaultTooltipElement)
         handleDefaultTooltipElement(attributes);
-#endif
+#endif //PE_NO_MOUSE
 #ifndef PE_NO_LOGGER
     else
         Logger::getSingleton().logEvent("Config_xmlHandler::elementStart: "
@@ -231,7 +231,7 @@ void Config_xmlHandler::handleDefaultTooltipElement(const XMLAttributes& attr)
 {
     d_defaultTooltipType = attr.getValueAsString(NameAttribute, "");
 }
-#endif
+#endif //PE_NO_MOUSE
 
 //----------------------------------------------------------------------------//
 void Config_xmlHandler::initialiseXMLParser() const

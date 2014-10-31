@@ -763,8 +763,10 @@ protected:
 	size_t	d_caretPos;			//!< Position of the caret / insert-point.
 	size_t	d_selectionStart;	//!< Start of selection area.
 	size_t	d_selectionEnd;		//!< End of selection area.
+#ifndef PE_NO_MOUSE
 	bool	d_dragging;			//!< true when a selection is being dragged.
 	size_t	d_dragAnchorIdx;	//!< Selection index for drag selection anchor point.
+#endif //PE_NO_MOUSE
 
 	static String d_lineBreakChars;	//!< Holds what we consider to be line break characters.
 	bool		d_wordWrap;			//!< true when formatting uses word-wrapping.

@@ -213,6 +213,7 @@ public:
 	bool	isUserSortControlEnabled(void) const;
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Return whether the user may size column segments.
@@ -231,6 +232,7 @@ public:
 		true if the user may interactively modify the order of the columns, false if they may not.
 	*/
 	bool	isUserColumnDraggingEnabled(void) const;
+#endif //PE_NO_MOUSE
 
 
 	/*!
@@ -1280,6 +1282,7 @@ public:
 	void	setUserSortControlEnabled(bool setting);
 
 
+#ifndef PE_NO_MOUSE
 	/*!
 	\brief
 		Set whether the user may size column segments.
@@ -1303,6 +1306,7 @@ public:
 		- false if the user may not modify the order of the columns.
 	*/
 	void	setUserColumnDraggingEnabled(bool setting);
+#endif //PE_NO_MOUSE
 
 
 	/*!

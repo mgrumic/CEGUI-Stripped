@@ -100,6 +100,7 @@ public:
      * changed.
      */
     static const String EventScrollPositionChanged;
+#ifndef PE_NO_MOUSE
     /** Event fired when the user begins dragging the scrollbar thumb.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the Scrollbar whose thumb is being
@@ -112,6 +113,7 @@ public:
      * released.
      */
     static const String EventThumbTrackEnded;
+#endif //PE_NO_MOUSE
     /** Event fired when the scroll bar configuration data is changed.
      * Handlers are passed a const WindowEventArgs reference with
      * WindowEventArgs::window set to the Scrollbar whose configuration
@@ -528,11 +530,13 @@ protected:
     //! Handler triggered when the scroll position changes
     virtual void onScrollPositionChanged(WindowEventArgs& e);
 
+#ifndef PE_NO_MOUSE
     //! Handler triggered when the user begins to drag the scroll bar thumb.
     virtual void onThumbTrackStarted(WindowEventArgs& e);
 
     //! Handler triggered when the scroll bar thumb is released
     virtual void onThumbTrackEnded(WindowEventArgs& e);
+#endif //PE_NO_MOUSE
 
     //! Handler triggered when the scroll bar data configuration changes
     virtual void onScrollConfigChanged(WindowEventArgs& e);

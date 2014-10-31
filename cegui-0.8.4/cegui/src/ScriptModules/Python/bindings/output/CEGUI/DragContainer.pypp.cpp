@@ -15,6 +15,7 @@ struct DragContainer_wrapper : CEGUI::DragContainer, bp::wrapper< CEGUI::DragCon
     
     }
 
+#ifndef PE_NO_MOUSE
     void doDragging( ::CEGUI::Vector2f const & local_mouse ){
         CEGUI::DragContainer::doDragging( boost::ref(local_mouse) );
     }
@@ -50,6 +51,7 @@ struct DragContainer_wrapper : CEGUI::DragContainer, bp::wrapper< CEGUI::DragCon
     virtual void default_onAlphaChanged( ::CEGUI::WindowEventArgs & e ){
         CEGUI::DragContainer::onAlphaChanged( boost::ref(e) );
     }
+#endif //PE_NO_MOUSE
 
     virtual void onCaptureLost( ::CEGUI::WindowEventArgs & e ){
         if( bp::override func_onCaptureLost = this->get_override( "onCaptureLost" ) )

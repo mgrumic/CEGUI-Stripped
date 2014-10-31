@@ -96,12 +96,12 @@ public:
 	virtual ~ButtonBase(void);
 
 
+    void setPushedState(const bool pushed);
 protected:
 	/*************************************************************************
 		Overridden event handlers
 	*************************************************************************/
 
-    void setPushedState(const bool pushed);
     virtual void	onCaptureLost(WindowEventArgs& e);
 #ifndef PE_NO_MOUSE
     virtual void	onMouseMove(MouseEventArgs& e);

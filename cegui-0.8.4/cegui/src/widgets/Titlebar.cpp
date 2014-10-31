@@ -49,8 +49,10 @@ Titlebar::Titlebar(const String& type, const String& name) :
 	setAlwaysOnTop(true);
 
 	// basic initialisation
+#ifndef PE_NO_MOUSE
 	d_dragging = false;
 	d_dragEnabled = true;
+#endif //PE_NO_MOUSE
 }
 
 /*************************************************************************
@@ -61,6 +63,7 @@ Titlebar::~Titlebar(void)
 }
 
 
+#ifndef PE_NO_MOUSE
 /*************************************************************************
 	Return whether this title bar will respond to dragging.
 *************************************************************************/
@@ -102,7 +105,7 @@ const Vector2f& Titlebar::getDragPoint() const
     return d_dragPoint;
 }
 
-#ifndef PE_NO_MOUSE
+
 /*************************************************************************
 	Handler for mouse movement events
 *************************************************************************/
@@ -230,6 +233,7 @@ void Titlebar::onCaptureLost(WindowEventArgs& e)
 }
 
 #endif //PE_NO_MOUSE
+
 /*************************************************************************
 	Handler for when the font for this Window is changed
 *************************************************************************/
@@ -251,10 +255,12 @@ void Titlebar::addTitlebarProperties(void)
 {
     const String& propertyOrigin = WidgetTypeName;
 
+#ifndef PE_NO_MOUSE
     CEGUI_DEFINE_PROPERTY(Titlebar, bool,
         "DraggingEnabled", "Property to get/set the state of the dragging enabled setting for the Titlebar.  Value is either \"true\" or \"false\".",
         &Titlebar::setDraggingEnabled, &Titlebar::isDraggingEnabled, true
     );
+#endif //PE_NO_MOUSE
 }
 
 
