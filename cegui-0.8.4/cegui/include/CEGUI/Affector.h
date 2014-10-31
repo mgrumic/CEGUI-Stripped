@@ -30,6 +30,7 @@
 #define _CEGUIAffector_h_
 
 #include "CEGUI/String.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/KeyFrame.h"
 #include <map>
 
@@ -282,5 +283,6 @@ private:
 #   pragma warning(pop)
 #endif
 
+#endif //PE_NO_ANIMATION
 #endif  // end of guard _CEGUIAffector_h_
 

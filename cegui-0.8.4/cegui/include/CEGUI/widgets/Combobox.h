@@ -940,11 +940,13 @@ protected:
 	virtual	void	onReadOnlyChanged(WindowEventArgs& e);
 
 
+#ifndef PE_NO_REGEX_MATCHER
 	/*!
 	\brief
 		Handler called internally when the Combobox's Editbox validation string has been changed.
 	*/
 	virtual	void	onValidationStringChanged(WindowEventArgs& e);
+#endif //PE_NO_REGEX_MATCHER
 
 
 	/*!

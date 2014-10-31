@@ -37,7 +37,9 @@
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/SchemeManager.h"
 #include "CEGUI/RenderEffectManager.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/AnimationManager.h"
+#endif //PE_NO_ANIMATION
 #include "CEGUI/MouseCursor.h"
 #include "CEGUI/Window.h"
 #include "CEGUI/Exceptions.h"
@@ -603,7 +605,9 @@ void System::executeScriptString(const String& str) const
 *************************************************************************/
 bool System::injectTimePulse(float timeElapsed)
 {
+#ifndef PE_NO_ANIMATION
     AnimationManager::getSingleton().autoStepInstances(timeElapsed);
+#endif //PE_NO_ANIMATION
     return true;
 }
 
@@ -744,7 +748,9 @@ void System::createSingletons()
     CEGUI_NEW_AO WindowManager();
     CEGUI_NEW_AO SchemeManager();
     CEGUI_NEW_AO GlobalEventSet();
+#ifndef PE_NO_ANIMATION
     CEGUI_NEW_AO AnimationManager();
+#endif //PE_NO_ANIMATION
     CEGUI_NEW_AO WidgetLookManager();
     CEGUI_NEW_AO WindowRendererManager();
     CEGUI_NEW_AO RenderEffectManager();
@@ -757,7 +763,9 @@ void System::destroySingletons()
     CEGUI_DELETE_AO WindowFactoryManager::getSingletonPtr();
     CEGUI_DELETE_AO WidgetLookManager::getSingletonPtr();
     CEGUI_DELETE_AO WindowRendererManager::getSingletonPtr();
+#ifndef PE_NO_ANIMATION
     CEGUI_DELETE_AO AnimationManager::getSingletonPtr();
+#endif //PE_NO_ANIMATION
     CEGUI_DELETE_AO RenderEffectManager::getSingletonPtr();
     CEGUI_DELETE_AO FontManager::getSingletonPtr();
     CEGUI_DELETE_AO ImageManager::getSingletonPtr();
@@ -1026,11 +1034,14 @@ void System::invalidateAllWindows()
     }
 }
 
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 RegexMatcher* System::createRegexMatcher() const
 {
 #ifdef CEGUI_HAS_PCRE_REGEX
+#ifndef PE_NO_ANIMATION
     return CEGUI_NEW_AO PCRERegexMatcher();
+#endif //PE_NO_ANIMATION
 #else
     return 0;
 #endif
@@ -1041,6 +1052,7 @@ void System::destroyRegexMatcher(RegexMatcher* rm) const
 {
     CEGUI_DELETE_AO rm;
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 GUIContext& System::getDefaultGUIContext() const

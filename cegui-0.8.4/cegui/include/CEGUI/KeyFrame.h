@@ -30,6 +30,7 @@
 #define _CEGUIKeyFrame_h_
 
 #include "CEGUI/String.h"
+#ifndef PE_NO_ANIMATION
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -150,9 +151,7 @@ public:
         This returns the base property value if source property is set on this
         keyframe, it works the same as getValue() if source property is empty
     */
-#ifndef PE_NO_ANIMATION
     const String& getValueForAnimation(AnimationInstance* instance) const;
-#endif //PE_NO_ANIMATION
 
     /*!
     \brief
@@ -186,9 +185,7 @@ public:
         Internal method, if this keyframe is using source property, this
         saves it's value to given instance before it's affected
     */
-#ifndef PE_NO_ANIMATION
     void savePropertyValue(AnimationInstance* instance);
-#endif //PE_NO_ANIMATION
 
     /*!
     \brief
@@ -228,4 +225,5 @@ private:
 } // End of  CEGUI namespace section
 
 #endif  // end of guard _CEGUIKeyFrame_h_
+#endif //PE_NO_ANIMATION
 

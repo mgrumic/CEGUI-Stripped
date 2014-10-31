@@ -25,6 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/PCRERegexMatcher.h"
+#ifndef PE_NO_REGEX_MATCHER
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/PropertyHelper.h"
 
@@ -141,3 +142,4 @@ void PCRERegexMatcher::release()
 }
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_REGEX_MATCHER

@@ -203,7 +203,6 @@ public:
     */
 #ifndef PE_NO_REGEX_MATCHER
     MatchState getTextMatchState() const;
-#endif //PE_NO_REGEX_MATCHER
 
     /*!
     \brief
@@ -225,6 +224,7 @@ public:
     */
     const String& getValidationString(void) const
         {return d_validationString;}
+#endif //PE_NO_REGEX_MATCHER
 
     /*!
     \brief
@@ -322,6 +322,7 @@ public:
     */
     void setTextMasked(bool setting);
 
+#ifndef PE_NO_REGEX_MATCHER
     /*!
     \brief
         Set the text validation string.
@@ -344,6 +345,7 @@ public:
         Nothing.
     */
     void setValidationString(const String& validation_string);
+#endif //PE_NO_REGEX_MATCHER
 
     /*!
     \brief
@@ -435,6 +437,7 @@ public:
     */
     void setMaxTextLength(size_t max_len);
 
+#ifndef PE_NO_REGEX_MATCHER
     /*!
     \brief
         Set the RegexMatcher based validator for this Editbox.
@@ -453,6 +456,7 @@ public:
         previous custom validator is deleted.
     */
     void setValidator(RegexMatcher* matcher);
+#endif //PE_NO_REGEX_MATCHER
 #ifndef PE_NO_CLIPBOARD
     //! \copydoc Window::performCopy
     virtual bool performCopy(Clipboard& clipboard);
@@ -497,14 +501,13 @@ protected:
     */
     void eraseSelectedText(bool modify_text = true);
 
+#ifndef PE_NO_REGEX_MATCHER
     /*!
     \brief
         return the match state of the given string for the validation regular
         expression.
     */
-#ifndef PE_NO_REGEX_MATCHER
     MatchState getStringMatchState(const String& str) const;
-#endif //PE_NO_REGEX_MATCHER
 
     /** Helper to update validator match state as needed for the given string
      * and event handler return codes.
@@ -515,6 +518,7 @@ protected:
      * as the current text for the Editbox.
      */
     bool handleValidityChangeForString(const String& str);
+#endif //PE_NO_REGEX_MATCHER
 
     //! Processing for backspace key
     void handleBackspace(void);
@@ -563,11 +567,13 @@ protected:
     */
     virtual void onMaskCodePointChanged(WindowEventArgs& e);
 
+#ifndef PE_NO_REGEX_MATCHER
     /*!
     \brief
         Event fired internally when the validation string is changed.
     */
     virtual void onValidationStringChanged(WindowEventArgs& e);
+#endif //PE_NO_REGEX_MATCHER
 
     /*!
     \brief
@@ -575,12 +581,12 @@ protected:
     */
     virtual void onMaximumTextLengthChanged(WindowEventArgs& e);
 
+#ifndef PE_NO_REGEX_MATCHER
     /*!
     \brief
         Handler called when something has caused the validity state of the
         current text to change.
     */
-#ifndef PE_NO_REGEX_MATCHER
     virtual void onTextValidityChanged(RegexMatchStateEventArgs& e);
 #endif //PE_NO_REGEX_MATCHER
 
@@ -637,12 +643,14 @@ protected:
     size_t d_selectionStart;
     //! End of selection area.
     size_t d_selectionEnd;
+#ifndef PE_NO_REGEX_MATCHER
     //! Copy of validation reg-ex string.
     String d_validationString;
     //! Pointer to class used for validation of text.
     RegexMatcher* d_validator;
     //! specifies whether validator was created by us, or supplied by user.
     bool d_weOwnValidator;
+#endif //PE_NO_REGEX_MATCHER
     //! true when a selection is being dragged.
     bool d_dragging;
     //! Selection index for drag selection anchor point.
@@ -650,9 +658,9 @@ protected:
     //! Current match state of EditboxText
 #ifndef PE_NO_REGEX_MATCHER
     MatchState d_validatorMatchState;
-#endif //PE_NO_REGEX_MATCHER
     //! Previous match state change response
     bool d_previousValidityChangeResponse;
+#endif //PE_NO_REGEX_MATCHER
 
 private:
 

@@ -51,7 +51,9 @@ const String Editbox::WidgetTypeName("CEGUI/Editbox");
 const String Editbox::EventReadOnlyModeChanged( "ReadOnlyModeChanged" );
 const String Editbox::EventMaskedRenderingModeChanged( "MaskedRenderingModeChanged" );
 const String Editbox::EventMaskCodePointChanged( "MaskCodePointChanged" );
+#ifndef PE_NO_REGEX_MATCHER
 const String Editbox::EventValidationStringChanged( "ValidationStringChanged" );
+#endif //PE_NO_REGEX_MATCHER
 const String Editbox::EventMaximumTextLengthChanged( "MaximumTextLengthChanged" );
 const String Editbox::EventTextValidityChanged( "TextValidityChanged" );
 const String Editbox::EventCaretMoved( "CaretMoved" );
@@ -67,15 +69,15 @@ Editbox::Editbox(const String& type, const String& name) :
     d_maskCodePoint('*'),
     d_maxTextLen(String().max_size()),
     d_caretPos(0),
-    d_selectionStart(0),
-    d_selectionEnd(0),
-    d_validator(System::getSingleton().createRegexMatcher()),
-    d_weOwnValidator(true),
     d_dragging(false),
 #ifndef PE_NO_REGEX_MATCHER
+    d_validator(System::getSingleton().createRegexMatcher()),
+    d_weOwnValidator(true),
     d_validatorMatchState(RegexMatcher::MS_VALID),
+    d_previousValidityChangeResponse(true),
 #endif //PE_NO_REGEX_MATCHER
-    d_previousValidityChangeResponse(true)
+    d_selectionStart(0),
+    d_selectionEnd(0)
 {
     addEditboxProperties();
 
@@ -84,12 +86,14 @@ Editbox::Editbox(const String& type, const String& name) :
     // ban the property too, since this being off is not optional.
     banPropertyFromXML("TextParsingEnabled");
 
+#ifndef PE_NO_REGEX_MATCHER
     // default to accepting all characters
     if (d_validator)
         setValidationString(".*");
     // set copy of validation string to ".*" so getter returns something valid.
     else
         d_validationString = ".*";
+#endif //PE_NO_REGEX_MATCHER
 }
 
 //----------------------------------------------------------------------------//
@@ -158,6 +162,7 @@ void Editbox::setTextMasked(bool setting)
 
 }
 
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 void Editbox::setValidationString(const String& validation_string)
 {
@@ -170,17 +175,14 @@ void Editbox::setValidationString(const String& validation_string)
             "' because it does not currently have a RegexMatcher validator."));
 
     d_validationString = validation_string;
-#ifndef PE_NO_REGEX_MATCHER
     d_validator->setRegexString(validation_string);
-#endif //PE_NO_REGEX_MATCHER
 
     // notification
     WindowEventArgs args(this);
     onValidationStringChanged(args);
-#ifndef PE_NO_REGEX_MATCHER
     handleValidityChangeForString(getText());
-#endif //PE_NO_REGEX_MATCHER
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 void Editbox::setCaretIndex(size_t caret_pos)
@@ -872,11 +874,13 @@ void Editbox::onMaskCodePointChanged(WindowEventArgs& e)
     fireEvent(EventMaskCodePointChanged , e, EventNamespace);
 }
 
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 void Editbox::onValidationStringChanged(WindowEventArgs& e)
 {
     fireEvent(EventValidationStringChanged , e, EventNamespace);
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 void Editbox::onMaximumTextLengthChanged(WindowEventArgs& e)
@@ -954,10 +958,12 @@ void Editbox::addEditboxProperties(void)
           &Editbox::setMaskCodePoint, &Editbox::getMaskCodePoint, 42
     );
     
+#ifndef PE_NO_REGEX_MATCHER
     CEGUI_DEFINE_PROPERTY(Editbox, String,
           "ValidationString","Property to get/set the validation string Editbox.  Value is a text string.",
           &Editbox::setValidationString, &Editbox::getValidationString, ".*"
     );
+#endif //PE_NO_REGEX_MATCHER
     
     CEGUI_DEFINE_PROPERTY(Editbox, size_t,
           "CaretIndex","Property to get/set the current caret index.  Value is \"[uint]\".",

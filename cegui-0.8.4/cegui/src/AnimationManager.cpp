@@ -27,6 +27,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/AnimationManager.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/Logger.h"
 #include "CEGUI/Animation.h"
 #include "CEGUI/AnimationInstance.h"
@@ -36,7 +37,6 @@
 #include "CEGUI/XMLParser.h"
 #include "CEGUI/Animation_xmlHandler.h"
 
-    #ifndef PE_NO_ANIMATION
 
 // Start of CEGUI namespace section
 namespace CEGUI

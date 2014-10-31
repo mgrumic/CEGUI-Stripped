@@ -30,10 +30,10 @@
 #define _CEGUIAnimation_h_
 
 #include "CEGUI/String.h"
+#ifndef PE_NO_ANIMATION
 #include <vector>
 #include <map>
 
-#ifndef PE_NO_ANIMATION
 
 #if defined(_MSC_VER)
 #   pragma warning(push)

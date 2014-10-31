@@ -37,8 +37,8 @@ namespace CEGUI
 /*************************************************************************
 Forward declare majority of core classes
 *************************************************************************/
-class Affector;
 #ifndef PE_NO_ANIMATION
+class Affector;
 class Animation;
 class AnimationInstance;
 class AnimationManager;

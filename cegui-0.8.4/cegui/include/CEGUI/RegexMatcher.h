@@ -28,9 +28,9 @@
 #define _CEGUIRegexMatcher_h_
 
 #include "CEGUI/Base.h"
+#ifndef PE_NO_REGEX_MATCHER
 #include "CEGUI/String.h"
 #include "CEGUI/InputEvent.h"
-#ifndef PE_NO_REGEX_MATCHER
 // Start of CEGUI namespace section
 namespace CEGUI
 {

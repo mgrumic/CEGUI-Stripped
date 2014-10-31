@@ -494,6 +494,7 @@ public:
     */
     void invalidateAllCachedRendering();
 
+#ifndef PE_NO_REGEX_MATCHER
     /*!
     \brief
         Create a RegexMatcher instance if support is available.
@@ -511,6 +512,7 @@ public:
 
     //! destroy a RegexMatcher instance returned by System::createRegexMatcher.
     void destroyRegexMatcher(RegexMatcher* rm) const;
+#endif //PE_NO_REGEX_MATCHER
 
     //! call this to ensure system-level time based updates occur.
     bool injectTimePulse(float timeElapsed);

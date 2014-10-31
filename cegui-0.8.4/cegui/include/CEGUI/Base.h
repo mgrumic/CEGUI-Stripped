@@ -29,10 +29,19 @@
  *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
-#define PE_NO_POPUP_MENU_H
+#ifndef _CEGUIBase_h_
+#define _CEGUIBase_h_
+
 #define PE_NO_MOUSE
 #define PE_NO_LOGGER
 #define PE_NO_THROW_MSGS
+
+#define PE_NO_POPUP_MENU_H
+#define PE_NO_ANIMATION
+#define PE_NO_REGEX_MATCHER
+#define PE_NO_CLIPBOARD
+//#define PE_NO_VECTOR3D
+
 #define PE_NO_WGT_SPINNER
 #define PE_NO_WGT_SLIDER
 #define PE_NO_WGT_PROGRESS_BAR
@@ -41,16 +50,10 @@
 #define PE_NO_WGT_CLIPPED_CONTAINER
 #define PE_NO_WGT_GROUP_BOX
 #define PE_NO_COM_DIALOGS_COLOUR_PICKER
-//#define PE_NO_VECTOR3D
 #define PE_NO_WGT_TREE
 #define PE_NO_WGT_COMBOBOX
-#define PE_NO_ANIMATION
-#define PE_NO_REGEX_MATCHER
-#define PE_NO_CLIPBOARD
 #define PE_NO_WGT_RADIOBUTTON
 
-#ifndef _CEGUIBase_h_
-#define _CEGUIBase_h_
 
 // bring in configuration options
 #include "CEGUI/Config.h"

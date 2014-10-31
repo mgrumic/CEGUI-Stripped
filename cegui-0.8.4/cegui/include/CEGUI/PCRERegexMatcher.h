@@ -28,6 +28,7 @@
 #define _CEGUIPCRERegexMatcher_h_
 
 #include "CEGUI/RegexMatcher.h"
+#ifndef PE_NO_REGEX_MATCHER
 #include "CEGUI/String.h"
 #include <pcre.h>
 
@@ -70,3 +71,4 @@ private:
 } // End of  CEGUI namespace section
 
 #endif  // end of guard _CEGUIPCRERegexMatcher_h_
+#endif //PE_NO_REGEX_MATCHER
