@@ -35,6 +35,428 @@
             <in>XMLEnumHelper.cpp</in>
             <in>XMLHandler.cpp</in>
           </df>
+          <df name="ImageCodecModules">
+            <df name="Corona">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+            </df>
+            <df name="DevIL">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+            </df>
+            <df name="FreeImage">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+            </df>
+            <df name="PVR">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+            </df>
+            <df name="SILLY">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+            </df>
+            <df name="STB">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+              <in>stb_image.cpp</in>
+            </df>
+            <df name="TGA">
+              <in>ImageCodec.cpp</in>
+              <in>ImageCodecModule.cpp</in>
+            </df>
+          </df>
+          <df name="implementations">
+            <df name="mac">
+              <in>macPlugins.cpp</in>
+            </df>
+          </df>
+          <df name="RendererModules">
+            <df name="Direct3D10">
+              <in>GeometryBuffer.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+              <in>ViewportTarget.cpp</in>
+            </df>
+            <df name="Direct3D11">
+              <in>GeometryBuffer.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+              <in>ViewportTarget.cpp</in>
+            </df>
+            <df name="Direct3D9">
+              <in>GeometryBuffer.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+              <in>ViewportTarget.cpp</in>
+            </df>
+            <df name="DirectFB">
+              <in>GeometryBuffer.cpp</in>
+              <in>RenderTarget.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>Texture.cpp</in>
+            </df>
+            <df name="Irrlicht">
+              <in>GeometryBuffer.cpp</in>
+              <in>ImageCodec.cpp</in>
+              <in>MemoryFile.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>ResourceProvider.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+              <in>WindowTarget.cpp</in>
+            </df>
+            <df name="Null">
+              <in>GeometryBuffer.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+            </df>
+            <df name="Ogre">
+              <in>GeometryBuffer.cpp</in>
+              <in>ImageCodec.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>ResourceProvider.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+              <in>WindowTarget.cpp</in>
+            </df>
+            <df name="OpenGL">
+              <in>ApplePBTextureTarget.cpp</in>
+              <in>GL3FBOTextureTarget.cpp</in>
+              <in>GL3GeometryBuffer.cpp</in>
+              <in>GL3Renderer.cpp</in>
+              <in>GLFBOTextureTarget.cpp</in>
+              <in>GLGeometryBuffer.cpp</in>
+              <in>GLRenderer.cpp</in>
+              <in>GLXPBTextureTarget.cpp</in>
+              <in>GeometryBufferBase.cpp</in>
+              <in>RendererBase.cpp</in>
+              <in>Shader.cpp</in>
+              <in>ShaderManager.cpp</in>
+              <in>StateChangeWrapper.cpp</in>
+              <in>Texture.cpp</in>
+              <in>TextureTarget.cpp</in>
+              <in>ViewportTarget.cpp</in>
+              <in>WGLPBTextureTarget.cpp</in>
+            </df>
+            <df name="OpenGLES">
+              <in>FBOTextureTarget.cpp</in>
+              <in>GeometryBuffer.cpp</in>
+              <in>Renderer.cpp</in>
+              <in>Texture.cpp</in>
+              <in>ViewportTarget.cpp</in>
+            </df>
+          </df>
+          <df name="ScriptModules">
+            <df name="Lua">
+              <df name="support">
+                <df name="tolua++bin">
+                  <in>tolua.c</in>
+                  <in>toluabind.c</in>
+                </df>
+              </df>
+              <in>Functor.cpp</in>
+              <in>ScriptModule.cpp</in>
+              <in>lua_CEGUI.cpp</in>
+              <in>required.cpp</in>
+            </df>
+            <df name="Python">
+              <df name="bindings">
+                <df name="output">
+                  <df name="CEGUI">
+                    <in>AbsoluteDim.pypp.cpp</in>
+                    <in>ActivationEventArgs.pypp.cpp</in>
+                    <in>Affector.pypp.cpp</in>
+                    <in>Animation.pypp.cpp</in>
+                    <in>AnimationEventArgs.pypp.cpp</in>
+                    <in>AnimationInstance.pypp.cpp</in>
+                    <in>AnimationManager.pypp.cpp</in>
+                    <in>AnimationNameIterator.pypp.cpp</in>
+                    <in>BaseDim.pypp.cpp</in>
+                    <in>BasicImage.pypp.cpp</in>
+                    <in>BasicRenderedStringParser.pypp.cpp</in>
+                    <in>BoundSlot.pypp.cpp</in>
+                    <in>ButtonBase.pypp.cpp</in>
+                    <in>CentredRenderedString.pypp.cpp</in>
+                    <in>Clipboard.pypp.cpp</in>
+                    <in>Colour.pypp.cpp</in>
+                    <in>ColourRect.pypp.cpp</in>
+                    <in>ComboDropList.pypp.cpp</in>
+                    <in>Combobox.pypp.cpp</in>
+                    <in>ComponentArea.pypp.cpp</in>
+                    <in>ComponentList.pypp.cpp</in>
+                    <in>Connection.pypp.cpp</in>
+                    <in>ConstBaseIterator_23c5f09e76c89ed46f1671ac87f5d133.pypp.cpp</in>
+                    <in>ConstBaseIterator_2c9936f57a2ad030e0dfadb6e79a326f.pypp.cpp</in>
+                    <in>ConstBaseIterator_3dfe55a685a628d9556dccd6ce85e923.pypp.cpp</in>
+                    <in>ConstBaseIterator_45e2d4f27e29c3a5b74179f6cfabbc4c.pypp.cpp</in>
+                    <in>ConstBaseIterator_47ddd968107e89ff0051bf3212fbb472.pypp.cpp</in>
+                    <in>ConstBaseIterator_58fce9a3b4ea911d189f971dbf4a6c9b.pypp.cpp</in>
+                    <in>ConstBaseIterator_6318b664b630c5a4e45127a69c6748cb.pypp.cpp</in>
+                    <in>ConstBaseIterator_663c592fa58613dab4f9509d04eb6cc1.pypp.cpp</in>
+                    <in>ConstBaseIterator_6cea82a17f94b95b10c333412f843a6d.pypp.cpp</in>
+                    <in>ConstBaseIterator_6da79d61dc2d4c154ee9113f9d44d174.pypp.cpp</in>
+                    <in>ConstBaseIterator_6e18222775ccb39f7ec1f5c112d444ec.pypp.cpp</in>
+                    <in>ConstBaseIterator_78cd23dcc51d261e1f508a899854e1a9.pypp.cpp</in>
+                    <in>ConstBaseIterator_7f0012c4899354432f095ef9bb577046.pypp.cpp</in>
+                    <in>ConstBaseIterator_92b3f0ef60bba0b7bc1aa08b6f3304d6.pypp.cpp</in>
+                    <in>ConstBaseIterator_937e880515ad590c17d4b2b82a347310.pypp.cpp</in>
+                    <in>ConstBaseIterator_99d0247943ea008baba14993d63dd301.pypp.cpp</in>
+                    <in>ConstBaseIterator_9b6259ec5f5ed443accef2ab6f116fda.pypp.cpp</in>
+                    <in>ConstBaseIterator_9dce73c5f5e3a55d1a66a6e740fbf48b.pypp.cpp</in>
+                    <in>ConstBaseIterator_a74f832b0a98ff325f0d295bba46f58b.pypp.cpp</in>
+                    <in>ConstBaseIterator_b33d7bd272dd6c97821cbd9402cb4364.pypp.cpp</in>
+                    <in>ConstBaseIterator_ccf46e19ae28e4742a13388873833720.pypp.cpp</in>
+                    <in>ConstBaseIterator_d0a5fcfab7d8e4121b568ec58e88f4fd.pypp.cpp</in>
+                    <in>ConstBaseIterator_e31fba8abb652b91e7a416a794506e4f.pypp.cpp</in>
+                    <in>ConstBaseIterator_e6837f87c747b0388313d47a6a1e8556.pypp.cpp</in>
+                    <in>ConstBaseIterator_e78994bfd2b781a573fdd2cd7ca2ceae.pypp.cpp</in>
+                    <in>ConstBaseIterator_f0585fb3775a7fa1f905d29be5dc1533.pypp.cpp</in>
+                    <in>CoordConverter.pypp.cpp</in>
+                    <in>DefaultLogger.pypp.cpp</in>
+                    <in>DefaultResourceProvider.pypp.cpp</in>
+                    <in>DefaultWindow.pypp.cpp</in>
+                    <in>Dimension.pypp.cpp</in>
+                    <in>DisplayEventArgs.pypp.cpp</in>
+                    <in>DragContainer.pypp.cpp</in>
+                    <in>DragDropEventArgs.pypp.cpp</in>
+                    <in>Editbox.pypp.cpp</in>
+                    <in>Element.pypp.cpp</in>
+                    <in>ElementEventArgs.pypp.cpp</in>
+                    <in>Event.pypp.cpp</in>
+                    <in>EventAction.pypp.cpp</in>
+                    <in>EventActionIterator.pypp.cpp</in>
+                    <in>EventArgs.pypp.cpp</in>
+                    <in>EventIterator.pypp.cpp</in>
+                    <in>EventLinkDefinition.pypp.cpp</in>
+                    <in>EventLinkDefinitionIterator.pypp.cpp</in>
+                    <in>EventSet.pypp.cpp</in>
+                    <in>Exception.pypp.cpp</in>
+                    <in>FalagardComponentBase.pypp.cpp</in>
+                    <in>FalagardMappingIterator.pypp.cpp</in>
+                    <in>FalagardXMLHelper.pypp.cpp</in>
+                    <in>Font.pypp.cpp</in>
+                    <in>FontDim.pypp.cpp</in>
+                    <in>FontEventArgs.pypp.cpp</in>
+                    <in>FontGlyph.pypp.cpp</in>
+                    <in>FontIterator.pypp.cpp</in>
+                    <in>FontManager.pypp.cpp</in>
+                    <in>FrameComponent.pypp.cpp</in>
+                    <in>FrameComponentIterator.pypp.cpp</in>
+                    <in>FrameWindow.pypp.cpp</in>
+                    <in>GUIContext.pypp.cpp</in>
+                    <in>GUIContextEventArgs.pypp.cpp</in>
+                    <in>GUIContextRenderTargetEventArgs.pypp.cpp</in>
+                    <in>GeometryBuffer.pypp.cpp</in>
+                    <in>GlobalEventSet.pypp.cpp</in>
+                    <in>GridLayoutContainer.pypp.cpp</in>
+                    <in>GroupBox.pypp.cpp</in>
+                    <in>HeaderSequenceEventArgs.pypp.cpp</in>
+                    <in>HorizontalLayoutContainer.pypp.cpp</in>
+                    <in>Image.pypp.cpp</in>
+                    <in>ImageCodec.pypp.cpp</in>
+                    <in>ImageDim.pypp.cpp</in>
+                    <in>ImageIterator.pypp.cpp</in>
+                    <in>ImageManager.pypp.cpp</in>
+                    <in>ImagePropertyDim.pypp.cpp</in>
+                    <in>ImageryComponent.pypp.cpp</in>
+                    <in>ImageryComponentIterator.pypp.cpp</in>
+                    <in>ImageryIterator.pypp.cpp</in>
+                    <in>ImagerySection.pypp.cpp</in>
+                    <in>Interpolator.pypp.cpp</in>
+                    <in>ItemEntry.pypp.cpp</in>
+                    <in>ItemListBase.pypp.cpp</in>
+                    <in>ItemListbox.pypp.cpp</in>
+                    <in>Key.pypp.cpp</in>
+                    <in>KeyEventArgs.pypp.cpp</in>
+                    <in>KeyFrame.pypp.cpp</in>
+                    <in>LBItemList.pypp.cpp</in>
+                    <in>LayerIterator.pypp.cpp</in>
+                    <in>LayerSpecification.pypp.cpp</in>
+                    <in>LayoutContainer.pypp.cpp</in>
+                    <in>LineList.pypp.cpp</in>
+                    <in>LinkTargetIterator.pypp.cpp</in>
+                    <in>LinkedEventArgs.pypp.cpp</in>
+                    <in>ListHeader.pypp.cpp</in>
+                    <in>ListHeaderSegment.pypp.cpp</in>
+                    <in>Listbox.pypp.cpp</in>
+                    <in>ListboxItem.pypp.cpp</in>
+                    <in>ListboxTextItem.pypp.cpp</in>
+                    <in>LoadableUIElementIterator.pypp.cpp</in>
+                    <in>Logger.pypp.cpp</in>
+                    <in>MCLGridRef.pypp.cpp</in>
+                    <in>MenuBase.pypp.cpp</in>
+                    <in>MenuItem.pypp.cpp</in>
+                    <in>Menubar.pypp.cpp</in>
+                    <in>MouseCursor.pypp.cpp</in>
+                    <in>MouseCursorEventArgs.pypp.cpp</in>
+                    <in>MouseEventArgs.pypp.cpp</in>
+                    <in>MultiColumnList.pypp.cpp</in>
+                    <in>MultiLineEditbox.pypp.cpp</in>
+                    <in>NamedArea.pypp.cpp</in>
+                    <in>NamedAreaIterator.pypp.cpp</in>
+                    <in>NamedElement.pypp.cpp</in>
+                    <in>NamedElementEventArgs.pypp.cpp</in>
+                    <in>NamedXMLResourceManagerFont.pypp.cpp</in>
+                    <in>NamedXMLResourceManagerScheme.pypp.cpp</in>
+                    <in>OperatorDim.pypp.cpp</in>
+                    <in>PopupMenu.pypp.cpp</in>
+                    <in>ProgressBar.pypp.cpp</in>
+                    <in>Property.pypp.cpp</in>
+                    <in>PropertyDefinitionBase.pypp.cpp</in>
+                    <in>PropertyDefinitionIterator.pypp.cpp</in>
+                    <in>PropertyDim.pypp.cpp</in>
+                    <in>PropertyHelper.pypp.cpp</in>
+                    <in>PropertyInitialiser.pypp.cpp</in>
+                    <in>PropertyInitialiserIterator.pypp.cpp</in>
+                    <in>PropertyInitialiserVector.pypp.cpp</in>
+                    <in>PropertyIterator.pypp.cpp</in>
+                    <in>PropertyReceiver.pypp.cpp</in>
+                    <in>PropertySet.pypp.cpp</in>
+                    <in>PushButton.pypp.cpp</in>
+                    <in>PyCEGUI.main.cpp</in>
+                    <in>PyCEGUI_enumerations.pypp.cpp</in>
+                    <in>Quaternion.pypp.cpp</in>
+                    <in>RadioButton.pypp.cpp</in>
+                    <in>RawDataContainer.pypp.cpp</in>
+                    <in>Rectf.pypp.cpp</in>
+                    <in>RegexMatchStateEventArgs.pypp.cpp</in>
+                    <in>RegexMatcher.pypp.cpp</in>
+                    <in>RenderEffect.pypp.cpp</in>
+                    <in>RenderEffectFactory.pypp.cpp</in>
+                    <in>RenderEffectManager.pypp.cpp</in>
+                    <in>RenderQueue.pypp.cpp</in>
+                    <in>RenderQueueEventArgs.pypp.cpp</in>
+                    <in>RenderTarget.pypp.cpp</in>
+                    <in>RenderTargetEventArgs.pypp.cpp</in>
+                    <in>RenderedString.pypp.cpp</in>
+                    <in>RenderedStringComponent.pypp.cpp</in>
+                    <in>RenderedStringImageComponent.pypp.cpp</in>
+                    <in>RenderedStringParser.pypp.cpp</in>
+                    <in>RenderedStringTextComponent.pypp.cpp</in>
+                    <in>RenderedStringWidgetComponent.pypp.cpp</in>
+                    <in>Renderer.pypp.cpp</in>
+                    <in>RenderingContext.pypp.cpp</in>
+                    <in>RenderingSurface.pypp.cpp</in>
+                    <in>RenderingWindow.pypp.cpp</in>
+                    <in>ResourceEventArgs.pypp.cpp</in>
+                    <in>ResourceEventSet.pypp.cpp</in>
+                    <in>ResourceProvider.pypp.cpp</in>
+                    <in>Scheme.pypp.cpp</in>
+                    <in>SchemeIterator.pypp.cpp</in>
+                    <in>SchemeManager.pypp.cpp</in>
+                    <in>ScriptModule.pypp.cpp</in>
+                    <in>ScrollablePane.pypp.cpp</in>
+                    <in>Scrollbar.pypp.cpp</in>
+                    <in>ScrolledContainer.pypp.cpp</in>
+                    <in>ScrolledItemListBase.pypp.cpp</in>
+                    <in>SectionIterator.pypp.cpp</in>
+                    <in>SectionSpecification.pypp.cpp</in>
+                    <in>SequentialLayoutContainer.pypp.cpp</in>
+                    <in>SimpleTimer.pypp.cpp</in>
+                    <in>SingletonAnimationManager.pypp.cpp</in>
+                    <in>SingletonFontManager.pypp.cpp</in>
+                    <in>SingletonGlobalEventSet.pypp.cpp</in>
+                    <in>SingletonImageManager.pypp.cpp</in>
+                    <in>SingletonLogger.pypp.cpp</in>
+                    <in>SingletonRenderEffectManager.pypp.cpp</in>
+                    <in>SingletonSchemeManager.pypp.cpp</in>
+                    <in>SingletonSystem.pypp.cpp</in>
+                    <in>SingletonWidgetLookManager.pypp.cpp</in>
+                    <in>SingletonWindowFactoryManager.pypp.cpp</in>
+                    <in>SingletonWindowManager.pypp.cpp</in>
+                    <in>SingletonWindowRendererManager.pypp.cpp</in>
+                    <in>Sizef.pypp.cpp</in>
+                    <in>Slider.pypp.cpp</in>
+                    <in>Spinner.pypp.cpp</in>
+                    <in>StateImagery.pypp.cpp</in>
+                    <in>StateIterator.pypp.cpp</in>
+                    <in>StdPairCEGUIImageImageFactory.pypp.cpp</in>
+                    <in>StdPairCEGUIStringString.pypp.cpp</in>
+                    <in>StdPairFloatFloat.pypp.cpp</in>
+                    <in>StringSet.pypp.cpp</in>
+                    <in>Subscriber.pypp.cpp</in>
+                    <in>System.pypp.cpp</in>
+                    <in>SystemKeys.pypp.cpp</in>
+                    <in>TabButton.pypp.cpp</in>
+                    <in>TabControl.pypp.cpp</in>
+                    <in>TargetTypeStack.pypp.cpp</in>
+                    <in>TextComponent.pypp.cpp</in>
+                    <in>TextComponentIterator.pypp.cpp</in>
+                    <in>TextUtils.pypp.cpp</in>
+                    <in>Texture.pypp.cpp</in>
+                    <in>TextureTarget.pypp.cpp</in>
+                    <in>Thumb.pypp.cpp</in>
+                    <in>Titlebar.pypp.cpp</in>
+                    <in>ToggleButton.pypp.cpp</in>
+                    <in>Tooltip.pypp.cpp</in>
+                    <in>Tree.pypp.cpp</in>
+                    <in>TreeEventArgs.pypp.cpp</in>
+                    <in>TreeItem.pypp.cpp</in>
+                    <in>TypeAliasIterator.pypp.cpp</in>
+                    <in>UBox.pypp.cpp</in>
+                    <in>UDim.pypp.cpp</in>
+                    <in>URect.pypp.cpp</in>
+                    <in>USize.pypp.cpp</in>
+                    <in>UVector2.pypp.cpp</in>
+                    <in>UnifiedDim.pypp.cpp</in>
+                    <in>UpdateEventArgs.pypp.cpp</in>
+                    <in>Vector2f.pypp.cpp</in>
+                    <in>Vector3f.pypp.cpp</in>
+                    <in>Vertex.pypp.cpp</in>
+                    <in>VerticalLayoutContainer.pypp.cpp</in>
+                    <in>WidgetComponent.pypp.cpp</in>
+                    <in>WidgetComponentIterator.pypp.cpp</in>
+                    <in>WidgetDim.pypp.cpp</in>
+                    <in>WidgetLookFeel.pypp.cpp</in>
+                    <in>WidgetLookIterator.pypp.cpp</in>
+                    <in>WidgetLookManager.pypp.cpp</in>
+                    <in>Window.pypp.cpp</in>
+                    <in>WindowEventArgs.pypp.cpp</in>
+                    <in>WindowFactory.pypp.cpp</in>
+                    <in>WindowFactoryIterator.pypp.cpp</in>
+                    <in>WindowFactoryManager.pypp.cpp</in>
+                    <in>WindowIterator.pypp.cpp</in>
+                    <in>WindowManager.pypp.cpp</in>
+                    <in>WindowRenderer.pypp.cpp</in>
+                    <in>WindowRendererFactory.pypp.cpp</in>
+                    <in>WindowRendererManager.pypp.cpp</in>
+                    <in>XMLAttributes.pypp.cpp</in>
+                    <in>XMLHandler.pypp.cpp</in>
+                    <in>XMLParser.pypp.cpp</in>
+                    <in>XMLSerializer.pypp.cpp</in>
+                    <in>vector_less__CEGUI_scope_PropertyDefinitionBase_ptr___greater_.pypp.cpp</in>
+                    <in>vector_less__CEGUI_scope_UDim__greater_.pypp.cpp</in>
+                  </df>
+                  <df name="CEGUINullRenderer">
+                    <in>NullRenderer.pypp.cpp</in>
+                    <in>PyCEGUINullRenderer.main.cpp</in>
+                  </df>
+                  <df name="CEGUIOgreRenderer">
+                    <in>OgreImageCodec.pypp.cpp</in>
+                    <in>OgreRenderer.pypp.cpp</in>
+                    <in>OgreResourceProvider.pypp.cpp</in>
+                    <in>PyCEGUIOgreRenderer.main.cpp</in>
+                  </df>
+                  <df name="CEGUIOpenGLRenderer">
+                    <in>OpenGL3Renderer.pypp.cpp</in>
+                    <in>OpenGL3Shader.pypp.cpp</in>
+                    <in>OpenGL3StateChangeWrapper.pypp.cpp</in>
+                    <in>OpenGLGeometryBufferBase.pypp.cpp</in>
+                    <in>OpenGLRenderer.pypp.cpp</in>
+                    <in>OpenGLRendererBase.pypp.cpp</in>
+                    <in>OpenGLTextureTarget.pypp.cpp</in>
+                    <in>OpenGLViewportTarget.pypp.cpp</in>
+                    <in>PyCEGUIOpenGLRenderer.main.cpp</in>
+                  </df>
+                </df>
+              </df>
+            </df>
+          </df>
           <df name="widgets">
             <in>ButtonBase.cpp</in>
             <in>ClippedContainer.cpp</in>
@@ -115,6 +537,29 @@
               <in>Tree.cpp</in>
             </df>
           </df>
+          <df name="XMLParserModules">
+            <df name="Expat">
+              <in>XMLParser.cpp</in>
+              <in>XMLParserModule.cpp</in>
+            </df>
+            <df name="Libxml2">
+              <in>XMLParser.cpp</in>
+              <in>XMLParserModule.cpp</in>
+            </df>
+            <df name="RapidXML">
+              <in>XMLParser.cpp</in>
+              <in>XMLParserModule.cpp</in>
+            </df>
+            <df name="TinyXML">
+              <in>XMLParser.cpp</in>
+              <in>XMLParserModule.cpp</in>
+            </df>
+            <df name="Xerces">
+              <in>XMLParser.cpp</in>
+              <in>XMLParserModule.cpp</in>
+              <in>XMLParserProperties.cpp</in>
+            </df>
+          </df>
           <in>Affector.cpp</in>
           <in>Animation.cpp</in>
           <in>AnimationInstance.cpp</in>
@@ -149,10 +594,13 @@
           <in>FontManager.cpp</in>
           <in>Font_xmlHandler.cpp</in>
           <in>FormattedRenderedString.cpp</in>
+          <in>FreeTypeFont.cpp</in>
+          <in>FribidiVisualMapping.cpp</in>
           <in>GUIContext.cpp</in>
           <in>GUILayout_xmlHandler.cpp</in>
           <in>GeometryBuffer.cpp</in>
           <in>GlobalEventSet.cpp</in>
+          <in>IconvStringTranscoder.cpp</in>
           <in>Image.cpp</in>
           <in>ImageCodec.cpp</in>
           <in>ImageManager.cpp</in>
@@ -162,9 +610,12 @@
           <in>LeftAlignedRenderedString.cpp</in>
           <in>LinkedEvent.cpp</in>
           <in>Logger.cpp</in>
+          <in>MinibidiVisualMapping.cpp</in>
+          <in>MinizipResourceProvider.cpp</in>
           <in>MouseCursor.cpp</in>
           <in>NamedElement.cpp</in>
           <in>NamedXMLResourceManager.cpp</in>
+          <in>PCRERegexMatcher.cpp</in>
           <in>PixmapFont.cpp</in>
           <in>Property.cpp</in>
           <in>PropertyHelper.cpp</in>
@@ -203,7 +654,125 @@
           <in>XMLHandler.cpp</in>
           <in>XMLParser.cpp</in>
           <in>XMLSerializer.cpp</in>
+          <in>minibidi.cpp</in>
         </df>
+      </df>
+      <df name="dependencies">
+        <df name="include">
+          <df name="glm">
+            <df name="core">
+              <in>dummy.cpp</in>
+            </df>
+          </df>
+        </df>
+      </df>
+      <df name="samples">
+        <df name="CommonDialogsDemo">
+          <in>CommonDialogsDemo.cpp</in>
+        </df>
+        <df name="Demo6">
+          <in>Sample_Demo6.cpp</in>
+        </df>
+        <df name="Demo8">
+          <in>Sample_Demo8.cpp</in>
+        </df>
+        <df name="DragDropDemo">
+          <in>Sample_DragDropDemo.cpp</in>
+        </df>
+        <df name="EditboxValidationDemo">
+          <in>EditboxValidation.cpp</in>
+        </df>
+        <df name="EffectsDemo">
+          <in>EffectsDemo.cpp</in>
+        </df>
+        <df name="FontDemo">
+          <in>Sample_FontDemo.cpp</in>
+        </df>
+        <df name="GameMenu">
+          <in>GameMenu.cpp</in>
+        </df>
+        <df name="GLESTest">
+          <in>Sample_GLESTest.cpp</in>
+        </df>
+        <df name="HelloWorld">
+          <in>HelloWorld.cpp</in>
+        </df>
+        <df name="HUDDemo">
+          <in>HUDemo.cpp</in>
+        </df>
+        <df name="InventoryDemo">
+          <in>BoolArray2D.cpp</in>
+          <in>InventoryBase.cpp</in>
+          <in>InventoryItem.cpp</in>
+          <in>InventoryItemRenderer.cpp</in>
+          <in>InventoryReceiver.cpp</in>
+          <in>Sample_InventoryDemo.cpp</in>
+        </df>
+        <df name="Minesweeper">
+          <in>Minesweeper_Timer.cpp</in>
+          <in>Sample_Minesweeper.cpp</in>
+        </df>
+        <df name="ScrollablePaneDemo">
+          <in>Sample_ScrollablePane.cpp</in>
+        </df>
+        <df name="TabControlDemo">
+          <in>Sample_TabControl.cpp</in>
+        </df>
+        <df name="TextDemo">
+          <in>Sample_Text.cpp</in>
+        </df>
+        <df name="TreeDemo">
+          <in>Sample_TreeDemo.cpp</in>
+        </df>
+        <df name="WidgetDemo">
+          <in>WidgetDemo.cpp</in>
+        </df>
+      </df>
+      <df name="samples_framework">
+        <df name="src">
+          <in>CEGuiBaseApplication.cpp</in>
+          <in>CEGuiD3D10BaseApplication.cpp</in>
+          <in>CEGuiD3D11BaseApplication.cpp</in>
+          <in>CEGuiD3D9BaseApplication.cpp</in>
+          <in>CEGuiDirectFBBaseApplication.cpp</in>
+          <in>CEGuiGLFWSharedBase.cpp</in>
+          <in>CEGuiIrrlichtBaseApplication.cpp</in>
+          <in>CEGuiOgreBaseApplication.cpp</in>
+          <in>CEGuiOpenGL3BaseApplication.cpp</in>
+          <in>CEGuiOpenGLBaseApplication.cpp</in>
+          <in>CEGuiRendererSelector.cpp</in>
+          <in>CLICEGuiRendererSelector.cpp</in>
+          <in>DeviceReset_Direct3D10.cpp</in>
+          <in>DeviceReset_Direct3D11.cpp</in>
+          <in>DeviceReset_Direct3D9.cpp</in>
+          <in>GTK2CEGuiRendererSelector.cpp</in>
+          <in>MacCEGuiRendererSelector.mm</in>
+          <in>MetaDataWindowManager.cpp</in>
+          <in>SampleData.cpp</in>
+          <in>SamplesBrowserManager.cpp</in>
+          <in>SamplesFramework.cpp</in>
+          <in>SamplesFrameworkBase.cpp</in>
+          <in>Samples_xmlHandler.cpp</in>
+          <in>Win32AppHelper.cpp</in>
+          <in>Win32CEGuiRendererSelector.cpp</in>
+        </df>
+      </df>
+      <df name="tests">
+        <in>AnimationSystem.cpp</in>
+        <in>Clipboard.cpp</in>
+        <in>Element.cpp</in>
+        <in>Entry.cpp</in>
+        <in>EventSet.cpp</in>
+        <in>NamedElement.cpp</in>
+        <in>PropertyHelper.cpp</in>
+        <in>PropertySet.cpp</in>
+        <in>Quaternion.cpp</in>
+        <in>RegexMatching.cpp</in>
+        <in>Size.cpp</in>
+        <in>Spinner.cpp</in>
+        <in>String.cpp</in>
+        <in>Vector.cpp</in>
+        <in>Window.cpp</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -234,1380 +803,3611 @@
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath></executablePath>
-          <ccTool>
+          <cTool>
             <incDir>
-              <pElem>cegui/include</pElem>
+              <pElem>cegui/src/ScriptModules/Lua/support/tolua++bin</pElem>
             </incDir>
-            <preprocessorList>
-              <Elem>NOMINMAX</Elem>
-              <Elem>_CRT_SECURE_NO_WARNINGS</Elem>
-            </preprocessorList>
-          </ccTool>
+          </cTool>
         </makeTool>
       </makefileType>
-      <item path="cegui/src/Affector.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Affector.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Animation.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Animation.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/AnimationInstance.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/AnimationInstance.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/AnimationManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/AnimationManager.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Animation_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Animation_xmlHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Base.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Base.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/BasicImage.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/BasicImage.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/BasicRenderedStringParser.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/BidiVisualMapping.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/BidiVisualMapping.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/BoundSlot.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/BoundSlot.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/CentredRenderedString.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/ChainedXMLHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/ChainedXMLHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Clipboard.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Clipboard.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Colour.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Colour.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/ColourRect.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/ColourRect.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/CommonDialogs/ColourPicker/ColourPicker.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/CommonDialogs/ColourPicker/Controls.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/CommonDialogs/ColourPicker/Conversions.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/CommonDialogs/ColourPicker/Types.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/CommonDialogs/Module.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/CommonDialogs/Module.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/CommonDialogs</pElem>
+          </incDir>
+        </ccTool>
       </item>
       <item path="cegui/src/CompositeResourceProvider.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Config_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Config_xmlHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/CoordConverter.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/CoordConverter.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/DataContainer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/DataContainer.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/DefaultLogger.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/DefaultLogger.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/DefaultRenderedStringParser.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/DefaultResourceProvider.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/DynamicModule.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/DynamicModule.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Element.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Element.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Event.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Event.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/EventArgs.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/EventArgs.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/EventSet.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/EventSet.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Exceptions.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Exceptions.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/FactoryModule.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/FactoryModule.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/FactoryRegisterer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/FactoryRegisterer.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Font.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Font.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/FontManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/FontManager.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Font_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Font_xmlHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/FormattedRenderedString.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/GUIContext.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/FreeTypeFont.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/GUILayout_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/FribidiVisualMapping.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/GeometryBuffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/GUIContext.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/GlobalEventSet.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/GUILayout_xmlHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Image.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/GeometryBuffer.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/ImageCodec.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/GlobalEventSet.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/ImageManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/IconvStringTranscoder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/Image.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ImageCodec.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="cegui/src/ImageCodecModules/Corona/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/Corona/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/DevIL/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/DevIL/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/FreeImage/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/FreeImage/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/PVR/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/PVR/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/SILLY/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/SILLY/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/STB/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/STB/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/STB/stb_image.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/TGA/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageCodecModules/TGA/ImageCodecModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ImageManager.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="cegui/src/JustifiedRenderedString.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/JustifiedRenderedStringWordWrapper.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/KeyFrame.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/KeyFrame.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/LeftAlignedRenderedString.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/LinkedEvent.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/LinkedEvent.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Logger.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Logger.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/MouseCursor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/MinibidiVisualMapping.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/NamedElement.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/MinizipResourceProvider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/MouseCursor.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="cegui/src/NamedElement.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="cegui/src/NamedXMLResourceManager.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/PixmapFont.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/PCRERegexMatcher.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Property.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/PixmapFont.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/PropertyHelper.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Property.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/PropertySet.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/PropertyHelper.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Quaternion.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/PropertySet.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Rect.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Quaternion.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/RenderEffectManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Rect.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/RenderQueue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/RenderEffectManager.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/RenderTarget.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/RenderQueue.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/RenderedString.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/RenderTarget.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cegui/src/RenderedString.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="cegui/src/RenderedStringComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/RenderedStringImageComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/RenderedStringTextComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/RenderedStringWidgetComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/RenderingSurface.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/RendererModules/Direct3D10/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D10/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D10/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D10/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D10/ViewportTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D11/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D11/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D11/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D11/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D11/ViewportTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D9/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D9/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D9/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D9/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Direct3D9/ViewportTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/DirectFB/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/DirectFB/RenderTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/DirectFB/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/DirectFB/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/MemoryFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/ResourceProvider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Irrlicht/WindowTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Null/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Null/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Null/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Null/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/ImageCodec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/ResourceProvider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/Ogre/WindowTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/ApplePBTextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GL3FBOTextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GL3GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GL3Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GLFBOTextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GLGeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GLRenderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GLXPBTextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/GeometryBufferBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/RendererBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/Shader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/ShaderManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/StateChangeWrapper.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/TextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/ViewportTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGL/WGLPBTextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGLES/FBOTextureTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGLES/GeometryBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGLES/Renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGLES/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RendererModules/OpenGLES/ViewportTarget.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/RenderingSurface.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/RenderingWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/RenderingWindow.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/RightAlignedRenderedString.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Scheme.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Scheme.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/SchemeManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/SchemeManager.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Scheme_xmlHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Scheme_xmlHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/ScriptModule.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/ScriptModule.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/SimpleTimer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/ScriptModules/Lua/Functor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Lua/ScriptModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Lua/lua_CEGUI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Lua/required.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Lua/support/tolua++bin/tolua.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+      </item>
+      <item path="cegui/src/ScriptModules/Lua/support/tolua++bin/toluabind.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/AbsoluteDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ActivationEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Affector.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Animation.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/AnimationEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/AnimationInstance.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/AnimationManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/AnimationNameIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/BaseDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/BasicImage.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/BasicRenderedStringParser.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/BoundSlot.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ButtonBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/CentredRenderedString.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Clipboard.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Colour.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ColourRect.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ComboDropList.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Combobox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ComponentArea.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ComponentList.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Connection.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_23c5f09e76c89ed46f1671ac87f5d133.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_2c9936f57a2ad030e0dfadb6e79a326f.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_3dfe55a685a628d9556dccd6ce85e923.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_45e2d4f27e29c3a5b74179f6cfabbc4c.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_47ddd968107e89ff0051bf3212fbb472.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_58fce9a3b4ea911d189f971dbf4a6c9b.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_6318b664b630c5a4e45127a69c6748cb.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_663c592fa58613dab4f9509d04eb6cc1.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_6cea82a17f94b95b10c333412f843a6d.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_6da79d61dc2d4c154ee9113f9d44d174.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_6e18222775ccb39f7ec1f5c112d444ec.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_78cd23dcc51d261e1f508a899854e1a9.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_7f0012c4899354432f095ef9bb577046.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_92b3f0ef60bba0b7bc1aa08b6f3304d6.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_937e880515ad590c17d4b2b82a347310.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_99d0247943ea008baba14993d63dd301.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_9b6259ec5f5ed443accef2ab6f116fda.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_9dce73c5f5e3a55d1a66a6e740fbf48b.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_a74f832b0a98ff325f0d295bba46f58b.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_b33d7bd272dd6c97821cbd9402cb4364.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_ccf46e19ae28e4742a13388873833720.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_d0a5fcfab7d8e4121b568ec58e88f4fd.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_e31fba8abb652b91e7a416a794506e4f.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_e6837f87c747b0388313d47a6a1e8556.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_e78994bfd2b781a573fdd2cd7ca2ceae.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ConstBaseIterator_f0585fb3775a7fa1f905d29be5dc1533.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/CoordConverter.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/DefaultLogger.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/DefaultResourceProvider.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/DefaultWindow.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Dimension.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/DisplayEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/DragContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/DragDropEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Editbox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Element.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ElementEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Event.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventAction.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventActionIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventLinkDefinition.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventLinkDefinitionIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/EventSet.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Exception.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FalagardComponentBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FalagardMappingIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FalagardXMLHelper.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Font.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FontDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FontEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FontGlyph.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FontIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FontManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FrameComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FrameComponentIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/FrameWindow.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GUIContext.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GUIContextEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GUIContextRenderTargetEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GeometryBuffer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GlobalEventSet.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GridLayoutContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/GroupBox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/HeaderSequenceEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/HorizontalLayoutContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Image.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageCodec.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImagePropertyDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageryComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageryComponentIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImageryIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ImagerySection.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Interpolator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ItemEntry.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ItemListBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ItemListbox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Key.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/KeyEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/KeyFrame.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LBItemList.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LayerIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LayerSpecification.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LayoutContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LineList.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LinkTargetIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LinkedEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ListHeader.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ListHeaderSegment.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Listbox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ListboxItem.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ListboxTextItem.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/LoadableUIElementIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Logger.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MCLGridRef.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MenuBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MenuItem.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Menubar.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MouseCursor.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MouseCursorEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MouseEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MultiColumnList.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/MultiLineEditbox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/NamedArea.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/NamedAreaIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/NamedElement.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/NamedElementEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/NamedXMLResourceManagerFont.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/NamedXMLResourceManagerScheme.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/OperatorDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PopupMenu.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ProgressBar.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Property.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyDefinitionBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyDefinitionIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyHelper.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyInitialiser.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyInitialiserIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyInitialiserVector.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertyReceiver.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PropertySet.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PushButton.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PyCEGUI.main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/PyCEGUI_enumerations.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Quaternion.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RadioButton.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RawDataContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Rectf.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RegexMatchStateEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RegexMatcher.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderEffect.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderEffectFactory.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderEffectManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderQueue.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderQueueEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderTarget.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderTargetEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderedString.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderedStringComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderedStringImageComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderedStringParser.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderedStringTextComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderedStringWidgetComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Renderer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderingContext.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderingSurface.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/RenderingWindow.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ResourceEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ResourceEventSet.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ResourceProvider.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Scheme.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SchemeIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SchemeManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ScriptModule.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ScrollablePane.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Scrollbar.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ScrolledContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ScrolledItemListBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SectionIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SectionSpecification.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SequentialLayoutContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SimpleTimer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonAnimationManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonFontManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonGlobalEventSet.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonImageManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonLogger.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonRenderEffectManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonSchemeManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonSystem.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonWidgetLookManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonWindowFactoryManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonWindowManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SingletonWindowRendererManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Sizef.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Slider.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Spinner.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/StateImagery.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/StateIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/StdPairCEGUIImageImageFactory.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/StdPairCEGUIStringString.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/StdPairFloatFloat.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/StringSet.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Subscriber.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/System.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/SystemKeys.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TabButton.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TabControl.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TargetTypeStack.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TextComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TextComponentIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TextUtils.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Texture.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TextureTarget.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Thumb.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Titlebar.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/ToggleButton.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Tooltip.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Tree.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TreeEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TreeItem.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/TypeAliasIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/UBox.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/UDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/URect.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/USize.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/UVector2.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/UnifiedDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/UpdateEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Vector2f.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Vector3f.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Vertex.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/VerticalLayoutContainer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WidgetComponent.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WidgetComponentIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WidgetDim.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WidgetLookFeel.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WidgetLookIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WidgetLookManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/Window.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowEventArgs.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowFactory.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowFactoryIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowFactoryManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowIterator.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowRenderer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowRendererFactory.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/WindowRendererManager.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/XMLAttributes.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/XMLHandler.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/XMLParser.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/XMLSerializer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/vector_less__CEGUI_scope_PropertyDefinitionBase_ptr___greater_.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUI/vector_less__CEGUI_scope_UDim__greater_.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUINullRenderer/NullRenderer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUINullRenderer/PyCEGUINullRenderer.main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOgreRenderer/OgreImageCodec.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOgreRenderer/OgreRenderer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOgreRenderer/OgreResourceProvider.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOgreRenderer/PyCEGUIOgreRenderer.main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGL3Renderer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGL3Shader.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGL3StateChangeWrapper.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGLGeometryBufferBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGLRenderer.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGLRendererBase.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGLTextureTarget.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/OpenGLViewportTarget.pypp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer/PyCEGUIOpenGLRenderer.main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/SimpleTimer.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/String.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/String.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/SubscriberSlot.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/SubscriberSlot.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/System.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/System.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/SystemKeys.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/SystemKeys.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/TextUtils.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/TextUtils.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/Win32StringTranscoder.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/Window.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/Window.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/WindowFactory.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/WindowFactory.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/WindowFactoryManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/WindowFactoryManager.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/WindowManager.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/WindowRenderer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/WindowRenderer.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/WindowRendererManager.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Button.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Default.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Editbox.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/FrameWindow.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ItemEntry.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ItemListbox.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ListHeader.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ListHeaderSegment.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Listbox.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/MenuItem.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Menubar.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Module.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/MultiColumnList.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/MultiLineEditbox.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/PopupMenu.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ProgressBar.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ScrollablePane.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Scrollbar.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Slider.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Static.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/StaticImage.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/StaticText.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/TabButton.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/TabControl.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Titlebar.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/ToggleButton.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Tooltip.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/WindowRendererSets/Core/Tree.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/XMLAttributes.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/XMLAttributes.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/XMLHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/XMLHandler.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/XMLParser.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/XMLParser.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <item path="cegui/src/XMLSerializer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/XMLParserModules/Expat/XMLParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/Expat/XMLParserModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/Libxml2/XMLParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/Libxml2/XMLParserModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/RapidXML/XMLParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/RapidXML/XMLParserModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/TinyXML/XMLParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/TinyXML/XMLParserModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/Xerces/XMLParser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/Xerces/XMLParserModule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLParserModules/Xerces/XMLParserProperties.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/XMLSerializer.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
           <incDir>
             <pElem>cegui/src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="cegui/src/falagard/ComponentBase.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/falagard/Dimensions.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/falagard/Dimensions.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/falagard/EventAction.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/falagard/EventAction.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/falagard/EventLinkDefinition.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/FormattingSetting.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/FrameComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/ImageryComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/ImagerySection.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/LayerSpecification.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/falagard/NamedArea.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/falagard/NamedArea.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/falagard/PropertyDefinitionBase.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/PropertyInitialiser.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/SectionSpecification.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/StateImagery.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/TextComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/WidgetComponent.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/WidgetLookFeel.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/WidgetLookManager.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/falagard/XMLEnumHelper.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/falagard/XMLHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/falagard/XMLHandler.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ButtonBase.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/implementations/mac/macPlugins.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="cegui/src/minibidi.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="cegui/src/widgets/ButtonBase.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/ClippedContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/widgets/ComboDropList.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Combobox.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Combobox.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/DefaultWindow.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/widgets/DragContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Editbox.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Editbox.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/FrameWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/FrameWindow.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/GridLayoutContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/GroupBox.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/GroupBox.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/HorizontalLayoutContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ItemEntry.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ItemEntry.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ItemListBase.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ItemListBase.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ItemListbox.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ItemListbox.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/LayoutCell.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/LayoutCell.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/LayoutContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ListHeader.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ListHeader.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/ListHeaderSegment.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Listbox.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Listbox.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ListboxItem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ListboxItem.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/ListboxTextItem.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/MenuBase.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/MenuBase.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/MenuItem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/MenuItem.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Menubar.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Menubar.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/MultiColumnList.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/widgets/MultiLineEditbox.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/PopupMenu.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/PopupMenu.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ProgressBar.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ProgressBar.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/PushButton.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/PushButton.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/RadioButton.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/RadioButton.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/ScrollablePane.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Scrollbar.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Scrollbar.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/ScrolledContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/widgets/ScrolledItemListBase.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="cegui/src/widgets/SequentialLayoutContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Slider.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Slider.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Spinner.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Spinner.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/TabButton.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/TabButton.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/TabControl.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/TabControl.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Thumb.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Thumb.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Titlebar.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Titlebar.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/ToggleButton.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/ToggleButton.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Tooltip.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Tooltip.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/Tree.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/Tree.cpp" ex="false" tool="1" flavor2="4">
       </item>
-      <item path="cegui/src/widgets/TreeItem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cegui/src/widgets/TreeItem.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="cegui/src/widgets/VerticalLayoutContainer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
-      <folder path="0/cegui/src/CommonDialogs">
+      <item path="dependencies/include/glm/core/dummy.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <folder path="0/cegui/src/CommonDialogs/ColourPicker">
         <ccTool>
           <incDir>
-            <pElem>cegui/include/CommonDialogs</pElem>
-            <pElem>cegui/src/CommonDialogs</pElem>
+            <pElem>cegui/src/CommonDialogs/ColourPicker</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUICOMMONDIALOGS_EXPORTS</Elem>
-          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/Corona">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/Corona</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/DevIL">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/DevIL</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/FreeImage">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/FreeImage</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/PVR">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/PVR</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/SILLY">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/SILLY</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/STB">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/STB</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ImageCodecModules/TGA">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ImageCodecModules/TGA</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/Direct3D10">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/Direct3D10</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/Direct3D11">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/Direct3D11</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/Direct3D9">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/Direct3D9</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/DirectFB">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/DirectFB</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/Irrlicht">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/Irrlicht</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/Null">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/Null</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/Ogre">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/Ogre</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/OpenGL">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/OpenGL</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/RendererModules/OpenGLES">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/RendererModules/OpenGLES</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ScriptModules/Lua">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ScriptModules/Lua</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ScriptModules/Python/bindings/output/CEGUI">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ScriptModules/Python/bindings/output/CEGUI</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ScriptModules/Python/bindings/output/CEGUINullRenderer">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ScriptModules/Python/bindings/output/CEGUINullRenderer</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ScriptModules/Python/bindings/output/CEGUIOgreRenderer">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ScriptModules/Python/bindings/output/CEGUIOgreRenderer</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/ScriptModules/Python/bindings/output/CEGUIOpenGLRenderer</pElem>
+          </incDir>
         </ccTool>
       </folder>
       <folder path="0/cegui/src/WindowRendererSets">
         <ccTool>
           <incDir>
-            <pElem>cegui/include/WindowRendererSets/Core</pElem>
             <pElem>cegui/src/WindowRendererSets/Core</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUICOREWINDOWRENDERERSET_EXPORTS</Elem>
-          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/XMLParserModules/Expat">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/XMLParserModules/Expat</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/XMLParserModules/Libxml2">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/XMLParserModules/Libxml2</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/XMLParserModules/RapidXML">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/XMLParserModules/RapidXML</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/XMLParserModules/TinyXML">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/XMLParserModules/TinyXML</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/XMLParserModules/Xerces">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/XMLParserModules/Xerces</pElem>
+          </incDir>
         </ccTool>
       </folder>
       <folder path="0/cegui/src/falagard">
         <ccTool>
           <incDir>
-            <pElem>cegui/src</pElem>
+            <pElem>cegui/src/falagard</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/cegui/src/implementations">
+        <ccTool>
+          <incDir>
+            <pElem>cegui/src/implementations/mac</pElem>
+          </incDir>
         </ccTool>
       </folder>
       <folder path="0/cegui/src/widgets">
         <ccTool>
           <incDir>
-            <pElem>cegui/src</pElem>
+            <pElem>cegui/src/widgets</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>CEGUIBASE_EXPORTS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
+      <folder path="0/dependencies">
+        <ccTool>
+          <incDir>
+            <pElem>dependencies/include/glm/core</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/CommonDialogsDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/CommonDialogsDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/Demo6">
+        <ccTool>
+          <incDir>
+            <pElem>samples/Demo6</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/Demo8">
+        <ccTool>
+          <incDir>
+            <pElem>samples/Demo8</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/DragDropDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/DragDropDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/EditboxValidationDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/EditboxValidationDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/EffectsDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/EffectsDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/FontDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/FontDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/GLESTest">
+        <ccTool>
+          <incDir>
+            <pElem>samples/GLESTest</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/GameMenu">
+        <ccTool>
+          <incDir>
+            <pElem>samples/GameMenu</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/HUDDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/HUDDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/HelloWorld">
+        <ccTool>
+          <incDir>
+            <pElem>samples/HelloWorld</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/InventoryDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/InventoryDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/Minesweeper">
+        <ccTool>
+          <incDir>
+            <pElem>samples/Minesweeper</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/ScrollablePaneDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/ScrollablePaneDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/TabControlDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/TabControlDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/TextDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/TextDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/TreeDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/TreeDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples/WidgetDemo">
+        <ccTool>
+          <incDir>
+            <pElem>samples/WidgetDemo</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/samples_framework">
+        <ccTool>
+          <incDir>
+            <pElem>samples_framework/src</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/tests">
+        <ccTool>
+          <incDir>
+            <pElem>tests</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <item path="samples/CommonDialogsDemo/CommonDialogsDemo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/Demo6/Sample_Demo6.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples/Demo8/Sample_Demo8.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples/DragDropDemo/Sample_DragDropDemo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/EditboxValidationDemo/EditboxValidation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/EffectsDemo/EffectsDemo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/FontDemo/Sample_FontDemo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/GLESTest/Sample_GLESTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/GameMenu/GameMenu.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples/HUDDemo/HUDemo.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples/HelloWorld/HelloWorld.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples/InventoryDemo/BoolArray2D.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/InventoryDemo/InventoryBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/InventoryDemo/InventoryItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/InventoryDemo/InventoryItemRenderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/InventoryDemo/InventoryReceiver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/InventoryDemo/Sample_InventoryDemo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/Minesweeper/Minesweeper_Timer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/Minesweeper/Sample_Minesweeper.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/ScrollablePaneDemo/Sample_ScrollablePane.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/TabControlDemo/Sample_TabControl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/TextDemo/Sample_Text.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples/TreeDemo/Sample_TreeDemo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples/WidgetDemo/WidgetDemo.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiBaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiD3D10BaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiD3D11BaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiD3D9BaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiDirectFBBaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiGLFWSharedBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiIrrlichtBaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiOgreBaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiOpenGL3BaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiOpenGLBaseApplication.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CEGuiRendererSelector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/CLICEGuiRendererSelector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/DeviceReset_Direct3D10.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/DeviceReset_Direct3D11.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/DeviceReset_Direct3D9.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/GTK2CEGuiRendererSelector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/MacCEGuiRendererSelector.mm"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/MetaDataWindowManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/SampleData.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/SamplesBrowserManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/SamplesFramework.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/SamplesFrameworkBase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/Samples_xmlHandler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/Win32AppHelper.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="samples_framework/src/Win32CEGuiRendererSelector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="tests/AnimationSystem.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Clipboard.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Element.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Entry.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/EventSet.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/NamedElement.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/PropertyHelper.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/PropertySet.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Quaternion.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/RegexMatching.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Size.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Spinner.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/String.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Vector.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="tests/Window.cpp" ex="false" tool="1" flavor2="4">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

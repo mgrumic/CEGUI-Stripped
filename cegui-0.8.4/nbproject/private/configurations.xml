@@ -109,6 +109,7 @@
                 <in>GeometryBuffer.h</in>
                 <in>ImageCodec.h</in>
                 <in>MemoryFile.h</in>
+                <in>Readme.txt</in>
                 <in>RenderTarget.h</in>
                 <in>Renderer.h</in>
                 <in>RendererDef.h</in>
@@ -444,6 +445,7 @@
               <in>Conversions.cpp</in>
               <in>Types.cpp</in>
             </df>
+            <in>CMakeLists.txt</in>
             <in>Module.cpp</in>
           </df>
           <df name="falagard">
@@ -472,34 +474,42 @@
             <df name="CMakeFiles">
             </df>
             <df name="Corona">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
             </df>
             <df name="DevIL">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
             </df>
             <df name="FreeImage">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
             </df>
             <df name="PVR">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
             </df>
             <df name="SILLY">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
             </df>
             <df name="STB">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
               <in>stb_image.cpp</in>
             </df>
             <df name="TGA">
+              <in>CMakeLists.txt</in>
               <in>ImageCodec.cpp</in>
               <in>ImageCodecModule.cpp</in>
             </df>
+            <in>CMakeLists.txt</in>
           </df>
           <df name="implementations">
             <df name="mac">
@@ -511,36 +521,47 @@
             <df name="CMakeFiles">
             </df>
             <df name="Direct3D10">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>Texture.cpp</in>
               <in>TextureTarget.cpp</in>
               <in>ViewportTarget.cpp</in>
+              <in>shader.txt</in>
             </df>
             <df name="Direct3D11">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>Texture.cpp</in>
               <in>TextureTarget.cpp</in>
               <in>ViewportTarget.cpp</in>
+              <in>shader.txt</in>
             </df>
             <df name="Direct3D9">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>Texture.cpp</in>
               <in>TextureTarget.cpp</in>
               <in>ViewportTarget.cpp</in>
             </df>
             <df name="DirectFB">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
               <in>RenderTarget.cpp</in>
               <in>Renderer.cpp</in>
               <in>Texture.cpp</in>
             </df>
             <df name="Irrlicht">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
               <in>ImageCodec.cpp</in>
               <in>MemoryFile.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>ResourceProvider.cpp</in>
               <in>Texture.cpp</in>
@@ -548,14 +569,18 @@
               <in>WindowTarget.cpp</in>
             </df>
             <df name="Null">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>Texture.cpp</in>
               <in>TextureTarget.cpp</in>
             </df>
             <df name="Ogre">
+              <in>CMakeLists.txt</in>
               <in>GeometryBuffer.cpp</in>
               <in>ImageCodec.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>ResourceProvider.cpp</in>
               <in>Texture.cpp</in>
@@ -564,6 +589,7 @@
             </df>
             <df name="OpenGL">
               <in>ApplePBTextureTarget.cpp</in>
+              <in>CMakeLists.txt</in>
               <in>GL3FBOTextureTarget.cpp</in>
               <in>GL3GeometryBuffer.cpp</in>
               <in>GL3Renderer.cpp</in>
@@ -572,6 +598,7 @@
               <in>GLRenderer.cpp</in>
               <in>GLXPBTextureTarget.cpp</in>
               <in>GeometryBufferBase.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>RendererBase.cpp</in>
               <in>Shader.cpp</in>
               <in>ShaderManager.cpp</in>
@@ -582,12 +609,15 @@
               <in>WGLPBTextureTarget.cpp</in>
             </df>
             <df name="OpenGLES">
+              <in>CMakeLists.txt</in>
               <in>FBOTextureTarget.cpp</in>
               <in>GeometryBuffer.cpp</in>
+              <in>RenderTarget.inl</in>
               <in>Renderer.cpp</in>
               <in>Texture.cpp</in>
               <in>ViewportTarget.cpp</in>
             </df>
+            <in>CMakeLists.txt</in>
           </df>
           <df name="ScriptModules">
             <df name="CMakeFiles">
@@ -603,11 +633,13 @@
                 <df name="tolua++bin">
                   <df name="lua">
                   </df>
+                  <in>CMakeLists.txt</in>
                   <in>tolua.c</in>
                   <in>toluabind.c</in>
                   <in>toluabind.h</in>
                 </df>
               </df>
+              <in>CMakeLists.txt</in>
               <in>Functor.cpp</in>
               <in>ScriptModule.cpp</in>
               <in>lua_CEGUI.cpp</in>
@@ -1222,8 +1254,10 @@
                     <in>PyCEGUIOpenGLRenderer.main.cpp</in>
                   </df>
                 </df>
+                <in>CMakeLists.txt</in>
               </df>
             </df>
+            <in>CMakeLists.txt</in>
           </df>
           <df name="widgets">
             <in>ButtonBase.cpp</in>
@@ -1282,6 +1316,7 @@
                 </df>
               </df>
               <in>Button.cpp</in>
+              <in>CMakeLists.txt</in>
               <in>Default.cpp</in>
               <in>Editbox.cpp</in>
               <in>FrameWindow.cpp</in>
@@ -1310,31 +1345,38 @@
               <in>Tooltip.cpp</in>
               <in>Tree.cpp</in>
             </df>
+            <in>CMakeLists.txt</in>
           </df>
           <df name="XMLParserModules">
             <df name="CMakeFiles">
             </df>
             <df name="Expat">
+              <in>CMakeLists.txt</in>
               <in>XMLParser.cpp</in>
               <in>XMLParserModule.cpp</in>
             </df>
             <df name="Libxml2">
+              <in>CMakeLists.txt</in>
               <in>XMLParser.cpp</in>
               <in>XMLParserModule.cpp</in>
             </df>
             <df name="RapidXML">
+              <in>CMakeLists.txt</in>
               <in>XMLParser.cpp</in>
               <in>XMLParserModule.cpp</in>
             </df>
             <df name="TinyXML">
+              <in>CMakeLists.txt</in>
               <in>XMLParser.cpp</in>
               <in>XMLParserModule.cpp</in>
             </df>
             <df name="Xerces">
+              <in>CMakeLists.txt</in>
               <in>XMLParser.cpp</in>
               <in>XMLParserModule.cpp</in>
               <in>XMLParserProperties.cpp</in>
             </df>
+            <in>CMakeLists.txt</in>
           </df>
           <in>Affector.cpp</in>
           <in>Animation.cpp</in>
@@ -1346,6 +1388,7 @@
           <in>BasicRenderedStringParser.cpp</in>
           <in>BidiVisualMapping.cpp</in>
           <in>BoundSlot.cpp</in>
+          <in>CMakeLists.txt</in>
           <in>CentredRenderedString.cpp</in>
           <in>ChainedXMLHandler.cpp</in>
           <in>Clipboard.cpp</in>
@@ -1446,8 +1489,7 @@
             <in>CMakeCXXCompilerId.cpp</in>
           </df>
         </df>
-        <df name="CMakeTmp">
-        </df>
+        <in>TargetDirectories.txt</in>
       </df>
       <df name="datafiles">
         <df name="animations">
@@ -1461,8 +1503,16 @@
           </df>
         </df>
         <df name="fonts">
+          <in>Legal.txt</in>
+          <in>LicenseApache.txt</in>
+          <in>LicenseDejaVu.txt</in>
+          <in>LicenseGPL.txt</in>
+          <in>LicenseMIT.txt</in>
+          <in>LicenseSIL.txt</in>
+          <in>LicenseUbuntuFont.txt</in>
         </df>
         <df name="imagesets">
+          <in>ReadMe.txt</in>
         </df>
         <df name="layouts">
         </df>
@@ -1476,6 +1526,7 @@
         </df>
         <df name="xml_schemas">
         </df>
+        <in>CMakeLists.txt</in>
       </df>
       <df name="dependencies">
         <df name="bin">
@@ -1587,119 +1638,222 @@
               <in>_vectorize.hpp</in>
               <in>dummy.cpp</in>
               <in>func_common.hpp</in>
+              <in>func_common.inl</in>
               <in>func_exponential.hpp</in>
+              <in>func_exponential.inl</in>
               <in>func_geometric.hpp</in>
+              <in>func_geometric.inl</in>
               <in>func_integer.hpp</in>
+              <in>func_integer.inl</in>
               <in>func_matrix.hpp</in>
+              <in>func_matrix.inl</in>
               <in>func_noise.hpp</in>
+              <in>func_noise.inl</in>
               <in>func_packing.hpp</in>
+              <in>func_packing.inl</in>
               <in>func_trigonometric.hpp</in>
+              <in>func_trigonometric.inl</in>
               <in>func_vector_relational.hpp</in>
+              <in>func_vector_relational.inl</in>
               <in>hint.hpp</in>
               <in>intrinsic_common.hpp</in>
+              <in>intrinsic_common.inl</in>
               <in>intrinsic_exponential.hpp</in>
+              <in>intrinsic_exponential.inl</in>
               <in>intrinsic_geometric.hpp</in>
+              <in>intrinsic_geometric.inl</in>
               <in>intrinsic_matrix.hpp</in>
+              <in>intrinsic_matrix.inl</in>
               <in>intrinsic_trigonometric.hpp</in>
+              <in>intrinsic_trigonometric.inl</in>
               <in>intrinsic_vector_relational.hpp</in>
+              <in>intrinsic_vector_relational.inl</in>
               <in>setup.hpp</in>
               <in>type.hpp</in>
               <in>type_float.hpp</in>
               <in>type_gentype.hpp</in>
+              <in>type_gentype.inl</in>
               <in>type_half.hpp</in>
+              <in>type_half.inl</in>
               <in>type_int.hpp</in>
               <in>type_mat.hpp</in>
+              <in>type_mat.inl</in>
               <in>type_mat2x2.hpp</in>
+              <in>type_mat2x2.inl</in>
               <in>type_mat2x3.hpp</in>
+              <in>type_mat2x3.inl</in>
               <in>type_mat2x4.hpp</in>
+              <in>type_mat2x4.inl</in>
               <in>type_mat3x2.hpp</in>
+              <in>type_mat3x2.inl</in>
               <in>type_mat3x3.hpp</in>
+              <in>type_mat3x3.inl</in>
               <in>type_mat3x4.hpp</in>
+              <in>type_mat3x4.inl</in>
               <in>type_mat4x2.hpp</in>
+              <in>type_mat4x2.inl</in>
               <in>type_mat4x3.hpp</in>
+              <in>type_mat4x3.inl</in>
               <in>type_mat4x4.hpp</in>
+              <in>type_mat4x4.inl</in>
               <in>type_size.hpp</in>
               <in>type_vec.hpp</in>
+              <in>type_vec.inl</in>
               <in>type_vec1.hpp</in>
+              <in>type_vec1.inl</in>
               <in>type_vec2.hpp</in>
+              <in>type_vec2.inl</in>
               <in>type_vec3.hpp</in>
+              <in>type_vec3.inl</in>
               <in>type_vec4.hpp</in>
+              <in>type_vec4.inl</in>
             </df>
             <df name="gtc">
               <in>half_float.hpp</in>
+              <in>half_float.inl</in>
               <in>matrix_access.hpp</in>
+              <in>matrix_access.inl</in>
               <in>matrix_integer.hpp</in>
               <in>matrix_inverse.hpp</in>
+              <in>matrix_inverse.inl</in>
               <in>matrix_transform.hpp</in>
+              <in>matrix_transform.inl</in>
               <in>noise.hpp</in>
+              <in>noise.inl</in>
               <in>quaternion.hpp</in>
+              <in>quaternion.inl</in>
               <in>random.hpp</in>
+              <in>random.inl</in>
               <in>swizzle.hpp</in>
+              <in>swizzle.inl</in>
               <in>type_precision.hpp</in>
+              <in>type_precision.inl</in>
               <in>type_ptr.hpp</in>
+              <in>type_ptr.inl</in>
             </df>
             <df name="gtx">
               <in>associated_min_max.hpp</in>
+              <in>associated_min_max.inl</in>
               <in>bit.hpp</in>
+              <in>bit.inl</in>
               <in>closest_point.hpp</in>
+              <in>closest_point.inl</in>
               <in>color_cast.hpp</in>
+              <in>color_cast.inl</in>
               <in>color_space.hpp</in>
+              <in>color_space.inl</in>
               <in>color_space_YCoCg.hpp</in>
+              <in>color_space_YCoCg.inl</in>
               <in>compatibility.hpp</in>
+              <in>compatibility.inl</in>
               <in>component_wise.hpp</in>
+              <in>component_wise.inl</in>
               <in>constants.hpp</in>
+              <in>constants.inl</in>
               <in>epsilon.hpp</in>
+              <in>epsilon.inl</in>
               <in>euler_angles.hpp</in>
+              <in>euler_angles.inl</in>
               <in>extend.hpp</in>
+              <in>extend.inl</in>
               <in>extented_min_max.hpp</in>
+              <in>extented_min_max.inl</in>
               <in>fast_exponential.hpp</in>
+              <in>fast_exponential.inl</in>
               <in>fast_square_root.hpp</in>
+              <in>fast_square_root.inl</in>
               <in>fast_trigonometry.hpp</in>
+              <in>fast_trigonometry.inl</in>
               <in>gradient_paint.hpp</in>
+              <in>gradient_paint.inl</in>
               <in>handed_coordinate_space.hpp</in>
+              <in>handed_coordinate_space.inl</in>
               <in>inertia.hpp</in>
+              <in>inertia.inl</in>
               <in>int_10_10_10_2.hpp</in>
+              <in>int_10_10_10_2.inl</in>
               <in>integer.hpp</in>
+              <in>integer.inl</in>
               <in>intersect.hpp</in>
+              <in>intersect.inl</in>
               <in>log_base.hpp</in>
+              <in>log_base.inl</in>
               <in>matrix_cross_product.hpp</in>
+              <in>matrix_cross_product.inl</in>
               <in>matrix_interpolation.hpp</in>
+              <in>matrix_interpolation.inl</in>
               <in>matrix_major_storage.hpp</in>
+              <in>matrix_major_storage.inl</in>
               <in>matrix_operation.hpp</in>
+              <in>matrix_operation.inl</in>
               <in>matrix_query.hpp</in>
+              <in>matrix_query.inl</in>
               <in>mixed_product.hpp</in>
+              <in>mixed_product.inl</in>
               <in>multiple.hpp</in>
+              <in>multiple.inl</in>
               <in>noise.hpp</in>
+              <in>noise.inl</in>
               <in>norm.hpp</in>
+              <in>norm.inl</in>
               <in>normal.hpp</in>
+              <in>normal.inl</in>
               <in>normalize_dot.hpp</in>
+              <in>normalize_dot.inl</in>
               <in>number_precision.hpp</in>
+              <in>number_precision.inl</in>
               <in>ocl_type.hpp</in>
+              <in>ocl_type.inl</in>
               <in>optimum_pow.hpp</in>
+              <in>optimum_pow.inl</in>
               <in>orthonormalize.hpp</in>
+              <in>orthonormalize.inl</in>
               <in>perpendicular.hpp</in>
+              <in>perpendicular.inl</in>
               <in>polar_coordinates.hpp</in>
+              <in>polar_coordinates.inl</in>
               <in>projection.hpp</in>
+              <in>projection.inl</in>
               <in>quaternion.hpp</in>
+              <in>quaternion.inl</in>
               <in>random.hpp</in>
+              <in>random.inl</in>
               <in>raw_data.hpp</in>
+              <in>raw_data.inl</in>
               <in>reciprocal.hpp</in>
+              <in>reciprocal.inl</in>
               <in>rotate_vector.hpp</in>
+              <in>rotate_vector.inl</in>
               <in>simd_mat4.hpp</in>
+              <in>simd_mat4.inl</in>
               <in>simd_vec4.hpp</in>
+              <in>simd_vec4.inl</in>
               <in>spline.hpp</in>
+              <in>spline.inl</in>
               <in>std_based_type.hpp</in>
+              <in>std_based_type.inl</in>
               <in>string_cast.hpp</in>
+              <in>string_cast.inl</in>
               <in>transform.hpp</in>
+              <in>transform.inl</in>
               <in>transform2.hpp</in>
+              <in>transform2.inl</in>
               <in>ulp.hpp</in>
+              <in>ulp.inl</in>
               <in>unsigned_int.hpp</in>
+              <in>unsigned_int.inl</in>
               <in>vec1.hpp</in>
+              <in>vec1.inl</in>
               <in>vector_access.hpp</in>
+              <in>vector_access.inl</in>
               <in>vector_angle.hpp</in>
+              <in>vector_angle.inl</in>
               <in>vector_query.hpp</in>
+              <in>vector_query.inl</in>
               <in>verbose_operator.hpp</in>
+              <in>verbose_operator.inl</in>
               <in>wrap.hpp</in>
+              <in>wrap.inl</in>
             </df>
             <df name="virtrev">
               <in>xstream.hpp</in>
@@ -1748,6 +1902,18 @@
           <df name="static">
           </df>
         </df>
+        <in>SILLY-license.txt</in>
+        <in>freetype-license.txt</in>
+        <in>glew-license.txt</in>
+        <in>glfw-COPYTING.txt</in>
+        <in>glm-copying.txt</in>
+        <in>jpeg-README.txt</in>
+        <in>libpng-license.txt</in>
+        <in>lua-license.txt</in>
+        <in>pcre-license.txt</in>
+        <in>tinyxml-license.txt</in>
+        <in>tolua++-license.txt</in>
+        <in>zlib-README.txt</in>
       </df>
       <df name="doc">
         <df name="doxygen">
@@ -1770,50 +1936,62 @@
           </df>
         </df>
         <df name="CommonDialogsDemo">
+          <in>CMakeLists.txt</in>
           <in>CommonDialogsDemo.cpp</in>
         </df>
         <df name="Demo6">
+          <in>CMakeLists.txt</in>
           <in>Sample_Demo6.cpp</in>
           <in>Sample_Demo6.h</in>
         </df>
         <df name="Demo8">
+          <in>CMakeLists.txt</in>
           <in>Sample_Demo8.cpp</in>
           <in>Sample_Demo8.h</in>
         </df>
         <df name="DragDropDemo">
+          <in>CMakeLists.txt</in>
           <in>Sample_DragDropDemo.cpp</in>
           <in>Sample_DragDropDemo.h</in>
         </df>
         <df name="EditboxValidationDemo">
+          <in>CMakeLists.txt</in>
           <in>EditboxValidation.cpp</in>
           <in>EditboxValidation.h</in>
         </df>
         <df name="EffectsDemo">
+          <in>CMakeLists.txt</in>
           <in>EffectsDemo.cpp</in>
           <in>EffectsDemo.h</in>
         </df>
         <df name="FontDemo">
+          <in>CMakeLists.txt</in>
           <in>Sample_FontDemo.cpp</in>
           <in>Sample_FontDemo.h</in>
         </df>
         <df name="GameMenu">
+          <in>CMakeLists.txt</in>
           <in>GameMenu.cpp</in>
           <in>GameMenu.h</in>
         </df>
         <df name="GLESTest">
+          <in>CMakeLists.txt</in>
           <in>Sample_GLESTest.cpp</in>
         </df>
         <df name="HelloWorld">
+          <in>CMakeLists.txt</in>
           <in>HelloWorld.cpp</in>
           <in>HelloWorld.h</in>
         </df>
         <df name="HUDDemo">
+          <in>CMakeLists.txt</in>
           <in>HUDDemo.h</in>
           <in>HUDemo.cpp</in>
         </df>
         <df name="InventoryDemo">
           <in>BoolArray2D.cpp</in>
           <in>BoolArray2D.h</in>
+          <in>CMakeLists.txt</in>
           <in>InventoryBase.cpp</in>
           <in>InventoryBase.h</in>
           <in>InventoryItem.cpp</in>
@@ -1826,28 +2004,36 @@
           <in>Sample_InventoryDemo.h</in>
         </df>
         <df name="Minesweeper">
+          <in>CMakeLists.txt</in>
           <in>Minesweeper_Timer.cpp</in>
           <in>Minesweeper_Timer.h</in>
           <in>Sample_Minesweeper.cpp</in>
         </df>
         <df name="ScrollablePaneDemo">
+          <in>CMakeLists.txt</in>
           <in>Sample_ScrollablePane.cpp</in>
         </df>
         <df name="TabControlDemo">
+          <in>CMakeLists.txt</in>
           <in>Sample_TabControl.cpp</in>
         </df>
         <df name="TextDemo">
+          <in>CMakeLists.txt</in>
           <in>Sample_Text.cpp</in>
           <in>Sample_Text.h</in>
         </df>
         <df name="TreeDemo">
+          <in>CMakeLists.txt</in>
           <in>Sample_TreeDemo.cpp</in>
           <in>Sample_TreeDemo.h</in>
         </df>
         <df name="WidgetDemo">
+          <in>CMakeLists.txt</in>
           <in>WidgetDemo.cpp</in>
           <in>WidgetDemo.h</in>
         </df>
+        <in>CMakeLists.txt</in>
+        <in>ReadMe.txt</in>
       </df>
       <df name="samples_framework">
         <df name="include">
@@ -1901,11 +2087,13 @@
           <in>Win32AppHelper.cpp</in>
           <in>Win32CEGuiRendererSelector.cpp</in>
         </df>
+        <in>CMakeLists.txt</in>
       </df>
       <df name="templates">
       </df>
       <df name="tests">
         <in>AnimationSystem.cpp</in>
+        <in>CMakeLists.txt</in>
         <in>Clipboard.cpp</in>
         <in>Element.cpp</in>
         <in>Entry.cpp</in>
@@ -1921,6 +2109,9 @@
         <in>Vector.cpp</in>
         <in>Window.cpp</in>
       </df>
+      <in>CMakeCache.txt</in>
+      <in>CMakeLists.txt</in>
+      <in>cl.txt</in>
     </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
