@@ -36,7 +36,9 @@
 #include "CEGUI/WindowFactoryManager.h"
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/SchemeManager.h"
+#ifndef PE_NO_RENDEREFFECT
 #include "CEGUI/RenderEffectManager.h"
+#endif //PE_NO_RENDEREFFECT
 #ifndef PE_NO_ANIMATION
 #include "CEGUI/AnimationManager.h"
 #endif //PE_NO_ANIMATION
@@ -755,7 +757,9 @@ void System::createSingletons()
 #endif //PE_NO_ANIMATION
     CEGUI_NEW_AO WidgetLookManager();
     CEGUI_NEW_AO WindowRendererManager();
+#ifndef PE_NO_RENDEREFFECT
     CEGUI_NEW_AO RenderEffectManager();
+#endif //PE_NO_RENDEREFFECT
 }
 
 void System::destroySingletons()
@@ -768,7 +772,9 @@ void System::destroySingletons()
 #ifndef PE_NO_ANIMATION
     CEGUI_DELETE_AO AnimationManager::getSingletonPtr();
 #endif //PE_NO_ANIMATION
+#ifndef PE_NO_RENDEREFFECT
     CEGUI_DELETE_AO RenderEffectManager::getSingletonPtr();
+#endif //PE_NO_RENDEREFFECT
     CEGUI_DELETE_AO FontManager::getSingletonPtr();
     CEGUI_DELETE_AO ImageManager::getSingletonPtr();
     CEGUI_DELETE_AO GlobalEventSet::getSingletonPtr();

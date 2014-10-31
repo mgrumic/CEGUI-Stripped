@@ -155,7 +155,7 @@ void WindowManager::initialiseRenderEffect(
     // nothing to do if effect is empty string
     if (effect.empty())
         return;
-
+#ifndef PE_NO_RENDEREFFECT
     // if requested RenderEffect is not available, log that and continue
     if (!RenderEffectManager::getSingleton().isEffectAvailable(effect))
     {
@@ -167,7 +167,7 @@ void WindowManager::initialiseRenderEffect(
 
        return;
     }
-
+#endif //PE_NO_RENDEREFFECT
     // If we do not have a RenderingSurface, enable AutoRenderingSurface to
     // try and create one
     if (!wnd->getRenderingSurface())
@@ -184,10 +184,12 @@ void WindowManager::initialiseRenderEffect(
     if (wnd->getRenderingSurface() &&
         wnd->getRenderingSurface()->isRenderingWindow())
     {
+#ifndef PE_NO_RENDEREFFECT
         // Set an instance of the requested RenderEffect
         static_cast<RenderingWindow*>(wnd->getRenderingSurface())->
                 setRenderEffect(&RenderEffectManager::getSingleton().
                         create(effect, wnd));
+#endif //PE_NO_RENDEREFFECT
     }
     // log fact that we could not get a usable RenderingSurface
     else

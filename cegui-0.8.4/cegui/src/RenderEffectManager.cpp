@@ -25,7 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/RenderEffectManager.h"
-
+#ifndef PE_NO_RENDEREFFECT
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -146,6 +146,6 @@ void RenderEffectManager::destroy(RenderEffect& effect)
 }
 
 //---------------------------------------------------------------------------//
-
 } // End of  CEGUI namespace section
+#endif //PE_NO_RENDEREFFECT
 

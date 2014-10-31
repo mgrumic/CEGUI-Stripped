@@ -154,7 +154,7 @@ TextureTarget& RenderingWindow::getTextureTarget()
     return const_cast<TextureTarget&>(
         static_cast<const RenderingWindow*>(this)->getTextureTarget());
 }
-
+#ifndef PE_NO_RENDEREFFECT
 //----------------------------------------------------------------------------//
 void RenderingWindow::update(const float elapsed)
 {
@@ -163,7 +163,6 @@ void RenderingWindow::update(const float elapsed)
     if (effect)
         d_geometryValid &= effect->update(elapsed, *this);
 }
-
 //----------------------------------------------------------------------------//
 void RenderingWindow::setRenderEffect(RenderEffect* effect)
 {
@@ -175,6 +174,7 @@ RenderEffect* RenderingWindow::getRenderEffect()
 {
     return d_geometry->getRenderEffect();
 }
+#endif //PE_NO_RENDEREFFECT
 
 //----------------------------------------------------------------------------//
 const RenderingSurface& RenderingWindow::getOwner() const
@@ -234,7 +234,6 @@ bool RenderingWindow::isRenderingWindow() const
 {
     return true;
 }
-
 //----------------------------------------------------------------------------//
 void RenderingWindow::realiseGeometry()
 {
@@ -243,11 +242,13 @@ void RenderingWindow::realiseGeometry()
 
     d_geometry->reset();
 
+#ifndef PE_NO_RENDEREFFECT
     RenderEffect* effect = d_geometry->getRenderEffect();
 
     if (!effect || effect->realiseGeometry(*this, *d_geometry))
         realiseGeometry_impl();
 
+#endif //PE_NO_RENDEREFFECT
     d_geometryValid = true;
  }
 //----------------------------------------------------------------------------//

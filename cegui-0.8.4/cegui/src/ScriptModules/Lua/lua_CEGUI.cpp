@@ -30126,13 +30126,15 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_setRenderEffect00(lua_State* tolua_S
 #endif
  {
   CEGUI::GeometryBuffer* self = (CEGUI::GeometryBuffer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef PE_NO_RENDEREFFECT
   CEGUI::RenderEffect* effect = ((CEGUI::RenderEffect*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setRenderEffect'",NULL);
 #endif
- {
   self->setRenderEffect(effect);
+ {
  }
+#endif //PE_NO_RENDEREFFECT
  }
  return 0;
 #ifndef TOLUA_RELEASE
@@ -30142,7 +30144,7 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_setRenderEffect00(lua_State* tolua_S
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_RENDEREFFECT
 /* method: getRenderEffect of class  CEGUI::GeometryBuffer */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GeometryBuffer_getRenderEffect00
 static int tolua_CEGUI_CEGUI_GeometryBuffer_getRenderEffect00(lua_State* tolua_S)
@@ -30174,7 +30176,7 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_getRenderEffect00(lua_State* tolua_S
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif //PE_NO_RENDEREFFECT
 /* method: addGeometryBuffer of class  CEGUI::RenderingSurface */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_RenderingSurface_addGeometryBuffer00
 static int tolua_CEGUI_CEGUI_RenderingSurface_addGeometryBuffer00(lua_State* tolua_S)
@@ -31454,7 +31456,7 @@ static int tolua_CEGUI_CEGUI_RenderingWindow_getPivot00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 #endif  // PE_NO_VECTOR3D
-
+#ifndef PE_NO_RENDEREFFECT
 /* method: setRenderEffect of class  CEGUI::RenderingWindow */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_RenderingWindow_setRenderEffect00
 static int tolua_CEGUI_CEGUI_RenderingWindow_setRenderEffect00(lua_State* tolua_S)
@@ -31487,7 +31489,6 @@ static int tolua_CEGUI_CEGUI_RenderingWindow_setRenderEffect00(lua_State* tolua_
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
 /* method: getRenderEffect of class  CEGUI::RenderingWindow */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_RenderingWindow_getRenderEffect00
 static int tolua_CEGUI_CEGUI_RenderingWindow_getRenderEffect00(lua_State* tolua_S)
@@ -31519,6 +31520,7 @@ static int tolua_CEGUI_CEGUI_RenderingWindow_getRenderEffect00(lua_State* tolua_
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_RENDEREFFECT
 
 /* method: getOwner of class  CEGUI::RenderingWindow */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_RenderingWindow_getOwner00
@@ -66909,8 +66911,10 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getActiveTexture",tolua_CEGUI_CEGUI_GeometryBuffer_getActiveTexture00);
    tolua_function(tolua_S,"getVertexCount",tolua_CEGUI_CEGUI_GeometryBuffer_getVertexCount00);
    tolua_function(tolua_S,"getBatchCount",tolua_CEGUI_CEGUI_GeometryBuffer_getBatchCount00);
+#ifndef PE_NO_RENDEREFFECT
    tolua_function(tolua_S,"setRenderEffect",tolua_CEGUI_CEGUI_GeometryBuffer_setRenderEffect00);
    tolua_function(tolua_S,"getRenderEffect",tolua_CEGUI_CEGUI_GeometryBuffer_getRenderEffect00);
+#endif //PE_NO_RENDEREFFECT
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"RQ_USER_0",CEGUI::RQ_USER_0);
   tolua_constant(tolua_S,"RQ_UNDERLAY",CEGUI::RQ_UNDERLAY);
@@ -66981,8 +66985,10 @@ int tolua_CEGUI_open (lua_State* tolua_S)
 #ifndef PE_NO_VECTOR3D
    tolua_function(tolua_S,"getPivot",tolua_CEGUI_CEGUI_RenderingWindow_getPivot00);
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_RENDEREFFECT
    tolua_function(tolua_S,"setRenderEffect",tolua_CEGUI_CEGUI_RenderingWindow_setRenderEffect00);
    tolua_function(tolua_S,"getRenderEffect",tolua_CEGUI_CEGUI_RenderingWindow_getRenderEffect00);
+#endif //PE_NO_RENDEREFFECT
    tolua_function(tolua_S,"getOwner",tolua_CEGUI_CEGUI_RenderingWindow_getOwner00);
    tolua_function(tolua_S,"getOwner",tolua_CEGUI_CEGUI_RenderingWindow_getOwner01);
    tolua_function(tolua_S,"unprojectPoint",tolua_CEGUI_CEGUI_RenderingWindow_unprojectPoint00);

@@ -26,7 +26,7 @@
  ***************************************************************************/
 #ifndef _CEGUIRenderEffectFactory_h_
 #define _CEGUIRenderEffectFactory_h_
-
+#ifndef  PE_NO_RENDEREFFECT
 #include "CEGUI/RenderEffect.h"
 
 // Start of CEGUI namespace section
@@ -78,6 +78,6 @@ void TplRenderEffectFactory<T>::destroy(RenderEffect& effect)
 //---------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
-
+#endif //PE_NO_RENDEREFFECT
 #endif  // end of guard _CEGUIRenderEffectFactory_h_
 

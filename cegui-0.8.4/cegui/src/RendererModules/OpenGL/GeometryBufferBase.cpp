@@ -52,7 +52,9 @@ OpenGLGeometryBufferBase::OpenGLGeometryBufferBase(OpenGLRendererBase& owner) :
 #ifndef PE_NO_VECTOR3D
     d_pivot(0, 0, 0),
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_RENDEREFFECT
     d_effect(0),
+#endif //PE_NO_RENDEREFFECT
     d_matrix(new mat4Pimpl()),
     d_matrixValid(false)
 {
@@ -184,18 +186,18 @@ void OpenGLGeometryBufferBase::performBatchManagement()
     }
 }
 
+#ifndef PE_NO_RENDEREFFECT
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setRenderEffect(RenderEffect* effect)
 {
     d_effect = effect;
 }
-
 //----------------------------------------------------------------------------//
 RenderEffect* OpenGLGeometryBufferBase::getRenderEffect()
 {
     return d_effect;
 }
-
+#endif //PE_NO_RENDEREFFECT
 //----------------------------------------------------------------------------//
 const mat4Pimpl* OpenGLGeometryBufferBase::getMatrix() const
 {

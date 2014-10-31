@@ -26,7 +26,7 @@
  ***************************************************************************/
 #ifndef _CEGUIRenderEffect_h_
 #define _CEGUIRenderEffect_h_
-
+#ifndef PE_NO_RENDEREFFECT
 #include "CEGUI/Base.h"
 
 // Start of CEGUI namespace section
@@ -129,5 +129,5 @@ public:
 };
 
 } // End of  CEGUI namespace section
-
+#endif //PE_NO_RENDEREFFECT
 #endif  // end of guard _CEGUIRenderEffect_h_
