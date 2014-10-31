@@ -678,9 +678,11 @@ float FontDim::getValue(const Window& wnd) const
             case FMT_BASELINE:
                 return fontObj->getBaseline() + d_padding;
                 break;
+#ifndef PE_NO_FONT_GLYPH
             case FMT_HORZ_EXTENT:
                 return fontObj->getTextExtent(d_text.empty() ? sourceWindow.getText() : d_text) + d_padding;
                 break;
+#endif //PE_NO_FONT_GLYPH                
             default:
                 CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS

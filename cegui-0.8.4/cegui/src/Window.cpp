@@ -3477,9 +3477,10 @@ void Window::onRotated(ElementEventArgs& e)
 
         return;
     }
-
+#ifndef PE_NO_QUATERNION
     // Checks / setup complete!  Now we can finally set the rotation.
     static_cast<RenderingWindow*>(d_surface)->setRotation(d_rotation);
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
     static_cast<RenderingWindow*>(d_surface)->setPivot(
         Vector3f(d_pixelSize.d_width / 2.0f, d_pixelSize.d_height / 2.0f, 0.0f));

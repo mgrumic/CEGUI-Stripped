@@ -45,8 +45,10 @@ RenderingWindow::RenderingWindow(TextureTarget& target, RenderingSurface& owner)
     d_geometry(&d_renderer.createGeometryBuffer()),
     d_geometryValid(false),
     d_position(0, 0),
-    d_size(0, 0),
-    d_rotation(Quaternion::IDENTITY)
+    d_size(0, 0)
+#ifndef PE_NO_QUATERNION
+,d_rotation(Quaternion::IDENTITY)
+#endif //PE_NO_QUATERNION
 {
     d_geometry->setBlendMode(BM_RTT_PREMULTIPLIED);
 }
@@ -104,12 +106,14 @@ void RenderingWindow::setSize(const Sizef& size)
     d_textarget.declareRenderSize(d_size);
 }
 
+#ifndef PE_NO_QUATERNION
 //----------------------------------------------------------------------------//
 void RenderingWindow::setRotation(const Quaternion& rotation)
 {
     d_rotation = rotation;
     d_geometry->setRotation(d_rotation);
 }
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void RenderingWindow::setPivot(const Vector3f& pivot)
@@ -129,12 +133,13 @@ const Sizef& RenderingWindow::getSize() const
 {
     return d_size;
 }
-
+#ifndef PE_NO_QUATERNION
 //----------------------------------------------------------------------------//
 const Quaternion& RenderingWindow::getRotation() const
 {
     return d_rotation;
 }
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 const Vector3f& RenderingWindow::getPivot() const
@@ -327,12 +332,14 @@ void RenderingWindow::realiseGeometry_impl()
 //----------------------------------------------------------------------------//
 void RenderingWindow::unprojectPoint(const Vector2f& p_in, Vector2f& p_out)
 {
+#ifndef PE_NO_QUATERNION
     // quick test for rotations to save us a lot of work in the unrotated case
     if ((d_rotation == Quaternion::IDENTITY))
     {
         p_out = p_in;
         return;
     }
+#endif //PE_NO_QUATERNION
 
     Vector2f in(p_in);
 

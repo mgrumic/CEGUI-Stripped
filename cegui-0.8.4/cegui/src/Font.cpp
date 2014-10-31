@@ -60,8 +60,10 @@ Font::Font(const String& name, const String& type_name, const String& filename,
     d_height(0),
     d_autoScaled(auto_scaled),
     d_nativeResolution(native_res),
-    d_maxCodepoint(0),
-    d_glyphPageLoaded(0)
+    d_maxCodepoint(0)
+#ifndef PE_NO_FONT_GLYPH
+,d_glyphPageLoaded(0)
+#endif //PE_NO_FONT_GLYPH
 {
     addFontProperties();
 
@@ -73,6 +75,7 @@ Font::Font(const String& name, const String& type_name, const String& filename,
 //----------------------------------------------------------------------------//
 Font::~Font()
 {
+#ifndef PE_NO_FONT_GLYPH
     if (d_glyphPageLoaded)
     {
         const uint old_size = (((d_maxCodepoint + GLYPHS_PER_PAGE) / GLYPHS_PER_PAGE)
@@ -80,6 +83,7 @@ Font::~Font()
 
         CEGUI_DELETE_ARRAY_PT(d_glyphPageLoaded, uint, old_size, Font);
     }
+#endif //PE_NO_FONT_GLYPH
 }
 
 //----------------------------------------------------------------------------//
@@ -126,6 +130,7 @@ void Font::addFontProperties()
 //----------------------------------------------------------------------------//
 void Font::setMaxCodepoint(utf32 codepoint)
 {
+#ifndef PE_NO_FONT_GLYPH
     if (d_glyphPageLoaded)
     {
         const uint old_size = (((d_maxCodepoint + GLYPHS_PER_PAGE) / GLYPHS_PER_PAGE)
@@ -133,16 +138,18 @@ void Font::setMaxCodepoint(utf32 codepoint)
 
         CEGUI_DELETE_ARRAY_PT(d_glyphPageLoaded, uint, old_size, Font);
     }
+#endif //PE_NO_FONT_GLYPH
 
     d_maxCodepoint = codepoint;
 
     const uint npages = (codepoint + GLYPHS_PER_PAGE) / GLYPHS_PER_PAGE;
     const uint size = (npages + BITS_PER_UINT - 1) / BITS_PER_UINT;
-
+#ifndef PE_NO_FONT_GLYPH
     d_glyphPageLoaded = CEGUI_NEW_ARRAY_PT(uint, size, Font);
     memset(d_glyphPageLoaded, 0, size * sizeof(uint));
+#endif //PE_NO_FONT_GLYPH
 }
-
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 const FontGlyph* Font::getGlyphData(utf32 codepoint) const
 {
@@ -166,20 +173,23 @@ const FontGlyph* Font::getGlyphData(utf32 codepoint) const
 
     return glyph;
 }
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 const FontGlyph* Font::findFontGlyph(const utf32 codepoint) const
 {
     CodepointMap::const_iterator pos = d_cp_map.find(codepoint);
     return (pos != d_cp_map.end()) ? &pos->second : 0;
 }
-
+#endif //PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 float Font::getTextExtent(const String& text, float x_scale) const
 {
+#ifndef PE_NO_FONT_GLYPH
     const FontGlyph* glyph;
+#endif //PE_NO_FONT_GLYPH
     float cur_extent = 0, adv_extent = 0, width;
-
+ #ifndef PE_NO_FONT_GLYPH   
     for (size_t c = 0; c < text.length(); ++c)
     {
         glyph = getGlyphData(text[c]);
@@ -195,6 +205,7 @@ float Font::getTextExtent(const String& text, float x_scale) const
         }
     }
 
+#endif //PE_NO_FONT_GLYPH
     return ceguimax(adv_extent, cur_extent);
 }
 
@@ -202,12 +213,14 @@ float Font::getTextExtent(const String& text, float x_scale) const
 float Font::getTextAdvance(const String& text, float x_scale) const
 {
     float advance = 0.0f;
+#ifndef PE_NO_FONT_GLYPH
 
     for (size_t c = 0; c < text.length(); ++c)
     {
         if (const FontGlyph* glyph = getGlyphData(text[c]))
             advance += glyph->getAdvance(x_scale);
     }
+#endif //PE_NO_FONT_GLYPH
 
     return advance;
 }
@@ -216,7 +229,9 @@ float Font::getTextAdvance(const String& text, float x_scale) const
 size_t Font::getCharAtPixel(const String& text, size_t start_char, float pixel,
                             float x_scale) const
 {
+#ifndef PE_NO_FONT_GLYPH
     const FontGlyph* glyph;
+#endif //PE_NO_FONT_GLYPH
     float cur_extent = 0;
     size_t char_count = text.length();
 
@@ -224,6 +239,7 @@ size_t Font::getCharAtPixel(const String& text, size_t start_char, float pixel,
     if ((pixel <= 0) || (char_count <= start_char))
         return start_char;
 
+#ifndef PE_NO_FONT_GLYPH
     for (size_t c = start_char; c < char_count; ++c)
     {
         glyph = getGlyphData(text[c]);
@@ -236,6 +252,7 @@ size_t Font::getCharAtPixel(const String& text, size_t start_char, float pixel,
                 return c;
         }
     }
+#endif //PE_NO_FONT_GLYPH
 
     return char_count;
 }
@@ -248,7 +265,7 @@ float Font::drawText(GeometryBuffer& buffer, const String& text,
 {
     const float base_y = position.d_y + getBaseline(y_scale);
     Vector2f glyph_pos(position);
-
+#ifndef PE_NO_FONT_GLYPH
     for (size_t c = 0; c < text.length(); ++c)
     {
         const FontGlyph* glyph;
@@ -266,6 +283,7 @@ float Font::drawText(GeometryBuffer& buffer, const String& text,
         }
     }
 
+#endif //PE_NO_FONT_GLYPH
     return glyph_pos.d_x;
 }
 
@@ -336,7 +354,7 @@ void Font::writeXMLToStream(XMLSerializer& xml_stream) const
     if (!d_resourceGroup.empty())
         xml_stream.attribute(Font_xmlHandler::FontResourceGroupAttribute,
                              d_resourceGroup);
-
+#ifndef PE_NO_FONT_GLYPH
     if (d_nativeResolution.d_width != DefaultNativeHorzRes)
         xml_stream.attribute(Font_xmlHandler::FontNativeHorzResAttribute,
             PropertyHelper<uint>::toString(static_cast<uint>(d_nativeResolution.d_width)));
@@ -344,6 +362,7 @@ void Font::writeXMLToStream(XMLSerializer& xml_stream) const
     if (d_nativeResolution.d_height != DefaultNativeVertRes)
         xml_stream.attribute(Font_xmlHandler::FontNativeVertResAttribute,
             PropertyHelper<uint>::toString(static_cast<uint>(d_nativeResolution.d_height)));
+#endif //PE_NO_FONT_GLYPH
 
     if (d_autoScaled != ASM_Disabled)
         xml_stream.attribute(Font_xmlHandler::FontAutoScaledAttribute,

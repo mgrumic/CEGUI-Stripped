@@ -59,7 +59,9 @@ public:
 #ifndef PE_NO_VECTOR3D
     void setTranslation(const Vector3f& v);
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     void setRotation(const Quaternion& r);
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
     void setPivot(const Vector3f& p);
 #endif  // PE_NO_VECTOR3D
@@ -87,8 +89,10 @@ protected:
 #ifndef PE_NO_VECTOR3D
     Vector3f d_translation;
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     //! rotation quaternion
     Quaternion d_rotation;
+#endif //PE_NO_QUATERNION
     //! pivot point for rotation
 #ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;

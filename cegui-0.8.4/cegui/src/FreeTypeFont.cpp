@@ -87,8 +87,10 @@ FreeTypeFont::FreeTypeFont(const String& font_name, const float point_size,
     updateFont();
 
     char tmp[50];
+#ifndef PE_NO_FONT_GLYPH
     snprintf(tmp, sizeof(tmp), "Successfully loaded %d glyphs",
              static_cast<int>(d_cp_map.size()));
+#endif //PE_NO_FONT_GLYPH
 #ifndef PE_NO_LOGGER
     Logger::getSingleton().logEvent(tmp, Informative);
 #endif //PE_NO_LOGGER
@@ -119,7 +121,7 @@ void FreeTypeFont::addFreeTypeFontProperties ()
         &FreeTypeFont::setAntiAliased, &FreeTypeFont::isAntiAliased, 0
     );
 }
-
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 uint FreeTypeFont::getTextureSize(CodepointMap::const_iterator s,
                                   CodepointMap::const_iterator e) const
@@ -173,7 +175,8 @@ uint FreeTypeFont::getTextureSize(CodepointMap::const_iterator s,
 
     return glyph_count ? texsize : 0;
 }
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 void FreeTypeFont::rasterise(utf32 start_codepoint, utf32 end_codepoint) const
 {
@@ -315,7 +318,8 @@ void FreeTypeFont::rasterise(utf32 start_codepoint, utf32 end_codepoint) const
             break;
     }
 }
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 void FreeTypeFont::drawGlyphToBuffer(argb_t *buffer, uint buf_width) const
 {
@@ -359,14 +363,16 @@ void FreeTypeFont::drawGlyphToBuffer(argb_t *buffer, uint buf_width) const
         buffer += buf_width;
     }
 }
+#endif //PE_NO_FONT_GLYPH
 
 //----------------------------------------------------------------------------//
 void FreeTypeFont::free()
 {
     if (!d_fontFace)
         return;
-
+#ifndef PE_NO_FONT_GLYPH
     d_cp_map.clear();
+#endif //PE_NO_FONT_GLYPH
 
     for (size_t i = 0; i < d_glyphImages.size(); ++i)
         CEGUI_DELETE_AO d_glyphImages[i];
@@ -483,10 +489,11 @@ void FreeTypeFont::updateFont()
     {
         d_height = d_specificLineSpacing;
     }
-
+#ifndef PE_NO_FONT_GLYPH
     initialiseGlyphMap();
+#endif //PE_NO_FONT_GLYPH
 }
-
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 void FreeTypeFont::initialiseGlyphMap()
 {
@@ -506,7 +513,8 @@ void FreeTypeFont::initialiseGlyphMap()
 
     setMaxCodepoint(max_codepoint);
 }
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 const FontGlyph* FreeTypeFont::findFontGlyph(const utf32 codepoint) const
 {
@@ -520,7 +528,8 @@ const FontGlyph* FreeTypeFont::findFontGlyph(const utf32 codepoint) const
 
     return &pos->second;
 }
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
 //----------------------------------------------------------------------------//
 void FreeTypeFont::initialiseFontGlyph(CodepointMap::iterator cp) const
 {
@@ -535,6 +544,7 @@ void FreeTypeFont::initialiseFontGlyph(CodepointMap::iterator cp) const
     cp->second.setAdvance(adv);
     cp->second.setValid(true);
 }
+#endif //PE_NO_FONT_GLYPH
 
 //----------------------------------------------------------------------------//
 void FreeTypeFont::writeXMLToStream_impl(XMLSerializer& xml_stream) const

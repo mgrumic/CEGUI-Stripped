@@ -127,7 +127,9 @@ public:
     \param rotation
         Quaternion object describing the rotation.
     */
+#ifndef PE_NO_QUATERNION
     void setRotation(const Quaternion& rotation);
+#endif //PE_NO_QUATERNION
 
     /*!
     \brief
@@ -172,7 +174,9 @@ public:
     \return
         Quaternion object describing the rotation for the RenderingWindow.
     */
+#ifndef PE_NO_QUATERNION
     const Quaternion& getRotation()const;
+#endif //PE_NO_QUATERNION
 
     /*!
     \brief
@@ -310,7 +314,9 @@ protected:
     //! Size of this RenderingWindow
     Sizef d_size;
     //! Rotation for this RenderingWindow
+#ifndef PE_NO_QUATERNION
     Quaternion d_rotation;
+#endif //PE_NO_QUATERNION
     //! Pivot point used for the rotation.
 #ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;

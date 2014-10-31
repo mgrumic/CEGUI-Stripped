@@ -926,8 +926,10 @@ namespace CEGUI
             prop = CEGUI_NEW_AO PropertyDefinition<Font*>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if(type == PropertyHelper<Image*>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Image*>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#ifndef PE_NO_QUATERNION
         else if(type == PropertyHelper<Quaternion>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Quaternion>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#endif //PE_NO_QUATERNION        
         else if(type == PropertyHelper<AspectMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<AspectMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if(type == PropertyHelper<HorizontalAlignment>::getDataTypeName())
@@ -1048,9 +1050,11 @@ namespace CEGUI
         else if (type == PropertyHelper<Image*>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Image*>(name,
                     widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#ifndef PE_NO_QUATERNION
         else if (type == PropertyHelper<Quaternion>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Quaternion>(name,
                     widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#endif //PE_NO_QUATERNION
         else if (type == PropertyHelper<AspectMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<AspectMode>(name,
                     widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
@@ -1604,8 +1608,10 @@ namespace CEGUI
                 dynamic_cast<PropertyLinkDefinition<Font*>* >(d_propertyLink)->addLinkTarget(w, p);
             else if(type == PropertyHelper<Image*>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<Image*>* >(d_propertyLink)->addLinkTarget(w, p);
+#ifndef PE_NO_QUATERNION
             else if(type == PropertyHelper<Quaternion>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<Quaternion>* >(d_propertyLink)->addLinkTarget(w, p);
+#endif //PE_NO_QUATERNION
             else if(type == PropertyHelper<AspectMode>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<AspectMode>* >(d_propertyLink)->addLinkTarget(w, p);
             else if(type == PropertyHelper<HorizontalAlignment>::getDataTypeName())

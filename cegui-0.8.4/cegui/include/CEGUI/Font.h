@@ -96,8 +96,10 @@ public:
         true if the font contains a mapping for code point \a cp,
         false if it does not contain a mapping for \a cp.
     */
+#ifndef PE_NO_FONT_GLYPH
     bool isCodepointAvailable(utf32 cp) const
     { return (d_cp_map.find(cp) != d_cp_map.end()); }
+#endif //PE_NO_FONT_GLYPH
 
     /*!
     \brief
@@ -267,6 +269,7 @@ public:
 
     \see getTextAdvance
     */
+
     float getTextExtent(const String& text, float x_scale = 1.0f) const;
 
     /*!
@@ -405,7 +408,9 @@ public:
         Pointer to the glyphDat struct for \a codepoint, or 0 if no glyph
         is defined for \a codepoint.
     */
+#ifndef PE_NO_FONT_GLYPH
     const FontGlyph* getGlyphData(utf32 codepoint) const;
+#endif //PE_NO_FONT_GLYPH
 
 protected:
     //! Constructor.
@@ -447,9 +452,10 @@ protected:
         number of bits in the d_glyphPageLoaded array.
     */
     void setMaxCodepoint(utf32 codepoint);
-
+#ifndef PE_NO_FONT_GLYPH
     //! finds FontGlyph in map and returns it, or 0 if none.
     virtual const FontGlyph* findFontGlyph(const utf32 codepoint) const;
+#endif //PE_NO_FONT_GLYPH
 
     //! Name of this font.
     String d_name;
@@ -494,13 +500,16 @@ protected:
         This array is big enough to hold at least max_codepoint bits.
         If this member is NULL, all glyphs are considered pre-rasterised.
     */
+#ifndef PE_NO_FONT_GLYPH
     uint* d_glyphPageLoaded;
-
+#endif //PE_NO_FONT_GLYPH    
+#ifndef PE_NO_FONT_GLYPH
     //! Definition of CodepointMap type.
     typedef std::map<utf32, FontGlyph, std::less<utf32>
         CEGUI_MAP_ALLOC(utf32, FontGlyph)> CodepointMap;
     //! Contains mappings from code points to Image objects
     mutable CodepointMap d_cp_map;
+#endif //PE_NO_FONT_GLYPH
 };
 
 

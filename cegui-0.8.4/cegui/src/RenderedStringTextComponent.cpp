@@ -212,10 +212,12 @@ void RenderedStringTextComponent::draw(const Window* ref_wnd,
     {
         float sel_start_extent = 0, sel_end_extent = 0;
 
+#ifndef PE_NO_FONT_GLYPH
         if (d_selectionStart > 0)
             sel_start_extent = fnt->getTextExtent(d_text.substr(0, d_selectionStart));
 
         sel_end_extent = fnt->getTextExtent(d_text.substr(0, d_selectionStart + d_selectionLength));
+#endif //PE_NO_FONT_GLYPH
 
         Rectf sel_rect(position.d_x + sel_start_extent,
                        position.d_y,
@@ -240,7 +242,9 @@ Sizef RenderedStringTextComponent::getPixelSize(const Window* ref_wnd) const
 
     if (fnt)
     {
+#ifndef PE_NO_FONT_GLYPH
         psz.d_width += fnt->getTextExtent(d_text);
+#endif //PE_NO_FONT_GLYPH        
         psz.d_height += fnt->getFontHeight();
     }
 
@@ -288,7 +292,7 @@ RenderedStringTextComponent* RenderedStringTextComponent::split(
         // exit loop if no more valid tokens.
         if (token_len == 0)
             break;
-
+#ifndef PE_NO_FONT_GLYPH
         const float token_extent = 
             fnt->getTextExtent(d_text.substr(left_len, token_len));
 
@@ -309,6 +313,7 @@ RenderedStringTextComponent* RenderedStringTextComponent::split(
         // add this token to the left side
         left_len += token_len;
         left_extent += token_extent;
+#endif //PE_NO_FONT_GLYPH
     }
     
     // perform the split.

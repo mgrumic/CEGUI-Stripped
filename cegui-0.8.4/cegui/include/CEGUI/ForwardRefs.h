@@ -65,7 +65,9 @@ class EventSet;
 class Exception;
 class FactoryModule;
 class Font;
+#ifndef PE_NO_FONT_GLYPH
 class FontGlyph;
+#endif //PE_NO_FONT_GLYPH
 class FontManager;
 class FormattedRenderedString;
 class GeometryBuffer;
@@ -92,7 +94,9 @@ class Property;
 template<typename T> class PropertyHelper;
 class PropertyReceiver;
 class PropertySet;
+#ifndef PE_NO_QUATERNION
 class Quaternion;
+#endif //PE_NO_QUATERNION
 class RawDataContainer;
 template<typename T> class Rect;
 class RegexMatcher;
