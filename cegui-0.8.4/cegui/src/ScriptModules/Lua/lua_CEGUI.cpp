@@ -8134,8 +8134,10 @@ static int tolua_CEGUI_CEGUI_Font_isCodepointAvailable00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'isCodepointAvailable'",NULL);
 #endif
  {
+#ifndef PE_NO_FONT_GLYPH
   bool tolua_ret = (bool)  self->isCodepointAvailable(cp);
  tolua_pushboolean(tolua_S,(bool)tolua_ret);
+#endif //PE_NO_FONT_GLYPH
  }
  }
  return 1;

@@ -28,6 +28,7 @@
 #define _CEGUIFontGlyph_h_
 
 #include "CEGUI/Image.h"
+#ifndef PE_NO_FONT_GLYPH
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -115,5 +116,5 @@ private:
 };
 
 } // End of  CEGUI namespace section
-
+#endif //PE_NO_FONT_GLYPH
 #endif  // end of guard _CEGUIFontGlyph_h_

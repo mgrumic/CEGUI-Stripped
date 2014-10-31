@@ -141,22 +141,27 @@ protected:
     \param e
         The last glyph in set
     */
+#ifndef PE_NO_FONT_GLYPH
     uint getTextureSize(CodepointMap::const_iterator s,
                         CodepointMap::const_iterator e) const;
+#endif //PE_NO_FONT_GLYPH
 
     //! Register all properties of this class.
     void addFreeTypeFontProperties();
     //! Free all allocated font data.
     void free();
-
+#ifndef PE_NO_FONT_GLYPH
     //! initialise FontGlyph for given codepoint.
     void initialiseFontGlyph(CodepointMap::iterator cp) const;
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
     void initialiseGlyphMap();
-
+#endif //PE_NO_FONT_GLYPH
+#ifndef PE_NO_FONT_GLYPH
     // overrides of functions in Font base class.
     const FontGlyph* findFontGlyph(const utf32 codepoint) const;
     void rasterise(utf32 start_codepoint, utf32 end_codepoint) const;
+#endif //PE_NO_FONT_GLYPH
     void updateFont();
     void writeXMLToStream_impl (XMLSerializer& xml_stream) const;
 

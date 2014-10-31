@@ -114,7 +114,7 @@ void PixmapFont::updateFont()
     d_descender = 0;
     d_height = 0;
     d_maxCodepoint = 0;
-
+#ifndef PE_NO_FONT_GLYPH
     for (CodepointMap::iterator i = d_cp_map.begin(); i != d_cp_map.end(); ++i)
     {
         if (i->first > d_maxCodepoint)
@@ -136,6 +136,7 @@ void PixmapFont::updateFont()
         if (img->getRenderedSize().d_height + img->getRenderedOffset().d_y > d_descender)
             d_descender = img->getRenderedSize().d_height + img->getRenderedOffset().d_y;
     }
+#endif //PE_NO_FONT_GLYPH
 
     d_ascender = -d_ascender;
     d_descender = -d_descender;
@@ -148,6 +149,7 @@ void PixmapFont::updateFont()
 void PixmapFont::writeXMLToStream_impl (XMLSerializer& xml_stream) const
 {
     float advscale = 1.0f / d_origHorzScaling;
+#ifndef PE_NO_FONT_GLYPH
     for (CodepointMap::const_iterator i = d_cp_map.begin(); i != d_cp_map.end(); ++i)
     {
         xml_stream.openTag("Mapping")
@@ -160,6 +162,7 @@ void PixmapFont::writeXMLToStream_impl (XMLSerializer& xml_stream) const
 
         xml_stream.closeTag();
     }
+#endif //PE_NO_FONT_GLYPH
 }
 
 //----------------------------------------------------------------------------//
@@ -178,9 +181,10 @@ void PixmapFont::defineMapping(const utf32 codepoint, const String& image_name,
 
     if (codepoint > d_maxCodepoint)
         d_maxCodepoint = codepoint;
-
+#ifndef PE_NO_FONT_GLYPH
     // create a new FontGlyph with given character code
     const FontGlyph glyph(adv, &image, true);
+#endif //PE_NO_FONT_GLYPH
 
     if (image.getRenderedOffset().d_y < -d_ascender)
         d_ascender = -image.getRenderedOffset().d_y;
@@ -188,9 +192,10 @@ void PixmapFont::defineMapping(const utf32 codepoint, const String& image_name,
         d_descender = -(image.getRenderedSize().d_height + image.getRenderedOffset().d_y);
 
     d_height = d_ascender - d_descender;
-
+#ifndef PE_NO_FONT_GLYPH
     // add glyph to the map
     d_cp_map[codepoint] = glyph;
+#endif //PE_NO_FONT_GLYPH
 }
 
 //----------------------------------------------------------------------------//

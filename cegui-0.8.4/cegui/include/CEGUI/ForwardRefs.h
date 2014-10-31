@@ -65,7 +65,9 @@ class EventSet;
 class Exception;
 class FactoryModule;
 class Font;
+#ifndef PE_NO_FONT_GLYPH
 class FontGlyph;
+#endif //PE_NO_FONT_GLYPH
 class FontManager;
 class FormattedRenderedString;
 class GeometryBuffer;
