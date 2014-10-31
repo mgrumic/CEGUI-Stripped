@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Oct 20 2009
     author:     Andrew Shevchenko
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -27,14 +27,14 @@
 #include "CEGUI/ImageCodecModules/PVR/ImageCodecModule.h" 
 
 //----------------------------------------------------------------------------//
-CEGUI::ImageCodec* createImageCodec(void)
-{
+
+CEGUI::ImageCodec* createImageCodec(void) {
     return CEGUI_NEW_AO CEGUI::PVRImageCodec();
 }
 
 //----------------------------------------------------------------------------//
-void destroyImageCodec(CEGUI::ImageCodec* imageCodec)
-{
+
+void destroyImageCodec(CEGUI::ImageCodec* imageCodec) {
     CEGUI_DELETE_AO imageCodec;
 }
 

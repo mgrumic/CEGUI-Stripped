@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	21/2/2004
-	author:		Paul D Turner
+        created:	21/2/2004
+        author:		Paul D Turner
 	
-	purpose:	Implements Property base class
-*************************************************************************/
+        purpose:	Implements Property base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,63 +30,58 @@
 #include <iostream>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-const String Property::XMLElementName("Property");
-const String Property::NameXMLAttributeName("name");
-const String Property::ValueXMLAttributeName("value");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    const String Property::XMLElementName("Property");
+    const String Property::NameXMLAttributeName("name");
+    const String Property::ValueXMLAttributeName("value");
 
-//----------------------------------------------------------------------------//
-bool Property::isDefault(const PropertyReceiver* receiver) const
-{
-	return (get(receiver) == getDefault(receiver));
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-String Property::getDefault(const PropertyReceiver*) const
-{
-	return d_default;
-}
+    bool Property::isDefault(const PropertyReceiver* receiver) const {
+        return (get(receiver) == getDefault(receiver));
+    }
 
-//----------------------------------------------------------------------------//
-void Property::writeXMLToStream(const PropertyReceiver* receiver, XMLSerializer& xml_stream) const
-{
-	if (d_writeXML)
-	{
-		xml_stream.openTag(XMLElementName)
-			.attribute(NameXMLAttributeName,  d_name);
-		// Detect wether it is a long property or not
-		// Long property are needed if
-		const String& value = get(receiver);
-		if (value.find((String::value_type)'\n') != String::npos)
-		{
-			xml_stream.text(value);
-		}
-		else
-		{
-			xml_stream.attribute(ValueXMLAttributeName, get(receiver));
-		}
-		xml_stream.closeTag();
-	}
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool Property::isReadable() const
-{
-	return true;
-}
+    String Property::getDefault(const PropertyReceiver*) const {
+        return d_default;
+    }
 
-//----------------------------------------------------------------------------//
-bool Property::isWritable() const
-{
-	return true;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool Property::doesWriteXML() const
-{
-    return d_writeXML;
-}
+    void Property::writeXMLToStream(const PropertyReceiver* receiver, XMLSerializer& xml_stream) const {
+        if (d_writeXML) {
+            xml_stream.openTag(XMLElementName)
+                    .attribute(NameXMLAttributeName, d_name);
+            // Detect wether it is a long property or not
+            // Long property are needed if
+            const String& value = get(receiver);
+            if (value.find((String::value_type)'\n') != String::npos) {
+                xml_stream.text(value);
+            } else {
+                xml_stream.attribute(ValueXMLAttributeName, get(receiver));
+            }
+            xml_stream.closeTag();
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool Property::isReadable() const {
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool Property::isWritable() const {
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool Property::doesWriteXML() const {
+        return d_writeXML;
+    }
 
 } // End of  CEGUI namespace section

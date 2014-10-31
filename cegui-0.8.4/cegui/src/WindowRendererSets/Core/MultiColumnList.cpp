@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jul 6 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,41 +34,33 @@
 #include "CEGUI/widgets/ListboxItem.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardMultiColumnList::TypeName("Core/MultiColumnList");
 
-
     FalagardMultiColumnList::FalagardMultiColumnList(const String& type) :
-        MultiColumnListWindowRenderer(type)
-    {
+    MultiColumnListWindowRenderer(type) {
     }
 
-    Rectf FalagardMultiColumnList::getListRenderArea(void) const
-    {
-        MultiColumnList* w = (MultiColumnList*)d_window;
+    Rectf FalagardMultiColumnList::getListRenderArea(void) const {
+        MultiColumnList* w = (MultiColumnList*) d_window;
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         bool v_visible = w->getVertScrollbar()->isVisible();
         bool h_visible = w->getHorzScrollbar()->isVisible();
 
         // if either of the scrollbars are visible, we might want to use another item rendering area
-        if (v_visible || h_visible)
-        {
+        if (v_visible || h_visible) {
             String area_name("ItemRenderingArea");
 
-            if (h_visible)
-            {
+            if (h_visible) {
                 area_name += "H";
             }
-            if (v_visible)
-            {
+            if (v_visible) {
                 area_name += "V";
             }
             area_name += "Scroll";
 
-            if (wlf.isNamedAreaDefined(area_name))
-            {
+            if (wlf.isNamedAreaDefined(area_name)) {
                 return wlf.getNamedArea(area_name).getArea().getPixelRect(*w);
             }
         }
@@ -77,9 +69,8 @@ namespace CEGUI
         return wlf.getNamedArea("ItemRenderingArea").getArea().getPixelRect(*w);
     }
 
-    void FalagardMultiColumnList::render()
-    {
-        MultiColumnList* w = (MultiColumnList*)d_window;
+    void FalagardMultiColumnList::render() {
+        MultiColumnList* w = (MultiColumnList*) d_window;
         const ListHeader* header = w->getListHeader();
         const Scrollbar* vertScrollbar = w->getVertScrollbar();
         const Scrollbar* horzScrollbar = w->getHorzScrollbar();
@@ -110,8 +101,7 @@ namespace CEGUI
         const float alpha = w->getEffectiveAlpha();
 
         // loop through the items
-        for (uint i = 0; i < w->getRowCount(); ++i)
-        {
+        for (uint i = 0; i < w->getRowCount(); ++i) {
             // set initial x position for this row.
             itemPos.d_x = itemsArea.left() - horzScrollbar->getScrollPosition();
 
@@ -119,16 +109,14 @@ namespace CEGUI
             itemSize.d_height = w->getHighestRowItemHeight(i);
 
             // loop through the columns in this row
-            for (uint j = 0; j < w->getColumnCount(); ++j)
-            {
+            for (uint j = 0; j < w->getColumnCount(); ++j) {
                 // allow item to use full width of the column
                 itemSize.d_width = CoordConverter::asAbsolute(header->getColumnWidth(j), header->getPixelSize().d_width);
 
-                ListboxItem* item = w->getItemAtGridReference(MCLGridRef(i,j));
+                ListboxItem* item = w->getItemAtGridReference(MCLGridRef(i, j));
 
                 // is the item for this column set?
-                if (item)
-                {
+                if (item) {
                     // calculate destination area for this item.
                     itemRect.left(itemPos.d_x);
                     itemRect.top(itemPos.d_y);
@@ -136,8 +124,7 @@ namespace CEGUI
                     itemClipper = itemRect.getIntersection(itemsArea);
 
                     // skip this item if totally clipped
-                    if (itemClipper.getWidth() == 0)
-                    {
+                    if (itemClipper.getWidth() == 0) {
                         itemPos.d_x += itemSize.d_width;
                         continue;
                     }
@@ -155,8 +142,7 @@ namespace CEGUI
         }
     }
 
-    void FalagardMultiColumnList::cacheListboxBaseImagery()
-    {
+    void FalagardMultiColumnList::cacheListboxBaseImagery() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.

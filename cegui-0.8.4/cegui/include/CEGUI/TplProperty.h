@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Finger saving template property
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -32,111 +32,136 @@
 #include "CEGUI/TypedProperty.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-template<class C, typename T>
-class TplProperty : public TypedProperty<T>
-{
-public:
-    typedef PropertyHelper<T> Helper;
-    
-    typedef void (C::*Setter)(typename Helper::pass_type);
+    template<class C, typename T>
+    class TplProperty : public TypedProperty<T> {
+    public:
+        typedef PropertyHelper<T> Helper;
 
-    /*!
-    Template madness to sort out getters returning ref T, const ref T or just T.
-    */
-    struct GetterFunctor
-    {
-        template<typename DT> struct EnsurePlain { typedef DT result; };
-        template<typename DT> struct EnsurePlain<DT&> { typedef DT result; };
-        template<typename DT> struct EnsurePlain<const DT&> { typedef DT result; };
+        typedef void (C::*Setter)(typename Helper::pass_type);
 
-        template<typename DT> struct EnsureConstRef { typedef const DT& result; };
-        template<typename DT> struct EnsureConstRef<DT&> { typedef const DT& result; };
-        template<typename DT> struct EnsureConstRef<const DT&> { typedef const DT& result; };
+        /*!
+        Template madness to sort out getters returning ref T, const ref T or just T.
+         */
+        struct GetterFunctor {
 
-        template<typename DT> struct EnsureRef { typedef DT& result; };
-        template<typename DT> struct EnsureRef<DT&> { typedef DT& result; };
-        template<typename DT> struct EnsureRef<const DT&> { typedef DT& result; };
+            template<typename DT> struct EnsurePlain {
+                typedef DT result;
+            };
 
-        typedef typename EnsurePlain<typename Helper::safe_method_return_type>::result (C::*PlainGetter)() const;
-        typedef typename EnsureConstRef<typename Helper::safe_method_return_type>::result (C::*ConstRefGetter)() const;
-        typedef typename EnsureRef<typename Helper::safe_method_return_type>::result (C::*RefGetter)() const;
+            template<typename DT> struct EnsurePlain<DT&> {
+                typedef DT result;
+            };
 
-        GetterFunctor(PlainGetter getter):
+            template<typename DT> struct EnsurePlain<const DT&> {
+                typedef DT result;
+            };
+
+            template<typename DT> struct EnsureConstRef {
+                typedef const DT& result;
+            };
+
+            template<typename DT> struct EnsureConstRef<DT&> {
+                typedef const DT& result;
+            };
+
+            template<typename DT> struct EnsureConstRef<const DT&> {
+                typedef const DT& result;
+            };
+
+            template<typename DT> struct EnsureRef {
+                typedef DT& result;
+            };
+
+            template<typename DT> struct EnsureRef<DT&> {
+                typedef DT& result;
+            };
+
+            template<typename DT> struct EnsureRef<const DT&> {
+                typedef DT& result;
+            };
+
+            typedef typename EnsurePlain<typename Helper::safe_method_return_type>::result(C::*PlainGetter)() const;
+            typedef typename EnsureConstRef<typename Helper::safe_method_return_type>::result(C::*ConstRefGetter)() const;
+            typedef typename EnsureRef<typename Helper::safe_method_return_type>::result(C::*RefGetter)() const;
+
+            GetterFunctor(PlainGetter getter) :
             d_plainGetter(getter)
             //d_constRefGetter(0), no need to initialise these, we will never use them
             //d_refGetter(0)
-        {}
+            {
+            }
 
-        GetterFunctor(ConstRefGetter getter):
+            GetterFunctor(ConstRefGetter getter) :
             d_plainGetter(0),
             d_constRefGetter(getter)
             //d_refGetter(0) // no need to initialise this, we will never use it
-        {}
+            {
+            }
 
-        GetterFunctor(RefGetter getter):
+            GetterFunctor(RefGetter getter) :
             d_plainGetter(0),
             d_constRefGetter(0),
-            d_refGetter(getter)
-        {}
-        // to set 0 as func
-        GetterFunctor(int /*val*/):
+            d_refGetter(getter) {
+            }
+            // to set 0 as func
+
+            GetterFunctor(int /*val*/) :
             d_plainGetter(0),
             d_constRefGetter(0),
-            d_refGetter(0)
-        {}
-        operator bool(void) const
-        {
-            return d_plainGetter || d_constRefGetter || d_refGetter;
-        }
-        typename Helper::safe_method_return_type operator()(const C* instance) const
-        {
-            // FIXME: Ideally we want this to be done during compilation, not runtime
+            d_refGetter(0) {
+            }
 
-            if (d_plainGetter)
+            operator bool(void) const {
+                return d_plainGetter || d_constRefGetter || d_refGetter;
+            }
+
+            typename Helper::safe_method_return_type operator()(const C* instance) const {
+                // FIXME: Ideally we want this to be done during compilation, not runtime
+
+                if (d_plainGetter)
+                    return CEGUI_CALL_MEMBER_FN(*instance, d_plainGetter)();
+                if (d_constRefGetter)
+                    return CEGUI_CALL_MEMBER_FN(*instance, d_constRefGetter)();
+                if (d_refGetter)
+                    return CEGUI_CALL_MEMBER_FN(*instance, d_refGetter)();
+
+                assert(false);
+                // just to get rid of the warning
                 return CEGUI_CALL_MEMBER_FN(*instance, d_plainGetter)();
-            if (d_constRefGetter)
-                return CEGUI_CALL_MEMBER_FN(*instance, d_constRefGetter)();
-            if (d_refGetter)
-                return CEGUI_CALL_MEMBER_FN(*instance, d_refGetter)();
+            }
 
-            assert(false);
-            // just to get rid of the warning
-            return CEGUI_CALL_MEMBER_FN(*instance, d_plainGetter)();
+            PlainGetter d_plainGetter;
+            ConstRefGetter d_constRefGetter;
+            RefGetter d_refGetter;
+        };
+
+        TplProperty(const String& name, const String& help, const String& origin, Setter setter, GetterFunctor getter, typename Helper::pass_type defaultValue = T(), bool writesXML = true) :
+        TypedProperty<T>(name, help, origin, defaultValue, writesXML),
+
+        d_setter(setter),
+        d_getter(getter) {
         }
 
-        PlainGetter d_plainGetter;
-        ConstRefGetter d_constRefGetter;
-        RefGetter d_refGetter;
+        virtual ~TplProperty() {
+        }
+
+        //! \copydoc Property::isReadable
+
+        virtual bool isReadable() const {
+            return d_getter;
+        }
+        //! \copydoc Property::isWritable
+
+        virtual bool isWritable() const {
+            return d_setter;
+        }
+
+    protected:
+        Setter d_setter;
+        GetterFunctor d_getter;
     };
-
-    TplProperty(const String& name, const String& help, const String& origin, Setter setter, GetterFunctor getter, typename Helper::pass_type defaultValue = T(), bool writesXML = true):
-        TypedProperty<T>(name, help, origin, defaultValue, writesXML),
-        
-        d_setter(setter),
-        d_getter(getter)
-    {}
-    
-    virtual ~TplProperty()
-    {}
-
-    //! \copydoc Property::isReadable
-    virtual bool isReadable() const
-    {
-        return d_getter;
-    }
-    //! \copydoc Property::isWritable
-    virtual bool isWritable() const
-    {
-        return d_setter;
-    }
-
-protected:
-    Setter d_setter;
-    GetterFunctor d_getter;
-};
 
 } // End of  CEGUI namespace section
 

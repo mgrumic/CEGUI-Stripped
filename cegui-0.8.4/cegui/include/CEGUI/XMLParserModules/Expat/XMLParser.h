@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Mar 6 2006
     author:     Paul D Turner <paul@cegui.org.uk> (based on Dalfy's code)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,42 +30,40 @@
 #include "../../XMLParser.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIEXPATPARSER_EXPORTS
-#       define CEGUIEXPATPARSER_API __declspec(dllexport)
-#   else
-#       define CEGUIEXPATPARSER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIEXPATPARSER_EXPORTS
+#define CEGUIEXPATPARSER_API __declspec(dllexport)
 #else
-#   define CEGUIEXPATPARSER_API
+#define CEGUIEXPATPARSER_API __declspec(dllimport)
+#endif
+#else
+#define CEGUIEXPATPARSER_API
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-    Implementation of XMLParser using Expat
-*/
-class CEGUIEXPATPARSER_API ExpatParser : public XMLParser
-{
-public:
-    ExpatParser(void);
-    ~ExpatParser(void);
+    /*!
+    \brief
+        Implementation of XMLParser using Expat
+     */
+    class CEGUIEXPATPARSER_API ExpatParser : public XMLParser {
+    public:
+        ExpatParser(void);
+        ~ExpatParser(void);
 
-    // Implementation of public abstract interface
-    void parseXML(XMLHandler& handler, const RawDataContainer& source, const String& schemaName);
+        // Implementation of public abstract interface
+        void parseXML(XMLHandler& handler, const RawDataContainer& source, const String& schemaName);
 
-protected:
-    // Implementation of protected abstract interface.
-    bool initialiseImpl(void);
-    // Implementation of protected abstract interface.
-    void cleanupImpl(void);
-    // C++ class methods name are not valide C function pointer. static solve this
-    static void startElement(void* data, const char* element, const char**attr); // Expat handlers
-    static void endElement(void* data, const char* element); // Expat handlers
-    static void characterData(void* data, const char* text, int len); // Expat handlers
-};
+    protected:
+        // Implementation of protected abstract interface.
+        bool initialiseImpl(void);
+        // Implementation of protected abstract interface.
+        void cleanupImpl(void);
+        // C++ class methods name are not valide C function pointer. static solve this
+        static void startElement(void* data, const char* element, const char**attr); // Expat handlers
+        static void endElement(void* data, const char* element); // Expat handlers
+        static void characterData(void* data, const char* text, int len); // Expat handlers
+    };
 
 } // End of  CEGUI namespace section
 

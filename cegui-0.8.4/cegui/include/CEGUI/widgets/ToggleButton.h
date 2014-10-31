@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 28 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -30,47 +30,49 @@
 #include "CEGUI/widgets/ButtonBase.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
-//! Class providing logic buttons that can have their selected state toggled.
-class CEGUIEXPORT ToggleButton : public ButtonBase
-{
-public:
-    static const String EventNamespace;
-    static const String WidgetTypeName;
+namespace CEGUI {
+    //! Class providing logic buttons that can have their selected state toggled.
 
-    /** Event fired when then selected state of the ToggleButton changes.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the ToggleButton whose state has changed.
-     */
-    static const String EventSelectStateChanged;
+    class CEGUIEXPORT ToggleButton : public ButtonBase {
+    public:
+        static const String EventNamespace;
+        static const String WidgetTypeName;
 
-    //!returns true if the toggle button is in the selected state.
-    bool isSelected(void) const { return d_selected; }
+        /** Event fired when then selected state of the ToggleButton changes.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the ToggleButton whose state has changed.
+         */
+        static const String EventSelectStateChanged;
 
-    //! sets whether the toggle button is in the selected state.
-    void setSelected(bool select);
+        //!returns true if the toggle button is in the selected state.
 
-    ToggleButton(const String& type, const String& name);
+        bool isSelected(void) const {
+            return d_selected;
+        }
 
-protected:
-    virtual bool getPostClickSelectState() const;
-    void addToggleButtonProperties();
+        //! sets whether the toggle button is in the selected state.
+        void setSelected(bool select);
 
-    //! event triggered internally when toggle button select state changes.
-    virtual void onSelectStateChange(WindowEventArgs& e);
+        ToggleButton(const String& type, const String& name);
+
+    protected:
+        virtual bool getPostClickSelectState() const;
+        void addToggleButtonProperties();
+
+        //! event triggered internally when toggle button select state changes.
+        virtual void onSelectStateChange(WindowEventArgs& e);
 
 #ifndef PE_NO_MOUSE
-    // base class overriddes
-    void onMouseButtonUp(MouseEventArgs& e);
+        // base class overriddes
+        void onMouseButtonUp(MouseEventArgs& e);
 #endif //PE_NO_MOUSE
 
-    bool d_selected;
-};
+        bool d_selected;
+    };
 
 }
 

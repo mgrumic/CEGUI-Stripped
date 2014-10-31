@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    21/2/2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,25 +32,24 @@
 
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 #ifndef PE_NO_MOUSE
+
     /*!
     \brief
         Base class for Tooltip window renderer objects.
-    */
-    class CEGUIEXPORT TooltipWindowRenderer : public WindowRenderer
-    {
+     */
+    class CEGUIEXPORT TooltipWindowRenderer : public WindowRenderer {
     public:
         /*!
         \brief
             Constructor
-        */
+         */
         TooltipWindowRenderer(const String& name);
 
         /*!
@@ -60,7 +59,7 @@ namespace CEGUI
 
         \return
             Size object describing the size of the rendered tooltip text in pixels.
-        */
+         */
         virtual Sizef getTextSize() const = 0;
     };
 
@@ -78,15 +77,14 @@ namespace CEGUI
         type via System::setTooltip, or by setting a custom tool-tip object for
         your Window(s).  Additionally, you need to ensure that time pulses are
         properly passed to the system via System::injectTimePulse.
-    */
-    class CEGUIEXPORT Tooltip : public Window
-    {
+     */
+    class CEGUIEXPORT Tooltip : public Window {
     public:
         /*************************************************************************
             Constants
-        *************************************************************************/
-        static const String WidgetTypeName;                 //!< Window factory name
-        static const String EventNamespace;                 //!< Namespace for global events
+         *************************************************************************/
+        static const String WidgetTypeName; //!< Window factory name
+        static const String EventNamespace; //!< Namespace for global events
         /** Event fired when the hover timeout for the tool tip gets changed.
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the Tooltip whose hover timeout has
@@ -124,7 +122,7 @@ namespace CEGUI
 
         /************************************************************************
             Object Construction and Destruction
-        ************************************************************************/
+         ************************************************************************/
         /*!
         \brief
             Constructor for the Tooltip base class constructor
@@ -139,7 +137,7 @@ namespace CEGUI
 
         /************************************************************************
             Public interface
-        ************************************************************************/
+         ************************************************************************/
         /*!
         \brief
             Sets the target window for the tooltip.  This used internally to manage tooltips, you
@@ -159,7 +157,7 @@ namespace CEGUI
 
         \return
             Pointer to the target window for this Tooltip or 0 for none.
-        */
+         */
         const Window* getTargetWindow();
 
         /*!
@@ -224,7 +222,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void positionSelf(void);
 
         /*!
@@ -233,7 +231,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void sizeSelf(void);
 
         /*!
@@ -243,7 +241,7 @@ namespace CEGUI
 
         \return
             Size object describing the size of the rendered tooltip text in pixels.
-        */
+         */
         Sizef getTextSize() const;
 
         /*!
@@ -253,13 +251,13 @@ namespace CEGUI
 
         \return
             Size object describing the size of the rendered tooltip text in pixels.
-        */
+         */
         virtual Sizef getTextSize_impl() const;
 
     protected:
         /*************************************************************************
             Implementation Methods
-        *************************************************************************/
+         *************************************************************************/
         // methods to perform processing for each of the widget states
         void doActiveState(float elapsed);
         void doInactiveState(float elapsed);
@@ -273,14 +271,14 @@ namespace CEGUI
 
         /*************************************************************************
             Event triggers
-        *************************************************************************/
+         *************************************************************************/
         /*!
         \brief
             Event trigger method called when the hover timeout gets changed.
 
         \param e
             WindowEventArgs object.
-        */
+         */
         virtual void onHoverTimeChanged(WindowEventArgs& e);
 
         /*!
@@ -289,7 +287,7 @@ namespace CEGUI
 
         \param e
             WindowEventArgs object.
-        */
+         */
         virtual void onDisplayTimeChanged(WindowEventArgs& e);
 
         /*!
@@ -298,7 +296,7 @@ namespace CEGUI
 
         \param e
             WindowEventArgs object.
-        */
+         */
         virtual void onTooltipActive(WindowEventArgs& e);
 
         /*!
@@ -307,7 +305,7 @@ namespace CEGUI
 
         \param e
             WindowEventArgs object.
-        */
+         */
         virtual void onTooltipInactive(WindowEventArgs& e);
 
         /*!
@@ -316,13 +314,13 @@ namespace CEGUI
 
         \param e
             WindowEventArgs object.
-        */
+         */
         virtual void onTooltipTransition(WindowEventArgs& e);
 
 
         /************************************************************************
             Overridden from Window.
-        ************************************************************************/
+         ************************************************************************/
         void updateSelf(float elapsed);
         void onHidden(WindowEventArgs& e);
 
@@ -332,27 +330,27 @@ namespace CEGUI
 
         /************************************************************************
             Data fields
-        ************************************************************************/
-        bool        d_active;       //!< true if the tooltip is active
-        float       d_elapsed;      //!< Used to track state change timings
-        const Window* d_target;     //!< Current target Window for this Tooltip.
-        float       d_hoverTime;    //!< tool-tip hover time (seconds mouse must stay stationary before tip shows).
-        float       d_displayTime;  //!< tool-tip display time (seconds that tip is showsn for).
-        float       d_fadeTime;     //!< tool-tip fade time (seconds it takes for tip to fade in and/or out).
+         ************************************************************************/
+        bool d_active; //!< true if the tooltip is active
+        float d_elapsed; //!< Used to track state change timings
+        const Window* d_target; //!< Current target Window for this Tooltip.
+        float d_hoverTime; //!< tool-tip hover time (seconds mouse must stay stationary before tip shows).
+        float d_displayTime; //!< tool-tip display time (seconds that tip is showsn for).
+        float d_fadeTime; //!< tool-tip fade time (seconds it takes for tip to fade in and/or out).
         //! are in positionSelf function? (to avoid infinite recursion issues)
         bool d_inPositionSelf;
 
     private:
         /*************************************************************************
             Private methods
-        *************************************************************************/
+         *************************************************************************/
         void addTooltipProperties(void);
     };
 #endif //PE_NO_MOUSE
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 #endif //PE_NO_WGT_TOOLTIP
 #endif  // end of guard _CEGUITooltip_h_

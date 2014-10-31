@@ -6,25 +6,25 @@
 
 namespace bp = boost::python;
 
-void register_TextUtils_class(){
+void register_TextUtils_class() {
 
     { //::CEGUI::TextUtils
         typedef bp::class_< CEGUI::TextUtils, boost::noncopyable > TextUtils_exposer_t;
-        TextUtils_exposer_t TextUtils_exposer = TextUtils_exposer_t( "TextUtils", "*!\n\
+        TextUtils_exposer_t TextUtils_exposer = TextUtils_exposer_t("TextUtils", "*!\n\
         \n\
             Text utility support class.  This class is all static members.  You do not create instances of\
             this class.\n\
-        *\n", bp::no_init );
-        bp::scope TextUtils_scope( TextUtils_exposer );
+        *\n", bp::no_init);
+        bp::scope TextUtils_scope(TextUtils_exposer);
         { //::CEGUI::TextUtils::getNextWord
-        
-            typedef ::CEGUI::String ( *getNextWord_function_type )( ::CEGUI::String const &,::size_t,::CEGUI::String const & );
-            
-            TextUtils_exposer.def( 
-                "getNextWord"
-                , getNextWord_function_type( &::CEGUI::TextUtils::getNextWord )
-                , ( bp::arg("str"), bp::arg("start_idx")=(::size_t)(0), bp::arg("delimiters")=CEGUI::TextUtils::DefaultWhitespace )
-                , "*************************************************************************\n\
+
+            typedef ::CEGUI::String(*getNextWord_function_type)(::CEGUI::String const &, ::size_t, ::CEGUI::String const &);
+
+            TextUtils_exposer.def(
+                    "getNextWord"
+                    , getNextWord_function_type(&::CEGUI::TextUtils::getNextWord)
+                    , (bp::arg("str"), bp::arg("start_idx") = (::size_t)(0), bp::arg("delimiters") = CEGUI::TextUtils::DefaultWhitespace)
+                    , "*************************************************************************\n\
                     Methods\n\
                 *************************************************************************\n\
                 *!\n\
@@ -51,18 +51,18 @@ void register_TextUtils_class(){
                 @return\n\
                     String object containing the next  delimiters delimited word from  str, starting at index\
                     start_idx.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::TextUtils::getNextWordStartIdx
-        
-            typedef ::size_t ( *getNextWordStartIdx_function_type )( ::CEGUI::String const &,::size_t );
-            
-            TextUtils_exposer.def( 
-                "getNextWordStartIdx"
-                , getNextWordStartIdx_function_type( &::CEGUI::TextUtils::getNextWordStartIdx )
-                , ( bp::arg("str"), bp::arg("idx") )
-                , "*!\n\
+
+            typedef ::size_t(*getNextWordStartIdx_function_type)(::CEGUI::String const &, ::size_t);
+
+            TextUtils_exposer.def(
+                    "getNextWordStartIdx"
+                    , getNextWordStartIdx_function_type(&::CEGUI::TextUtils::getNextWordStartIdx)
+                    , (bp::arg("str"), bp::arg("idx"))
+                    , "*!\n\
                 \n\
                     Return the index of the first character of the word after the word at  idx.\n\
             \n\
@@ -79,18 +79,18 @@ void register_TextUtils_class(){
                 @return\n\
                     Index into  str which marks the begining of the word at after the word at index  idx.\n\
                     If  idx is within the last word, then the return is the last index in  str.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::TextUtils::getWordStartIdx
-        
-            typedef ::size_t ( *getWordStartIdx_function_type )( ::CEGUI::String const &,::size_t );
-            
-            TextUtils_exposer.def( 
-                "getWordStartIdx"
-                , getWordStartIdx_function_type( &::CEGUI::TextUtils::getWordStartIdx )
-                , ( bp::arg("str"), bp::arg("idx") )
-                , "*!\n\
+
+            typedef ::size_t(*getWordStartIdx_function_type)(::CEGUI::String const &, ::size_t);
+
+            TextUtils_exposer.def(
+                    "getWordStartIdx"
+                    , getWordStartIdx_function_type(&::CEGUI::TextUtils::getWordStartIdx)
+                    , (bp::arg("str"), bp::arg("idx"))
+                    , "*!\n\
                 \n\
                     Return the index of the first character of the word at  idx.\n\
             \n\
@@ -106,18 +106,18 @@ void register_TextUtils_class(){
             \n\
                 @return\n\
                     Index into  str which marks the begining of the word at index  idx.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::TextUtils::trimLeadingChars
-        
-            typedef void ( *trimLeadingChars_function_type )( ::CEGUI::String &,::CEGUI::String const & );
-            
-            TextUtils_exposer.def( 
-                "trimLeadingChars"
-                , trimLeadingChars_function_type( &::CEGUI::TextUtils::trimLeadingChars )
-                , ( bp::arg("str"), bp::arg("chars") )
-                , "*!\n\
+
+            typedef void ( *trimLeadingChars_function_type)(::CEGUI::String &, ::CEGUI::String const &);
+
+            TextUtils_exposer.def(
+                    "trimLeadingChars"
+                    , trimLeadingChars_function_type(&::CEGUI::TextUtils::trimLeadingChars)
+                    , (bp::arg("str"), bp::arg("chars"))
+                    , "*!\n\
                 \n\
                     Trim all characters from the set specified in  chars from the begining of  str.\n\
             \n\
@@ -126,18 +126,18 @@ void register_TextUtils_class(){
             \n\
                 @param chars\n\
                     String object containing the set of code points to be trimmed.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::TextUtils::trimTrailingChars
-        
-            typedef void ( *trimTrailingChars_function_type )( ::CEGUI::String &,::CEGUI::String const & );
-            
-            TextUtils_exposer.def( 
-                "trimTrailingChars"
-                , trimTrailingChars_function_type( &::CEGUI::TextUtils::trimTrailingChars )
-                , ( bp::arg("str"), bp::arg("chars") )
-                , "*!\n\
+
+            typedef void ( *trimTrailingChars_function_type)(::CEGUI::String &, ::CEGUI::String const &);
+
+            TextUtils_exposer.def(
+                    "trimTrailingChars"
+                    , trimTrailingChars_function_type(&::CEGUI::TextUtils::trimTrailingChars)
+                    , (bp::arg("str"), bp::arg("chars"))
+                    , "*!\n\
                 \n\
                     Trim all characters from the set specified in  chars from the end of  str.\n\
             \n\
@@ -146,23 +146,23 @@ void register_TextUtils_class(){
             \n\
                 @param chars\n\
                     String object containing the set of code points to be trimmed.\n\
-                *\n" );
-        
+                *\n");
+
         }
-        TextUtils_exposer.add_static_property( "DefaultAlphanumerical"
-                        , bp::make_getter( &CEGUI::TextUtils::DefaultAlphanumerical
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        TextUtils_exposer.add_static_property( "DefaultWhitespace"
-                        , bp::make_getter( &CEGUI::TextUtils::DefaultWhitespace
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        TextUtils_exposer.add_static_property( "DefaultWrapDelimiters"
-                        , bp::make_getter( &CEGUI::TextUtils::DefaultWrapDelimiters
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        TextUtils_exposer.staticmethod( "getNextWord" );
-        TextUtils_exposer.staticmethod( "getNextWordStartIdx" );
-        TextUtils_exposer.staticmethod( "getWordStartIdx" );
-        TextUtils_exposer.staticmethod( "trimLeadingChars" );
-        TextUtils_exposer.staticmethod( "trimTrailingChars" );
+        TextUtils_exposer.add_static_property("DefaultAlphanumerical"
+                , bp::make_getter(&CEGUI::TextUtils::DefaultAlphanumerical
+                , bp::return_value_policy< bp::return_by_value >()));
+        TextUtils_exposer.add_static_property("DefaultWhitespace"
+                , bp::make_getter(&CEGUI::TextUtils::DefaultWhitespace
+                , bp::return_value_policy< bp::return_by_value >()));
+        TextUtils_exposer.add_static_property("DefaultWrapDelimiters"
+                , bp::make_getter(&CEGUI::TextUtils::DefaultWrapDelimiters
+                , bp::return_value_policy< bp::return_by_value >()));
+        TextUtils_exposer.staticmethod("getNextWord");
+        TextUtils_exposer.staticmethod("getNextWordStartIdx");
+        TextUtils_exposer.staticmethod("getWordStartIdx");
+        TextUtils_exposer.staticmethod("trimLeadingChars");
+        TextUtils_exposer.staticmethod("trimTrailingChars");
     }
 
 }

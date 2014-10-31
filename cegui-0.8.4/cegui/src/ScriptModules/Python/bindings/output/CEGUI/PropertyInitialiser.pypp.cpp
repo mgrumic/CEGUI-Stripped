@@ -6,13 +6,13 @@
 
 namespace bp = boost::python;
 
-void register_PropertyInitialiser_class(){
+void register_PropertyInitialiser_class() {
 
     { //::CEGUI::PropertyInitialiser
         typedef bp::class_< CEGUI::PropertyInitialiser > PropertyInitialiser_exposer_t;
-        PropertyInitialiser_exposer_t PropertyInitialiser_exposer = PropertyInitialiser_exposer_t( "PropertyInitialiser", bp::init< >() );
-        bp::scope PropertyInitialiser_scope( PropertyInitialiser_exposer );
-        PropertyInitialiser_exposer.def( bp::init< CEGUI::String const &, CEGUI::String const & >(( bp::arg("property"), bp::arg("value") ), "*!\n\
+        PropertyInitialiser_exposer_t PropertyInitialiser_exposer = PropertyInitialiser_exposer_t("PropertyInitialiser", bp::init< >());
+        bp::scope PropertyInitialiser_scope(PropertyInitialiser_exposer);
+        PropertyInitialiser_exposer.def(bp::init< CEGUI::String const &, CEGUI::String const & >((bp::arg("property"), bp::arg("value")), "*!\n\
                 \n\
                     Constructor\n\
         \n\
@@ -21,16 +21,16 @@ void register_PropertyInitialiser_class(){
         \n\
                 @param value\n\
                     String holding the value to be set by this PropertyInitialiser.\n\
-                *\n") );
+                *\n"));
         { //::CEGUI::PropertyInitialiser::apply
-        
-            typedef void ( ::CEGUI::PropertyInitialiser::*apply_function_type )( ::CEGUI::PropertySet & ) const;
-            
-            PropertyInitialiser_exposer.def( 
-                "apply"
-                , apply_function_type( &::CEGUI::PropertyInitialiser::apply )
-                , ( bp::arg("target") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::PropertyInitialiser::*apply_function_type)(::CEGUI::PropertySet &) const;
+
+            PropertyInitialiser_exposer.def(
+                    "apply"
+                    , apply_function_type(&::CEGUI::PropertyInitialiser::apply)
+                    , (bp::arg("target"))
+                    , "*!\n\
                     \n\
                         Apply this property initialiser to the specified target CEGUI.PropertySet object.\n\
             \n\
@@ -39,53 +39,53 @@ void register_PropertyInitialiser_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::PropertyInitialiser::getInitialiserValue
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::PropertyInitialiser::*getInitialiserValue_function_type )(  ) const;
-            
-            PropertyInitialiser_exposer.def( 
-                "getInitialiserValue"
-                , getInitialiserValue_function_type( &::CEGUI::PropertyInitialiser::getInitialiserValue )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::PropertyInitialiser::*getInitialiserValue_function_type)() const;
+
+            PropertyInitialiser_exposer.def(
+                    "getInitialiserValue"
+                    , getInitialiserValue_function_type(&::CEGUI::PropertyInitialiser::getInitialiserValue)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the value string to be set on the property targetted by this\
                         PropertyInitialiser.\n\
             \n\
                     @return\n\
                         String object holding the value string.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::PropertyInitialiser::getTargetPropertyName
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::PropertyInitialiser::*getTargetPropertyName_function_type )(  ) const;
-            
-            PropertyInitialiser_exposer.def( 
-                "getTargetPropertyName"
-                , getTargetPropertyName_function_type( &::CEGUI::PropertyInitialiser::getTargetPropertyName )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::PropertyInitialiser::*getTargetPropertyName_function_type)() const;
+
+            PropertyInitialiser_exposer.def(
+                    "getTargetPropertyName"
+                    , getTargetPropertyName_function_type(&::CEGUI::PropertyInitialiser::getTargetPropertyName)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the name of the property targetted by this PropertyInitialiser.\n\
             \n\
                     @return\n\
                         String object holding the name of the target property.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::PropertyInitialiser::setInitialiserValue
-        
-            typedef void ( ::CEGUI::PropertyInitialiser::*setInitialiserValue_function_type )( ::CEGUI::String const & ) ;
-            
-            PropertyInitialiser_exposer.def( 
-                "setInitialiserValue"
-                , setInitialiserValue_function_type( &::CEGUI::PropertyInitialiser::setInitialiserValue )
-                , ( bp::arg("value") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::PropertyInitialiser::*setInitialiserValue_function_type)(::CEGUI::String const &);
+
+            PropertyInitialiser_exposer.def(
+                    "setInitialiserValue"
+                    , setInitialiserValue_function_type(&::CEGUI::PropertyInitialiser::setInitialiserValue)
+                    , (bp::arg("value"))
+                    , "*!\n\
                     \n\
                         Sets the value string to be set on the property targetted by this PropertyInitialiser.\n\
             \n\
@@ -94,18 +94,18 @@ void register_PropertyInitialiser_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::PropertyInitialiser::setTargetPropertyName
-        
-            typedef void ( ::CEGUI::PropertyInitialiser::*setTargetPropertyName_function_type )( ::CEGUI::String const & ) ;
-            
-            PropertyInitialiser_exposer.def( 
-                "setTargetPropertyName"
-                , setTargetPropertyName_function_type( &::CEGUI::PropertyInitialiser::setTargetPropertyName )
-                , ( bp::arg("name") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::PropertyInitialiser::*setTargetPropertyName_function_type)(::CEGUI::String const &);
+
+            PropertyInitialiser_exposer.def(
+                    "setTargetPropertyName"
+                    , setTargetPropertyName_function_type(&::CEGUI::PropertyInitialiser::setTargetPropertyName)
+                    , (bp::arg("name"))
+                    , "*!\n\
                     \n\
                         Apply this property initialiser to the specified target CEGUI.PropertySet object.\n\
             \n\
@@ -124,18 +124,18 @@ void register_PropertyInitialiser_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::PropertyInitialiser::writeXMLToStream
-        
-            typedef void ( ::CEGUI::PropertyInitialiser::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            PropertyInitialiser_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type( &::CEGUI::PropertyInitialiser::writeXMLToStream )
-                , ( bp::arg("xml_stream") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::PropertyInitialiser::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+
+            PropertyInitialiser_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::PropertyInitialiser::writeXMLToStream)
+                    , (bp::arg("xml_stream"))
+                    , "*!\n\
                     \n\
                         Writes an xml representation of this PropertyInitialiser to  out_stream.\n\
             \n\
@@ -145,8 +145,8 @@ void register_PropertyInitialiser_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
     }
 

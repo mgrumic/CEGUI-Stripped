@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	8/8/2004
-	author:		Steve Streeting
+        created:	8/8/2004
+        author:		Steve Streeting
 	
-	purpose:	Interface to base class for TabButton widget
-*************************************************************************/
+        purpose:	Interface to base class for TabButton widget
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,114 +33,121 @@
 #include "./ButtonBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Base class for TabButtons.  A TabButton based class is used internally as
-    the button that appears at the top of a TabControl widget to select the
-    active tab pane.
-*/
-class CEGUIEXPORT TabButton : public ButtonBase
-{
-public:
-	static const String EventNamespace;				//!< Namespace for global events
-    static const String WidgetTypeName;             //!< Window factory name
+namespace CEGUI {
 
-	/*************************************************************************
-		Event name constants
-	*************************************************************************/
-	// generated internally by Window
-    /** Event fired when the button is clicked.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the TabButton that was clicked.
+    /*!
+    \brief
+        Base class for TabButtons.  A TabButton based class is used internally as
+        the button that appears at the top of a TabControl widget to select the
+        active tab pane.
      */
-	static const String EventClicked;
+    class CEGUIEXPORT TabButton : public ButtonBase {
+    public:
+        static const String EventNamespace; //!< Namespace for global events
+        static const String WidgetTypeName; //!< Window factory name
+
+        /*************************************************************************
+                Event name constants
+         *************************************************************************/
+        // generated internally by Window
+        /** Event fired when the button is clicked.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the TabButton that was clicked.
+         */
+        static const String EventClicked;
 #ifndef PE_NO_MOUSE
-    /** Event fired when use user attempts to drag the button with middle mouse
-     * button.
-     * Handlers are passed a const MouseEventArgs reference with all fields
-     * valid.
-     */
-	static const String EventDragged;
+        /** Event fired when use user attempts to drag the button with middle mouse
+         * button.
+         * Handlers are passed a const MouseEventArgs reference with all fields
+         * valid.
+         */
+        static const String EventDragged;
 #endif //PE_NO_MOUSE
-    /** Event fired when the scroll wheel is used on top of the button.
-     * Handlers are passed a const MouseEventArgs reference with all fields
-     * valid.
-     */
-	static const String EventScrolled;
+        /** Event fired when the scroll wheel is used on top of the button.
+         * Handlers are passed a const MouseEventArgs reference with all fields
+         * valid.
+         */
+        static const String EventScrolled;
 
-	/*************************************************************************
-		Construction and Destruction
-	*************************************************************************/
-	/*!
-	\brief
-		Constructor for base TabButton class
-	*/
-	TabButton(const String& type, const String& name);
-
-
-	/*!
-	\brief
-		Destructor for TabButton class
-	*/
-	virtual ~TabButton(void);
-
-    /*!
-    \brief
-        Set whether this tab button is selected or not
-    */
-    virtual void setSelected(bool selected) { d_selected = selected; invalidate(); }
-
-    /*!
-    \brief
-        Return whether this tab button is selected or not
-    */
-    bool isSelected(void) const { return d_selected; }
+        /*************************************************************************
+                Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+                Constructor for base TabButton class
+         */
+        TabButton(const String& type, const String& name);
 
 
-    /*!
-    \brief
-        Set the target window which is the content pane which this button is
-        covering.
-    */
-    void setTargetWindow(Window* wnd);
-    /*!
-    \brief
-        Get the target window which is the content pane which this button is
-        covering.
-    */
-    Window* getTargetWindow(void) { return d_targetWindow; }
+        /*!
+        \brief
+                Destructor for TabButton class
+         */
+        virtual ~TabButton(void);
 
-protected:
-    /*************************************************************************
-    Implementation Data
-    *************************************************************************/
-    bool    d_selected;             //!< Is this button selected?
+        /*!
+        \brief
+            Set whether this tab button is selected or not
+         */
+        virtual void setSelected(bool selected) {
+            d_selected = selected;
+            invalidate();
+        }
+
+        /*!
+        \brief
+            Return whether this tab button is selected or not
+         */
+        bool isSelected(void) const {
+            return d_selected;
+        }
+
+
+        /*!
+        \brief
+            Set the target window which is the content pane which this button is
+            covering.
+         */
+        void setTargetWindow(Window* wnd);
+
+        /*!
+        \brief
+            Get the target window which is the content pane which this button is
+            covering.
+         */
+        Window* getTargetWindow(void) {
+            return d_targetWindow;
+        }
+
+    protected:
+        /*************************************************************************
+        Implementation Data
+         *************************************************************************/
+        bool d_selected; //!< Is this button selected?
 #ifndef PE_NO_MOUSE
-    bool    d_dragging;             //!< In drag mode or not
+        bool d_dragging; //!< In drag mode or not
 #endif //PE_NO_MOUSE
-    Window* d_targetWindow;         //!< The target window which this button is representing
-	/*************************************************************************
-		New Event Handlers
-	*************************************************************************/
-	/*!
-	\brief
-		handler invoked internally when the button is clicked.
-	*/
-	virtual void	onClicked(WindowEventArgs& e);
+        Window* d_targetWindow; //!< The target window which this button is representing
+        /*************************************************************************
+                New Event Handlers
+         *************************************************************************/
+        /*!
+        \brief
+                handler invoked internally when the button is clicked.
+         */
+        virtual void onClicked(WindowEventArgs& e);
 
 
 #ifndef PE_NO_MOUSE
-	/*************************************************************************
-		Overridden Event Handlers
-	*************************************************************************/
-    virtual void onMouseButtonUp(MouseEventArgs& e);
-    virtual void onMouseButtonDown(MouseEventArgs& e);
-    virtual void onMouseWheel(MouseEventArgs& e);
-    virtual void onMouseMove(MouseEventArgs& e);
+        /*************************************************************************
+                Overridden Event Handlers
+         *************************************************************************/
+        virtual void onMouseButtonUp(MouseEventArgs& e);
+        virtual void onMouseButtonDown(MouseEventArgs& e);
+        virtual void onMouseWheel(MouseEventArgs& e);
+        virtual void onMouseMove(MouseEventArgs& e);
 #endif //PE_NO_MOUSE
-};
+    };
 
 
 } // End of  CEGUI namespace section

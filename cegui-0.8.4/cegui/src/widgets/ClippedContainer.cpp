@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	Sun Jun 11 2006
-	author:		Tomas Lindquist Olsen
-*************************************************************************/
+        created:	Sun Jun 11 2006
+        author:		Tomas Lindquist Olsen
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,62 +29,52 @@
 
 #ifndef PE_NO_WGT_CLIPPED_CONTAINER
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-const String ClippedContainer::WidgetTypeName("ClippedContainer");
-const String ClippedContainer::EventNamespace("ClippedContainer");
+namespace CEGUI {
+    const String ClippedContainer::WidgetTypeName("ClippedContainer");
+    const String ClippedContainer::EventNamespace("ClippedContainer");
 
-ClippedContainer::ClippedContainer(const String& type, const String& name) :
+    ClippedContainer::ClippedContainer(const String& type, const String& name) :
     Window(type, name),
-    d_clipArea(0,0,0,0),
-    d_clipperWindow(0)
-{
-}
-
-ClippedContainer::~ClippedContainer(void)
-{
-}
-
-Rectf ClippedContainer::getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const
-{
-    // This is obviously doing nothing.  The reason being that whas this
-    // used to to is now handled correctly via the fixed 'inner rect' usage,
-    // meaning that the looknfeel named areas can be employed to do the correct
-    // clipping.  Fixing the inner rect support actually broke this anyhow,
-    // since it only worked because the inner rect support was broken.  As
-    // such, ClippedContainer serves no useful purpose and will be removed.
-    return Window::getUnclippedInnerRect_impl(skipAllPixelAlignment);
-}
-
-const Rectf& ClippedContainer::getClipArea(void) const
-{
-    return d_clipArea;
-}
-
-Window* ClippedContainer::getClipperWindow() const
-{
-    return d_clipperWindow;
-}
-
-void ClippedContainer::setClipArea(const Rectf& r)
-{
-    if (d_clipArea != r)
-    {
-        d_clipArea = r;
-        invalidate();
-        notifyClippingChanged();
+    d_clipArea(0, 0, 0, 0),
+    d_clipperWindow(0) {
     }
-}
 
-void ClippedContainer::setClipperWindow(Window* w)
-{
-    if (d_clipperWindow != w)
-    {
-        d_clipperWindow = w;
-        invalidate();
-        notifyClippingChanged();
+    ClippedContainer::~ClippedContainer(void) {
     }
-}
+
+    Rectf ClippedContainer::getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+        // This is obviously doing nothing.  The reason being that whas this
+        // used to to is now handled correctly via the fixed 'inner rect' usage,
+        // meaning that the looknfeel named areas can be employed to do the correct
+        // clipping.  Fixing the inner rect support actually broke this anyhow,
+        // since it only worked because the inner rect support was broken.  As
+        // such, ClippedContainer serves no useful purpose and will be removed.
+        return Window::getUnclippedInnerRect_impl(skipAllPixelAlignment);
+    }
+
+    const Rectf& ClippedContainer::getClipArea(void) const {
+        return d_clipArea;
+    }
+
+    Window* ClippedContainer::getClipperWindow() const {
+        return d_clipperWindow;
+    }
+
+    void ClippedContainer::setClipArea(const Rectf& r) {
+        if (d_clipArea != r) {
+            d_clipArea = r;
+            invalidate();
+            notifyClippingChanged();
+        }
+    }
+
+    void ClippedContainer::setClipperWindow(Window* w) {
+        if (d_clipperWindow != w) {
+            d_clipperWindow = w;
+            invalidate();
+            notifyClippingChanged();
+        }
+    }
 
 } // End of  CEGUI namespace section
 

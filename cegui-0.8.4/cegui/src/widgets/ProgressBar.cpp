@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	13/4/2004
-	author:		Paul D Turner
+        created:	13/4/2004
+        author:		Paul D Turner
 	
-	purpose:	Implementation of ProgressBar widget base class
-*************************************************************************/
+        purpose:	Implementation of ProgressBar widget base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,100 +30,86 @@
 #ifndef PE_NO_WGT_PROGRESS_BAR
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-const String ProgressBar::WidgetTypeName("CEGUI/ProgressBar");
-const String ProgressBar::EventNamespace("ProgressBar");
+namespace CEGUI {
+    const String ProgressBar::WidgetTypeName("CEGUI/ProgressBar");
+    const String ProgressBar::EventNamespace("ProgressBar");
 
-/*************************************************************************
-	Event name constants
-*************************************************************************/
-const String ProgressBar::EventProgressChanged( "ProgressChanged" );
-const String ProgressBar::EventProgressDone( "ProgressDone" );
+    /*************************************************************************
+            Event name constants
+     *************************************************************************/
+    const String ProgressBar::EventProgressChanged("ProgressChanged");
+    const String ProgressBar::EventProgressDone("ProgressDone");
 
+    /*************************************************************************
+            Constructor for ProgressBar class
+     *************************************************************************/
+    ProgressBar::ProgressBar(const String& type, const String& name) :
+    Window(type, name),
+    d_progress(0),
+    d_step(0.01f) {
+        addProgressBarProperties();
+    }
 
-/*************************************************************************
-	Constructor for ProgressBar class
-*************************************************************************/
-ProgressBar::ProgressBar(const String& type, const String& name) :
-	Window(type, name),
-	d_progress(0),
-	d_step(0.01f)
-{
-	addProgressBarProperties();
-}
+    /*************************************************************************
+            Destructor for ProgressBar
+     *************************************************************************/
+    ProgressBar::~ProgressBar(void) {
+    }
 
+    /*************************************************************************
+            set the current progress.	
+     *************************************************************************/
+    void ProgressBar::setProgress(float progress) {
+        // legal progress rangeis : 0.0f <= progress <= 1.0f
+        progress = (progress < 0.0f) ? 0.0f : (progress > 1.0f) ? 1.0f : progress;
 
-/*************************************************************************
-	Destructor for ProgressBar
-*************************************************************************/
-ProgressBar::~ProgressBar(void)
-{
-}
+        if (progress != d_progress) {
+            // update progress and fire off event.
+            d_progress = progress;
+            WindowEventArgs args(this);
+            onProgressChanged(args);
 
+            // if new progress is 100%, fire off the 'done' event as well.
+            if (d_progress == 1.0f) {
+                onProgressDone(args);
+            }
 
-/*************************************************************************
-	set the current progress.	
-*************************************************************************/
-void ProgressBar::setProgress(float progress)
-{
-	// legal progress rangeis : 0.0f <= progress <= 1.0f
-	progress = (progress < 0.0f) ? 0.0f : (progress > 1.0f) ? 1.0f : progress;
+        }
 
-	if (progress != d_progress)
-	{
-		// update progress and fire off event.
-		d_progress = progress;
-		WindowEventArgs args(this);
-		onProgressChanged(args);
+    }
 
-		// if new progress is 100%, fire off the 'done' event as well.
-		if (d_progress == 1.0f)
-		{
-			onProgressDone(args);
-		}
+    /*************************************************************************
+            event triggered when progress changes	
+     *************************************************************************/
+    void ProgressBar::onProgressChanged(WindowEventArgs& e) {
+        invalidate();
 
-	}
+        fireEvent(EventProgressChanged, e, EventNamespace);
+    }
 
-}
+    /*************************************************************************
+            event triggered when progress reaches 100%	
+     *************************************************************************/
+    void ProgressBar::onProgressDone(WindowEventArgs& e) {
+        fireEvent(EventProgressDone, e, EventNamespace);
+    }
 
+    /*************************************************************************
+            add properties defined for this class
+     *************************************************************************/
+    void ProgressBar::addProgressBarProperties(void) {
+        const String& propertyOrigin = WidgetTypeName;
 
-/*************************************************************************
-	event triggered when progress changes	
-*************************************************************************/
-void ProgressBar::onProgressChanged(WindowEventArgs& e)
-{
-	invalidate();
+        CEGUI_DEFINE_PROPERTY(ProgressBar, float,
+                "CurrentProgress", "Property to get/set the current progress of the progress bar.  Value is a float  value between 0.0 and 1.0 specifying the progress.",
+                &ProgressBar::setProgress, &ProgressBar::getProgress, 0.0f /* TODO: Inconsistency */
+                );
 
-	fireEvent(EventProgressChanged, e, EventNamespace);
-}
-
-
-/*************************************************************************
-	event triggered when progress reaches 100%	
-*************************************************************************/
-void ProgressBar::onProgressDone(WindowEventArgs& e)
-{
-	fireEvent(EventProgressDone, e, EventNamespace);
-}
-
-/*************************************************************************
-	add properties defined for this class
-*************************************************************************/
-void ProgressBar::addProgressBarProperties(void)
-{
-    const String& propertyOrigin = WidgetTypeName;
-
-    CEGUI_DEFINE_PROPERTY(ProgressBar, float,
-        "CurrentProgress", "Property to get/set the current progress of the progress bar.  Value is a float  value between 0.0 and 1.0 specifying the progress.",
-        &ProgressBar::setProgress, &ProgressBar::getProgress, 0.0f /* TODO: Inconsistency */
-    );
-    
-    CEGUI_DEFINE_PROPERTY(ProgressBar, float,
-        "StepSize", "Property to get/set the step size setting for the progress bar.  Value is a float value.",
-        &ProgressBar::setStepSize, &ProgressBar::getStepSize, 0.0f
-    );
-}
+        CEGUI_DEFINE_PROPERTY(ProgressBar, float,
+                "StepSize", "Property to get/set the step size setting for the progress bar.  Value is a float value.",
+                &ProgressBar::setStepSize, &ProgressBar::getStepSize, 0.0f
+                );
+    }
 
 
 } // End of  CEGUI namespace section

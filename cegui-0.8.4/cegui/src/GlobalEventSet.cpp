@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	16/1/2005
-	author:		Paul D Turner
-*************************************************************************/
+        created:	16/1/2005
+        author:		Paul D Turner
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,61 +29,55 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-	/*************************************************************************
-		Static Data Definitions
-	*************************************************************************/
-	// singleton instance pointer
-	template<> GlobalEventSet* Singleton<GlobalEventSet>::ms_Singleton	= 0;
+namespace CEGUI {
+    /*************************************************************************
+            Static Data Definitions
+     *************************************************************************/
+    // singleton instance pointer
+    template<> GlobalEventSet* Singleton<GlobalEventSet>::ms_Singleton = 0;
 
-	/*************************************************************************
-		GlobalEventSet constructor.
-	*************************************************************************/
-	GlobalEventSet::GlobalEventSet()
-	{
+    /*************************************************************************
+            GlobalEventSet constructor.
+     *************************************************************************/
+    GlobalEventSet::GlobalEventSet() {
 #ifndef PE_NO_LOGGER
         char addr_buff[32];
-        sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-		Logger::getSingleton().logEvent(
-          "CEGUI::GlobalEventSet singleton created. " + String(addr_buff));
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::GlobalEventSet singleton created. " + String(addr_buff));
 #endif //PE_NO_LOGGER
-	}
+    }
 
-	/*************************************************************************
-		GlobalEventSet destructor.
-	*************************************************************************/
-	GlobalEventSet::~GlobalEventSet()
-	{
+    /*************************************************************************
+            GlobalEventSet destructor.
+     *************************************************************************/
+    GlobalEventSet::~GlobalEventSet() {
 #ifndef PE_NO_LOGGER
         char addr_buff[32];
-        sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-		Logger::getSingleton().logEvent(
-          "CEGUI::GlobalEventSet singleton destroyed. " + String(addr_buff));
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::GlobalEventSet singleton destroyed. " + String(addr_buff));
 #endif //PE_NO_LOGGER
-	}
+    }
 
-	/*************************************************************************
-		Return singleton object
-	*************************************************************************/
-	GlobalEventSet&	GlobalEventSet::getSingleton(void)
-	{
-		return Singleton<GlobalEventSet>::getSingleton();
-	}
+    /*************************************************************************
+            Return singleton object
+     *************************************************************************/
+    GlobalEventSet& GlobalEventSet::getSingleton(void) {
+        return Singleton<GlobalEventSet>::getSingleton();
+    }
 
-	/*************************************************************************
-		Return singleton pointer
-	*************************************************************************/
-	GlobalEventSet*	GlobalEventSet::getSingletonPtr(void)
-	{
-		return Singleton<GlobalEventSet>::getSingletonPtr();
-	}
+    /*************************************************************************
+            Return singleton pointer
+     *************************************************************************/
+    GlobalEventSet* GlobalEventSet::getSingletonPtr(void) {
+        return Singleton<GlobalEventSet>::getSingletonPtr();
+    }
 
-	/*************************************************************************
-		Overridden fireEvent which always succeeds.
-	*************************************************************************/
-	void GlobalEventSet::fireEvent(const String& name, EventArgs& args, const String& eventNamespace)
-	{
+    /*************************************************************************
+            Overridden fireEvent which always succeeds.
+     *************************************************************************/
+    void GlobalEventSet::fireEvent(const String& name, EventArgs& args, const String& eventNamespace) {
         // here we are very explicit about how we construct the event string.
         // Doing it 'longhand' like this saves significant time when compared
         // to the obvious - and previous - implementation:
@@ -94,6 +88,6 @@ namespace CEGUI
         evt_name.append(1, '/');
         evt_name.append(name);
         fireEvent_impl(evt_name, args);
-	}
+    }
 
 } // End of  CEGUI namespace section

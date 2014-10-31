@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 14 2006
     author:     Tomas Lindquist Olsen <tomas@famolsen.dk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/WindowRendererSets/Core/Button.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         ToggleButton class for the FalagardBase module.
@@ -50,16 +50,15 @@ namespace CEGUI
             - SelectedPushed    - Rendering for when the togglebutton is selected, is pushed and has the mouse over it.
             - SelectedPushedOff - Rendering for when the togglebutton is selected, is pushed and the mouse is not over it.
             - SelectedDisabled  - Rendering for when the togglebutton is selected and is disabled.
-    */
-    class COREWRSET_API FalagardToggleButton : public FalagardButton
-    {
+     */
+    class COREWRSET_API FalagardToggleButton : public FalagardButton {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardToggleButton(const String& type);
 
     protected:

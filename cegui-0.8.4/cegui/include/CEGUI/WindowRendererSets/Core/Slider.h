@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jul 3 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,13 +31,12 @@
 #include "CEGUI/widgets/Slider.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     /*!
     \brief
         Slider class for the FalagardBase module.
@@ -58,17 +57,17 @@ namespace CEGUI
             - VerticalSlider - boolean property.
               Indicates whether this slider will operate in the vertical or
               horizontal direction.  Default is for horizontal.  Optional.
-    */
+     */
 #ifndef PE_NO_WGT_SLIDER
-    class COREWRSET_API FalagardSlider : public SliderWindowRenderer
-    {
+
+    class COREWRSET_API FalagardSlider : public SliderWindowRenderer {
     public:
-        static const String TypeName;     //! type name for this widget.
+        static const String TypeName; //! type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardSlider(const String& type);
 
         bool isVertical() const;
@@ -82,8 +81,8 @@ namespace CEGUI
 
     protected:
         // data members
-        bool    d_vertical;     //!< True if slider operates in vertical direction.
-        bool    d_reversed;     //!< true if slider operates in reversed direction to 'normal'.
+        bool d_vertical; //!< True if slider operates in vertical direction.
+        bool d_reversed; //!< true if slider operates in reversed direction to 'normal'.
 
         // overridden from Slider base class.
         void updateThumb(void);
@@ -95,7 +94,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalSlider_h_

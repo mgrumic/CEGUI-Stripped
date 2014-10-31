@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 16 2010
     author:     Eugene Marcotte
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -32,46 +32,45 @@
 #include "../../Rect.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Intermediate RenderTarget 
-template<typename T = RenderTarget>
-class NULL_GUIRENDERER_API NullRenderTarget : public T
-{
-public:
-    //! Constructor
-    NullRenderTarget(NullRenderer& owner);
+namespace CEGUI {
+    //! Intermediate RenderTarget 
 
-    //! Destructor
-    virtual ~NullRenderTarget();
+    template<typename T = RenderTarget>
+    class NULL_GUIRENDERER_API NullRenderTarget : public T {
+    public:
+        //! Constructor
+        NullRenderTarget(NullRenderer& owner);
 
-    // implement parts of CEGUI::RenderTarget interface
-    void draw(const GeometryBuffer& buffer);
-    void draw(const RenderQueue& queue);
-    void setArea(const Rectf& area);
-    const Rectf& getArea() const;
-    void activate();
-    void deactivate();
-    void unprojectPoint(const GeometryBuffer& buff,
-                        const Vector2f& p_in, Vector2f& p_out) const;
-    bool isImageryCache() const;
+        //! Destructor
+        virtual ~NullRenderTarget();
 
-protected:
-    //! NullRenderer object that owns this RenderTarget
-    NullRenderer& d_owner;
-    //! holds defined area for the RenderTarget
-    Rectf d_area;
-};
+        // implement parts of CEGUI::RenderTarget interface
+        void draw(const GeometryBuffer& buffer);
+        void draw(const RenderQueue& queue);
+        void setArea(const Rectf& area);
+        const Rectf& getArea() const;
+        void activate();
+        void deactivate();
+        void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in, Vector2f& p_out) const;
+        bool isImageryCache() const;
+
+    protected:
+        //! NullRenderer object that owns this RenderTarget
+        NullRenderer& d_owner;
+        //! holds defined area for the RenderTarget
+        Rectf d_area;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUINullRenderTarget_h_

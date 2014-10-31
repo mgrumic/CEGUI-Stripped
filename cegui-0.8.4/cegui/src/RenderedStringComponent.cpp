@@ -29,107 +29,106 @@
 #include "CEGUI/ImageManager.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-//----------------------------------------------------------------------------//
-RenderedStringComponent::RenderedStringComponent() :
+    //----------------------------------------------------------------------------//
+
+    RenderedStringComponent::RenderedStringComponent() :
     d_padding(0, 0, 0, 0),
     d_verticalFormatting(VF_BOTTOM_ALIGNED),
     d_aspectLock(false),
-    d_selectionImage(0)
-{
-}
+    d_selectionImage(0) {
+    }
 
-//----------------------------------------------------------------------------//
-RenderedStringComponent::~RenderedStringComponent()
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setVerticalFormatting(VerticalFormatting fmt)
-{
-    d_verticalFormatting = fmt;
-}
+    RenderedStringComponent::~RenderedStringComponent() {
+    }
 
-//----------------------------------------------------------------------------//
-VerticalFormatting RenderedStringComponent::getVerticalFormatting() const
-{
-    return d_verticalFormatting;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setPadding(const Rectf& padding)
-{
-    d_padding = padding;
-}
+    void RenderedStringComponent::setVerticalFormatting(VerticalFormatting fmt) {
+        d_verticalFormatting = fmt;
+    }
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setLeftPadding(const float padding)
-{
-    d_padding.d_min.d_x = padding;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setRightPadding(const float padding)
-{
-    d_padding.d_max.d_x = padding;
-}
+    VerticalFormatting RenderedStringComponent::getVerticalFormatting() const {
+        return d_verticalFormatting;
+    }
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setTopPadding(const float padding)
-{
-    d_padding.d_min.d_y = padding;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setBottomPadding(const float padding)
-{
-    d_padding.d_max.d_x = padding;
-}
+    void RenderedStringComponent::setPadding(const Rectf& padding) {
+        d_padding = padding;
+    }
 
-//----------------------------------------------------------------------------//
-const Rectf& RenderedStringComponent::getPadding() const
-{
-    return d_padding;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-float RenderedStringComponent::getLeftPadding() const
-{
-    return d_padding.d_min.d_x;
-}
+    void RenderedStringComponent::setLeftPadding(const float padding) {
+        d_padding.d_min.d_x = padding;
+    }
 
-//----------------------------------------------------------------------------//
-float RenderedStringComponent::getRightPadding() const
-{
-    return d_padding.d_max.d_x;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-float RenderedStringComponent::getTopPadding() const
-{
-    return d_padding.d_min.d_y;
-}
+    void RenderedStringComponent::setRightPadding(const float padding) {
+        d_padding.d_max.d_x = padding;
+    }
 
-//----------------------------------------------------------------------------//
-float RenderedStringComponent::getBottomPadding() const
-{
-    return d_padding.d_max.d_y;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderedStringComponent::setAspectLock(const bool setting)
-{
-    d_aspectLock = setting;
-}
+    void RenderedStringComponent::setTopPadding(const float padding) {
+        d_padding.d_min.d_y = padding;
+    }
 
-//----------------------------------------------------------------------------//
-bool RenderedStringComponent::getAspectLock() const
-{
-    return d_aspectLock;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    void RenderedStringComponent::setBottomPadding(const float padding) {
+        d_padding.d_max.d_x = padding;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const Rectf& RenderedStringComponent::getPadding() const {
+        return d_padding;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float RenderedStringComponent::getLeftPadding() const {
+        return d_padding.d_min.d_x;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float RenderedStringComponent::getRightPadding() const {
+        return d_padding.d_max.d_x;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float RenderedStringComponent::getTopPadding() const {
+        return d_padding.d_min.d_y;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float RenderedStringComponent::getBottomPadding() const {
+        return d_padding.d_max.d_y;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void RenderedStringComponent::setAspectLock(const bool setting) {
+        d_aspectLock = setting;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool RenderedStringComponent::getAspectLock() const {
+        return d_aspectLock;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

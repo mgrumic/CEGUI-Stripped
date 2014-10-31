@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jul 6 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,8 +32,8 @@
 #include "CEGUI/falagard/WidgetLookFeel.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         MultiColumnList class for the FalagardBase module.
@@ -54,16 +54,15 @@ namespace CEGUI
             Scrollbar based widget with name suffix "__auto_vscrollbar__"
             Scrollbar based widget with name suffix "__auto_hscrollbar__"
             ListHeader based widget with name suffix "__auto_listheader__"
-    */
-    class COREWRSET_API FalagardMultiColumnList : public MultiColumnListWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardMultiColumnList : public MultiColumnListWindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardMultiColumnList(const String& type);
 
         /*!
@@ -75,7 +74,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void cacheListboxBaseImagery();
 
         // overridden from MultiColumnList base class.

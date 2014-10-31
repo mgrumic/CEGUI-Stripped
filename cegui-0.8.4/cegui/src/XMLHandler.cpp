@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    12/3/2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,53 +29,48 @@
 #include "CEGUI/XMLParser.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     // default handler does nothing.
 
-    XMLHandler::XMLHandler(void)
-    {}
+    XMLHandler::XMLHandler(void) {
+    }
 
-    XMLHandler::~XMLHandler(void)
-    {}
+    XMLHandler::~XMLHandler(void) {
+    }
 
-    const String& XMLHandler::getSchemaName() const
-    {
+    const String& XMLHandler::getSchemaName() const {
         static String ret = "";
 
         // by default, don't use XML schemas
         return ret;
     }
 
-    void XMLHandler::handleContainer(const RawDataContainer& source)
-    {
+    void XMLHandler::handleContainer(const RawDataContainer& source) {
         System::getSingleton().getXMLParser()->parseXML(
-                    *this, source, getSchemaName());
+                *this, source, getSchemaName());
     }
 
-    void XMLHandler::handleFile(const String& fileName, const String& resourceGroup)
-    {
+    void XMLHandler::handleFile(const String& fileName, const String& resourceGroup) {
         System::getSingleton().getXMLParser()->parseXMLFile(
-                    *this, fileName, getSchemaName(),
-                    resourceGroup.empty() ? getDefaultResourceGroup() :
-                                             resourceGroup);
+                *this, fileName, getSchemaName(),
+                resourceGroup.empty() ? getDefaultResourceGroup() :
+                resourceGroup);
     }
 
-    void XMLHandler::handleString(const String& source)
-    {
+    void XMLHandler::handleString(const String& source) {
         System::getSingleton().getXMLParser()->parseXMLString(
-                    *this, source, getSchemaName());
+                *this, source, getSchemaName());
     }
 
-    void XMLHandler::elementStart(const String&, const XMLAttributes&)
-    {}
+    void XMLHandler::elementStart(const String&, const XMLAttributes&) {
+    }
 
-    void XMLHandler::elementEnd(const String&)
-    {}
-  
-    void XMLHandler::text(const String&)
-    {}
-    
-        
+    void XMLHandler::elementEnd(const String&) {
+    }
+
+    void XMLHandler::text(const String&) {
+    }
+
+
 } // End of  CEGUI namespace section
 

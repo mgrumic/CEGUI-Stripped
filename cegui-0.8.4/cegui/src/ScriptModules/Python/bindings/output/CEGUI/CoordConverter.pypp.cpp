@@ -6,26 +6,26 @@
 
 namespace bp = boost::python;
 
-void register_CoordConverter_class(){
+void register_CoordConverter_class() {
 
     { //::CEGUI::CoordConverter
         typedef bp::class_< CEGUI::CoordConverter, boost::noncopyable > CoordConverter_exposer_t;
-        CoordConverter_exposer_t CoordConverter_exposer = CoordConverter_exposer_t( "CoordConverter", "*!\n\
+        CoordConverter_exposer_t CoordConverter_exposer = CoordConverter_exposer_t("CoordConverter", "*!\n\
         \n\
             Utility class that helps in converting various types of co-ordinate between\n\
             absolute screen positions and positions offset from the top-left corner of\n\
             a given Window object.\n\
-        *\n", bp::no_init );
-        bp::scope CoordConverter_scope( CoordConverter_exposer );
+        *\n", bp::no_init);
+        bp::scope CoordConverter_scope(CoordConverter_exposer);
         { //::CEGUI::CoordConverter::alignToPixels
-        
-            typedef float ( *alignToPixels_function_type )( float );
-            
-            CoordConverter_exposer.def( 
-                "alignToPixels"
-                , alignToPixels_function_type( &::CEGUI::CoordConverter::alignToPixels )
-                , ( bp::arg("x") )
-                , "*!\n\
+
+            typedef float ( *alignToPixels_function_type)(float);
+
+            CoordConverter_exposer.def(
+                    "alignToPixels"
+                    , alignToPixels_function_type(&::CEGUI::CoordConverter::alignToPixels)
+                    , (bp::arg("x"))
+                    , "*!\n\
                 \n\
                     Static method used to return a float value rounded to the nearest integer.\n\
             \n\
@@ -39,122 +39,122 @@ void register_CoordConverter_class(){
                      x after having been rounded\n\
                     \n\
                 @see Node.setPixelAligned\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::asAbsolute
-        
-            typedef float ( *asAbsolute_function_type )( ::CEGUI::UDim const &,float,bool );
-            
-            CoordConverter_exposer.def( 
-                "asAbsolute"
-                , asAbsolute_function_type( &::CEGUI::CoordConverter::asAbsolute )
-                , ( bp::arg("u"), bp::arg("base"), bp::arg("pixelAlign")=(bool)(true) )
-                , "*!\n\
+
+            typedef float ( *asAbsolute_function_type)(::CEGUI::UDim const &, float, bool);
+
+            CoordConverter_exposer.def(
+                    "asAbsolute"
+                    , asAbsolute_function_type(&::CEGUI::CoordConverter::asAbsolute)
+                    , (bp::arg("u"), bp::arg("base"), bp::arg("pixelAlign") = (bool)(true))
+                    , "*!\n\
             \n\
                 converts given UDim to absolute value\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::CoordConverter::asAbsolute
-        
-            typedef ::CEGUI::Vector2f ( *asAbsolute_function_type )( ::CEGUI::Vector2< CEGUI::UDim > const &,::CEGUI::Sizef const &,bool );
-            
-            CoordConverter_exposer.def( 
-                "asAbsolute"
-                , asAbsolute_function_type( &::CEGUI::CoordConverter::asAbsolute )
-                , ( bp::arg("v"), bp::arg("base"), bp::arg("pixelAlign")=(bool)(true) )
-                , "*!\n\
+
+            typedef ::CEGUI::Vector2f(*asAbsolute_function_type)(::CEGUI::Vector2< CEGUI::UDim > const &, ::CEGUI::Sizef const &, bool);
+
+            CoordConverter_exposer.def(
+                    "asAbsolute"
+                    , asAbsolute_function_type(&::CEGUI::CoordConverter::asAbsolute)
+                    , (bp::arg("v"), bp::arg("base"), bp::arg("pixelAlign") = (bool)(true))
+                    , "*!\n\
             \n\
                 converts given Vector2<UDim> to absolute Vector2f\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::CoordConverter::asAbsolute
-        
-            typedef ::CEGUI::Sizef ( *asAbsolute_function_type )( ::CEGUI::Size< CEGUI::UDim > const &,::CEGUI::Sizef const &,bool );
-            
-            CoordConverter_exposer.def( 
-                "asAbsolute"
-                , asAbsolute_function_type( &::CEGUI::CoordConverter::asAbsolute )
-                , ( bp::arg("v"), bp::arg("base"), bp::arg("pixelAlign")=(bool)(true) )
-                , "*!\n\
+
+            typedef ::CEGUI::Sizef(*asAbsolute_function_type)(::CEGUI::Size< CEGUI::UDim > const &, ::CEGUI::Sizef const &, bool);
+
+            CoordConverter_exposer.def(
+                    "asAbsolute"
+                    , asAbsolute_function_type(&::CEGUI::CoordConverter::asAbsolute)
+                    , (bp::arg("v"), bp::arg("base"), bp::arg("pixelAlign") = (bool)(true))
+                    , "*!\n\
              \n\
                  converts given Size<UDim> to absolute Sizef\n\
-             *\n" );
-        
+             *\n");
+
         }
         { //::CEGUI::CoordConverter::asAbsolute
-        
-            typedef ::CEGUI::Rectf ( *asAbsolute_function_type )( ::CEGUI::URect const &,::CEGUI::Sizef const &,bool );
-            
-            CoordConverter_exposer.def( 
-                "asAbsolute"
-                , asAbsolute_function_type( &::CEGUI::CoordConverter::asAbsolute )
-                , ( bp::arg("r"), bp::arg("base"), bp::arg("pixelAlign")=(bool)(true) ) );
-        
+
+            typedef ::CEGUI::Rectf(*asAbsolute_function_type)(::CEGUI::URect const &, ::CEGUI::Sizef const &, bool);
+
+            CoordConverter_exposer.def(
+                    "asAbsolute"
+                    , asAbsolute_function_type(&::CEGUI::CoordConverter::asAbsolute)
+                    , (bp::arg("r"), bp::arg("base"), bp::arg("pixelAlign") = (bool)(true)));
+
         }
         { //::CEGUI::CoordConverter::asRelative
-        
-            typedef float ( *asRelative_function_type )( ::CEGUI::UDim const &,float );
-            
-            CoordConverter_exposer.def( 
-                "asRelative"
-                , asRelative_function_type( &::CEGUI::CoordConverter::asRelative )
-                , ( bp::arg("u"), bp::arg("base") )
-                , "*!\n\
+
+            typedef float ( *asRelative_function_type)(::CEGUI::UDim const &, float);
+
+            CoordConverter_exposer.def(
+                    "asRelative"
+                    , asRelative_function_type(&::CEGUI::CoordConverter::asRelative)
+                    , (bp::arg("u"), bp::arg("base"))
+                    , "*!\n\
             \n\
                 converts given UDim to relative value\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::CoordConverter::asRelative
-        
-            typedef ::CEGUI::Vector2f ( *asRelative_function_type )( ::CEGUI::Vector2< CEGUI::UDim > const &,::CEGUI::Sizef const & );
-            
-            CoordConverter_exposer.def( 
-                "asRelative"
-                , asRelative_function_type( &::CEGUI::CoordConverter::asRelative )
-                , ( bp::arg("v"), bp::arg("base") )
-                , "*!\n\
+
+            typedef ::CEGUI::Vector2f(*asRelative_function_type)(::CEGUI::Vector2< CEGUI::UDim > const &, ::CEGUI::Sizef const &);
+
+            CoordConverter_exposer.def(
+                    "asRelative"
+                    , asRelative_function_type(&::CEGUI::CoordConverter::asRelative)
+                    , (bp::arg("v"), bp::arg("base"))
+                    , "*!\n\
             \n\
                 converts given Vector2<UDim> to relative Vector2f\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::CoordConverter::asRelative
-        
-            typedef ::CEGUI::Sizef ( *asRelative_function_type )( ::CEGUI::Size< CEGUI::UDim > const &,::CEGUI::Sizef const & );
-            
-            CoordConverter_exposer.def( 
-                "asRelative"
-                , asRelative_function_type( &::CEGUI::CoordConverter::asRelative )
-                , ( bp::arg("v"), bp::arg("base") )
-                , "*!\n\
+
+            typedef ::CEGUI::Sizef(*asRelative_function_type)(::CEGUI::Size< CEGUI::UDim > const &, ::CEGUI::Sizef const &);
+
+            CoordConverter_exposer.def(
+                    "asRelative"
+                    , asRelative_function_type(&::CEGUI::CoordConverter::asRelative)
+                    , (bp::arg("v"), bp::arg("base"))
+                    , "*!\n\
             \n\
                 converts given Size<UDim> to relative Sizef\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::CoordConverter::asRelative
-        
-            typedef ::CEGUI::Rectf ( *asRelative_function_type )( ::CEGUI::URect const &,::CEGUI::Sizef const & );
-            
-            CoordConverter_exposer.def( 
-                "asRelative"
-                , asRelative_function_type( &::CEGUI::CoordConverter::asRelative )
-                , ( bp::arg("r"), bp::arg("base") ) );
-        
+
+            typedef ::CEGUI::Rectf(*asRelative_function_type)(::CEGUI::URect const &, ::CEGUI::Sizef const &);
+
+            CoordConverter_exposer.def(
+                    "asRelative"
+                    , asRelative_function_type(&::CEGUI::CoordConverter::asRelative)
+                    , (bp::arg("r"), bp::arg("base")));
+
         }
         { //::CEGUI::CoordConverter::screenToWindow
-        
-            typedef ::CEGUI::Vector2f ( *screenToWindow_function_type )( ::CEGUI::Window const &,::CEGUI::UVector2 const & );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindow"
-                , screenToWindow_function_type( &::CEGUI::CoordConverter::screenToWindow )
-                , ( bp::arg("window"), bp::arg("vec") )
-                , "*!\n\
+
+            typedef ::CEGUI::Vector2f(*screenToWindow_function_type)(::CEGUI::Window const &, ::CEGUI::UVector2 const &);
+
+            CoordConverter_exposer.def(
+                    "screenToWindow"
+                    , screenToWindow_function_type(&::CEGUI::CoordConverter::screenToWindow)
+                    , (bp::arg("window"), bp::arg("vec"))
+                    , "*!\n\
                 \n\
                     Convert a screen relative UVector2 point to a window co-ordinate point,\n\
                     specified in pixels.\n\
@@ -168,18 +168,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     Vector2 object describing a window co-ordinate point that is equivalent\n\
                     to screen based UVector2 point  vec.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindow
-        
-            typedef ::CEGUI::Vector2f ( *screenToWindow_function_type )( ::CEGUI::Window const &,::CEGUI::Vector2f const & );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindow"
-                , screenToWindow_function_type( &::CEGUI::CoordConverter::screenToWindow )
-                , ( bp::arg("window"), bp::arg("vec") )
-                , "*!\n\
+
+            typedef ::CEGUI::Vector2f(*screenToWindow_function_type)(::CEGUI::Window const &, ::CEGUI::Vector2f const &);
+
+            CoordConverter_exposer.def(
+                    "screenToWindow"
+                    , screenToWindow_function_type(&::CEGUI::CoordConverter::screenToWindow)
+                    , (bp::arg("window"), bp::arg("vec"))
+                    , "*!\n\
                 \n\
                     Convert a screen Vector2 pixel point to a window co-ordinate point,\n\
                     specified in pixels.\n\
@@ -193,18 +193,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     Vector2 object describing a window co-ordinate point that is equivalent\n\
                     to screen based Vector2 point  vec.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindow
-        
-            typedef ::CEGUI::Rectf ( *screenToWindow_function_type )( ::CEGUI::Window const &,::CEGUI::URect const & );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindow"
-                , screenToWindow_function_type( &::CEGUI::CoordConverter::screenToWindow )
-                , ( bp::arg("window"), bp::arg("rect") )
-                , "*!\n\
+
+            typedef ::CEGUI::Rectf(*screenToWindow_function_type)(::CEGUI::Window const &, ::CEGUI::URect const &);
+
+            CoordConverter_exposer.def(
+                    "screenToWindow"
+                    , screenToWindow_function_type(&::CEGUI::CoordConverter::screenToWindow)
+                    , (bp::arg("window"), bp::arg("rect"))
+                    , "*!\n\
                 \n\
                     Convert a URect screen area to a window area, specified in pixels.\n\
             \n\
@@ -217,18 +217,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     Rect object describing a window area that is equivalent to URect screen\n\
                     area  rect.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindow
-        
-            typedef ::CEGUI::Rectf ( *screenToWindow_function_type )( ::CEGUI::Window const &,::CEGUI::Rectf const & );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindow"
-                , screenToWindow_function_type( &::CEGUI::CoordConverter::screenToWindow )
-                , ( bp::arg("window"), bp::arg("rect") )
-                , "*!\n\
+
+            typedef ::CEGUI::Rectf(*screenToWindow_function_type)(::CEGUI::Window const &, ::CEGUI::Rectf const &);
+
+            CoordConverter_exposer.def(
+                    "screenToWindow"
+                    , screenToWindow_function_type(&::CEGUI::CoordConverter::screenToWindow)
+                    , (bp::arg("window"), bp::arg("rect"))
+                    , "*!\n\
                 \n\
                     Convert a Rect screen pixel area to a window area, specified in pixels.\n\
             \n\
@@ -241,18 +241,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     Rect object describing a window area that is equivalent to Rect screen\n\
                     area  rect.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindowX
-        
-            typedef float ( *screenToWindowX_function_type )( ::CEGUI::Window const &,::CEGUI::UDim const & );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindowX"
-                , screenToWindowX_function_type( &::CEGUI::CoordConverter::screenToWindowX )
-                , ( bp::arg("window"), bp::arg("x") )
-                , "*!\n\
+
+            typedef float ( *screenToWindowX_function_type)(::CEGUI::Window const &, ::CEGUI::UDim const &);
+
+            CoordConverter_exposer.def(
+                    "screenToWindowX"
+                    , screenToWindowX_function_type(&::CEGUI::CoordConverter::screenToWindowX)
+                    , (bp::arg("window"), bp::arg("x"))
+                    , "*!\n\
                 \n\
                     Convert a screen relative UDim co-ordinate value to a window co-ordinate\n\
                     value, specified in pixels.\n\
@@ -266,18 +266,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     float value describing a window co-ordinate value that is equivalent to\n\
                     screen UDim co-ordinate  x.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindowX
-        
-            typedef float ( *screenToWindowX_function_type )( ::CEGUI::Window const &,float const );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindowX"
-                , screenToWindowX_function_type( &::CEGUI::CoordConverter::screenToWindowX )
-                , ( bp::arg("window"), bp::arg("x") )
-                , "*!\n\
+
+            typedef float ( *screenToWindowX_function_type)(::CEGUI::Window const &, float const);
+
+            CoordConverter_exposer.def(
+                    "screenToWindowX"
+                    , screenToWindowX_function_type(&::CEGUI::CoordConverter::screenToWindowX)
+                    , (bp::arg("window"), bp::arg("x"))
+                    , "*!\n\
                 \n\
                     Convert a screen pixel co-ordinate value to a window co-ordinate\n\
                     value, specified in pixels.\n\
@@ -291,18 +291,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     float value describing a window co-ordinate value that is equivalent to\n\
                     screen co-ordinate  x.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindowY
-        
-            typedef float ( *screenToWindowY_function_type )( ::CEGUI::Window const &,::CEGUI::UDim const & );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindowY"
-                , screenToWindowY_function_type( &::CEGUI::CoordConverter::screenToWindowY )
-                , ( bp::arg("window"), bp::arg("y") )
-                , "*!\n\
+
+            typedef float ( *screenToWindowY_function_type)(::CEGUI::Window const &, ::CEGUI::UDim const &);
+
+            CoordConverter_exposer.def(
+                    "screenToWindowY"
+                    , screenToWindowY_function_type(&::CEGUI::CoordConverter::screenToWindowY)
+                    , (bp::arg("window"), bp::arg("y"))
+                    , "*!\n\
                 \n\
                     Convert a screen relative UDim co-ordinate value to a window co-ordinate\n\
                     value, specified in pixels.\n\
@@ -316,18 +316,18 @@ void register_CoordConverter_class(){
                 @return\n\
                     float value describing a window co-ordinate value that is equivalent to\n\
                     screen UDim co-ordinate  y.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::CoordConverter::screenToWindowY
-        
-            typedef float ( *screenToWindowY_function_type )( ::CEGUI::Window const &,float const );
-            
-            CoordConverter_exposer.def( 
-                "screenToWindowY"
-                , screenToWindowY_function_type( &::CEGUI::CoordConverter::screenToWindowY )
-                , ( bp::arg("window"), bp::arg("y") )
-                , "*!\n\
+
+            typedef float ( *screenToWindowY_function_type)(::CEGUI::Window const &, float const);
+
+            CoordConverter_exposer.def(
+                    "screenToWindowY"
+                    , screenToWindowY_function_type(&::CEGUI::CoordConverter::screenToWindowY)
+                    , (bp::arg("window"), bp::arg("y"))
+                    , "*!\n\
                 \n\
                     Convert a screen pixel co-ordinate value to a window co-ordinate\n\
                     value, specified in pixels.\n\
@@ -341,15 +341,15 @@ void register_CoordConverter_class(){
                 @return\n\
                     float value describing a window co-ordinate value that is equivalent to\n\
                     screen co-ordinate  y.\n\
-                *\n" );
-        
+                *\n");
+
         }
-        CoordConverter_exposer.staticmethod( "alignToPixels" );
-        CoordConverter_exposer.staticmethod( "asAbsolute" );
-        CoordConverter_exposer.staticmethod( "asRelative" );
-        CoordConverter_exposer.staticmethod( "screenToWindow" );
-        CoordConverter_exposer.staticmethod( "screenToWindowX" );
-        CoordConverter_exposer.staticmethod( "screenToWindowY" );
+        CoordConverter_exposer.staticmethod("alignToPixels");
+        CoordConverter_exposer.staticmethod("asAbsolute");
+        CoordConverter_exposer.staticmethod("asRelative");
+        CoordConverter_exposer.staticmethod("screenToWindow");
+        CoordConverter_exposer.staticmethod("screenToWindowX");
+        CoordConverter_exposer.staticmethod("screenToWindowY");
     }
 
 }

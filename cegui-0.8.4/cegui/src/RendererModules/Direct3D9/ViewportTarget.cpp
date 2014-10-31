@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Feb 13 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -31,41 +31,40 @@
 #include <d3d9.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-Direct3D9ViewportTarget::Direct3D9ViewportTarget(Direct3D9Renderer& owner) :
-    Direct3D9RenderTarget<>(owner)
-{
-    // initialise renderer size
-    D3DVIEWPORT9 vp;
-    if (FAILED(d_owner.getDevice()->GetViewport(&vp)))
-        CEGUI_THROW(RendererException("Unable to access "
-            "required view port information from Direct3DDevice9."));
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    Rectf area(
-        Vector2f(static_cast<float>(vp.X), static_cast<float>(vp.Y)),
-        Sizef(static_cast<float>(vp.Width), static_cast<float>(vp.Height))
-    );
+    Direct3D9ViewportTarget::Direct3D9ViewportTarget(Direct3D9Renderer& owner) :
+    Direct3D9RenderTarget<>(owner) {
+        // initialise renderer size
+        D3DVIEWPORT9 vp;
+        if (FAILED(d_owner.getDevice()->GetViewport(&vp)))
+            CEGUI_THROW(RendererException("Unable to access "
+                "required view port information from Direct3DDevice9."));
 
-    setArea(area);
-}
+        Rectf area(
+                Vector2f(static_cast<float> (vp.X), static_cast<float> (vp.Y)),
+                Sizef(static_cast<float> (vp.Width), static_cast<float> (vp.Height))
+                );
 
-//----------------------------------------------------------------------------//
-Direct3D9ViewportTarget::Direct3D9ViewportTarget(Direct3D9Renderer& owner,
-    const Rectf& area) :
-        Direct3D9RenderTarget<>(owner)
-{
-    setArea(area);
-}
+        setArea(area);
+    }
 
-//----------------------------------------------------------------------------//
-bool Direct3D9ViewportTarget::isImageryCache() const
-{
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    Direct3D9ViewportTarget::Direct3D9ViewportTarget(Direct3D9Renderer& owner,
+            const Rectf& area) :
+    Direct3D9RenderTarget<>(owner) {
+        setArea(area);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool Direct3D9ViewportTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

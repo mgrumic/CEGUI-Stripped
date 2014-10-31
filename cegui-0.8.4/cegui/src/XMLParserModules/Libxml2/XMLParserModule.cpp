@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 7 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -27,12 +27,10 @@
 #include "CEGUI/XMLParserModules/Libxml2/XMLParserModule.h"
 #include "CEGUI/XMLParserModules/Libxml2/XMLParser.h"
 
-CEGUI::XMLParser* createParser(void)
-{
+CEGUI::XMLParser* createParser(void) {
     return CEGUI_NEW_AO CEGUI::LibxmlParser();
 }
 
-void destroyParser(CEGUI::XMLParser* parser)
-{
+void destroyParser(CEGUI::XMLParser* parser) {
     CEGUI_DELETE_AO parser;
 }

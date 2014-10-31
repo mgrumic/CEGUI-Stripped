@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jun 26 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -28,44 +28,37 @@
 #include "CEGUI/falagard/XMLHandler.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     NamedArea::NamedArea(const String& name) :
-        d_name(name)
-    {
+    d_name(name) {
     }
 
-    const String& NamedArea::getName() const
-    {
+    const String& NamedArea::getName() const {
         return d_name;
     }
 
-    void NamedArea::setName(const String& name)
-    {
+    void NamedArea::setName(const String& name) {
         d_name = name;
     }
 
-    const ComponentArea& NamedArea::getArea() const
-    {
+    const ComponentArea& NamedArea::getArea() const {
         return d_area;
     }
 
-    void NamedArea::setArea(const ComponentArea& area)
-    {
+    void NamedArea::setArea(const ComponentArea& area) {
         d_area = area;
     }
 
-    void NamedArea::writeXMLToStream(XMLSerializer& xml_stream) const
-    {
+    void NamedArea::writeXMLToStream(XMLSerializer& xml_stream) const {
         xml_stream.openTag(Falagard_xmlHandler::NamedAreaElement)
-            .attribute(Falagard_xmlHandler::NameAttribute, d_name);
+                .attribute(Falagard_xmlHandler::NameAttribute, d_name);
         d_area.writeXMLToStream(xml_stream);
         xml_stream.closeTag();
     }
 
     bool NamedArea::handleFontRenderSizeChange(Window& window,
-                                               const Font* font) const
-    {
+            const Font* font) const {
         return d_area.handleFontRenderSizeChange(window, font);
     }
 

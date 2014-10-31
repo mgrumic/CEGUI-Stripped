@@ -28,49 +28,47 @@
 #include "CEGUI/RenderedStringTextComponent.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-void appendSubstring(RenderedString& rs,
-                     const String& string,
-                     const Font* initial_font,
-                     const ColourRect* initial_colours)
-{
-    RenderedStringTextComponent rstc(string, initial_font);
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    if (initial_colours)
-        rstc.setColours(*initial_colours);
+    void appendSubstring(RenderedString& rs,
+            const String& string,
+            const Font* initial_font,
+            const ColourRect* initial_colours) {
+        RenderedStringTextComponent rstc(string, initial_font);
 
-    rs.appendComponent(rstc);
-}
+        if (initial_colours)
+            rstc.setColours(*initial_colours);
 
-//----------------------------------------------------------------------------//
-RenderedString DefaultRenderedStringParser::parse(
-                                        const String& input_string,
-                                        const Font* initial_font,
-                                        const ColourRect* initial_colours)
-{
-    RenderedString rs;
-
-    size_t epos, spos = 0;
-
-    while ((epos = input_string.find('\n', spos)) != String::npos)
-    {
-        appendSubstring(rs, input_string.substr(spos, epos - spos),
-                        initial_font, initial_colours);
-        rs.appendLineBreak();
-
-        // set new start position (skipping the previous \n we found)
-        spos = epos + 1;
+        rs.appendComponent(rstc);
     }
 
-    if (spos < input_string.length())
-        appendSubstring(rs, input_string.substr(spos),
-                        initial_font, initial_colours);
+    //----------------------------------------------------------------------------//
 
-    return rs;
-}
+    RenderedString DefaultRenderedStringParser::parse(
+            const String& input_string,
+            const Font* initial_font,
+            const ColourRect* initial_colours) {
+        RenderedString rs;
 
-//----------------------------------------------------------------------------//
-    
+        size_t epos, spos = 0;
+
+        while ((epos = input_string.find('\n', spos)) != String::npos) {
+            appendSubstring(rs, input_string.substr(spos, epos - spos),
+                    initial_font, initial_colours);
+            rs.appendLineBreak();
+
+            // set new start position (skipping the previous \n we found)
+            spos = epos + 1;
+        }
+
+        if (spos < input_string.length())
+            appendSubstring(rs, input_string.substr(spos),
+                initial_font, initial_colours);
+
+        return rs;
+    }
+
+    //----------------------------------------------------------------------------//
+
 } // End of  CEGUI namespace section

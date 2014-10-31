@@ -31,42 +31,41 @@
 #include <vector>
 
 #if defined (_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    FormattedRenderedString implementation that renders the RenderedString with
-    centred formatting.
-*/
-class CEGUIEXPORT CentredRenderedString : public FormattedRenderedString
-{
-public:
-    //! Constructor.
-    CentredRenderedString(const RenderedString& string);
+namespace CEGUI {
 
-    // implementation of base interface
-    void format(const Window* ref_wnd, const Sizef& area_size);
-    void draw(const Window* ref_wnd, GeometryBuffer& buffer,
-              const Vector2f& position, const ColourRect* mod_colours,
-              const Rectf* clip_rect) const;
-    size_t getFormattedLineCount() const;
-    float getHorizontalExtent(const Window* ref_wnd) const;
-    float getVerticalExtent(const Window* ref_wnd) const;
+    /*!
+    \brief
+        FormattedRenderedString implementation that renders the RenderedString with
+        centred formatting.
+     */
+    class CEGUIEXPORT CentredRenderedString : public FormattedRenderedString {
+    public:
+        //! Constructor.
+        CentredRenderedString(const RenderedString& string);
 
-protected:
-    std::vector<float
+        // implementation of base interface
+        void format(const Window* ref_wnd, const Sizef& area_size);
+        void draw(const Window* ref_wnd, GeometryBuffer& buffer,
+                const Vector2f& position, const ColourRect* mod_colours,
+                const Rectf* clip_rect) const;
+        size_t getFormattedLineCount() const;
+        float getHorizontalExtent(const Window* ref_wnd) const;
+        float getVerticalExtent(const Window* ref_wnd) const;
+
+    protected:
+        std::vector<float
         CEGUI_VECTOR_ALLOC(float)> d_offsets;
-};
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined (_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif // end of guard _CEGUICentredRenderedString_h_

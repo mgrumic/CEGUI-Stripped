@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jun 11 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,77 +30,63 @@
 #include <algorithm>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-//----------------------------------------------------------------------------//
-Image::~Image()
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void Image::computeScalingFactors(AutoScaledMode mode,
-                                  const Sizef& display_size,
-                                  const Sizef& native_display_size,
-                                  float& x_scale,
-                                  float& y_scale)
-{
-    if (mode == ASM_Disabled)
-    {
-        x_scale = 1.0f;
-        y_scale = 1.0f;
+    Image::~Image() {
     }
-    else if (mode == ASM_Vertical)
-    {
-        x_scale = display_size.d_height / native_display_size.d_height;
-        y_scale = x_scale;
-    }
-    else if (mode == ASM_Horizontal)
-    {
-        x_scale = display_size.d_width / native_display_size.d_width;
-        y_scale = x_scale;
-    }
-    else if (mode == ASM_Min)
-    {
-        x_scale = std::min(display_size.d_width / native_display_size.d_width,
-                           display_size.d_height / native_display_size.d_height);
-        y_scale = x_scale;
-    }
-    else if (mode == ASM_Max)
-    {
-        x_scale = std::max(display_size.d_width / native_display_size.d_width,
-                           display_size.d_height / native_display_size.d_height);
-        y_scale = x_scale;
-    }
-    else if (mode == ASM_Both)
-    {
-        x_scale = display_size.d_width / native_display_size.d_width;
-        y_scale = display_size.d_height / native_display_size.d_height;
-    }
-    else
-    {
-        assert(false && "Invalid AutoScaledMode");
-    }
-}
 
-//----------------------------------------------------------------------------//
-void Image::elementStartLocal(const String& element,
-                              const XMLAttributes& /*attributes*/)
-{
+    //----------------------------------------------------------------------------//
+
+    void Image::computeScalingFactors(AutoScaledMode mode,
+            const Sizef& display_size,
+            const Sizef& native_display_size,
+            float& x_scale,
+            float& y_scale) {
+        if (mode == ASM_Disabled) {
+            x_scale = 1.0f;
+            y_scale = 1.0f;
+        } else if (mode == ASM_Vertical) {
+            x_scale = display_size.d_height / native_display_size.d_height;
+            y_scale = x_scale;
+        } else if (mode == ASM_Horizontal) {
+            x_scale = display_size.d_width / native_display_size.d_width;
+            y_scale = x_scale;
+        } else if (mode == ASM_Min) {
+            x_scale = std::min(display_size.d_width / native_display_size.d_width,
+                    display_size.d_height / native_display_size.d_height);
+            y_scale = x_scale;
+        } else if (mode == ASM_Max) {
+            x_scale = std::max(display_size.d_width / native_display_size.d_width,
+                    display_size.d_height / native_display_size.d_height);
+            y_scale = x_scale;
+        } else if (mode == ASM_Both) {
+            x_scale = display_size.d_width / native_display_size.d_width;
+            y_scale = display_size.d_height / native_display_size.d_height;
+        } else {
+            assert(false && "Invalid AutoScaledMode");
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Image::elementStartLocal(const String& element,
+            const XMLAttributes& /*attributes*/) {
 #ifndef PE_NO_LOGGER
-     Logger::getSingleton().logEvent(
-        "    [Image] Unknown XML tag encountered: " + element);
+        Logger::getSingleton().logEvent(
+                "    [Image] Unknown XML tag encountered: " + element);
 #endif //PE_NO_LOGGER
-}
+    }
 
-//----------------------------------------------------------------------------//
-void Image::elementEndLocal(const String& element)
-{
-    if (element == "Image")
-        d_completed = true;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    void Image::elementEndLocal(const String& element) {
+        if (element == "Image")
+            d_completed = true;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

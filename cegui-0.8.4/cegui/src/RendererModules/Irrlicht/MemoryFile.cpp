@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Feb 19 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -28,65 +28,57 @@
 #include <memory.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-IrrlichtMemoryFile::IrrlichtMemoryFile(const String& filename,
-                                       const unsigned char* memory,
-                                       uint32 size) :
+namespace CEGUI {
+
+    IrrlichtMemoryFile::IrrlichtMemoryFile(const String& filename,
+            const unsigned char* memory,
+            uint32 size) :
     d_filename(filename.c_str()),
     d_buffer(memory),
     d_size(size),
-    d_position(0)
-{
-}
-
-irr::s32 IrrlichtMemoryFile::read(void* buffer, irr::u32 sizeToRead)
-{
-    uint32 realReadSize =
-    ((d_position + sizeToRead) > d_size) ? d_size - d_position : sizeToRead;
-
-    memcpy(buffer, d_buffer + d_position, realReadSize);
-    d_position += realReadSize;
-
-    return realReadSize;
-}
-
-bool IrrlichtMemoryFile::seek(long finalPos, bool relativeMovement)
-{
-    uint32 targetPosition = relativeMovement ? d_position : 0;
-    targetPosition += finalPos;
-
-    if (targetPosition > d_size)
-    {
-        return false;
+    d_position(0) {
     }
-    else
-    {
-        d_position = targetPosition;
-        return true;
+
+    irr::s32 IrrlichtMemoryFile::read(void* buffer, irr::u32 sizeToRead) {
+        uint32 realReadSize =
+                ((d_position + sizeToRead) > d_size) ? d_size - d_position : sizeToRead;
+
+        memcpy(buffer, d_buffer + d_position, realReadSize);
+        d_position += realReadSize;
+
+        return realReadSize;
     }
-}
 
-long IrrlichtMemoryFile::getSize() const
-{
-    return d_size;
-}
+    bool IrrlichtMemoryFile::seek(long finalPos, bool relativeMovement) {
+        uint32 targetPosition = relativeMovement ? d_position : 0;
+        targetPosition += finalPos;
 
-long IrrlichtMemoryFile::getPos() const
-{
-    return d_position;
-}
+        if (targetPosition > d_size) {
+            return false;
+        } else {
+            d_position = targetPosition;
+            return true;
+        }
+    }
+
+    long IrrlichtMemoryFile::getSize() const {
+        return d_size;
+    }
+
+    long IrrlichtMemoryFile::getPos() const {
+        return d_position;
+    }
 
 #if CEGUI_IRR_SDK_VERSION >= 16
-const irr::io::path& IrrlichtMemoryFile::getFileName() const
-{
-    return d_filename;
-}
+
+const irr::io::path& IrrlichtMemoryFile::getFileName() const {
+        return d_filename;
+    }
 #else
-const irr::c8* IrrlichtMemoryFile::getFileName() const
-{
-    return d_filename.c_str();
-}
+
+const irr::c8* IrrlichtMemoryFile::getFileName() const {
+        return d_filename.c_str();
+    }
 #endif
 
 } // End of  CEGUI namespace section

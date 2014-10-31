@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Oct 09 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -29,12 +29,12 @@
 #include "CEGUI/CommonDialogs/ColourPicker/Controls.h"
 
 //----------------------------------------------------------------------------//
+
 extern "C"
-void initialiseCEGUICommonDialogs()
-{
-    #ifndef PE_NO_COM_DIALOGS_COLOUR_PICKER
+void initialiseCEGUICommonDialogs() {
+#ifndef PE_NO_COM_DIALOGS_COLOUR_PICKER
     CEGUI::WindowFactoryManager::addWindowType<CEGUI::ColourPicker>();
-    #endif //PE_NO_COM_DIALOGS_COLOUR_PICKER
+#endif //PE_NO_COM_DIALOGS_COLOUR_PICKER
     CEGUI::WindowFactoryManager::addWindowType<CEGUI::ColourPickerControls>();
 }
 

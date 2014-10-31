@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu May 31 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -29,25 +29,24 @@
 
 #include "CEGUI/StringTranscoder.h"
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-//! Implementation of StringTranscoder that uses iconv
-class IconvStringTranscoder : public StringTranscoder
-{
-public:
-    IconvStringTranscoder();
+    //! Implementation of StringTranscoder that uses iconv
 
-    // implement abstract interface
-    uint16* stringToUTF16(const String& input) const;
-    std::wstring stringToStdWString(const String& input) const;
-    String stringFromUTF16(const uint16* input) const;
-    String stringFromStdWString(const std::wstring& input) const;
-    void deleteUTF16Buffer(uint16* input) const;
+    class IconvStringTranscoder : public StringTranscoder {
+    public:
+        IconvStringTranscoder();
 
-private:
-    const char* UTF16PE;
-};
+        // implement abstract interface
+        uint16* stringToUTF16(const String& input) const;
+        std::wstring stringToStdWString(const String& input) const;
+        String stringFromUTF16(const uint16* input) const;
+        String stringFromStdWString(const std::wstring& input) const;
+        void deleteUTF16Buffer(uint16* input) const;
+
+    private:
+        const char* UTF16PE;
+    };
 
 }
 

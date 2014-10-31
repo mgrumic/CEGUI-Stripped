@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 16 2010
     author:     Eugene Marcotte
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -29,71 +29,70 @@
 #include "CEGUI/PropertyHelper.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-uint NullTextureTarget::s_textureNumber = 0;
-const float NullTextureTarget::DEFAULT_SIZE = 128.0f;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    uint NullTextureTarget::s_textureNumber = 0;
+    const float NullTextureTarget::DEFAULT_SIZE = 128.0f;
 
-//----------------------------------------------------------------------------//
-NullTextureTarget::NullTextureTarget(NullRenderer& owner) :
+    //----------------------------------------------------------------------------//
+
+    NullTextureTarget::NullTextureTarget(NullRenderer& owner) :
     NullRenderTarget<TextureTarget>(owner),
-    d_CEGUITexture(0)
-{
-    d_CEGUITexture = static_cast<NullTexture*>(
-        &d_owner.createTexture(generateTextureName()));
+    d_CEGUITexture(0) {
+        d_CEGUITexture = static_cast<NullTexture*> (
+                &d_owner.createTexture(generateTextureName()));
 
-    // setup area and cause the initial texture to be generated.
-    declareRenderSize(Sizef(DEFAULT_SIZE, DEFAULT_SIZE));
-}
+        // setup area and cause the initial texture to be generated.
+        declareRenderSize(Sizef(DEFAULT_SIZE, DEFAULT_SIZE));
+    }
 
-//----------------------------------------------------------------------------//
-NullTextureTarget::~NullTextureTarget()
-{
-    d_owner.destroyTexture(*d_CEGUITexture);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool NullTextureTarget::isImageryCache() const
-{
-    return true;
-}
+    NullTextureTarget::~NullTextureTarget() {
+        d_owner.destroyTexture(*d_CEGUITexture);
+    }
 
-//----------------------------------------------------------------------------//
-void NullTextureTarget::clear()
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Texture& NullTextureTarget::getTexture() const
-{
-    return *d_CEGUITexture;
-}
+    bool NullTextureTarget::isImageryCache() const {
+        return true;
+    }
 
-//----------------------------------------------------------------------------//
-void NullTextureTarget::declareRenderSize(const Sizef& sz)
-{
-	Rectf r;
-	r.setSize(sz);
-	r.setPosition(Vector2f(0, 0));
-    setArea(r);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool NullTextureTarget::isRenderingInverted() const
-{
-    return false;
-}
+    void NullTextureTarget::clear() {
+    }
 
-//----------------------------------------------------------------------------//
-String NullTextureTarget::generateTextureName()
-{
-    String tmp("_null_tt_tex_");
-    tmp.append(PropertyHelper<uint>::toString(s_textureNumber++));
+    //----------------------------------------------------------------------------//
 
-    return tmp;
-}
-//----------------------------------------------------------------------------//
+    Texture& NullTextureTarget::getTexture() const {
+        return *d_CEGUITexture;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullTextureTarget::declareRenderSize(const Sizef& sz) {
+        Rectf r;
+        r.setSize(sz);
+        r.setPosition(Vector2f(0, 0));
+        setArea(r);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool NullTextureTarget::isRenderingInverted() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    String NullTextureTarget::generateTextureName() {
+        String tmp("_null_tt_tex_");
+        tmp.append(PropertyHelper<uint>::toString(s_textureNumber++));
+
+        return tmp;
+    }
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

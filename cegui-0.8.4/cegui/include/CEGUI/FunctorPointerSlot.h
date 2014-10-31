@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,29 +30,28 @@
 #include "CEGUI/SlotFunctorBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Slot template class that creates a functor that calls back via a functor
-    object pointer.
-*/
-template<typename T>
-class FunctorPointerSlot : public SlotFunctorBase
-{
-public:
-    FunctorPointerSlot(T* functor) :
-        d_functor(functor)
-    {}
+namespace CEGUI {
 
-    virtual bool operator()(const EventArgs& args)
-    {
-        return (*d_functor)(args);
-    }
+    /*!
+    \brief
+        Slot template class that creates a functor that calls back via a functor
+        object pointer.
+     */
+    template<typename T>
+    class FunctorPointerSlot : public SlotFunctorBase {
+    public:
 
-private:
-    T* d_functor;
-};
+        FunctorPointerSlot(T* functor) :
+        d_functor(functor) {
+        }
+
+        virtual bool operator()(const EventArgs& args) {
+            return (*d_functor)(args);
+        }
+
+    private:
+        T* d_functor;
+    };
 
 } // End of  CEGUI namespace section
 

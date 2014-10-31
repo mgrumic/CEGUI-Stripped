@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jul 19 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -25,7 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #ifdef HAVE_CONFIG_H
-#   include "config.h"
+#include "config.h"
 #endif
 
 #include "CEGUI/FontManager.h"
@@ -36,128 +36,127 @@
 #include "CEGUI/PixmapFont.h"
 
 #ifdef CEGUI_HAS_FREETYPE
-#   include "CEGUI/FreeTypeFont.h"
+#include "CEGUI/FreeTypeFont.h"
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-// singleton instance pointer
-template<> FontManager* Singleton<FontManager>::ms_Singleton = 0;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    // singleton instance pointer
+    template<> FontManager* Singleton<FontManager>::ms_Singleton = 0;
 
-//----------------------------------------------------------------------------//
-FontManager::FontManager() :
-    NamedXMLResourceManager<Font, Font_xmlHandler>("Font")
-{
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+    //----------------------------------------------------------------------------//
+
+    FontManager::FontManager() :
+    NamedXMLResourceManager<Font, Font_xmlHandler>("Font") {
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
 #ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent(
-        "CEGUI::FontManager singleton created. " + String(addr_buff));
+        Logger::getSingleton().logEvent(
+                "CEGUI::FontManager singleton created. " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
+    }
 
-//----------------------------------------------------------------------------//
-FontManager::~FontManager()
-{
+    //----------------------------------------------------------------------------//
+
+    FontManager::~FontManager() {
 #ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent(
-        "---- Begining cleanup of Font system ----");
+        Logger::getSingleton().logEvent(
+                "---- Begining cleanup of Font system ----");
 #endif //PE_NO_LOGGER
 
-    destroyAll();
+        destroyAll();
 
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
 #ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent(
-        "CEGUI::FontManager singleton destroyed. " + String(addr_buff));
+        Logger::getSingleton().logEvent(
+                "CEGUI::FontManager singleton destroyed. " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
-Font& FontManager::createFreeTypeFont(const String& font_name,
-                                      const float point_size,
-                                      const bool anti_aliased,
-                                      const String& font_filename,
-                                      const String& resource_group,
-                                      const AutoScaledMode auto_scaled,
-                                      const Sizef& native_res,
-                                      XMLResourceExistsAction action)
-{
+    Font& FontManager::createFreeTypeFont(const String& font_name,
+            const float point_size,
+            const bool anti_aliased,
+            const String& font_filename,
+            const String& resource_group,
+            const AutoScaledMode auto_scaled,
+            const Sizef& native_res,
+            XMLResourceExistsAction action) {
 #ifdef CEGUI_HAS_FREETYPE
 #ifndef PE_NO_LOGGER
-    CEGUI_LOGINSANE("Attempting to create FreeType font '" +
-        font_name + "' using font file '" + font_filename + "'.");
+        CEGUI_LOGINSANE("Attempting to create FreeType font '" +
+                font_name + "' using font file '" + font_filename + "'.");
 #endif //PE_NO_LOGGER
 
-    // create new object ahead of time
-    Font* object = CEGUI_NEW_AO FreeTypeFont(font_name, point_size, anti_aliased,
-                                    font_filename, resource_group, auto_scaled,
-                                    native_res);
+        // create new object ahead of time
+        Font* object = CEGUI_NEW_AO FreeTypeFont(font_name, point_size, anti_aliased,
+                font_filename, resource_group, auto_scaled,
+                native_res);
 
-    // return appropriate object instance (deleting any not required)
-    return doExistingObjectAction(font_name, object, action);
+        // return appropriate object instance (deleting any not required)
+        return doExistingObjectAction(font_name, object, action);
 
 #else
-    CEGUI_THROW(InvalidRequestException(
+        CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-        "CEGUI was compiled without freetype support."));
+                "CEGUI was compiled without freetype support."));
 #endif //PE_NO_THROW_MSGS
 #endif
-}
+    }
 
-//----------------------------------------------------------------------------//
-Font& FontManager::createPixmapFont(const String& font_name,
-                                    const String& imageset_filename,
-                                    const String& resource_group,
-                                    const AutoScaledMode auto_scaled,
-                                    const Sizef& native_res,
-                                    XMLResourceExistsAction action)
-{
+    //----------------------------------------------------------------------------//
+
+    Font& FontManager::createPixmapFont(const String& font_name,
+            const String& imageset_filename,
+            const String& resource_group,
+            const AutoScaledMode auto_scaled,
+            const Sizef& native_res,
+            XMLResourceExistsAction action) {
 #ifndef PE_NO_LOGGER
-    CEGUI_LOGINSANE("Attempting to create Pixmap font '" +
-        font_name + "' using imageset file '" + imageset_filename + "'.");
+        CEGUI_LOGINSANE("Attempting to create Pixmap font '" +
+                font_name + "' using imageset file '" + imageset_filename + "'.");
 #endif //PE_NO_LOGGER
 
-    // create new object ahead of time
-    Font* object = CEGUI_NEW_AO PixmapFont(font_name, imageset_filename, resource_group,
-                                  auto_scaled, native_res);
+        // create new object ahead of time
+        Font* object = CEGUI_NEW_AO PixmapFont(font_name, imageset_filename, resource_group,
+                auto_scaled, native_res);
 
-    // return appropriate object instance (deleting any not required)
-    return doExistingObjectAction(font_name, object, action);;
-}
+        // return appropriate object instance (deleting any not required)
+        return doExistingObjectAction(font_name, object, action);
+        ;
+    }
 
-//----------------------------------------------------------------------------//
-void FontManager::notifyDisplaySizeChanged(const Sizef& size)
-{
-    // notify all attached Font objects of the change in resolution
-    ObjectRegistry::iterator pos = d_objects.begin(), end = d_objects.end();
+    //----------------------------------------------------------------------------//
 
-    for (; pos != end; ++pos)
-        pos->second->notifyDisplaySizeChanged(size);
-}
+    void FontManager::notifyDisplaySizeChanged(const Sizef& size) {
+        // notify all attached Font objects of the change in resolution
+        ObjectRegistry::iterator pos = d_objects.begin(), end = d_objects.end();
 
-//----------------------------------------------------------------------------//
-FontManager::FontIterator FontManager::getIterator(void) const
-{
-    return FontIterator(d_objects.begin(), d_objects.end());
-}
+        for (; pos != end; ++pos)
+            pos->second->notifyDisplaySizeChanged(size);
+    }
 
-//----------------------------------------------------------------------------//
-void FontManager::writeFontToStream(const String& name,
-                                    OutStream& out_stream) const
-{
-    XMLSerializer xml(out_stream);
-    // output font data
-    get(name).writeXMLToStream(xml);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    FontManager::FontIterator FontManager::getIterator(void) const {
+        return FontIterator(d_objects.begin(), d_objects.end());
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void FontManager::writeFontToStream(const String& name,
+            OutStream& out_stream) const {
+        XMLSerializer xml(out_stream);
+        // output font data
+        get(name).writeXMLToStream(xml);
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

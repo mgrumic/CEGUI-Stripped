@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jul 6 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,21 +31,18 @@
 #include "CEGUI/TplWindowRendererProperty.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardListHeader::TypeName("Core/ListHeader");
 
     FalagardListHeader::FalagardListHeader(const String& type) :
-        ListHeaderWindowRenderer(type)
-    {
-        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardListHeader,String,
-        "SegmentWidgetType", "Property to get/set the widget type used when creating header segments.  Value should be \"[widgetTypeName]\".",
-        &FalagardListHeader::setSegmentWidgetType,&FalagardListHeader::getSegmentWidgetType,
-        "");
+    ListHeaderWindowRenderer(type) {
+        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardListHeader, String,
+                "SegmentWidgetType", "Property to get/set the widget type used when creating header segments.  Value should be \"[widgetTypeName]\".",
+                &FalagardListHeader::setSegmentWidgetType, &FalagardListHeader::getSegmentWidgetType,
+                "");
     }
 
-    void FalagardListHeader::render()
-    {
+    void FalagardListHeader::render() {
         const StateImagery* imagery;
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
@@ -54,36 +51,31 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    const String& FalagardListHeader::getSegmentWidgetType() const
-    {
+    const String& FalagardListHeader::getSegmentWidgetType() const {
         return d_segmentWidgetType;
     }
 
-    void FalagardListHeader::setSegmentWidgetType(const String& type)
-    {
+    void FalagardListHeader::setSegmentWidgetType(const String& type) {
         d_segmentWidgetType = type;
     }
 
-    ListHeaderSegment* FalagardListHeader::createNewSegment(const String& name) const
-    {
+    ListHeaderSegment* FalagardListHeader::createNewSegment(const String& name) const {
         // make sure this has been set
-        if (d_segmentWidgetType.empty())
-        {
+        if (d_segmentWidgetType.empty()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Segment widget type has not been set!"));
+                    "Segment widget type has not been set!"));
 #endif //PE_NO_THROW_MSGS
         }
 
         Window* segment = WindowManager::getSingleton().createWindow(d_segmentWidgetType, name);
         segment->setAutoWindow(true);
-        return static_cast<ListHeaderSegment*>(segment);
+        return static_cast<ListHeaderSegment*> (segment);
     }
 
-    void FalagardListHeader::destroyListSegment(ListHeaderSegment* segment) const
-    {
+    void FalagardListHeader::destroyListSegment(ListHeaderSegment* segment) const {
         // nothing special required here.
         WindowManager::getSingleton().destroyWindow(segment);
     }

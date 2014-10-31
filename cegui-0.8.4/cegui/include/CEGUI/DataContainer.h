@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	10/8/2004
-	author:		James '_mental_' O'Sullivan
+        created:	10/8/2004
+        author:		James '_mental_' O'Sullivan
 	
-	purpose:	Declares the RawDataContainer
-*************************************************************************/
+        purpose:	Declares the RawDataContainer
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -32,92 +32,101 @@
 #include "CEGUI/Base.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-    Class used as the databuffer for loading files throughout the library.
-*/
-class CEGUIEXPORT RawDataContainer :
-    public AllocatedObject<RawDataContainer>
-{
-public:
-	/*************************************************************************
-		Construction and Destruction
-	*************************************************************************/
-	/*!
-	\brief
-		Constructor for RawDataContainer class
-	*/
-    RawDataContainer()
-      : mData(0),
-        mSize(0)
-    {
-    }
+    /*!
+    \brief
+        Class used as the databuffer for loading files throughout the library.
+     */
+    class CEGUIEXPORT RawDataContainer :
+    public AllocatedObject<RawDataContainer> {
+    public:
+        /*************************************************************************
+                Construction and Destruction
+         *************************************************************************/
 
-	/*!
-	\brief
-		Destructor for RawDataContainer class
-	*/
-	~RawDataContainer(void) 
-    { 
-        release();
-    }
+        /*!
+        \brief
+                Constructor for RawDataContainer class
+         */
+        RawDataContainer()
+        : mData(0),
+        mSize(0) {
+        }
 
-	/*************************************************************************
-		Accessor functions
-	*************************************************************************/
-	/*!
-	\brief
-		Set a pointer to the external data.
+        /*!
+        \brief
+                Destructor for RawDataContainer class
+         */
+        ~RawDataContainer(void) {
+            release();
+        }
 
-	\param data
+        /*************************************************************************
+                Accessor functions
+         *************************************************************************/
+
+        /*!
+        \brief
+                Set a pointer to the external data.
+
+        \param data
         Pointer to the uint8 data buffer.
-	*/
-    void setData(uint8* data) { mData = data; }
+         */
+        void setData(uint8* data) {
+            mData = data;
+        }
 
-	/*!
-	\brief
-		Return a pointer to the external data
+        /*!
+        \brief
+                Return a pointer to the external data
 
-	\return
-		Pointer to an the uint8 data buffer.
-	*/
-    uint8* getDataPtr(void) { return mData; }
-    const uint8* getDataPtr(void) const { return mData; }
+        \return
+                Pointer to an the uint8 data buffer.
+         */
+        uint8* getDataPtr(void) {
+            return mData;
+        }
 
-	/*!
-	\brief
-	    Set the size of the external data.
+        const uint8* getDataPtr(void) const {
+            return mData;
+        }
 
-	\param size
-	    size_t containing the size of the external data
-	*/
-    void setSize(size_t size) { mSize = size; }
+        /*!
+        \brief
+            Set the size of the external data.
 
-	/*!
-	\brief
-		Get the size of the external data.
+        \param size
+            size_t containing the size of the external data
+         */
+        void setSize(size_t size) {
+            mSize = size;
+        }
 
-	\return
-	    size_t containing the size of the external data
-	*/
-    size_t getSize(void) const { return mSize; }
+        /*!
+        \brief
+                Get the size of the external data.
 
-	/*!
-	\brief
-		Release supplied data.
-	*/
-    void release(void);
+        \return
+            size_t containing the size of the external data
+         */
+        size_t getSize(void) const {
+            return mSize;
+        }
 
-private:
-    /*************************************************************************
-		Implementation Data
-	*************************************************************************/
-    uint8* mData;
-    size_t mSize;
-};
+        /*!
+        \brief
+                Release supplied data.
+         */
+        void release(void);
+
+    private:
+        /*************************************************************************
+                    Implementation Data
+         *************************************************************************/
+        uint8* mData;
+        size_t mSize;
+    };
 
 } // End of  CEGUI namespace section
 

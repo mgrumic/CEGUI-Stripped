@@ -9,13 +9,13 @@
 
 namespace bp = boost::python;
 
-void register_PropertyInitialiserVector_class(){
+void register_PropertyInitialiserVector_class() {
 
     { //::std::vector< CEGUI::PropertyInitialiser >
         typedef bp::class_< std::vector< CEGUI::PropertyInitialiser > > PropertyInitialiserVector_exposer_t;
-        PropertyInitialiserVector_exposer_t PropertyInitialiserVector_exposer = PropertyInitialiserVector_exposer_t( "PropertyInitialiserVector" );
-        bp::scope PropertyInitialiserVector_scope( PropertyInitialiserVector_exposer );
-        PropertyInitialiserVector_exposer.def( bp::indexing::vector_suite< std::vector< CEGUI::PropertyInitialiser > >() );
+        PropertyInitialiserVector_exposer_t PropertyInitialiserVector_exposer = PropertyInitialiserVector_exposer_t("PropertyInitialiserVector");
+        bp::scope PropertyInitialiserVector_scope(PropertyInitialiserVector_exposer);
+        PropertyInitialiserVector_exposer.def(bp::indexing::vector_suite< std::vector< CEGUI::PropertyInitialiser > >());
     }
 
 }

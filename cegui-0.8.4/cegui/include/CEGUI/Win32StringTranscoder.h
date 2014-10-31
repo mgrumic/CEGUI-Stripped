@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jun 01 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -29,22 +29,21 @@
 
 #include "CEGUI/StringTranscoder.h"
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-//! Implementation of StringTranscoder that uses Win32
-class CEGUIEXPORT Win32StringTranscoder : public StringTranscoder
-{
-public:
-    Win32StringTranscoder();
+    //! Implementation of StringTranscoder that uses Win32
 
-    // implement abstract interface
-    uint16* stringToUTF16(const String& input) const;
-    std::wstring stringToStdWString(const String& input) const;
-    String stringFromUTF16(const uint16* input) const;
-    String stringFromStdWString(const std::wstring& input) const;
-    void deleteUTF16Buffer(uint16* input) const;
-};
+    class CEGUIEXPORT Win32StringTranscoder : public StringTranscoder {
+    public:
+        Win32StringTranscoder();
+
+        // implement abstract interface
+        uint16* stringToUTF16(const String& input) const;
+        std::wstring stringToStdWString(const String& input) const;
+        String stringFromUTF16(const uint16* input) const;
+        String stringFromStdWString(const std::wstring& input) const;
+        void deleteUTF16Buffer(uint16* input) const;
+    };
 
 }
 

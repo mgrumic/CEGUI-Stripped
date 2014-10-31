@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 3 2009
     author:     Paul D Turner (parts based on original code by Thomas Suter)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,21 +31,20 @@
 #include "CEGUI/RendererModules/Irrlicht/RenderTarget.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! CEGUI::RenderTarget that targets a window, or a part of a window
-class IRR_GUIRENDERER_API IrrlichtWindowTarget : public IrrlichtRenderTarget<>
-{
-public:
-    //! Constructor
-    IrrlichtWindowTarget(IrrlichtRenderer& owner,
-                         irr::video::IVideoDriver& driver);
-    //! Destructor
-    virtual ~IrrlichtWindowTarget();
+namespace CEGUI {
+    //! CEGUI::RenderTarget that targets a window, or a part of a window
 
-    // implement parts of CEGUI::RenderTarget interface
-    bool isImageryCache() const;
-};
+    class IRR_GUIRENDERER_API IrrlichtWindowTarget : public IrrlichtRenderTarget<> {
+    public:
+        //! Constructor
+        IrrlichtWindowTarget(IrrlichtRenderer& owner,
+                irr::video::IVideoDriver& driver);
+        //! Destructor
+        virtual ~IrrlichtWindowTarget();
+
+        // implement parts of CEGUI::RenderTarget interface
+        bool isImageryCache() const;
+    };
 
 } // End of  CEGUI namespace section
 

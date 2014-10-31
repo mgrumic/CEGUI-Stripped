@@ -3,7 +3,7 @@
     author:     Thomas Suter
 
     purpose: Interface for Irrlicht specific ResourceProvider class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,21 +34,20 @@
 #include <IFileSystem.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class IRR_GUIRENDERER_API IrrlichtResourceProvider : public DefaultResourceProvider
-{
-protected:
-    irr::io::IFileSystem& d_fsys;
+namespace CEGUI {
 
-public:
-    IrrlichtResourceProvider(irr::io::IFileSystem& fs);
-    ~IrrlichtResourceProvider() ;
+    class IRR_GUIRENDERER_API IrrlichtResourceProvider : public DefaultResourceProvider {
+    protected:
+        irr::io::IFileSystem& d_fsys;
 
-    void loadRawDataContainer(const String& filename, RawDataContainer& output,
-                              const String& resourceGroup);
-    void unloadRawDataContainer(RawDataContainer& data);
-};
+    public:
+        IrrlichtResourceProvider(irr::io::IFileSystem& fs);
+        ~IrrlichtResourceProvider();
+
+        void loadRawDataContainer(const String& filename, RawDataContainer& output,
+                const String& resourceGroup);
+        void unloadRawDataContainer(RawDataContainer& data);
+    };
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,25 +33,24 @@
 #include "../XMLSerializer.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class that encapsulates a re-usable collection of imagery specifications.
-    */
+     */
     class CEGUIEXPORT ImagerySection :
-        public AllocatedObject<ImagerySection>
-    {
+    public AllocatedObject<ImagerySection> {
     public:
         /*!
         \brief
             Constructor.
-        */
+         */
         ImagerySection();
 
         /*!
@@ -60,7 +59,7 @@ namespace CEGUI
 
         \param name
             Name of the new ImagerySection.
-        */
+         */
         ImagerySection(const String& name);
 
         /*!
@@ -75,7 +74,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const CEGUI::ColourRect* modColours = 0, const Rectf* clipper = 0, bool clipToDisplay = false) const;
 
         /*!
@@ -93,7 +92,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const Rectf& baseRect, const CEGUI::ColourRect* modColours = 0, const Rectf* clipper = 0, bool clipToDisplay = false) const;
 
         /*!
@@ -105,7 +104,7 @@ namespace CEGUI
 
         \return
             Nothing
-        */
+         */
         void addImageryComponent(const ImageryComponent& img);
         void removeImageryComponent(const ImageryComponent& img);
         /*!
@@ -114,7 +113,7 @@ namespace CEGUI
 
         \return
             Nothing
-        */
+         */
         void clearImageryComponents();
 
         /*!
@@ -126,7 +125,7 @@ namespace CEGUI
 
         \return
             Nothing
-        */
+         */
         void addTextComponent(const TextComponent& text);
         void removeTextComponent(const TextComponent& text);
         /*!
@@ -135,7 +134,7 @@ namespace CEGUI
 
         \return
             Nothing
-        */
+         */
         void clearTextComponents();
 
         /*!
@@ -144,7 +143,7 @@ namespace CEGUI
 
         \return
             Nothing
-        */
+         */
         void clearFrameComponents();
 
         /*!
@@ -156,7 +155,7 @@ namespace CEGUI
 
         \return
             Nothing
-        */
+         */
         void addFrameComponent(const FrameComponent& frame);
         void removeFrameComponent(const FrameComponent& frame);
 
@@ -166,7 +165,7 @@ namespace CEGUI
 
         \return
             ColourRect describing the master colour values in use for this ImagerySection.
-        */
+         */
         const ColourRect& getMasterColours() const;
 
         /*!
@@ -178,7 +177,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setMasterColours(const ColourRect& cols);
 
         /*!
@@ -187,7 +186,7 @@ namespace CEGUI
 
         \return
             String object holding the name of the ImagerySection.
-        */
+         */
         const String& getName() const;
 
         /*!
@@ -199,7 +198,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setName(const String& name);
 
         /*!
@@ -208,7 +207,7 @@ namespace CEGUI
 
         \return
             String containing the name of the property.
-        */
+         */
         const String& getMasterColoursPropertySource() const;
 
         /*!
@@ -220,19 +219,19 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setMasterColoursPropertySource(const String& property);
 
         /*!
         \brief
             Return smallest Rect that could contain all imagery within this section.
-        */
+         */
         Rectf getBoundingRect(const Window& wnd) const;
 
         /*!
         \brief
             Return smallest Rect that could contain all imagery within this section.
-        */
+         */
         Rectf getBoundingRect(const Window& wnd, const Rectf& rect) const;
 
         /*!
@@ -245,7 +244,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
         //! perform any processing required due to the given font having changed.
@@ -260,23 +259,23 @@ namespace CEGUI
             This will try and get values from multiple places:
                 - a property attached to \a wnd
                 - or the integral d_masterColours value.
-        */
+         */
         void initMasterColourRect(const Window& wnd, ColourRect& cr) const;
 
     private:
         typedef std::vector<ImageryComponent
-            CEGUI_VECTOR_ALLOC(ImageryComponent)> ImageryList;
+        CEGUI_VECTOR_ALLOC(ImageryComponent) > ImageryList;
         typedef std::vector<TextComponent
-            CEGUI_VECTOR_ALLOC(TextComponent)> TextList;
+        CEGUI_VECTOR_ALLOC(TextComponent) > TextList;
         typedef std::vector<FrameComponent
-            CEGUI_VECTOR_ALLOC(FrameComponent)> FrameList;
+        CEGUI_VECTOR_ALLOC(FrameComponent) > FrameList;
 
-        CEGUI::String       d_name;             //!< Holds the name of the ImagerySection.
-        CEGUI::ColourRect   d_masterColours;    //!< Naster colours for the the ImagerySection (combined with colours of each ImageryComponent).
-        FrameList           d_frames;           //!< Collection of FrameComponent objects to be drawn for this ImagerySection.
-        ImageryList         d_images;           //!< Collection of ImageryComponent objects to be drawn for this ImagerySection.
-        TextList            d_texts;            //!< Collection of TextComponent objects to be drawn for this ImagerySection.
-        String              d_colourPropertyName;   //!< name of property to fetch colours from.
+        CEGUI::String d_name; //!< Holds the name of the ImagerySection.
+        CEGUI::ColourRect d_masterColours; //!< Naster colours for the the ImagerySection (combined with colours of each ImageryComponent).
+        FrameList d_frames; //!< Collection of FrameComponent objects to be drawn for this ImagerySection.
+        ImageryList d_images; //!< Collection of ImageryComponent objects to be drawn for this ImagerySection.
+        TextList d_texts; //!< Collection of TextComponent objects to be drawn for this ImagerySection.
+        String d_colourPropertyName; //!< name of property to fetch colours from.
 
     public:
         typedef ConstVectorIterator<ImageryList> ImageryComponentIterator;
@@ -287,21 +286,21 @@ namespace CEGUI
             Return a ImagerySection::ImageryComponentIterator object to iterate
             over the ImageryComponent elements currently added to the
             ImagerySection.
-        */
+         */
         ImageryComponentIterator getImageryComponentIterator() const;
         /*!
         \brief
             Return a ImagerySection::TextComponentIterator object to iterate
             over the TextComponent elements currently added to the
             ImagerySection.
-        */
+         */
         TextComponentIterator getTextComponentIterator() const;
         /*!
         \brief
             Return a ImagerySection::FrameComponentIterator object to iterate
             over the FrameComponent elements currently added to the
             ImagerySection.
-        */
+         */
         FrameComponentIterator getFrameComponentIterator() const;
 
     };
@@ -310,7 +309,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalImagerySection_h_

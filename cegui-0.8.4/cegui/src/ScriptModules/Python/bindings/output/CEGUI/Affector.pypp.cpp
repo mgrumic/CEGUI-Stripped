@@ -6,11 +6,11 @@
 
 namespace bp = boost::python;
 
-void register_Affector_class(){
+void register_Affector_class() {
 
     { //::CEGUI::Affector
         typedef bp::class_< CEGUI::Affector > Affector_exposer_t;
-        Affector_exposer_t Affector_exposer = Affector_exposer_t( "Affector", "*!\n\
+        Affector_exposer_t Affector_exposer = Affector_exposer_t("Affector", "*!\n\
         \n\
             Defines an 'affector' class\n\
         \n\
@@ -19,26 +19,26 @@ void register_Affector_class(){
         \n\
         @todo \n\
             moveKeyFrame, this will be vital for any animation editing tools\n\
-        *\n", bp::init< CEGUI::Animation * >(( bp::arg("parent") ), "** internal constructor, please construct Affectors via\n\
+        *\n", bp::init< CEGUI::Animation * >((bp::arg("parent")), "** internal constructor, please construct Affectors via\n\
          * Animation.createAffector only\n\
-         *\n") );
-        bp::scope Affector_scope( Affector_exposer );
+         *\n"));
+        bp::scope Affector_scope(Affector_exposer);
         bp::enum_< CEGUI::Affector::ApplicationMethod>("ApplicationMethod")
-            .value("AM_Absolute", CEGUI::Affector::AM_Absolute)
-            .value("AM_Relative", CEGUI::Affector::AM_Relative)
-            .value("AM_RelativeMultiply", CEGUI::Affector::AM_RelativeMultiply)
-            .export_values()
-            ;
+                .value("AM_Absolute", CEGUI::Affector::AM_Absolute)
+                .value("AM_Relative", CEGUI::Affector::AM_Relative)
+                .value("AM_RelativeMultiply", CEGUI::Affector::AM_RelativeMultiply)
+                .export_values()
+                ;
         bp::implicitly_convertible< CEGUI::Animation *, CEGUI::Affector >();
         { //::CEGUI::Affector::apply
-        
-            typedef void ( ::CEGUI::Affector::*apply_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            Affector_exposer.def( 
-                "apply"
-                , apply_function_type( &::CEGUI::Affector::apply )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*apply_function_type)(::CEGUI::AnimationInstance *);
+
+            Affector_exposer.def(
+                    "apply"
+                    , apply_function_type(&::CEGUI::Affector::apply)
+                    , (bp::arg("instance"))
+                    , "*!\n\
                 \n\
                     Applies this Affector's definition with parameters from given\n\
                     Animation Instance\n\
@@ -49,217 +49,217 @@ void register_Affector_class(){
             \n\
                 @see\n\
                     AnimationInstance\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Affector::createKeyFrame
-        
-            typedef ::CEGUI::KeyFrame * ( ::CEGUI::Affector::*createKeyFrame_function_type )( float ) ;
-            
-            Affector_exposer.def( 
-                "createKeyFrame"
-                , createKeyFrame_function_type( &::CEGUI::Affector::createKeyFrame )
-                , ( bp::arg("position") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::KeyFrame * (::CEGUI::Affector::*createKeyFrame_function_type)(float);
+
+            Affector_exposer.def(
+                    "createKeyFrame"
+                    , createKeyFrame_function_type(&::CEGUI::Affector::createKeyFrame)
+                    , (bp::arg("position"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Creates a KeyFrame at given position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::createKeyFrame
-        
-            typedef ::CEGUI::KeyFrame * ( ::CEGUI::Affector::*createKeyFrame_function_type )( float,::CEGUI::String const &,::CEGUI::KeyFrame::Progression,::CEGUI::String const & ) ;
-            
-            Affector_exposer.def( 
-                "createKeyFrame"
-                , createKeyFrame_function_type( &::CEGUI::Affector::createKeyFrame )
-                , ( bp::arg("position"), bp::arg("value"), bp::arg("progression")=::CEGUI::KeyFrame::P_Linear, bp::arg("sourceProperty")="" )
-                , bp::return_value_policy< bp::reference_existing_object >() );
-        
+
+            typedef ::CEGUI::KeyFrame * (::CEGUI::Affector::*createKeyFrame_function_type)(float, ::CEGUI::String const &, ::CEGUI::KeyFrame::Progression, ::CEGUI::String const &);
+
+            Affector_exposer.def(
+                    "createKeyFrame"
+                    , createKeyFrame_function_type(&::CEGUI::Affector::createKeyFrame)
+                    , (bp::arg("position"), bp::arg("value"), bp::arg("progression") = ::CEGUI::KeyFrame::P_Linear, bp::arg("sourceProperty") = "")
+                    , bp::return_value_policy< bp::reference_existing_object >());
+
         }
         { //::CEGUI::Affector::destroyKeyFrame
-        
-            typedef void ( ::CEGUI::Affector::*destroyKeyFrame_function_type )( ::CEGUI::KeyFrame * ) ;
-            
-            Affector_exposer.def( 
-                "destroyKeyFrame"
-                , destroyKeyFrame_function_type( &::CEGUI::Affector::destroyKeyFrame )
-                , ( bp::arg("keyframe") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*destroyKeyFrame_function_type)(::CEGUI::KeyFrame *);
+
+            Affector_exposer.def(
+                    "destroyKeyFrame"
+                    , destroyKeyFrame_function_type(&::CEGUI::Affector::destroyKeyFrame)
+                    , (bp::arg("keyframe"))
+                    , "*!\n\
             \n\
                 Destroys given keyframe\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::getApplicationMethod
-        
-            typedef ::CEGUI::Affector::ApplicationMethod ( ::CEGUI::Affector::*getApplicationMethod_function_type )(  ) const;
-            
-            Affector_exposer.def( 
-                "getApplicationMethod"
-                , getApplicationMethod_function_type( &::CEGUI::Affector::getApplicationMethod )
-                , "*!\n\
+
+            typedef ::CEGUI::Affector::ApplicationMethod(::CEGUI::Affector::*getApplicationMethod_function_type)() const;
+
+            Affector_exposer.def(
+                    "getApplicationMethod"
+                    , getApplicationMethod_function_type(&::CEGUI::Affector::getApplicationMethod)
+                    , "*!\n\
                 \n\
                     Retrieves current application method\n\
             \n\
                 @see\n\
                     Affector.setApplicationMethod\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Affector::getIdxInParent
-        
-            typedef ::size_t ( ::CEGUI::Affector::*getIdxInParent_function_type )(  ) const;
-            
-            Affector_exposer.def( 
-                "getIdxInParent"
-                , getIdxInParent_function_type( &::CEGUI::Affector::getIdxInParent )
-                , "*!\n\
+
+            typedef ::size_t(::CEGUI::Affector::*getIdxInParent_function_type)() const;
+
+            Affector_exposer.def(
+                    "getIdxInParent"
+                    , getIdxInParent_function_type(&::CEGUI::Affector::getIdxInParent)
+                    , "*!\n\
                 \n\
                     Retrieves index with which this affector is retrievable in parent Animation\n\
             \n\
                 \note\n\
                     The index is only valid as long as the list of affectors is unchanged in animation!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Affector::getInterpolator
-        
-            typedef ::CEGUI::Interpolator * ( ::CEGUI::Affector::*getInterpolator_function_type )(  ) const;
-            
-            Affector_exposer.def( 
-                "getInterpolator"
-                , getInterpolator_function_type( &::CEGUI::Affector::getInterpolator )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Interpolator * (::CEGUI::Affector::*getInterpolator_function_type)() const;
+
+            Affector_exposer.def(
+                    "getInterpolator"
+                    , getInterpolator_function_type(&::CEGUI::Affector::getInterpolator)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Retrieves currently used interpolator of this Affector\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::getKeyFrameAtIdx
-        
-            typedef ::CEGUI::KeyFrame * ( ::CEGUI::Affector::*getKeyFrameAtIdx_function_type )( ::size_t ) const;
-            
-            Affector_exposer.def( 
-                "getKeyFrameAtIdx"
-                , getKeyFrameAtIdx_function_type( &::CEGUI::Affector::getKeyFrameAtIdx )
-                , ( bp::arg("index") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::KeyFrame * (::CEGUI::Affector::*getKeyFrameAtIdx_function_type)(::size_t) const;
+
+            Affector_exposer.def(
+                    "getKeyFrameAtIdx"
+                    , getKeyFrameAtIdx_function_type(&::CEGUI::Affector::getKeyFrameAtIdx)
+                    , (bp::arg("index"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Retrieves a KeyFrame with given index\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::getKeyFrameAtPosition
-        
-            typedef ::CEGUI::KeyFrame * ( ::CEGUI::Affector::*getKeyFrameAtPosition_function_type )( float ) const;
-            
-            Affector_exposer.def( 
-                "getKeyFrameAtPosition"
-                , getKeyFrameAtPosition_function_type( &::CEGUI::Affector::getKeyFrameAtPosition )
-                , ( bp::arg("position") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::KeyFrame * (::CEGUI::Affector::*getKeyFrameAtPosition_function_type)(float) const;
+
+            Affector_exposer.def(
+                    "getKeyFrameAtPosition"
+                    , getKeyFrameAtPosition_function_type(&::CEGUI::Affector::getKeyFrameAtPosition)
+                    , (bp::arg("position"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Retrieves a KeyFrame at given position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::getNumKeyFrames
-        
-            typedef ::size_t ( ::CEGUI::Affector::*getNumKeyFrames_function_type )(  ) const;
-            
-            Affector_exposer.def( 
-                "getNumKeyFrames"
-                , getNumKeyFrames_function_type( &::CEGUI::Affector::getNumKeyFrames )
-                , "*!\n\
+
+            typedef ::size_t(::CEGUI::Affector::*getNumKeyFrames_function_type)() const;
+
+            Affector_exposer.def(
+                    "getNumKeyFrames"
+                    , getNumKeyFrames_function_type(&::CEGUI::Affector::getNumKeyFrames)
+                    , "*!\n\
             \n\
                 Returns number of key frames defined in this affector\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::getParent
-        
-            typedef ::CEGUI::Animation * ( ::CEGUI::Affector::*getParent_function_type )(  ) const;
-            
-            Affector_exposer.def( 
-                "getParent"
-                , getParent_function_type( &::CEGUI::Affector::getParent )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Animation * (::CEGUI::Affector::*getParent_function_type)() const;
+
+            Affector_exposer.def(
+                    "getParent"
+                    , getParent_function_type(&::CEGUI::Affector::getParent)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
               Retrieves the parent animation of this keyframe\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::getTargetProperty
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::Affector::*getTargetProperty_function_type )(  ) const;
-            
-            Affector_exposer.def( 
-                "getTargetProperty"
-                , getTargetProperty_function_type( &::CEGUI::Affector::getTargetProperty )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::Affector::*getTargetProperty_function_type)() const;
+
+            Affector_exposer.def(
+                    "getTargetProperty"
+                    , getTargetProperty_function_type(&::CEGUI::Affector::getTargetProperty)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
             \n\
                 Gets the property that will be affected\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::hasKeyFrameAtPosition
-        
-            typedef bool ( ::CEGUI::Affector::*hasKeyFrameAtPosition_function_type )( float ) const;
-            
-            Affector_exposer.def( 
-                "hasKeyFrameAtPosition"
-                , hasKeyFrameAtPosition_function_type( &::CEGUI::Affector::hasKeyFrameAtPosition )
-                , ( bp::arg("position") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Affector::*hasKeyFrameAtPosition_function_type)(float) const;
+
+            Affector_exposer.def(
+                    "hasKeyFrameAtPosition"
+                    , hasKeyFrameAtPosition_function_type(&::CEGUI::Affector::hasKeyFrameAtPosition)
+                    , (bp::arg("position"))
+                    , "*!\n\
             \n\
                 Checks whether there is a key frame at given position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::moveKeyFrameToPosition
-        
-            typedef void ( ::CEGUI::Affector::*moveKeyFrameToPosition_function_type )( ::CEGUI::KeyFrame *,float ) ;
-            
-            Affector_exposer.def( 
-                "moveKeyFrameToPosition"
-                , moveKeyFrameToPosition_function_type( &::CEGUI::Affector::moveKeyFrameToPosition )
-                , ( bp::arg("keyframe"), bp::arg("newPosition") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*moveKeyFrameToPosition_function_type)(::CEGUI::KeyFrame *, float);
+
+            Affector_exposer.def(
+                    "moveKeyFrameToPosition"
+                    , moveKeyFrameToPosition_function_type(&::CEGUI::Affector::moveKeyFrameToPosition)
+                    , (bp::arg("keyframe"), bp::arg("newPosition"))
+                    , "*!\n\
             \n\
                 Moves given key frame to given new position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::moveKeyFrameToPosition
-        
-            typedef void ( ::CEGUI::Affector::*moveKeyFrameToPosition_function_type )( float,float ) ;
-            
-            Affector_exposer.def( 
-                "moveKeyFrameToPosition"
-                , moveKeyFrameToPosition_function_type( &::CEGUI::Affector::moveKeyFrameToPosition )
-                , ( bp::arg("oldPosition"), bp::arg("newPosition") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*moveKeyFrameToPosition_function_type)(float, float);
+
+            Affector_exposer.def(
+                    "moveKeyFrameToPosition"
+                    , moveKeyFrameToPosition_function_type(&::CEGUI::Affector::moveKeyFrameToPosition)
+                    , (bp::arg("oldPosition"), bp::arg("newPosition"))
+                    , "*!\n\
             \n\
                 Moves key frame at given old position to given new position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::savePropertyValues
-        
-            typedef void ( ::CEGUI::Affector::*savePropertyValues_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            Affector_exposer.def( 
-                "savePropertyValues"
-                , savePropertyValues_function_type( &::CEGUI::Affector::savePropertyValues )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*savePropertyValues_function_type)(::CEGUI::AnimationInstance *);
+
+            Affector_exposer.def(
+                    "savePropertyValues"
+                    , savePropertyValues_function_type(&::CEGUI::Affector::savePropertyValues)
+                    , (bp::arg("instance"))
+                    , "*!\n\
                  \n\
                     Internal method, causes all properties that are used by this affector\n\
                     and it's keyframes to be saved\n\
@@ -267,91 +267,91 @@ void register_Affector_class(){
                 \n\
                     So their values are still known after\n\
                     they've been affected.\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Affector::setApplicationMethod
-        
-            typedef void ( ::CEGUI::Affector::*setApplicationMethod_function_type )( ::CEGUI::Affector::ApplicationMethod ) ;
-            
-            Affector_exposer.def( 
-                "setApplicationMethod"
-                , setApplicationMethod_function_type( &::CEGUI::Affector::setApplicationMethod )
-                , ( bp::arg("method") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*setApplicationMethod_function_type)(::CEGUI::Affector::ApplicationMethod);
+
+            Affector_exposer.def(
+                    "setApplicationMethod"
+                    , setApplicationMethod_function_type(&::CEGUI::Affector::setApplicationMethod)
+                    , (bp::arg("method"))
+                    , "*!\n\
                 \n\
                     Sets the application method\n\
             \n\
                 \n\
                     Values can be applied in 2 ways - as absolute values or relative to base\n\
                     value that is retrieved and saved after animation is started\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Affector::setInterpolator
-        
-            typedef void ( ::CEGUI::Affector::*setInterpolator_function_type )( ::CEGUI::Interpolator * ) ;
-            
-            Affector_exposer.def( 
-                "setInterpolator"
-                , setInterpolator_function_type( &::CEGUI::Affector::setInterpolator )
-                , ( bp::arg("interpolator") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*setInterpolator_function_type)(::CEGUI::Interpolator *);
+
+            Affector_exposer.def(
+                    "setInterpolator"
+                    , setInterpolator_function_type(&::CEGUI::Affector::setInterpolator)
+                    , (bp::arg("interpolator"))
+                    , "*!\n\
                 \n\
                     Sets interpolator of this Affector\n\
             \n\
                 \n\
                     Interpolator has to be set for the Affector to work!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Affector::setInterpolator
-        
-            typedef void ( ::CEGUI::Affector::*setInterpolator_function_type )( ::CEGUI::String const & ) ;
-            
-            Affector_exposer.def( 
-                "setInterpolator"
-                , setInterpolator_function_type( &::CEGUI::Affector::setInterpolator )
-                , ( bp::arg("name") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*setInterpolator_function_type)(::CEGUI::String const &);
+
+            Affector_exposer.def(
+                    "setInterpolator"
+                    , setInterpolator_function_type(&::CEGUI::Affector::setInterpolator)
+                    , (bp::arg("name"))
+                    , "*!\n\
                 \n\
                     Sets interpolator of this Affector\n\
             \n\
                 \n\
                     Interpolator has to be set for the Affector to work!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Affector::setTargetProperty
-        
-            typedef void ( ::CEGUI::Affector::*setTargetProperty_function_type )( ::CEGUI::String const & ) ;
-            
-            Affector_exposer.def( 
-                "setTargetProperty"
-                , setTargetProperty_function_type( &::CEGUI::Affector::setTargetProperty )
-                , ( bp::arg("target") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*setTargetProperty_function_type)(::CEGUI::String const &);
+
+            Affector_exposer.def(
+                    "setTargetProperty"
+                    , setTargetProperty_function_type(&::CEGUI::Affector::setTargetProperty)
+                    , (bp::arg("target"))
+                    , "*!\n\
             \n\
                 Sets the property that will be affected\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Affector::writeXMLToStream
-        
-            typedef void ( ::CEGUI::Affector::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            Affector_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type( &::CEGUI::Affector::writeXMLToStream )
-                , ( bp::arg("xml_stream") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Affector::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+
+            Affector_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::Affector::writeXMLToStream)
+                    , (bp::arg("xml_stream"))
+                    , "*!\n\
                 \n\
                     Writes an xml representation of this Affector to  out_stream.\n\
             \n\
                 @param xml_stream\n\
                     Stream where xml data should be output.\n\
-                *\n" );
-        
+                *\n");
+
         }
     }
 

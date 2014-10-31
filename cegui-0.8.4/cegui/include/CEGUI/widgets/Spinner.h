@@ -1,7 +1,7 @@
 /***********************************************************************
     created:	3/2/2005
     author:		Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,14 +31,14 @@
 #include "../Window.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Base class for the Spinner widget.
@@ -46,27 +46,26 @@ namespace CEGUI
         The spinner widget has a text area where numbers may be entered
         and two buttons which may be used to increase or decrease the
         value in the text area by a user specified amount.
-    */
-    class CEGUIEXPORT Spinner : public Window
-    {
+     */
+    class CEGUIEXPORT Spinner : public Window {
     public:
+
         /*!
         \brief
             Enumerated type specifying possible input and/or display modes for the spinner.
-        */
-        enum TextInputMode
-        {
-            FloatingPoint,  //!< Floating point decimal.
-            Integer,        //!< Integer decimal.
-            Hexadecimal,    //!< Hexadecimal.
-            Octal           //!< Octal
+         */
+        enum TextInputMode {
+            FloatingPoint, //!< Floating point decimal.
+            Integer, //!< Integer decimal.
+            Hexadecimal, //!< Hexadecimal.
+            Octal //!< Octal
         };
 
         /*************************************************************************
             Events system constants
-        *************************************************************************/
-        static const String WidgetTypeName;                 //!< Window factory name
-        static const String EventNamespace;                 //!< Namespace for global events
+         *************************************************************************/
+        static const String WidgetTypeName; //!< Window factory name
+        static const String EventNamespace; //!< Namespace for global events
         /** Event fired when the spinner current value changes.
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the Spinner whose current value has
@@ -100,49 +99,49 @@ namespace CEGUI
 
         /*************************************************************************
             Component widget name strings
-        *************************************************************************/
-        static const String EditboxName;          //!< Widget name for the editbox thumb component.
-        static const String IncreaseButtonName;   //!< Widget name for the increase button component.
-        static const String DecreaseButtonName;   //!< Widget name for the decrease button component.
+         *************************************************************************/
+        static const String EditboxName; //!< Widget name for the editbox thumb component.
+        static const String IncreaseButtonName; //!< Widget name for the increase button component.
+        static const String DecreaseButtonName; //!< Widget name for the decrease button component.
 
         /*************************************************************************
             Object Construction and Destruction
-        *************************************************************************/
+         *************************************************************************/
         /*!
         \brief
             Constructor for Spinner objects
-        */
+         */
         Spinner(const String& type, const String& name);
 
         /*!
         \brief
             Destructor for Spinner objects
-        */
+         */
         virtual ~Spinner(void);
 
-	    /*!
-	    \brief
-		    Initialises the Window based object ready for use.
+        /*!
+        \brief
+                Initialises the Window based object ready for use.
 
-	    \note
-		    This must be called for every window created.  Normally this is handled automatically by the WindowFactory for each Window type.
+        \note
+                This must be called for every window created.  Normally this is handled automatically by the WindowFactory for each Window type.
 
-	    \return
-		    Nothing
-	    */
+        \return
+                Nothing
+         */
         void initialiseComponents(void);
 
 
         /*************************************************************************
-        	Accessors
-        *************************************************************************/
+                Accessors
+         *************************************************************************/
         /*!
         \brief
             Return the current spinner value.
 
         \return
             current value of the Spinner.
-        */
+         */
         double getCurrentValue(void) const;
 
         /*!
@@ -152,7 +151,7 @@ namespace CEGUI
         \return
             Step value.  This is the value added to the spinner vaue when the
             up / down buttons are clicked.
-        */
+         */
         double getStepSize(void) const;
 
         /*!
@@ -161,7 +160,7 @@ namespace CEGUI
 
         \return
             Maximum value that is allowed for the spinner.
-        */
+         */
         double getMaximumValue(void) const;
 
         /*!
@@ -170,7 +169,7 @@ namespace CEGUI
 
         \return
             Minimum value that is allowed for the spinner.
-        */
+         */
         double getMinimumValue(void) const;
 
         /*!
@@ -180,12 +179,12 @@ namespace CEGUI
         \return
             One of the TextInputMode enumerated values indicating the current
             text input and display mode.
-        */
+         */
         TextInputMode getTextInputMode(void) const;
 
         /*************************************************************************
-        	Manipulators
-        *************************************************************************/
+                Manipulators
+         *************************************************************************/
         /*!
         \brief
             Set the current spinner value.
@@ -195,7 +194,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setCurrentValue(double value);
 
         /*!
@@ -208,7 +207,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setStepSize(double step);
 
         /*!
@@ -220,7 +219,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setMaximumValue(double maxValue);
 
         /*!
@@ -232,7 +231,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setMinimumValue(double minVaue);
 
         /*!
@@ -245,23 +244,23 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setTextInputMode(TextInputMode mode);
 
     protected:
 #ifndef PE_NO_REGEX_MATCHER
         /*************************************************************************
-        	Constants
-        *************************************************************************/
-        static const String FloatValidator;      //!< Validator regex used for floating point mode.
-        static const String IntegerValidator;    //!< Validator regex used for decimal integer mode.
-        static const String HexValidator;        //!< Validator regex used for hexadecimal mode.
-        static const String OctalValidator;      //!< Validator regex used for octal mode.
+                Constants
+         *************************************************************************/
+        static const String FloatValidator; //!< Validator regex used for floating point mode.
+        static const String IntegerValidator; //!< Validator regex used for decimal integer mode.
+        static const String HexValidator; //!< Validator regex used for hexadecimal mode.
+        static const String OctalValidator; //!< Validator regex used for octal mode.
 #endif //PE_NO_REGEX_MATCHER
 
         /*************************************************************************
-        	Protected Implementation Methods
-        *************************************************************************/
+                Protected Implementation Methods
+         *************************************************************************/
         /*!
         \brief
             Returns the numerical representation of the current editbox text.
@@ -270,7 +269,7 @@ namespace CEGUI
             double value that is the numerical equivalent of the editbox text.
 
         \exception InvalidRequestException  thrown if the text can not be converted.
-        */
+         */
         virtual double getValueFromText(void) const;
 
         /*!
@@ -279,7 +278,7 @@ namespace CEGUI
 
         \return
             String object that is equivalent to the the numerical value of the spinner.
-        */
+         */
         virtual String getTextFromValue(void) const;
 
         /*!
@@ -292,7 +291,7 @@ namespace CEGUI
 
         \exception UnknownObjectException
             Thrown if the increase PushButton component does not exist.
-        */
+         */
         PushButton* getIncreaseButton() const;
 
         /*!
@@ -305,7 +304,7 @@ namespace CEGUI
 
         \exception UnknownObjectException
             Thrown if the 'decrease' PushButton component does not exist.
-        */
+         */
         PushButton* getDecreaseButton() const;
 
         /*!
@@ -317,19 +316,19 @@ namespace CEGUI
 
         \exception UnknownObjectException
             Thrown if the Editbox component does not exist.
-        */
+         */
         Editbox* getEditbox() const;
 
         /*************************************************************************
-        	Overrides for Event handler methods
-        *************************************************************************/
-        virtual	void onFontChanged(WindowEventArgs& e);
+                Overrides for Event handler methods
+         *************************************************************************/
+        virtual void onFontChanged(WindowEventArgs& e);
         virtual void onTextChanged(WindowEventArgs& e);
         virtual void onActivated(ActivationEventArgs& e);
 
         /*************************************************************************
-        	New Event handler methods
-        *************************************************************************/
+                New Event handler methods
+         *************************************************************************/
         /*!
         \brief
             Method called when the spinner value changes.
@@ -339,7 +338,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onValueChanged(WindowEventArgs& e);
 
         /*!
@@ -351,7 +350,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onStepChanged(WindowEventArgs& e);
 
         /*!
@@ -363,7 +362,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onMaximumValueChanged(WindowEventArgs& e);
 
         /*!
@@ -375,7 +374,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onMinimumValueChanged(WindowEventArgs& e);
 
         /*!
@@ -387,110 +386,88 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onTextInputModeChanged(WindowEventArgs& e);
 
         /*************************************************************************
-        	Internal event listener methods
-        *************************************************************************/
+                Internal event listener methods
+         *************************************************************************/
         bool handleIncreaseButton(const EventArgs& e);
         bool handleDecreaseButton(const EventArgs& e);
         bool handleEditTextChange(const EventArgs& e);
 
 
         /*************************************************************************
-        	Data Fields
-        *************************************************************************/
-        double   d_stepSize;     //!< Step size value used y the increase & decrease buttons.
-        double   d_currentValue; //!< Numerical copy of the text in d_editbox.
-        double   d_maxValue;     //!< Maximum value for spinner.
-        double   d_minValue;     //!< Minimum value for spinner.
-        TextInputMode   d_inputMode;    //!< Current text display/input mode.
+                Data Fields
+         *************************************************************************/
+        double d_stepSize; //!< Step size value used y the increase & decrease buttons.
+        double d_currentValue; //!< Numerical copy of the text in d_editbox.
+        double d_maxValue; //!< Maximum value for spinner.
+        double d_minValue; //!< Minimum value for spinner.
+        TextInputMode d_inputMode; //!< Current text display/input mode.
 
     private:
         /*************************************************************************
-        	Private Implementation Methods
-        *************************************************************************/
+                Private Implementation Methods
+         *************************************************************************/
         /*!
         \brief
             Adds properties supported by the Spinner class.
 
         \return
             Nothing.
-        */
-        void    addSpinnerProperties(void);
+         */
+        void addSpinnerProperties(void);
     };
 
+    template<>
+    class PropertyHelper<Spinner::TextInputMode> {
+    public:
+        typedef Spinner::TextInputMode return_type;
+        typedef return_type safe_method_return_type;
+        typedef Spinner::TextInputMode pass_type;
+        typedef String string_return_type;
 
+        static const String& getDataTypeName() {
+            static String type("TextInputMode");
 
-template<>
-class PropertyHelper<Spinner::TextInputMode>
-{
-public:
-    typedef Spinner::TextInputMode return_type;
-    typedef return_type safe_method_return_type;
-    typedef Spinner::TextInputMode pass_type;
-    typedef String string_return_type;
+            return type;
+        }
 
-    static const String& getDataTypeName()
-    {
-        static String type("TextInputMode");
+        static return_type fromString(const String& str) {
+            if (str == "FloatingPoint") {
+                return Spinner::FloatingPoint;
+            } else if (str == "Hexadecimal") {
+                return Spinner::Hexadecimal;
+            } else if (str == "Octal") {
+                return Spinner::Octal;
+            } else {
+                return Spinner::Integer;
+            }
+        }
 
-        return type;
-    }
-
-    static return_type fromString(const String& str)
-    {
-        if (str == "FloatingPoint")
-        {
-            return Spinner::FloatingPoint;
+        static string_return_type toString(pass_type val) {
+            if (val == Spinner::Octal) {
+                return "Octal";
+            } else if (val == Spinner::FloatingPoint) {
+                return "FloatingPoint";
+            } else if (val == Spinner::Hexadecimal) {
+                return "Hexadecimal";
+            } else if (val == Spinner::Integer) {
+                return "Integer";
+            } else {
+                assert(false && "Invalid Text Input Mode");
+                return "FloatingPoint";
+            }
         }
-        else if (str == "Hexadecimal")
-        {
-            return Spinner::Hexadecimal;
-        }
-        else if (str == "Octal")
-        {
-            return Spinner::Octal;
-        }
-        else
-        {
-            return Spinner::Integer;
-        }
-    }
-
-    static string_return_type toString(pass_type val)
-    {
-        if (val == Spinner::Octal)
-        {
-            return "Octal";
-        }
-        else if (val == Spinner::FloatingPoint)
-        {
-            return "FloatingPoint";
-        }
-        else if (val == Spinner::Hexadecimal)
-        {
-            return "Hexadecimal";
-        }
-        else if (val == Spinner::Integer)
-        {
-            return "Integer";
-        }
-        else
-        {
-            assert(false && "Invalid Text Input Mode");
-            return "FloatingPoint";
-        }
-    }
-};
+    };
 
 
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 #endif  //PE_NO_WGT_SPINNER
 #endif	// end of guard _CEGUISpinner_h_

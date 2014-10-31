@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	21/2/2004
-	author:		Paul D Turner
+        created:	21/2/2004
+        author:		Paul D Turner
 	
-	purpose:	Implements PropertySet class
-*************************************************************************/
+        purpose:	Implements PropertySet class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,196 +31,172 @@
 #include "CEGUI/Exceptions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*************************************************************************
-	Add a new property to the set
-*************************************************************************/
-void PropertySet::addProperty(Property* property)
-{
-	if (!property)
-	{
-		CEGUI_THROW(NullObjectException(
+    /*************************************************************************
+            Add a new property to the set
+     *************************************************************************/
+    void PropertySet::addProperty(Property* property) {
+        if (!property) {
+            CEGUI_THROW(NullObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "The given Property object pointer is invalid."));
+                    "The given Property object pointer is invalid."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-	if (!d_properties.insert(std::make_pair(property->getName(), property)).second)
-	{
-		CEGUI_THROW(AlreadyExistsException(
+        if (!d_properties.insert(std::make_pair(property->getName(), property)).second) {
+            CEGUI_THROW(AlreadyExistsException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "A Property named '" + property->getName() + "' already exists in the PropertySet."));
+                    "A Property named '" + property->getName() + "' already exists in the PropertySet."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-    property->initialisePropertyReceiver(this);
-}
-
-/*************************************************************************
-	Remove a property from the set
-*************************************************************************/
-void PropertySet::removeProperty(const String& name)
-{
-	PropertyRegistry::iterator pos = d_properties.find(name);
-
-	if (pos != d_properties.end())
-	{
-		d_properties.erase(pos);
-	}
-}
-
-/*************************************************************************
-    Retrieves a property instance from the set
-*************************************************************************/
-Property* PropertySet::getPropertyInstance(const String& name) const
-{
-    PropertyRegistry::const_iterator pos = d_properties.find(name);
-
-    if (pos == d_properties.end())
-    {
-        CEGUI_THROW(UnknownObjectException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "There is no Property named '" + name + "' available in the set."));
-#endif //PE_NO_THROW_MSGS
+        property->initialisePropertyReceiver(this);
     }
 
-    return pos->second;
-}
+    /*************************************************************************
+            Remove a property from the set
+     *************************************************************************/
+    void PropertySet::removeProperty(const String& name) {
+        PropertyRegistry::iterator pos = d_properties.find(name);
 
-/*************************************************************************
-	Remove all properties from the set
-*************************************************************************/
-void PropertySet::clearProperties(void)
-{
-	d_properties.clear();
-}
+        if (pos != d_properties.end()) {
+            d_properties.erase(pos);
+        }
+    }
 
-/*************************************************************************
-	Return true if a property with the given name is in the set
-*************************************************************************/
-bool PropertySet::isPropertyPresent(const String& name) const
-{
-	return (d_properties.find(name) != d_properties.end());
-}
+    /*************************************************************************
+        Retrieves a property instance from the set
+     *************************************************************************/
+    Property* PropertySet::getPropertyInstance(const String& name) const {
+        PropertyRegistry::const_iterator pos = d_properties.find(name);
 
-/*************************************************************************
-	Return the help string for a property
-*************************************************************************/
-const String& PropertySet::getPropertyHelp(const String& name) const
-{
-	PropertyRegistry::const_iterator pos = d_properties.find(name);
-
-	if (pos == d_properties.end())
-	{
-		CEGUI_THROW(UnknownObjectException(
+        if (pos == d_properties.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "There is no Property named '" + name + "' available in the set."));
+                    "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-	return pos->second->getHelp();
-}
+        return pos->second;
+    }
 
-/*************************************************************************
-	Return the current value of a property
-*************************************************************************/
-String PropertySet::getProperty(const String& name) const
-{
-	PropertyRegistry::const_iterator pos = d_properties.find(name);
+    /*************************************************************************
+            Remove all properties from the set
+     *************************************************************************/
+    void PropertySet::clearProperties(void) {
+        d_properties.clear();
+    }
 
-	if (pos == d_properties.end())
-	{
-		CEGUI_THROW(UnknownObjectException(
+    /*************************************************************************
+            Return true if a property with the given name is in the set
+     *************************************************************************/
+    bool PropertySet::isPropertyPresent(const String& name) const {
+        return (d_properties.find(name) != d_properties.end());
+    }
+
+    /*************************************************************************
+            Return the help string for a property
+     *************************************************************************/
+    const String& PropertySet::getPropertyHelp(const String& name) const {
+        PropertyRegistry::const_iterator pos = d_properties.find(name);
+
+        if (pos == d_properties.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "There is no Property named '" + name + "' available in the set."));
+                    "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-	return pos->second->get(this);
-}
+        return pos->second->getHelp();
+    }
 
-/*************************************************************************
-	Set the current value of a property
-*************************************************************************/
-void PropertySet::setProperty(const String& name,const String& value)
-{
-	PropertyRegistry::iterator pos = d_properties.find(name);
+    /*************************************************************************
+            Return the current value of a property
+     *************************************************************************/
+    String PropertySet::getProperty(const String& name) const {
+        PropertyRegistry::const_iterator pos = d_properties.find(name);
 
-	if (pos == d_properties.end())
-	{
-		CEGUI_THROW(UnknownObjectException(
+        if (pos == d_properties.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "There is no Property named '" + name + "' available in the set."));
+                    "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-	pos->second->set(this, value);
-}
+        return pos->second->get(this);
+    }
 
+    /*************************************************************************
+            Set the current value of a property
+     *************************************************************************/
+    void PropertySet::setProperty(const String& name, const String& value) {
+        PropertyRegistry::iterator pos = d_properties.find(name);
 
-/*************************************************************************
-	Return a PropertySet::PropertyIterator object to iterate over the
-	available Properties.
-*************************************************************************/
-PropertySet::PropertyIterator PropertySet::getPropertyIterator(void) const
-{
-	return PropertyIterator(d_properties.begin(), d_properties.end());
-}
-
-
-/*************************************************************************
-	Returns whether a Property is at it's default value.
-*************************************************************************/
-bool PropertySet::isPropertyDefault(const String& name) const
-{
-	PropertyRegistry::const_iterator pos = d_properties.find(name);
-
-	if (pos == d_properties.end())
-	{
-		CEGUI_THROW(UnknownObjectException(
+        if (pos == d_properties.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "There is no Property named '" + name + "' available in the set."));
+                    "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-	return pos->second->isDefault(this);
-}
+        pos->second->set(this, value);
+    }
 
+    /*************************************************************************
+            Return a PropertySet::PropertyIterator object to iterate over the
+            available Properties.
+     *************************************************************************/
+    PropertySet::PropertyIterator PropertySet::getPropertyIterator(void) const {
+        return PropertyIterator(d_properties.begin(), d_properties.end());
+    }
 
-/*************************************************************************
-	Returns the default value of a Property as a String.	
-*************************************************************************/
-String PropertySet::getPropertyDefault(const String& name) const
-{
-	PropertyRegistry::const_iterator pos = d_properties.find(name);
+    /*************************************************************************
+            Returns whether a Property is at it's default value.
+     *************************************************************************/
+    bool PropertySet::isPropertyDefault(const String& name) const {
+        PropertyRegistry::const_iterator pos = d_properties.find(name);
 
-	if (pos == d_properties.end())
-	{
-		CEGUI_THROW(UnknownObjectException(
+        if (pos == d_properties.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                        "There is no Property named '" + name + "' available in the set."));
+                    "There is no Property named '" + name + "' available in the set."));
 #endif //PE_NO_THROW_MSGS
-	}
+        }
 
-	return pos->second->getDefault(this);
-}
+        return pos->second->isDefault(this);
+    }
+
+    /*************************************************************************
+            Returns the default value of a Property as a String.	
+     *************************************************************************/
+    String PropertySet::getPropertyDefault(const String& name) const {
+        PropertyRegistry::const_iterator pos = d_properties.find(name);
+
+        if (pos == d_properties.end()) {
+            CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "There is no Property named '" + name + "' available in the set."));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        return pos->second->getDefault(this);
+    }
 
 } // End of  CEGUI namespace section

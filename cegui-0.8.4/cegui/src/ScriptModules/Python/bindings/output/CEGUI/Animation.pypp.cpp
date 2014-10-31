@@ -6,11 +6,11 @@
 
 namespace bp = boost::python;
 
-void register_Animation_class(){
+void register_Animation_class() {
 
     { //::CEGUI::Animation
         typedef bp::class_< CEGUI::Animation > Animation_exposer_t;
-        Animation_exposer_t Animation_exposer = Animation_exposer_t( "Animation", "*!\n\
+        Animation_exposer_t Animation_exposer = Animation_exposer_t("Animation", "*!\n\
         \n\
             Defines an 'animation' class\n\
         \n\
@@ -28,115 +28,115 @@ void register_Animation_class(){
         \n\
         @see\n\
             AnimationInstance, Affector\n\
-        *\n", bp::init< CEGUI::String const & >(( bp::arg("name") ), "** internal constructor, please only construct animations via\n\
+        *\n", bp::init< CEGUI::String const & >((bp::arg("name")), "** internal constructor, please only construct animations via\n\
          * AnimationManager.createAnimation method\n\
-         *\n") );
-        bp::scope Animation_scope( Animation_exposer );
+         *\n"));
+        bp::scope Animation_scope(Animation_exposer);
         bp::enum_< CEGUI::Animation::ReplayMode>("ReplayMode")
-            .value("RM_Once", CEGUI::Animation::RM_Once)
-            .value("RM_Loop", CEGUI::Animation::RM_Loop)
-            .value("RM_Bounce", CEGUI::Animation::RM_Bounce)
-            .export_values()
-            ;
+                .value("RM_Once", CEGUI::Animation::RM_Once)
+                .value("RM_Loop", CEGUI::Animation::RM_Loop)
+                .value("RM_Bounce", CEGUI::Animation::RM_Bounce)
+                .export_values()
+                ;
         bp::implicitly_convertible< CEGUI::String const &, CEGUI::Animation >();
         { //::CEGUI::Animation::apply
-        
-            typedef void ( ::CEGUI::Animation::*apply_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            Animation_exposer.def( 
-                "apply"
-                , apply_function_type( &::CEGUI::Animation::apply )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*apply_function_type)(::CEGUI::AnimationInstance *);
+
+            Animation_exposer.def(
+                    "apply"
+                    , apply_function_type(&::CEGUI::Animation::apply)
+                    , (bp::arg("instance"))
+                    , "*!\n\
                 \n\
                     Applies this Animation definition using information from given\n\
                     AnimationInstance\n\
             \n\
                 \n\
                     This is internal method, only use if you know what you're doing!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::autoSubscribe
-        
-            typedef void ( ::CEGUI::Animation::*autoSubscribe_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            Animation_exposer.def( 
-                "autoSubscribe"
-                , autoSubscribe_function_type( &::CEGUI::Animation::autoSubscribe )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*autoSubscribe_function_type)(::CEGUI::AnimationInstance *);
+
+            Animation_exposer.def(
+                    "autoSubscribe"
+                    , autoSubscribe_function_type(&::CEGUI::Animation::autoSubscribe)
+                    , (bp::arg("instance"))
+                    , "*!\n\
                 \n\
                     Subscribes all auto subscriptions with information from given animation\n\
                     instance\n\
             \n\
                 \n\
                     This is internal method! Only use if you know what you're doing!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::autoUnsubscribe
-        
-            typedef void ( ::CEGUI::Animation::*autoUnsubscribe_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            Animation_exposer.def( 
-                "autoUnsubscribe"
-                , autoUnsubscribe_function_type( &::CEGUI::Animation::autoUnsubscribe )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*autoUnsubscribe_function_type)(::CEGUI::AnimationInstance *);
+
+            Animation_exposer.def(
+                    "autoUnsubscribe"
+                    , autoUnsubscribe_function_type(&::CEGUI::Animation::autoUnsubscribe)
+                    , (bp::arg("instance"))
+                    , "*!\n\
                 \n\
                     Unsubscribes all auto subscriptions with information from given\n\
                     animation instance\n\
             \n\
                 \n\
                     This is internal method! Only use if you know what you're doing!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::createAffector
-        
-            typedef ::CEGUI::Affector * ( ::CEGUI::Animation::*createAffector_function_type )(  ) ;
-            
-            Animation_exposer.def( 
-                "createAffector"
-                , createAffector_function_type( &::CEGUI::Animation::createAffector )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Affector * (::CEGUI::Animation::*createAffector_function_type)();
+
+            Animation_exposer.def(
+                    "createAffector"
+                    , createAffector_function_type(&::CEGUI::Animation::createAffector)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Creates a new Affector\n\
             \n\
                 @see\n\
                     Affector\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::createAffector
-        
-            typedef ::CEGUI::Affector * ( ::CEGUI::Animation::*createAffector_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            Animation_exposer.def( 
-                "createAffector"
-                , createAffector_function_type( &::CEGUI::Animation::createAffector )
-                , ( bp::arg("targetProperty"), bp::arg("interpolator") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Affector * (::CEGUI::Animation::*createAffector_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            Animation_exposer.def(
+                    "createAffector"
+                    , createAffector_function_type(&::CEGUI::Animation::createAffector)
+                    , (bp::arg("targetProperty"), bp::arg("interpolator"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Creates a new Affector\n\
             \n\
                 \n\
                     This is just a helper, finger saving method.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::defineAutoSubscription
-        
-            typedef void ( ::CEGUI::Animation::*defineAutoSubscription_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            Animation_exposer.def( 
-                "defineAutoSubscription"
-                , defineAutoSubscription_function_type( &::CEGUI::Animation::defineAutoSubscription )
-                , ( bp::arg("eventName"), bp::arg("action") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*defineAutoSubscription_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            Animation_exposer.def(
+                    "defineAutoSubscription"
+                    , defineAutoSubscription_function_type(&::CEGUI::Animation::defineAutoSubscription)
+                    , (bp::arg("eventName"), bp::arg("action"))
+                    , "*!\n\
                 \n\
                     This defined a new auto subscription.\n\
             \n\
@@ -160,116 +160,116 @@ void register_Animation_class(){
                     - TogglePause\n\
             \n\
                     eventName is the name of the event we want to subscribe to\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::destroyAffector
-        
-            typedef void ( ::CEGUI::Animation::*destroyAffector_function_type )( ::CEGUI::Affector * ) ;
-            
-            Animation_exposer.def( 
-                "destroyAffector"
-                , destroyAffector_function_type( &::CEGUI::Animation::destroyAffector )
-                , ( bp::arg("affector") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*destroyAffector_function_type)(::CEGUI::Affector *);
+
+            Animation_exposer.def(
+                    "destroyAffector"
+                    , destroyAffector_function_type(&::CEGUI::Animation::destroyAffector)
+                    , (bp::arg("affector"))
+                    , "*!\n\
             \n\
                 Destroys given Affector\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::getAffectorAtIdx
-        
-            typedef ::CEGUI::Affector * ( ::CEGUI::Animation::*getAffectorAtIdx_function_type )( ::size_t ) const;
-            
-            Animation_exposer.def( 
-                "getAffectorAtIdx"
-                , getAffectorAtIdx_function_type( &::CEGUI::Animation::getAffectorAtIdx )
-                , ( bp::arg("index") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Affector * (::CEGUI::Animation::*getAffectorAtIdx_function_type)(::size_t) const;
+
+            Animation_exposer.def(
+                    "getAffectorAtIdx"
+                    , getAffectorAtIdx_function_type(&::CEGUI::Animation::getAffectorAtIdx)
+                    , (bp::arg("index"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Retrieves the Affector at given index\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::getAutoStart
-        
-            typedef bool ( ::CEGUI::Animation::*getAutoStart_function_type )(  ) const;
-            
-            Animation_exposer.def( 
-                "getAutoStart"
-                , getAutoStart_function_type( &::CEGUI::Animation::getAutoStart )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Animation::*getAutoStart_function_type)() const;
+
+            Animation_exposer.def(
+                    "getAutoStart"
+                    , getAutoStart_function_type(&::CEGUI::Animation::getAutoStart)
+                    , "*!\n\
                 \n\
                     Retrieves auto start.\n\
             \n\
                 @see\n\
                     Animation.setAutoStart\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::getDuration
-        
-            typedef float ( ::CEGUI::Animation::*getDuration_function_type )(  ) const;
-            
-            Animation_exposer.def( 
-                "getDuration"
-                , getDuration_function_type( &::CEGUI::Animation::getDuration )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::Animation::*getDuration_function_type)() const;
+
+            Animation_exposer.def(
+                    "getDuration"
+                    , getDuration_function_type(&::CEGUI::Animation::getDuration)
+                    , "*!\n\
             \n\
                 Retrieves the duration of this animation\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::getName
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::Animation::*getName_function_type )(  ) const;
-            
-            Animation_exposer.def( 
-                "getName"
-                , getName_function_type( &::CEGUI::Animation::getName )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::Animation::*getName_function_type)() const;
+
+            Animation_exposer.def(
+                    "getName"
+                    , getName_function_type(&::CEGUI::Animation::getName)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
             \n\
                 Retrieves name of this Animation definition\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::getNumAffectors
-        
-            typedef ::size_t ( ::CEGUI::Animation::*getNumAffectors_function_type )(  ) const;
-            
-            Animation_exposer.def( 
-                "getNumAffectors"
-                , getNumAffectors_function_type( &::CEGUI::Animation::getNumAffectors )
-                , "*!\n\
+
+            typedef ::size_t(::CEGUI::Animation::*getNumAffectors_function_type)() const;
+
+            Animation_exposer.def(
+                    "getNumAffectors"
+                    , getNumAffectors_function_type(&::CEGUI::Animation::getNumAffectors)
+                    , "*!\n\
             \n\
                 Retrieves number of Affectors defined in this Animation\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::getReplayMode
-        
-            typedef ::CEGUI::Animation::ReplayMode ( ::CEGUI::Animation::*getReplayMode_function_type )(  ) const;
-            
-            Animation_exposer.def( 
-                "getReplayMode"
-                , getReplayMode_function_type( &::CEGUI::Animation::getReplayMode )
-                , "*!\n\
+
+            typedef ::CEGUI::Animation::ReplayMode(::CEGUI::Animation::*getReplayMode_function_type)() const;
+
+            Animation_exposer.def(
+                    "getReplayMode"
+                    , getReplayMode_function_type(&::CEGUI::Animation::getReplayMode)
+                    , "*!\n\
             \n\
                 Retrieves the replay mode of this animation\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::savePropertyValues
-        
-            typedef void ( ::CEGUI::Animation::*savePropertyValues_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            Animation_exposer.def( 
-                "savePropertyValues"
-                , savePropertyValues_function_type( &::CEGUI::Animation::savePropertyValues )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*savePropertyValues_function_type)(::CEGUI::AnimationInstance *);
+
+            Animation_exposer.def(
+                    "savePropertyValues"
+                    , savePropertyValues_function_type(&::CEGUI::Animation::savePropertyValues)
+                    , (bp::arg("instance"))
+                    , "*!\n\
                  \n\
                     Internal method, causes all properties that are used by this animation\n\
                     and it's affectors to be saved\n\
@@ -277,97 +277,97 @@ void register_Animation_class(){
                 \n\
                     So their values are still known after\n\
                     they've been affected.\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Animation::setAutoStart
-        
-            typedef void ( ::CEGUI::Animation::*setAutoStart_function_type )( bool ) ;
-            
-            Animation_exposer.def( 
-                "setAutoStart"
-                , setAutoStart_function_type( &::CEGUI::Animation::setAutoStart )
-                , ( bp::arg("autoStart") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*setAutoStart_function_type)(bool);
+
+            Animation_exposer.def(
+                    "setAutoStart"
+                    , setAutoStart_function_type(&::CEGUI::Animation::setAutoStart)
+                    , (bp::arg("autoStart"))
+                    , "*!\n\
                 \n\
                     Sets whether this animation auto starts or not\n\
             \n\
                 \n\
                     Auto start means that the animation instances of this definition call\n\
                     Start on themselves once their target is set.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::setDuration
-        
-            typedef void ( ::CEGUI::Animation::*setDuration_function_type )( float ) ;
-            
-            Animation_exposer.def( 
-                "setDuration"
-                , setDuration_function_type( &::CEGUI::Animation::setDuration )
-                , ( bp::arg("duration") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*setDuration_function_type)(float);
+
+            Animation_exposer.def(
+                    "setDuration"
+                    , setDuration_function_type(&::CEGUI::Animation::setDuration)
+                    , (bp::arg("duration"))
+                    , "*!\n\
             \n\
                 Sets the duration of this animation\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::setReplayMode
-        
-            typedef void ( ::CEGUI::Animation::*setReplayMode_function_type )( ::CEGUI::Animation::ReplayMode ) ;
-            
-            Animation_exposer.def( 
-                "setReplayMode"
-                , setReplayMode_function_type( &::CEGUI::Animation::setReplayMode )
-                , ( bp::arg("mode") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*setReplayMode_function_type)(::CEGUI::Animation::ReplayMode);
+
+            Animation_exposer.def(
+                    "setReplayMode"
+                    , setReplayMode_function_type(&::CEGUI::Animation::setReplayMode)
+                    , (bp::arg("mode"))
+                    , "*!\n\
             \n\
                 Sets the replay mode of this animation\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Animation::undefineAllAutoSubscriptions
-        
-            typedef void ( ::CEGUI::Animation::*undefineAllAutoSubscriptions_function_type )(  ) ;
-            
-            Animation_exposer.def( 
-                "undefineAllAutoSubscriptions"
-                , undefineAllAutoSubscriptions_function_type( &::CEGUI::Animation::undefineAllAutoSubscriptions )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*undefineAllAutoSubscriptions_function_type)();
+
+            Animation_exposer.def(
+                    "undefineAllAutoSubscriptions"
+                    , undefineAllAutoSubscriptions_function_type(&::CEGUI::Animation::undefineAllAutoSubscriptions)
+                    , "*!\n\
                 \n\
                     This undefines all previously defined auto subscriptions.\n\
             \n\
                 @see\n\
                     Animation.defineAutoSubscription\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::undefineAutoSubscription
-        
-            typedef void ( ::CEGUI::Animation::*undefineAutoSubscription_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            Animation_exposer.def( 
-                "undefineAutoSubscription"
-                , undefineAutoSubscription_function_type( &::CEGUI::Animation::undefineAutoSubscription )
-                , ( bp::arg("eventName"), bp::arg("action") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*undefineAutoSubscription_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            Animation_exposer.def(
+                    "undefineAutoSubscription"
+                    , undefineAutoSubscription_function_type(&::CEGUI::Animation::undefineAutoSubscription)
+                    , (bp::arg("eventName"), bp::arg("action"))
+                    , "*!\n\
                 \n\
                     This undefines previously defined auto subscription.\n\
             \n\
                 @see\n\
                     Animation.defineAutoSubscription\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Animation::writeXMLToStream
-        
-            typedef void ( ::CEGUI::Animation::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer &,::CEGUI::String const & ) const;
-            
-            Animation_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type( &::CEGUI::Animation::writeXMLToStream )
-                , ( bp::arg("xml_stream"), bp::arg("name_override")="" )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Animation::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &, ::CEGUI::String const &) const;
+
+            Animation_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::Animation::writeXMLToStream)
+                    , (bp::arg("xml_stream"), bp::arg("name_override") = "")
+                    , "*!\n\
                 \n\
                     Writes an xml representation of this Animation definition to  out_stream.\n\
             \n\
@@ -376,8 +376,8 @@ void register_Animation_class(){
                 @param name_override\n\
                   If given, this value overrides the name attribute written to the stream.\n\
                   This is useful when writing out looknfeels\n\
-                *\n" );
-        
+                *\n");
+
         }
     }
 

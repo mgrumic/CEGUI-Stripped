@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Mar 19 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,58 +30,57 @@
 #include "CEGUI/WindowFactory.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Template based WindowFactory that can be used to automatically generate a
-    WindowFactory given a Window based class.
+namespace CEGUI {
 
-    The advantage of this over the previous macro based methods is that there is
-    no longer any need to have any supporting code or structure in order to add
-    new Window types to the system, rather you can just do:
-    \code
-    CEGUI::WindowFactoryManager::addFactory<TplWindowFactory<MyWidget> >();
-    \endcode
+    /*!
+    \brief
+        Template based WindowFactory that can be used to automatically generate a
+        WindowFactory given a Window based class.
 
-\tparam T
-    Specifies the Window based class that the factory will create and
-    destroy instances of.
-*/
-template <typename T>
-class TplWindowFactory : public WindowFactory
-{
-public:
-    //! Default constructor.
-    TplWindowFactory();
+        The advantage of this over the previous macro based methods is that there is
+        no longer any need to have any supporting code or structure in order to add
+        new Window types to the system, rather you can just do:
+        \code
+        CEGUI::WindowFactoryManager::addFactory<TplWindowFactory<MyWidget> >();
+        \endcode
 
-    // Implement WindowFactory interface
-    Window* createWindow(const String& name);
-    void destroyWindow(Window* window);
-};
+    \tparam T
+        Specifies the Window based class that the factory will create and
+        destroy instances of.
+     */
+    template <typename T>
+    class TplWindowFactory : public WindowFactory {
+    public:
+        //! Default constructor.
+        TplWindowFactory();
 
-//----------------------------------------------------------------------------//
-template <typename T>
-TplWindowFactory<T>::TplWindowFactory() :
-    WindowFactory(T::WidgetTypeName)
-{
-}
+        // Implement WindowFactory interface
+        Window* createWindow(const String& name);
+        void destroyWindow(Window* window);
+    };
 
-//----------------------------------------------------------------------------//
-template <typename T>
-Window* TplWindowFactory<T>::createWindow(const String& name)
-{
-    return CEGUI_NEW_AO T(d_type, name);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-template <typename T>
-void TplWindowFactory<T>::destroyWindow(Window* window)
-{
-    CEGUI_DELETE_AO window;
-}
+    template <typename T>
+    TplWindowFactory<T>::TplWindowFactory() :
+    WindowFactory(T::WidgetTypeName) {
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    template <typename T>
+    Window* TplWindowFactory<T>::createWindow(const String& name) {
+        return CEGUI_NEW_AO T(d_type, name);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    template <typename T>
+    void TplWindowFactory<T>::destroyWindow(Window* window) {
+        CEGUI_DELETE_AO window;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

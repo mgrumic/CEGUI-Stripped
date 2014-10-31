@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Implements the AnimationManager class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -39,465 +39,442 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*************************************************************************
-    Static Data Definitions
-*************************************************************************/
-// singleton instance pointer
-template<> AnimationManager* Singleton<AnimationManager>::ms_Singleton  = 0;
-// Name of the xsd schema file used to validate animation XML files.
-const String AnimationManager::XMLSchemaName("Animation.xsd");
-// String that holds the default resource group for loading animations
-String AnimationManager::s_defaultResourceGroup("");
-const String AnimationManager::GeneratedAnimationNameBase("__ceanim_uid_");
+namespace CEGUI {
+    /*************************************************************************
+        Static Data Definitions
+     *************************************************************************/
+    // singleton instance pointer
+    template<> AnimationManager* Singleton<AnimationManager>::ms_Singleton = 0;
+    // Name of the xsd schema file used to validate animation XML files.
+    const String AnimationManager::XMLSchemaName("Animation.xsd");
+    // String that holds the default resource group for loading animations
+    String AnimationManager::s_defaultResourceGroup("");
+    const String AnimationManager::GeneratedAnimationNameBase("__ceanim_uid_");
 
-/*************************************************************************
-    Constructor
-*************************************************************************/
-AnimationManager::AnimationManager(void)
-{
+    /*************************************************************************
+        Constructor
+     *************************************************************************/
+    AnimationManager::AnimationManager(void) {
 #ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-    Logger::getSingleton().logEvent(
-        "CEGUI::AnimationManager singleton created " + String(addr_buff));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::AnimationManager singleton created " + String(addr_buff));
 #endif //PE_NO_LOGGER
 
-    // todo: is this too dirty?
-#   define addBasicInterpolator(i) { Interpolator* in = i; addInterpolator(in); d_basicInterpolators.push_back(in); }
+        // todo: is this too dirty?
+#define addBasicInterpolator(i) { Interpolator* in = i; addInterpolator(in); d_basicInterpolators.push_back(in); }
 
-    // create and add basic interpolators shipped with CEGUI
-    addBasicInterpolator(CEGUI_NEW_AO TplDiscreteRelativeInterpolator<String>("String"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<float>("float"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<int>("int"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<uint>("uint"));
-    addBasicInterpolator(CEGUI_NEW_AO TplDiscreteInterpolator<bool>("bool"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Sizef >("Sizef"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Vector2f >("Vector2f"));
+        // create and add basic interpolators shipped with CEGUI
+        addBasicInterpolator(CEGUI_NEW_AO TplDiscreteRelativeInterpolator<String>("String"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<float>("float"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<int>("int"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<uint>("uint"));
+        addBasicInterpolator(CEGUI_NEW_AO TplDiscreteInterpolator<bool>("bool"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Sizef >("Sizef"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Vector2f >("Vector2f"));
 #ifndef PE_NO_VECTOR3D
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Vector3f >("Vector3f"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Vector3f >("Vector3f"));
 #endif  // PE_NO_VECTOR3D
 #ifndef PE_NO_QUATERNION
-    addBasicInterpolator(CEGUI_NEW_AO QuaternionSlerpInterpolator());
+        addBasicInterpolator(CEGUI_NEW_AO QuaternionSlerpInterpolator());
 #endif //PE_NO_QUATERNION
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Rectf >("Rectf"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Colour>("Colour"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<ColourRect>("ColourRect"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<UDim>("UDim"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<UVector2>("UVector2"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<URect>("URect"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<UBox>("UBox"));
-    addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<USize>("USize"));
-}
-
-
-/*************************************************************************
-    Destructor
-*************************************************************************/
-AnimationManager::~AnimationManager()
-{
-    // by destroying all animations their instances also get deleted
-    destroyAllAnimations();
-
-    // and lastly, we remove all interpolators, but we don't delete them!
-    // it is the creator's responsibility to delete them
-    d_interpolators.clear();
-
-    // we only destroy inbuilt interpolators
-    for (BasicInterpolatorList::const_iterator it = d_basicInterpolators.begin();
-         it != d_basicInterpolators.end(); ++it)
-    {
-        CEGUI_DELETE_AO *it;
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Rectf >("Rectf"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Colour>("Colour"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<ColourRect>("ColourRect"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<UDim>("UDim"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<UVector2>("UVector2"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<URect>("URect"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<UBox>("UBox"));
+        addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<USize>("USize"));
     }
 
-    d_basicInterpolators.clear();
+    /*************************************************************************
+        Destructor
+     *************************************************************************/
+    AnimationManager::~AnimationManager() {
+        // by destroying all animations their instances also get deleted
+        destroyAllAnimations();
+
+        // and lastly, we remove all interpolators, but we don't delete them!
+        // it is the creator's responsibility to delete them
+        d_interpolators.clear();
+
+        // we only destroy inbuilt interpolators
+        for (BasicInterpolatorList::const_iterator it = d_basicInterpolators.begin();
+                it != d_basicInterpolators.end(); ++it) {
+            CEGUI_DELETE_AO *it;
+        }
+
+        d_basicInterpolators.clear();
 
 #ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-    Logger::getSingleton().logEvent(
-        "CEGUI::AnimationManager singleton destroyed " + String(addr_buff));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::AnimationManager singleton destroyed " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
+    }
 
-//----------------------------------------------------------------------------//
-void AnimationManager::addInterpolator(Interpolator* interpolator)
-{
-    if (d_interpolators.find(interpolator->getType()) != d_interpolators.end())
-    {
-        CEGUI_THROW(AlreadyExistsException(
+    //----------------------------------------------------------------------------//
+
+    void AnimationManager::addInterpolator(Interpolator* interpolator) {
+        if (d_interpolators.find(interpolator->getType()) != d_interpolators.end()) {
+            CEGUI_THROW(AlreadyExistsException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Interpolator of type '"
-            + interpolator->getType() + "' already exists."));
+                    "Interpolator of type '"
+                    + interpolator->getType() + "' already exists."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        d_interpolators.insert(
+                std::make_pair(interpolator->getType(), interpolator));
     }
 
-    d_interpolators.insert(
-        std::make_pair(interpolator->getType(), interpolator));
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void AnimationManager::removeInterpolator(Interpolator* interpolator)
-{
-    InterpolatorMap::iterator it = d_interpolators.find(interpolator->getType());
+    void AnimationManager::removeInterpolator(Interpolator* interpolator) {
+        InterpolatorMap::iterator it = d_interpolators.find(interpolator->getType());
 
-    if (it == d_interpolators.end())
-    {
-        CEGUI_THROW(UnknownObjectException(
+        if (it == d_interpolators.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Interpolator of type '"
-            + interpolator->getType() + "' not found."));
+                    "Interpolator of type '"
+                    + interpolator->getType() + "' not found."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        d_interpolators.erase(it);
     }
 
-    d_interpolators.erase(it);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Interpolator* AnimationManager::getInterpolator(const String& type) const
-{
-    InterpolatorMap::const_iterator it = d_interpolators.find(type);
+    Interpolator* AnimationManager::getInterpolator(const String& type) const {
+        InterpolatorMap::const_iterator it = d_interpolators.find(type);
 
-    if (it == d_interpolators.end())
-    {
-        CEGUI_THROW(UnknownObjectException(
+        if (it == d_interpolators.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Interpolator of type '" + type +
-            "' not found."));
+                    "Interpolator of type '" + type +
+                    "' not found."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        return it->second;
     }
 
-    return it->second;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Animation* AnimationManager::createAnimation(const String& name)
-{
-    if (isAnimationPresent(name))
-    {
-        CEGUI_THROW(UnknownObjectException(
+    Animation* AnimationManager::createAnimation(const String& name) {
+        if (isAnimationPresent(name)) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Animation with name '"
-            + name + "' already exists."));
+                    "Animation with name '"
+                    + name + "' already exists."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        String finalName(name.empty() ? generateUniqueAnimationName() : name);
+
+        Animation* ret = CEGUI_NEW_AO Animation(finalName);
+        d_animations.insert(std::make_pair(finalName, ret));
+
+        return ret;
     }
 
-    String finalName(name.empty() ? generateUniqueAnimationName() : name);
+    //----------------------------------------------------------------------------//
 
-    Animation* ret = CEGUI_NEW_AO Animation(finalName);
-    d_animations.insert(std::make_pair(finalName, ret));
+    void AnimationManager::destroyAnimation(Animation* animation) {
+        destroyAnimation(animation->getName());
+    }
 
-    return ret;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void AnimationManager::destroyAnimation(Animation* animation)
-{
-    destroyAnimation(animation->getName());
-}
+    void AnimationManager::destroyAnimation(const String& name) {
+        AnimationMap::iterator it = d_animations.find(name);
 
-//----------------------------------------------------------------------------//
-void AnimationManager::destroyAnimation(const String& name)
-{
-    AnimationMap::iterator it = d_animations.find(name);
-
-    if (it == d_animations.end())
-    {
-        CEGUI_THROW(UnknownObjectException(
+        if (it == d_animations.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Animation with name '" + name
-            + "' not found."));
+                    "Animation with name '" + name
+                    + "' not found."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        Animation* animation = it->second;
+        destroyAllInstancesOfAnimation(animation);
+
+        d_animations.erase(it);
+        CEGUI_DELETE_AO animation;
     }
 
-    Animation* animation = it->second;
-    destroyAllInstancesOfAnimation(animation);
+    //----------------------------------------------------------------------------//
 
-    d_animations.erase(it);
-    CEGUI_DELETE_AO animation;
-}
+    void AnimationManager::destroyAllAnimations() {
+        // we have to destroy all instances to avoid dangling pointers
+        // destroying all instances now is also faster than doing that for each
+        // animation that is being destroyed
+        destroyAllAnimationInstances();
 
-//----------------------------------------------------------------------------//
-void AnimationManager::destroyAllAnimations()
-{
-    // we have to destroy all instances to avoid dangling pointers
-    // destroying all instances now is also faster than doing that for each
-    // animation that is being destroyed
-    destroyAllAnimationInstances();
-    
-    for (AnimationMap::const_iterator it = d_animations.begin();
-         it != d_animations.end(); ++it)
-    {
-        CEGUI_DELETE_AO it->second;
+        for (AnimationMap::const_iterator it = d_animations.begin();
+                it != d_animations.end(); ++it) {
+            CEGUI_DELETE_AO it->second;
+        }
+
+        d_animations.clear();
     }
 
-    d_animations.clear();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Animation* AnimationManager::getAnimation(const String& name) const
-{
-    AnimationMap::const_iterator it = d_animations.find(name);
+    Animation* AnimationManager::getAnimation(const String& name) const {
+        AnimationMap::const_iterator it = d_animations.find(name);
 
-    if (it == d_animations.end())
-    {
-        CEGUI_THROW(UnknownObjectException(
+        if (it == d_animations.end()) {
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Animation with name '" + name
-            + "' not found."));
+                    "Animation with name '" + name
+                    + "' not found."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        return it->second;
     }
 
-    return it->second;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool AnimationManager::isAnimationPresent(const String& name) const
-{
-    return (d_animations.find(name) != d_animations.end());
-}
+    bool AnimationManager::isAnimationPresent(const String& name) const {
+        return (d_animations.find(name) != d_animations.end());
+    }
 
-//----------------------------------------------------------------------------//
-Animation* AnimationManager::getAnimationAtIdx(size_t index) const
-{
-    if (index >= d_animations.size())
-    {
+    //----------------------------------------------------------------------------//
+
+    Animation* AnimationManager::getAnimationAtIdx(size_t index) const {
+        if (index >= d_animations.size()) {
+            CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "Out of bounds."));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        AnimationMap::const_iterator it = d_animations.begin();
+        std::advance(it, index);
+
+        return it->second;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    size_t AnimationManager::getNumAnimations() const {
+        return d_animations.size();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    AnimationInstance* AnimationManager::instantiateAnimation(Animation* animation) {
+        if (!animation) {
+            CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "I refuse to instantiate NULL "
+                    "animation, please provide a valid pointer."));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        AnimationInstance* ret = CEGUI_NEW_AO AnimationInstance(animation);
+        d_animationInstances.insert(std::make_pair(animation, ret));
+
+        return ret;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    AnimationInstance* AnimationManager::instantiateAnimation(const String& name) {
+        return instantiateAnimation(getAnimation(name));
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void AnimationManager::destroyAnimationInstance(AnimationInstance* instance) {
+        AnimationInstanceMap::iterator it =
+                d_animationInstances.find(instance->getDefinition());
+
+        for (; it != d_animationInstances.end(); ++it) {
+            if (it->second == instance) {
+                d_animationInstances.erase(it);
+                CEGUI_DELETE_AO instance;
+                return;
+            }
+        }
+
         CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-                "Out of bounds."));
+                "Given animation instance not found."));
 #endif //PE_NO_THROW_MSGS
     }
 
-    AnimationMap::const_iterator it = d_animations.begin();
-    std::advance(it, index);
+    //----------------------------------------------------------------------------//
 
-    return it->second;
-}
+    void AnimationManager::destroyAllInstancesOfAnimation(Animation* animation) {
+        AnimationInstanceMap::iterator it = d_animationInstances.find(animation);
 
-//----------------------------------------------------------------------------//
-size_t AnimationManager::getNumAnimations() const
-{
-    return d_animations.size();
-}
+        // the first instance of given animation is now it->second (if there is any)
+        while (it != d_animationInstances.end() && it->first == animation) {
+            AnimationInstanceMap::iterator toErase = it;
+            ++it;
 
-//----------------------------------------------------------------------------//
-AnimationInstance* AnimationManager::instantiateAnimation(Animation* animation)
-{
-	if (!animation)
-	{
-		CEGUI_THROW(InvalidRequestException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                        "I refuse to instantiate NULL "
-            "animation, please provide a valid pointer."));
-#endif //PE_NO_THROW_MSGS
-	}
-
-    AnimationInstance* ret = CEGUI_NEW_AO AnimationInstance(animation);
-    d_animationInstances.insert(std::make_pair(animation, ret));
-
-    return ret;
-}
-
-//----------------------------------------------------------------------------//
-AnimationInstance* AnimationManager::instantiateAnimation(const String& name)
-{
-    return instantiateAnimation(getAnimation(name));
-}
-
-//----------------------------------------------------------------------------//
-void AnimationManager::destroyAnimationInstance(AnimationInstance* instance)
-{
-    AnimationInstanceMap::iterator it =
-        d_animationInstances.find(instance->getDefinition());
-
-    for (; it != d_animationInstances.end(); ++it)
-    {
-        if (it->second == instance)
-        {
-            d_animationInstances.erase(it);
-            CEGUI_DELETE_AO instance;
-            return;
+            CEGUI_DELETE_AO toErase->second;
+            d_animationInstances.erase(toErase);
         }
     }
 
-    CEGUI_THROW(InvalidRequestException(
+    //----------------------------------------------------------------------------//
+
+    void AnimationManager::destroyAllAnimationInstances() {
+        for (AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
+                it != d_animationInstances.end(); ++it) {
+            CEGUI_DELETE_AO it->second;
+        }
+
+        d_animationInstances.clear();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    AnimationInstance* AnimationManager::getAnimationInstanceAtIdx(size_t index) const {
+        if (index >= d_animationInstances.size()) {
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "Given animation instance not found."));
+                    "Out of bounds."));
 #endif //PE_NO_THROW_MSGS
-}
+        }
 
-//----------------------------------------------------------------------------//
-void AnimationManager::destroyAllInstancesOfAnimation(Animation* animation)
-{
-    AnimationInstanceMap::iterator it = d_animationInstances.find(animation);
+        AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
+        std::advance(it, index);
 
-    // the first instance of given animation is now it->second (if there is any)
-    while (it != d_animationInstances.end() && it->first == animation)
-    {
-        AnimationInstanceMap::iterator toErase = it;
-        ++it;
-
-        CEGUI_DELETE_AO toErase->second;
-        d_animationInstances.erase(toErase);
-    }
-}
-
-//----------------------------------------------------------------------------//
-void AnimationManager::destroyAllAnimationInstances()
-{
-    for (AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
-         it != d_animationInstances.end(); ++it)
-    {
-        CEGUI_DELETE_AO it->second;
+        return it->second;
     }
 
-    d_animationInstances.clear();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-AnimationInstance* AnimationManager::getAnimationInstanceAtIdx(size_t index) const
-{
-    if (index >= d_animationInstances.size())
-    {
-        CEGUI_THROW(InvalidRequestException(
+    size_t AnimationManager::getNumAnimationInstances() const {
+        return d_animationInstances.size();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void AnimationManager::autoStepInstances(float delta) {
+        for (AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
+                it != d_animationInstances.end(); ++it) {
+            if (it->second->isAutoSteppingEnabled())
+                it->second->step(delta);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void AnimationManager::loadAnimationsFromXML(const String& filename,
+            const String& resourceGroup) {
+        if (filename.empty())
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-                "Out of bounds."));
-#endif //PE_NO_THROW_MSGS
-    }
-
-    AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
-    std::advance(it, index);
-
-    return it->second;
-}
-
-//----------------------------------------------------------------------------//
-size_t AnimationManager::getNumAnimationInstances() const
-{
-    return d_animationInstances.size();
-}
-
-//----------------------------------------------------------------------------//
-void AnimationManager::autoStepInstances(float delta)
-{
-    for (AnimationInstanceMap::const_iterator it = d_animationInstances.begin();
-         it != d_animationInstances.end(); ++it)
-    {
-    	if (it->second->isAutoSteppingEnabled())
-    		it->second->step(delta);
-    }
-}
-
-//----------------------------------------------------------------------------//
-void AnimationManager::loadAnimationsFromXML(const String& filename,
-                                             const String& resourceGroup)
-{
-    if (filename.empty())
-        CEGUI_THROW(InvalidRequestException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-            "filename supplied for file loading must be valid."));
+                "filename supplied for file loading must be valid."));
 #endif //PE_NO_THROW_MSGS
 
-    Animation_xmlHandler handler;
+        Animation_xmlHandler handler;
 
-    // do parse (which uses handler to create actual data)
-    CEGUI_TRY
-    {
-        System::getSingleton().getXMLParser()->
+        // do parse (which uses handler to create actual data)
+        CEGUI_TRY{
+            System::getSingleton().getXMLParser()->
             parseXMLFile(handler, filename, XMLSchemaName,
-                         resourceGroup.empty() ? s_defaultResourceGroup :
-                                                 resourceGroup);
-    }
-    CEGUI_CATCH(...)
-    {
-        #ifndef PE_NO_LOGGER
-        Logger::getSingleton().logEvent(
-            "AnimationManager::loadAnimationsFromXML: "
-            "loading of animations from file '" + filename + "' has failed.",
-            Errors);
-        #endif //PE_NO_LOGGER   
+            resourceGroup.empty() ? s_defaultResourceGroup :
+            resourceGroup);
+        }
 
-        CEGUI_RETHROW;
-    }
-}
-
-void AnimationManager::loadAnimationsFromString(const String& source)
-{
-    Animation_xmlHandler handler;
-
-    // do parse (which uses handler to create actual data)
-    CEGUI_TRY
-    {
-        System::getSingleton().getXMLParser()->parseXMLString(handler, source, XMLSchemaName);
-    }
-    CEGUI_CATCH(...)
-    {
+        CEGUI_CATCH(...) {
 #ifndef PE_NO_LOGGER
-        Logger::getSingleton().logEvent("AnimationManager::loadAnimationsFromString - loading of animations from string failed.", Errors);
+            Logger::getSingleton().logEvent(
+                    "AnimationManager::loadAnimationsFromXML: "
+                    "loading of animations from file '" + filename + "' has failed.",
+                    Errors);
+#endif //PE_NO_LOGGER   
+
+            CEGUI_RETHROW;
+        }
+    }
+
+    void AnimationManager::loadAnimationsFromString(const String& source) {
+        Animation_xmlHandler handler;
+
+        // do parse (which uses handler to create actual data)
+        CEGUI_TRY{
+            System::getSingleton().getXMLParser()->parseXMLString(handler, source, XMLSchemaName);
+        }
+
+        CEGUI_CATCH(...) {
+#ifndef PE_NO_LOGGER
+            Logger::getSingleton().logEvent("AnimationManager::loadAnimationsFromString - loading of animations from string failed.", Errors);
 #endif //PE_NO_LOGGER
-        CEGUI_RETHROW;
+            CEGUI_RETHROW;
+        }
     }
-}
 
-//---------------------------------------------------------------------------//
-void AnimationManager::writeAnimationDefinitionToStream(const Animation& animation, OutStream& out_stream) const
-{
-    XMLSerializer xml(out_stream);
+    //---------------------------------------------------------------------------//
 
-    animation.writeXMLToStream(xml);
-}
+    void AnimationManager::writeAnimationDefinitionToStream(const Animation& animation, OutStream& out_stream) const {
+        XMLSerializer xml(out_stream);
 
-//---------------------------------------------------------------------------//
-String AnimationManager::getAnimationDefinitionAsString(const Animation& animation) const
-{
-    std::ostringstream str;
-    writeAnimationDefinitionToStream(animation, str);
+        animation.writeXMLToStream(xml);
+    }
 
-    return String(reinterpret_cast<const encoded_char*>(str.str().c_str()));
-}
+    //---------------------------------------------------------------------------//
 
-//---------------------------------------------------------------------------//
-String AnimationManager::generateUniqueAnimationName()
-{
-    const String ret = GeneratedAnimationNameBase +
-        PropertyHelper<unsigned long>::toString(d_uid_counter);
+    String AnimationManager::getAnimationDefinitionAsString(const Animation& animation) const {
+        std::ostringstream str;
+        writeAnimationDefinitionToStream(animation, str);
 
-    // update counter for next time
-    unsigned long old_uid = d_uid_counter;
-    ++d_uid_counter;
+        return String(reinterpret_cast<const encoded_char*> (str.str().c_str()));
+    }
 
-    // log if we ever wrap-around (which should be pretty unlikely)
+    //---------------------------------------------------------------------------//
+
+    String AnimationManager::generateUniqueAnimationName() {
+        const String ret = GeneratedAnimationNameBase +
+                PropertyHelper<unsigned long>::toString(d_uid_counter);
+
+        // update counter for next time
+        unsigned long old_uid = d_uid_counter;
+        ++d_uid_counter;
+
+        // log if we ever wrap-around (which should be pretty unlikely)
 #ifndef PE_NO_LOGGER
-    if (d_uid_counter < old_uid)
-        Logger::getSingleton().logEvent("UID counter for generated Animation "
-            "names has wrapped around - the fun shall now commence!");
+        if (d_uid_counter < old_uid)
+            Logger::getSingleton().logEvent("UID counter for generated Animation "
+                "names has wrapped around - the fun shall now commence!");
 #endif //PE_NO_LOGGER
 
-    return ret;
-}
+        return ret;
+    }
 } // End of  CEGUI namespace section
 
 #endif //PE_NO_ANIMATION

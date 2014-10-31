@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 4 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,13 +31,13 @@
 #include "CEGUI/widgets/Scrollbar.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Scrollbar class for the FalagardBase module.
@@ -60,16 +60,15 @@ namespace CEGUI
             - VerticalScrollbar - boolean property.
             Indicates whether this scrollbar will operate in the vertical or
             horizontal direction.  Default is for horizontal.  Optional.
-    */
-    class COREWRSET_API FalagardScrollbar : public ScrollbarWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardScrollbar : public ScrollbarWindowRenderer {
     public:
-        static const String TypeName;     //! type name for this widget.
+        static const String TypeName; //! type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardScrollbar(const String& type);
 
         bool isVertical() const;
@@ -80,7 +79,7 @@ namespace CEGUI
 
     protected:
         // data members
-        bool    d_vertical;     //!< True if slider operates in vertical direction.
+        bool d_vertical; //!< True if slider operates in vertical direction.
 
         // overridden from Scrollbar base class.
         void updateThumb(void);
@@ -92,7 +91,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalScrollbar_h_

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Jul 5 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,13 +32,13 @@
 #include "CEGUI/WindowRendererSets/Core/Static.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         StaticImage class for the FalagardBase module.
@@ -56,29 +56,30 @@ namespace CEGUI
             - NoFrameDisabledBackground   - backdrop rendering for disabled state with frame disabled.
             - WithFrameImage              - image rendering when frame is enabled
             - NoFrameImage                - image rendering when frame is disabled (defaults to WithFrameImage if not present)
-    */
-    class COREWRSET_API FalagardStaticImage : public FalagardStatic
-    {
+     */
+    class COREWRSET_API FalagardStaticImage : public FalagardStatic {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardStaticImage(const String& type);
 
         /*!
         \brief
             Set the image for this FalagardStaticImage widget
-        */
+         */
         void setImage(const Image* img);
 
         /*!
         \brief
             Get the image for this FalagardStaticImage widget
-        */
-        const Image* getImage(void) const   {return d_image;}
+         */
+        const Image* getImage(void) const {
+            return d_image;
+        }
 
         void render();
 
@@ -90,7 +91,7 @@ namespace CEGUI
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalStaticImage_h_

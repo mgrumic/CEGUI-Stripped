@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	Sun Jun 11 2006
-	author:		Tomas Lindquist Olsen
-*************************************************************************/
+        created:	Sun Jun 11 2006
+        author:		Tomas Lindquist Olsen
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -35,103 +35,104 @@
 
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Helper container window that has configurable clipping.
-    Used by the ItemListbox widget.
-
-\deprecated
-    This class is deprecated and is scheduled for removal.  The function this
-    class used to provide was broken when the inner-rect (aka client area)
-    support got fixed.  The good news is that fixing inner-rect support
-    effectively negated the need for this class anyway - clipping areas can
-    now be established in the looknfeel and extracted via the WindowRenderer.
-*/
-class CEGUIEXPORT ClippedContainer : public Window
-{
-public:
-    /*************************************************************************
-        Constants
-    *************************************************************************/
-    static const String WidgetTypeName;     //!< Type name for ClippedContainer.
-    static const String EventNamespace;     //!< Namespace for global events
-
-    /*************************************************************************
-    	Object construction and destruction
-    *************************************************************************/
-    /*!
-    \brief
-        Constructor for ClippedContainer objects.
-    */
-    ClippedContainer(const String& type, const String& name);
+namespace CEGUI {
 
     /*!
     \brief
-        Destructor for ClippedContainer objects.
-    */
-    ~ClippedContainer(void);
+        Helper container window that has configurable clipping.
+        Used by the ItemListbox widget.
 
-    /*************************************************************************
-    	Public interface methods
-    *************************************************************************/
-    /*!
-    \brief
-        Return the current clipping rectangle.
+    \deprecated
+        This class is deprecated and is scheduled for removal.  The function this
+        class used to provide was broken when the inner-rect (aka client area)
+        support got fixed.  The good news is that fixing inner-rect support
+        effectively negated the need for this class anyway - clipping areas can
+        now be established in the looknfeel and extracted via the WindowRenderer.
+     */
+    class CEGUIEXPORT ClippedContainer : public Window {
+    public:
+        /*************************************************************************
+            Constants
+         *************************************************************************/
+        static const String WidgetTypeName; //!< Type name for ClippedContainer.
+        static const String EventNamespace; //!< Namespace for global events
 
-    \return
-        Rect object describing the clipping area in pixel that will be applied during rendering.
-    */
-    const Rectf& getClipArea(void) const;
+        /*************************************************************************
+            Object construction and destruction
+         *************************************************************************/
+        /*!
+        \brief
+            Constructor for ClippedContainer objects.
+         */
+        ClippedContainer(const String& type, const String& name);
 
-    /*!
-    \brief
-        Returns the reference window used for converting the clipper rect to screen space.
-    */
-    Window* getClipperWindow(void) const;
+        /*!
+        \brief
+            Destructor for ClippedContainer objects.
+         */
+        ~ClippedContainer(void);
 
-    /*!
-    \brief
-        Set the custom clipper area in pixels.
-    */
-    void setClipArea(const Rectf& r);
+        /*************************************************************************
+            Public interface methods
+         *************************************************************************/
+        /*!
+        \brief
+            Return the current clipping rectangle.
 
-    /*!
-    \brief
-        Set the clipper reference window.
+        \return
+            Rect object describing the clipping area in pixel that will be applied during rendering.
+         */
+        const Rectf& getClipArea(void) const;
 
-    \param w
-        The window to be used a base for converting the custom clipper rect to
-        screen space. NULL if the clipper rect is relative to the screen.
-    */
-    void setClipperWindow(Window* w);
+        /*!
+        \brief
+            Returns the reference window used for converting the clipper rect to screen space.
+         */
+        Window* getClipperWindow(void) const;
 
-protected:
-    /*************************************************************************
-    	Overridden from Window.
-    *************************************************************************/
-    virtual Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const;
-    virtual void drawSelf(const RenderingContext&) {}
+        /*!
+        \brief
+            Set the custom clipper area in pixels.
+         */
+        void setClipArea(const Rectf& r);
 
-    /*************************************************************************
-    	Data fields
-    *************************************************************************/
-    //! the pixel rect to be used for clipping relative to either a window or the screen.
-    Rectf d_clipArea;
-    //! the base window which the clipping rect is relative to.
-    Window* d_clipperWindow;
-};
+        /*!
+        \brief
+            Set the clipper reference window.
+
+        \param w
+            The window to be used a base for converting the custom clipper rect to
+            screen space. NULL if the clipper rect is relative to the screen.
+         */
+        void setClipperWindow(Window* w);
+
+    protected:
+        /*************************************************************************
+            Overridden from Window.
+         *************************************************************************/
+        virtual Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const;
+
+        virtual void drawSelf(const RenderingContext&) {
+        }
+
+        /*************************************************************************
+            Data fields
+         *************************************************************************/
+        //! the pixel rect to be used for clipping relative to either a window or the screen.
+        Rectf d_clipArea;
+        //! the base window which the clipping rect is relative to.
+        Window* d_clipperWindow;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 #endif //PE_NO_WGT_CLIPPED_CONTAINER
 #endif	// end of guard _CEGUIClippedContainer_h_

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 11 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -30,41 +30,40 @@
 #include "CEGUI/XMLHandler.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Abstract XMLHandler based class
-class CEGUIEXPORT ChainedXMLHandler : public XMLHandler
-{
-public:
-    ChainedXMLHandler();
-    virtual ~ChainedXMLHandler();
+namespace CEGUI {
+    //! Abstract XMLHandler based class
 
-    // XMLHandler overrides
-    const String& getSchemaName() const;
-    const String& getDefaultResourceGroup() const;
-    void elementStart(const String& element, const XMLAttributes& attributes);
-    void elementEnd(const String& element);
+    class CEGUIEXPORT ChainedXMLHandler : public XMLHandler {
+    public:
+        ChainedXMLHandler();
+        virtual ~ChainedXMLHandler();
 
-    //! returns whether this chained handler has completed.
-    bool completed() const;
+        // XMLHandler overrides
+        const String& getSchemaName() const;
+        const String& getDefaultResourceGroup() const;
+        void elementStart(const String& element, const XMLAttributes& attributes);
+        void elementEnd(const String& element);
 
-protected:
-    //! Function that handles elements locally (used at end of handler chain)
-    virtual void elementStartLocal(const String& element,
-                                   const XMLAttributes& attributes) = 0;
-    //! Function that handles elements locally (used at end of handler chain)
-    virtual void elementEndLocal(const String& element) = 0;
+        //! returns whether this chained handler has completed.
+        bool completed() const;
 
-    //! clean up any chained handler.
-    void cleanupChainedHandler();
+    protected:
+        //! Function that handles elements locally (used at end of handler chain)
+        virtual void elementStartLocal(const String& element,
+                const XMLAttributes& attributes) = 0;
+        //! Function that handles elements locally (used at end of handler chain)
+        virtual void elementEndLocal(const String& element) = 0;
 
-    //! chained xml handler object.
-    ChainedXMLHandler* d_chainedHandler;
-    //! is the chained handler completed.
-    bool d_completed;
-    //! should the chained handler be deleted by us?
-    bool d_deleteChaniedHandler;
-};
+        //! clean up any chained handler.
+        void cleanupChainedHandler();
+
+        //! chained xml handler object.
+        ChainedXMLHandler* d_chainedHandler;
+        //! is the chained handler completed.
+        bool d_completed;
+        //! should the chained handler be deleted by us?
+        bool d_deleteChaniedHandler;
+    };
 
 
 } // End of  CEGUI namespace section

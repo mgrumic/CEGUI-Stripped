@@ -6,24 +6,24 @@
 
 namespace bp = boost::python;
 
-void register_SingletonGlobalEventSet_class(){
+void register_SingletonGlobalEventSet_class() {
 
     { //::CEGUI::Singleton< CEGUI::GlobalEventSet >
         typedef bp::class_< CEGUI::Singleton< CEGUI::GlobalEventSet >, boost::noncopyable > SingletonGlobalEventSet_exposer_t;
-        SingletonGlobalEventSet_exposer_t SingletonGlobalEventSet_exposer = SingletonGlobalEventSet_exposer_t( "SingletonGlobalEventSet", bp::init< >() );
-        bp::scope SingletonGlobalEventSet_scope( SingletonGlobalEventSet_exposer );
+        SingletonGlobalEventSet_exposer_t SingletonGlobalEventSet_exposer = SingletonGlobalEventSet_exposer_t("SingletonGlobalEventSet", bp::init< >());
+        bp::scope SingletonGlobalEventSet_scope(SingletonGlobalEventSet_exposer);
         { //::CEGUI::Singleton< CEGUI::GlobalEventSet >::getSingleton
-        
+
             typedef CEGUI::Singleton< CEGUI::GlobalEventSet > exported_class_t;
-            typedef ::CEGUI::GlobalEventSet & ( *getSingleton_function_type )(  );
-            
-            SingletonGlobalEventSet_exposer.def( 
-                "getSingleton"
-                , getSingleton_function_type( &::CEGUI::Singleton< CEGUI::GlobalEventSet >::getSingleton )
-                , bp::return_value_policy< bp::reference_existing_object >() );
-        
+            typedef ::CEGUI::GlobalEventSet & (*getSingleton_function_type)();
+
+            SingletonGlobalEventSet_exposer.def(
+                    "getSingleton"
+                    , getSingleton_function_type(&::CEGUI::Singleton< CEGUI::GlobalEventSet >::getSingleton)
+                    , bp::return_value_policy< bp::reference_existing_object >());
+
         }
-        SingletonGlobalEventSet_exposer.staticmethod( "getSingleton" );
+        SingletonGlobalEventSet_exposer.staticmethod("getSingleton");
     }
 
 }

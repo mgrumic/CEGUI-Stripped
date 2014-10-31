@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Implements the LayoutCell class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -27,162 +27,153 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #ifdef HAVE_CONFIG_H
-#   include "config.h"
+#include "config.h"
 #endif
 
 #include "CEGUI/widgets/LayoutCell.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4355)
+#pragma warning(push)
+#pragma warning(disable : 4355)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-const String LayoutCell::EventNamespace("LayoutCell");
-const String LayoutCell::WidgetTypeName("LayoutCell");
+    const String LayoutCell::EventNamespace("LayoutCell");
+    const String LayoutCell::WidgetTypeName("LayoutCell");
 
-//----------------------------------------------------------------------------//
-LayoutCell::LayoutCell(const String& type, const String& name):
-        Window(type, name),
-        
-        d_clientChildContentArea(this, static_cast<Element::CachedRectf::DataGenerator>(&LayoutCell::getClientChildContentArea_impl))
-{
-    // cell should take the whole window by default I think
-    setSize(USize(cegui_reldim(1), cegui_reldim(1)));
+    //----------------------------------------------------------------------------//
 
-    subscribeEvent(Window::EventChildAdded,
-                   Event::Subscriber(&LayoutCell::handleChildAdded, this));
-    subscribeEvent(Window::EventChildRemoved,
-                   Event::Subscriber(&LayoutCell::handleChildRemoved, this));
-}
+    LayoutCell::LayoutCell(const String& type, const String& name) :
+    Window(type, name),
 
-//----------------------------------------------------------------------------//
-LayoutCell::~LayoutCell(void)
-{}
+    d_clientChildContentArea(this, static_cast<Element::CachedRectf::DataGenerator> (&LayoutCell::getClientChildContentArea_impl)) {
+        // cell should take the whole window by default I think
+        setSize(USize(cegui_reldim(1), cegui_reldim(1)));
 
-const Element::CachedRectf& LayoutCell::getClientChildContentArea() const
-{
-    if (!d_parent)
-    {
-        return Window::getClientChildContentArea();
+        subscribeEvent(Window::EventChildAdded,
+                Event::Subscriber(&LayoutCell::handleChildAdded, this));
+        subscribeEvent(Window::EventChildRemoved,
+                Event::Subscriber(&LayoutCell::handleChildRemoved, this));
     }
-    else
-    {
-        return d_clientChildContentArea;
+
+    //----------------------------------------------------------------------------//
+
+    LayoutCell::~LayoutCell(void) {
     }
-}
 
-//----------------------------------------------------------------------------//
-void LayoutCell::notifyScreenAreaChanged(bool recursive)
-{
-    d_clientChildContentArea.invalidateCache();
-    
-    Window::notifyScreenAreaChanged(recursive);
-}
-
-//----------------------------------------------------------------------------//
-Rectf LayoutCell::getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const
-{
-    return d_parent ?
-           (skipAllPixelAlignment ? d_parent->getUnclippedInnerRect().getFresh(true) : d_parent->getUnclippedInnerRect().get()) :
-           Window::getUnclippedInnerRect_impl(skipAllPixelAlignment);
-}
-
-//----------------------------------------------------------------------------//
-Rectf LayoutCell::getClientChildContentArea_impl(bool skipAllPixelAlignment) const
-{
-    if (!d_parent)
-    {
-        return skipAllPixelAlignment ? Window::getClientChildContentArea().getFresh(true) : Window::getClientChildContentArea().get();
+    const Element::CachedRectf& LayoutCell::getClientChildContentArea() const {
+        if (!d_parent) {
+            return Window::getClientChildContentArea();
+        } else {
+            return d_clientChildContentArea;
+        }
     }
-    else
-    {
-        return skipAllPixelAlignment ?
-            Rectf(getUnclippedOuterRect().getFresh(true).getPosition(), d_parent->getUnclippedInnerRect().getFresh(true).getSize()) :
-            Rectf(getUnclippedOuterRect().get().getPosition(), d_parent->getUnclippedInnerRect().get().getSize());
-    }
-}
 
-//----------------------------------------------------------------------------//
-void LayoutCell::addChild_impl(Element* element)
-{
-    Window* wnd = dynamic_cast<Window*>(element);
-    
-    if (!wnd)
-        CEGUI_THROW(InvalidRequestException(
+    //----------------------------------------------------------------------------//
+
+    void LayoutCell::notifyScreenAreaChanged(bool recursive) {
+        d_clientChildContentArea.invalidateCache();
+
+        Window::notifyScreenAreaChanged(recursive);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Rectf LayoutCell::getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+        return d_parent ?
+                (skipAllPixelAlignment ? d_parent->getUnclippedInnerRect().getFresh(true) : d_parent->getUnclippedInnerRect().get()) :
+                Window::getUnclippedInnerRect_impl(skipAllPixelAlignment);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Rectf LayoutCell::getClientChildContentArea_impl(bool skipAllPixelAlignment) const {
+        if (!d_parent) {
+            return skipAllPixelAlignment ? Window::getClientChildContentArea().getFresh(true) : Window::getClientChildContentArea().get();
+        } else {
+            return skipAllPixelAlignment ?
+                    Rectf(getUnclippedOuterRect().getFresh(true).getPosition(), d_parent->getUnclippedInnerRect().getFresh(true).getSize()) :
+                    Rectf(getUnclippedOuterRect().get().getPosition(), d_parent->getUnclippedInnerRect().get().getSize());
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void LayoutCell::addChild_impl(Element* element) {
+        Window* wnd = dynamic_cast<Window*> (element);
+
+        if (!wnd)
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "LayoutCell can only have Elements of type Window added as children "
-            "(Window path: " + getNamePath() + ")."));
+                "LayoutCell can only have Elements of type Window added as children "
+                "(Window path: " + getNamePath() + ")."));
 #endif //PE_NO_THROW_MSGS
-    
-    Window::addChild_impl(wnd);
 
-    // we have to subscribe to the EventSized for layout updates
-    d_eventConnections.insert(std::make_pair(wnd,
-        wnd->subscribeEvent(Window::EventSized,
-            Event::Subscriber(&LayoutCell::handleChildSized, this))));
-}
+        Window::addChild_impl(wnd);
 
-//----------------------------------------------------------------------------//
-void LayoutCell::removeChild_impl(Element* element)
-{
-    Window* wnd = static_cast<Window*>(element);
-    
-    // we want to get rid of the subscription, because the child window could
-    // get removed and added somewhere else, we would be wastefully updating
-    // layouts if it was sized inside other Window
-    ConnectionTracker::iterator conn;
-
-    while ((conn = d_eventConnections.find(wnd)) != d_eventConnections.end())
-    {
-        conn->second->disconnect();
-        d_eventConnections.erase(conn);
+        // we have to subscribe to the EventSized for layout updates
+        d_eventConnections.insert(std::make_pair(wnd,
+                wnd->subscribeEvent(Window::EventSized,
+                Event::Subscriber(&LayoutCell::handleChildSized, this))));
     }
 
-    Window::removeChild_impl(wnd);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool LayoutCell::handleChildSized(const EventArgs&)
-{
-    //markNeedsLayouting();
+    void LayoutCell::removeChild_impl(Element* element) {
+        Window* wnd = static_cast<Window*> (element);
 
-    return true;
-}
+        // we want to get rid of the subscription, because the child window could
+        // get removed and added somewhere else, we would be wastefully updating
+        // layouts if it was sized inside other Window
+        ConnectionTracker::iterator conn;
 
-//----------------------------------------------------------------------------//
-bool LayoutCell::handleChildAdded(const EventArgs&)
-{
-    if (getChildCount() > 0)
-    {
-        CEGUI_THROW(InvalidRequestException(
+        while ((conn = d_eventConnections.find(wnd)) != d_eventConnections.end()) {
+            conn->second->disconnect();
+            d_eventConnections.erase(conn);
+        }
+
+        Window::removeChild_impl(wnd);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool LayoutCell::handleChildSized(const EventArgs&) {
+        //markNeedsLayouting();
+
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool LayoutCell::handleChildAdded(const EventArgs&) {
+        if (getChildCount() > 0) {
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "You can't add more than one widget to a layout cell!"));
+                    "You can't add more than one widget to a layout cell!"));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        //markNeedsLayouting();
+
+        return true;
     }
 
-    //markNeedsLayouting();
+    //----------------------------------------------------------------------------//
 
-    return true;
-}
+    bool LayoutCell::handleChildRemoved(const EventArgs&) {
+        //markNeedsLayouting();
 
-//----------------------------------------------------------------------------//
-bool LayoutCell::handleChildRemoved(const EventArgs&)
-{
-    //markNeedsLayouting();
-
-    return true;
-}
+        return true;
+    }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 

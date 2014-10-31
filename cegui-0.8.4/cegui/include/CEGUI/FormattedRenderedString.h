@@ -30,40 +30,39 @@
 #include "CEGUI/RenderedString.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Root of a class hierarchy that wrap RenderedString objects and render them
-    with additional formatting.
-*/
-class CEGUIEXPORT FormattedRenderedString :
-    public AllocatedObject<FormattedRenderedString>
-{
-public:
-    //! Destructor.
-    virtual ~FormattedRenderedString();
+namespace CEGUI {
 
-    virtual void format(const Window* ref_wnd, const Sizef& area_size) = 0;
-    virtual void draw(const Window* ref_wnd, GeometryBuffer& buffer,
-                      const Vector2f& position, const ColourRect* mod_colours,
-                      const Rectf* clip_rect) const = 0;
-    virtual size_t getFormattedLineCount() const = 0;
-    virtual float getHorizontalExtent(const Window* ref_wnd) const = 0;
-    virtual float getVerticalExtent(const Window* ref_wnd) const = 0;
+    /*!
+    \brief
+        Root of a class hierarchy that wrap RenderedString objects and render them
+        with additional formatting.
+     */
+    class CEGUIEXPORT FormattedRenderedString :
+    public AllocatedObject<FormattedRenderedString> {
+    public:
+        //! Destructor.
+        virtual ~FormattedRenderedString();
 
-    //! set the RenderedString.
-    void setRenderedString(const RenderedString& string);
+        virtual void format(const Window* ref_wnd, const Sizef& area_size) = 0;
+        virtual void draw(const Window* ref_wnd, GeometryBuffer& buffer,
+                const Vector2f& position, const ColourRect* mod_colours,
+                const Rectf* clip_rect) const = 0;
+        virtual size_t getFormattedLineCount() const = 0;
+        virtual float getHorizontalExtent(const Window* ref_wnd) const = 0;
+        virtual float getVerticalExtent(const Window* ref_wnd) const = 0;
 
-    const RenderedString& getRenderedString() const;
+        //! set the RenderedString.
+        void setRenderedString(const RenderedString& string);
 
-protected:
-    //! Constructor.
-    FormattedRenderedString(const RenderedString& string);
+        const RenderedString& getRenderedString() const;
 
-    //! RenderedString that we handle formatting for.
-    const RenderedString* d_renderedString;
-};
+    protected:
+        //! Constructor.
+        FormattedRenderedString(const RenderedString& string);
+
+        //! RenderedString that we handle formatting for.
+        const RenderedString* d_renderedString;
+    };
 
 } // End of  CEGUI namespace section
 

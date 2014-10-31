@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Oct 23 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,45 +30,43 @@
 #include "CEGUI/TplProperty.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-template<class C, typename T>
-class TplWindowProperty : public TplProperty<C, T>
-{
-public:
-    TplWindowProperty(const String& name, const String& help,
-                      const String& origin,
-                      typename TplProperty<C, T>::Setter setter,
-                      typename TplProperty<C, T>::GetterFunctor getter,
-                      typename TplProperty<C, T>::Helper::pass_type defaultValue = T(),
-                      bool writesXML = true) :
+    template<class C, typename T>
+    class TplWindowProperty : public TplProperty<C, T> {
+    public:
+
+        TplWindowProperty(const String& name, const String& help,
+                const String& origin,
+                typename TplProperty<C, T>::Setter setter,
+                typename TplProperty<C, T>::GetterFunctor getter,
+                typename TplProperty<C, T>::Helper::pass_type defaultValue = T(),
+                bool writesXML = true) :
         TplProperty<C, T>(name, help, origin, setter, getter,
-                          defaultValue, writesXML)
-    {}
+        defaultValue, writesXML) {
+        }
 
-    virtual Property* clone() const
-    {
-        return CEGUI_NEW_AO TplWindowProperty<C, T>(*this);
-    }
+        virtual Property* clone() const {
+            return CEGUI_NEW_AO TplWindowProperty<C, T>(*this);
+        }
 
-protected:
-    //! \copydoc TypedProperty::setNative_impl
-    void setNative_impl(PropertyReceiver* receiver,
-                        typename TplProperty<C, T>::Helper::pass_type value)
-    {
-        C* instance = static_cast<C*>(receiver);
-        CEGUI_CALL_MEMBER_FN(*instance, this->d_setter)(value);
-    }
+    protected:
+        //! \copydoc TypedProperty::setNative_impl
 
-    //! \copydoc TypedProperty::getNative_impl
-    typename TplProperty<C, T>::Helper::safe_method_return_type
-    getNative_impl(const PropertyReceiver* receiver) const
-    {
-        const C* instance = static_cast<const C*>(receiver);
-        return this->d_getter(instance);
-    }
-};
+        void setNative_impl(PropertyReceiver* receiver,
+                typename TplProperty<C, T>::Helper::pass_type value) {
+            C* instance = static_cast<C*> (receiver);
+            CEGUI_CALL_MEMBER_FN(*instance, this->d_setter)(value);
+        }
+
+        //! \copydoc TypedProperty::getNative_impl
+
+        typename TplProperty<C, T>::Helper::safe_method_return_type
+        getNative_impl(const PropertyReceiver* receiver) const {
+            const C* instance = static_cast<const C*> (receiver);
+            return this->d_getter(instance);
+        }
+    };
 
 } // End of  CEGUI namespace section
 

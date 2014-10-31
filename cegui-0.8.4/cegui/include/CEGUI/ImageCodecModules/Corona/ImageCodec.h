@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	07/06/2006
-	author:		Olivier Delannoy 
+        created:	07/06/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide Corona based image loading 
-*************************************************************************/
+        purpose:	This codec provide Corona based image loading 
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,33 +31,32 @@
 #include "../../ImageCodec.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUICORONAIMAGECODEC_EXPORTS
-#       define CEGUICORONAIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUICORONAIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUICORONAIMAGECODEC_EXPORTS
+#define CEGUICORONAIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUICORONAIMAGECODEC_API
+#define CEGUICORONAIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUICORONAIMAGECODEC_API
 #endif
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-  \brief 
-  Image codec based on the Corona library 
-*/
-class CEGUICORONAIMAGECODEC_API CoronaImageCodec : public ImageCodec 
-{
-public:
-    CoronaImageCodec();
-    ~CoronaImageCodec();
-    
-    Texture* load(const RawDataContainer& data, Texture* result);
-protected:
+namespace CEGUI {
 
-private:
+    /*!
+      \brief 
+      Image codec based on the Corona library 
+     */
+    class CEGUICORONAIMAGECODEC_API CoronaImageCodec : public ImageCodec {
+    public:
+        CoronaImageCodec();
+        ~CoronaImageCodec();
 
-};    
+        Texture* load(const RawDataContainer& data, Texture* result);
+    protected:
+
+    private:
+
+    };
 
 } // End of CEGUI namespace section 
 

@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	16/7/2004
-	author:		Paul D Turner
+        created:	16/7/2004
+        author:		Paul D Turner
 	
-	purpose:	Abstract class for scripting support
-*************************************************************************/
+        purpose:	Abstract class for scripting support
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,36 +33,30 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-// holds the default resource group ID for loading script files.
-String ScriptModule::d_defaultResourceGroup;
+namespace CEGUI {
+    // holds the default resource group ID for loading script files.
+    String ScriptModule::d_defaultResourceGroup;
 
-ScriptModule::ScriptModule(void) :
-    d_identifierString("Unknown scripting module (vendor did not set the ID string!)")
-{}
+    ScriptModule::ScriptModule(void) :
+    d_identifierString("Unknown scripting module (vendor did not set the ID string!)") {
+    }
 
-const String& ScriptModule::getIdentifierString() const
-{
-    return d_identifierString;
-}
+    const String& ScriptModule::getIdentifierString() const {
+        return d_identifierString;
+    }
 
-bool ScriptFunctor::operator()(const EventArgs& e) const
-{
-	ScriptModule* scriptModule = System::getSingleton().getScriptingModule();
+    bool ScriptFunctor::operator()(const EventArgs& e) const {
+        ScriptModule* scriptModule = System::getSingleton().getScriptingModule();
 
-	if (scriptModule)
-	{
-		return scriptModule->executeScriptedEventHandler(scriptFunctionName, e);
-	}
-	else
-	{
+        if (scriptModule) {
+            return scriptModule->executeScriptedEventHandler(scriptFunctionName, e);
+        } else {
 #ifndef PE_NO_LOGGER
-		Logger::getSingleton().logEvent("Scripted event handler '" + scriptFunctionName + "' could not be called as no ScriptModule is available.", Errors);
+            Logger::getSingleton().logEvent("Scripted event handler '" + scriptFunctionName + "' could not be called as no ScriptModule is available.", Errors);
 #endif //PE_NO_LOGGER
 
-		return false;
-	}
-}
+            return false;
+        }
+    }
 
 } // End of  CEGUI namespace section

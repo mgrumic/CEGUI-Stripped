@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jan 9 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -29,38 +29,37 @@
 #include <algorithm>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-void RenderQueue::draw() const
-{
-    // draw the buffers
-    BufferList::const_iterator i = d_buffers.begin();
-    for ( ; i != d_buffers.end(); ++i)
-        (*i)->draw();
-}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderQueue::addGeometryBuffer(const GeometryBuffer& buffer)
-{
-    d_buffers.push_back(&buffer);
-}
+    void RenderQueue::draw() const {
+        // draw the buffers
+        BufferList::const_iterator i = d_buffers.begin();
+        for (; i != d_buffers.end(); ++i)
+            (*i)->draw();
+    }
 
-//----------------------------------------------------------------------------//
-void RenderQueue::removeGeometryBuffer(const GeometryBuffer& buffer)
-{
-    BufferList::iterator i = std::find(d_buffers.begin(), d_buffers.end(),
-                                       &buffer);
-    if (i != d_buffers.end())
-        d_buffers.erase(i);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RenderQueue::reset()
-{
-    d_buffers.clear();
-}
+    void RenderQueue::addGeometryBuffer(const GeometryBuffer& buffer) {
+        d_buffers.push_back(&buffer);
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    void RenderQueue::removeGeometryBuffer(const GeometryBuffer& buffer) {
+        BufferList::iterator i = std::find(d_buffers.begin(), d_buffers.end(),
+                &buffer);
+        if (i != d_buffers.end())
+            d_buffers.erase(i);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void RenderQueue::reset() {
+        d_buffers.clear();
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

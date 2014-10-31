@@ -6,24 +6,24 @@
 
 namespace bp = boost::python;
 
-void register_XMLAttributes_class(){
+void register_XMLAttributes_class() {
 
     { //::CEGUI::XMLAttributes
         typedef bp::class_< CEGUI::XMLAttributes > XMLAttributes_exposer_t;
-        XMLAttributes_exposer_t XMLAttributes_exposer = XMLAttributes_exposer_t( "XMLAttributes", bp::init< >("*!\n\
+        XMLAttributes_exposer_t XMLAttributes_exposer = XMLAttributes_exposer_t("XMLAttributes", bp::init< >("*!\n\
         \n\
             XMLAttributes constructor.\n\
-         *\n") );
-        bp::scope XMLAttributes_scope( XMLAttributes_exposer );
+         *\n"));
+        bp::scope XMLAttributes_scope(XMLAttributes_exposer);
         { //::CEGUI::XMLAttributes::add
-        
-            typedef void ( ::CEGUI::XMLAttributes::*add_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            XMLAttributes_exposer.def( 
-                "add"
-                , add_function_type( &::CEGUI::XMLAttributes::add )
-                , ( bp::arg("attrName"), bp::arg("attrValue") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::XMLAttributes::*add_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            XMLAttributes_exposer.def(
+                    "add"
+                    , add_function_type(&::CEGUI::XMLAttributes::add)
+                    , (bp::arg("attrName"), bp::arg("attrValue"))
+                    , "*!\n\
                     \n\
                         Adds an attribute to the attribute block.  If the attribute value already exists, it is\
                         replaced with\n\
@@ -37,18 +37,18 @@ void register_XMLAttributes_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                     *\n" );
-        
+                     *\n");
+
         }
         { //::CEGUI::XMLAttributes::exists
-        
-            typedef bool ( ::CEGUI::XMLAttributes::*exists_function_type )( ::CEGUI::String const & ) const;
-            
-            XMLAttributes_exposer.def( 
-                "exists"
-                , exists_function_type( &::CEGUI::XMLAttributes::exists )
-                , ( bp::arg("attrName") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::XMLAttributes::*exists_function_type)(::CEGUI::String const &) const;
+
+            XMLAttributes_exposer.def(
+                    "exists"
+                    , exists_function_type(&::CEGUI::XMLAttributes::exists)
+                    , (bp::arg("attrName"))
+                    , "*!\n\
                     \n\
                         Return whether the named attribute exists within the attribute block.\n\
             \n\
@@ -58,35 +58,35 @@ void register_XMLAttributes_class(){
                     @return\n\
                         - true if an attribute with the name  attrName is present in the attribute block.\n\
                         - false if no attribute named  attrName is present in the attribute block.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLAttributes::getCount
-        
-            typedef ::size_t ( ::CEGUI::XMLAttributes::*getCount_function_type )(  ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getCount"
-                , getCount_function_type( &::CEGUI::XMLAttributes::getCount )
-                , "*!\n\
+
+            typedef ::size_t(::CEGUI::XMLAttributes::*getCount_function_type)() const;
+
+            XMLAttributes_exposer.def(
+                    "getCount"
+                    , getCount_function_type(&::CEGUI::XMLAttributes::getCount)
+                    , "*!\n\
                     \n\
                         Return the number of attributes in the attribute block.\n\
             \n\
                     @return\n\
                         value specifying the number of attributes in this attribute block.\n\
-                     *\n" );
-        
+                     *\n");
+
         }
         { //::CEGUI::XMLAttributes::getName
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::XMLAttributes::*getName_function_type )( ::size_t ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getName"
-                , getName_function_type( &::CEGUI::XMLAttributes::getName )
-                , ( bp::arg("index") )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::XMLAttributes::*getName_function_type)(::size_t) const;
+
+            XMLAttributes_exposer.def(
+                    "getName"
+                    , getName_function_type(&::CEGUI::XMLAttributes::getName)
+                    , (bp::arg("index"))
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the name of an attribute based upon its index within the attribute block.\n\
             \n\
@@ -102,19 +102,19 @@ void register_XMLAttributes_class(){
             \n\
                     @exception IllegalRequestException  thrown if  index is out of range for this attribute\
                     block.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLAttributes::getValue
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::XMLAttributes::*getValue_function_type )( ::size_t ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getValue"
-                , getValue_function_type( &::CEGUI::XMLAttributes::getValue )
-                , ( bp::arg("index") )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::XMLAttributes::*getValue_function_type)(::size_t) const;
+
+            XMLAttributes_exposer.def(
+                    "getValue"
+                    , getValue_function_type(&::CEGUI::XMLAttributes::getValue)
+                    , (bp::arg("index"))
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the value string of an attribute based upon its index within the attribute\
                         block.\n\
@@ -131,19 +131,19 @@ void register_XMLAttributes_class(){
             \n\
                     @exception IllegalRequestException  thrown if  index is out of range for this attribute\
                     block.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLAttributes::getValue
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::XMLAttributes::*getValue_function_type )( ::CEGUI::String const & ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getValue"
-                , getValue_function_type( &::CEGUI::XMLAttributes::getValue )
-                , ( bp::arg("attrName") )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::XMLAttributes::*getValue_function_type)(::CEGUI::String const &) const;
+
+            XMLAttributes_exposer.def(
+                    "getValue"
+                    , getValue_function_type(&::CEGUI::XMLAttributes::getValue)
+                    , (bp::arg("attrName"))
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the value string for attribute  attrName.\n\
             \n\
@@ -155,18 +155,18 @@ void register_XMLAttributes_class(){
             \n\
                     @exception UnknownObjectException   thrown if no attribute named  attrName is present in the\
                     attribute block.\n\
-                     *\n" );
-        
+                     *\n");
+
         }
         { //::CEGUI::XMLAttributes::getValueAsBool
-        
-            typedef bool ( ::CEGUI::XMLAttributes::*getValueAsBool_function_type )( ::CEGUI::String const &,bool ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getValueAsBool"
-                , getValueAsBool_function_type( &::CEGUI::XMLAttributes::getValueAsBool )
-                , ( bp::arg("attrName"), bp::arg("def")=(bool)(false) )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::XMLAttributes::*getValueAsBool_function_type)(::CEGUI::String const &, bool) const;
+
+            XMLAttributes_exposer.def(
+                    "getValueAsBool"
+                    , getValueAsBool_function_type(&::CEGUI::XMLAttributes::getValueAsBool)
+                    , (bp::arg("attrName"), bp::arg("def") = (bool)(false))
+                    , "*!\n\
                     \n\
                         Return the value of attribute  attrName as a boolean value.\n\
             \n\
@@ -186,18 +186,18 @@ void register_XMLAttributes_class(){
             \n\
                     @exception IllegalRequestException  thrown if the attribute value string coul dnot be\
                     converted to the requested type.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLAttributes::getValueAsFloat
-        
-            typedef float ( ::CEGUI::XMLAttributes::*getValueAsFloat_function_type )( ::CEGUI::String const &,float ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getValueAsFloat"
-                , getValueAsFloat_function_type( &::CEGUI::XMLAttributes::getValueAsFloat )
-                , ( bp::arg("attrName"), bp::arg("def")=0.0f )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::XMLAttributes::*getValueAsFloat_function_type)(::CEGUI::String const &, float) const;
+
+            XMLAttributes_exposer.def(
+                    "getValueAsFloat"
+                    , getValueAsFloat_function_type(&::CEGUI::XMLAttributes::getValueAsFloat)
+                    , (bp::arg("attrName"), bp::arg("def") = 0.0f)
+                    , "*!\n\
                     \n\
                         Return the value of attribute  attrName as a floating point value.\n\
             \n\
@@ -217,18 +217,18 @@ void register_XMLAttributes_class(){
             \n\
                     @exception IllegalRequestException  thrown if the attribute value string coul dnot be\
                     converted to the requested type.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLAttributes::getValueAsInteger
-        
-            typedef int ( ::CEGUI::XMLAttributes::*getValueAsInteger_function_type )( ::CEGUI::String const &,int ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getValueAsInteger"
-                , getValueAsInteger_function_type( &::CEGUI::XMLAttributes::getValueAsInteger )
-                , ( bp::arg("attrName"), bp::arg("def")=(int)(0) )
-                , "*!\n\
+
+            typedef int ( ::CEGUI::XMLAttributes::*getValueAsInteger_function_type)(::CEGUI::String const &, int) const;
+
+            XMLAttributes_exposer.def(
+                    "getValueAsInteger"
+                    , getValueAsInteger_function_type(&::CEGUI::XMLAttributes::getValueAsInteger)
+                    , (bp::arg("attrName"), bp::arg("def") = (int) (0))
+                    , "*!\n\
                     \n\
                         Return the value of attribute  attrName as a integer value.\n\
             \n\
@@ -248,19 +248,19 @@ void register_XMLAttributes_class(){
                     \n\
                     @exception IllegalRequestException  thrown if the attribute value string coul dnot be\
                     converted to the requested type.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLAttributes::getValueAsString
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::XMLAttributes::*getValueAsString_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) const;
-            
-            XMLAttributes_exposer.def( 
-                "getValueAsString"
-                , getValueAsString_function_type( &::CEGUI::XMLAttributes::getValueAsString )
-                , ( bp::arg("attrName"), bp::arg("def")="" )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::XMLAttributes::*getValueAsString_function_type)(::CEGUI::String const &, ::CEGUI::String const &) const;
+
+            XMLAttributes_exposer.def(
+                    "getValueAsString"
+                    , getValueAsString_function_type(&::CEGUI::XMLAttributes::getValueAsString)
+                    , (bp::arg("attrName"), bp::arg("def") = "")
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the value of attribute  attrName as a string.\n\
             \n\
@@ -277,18 +277,18 @@ void register_XMLAttributes_class(){
             \n\
                     @return\n\
                         String object containing the value of attribute  attrName if present, or  def if not.\n\
-                     *\n" );
-        
+                     *\n");
+
         }
         { //::CEGUI::XMLAttributes::remove
-        
-            typedef void ( ::CEGUI::XMLAttributes::*remove_function_type )( ::CEGUI::String const & ) ;
-            
-            XMLAttributes_exposer.def( 
-                "remove"
-                , remove_function_type( &::CEGUI::XMLAttributes::remove )
-                , ( bp::arg("attrName") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::XMLAttributes::*remove_function_type)(::CEGUI::String const &);
+
+            XMLAttributes_exposer.def(
+                    "remove"
+                    , remove_function_type(&::CEGUI::XMLAttributes::remove)
+                    , (bp::arg("attrName"))
+                    , "*!\n\
                     \n\
                         Removes an attribute from the attribute block.\n\
             \n\
@@ -297,8 +297,8 @@ void register_XMLAttributes_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                     *\n" );
-        
+                     *\n");
+
         }
     }
 

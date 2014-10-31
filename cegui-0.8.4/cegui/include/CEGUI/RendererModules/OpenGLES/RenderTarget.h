@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jan 14 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -32,46 +32,45 @@
 #include "CEGUI/Rect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Intermediate OpenGLES implementation of a RenderTarget.
-*/
-template <typename T = RenderTarget>
-class OPENGLES_GUIRENDERER_API OpenGLESRenderTarget : public T
-{
-public:
-    //! Constructor
-    OpenGLESRenderTarget(OpenGLESRenderer& owner);
+namespace CEGUI {
 
-    // implement parts of RenderTarget interface
-    void draw(const GeometryBuffer& buffer);
-    void draw(const RenderQueue& queue);
-    void setArea(const Rectf& area);
-    const Rectf& getArea() const;
-    void activate();
-    void deactivate();
-    void unprojectPoint(const GeometryBuffer& buff,
-                        const Vector2f& p_in, Vector2f& p_out) const;
+    /*!
+    \brief
+        Intermediate OpenGLES implementation of a RenderTarget.
+     */
+    template <typename T = RenderTarget>
+    class OPENGLES_GUIRENDERER_API OpenGLESRenderTarget : public T {
+    public:
+        //! Constructor
+        OpenGLESRenderTarget(OpenGLESRenderer& owner);
 
-protected:
-    //! helper that initialises the cached matrix
-    virtual void updateMatrix() const;
+        // implement parts of RenderTarget interface
+        void draw(const GeometryBuffer& buffer);
+        void draw(const RenderQueue& queue);
+        void setArea(const Rectf& area);
+        const Rectf& getArea() const;
+        void activate();
+        void deactivate();
+        void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in, Vector2f& p_out) const;
 
-    //! OpenGLESRenderer that created this object
-    OpenGLESRenderer& d_owner;
-    //! holds defined area for the RenderTarget
-    Rectf d_area;
-    //! tangent of the y FOV half-angle; used to calculate viewing distance.
-    static const double d_yfov_tan;
-    //! saved copy of projection matrix
-    mutable float d_matrix[16];
-    //! true if saved matrix is up to date
-    mutable bool d_matrixValid;
-    //! tracks viewing distance (this is set up at the same time as d_matrix)
-    mutable double d_viewDistance;
-};
+    protected:
+        //! helper that initialises the cached matrix
+        virtual void updateMatrix() const;
+
+        //! OpenGLESRenderer that created this object
+        OpenGLESRenderer& d_owner;
+        //! holds defined area for the RenderTarget
+        Rectf d_area;
+        //! tangent of the y FOV half-angle; used to calculate viewing distance.
+        static const double d_yfov_tan;
+        //! saved copy of projection matrix
+        mutable float d_matrix[16];
+        //! true if saved matrix is up to date
+        mutable bool d_matrixValid;
+        //! tracks viewing distance (this is set up at the same time as d_matrix)
+        mutable double d_viewDistance;
+    };
 
 } // End of  CEGUI namespace section
 

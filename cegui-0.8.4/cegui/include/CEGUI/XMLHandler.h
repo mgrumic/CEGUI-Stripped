@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    12/3/2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,10 +31,9 @@
 #include "CEGUI/String.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-    class CEGUIEXPORT XMLHandler
-    {
+namespace CEGUI {
+
+    class CEGUIEXPORT XMLHandler {
     public:
         /*!
         \brief
@@ -47,7 +46,7 @@ namespace CEGUI
             XMLHandler base class destructor.
          */
         virtual ~XMLHandler(void);
-        
+
         /*!
         \brief
             Retrieves the schema file name to use with resources handled by this handler
@@ -107,7 +106,7 @@ namespace CEGUI
             Nothing.
          */
         virtual void elementStart(const String& element, const XMLAttributes& attributes);
-        
+
         /*!
         \brief
             Method called to notify the handler at the end of each XML element encountered.
@@ -120,17 +119,17 @@ namespace CEGUI
          */
         virtual void elementEnd(const String& element);
 
-	/*! 
-	\brief
-	    Method called to notify text node, several successiv text node are agregated. 
+        /*! 
+        \brief
+            Method called to notify text node, several successiv text node are agregated. 
 	    
-	\param text 
-	    String object holding the content of the text node.
+        \param text 
+            String object holding the content of the text node.
 
-	\return 
+        \return 
             Nothing.
-	*/
-	virtual void text(const String& text);
+         */
+        virtual void text(const String& text);
     };
 
 } // End of  CEGUI namespace section

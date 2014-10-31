@@ -22,23 +22,29 @@
 #include "boost/python.hpp"
 #include "boost/python/converter/registry.hpp"
 
-namespace boost{ namespace python{ namespace registry{ namespace utils{
+namespace boost {
+    namespace python {
+        namespace registry {
+            namespace utils {
 
-template<class T>
-bool is_registered(){
-    namespace bpl = boost::python;
-    bpl::handle<> class_obj( bpl::objects::registered_class_object( bpl::type_id< T >()));
-    return class_obj.get() ? true : false;
+                template<class T>
+                bool is_registered() {
+                    namespace bpl = boost::python;
+                    bpl::handle<> class_obj(bpl::objects::registered_class_object(bpl::type_id< T >()));
+                    return class_obj.get() ? true : false;
+                }
+
+                template< class T >
+                void register_alias(const char* name) {
+                    namespace bpl = boost::python;
+                    bpl::handle<> class_obj(bpl::objects::registered_class_object(bpl::type_id< T >()));
+                    boost::python::scope().attr(name) = bpl::object(class_obj);
+                }
+
+            }
+        }
+    }
 }
-
-template< class T >
-void register_alias( const char* name ){
-    namespace bpl = boost::python;
-    bpl::handle<> class_obj( bpl::objects::registered_class_object( bpl::type_id< T >()));
-    boost::python::scope().attr( name ) = bpl::object( class_obj );
-}
-
-}}}}
 
 #endif // REGISTRY_UTILS_12_01_2010_HPP
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mar 27 2010
     author:     Jay Sprenkle
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -30,34 +30,33 @@
 #include "../../XMLParser.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIRAPIDXMLPARSER_EXPORTS
-#       define CEGUIRAPIDXMLPARSER_API __declspec(dllexport)
-#   else
-#       define CEGUIRAPIDXMLPARSER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIRAPIDXMLPARSER_EXPORTS
+#define CEGUIRAPIDXMLPARSER_API __declspec(dllexport)
 #else
-#   define CEGUIRAPIDXMLPARSER_API
+#define CEGUIRAPIDXMLPARSER_API __declspec(dllimport)
+#endif
+#else
+#define CEGUIRAPIDXMLPARSER_API
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Implementation of XMLParser using RapidXML
-class CEGUIRAPIDXMLPARSER_API RapidXMLParser : public XMLParser
-{
-public:
-    RapidXMLParser(void);
-    ~RapidXMLParser(void);
+namespace CEGUI {
+    //! Implementation of XMLParser using RapidXML
 
-    // Implementation of public abstract interface
-    void parseXML(XMLHandler& handler, const RawDataContainer& source,
-                  const String& schemaName);
+    class CEGUIRAPIDXMLPARSER_API RapidXMLParser : public XMLParser {
+    public:
+        RapidXMLParser(void);
+        ~RapidXMLParser(void);
 
-protected:
-    // Implementation of abstract interface.
-    bool initialiseImpl(void);
-    void cleanupImpl(void);
-};
+        // Implementation of public abstract interface
+        void parseXML(XMLHandler& handler, const RawDataContainer& source,
+                const String& schemaName);
+
+    protected:
+        // Implementation of abstract interface.
+        bool initialiseImpl(void);
+        void cleanupImpl(void);
+    };
 
 } // End of  CEGUI namespace section
 

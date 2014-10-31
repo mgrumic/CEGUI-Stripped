@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -34,58 +34,57 @@
 #include <map>
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
-#	pragma warning(disable : 4275)
+#pragma warning(push)
+#pragma warning(disable : 4251)
+#pragma warning(disable : 4275)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Manager class that gives top-level access to widget data based "look and feel" specifications loaded into the system.
-    */
+     */
     class CEGUIEXPORT WidgetLookManager :
-        public Singleton<WidgetLookManager>,
-        public AllocatedObject<WidgetLookManager>
-    {
+    public Singleton<WidgetLookManager>,
+    public AllocatedObject<WidgetLookManager> {
     public:
         /*!
         \brief
             Constructor.
-        */
+         */
         WidgetLookManager();
 
         /*!
         \brief
             Destructor
-        */
+         */
         ~WidgetLookManager();
 
-       	/*!
-	      \brief
-		        Return singleton WidgetLookManager object
+        /*!
+              \brief
+                        Return singleton WidgetLookManager object
 
-	      \return
-		        Singleton WidgetLookManager object
-	      */
-	      static	WidgetLookManager&	getSingleton(void);
+              \return
+                        Singleton WidgetLookManager object
+         */
+        static WidgetLookManager& getSingleton(void);
 
 
-	      /*!
-	      \brief
-		        Return pointer to singleton WidgetLookManager object
+        /*!
+        \brief
+                  Return pointer to singleton WidgetLookManager object
 
-	      \return
-		        Pointer to singleton WidgetLookManager object
-	      */
-	      static	WidgetLookManager*	getSingletonPtr(void);
+        \return
+                  Pointer to singleton WidgetLookManager object
+         */
+        static WidgetLookManager* getSingletonPtr(void);
 
 
         /** Typedef for a set of WidgetLookFeel names. */
         typedef std::set<String, StringFastLessCompare
-          CEGUI_SET_ALLOC(String)> WidgetLookNameSet;
+        CEGUI_SET_ALLOC(String) > WidgetLookNameSet;
 
         /*!
         \brief
@@ -107,17 +106,17 @@ namespace CEGUI
 
         \exception FileIOException             thrown if there was some problem accessing or parsing the file \a filename
         \exception InvalidRequestException     thrown if an invalid filename was provided.
-        */
+         */
         void parseLookNFeelSpecificationFromContainer(const RawDataContainer& source);
-        
+
         /*!
         \see WidgetLookManager::parseLookNFeelSpecificationFromContainer
-        */
+         */
         void parseLookNFeelSpecificationFromFile(const String& filename, const String& resourceGroup = "");
-        
+
         /*!
         \see WidgetLookManager::parseLookNFeelSpecificationFromContainer
-        */
+         */
         void parseLookNFeelSpecificationFromString(const String& source);
 
         /*!
@@ -130,7 +129,7 @@ namespace CEGUI
         \return
             - true if a WidgetLookFeel named \a widget is available.
             - false if so such WidgetLookFeel is currently available.
-        */
+         */
         bool isWidgetLookAvailable(const String& widget) const;
 
 
@@ -145,7 +144,7 @@ namespace CEGUI
             const reference to the requested WidgetLookFeel object.
 
         \exception UnknownObjectException   thrown if no WidgetLookFeel is available with the requested name.
-        */
+         */
         const WidgetLookFeel& getWidgetLook(const String& widget) const;
 
 
@@ -159,7 +158,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void eraseWidgetLook(const String& widget);
 
         //! erase all defined WidgetLookFeel.
@@ -180,7 +179,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void addWidgetLook(const WidgetLookFeel& look);
 
 
@@ -194,7 +193,7 @@ namespace CEGUI
 
         \param out_stream
             OutStream where XML data should be sent.
-        */
+         */
         void writeWidgetLookToStream(const String& widgetLookName, OutStream& out_stream) const;
 
         /*!
@@ -207,9 +206,9 @@ namespace CEGUI
 
         \return
             String containing the WidgetLook parsed to XML.
-        */
+         */
         String getWidgetLookAsString(const String& widgetLookName) const;
- 
+
         /*!
         \brief
             Writes a set WidgetLookFeels to a string. Note that XML file header and
@@ -220,7 +219,7 @@ namespace CEGUI
 
         \return
             String containing the set of WidgetLookFeels parsed to XML.
-        */
+         */
         String getWidgetLookSetAsString(const WidgetLookNameSet& widgetLookNameSet) const;
 
         /*!
@@ -238,7 +237,7 @@ namespace CEGUI
 
         \param out_stream
             OutStream where XML data should be sent.
-        */
+         */
         void writeWidgetLookSeriesToStream(const String& prefix, OutStream& out_stream) const;
 
         /*!
@@ -254,7 +253,7 @@ namespace CEGUI
 
         \param out_stream
             OutStream where XML data should be sent.
-        */
+         */
         void writeWidgetLookSetToStream(const WidgetLookNameSet& widgetLookNameSet, OutStream& out_stream) const;
 
         /*!
@@ -264,9 +263,10 @@ namespace CEGUI
         \return
             String describing the default resource group identifier that will be
             used when loading LookNFeel data.
-        */
-        static const String& getDefaultResourceGroup()
-            { return d_defaultResourceGroup; }
+         */
+        static const String& getDefaultResourceGroup() {
+            return d_defaultResourceGroup;
+        }
 
         /*!
         \brief
@@ -277,18 +277,19 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
-        static void setDefaultResourceGroup(const String& resourceGroup)
-            { d_defaultResourceGroup = resourceGroup; }
+         */
+        static void setDefaultResourceGroup(const String& resourceGroup) {
+            d_defaultResourceGroup = resourceGroup;
+        }
 
 
     private:
-        static const String FalagardSchemaName;     //!< Name of schema file used for XML validation.
+        static const String FalagardSchemaName; //!< Name of schema file used for XML validation.
 
         typedef std::map<String, WidgetLookFeel, StringFastLessCompare> WidgetLookList;
-        WidgetLookList  d_widgetLooks;
+        WidgetLookList d_widgetLooks;
 
-        static String d_defaultResourceGroup;   //!< holds default resource group
+        static String d_defaultResourceGroup; //!< holds default resource group
     public:
         typedef ConstMapIterator<WidgetLookList> WidgetLookIterator;
         WidgetLookIterator getWidgetLookIterator() const;
@@ -299,7 +300,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalWidgetLookManager_h_

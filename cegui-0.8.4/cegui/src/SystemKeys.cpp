@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Feb 17 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -26,165 +26,160 @@
  ***************************************************************************/
 #include "CEGUI/SystemKeys.h"
 
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-SystemKeys::SystemKeys() :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    SystemKeys::SystemKeys() :
     d_current(0),
     d_leftShift(false),
     d_rightShift(false),
     d_leftCtrl(false),
     d_rightCtrl(false),
     d_leftAlt(false),
-    d_rightAlt(false)
-{
-}
-
-//----------------------------------------------------------------------------//
-void SystemKeys::reset()
-{
-    *this = SystemKeys();
-}
-
-//----------------------------------------------------------------------------//
-uint SystemKeys::get() const
-{
-    return d_current;
-}
-
-//----------------------------------------------------------------------------//
-bool SystemKeys::isPressed(SystemKey key) const
-{
-    return (d_current & key) || (!key && !d_current);
-}
-
-//----------------------------------------------------------------------------//
-void SystemKeys::keyPressed(Key::Scan key)
-{
-    updatePressedStateForKey(key, true);
-    updateSystemKeyState(keyCodeToSystemKey(key));
-}
-
-//----------------------------------------------------------------------------//
-void SystemKeys::keyReleased(Key::Scan key)
-{
-    updatePressedStateForKey(key, false);
-    updateSystemKeyState(keyCodeToSystemKey(key));
-}
-
-//----------------------------------------------------------------------------//
-SystemKeys::SystemKey SystemKeys::keyCodeToSystemKey(Key::Scan key)
-{
-    switch (key)
-    {
-    case Key::RightShift:
-    case Key::LeftShift:
-        return Shift;
-
-    case Key::LeftControl:
-    case Key::RightControl:
-        return Control;
-
-    case Key::LeftAlt:
-    case Key::RightAlt:
-        return Alt;
-
-    default:
-        return None;
+    d_rightAlt(false) {
     }
-}
-    
-//----------------------------------------------------------------------------//
-void SystemKeys::updateSystemKeyState(SystemKey syskey)
-{
-    switch (syskey)
-    {
-    case Shift:
-        (d_leftShift || d_rightShift) ? d_current |= Shift : d_current &= ~Shift;
-        break;
 
-    case Control:
-        (d_leftCtrl || d_rightCtrl) ? d_current |= Control : d_current &= ~Control;
-        break;
+    //----------------------------------------------------------------------------//
 
-    case Alt:
-        (d_leftAlt || d_rightAlt) ? d_current |= Alt : d_current &= ~Alt;
-        break;
-
-    default:
-        break;
+    void SystemKeys::reset() {
+        *this = SystemKeys();
     }
-}
 
-//----------------------------------------------------------------------------//
-void SystemKeys::updatePressedStateForKey(Key::Scan key, bool state)
-{
-    switch (key)
-    {
-    case Key::LeftShift:
-        d_leftShift = state;
-        break;
+    //----------------------------------------------------------------------------//
 
-    case Key::RightShift:
-        d_rightShift = state;
-        break;
-
-    case Key::LeftControl:
-        d_leftCtrl = state;
-        break;
-
-    case Key::RightControl:
-        d_rightCtrl = state;
-
-    case Key::LeftAlt:
-        d_leftAlt = state;
-        break;
-
-    case Key::RightAlt:
-        d_rightAlt = state;
-        break;
-
-    default:
-        break;
+    uint SystemKeys::get() const {
+        return d_current;
     }
-}
 
-//----------------------------------------------------------------------------//
-void SystemKeys::mouseButtonPressed(MouseButton button)
-{
-    d_current |= mouseButtonToSystemKey(button);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void SystemKeys::mouseButtonReleased(MouseButton button)
-{
-    d_current &= ~mouseButtonToSystemKey(button);
-}
+    bool SystemKeys::isPressed(SystemKey key) const {
+        return (d_current & key) || (!key && !d_current);
+    }
 
-//----------------------------------------------------------------------------//
-SystemKeys::SystemKey SystemKeys::mouseButtonToSystemKey(MouseButton button)
-{
-	switch (button)
-	{
-	case LeftButton:
-		return LeftMouse;
+    //----------------------------------------------------------------------------//
 
-	case RightButton:
-		return RightMouse;
+    void SystemKeys::keyPressed(Key::Scan key) {
+        updatePressedStateForKey(key, true);
+        updateSystemKeyState(keyCodeToSystemKey(key));
+    }
 
-	case MiddleButton:
-		return MiddleMouse;
+    //----------------------------------------------------------------------------//
 
-	case X1Button:
-		return X1Mouse;
+    void SystemKeys::keyReleased(Key::Scan key) {
+        updatePressedStateForKey(key, false);
+        updateSystemKeyState(keyCodeToSystemKey(key));
+    }
 
-	case X2Button:
-		return X2Mouse;
+    //----------------------------------------------------------------------------//
 
-	default:
-		return None; 
-	}
-}
-//----------------------------------------------------------------------------//
+    SystemKeys::SystemKey SystemKeys::keyCodeToSystemKey(Key::Scan key) {
+        switch (key) {
+            case Key::RightShift:
+            case Key::LeftShift:
+                return Shift;
+
+            case Key::LeftControl:
+            case Key::RightControl:
+                return Control;
+
+            case Key::LeftAlt:
+            case Key::RightAlt:
+                return Alt;
+
+            default:
+                return None;
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SystemKeys::updateSystemKeyState(SystemKey syskey) {
+        switch (syskey) {
+            case Shift:
+                (d_leftShift || d_rightShift) ? d_current |= Shift : d_current &= ~Shift;
+                break;
+
+            case Control:
+                (d_leftCtrl || d_rightCtrl) ? d_current |= Control : d_current &= ~Control;
+                break;
+
+            case Alt:
+                (d_leftAlt || d_rightAlt) ? d_current |= Alt : d_current &= ~Alt;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SystemKeys::updatePressedStateForKey(Key::Scan key, bool state) {
+        switch (key) {
+            case Key::LeftShift:
+                d_leftShift = state;
+                break;
+
+            case Key::RightShift:
+                d_rightShift = state;
+                break;
+
+            case Key::LeftControl:
+                d_leftCtrl = state;
+                break;
+
+            case Key::RightControl:
+                d_rightCtrl = state;
+
+            case Key::LeftAlt:
+                d_leftAlt = state;
+                break;
+
+            case Key::RightAlt:
+                d_rightAlt = state;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SystemKeys::mouseButtonPressed(MouseButton button) {
+        d_current |= mouseButtonToSystemKey(button);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SystemKeys::mouseButtonReleased(MouseButton button) {
+        d_current &= ~mouseButtonToSystemKey(button);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    SystemKeys::SystemKey SystemKeys::mouseButtonToSystemKey(MouseButton button) {
+        switch (button) {
+            case LeftButton:
+                return LeftMouse;
+
+            case RightButton:
+                return RightMouse;
+
+            case MiddleButton:
+                return MiddleMouse;
+
+            case X1Button:
+                return X1Mouse;
+
+            case X2Button:
+                return X2Mouse;
+
+            default:
+                return None;
+        }
+    }
+    //----------------------------------------------------------------------------//
 }
 

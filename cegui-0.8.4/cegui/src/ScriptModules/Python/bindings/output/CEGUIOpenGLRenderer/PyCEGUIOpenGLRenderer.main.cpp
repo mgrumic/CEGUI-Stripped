@@ -22,7 +22,7 @@
 
 namespace bp = boost::python;
 
-BOOST_PYTHON_MODULE(PyCEGUIOpenGLRenderer){
+BOOST_PYTHON_MODULE(PyCEGUIOpenGLRenderer) {
     register_OpenGLRendererBase_class();
 
     register_OpenGL3Renderer_class();

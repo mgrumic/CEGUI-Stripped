@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	21/2/2004
-	author:		Paul D Turner
+        created:	21/2/2004
+        author:		Paul D Turner
 	
-	purpose:	Main system include for client code
-*************************************************************************/
+        purpose:	Main system include for client code
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *

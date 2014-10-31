@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Jul 21 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -28,15 +28,14 @@
 #include "CEGUI/NamedXMLResourceManager.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-const String ResourceEventSet::EventNamespace("ResourceManager");
-const String ResourceEventSet::EventResourceCreated("ResourceCreated");
-const String ResourceEventSet::EventResourceDestroyed("ResourceDestroyed");
-const String ResourceEventSet::EventResourceReplaced("ResourceReplaced");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    const String ResourceEventSet::EventNamespace("ResourceManager");
+    const String ResourceEventSet::EventResourceCreated("ResourceCreated");
+    const String ResourceEventSet::EventResourceDestroyed("ResourceDestroyed");
+    const String ResourceEventSet::EventResourceReplaced("ResourceReplaced");
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 
 } // End of  CEGUI namespace section

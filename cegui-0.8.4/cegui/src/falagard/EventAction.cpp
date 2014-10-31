@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Mar 02 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -30,140 +30,138 @@
 #include "CEGUI/Window.h"
 #include "CEGUI/Logger.h"
 
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-// Functor used to subscribe to events - this is where the magic happens!
-struct EventActionFunctor
-{
-    EventActionFunctor(Window& window, ChildEventAction action) :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    // Functor used to subscribe to events - this is where the magic happens!
+
+    struct EventActionFunctor {
+
+        EventActionFunctor(Window& window, ChildEventAction action) :
         window(window),
-        action(action)
-    {}
-
-    bool operator()(const EventArgs& /*args*/) const
-    {
-        switch (action)
-        {
-        case CEA_REDRAW:
-            window.invalidate(false);
-            return true;
-
-        case CEA_LAYOUT:
-            window.performChildWindowLayout();
-            return true;
-
-        default:
-            CEGUI_THROW(InvalidRequestException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                    "invalid action."));
-#endif //PE_NO_THROW_MSGS
+        action(action) {
         }
 
-        return false;
+        bool operator()(const EventArgs& /*args*/) const {
+            switch (action) {
+                case CEA_REDRAW:
+                    window.invalidate(false);
+                    return true;
+
+                case CEA_LAYOUT:
+                    window.performChildWindowLayout();
+                    return true;
+
+                default:
+                    CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                            ""));
+#else
+                            "invalid action."));
+#endif //PE_NO_THROW_MSGS
+            }
+
+            return false;
+        }
+
+        Window& window;
+        ChildEventAction action;
+    };
+
+    //----------------------------------------------------------------------------//
+
+    EventAction::EventAction(const String& event_name,
+            ChildEventAction action) :
+    d_eventName(event_name),
+    d_action(action) {
     }
 
-    Window& window;
-    ChildEventAction action;
-};
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-EventAction::EventAction(const String& event_name,
-                         ChildEventAction action) :
-    d_eventName(event_name),
-    d_action(action)
-{
-}
+    EventAction::~EventAction() {
+    }
 
-//----------------------------------------------------------------------------//
-EventAction::~EventAction()
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void EventAction::setEventName(const String& event_name)
-{
-    d_eventName = event_name;
-}
+    void EventAction::setEventName(const String& event_name) {
+        d_eventName = event_name;
+    }
 
-//----------------------------------------------------------------------------//
-const String& EventAction::getEventName() const
-{
-    return d_eventName;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void EventAction::setAction(ChildEventAction action)
-{
-    d_action = action;
-}
+    const String& EventAction::getEventName() const {
+        return d_eventName;
+    }
 
-//----------------------------------------------------------------------------//
-ChildEventAction EventAction::getAction() const
-{
-    return d_action;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void EventAction::initialiseWidget(Window& widget) const
-{
-    Window* parent = widget.getParent();
+    void EventAction::setAction(ChildEventAction action) {
+        d_action = action;
+    }
 
-    if (!parent)
-        CEGUI_THROW(InvalidRequestException(
+    //----------------------------------------------------------------------------//
+
+    ChildEventAction EventAction::getAction() const {
+        return d_action;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void EventAction::initialiseWidget(Window& widget) const {
+        Window* parent = widget.getParent();
+
+        if (!parent)
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "EvenAction can only be initialised on child widgets."));
+                "EvenAction can only be initialised on child widgets."));
 #endif //PE_NO_THROW_MSGS
 
-    d_connections.insert(
-        std::make_pair(makeConnectionKeyName(widget),
-                       widget.subscribeEvent(d_eventName,
-                            EventActionFunctor(*parent, d_action))));
-}
+        d_connections.insert(
+                std::make_pair(makeConnectionKeyName(widget),
+                widget.subscribeEvent(d_eventName,
+                EventActionFunctor(*parent, d_action))));
+    }
 
-//----------------------------------------------------------------------------//
-void EventAction::cleanupWidget(Window& widget) const
-{
-    const String keyname(makeConnectionKeyName(widget));
+    //----------------------------------------------------------------------------//
 
-    ConnectionMap::iterator i = d_connections.find(keyname);
+    void EventAction::cleanupWidget(Window& widget) const {
+        const String keyname(makeConnectionKeyName(widget));
 
-    if (i != d_connections.end())
-        d_connections.erase(i);
+        ConnectionMap::iterator i = d_connections.find(keyname);
+
+        if (i != d_connections.end())
+            d_connections.erase(i);
 #ifndef PE_NO_LOGGER
-    else
-        Logger::getSingleton().logEvent("EventAction::cleanupWidget: "
-            "An event connection with key '" + keyname + "' was not "
-            "found.  This may be harmless, but most likely could point "
-            "to a double-deletion or some other serious issue.", Errors);
+        else
+            Logger::getSingleton().logEvent("EventAction::cleanupWidget: "
+                "An event connection with key '" + keyname + "' was not "
+                "found.  This may be harmless, but most likely could point "
+                "to a double-deletion or some other serious issue.", Errors);
 #endif //PE_NO_LOGGER
-}
+    }
 
-//----------------------------------------------------------------------------//
-void EventAction::writeXMLToStream(XMLSerializer& xml_stream) const
-{
-    xml_stream.openTag(Falagard_xmlHandler::EventActionElement)
-        .attribute(Falagard_xmlHandler::EventAttribute, d_eventName)
-        .attribute(Falagard_xmlHandler::ActionAttribute, FalagardXMLHelper<ChildEventAction>::toString(d_action))
-        .closeTag();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-String EventAction::makeConnectionKeyName(const Window& widget) const
-{
-    char addr[32];
-    std::sprintf(addr, "%p", &widget);
+    void EventAction::writeXMLToStream(XMLSerializer& xml_stream) const {
+        xml_stream.openTag(Falagard_xmlHandler::EventActionElement)
+                .attribute(Falagard_xmlHandler::EventAttribute, d_eventName)
+                .attribute(Falagard_xmlHandler::ActionAttribute, FalagardXMLHelper<ChildEventAction>::toString(d_action))
+                .closeTag();
+    }
 
-    return String(addr) +
-           d_eventName +
-           FalagardXMLHelper<ChildEventAction>::toString(d_action);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    String EventAction::makeConnectionKeyName(const Window& widget) const {
+        char addr[32];
+        std::sprintf(addr, "%p", &widget);
+
+        return String(addr) +
+                d_eventName +
+                FalagardXMLHelper<ChildEventAction>::toString(d_action);
+    }
+
+    //----------------------------------------------------------------------------//
 
 }
 

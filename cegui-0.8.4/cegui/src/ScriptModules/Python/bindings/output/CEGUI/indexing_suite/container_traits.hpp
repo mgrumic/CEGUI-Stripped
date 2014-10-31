@@ -35,129 +35,131 @@
 #include <boost/type_traits/ice.hpp>
 #include <boost/iterator/iterator_traits.hpp>
 
-namespace boost { namespace python { namespace indexing {
+namespace boost {
+    namespace python {
+        namespace indexing {
 #if BOOST_WORKAROUND (BOOST_MSVC, <= 1200)
-  // MSVC6 has problems with get_signature if parameter types have
-  // top-level const qualification (e.g. int const). Unfortunately,
-  // this is exactly what happens with boost::call_traits, so we
-  // substitute a really dumb version of it instead.
+            // MSVC6 has problems with get_signature if parameter types have
+            // top-level const qualification (e.g. int const). Unfortunately,
+            // this is exactly what happens with boost::call_traits, so we
+            // substitute a really dumb version of it instead.
 
-  template<typename T> struct broken_call_traits {
-    typedef T const & param_type;
-  };
-# define BOOST_PYTHON_INDEXING_CALL_TRAITS broken_call_traits
+            template<typename T> struct broken_call_traits {
+                typedef T const & param_type;
+            };
+#define BOOST_PYTHON_INDEXING_CALL_TRAITS broken_call_traits
 #else
-# define BOOST_PYTHON_INDEXING_CALL_TRAITS ::boost::call_traits
+#define BOOST_PYTHON_INDEXING_CALL_TRAITS ::boost::call_traits
 #endif
 
-  /////////////////////////////////////////////////////////////////////////
-  // Lowest common denominator traits - applicable to real containers
-  // and iterator pairs
-  /////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////
+            // Lowest common denominator traits - applicable to real containers
+            // and iterator pairs
+            /////////////////////////////////////////////////////////////////////////
 
-  template<typename Container, typename ValueTraits = detail::no_override>
-  struct base_container_traits
-  {
-    typedef base_container_traits<Container, ValueTraits> self_type;
+            template<typename Container, typename ValueTraits = detail::no_override>
+            struct base_container_traits {
+                typedef base_container_traits<Container, ValueTraits> self_type;
 
-  protected:
-    BOOST_STATIC_CONSTANT(
-        bool, is_mutable = ! boost::is_const<Container>::value);
+            protected:
+                BOOST_STATIC_CONSTANT(
+                        bool, is_mutable = !boost::is_const<Container>::value);
 
-  public:
-    typedef Container container;
+            public:
+                typedef Container container;
 
-    typedef BOOST_DEDUCED_TYPENAME container::value_type value_type;
+                typedef BOOST_DEDUCED_TYPENAME container::value_type value_type;
 
-    typedef BOOST_DEDUCED_TYPENAME mpl::if_<
-        is_const<container>,
-        BOOST_DEDUCED_TYPENAME container::const_iterator,
-        BOOST_DEDUCED_TYPENAME container::iterator
-      >::type iterator;
+                typedef BOOST_DEDUCED_TYPENAME mpl::if_<
+                is_const<container>,
+                BOOST_DEDUCED_TYPENAME container::const_iterator,
+                BOOST_DEDUCED_TYPENAME container::iterator
+                >::type iterator;
 
-    typedef typename ::boost::iterator_reference<iterator>::type reference;
+                typedef typename ::boost::iterator_reference<iterator>::type reference;
 
-    typedef value_type key_type; // Used for find, etc.
-    typedef typename container::size_type size_type;
-    typedef typename make_signed<size_type>::type index_type;
-    // at(), operator[]. Signed to support Python -ve indexes
+                typedef value_type key_type; // Used for find, etc.
+                typedef typename container::size_type size_type;
+                typedef typename make_signed<size_type>::type index_type;
+                // at(), operator[]. Signed to support Python -ve indexes
 
-    typedef typename BOOST_PYTHON_INDEXING_CALL_TRAITS<value_type>::param_type
-        value_param;
-    typedef typename BOOST_PYTHON_INDEXING_CALL_TRAITS<key_type>::param_type
-        key_param;
-    typedef typename BOOST_PYTHON_INDEXING_CALL_TRAITS<index_type>::param_type
-        index_param;
+                typedef typename BOOST_PYTHON_INDEXING_CALL_TRAITS<value_type>::param_type
+                value_param;
+                typedef typename BOOST_PYTHON_INDEXING_CALL_TRAITS<key_type>::param_type
+                key_param;
+                typedef typename BOOST_PYTHON_INDEXING_CALL_TRAITS<index_type>::param_type
+                index_param;
 
-    // Allow client code to replace the default value traits via our
-    // second (optional) template parameter
-    typedef value_traits<value_type> default_value_traits;
-    typedef typename detail::maybe_override<
-        default_value_traits, ValueTraits>::type value_traits_type;
+                // Allow client code to replace the default value traits via our
+                // second (optional) template parameter
+                typedef value_traits<value_type> default_value_traits;
+                typedef typename detail::maybe_override<
+                default_value_traits, ValueTraits>::type value_traits_type;
 
-    // Forward visit_container_class to value_traits_type
-    template<typename PythonClass, typename Policy>
-    static void visit_container_class(
-        PythonClass &pyClass, Policy const &policy)
-    {
-      value_traits_type::visit_container_class (pyClass, policy);
+                // Forward visit_container_class to value_traits_type
+
+                template<typename PythonClass, typename Policy>
+                static void visit_container_class(
+                        PythonClass &pyClass, Policy const &policy) {
+                    value_traits_type::visit_container_class(pyClass, policy);
+                }
+            };
+
+            /////////////////////////////////////////////////////////////////////////
+            // ContainerTraits for sequences with random access - std::vector,
+            // std::deque and the like
+            /////////////////////////////////////////////////////////////////////////
+
+            template<typename Container, typename ValueTraits = detail::no_override>
+            class random_access_sequence_traits
+            : public base_container_traits<Container, ValueTraits> {
+                typedef base_container_traits<Container, ValueTraits> base_class;
+
+            public:
+                typedef typename base_class::value_traits_type value_traits_type;
+
+                BOOST_STATIC_CONSTANT(
+                        method_set_type,
+                        supported_methods = (
+                        method_len
+                        | method_getitem
+                        | method_getitem_slice
+
+                        | detail::method_set_if<
+                        value_traits_type::equality_comparable,
+                        method_index
+                        | method_contains
+                        | method_count
+                        >::value
+
+                        | detail::method_set_if<
+                        base_class::is_mutable,
+                        method_setitem
+                        | method_setitem_slice
+                        | method_delitem
+                        | method_delitem_slice
+                        | method_reverse
+                        | method_append
+                        | method_insert
+                        | method_extend
+                        >::value
+
+                        | detail::method_set_if<
+                        type_traits::ice_and<
+                        base_class::is_mutable,
+                        value_traits_type::less_than_comparable
+                        >::value,
+                        method_sort
+                        >::value
+
+                        ));
+
+                // Not supported: method_iter, method_has_key
+            };
+
+        }
     }
-  };
-
-  /////////////////////////////////////////////////////////////////////////
-  // ContainerTraits for sequences with random access - std::vector,
-  // std::deque and the like
-  /////////////////////////////////////////////////////////////////////////
-
-  template<typename Container, typename ValueTraits = detail::no_override>
-  class random_access_sequence_traits
-    : public base_container_traits<Container, ValueTraits>
-  {
-    typedef base_container_traits<Container, ValueTraits> base_class;
-
-  public:
-    typedef typename base_class::value_traits_type value_traits_type;
-
-    BOOST_STATIC_CONSTANT(
-        method_set_type,
-        supported_methods = (
-              method_len
-            | method_getitem
-            | method_getitem_slice
-
-            | detail::method_set_if<
-                  value_traits_type::equality_comparable,
-                    method_index
-                  | method_contains
-                  | method_count
-              >::value
-
-            | detail::method_set_if<
-                  base_class::is_mutable,
-                    method_setitem
-                  | method_setitem_slice
-                  | method_delitem
-                  | method_delitem_slice
-                  | method_reverse
-                  | method_append
-                  | method_insert
-                  | method_extend
-              >::value
-
-            | detail::method_set_if<
-                  type_traits::ice_and<
-                      base_class::is_mutable,
-                      value_traits_type::less_than_comparable
-                  >::value,
-                  method_sort
-              >::value
-
-        ));
-
-        // Not supported: method_iter, method_has_key
-  };
-
-} } }
+}
 
 #endif // BOOST_PYTHON_INDEXING_CONTAINER_SUITE_HPP
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Feb 19 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -28,7 +28,7 @@
 #define _CEGUIIrrlichtMemoryFile_h_
 
 #ifdef HAVE_CONFIG_H
-# include "config.h"
+#include "config.h"
 #endif
 
 #include "../../Base.h"
@@ -36,42 +36,43 @@
 #include <irrlicht.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Class to wrap a file access interface around a memory buffer to enable us to
-    pass data that has been loaded via the CEGUI::ResourceProvider to irrlicht,
-    via it's IReadFile based interfaces.
-*/
-class IrrlichtMemoryFile : public irr::io::IReadFile
-{
-public:
-    IrrlichtMemoryFile(const String& filename, const unsigned char* memory,
-                       uint32 size);
-    virtual ~IrrlichtMemoryFile() {};
+namespace CEGUI {
 
-    // implement required interface from IReadFile
-    irr::s32 read(void* buffer, irr::u32 sizeToRead);
-    long getSize() const;
-    long getPos() const;
-    bool seek(long finalPos, bool relativeMovement = false);
+    /*!
+    \brief
+        Class to wrap a file access interface around a memory buffer to enable us to
+        pass data that has been loaded via the CEGUI::ResourceProvider to irrlicht,
+        via it's IReadFile based interfaces.
+     */
+    class IrrlichtMemoryFile : public irr::io::IReadFile {
+    public:
+        IrrlichtMemoryFile(const String& filename, const unsigned char* memory,
+                uint32 size);
+
+        virtual ~IrrlichtMemoryFile() {
+        };
+
+        // implement required interface from IReadFile
+        irr::s32 read(void* buffer, irr::u32 sizeToRead);
+        long getSize() const;
+        long getPos() const;
+        bool seek(long finalPos, bool relativeMovement = false);
 #if CEGUI_IRR_SDK_VERSION >= 16
-    const irr::io::path& getFileName() const;
+        const irr::io::path& getFileName() const;
 #else
-    const irr::c8* getFileName() const;
+        const irr::c8* getFileName() const;
 #endif
 
-protected:
+    protected:
 #if CEGUI_IRR_SDK_VERSION >= 16
-    irr::io::path d_filename;
+        irr::io::path d_filename;
 #else
-    String d_filename;
+        String d_filename;
 #endif
-    const unsigned char* d_buffer;
-    uint32 d_size;
-    uint32 d_position;
-};
+        const unsigned char* d_buffer;
+        uint32 d_size;
+        uint32 d_position;
+    };
 
 } // End of  CEGUI namespace section
 

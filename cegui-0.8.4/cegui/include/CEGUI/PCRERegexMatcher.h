@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 27 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -33,40 +33,39 @@
 #include <pcre.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-/brief
-    Implementation of RegexMatcher using PCRE.
+namespace CEGUI {
 
-    Details about the pattern syntax used by PCRE can be found on unix-like
-    systems by way of <tt>man pcrepattern</tt> (or online at
-    http://www.pcre.org/pcre.txt (scroll / search "PCREPATTERN(3)").
-    Alternatively, see the perl regex documentation at
-    http://perldoc.perl.org/perlre.html
-*/
-class PCRERegexMatcher : public RegexMatcher
-{
-public:
-    //! Constructor.
-    PCRERegexMatcher();
-    //! Destructor.
-    ~PCRERegexMatcher();
+    /*!
+    /brief
+        Implementation of RegexMatcher using PCRE.
 
-    // implement required interface
-    void setRegexString(const String& regex);
-    const String& getRegexString() const;
-    MatchState getMatchStateOfString(const String& str) const;
+        Details about the pattern syntax used by PCRE can be found on unix-like
+        systems by way of <tt>man pcrepattern</tt> (or online at
+        http://www.pcre.org/pcre.txt (scroll / search "PCREPATTERN(3)").
+        Alternatively, see the perl regex documentation at
+        http://perldoc.perl.org/perlre.html
+     */
+    class PCRERegexMatcher : public RegexMatcher {
+    public:
+        //! Constructor.
+        PCRERegexMatcher();
+        //! Destructor.
+        ~PCRERegexMatcher();
 
-private:
-    //! free the compiled PCRE regex, if any.
-    void release();
+        // implement required interface
+        void setRegexString(const String& regex);
+        const String& getRegexString() const;
+        MatchState getMatchStateOfString(const String& str) const;
 
-    //! Copy of the regex string assigned.
-    String d_string;
-    //! Pointer to PCRE compiled RegEx.
-    pcre* d_regex;
-};
+    private:
+        //! free the compiled PCRE regex, if any.
+        void release();
+
+        //! Copy of the regex string assigned.
+        String d_string;
+        //! Pointer to PCRE compiled RegEx.
+        pcre* d_regex;
+    };
 
 } // End of  CEGUI namespace section
 

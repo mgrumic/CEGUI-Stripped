@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Fri Apr 30 2010
-	author:		Tobias Schlegel
+        created:	Fri Apr 30 2010
+        author:		Tobias Schlegel
 
-	purpose:	This codec provides stb_image.c based image loading
-*************************************************************************/
+        purpose:	This codec provides stb_image.c based image loading
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -34,68 +34,65 @@
 #include "stb_image.cpp"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-STBImageCodec::STBImageCodec()
-    : ImageCodec("STBImageCodec - stb_image.c based image codec")
-{
-    d_supportedFormat = "tga jpg png psd bmp hdr";
-}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-STBImageCodec::~STBImageCodec()
-{
-}
-
-//----------------------------------------------------------------------------//
-Texture* STBImageCodec::load(const RawDataContainer& data, Texture* result)
-{
-    int width, height, comp;
-
-    // load image
-    unsigned char* image = stbi_load_from_memory(data.getDataPtr(),
-                                                 data.getSize(),
-                                                 &width, &height, &comp, 0);
-
-    if (!image) 
-    {
-        Logger::getSingletonPtr()->logEvent(
-            "STBImageCodec::load - Invalid image data", Errors);
-
-        return 0;
+    STBImageCodec::STBImageCodec()
+    : ImageCodec("STBImageCodec - stb_image.c based image codec") {
+        d_supportedFormat = "tga jpg png psd bmp hdr";
     }
 
-    Texture::PixelFormat format;
-    switch (comp) 
-    {
-    case 4:
-        format = Texture::PF_RGBA;
-        break;
-    case 3:
-        format = Texture::PF_RGB;
-        break;
-    default:
-        Logger::getSingletonPtr()->logEvent(
-            "STBImageCodec::load - Invalid image format. "
-            "Only RGB and RGBA images are supported", Errors);
+    //----------------------------------------------------------------------------//
 
+    STBImageCodec::~STBImageCodec() {
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Texture* STBImageCodec::load(const RawDataContainer& data, Texture* result) {
+        int width, height, comp;
+
+        // load image
+        unsigned char* image = stbi_load_from_memory(data.getDataPtr(),
+                data.getSize(),
+                &width, &height, &comp, 0);
+
+        if (!image) {
+            Logger::getSingletonPtr()->logEvent(
+                    "STBImageCodec::load - Invalid image data", Errors);
+
+            return 0;
+        }
+
+        Texture::PixelFormat format;
+        switch (comp) {
+            case 4:
+                format = Texture::PF_RGBA;
+                break;
+            case 3:
+                format = Texture::PF_RGB;
+                break;
+            default:
+                Logger::getSingletonPtr()->logEvent(
+                        "STBImageCodec::load - Invalid image format. "
+                        "Only RGB and RGBA images are supported", Errors);
+
+                stbi_image_free(image);
+                return 0;
+        }
+
+        result->loadFromMemory(image,
+                Sizef(static_cast<float> (width),
+                static_cast<float> (height)),
+                format);
+
+        // delete temporary image data
         stbi_image_free(image);
-        return 0;
+
+        return result;
     }
 
-    result->loadFromMemory(image,
-                           Sizef(static_cast<float>(width),
-                                  static_cast<float>(height)),
-                           format);
-
-    // delete temporary image data
-    stbi_image_free(image);
-
-    return result;
-}
-
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 } // End of CEGUI namespace section
 

@@ -1,6 +1,6 @@
 /***********************************************************************
     created:    Wed May 5 2010
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,9 +30,9 @@
 #include "../../TextureTarget.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4250)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4250)
+#pragma warning(disable : 4251)
 #endif
 
 // d3d forward refs
@@ -41,63 +41,62 @@ struct ID3D11RenderTargetView;
 struct ID3D11DepthStencilView;
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class Direct3D11Texture;
+namespace CEGUI {
+    class Direct3D11Texture;
 
-//! Direct3D11TextureTarget - allows rendering to Direct3D 10 textures.
-class D3D11_GUIRENDERER_API Direct3D11TextureTarget : public Direct3D11RenderTarget<TextureTarget>
-{
-public:
-    Direct3D11TextureTarget(Direct3D11Renderer& owner);
-    virtual ~Direct3D11TextureTarget();
+    //! Direct3D11TextureTarget - allows rendering to Direct3D 10 textures.
 
-    // overrides from Direct3D10RenderTarget
-    void activate();
-    void deactivate();
-    // implementation of RenderTarget interface
-    bool isImageryCache() const;
-    // implementation of TextureTarget interface
-    void clear();
-    Texture& getTexture() const;
-    void declareRenderSize(const Sizef& sz);
-    bool isRenderingInverted() const;
+    class D3D11_GUIRENDERER_API Direct3D11TextureTarget : public Direct3D11RenderTarget<TextureTarget> {
+    public:
+        Direct3D11TextureTarget(Direct3D11Renderer& owner);
+        virtual ~Direct3D11TextureTarget();
 
-protected:
-    //! default size of created texture objects
-    static const float DEFAULT_SIZE;
-    //! static data used for creating texture names
-    static uint s_textureNumber;
-    //! helper to generate unique texture names
-    static String generateTextureName();
+        // overrides from Direct3D10RenderTarget
+        void activate();
+        void deactivate();
+        // implementation of RenderTarget interface
+        bool isImageryCache() const;
+        // implementation of TextureTarget interface
+        void clear();
+        Texture& getTexture() const;
+        void declareRenderSize(const Sizef& sz);
+        bool isRenderingInverted() const;
 
-    //! allocate and set up the texture used for rendering.
-    void initialiseRenderTexture();
-    //! clean up the texture used for rendering.
-    void cleanupRenderTexture();
-    //! resize the texture
-    void resizeRenderTexture();
-    //! switch to the texture surface & depth buffer
-    void enableRenderTexture();
-    //! switch back to previous surface
-    void disableRenderTexture();
+    protected:
+        //! default size of created texture objects
+        static const float DEFAULT_SIZE;
+        //! static data used for creating texture names
+        static uint s_textureNumber;
+        //! helper to generate unique texture names
+        static String generateTextureName();
 
-    //! Direct3D10 texture that's rendered to.
-    ID3D11Texture2D* d_texture;
-    //! render target view for d_texture
-    ID3D11RenderTargetView* d_renderTargetView;
-    //! we use this to wrap d_texture so it can be used by the core CEGUI lib.
-    Direct3D11Texture* d_CEGUITexture;
-    //! render target view that was bound before this target was activated
-    ID3D11RenderTargetView* d_previousRenderTargetView;
-    //! depth stencil view that was bound before this target was activated
-    ID3D11DepthStencilView* d_previousDepthStencilView;
-};
+        //! allocate and set up the texture used for rendering.
+        void initialiseRenderTexture();
+        //! clean up the texture used for rendering.
+        void cleanupRenderTexture();
+        //! resize the texture
+        void resizeRenderTexture();
+        //! switch to the texture surface & depth buffer
+        void enableRenderTexture();
+        //! switch back to previous surface
+        void disableRenderTexture();
+
+        //! Direct3D10 texture that's rendered to.
+        ID3D11Texture2D* d_texture;
+        //! render target view for d_texture
+        ID3D11RenderTargetView* d_renderTargetView;
+        //! we use this to wrap d_texture so it can be used by the core CEGUI lib.
+        Direct3D11Texture* d_CEGUITexture;
+        //! render target view that was bound before this target was activated
+        ID3D11RenderTargetView* d_previousRenderTargetView;
+        //! depth stencil view that was bound before this target was activated
+        ID3D11DepthStencilView* d_previousDepthStencilView;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIDirect3D11TextureTarget_h_

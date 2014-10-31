@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	8/8/2004
-	author:		Steve Streeting
+        created:	8/8/2004
+        author:		Steve Streeting
 
-	purpose:	Implementation of TabButton widget base class
-*************************************************************************/
+        purpose:	Implementation of TabButton widget base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,134 +29,115 @@
 #include "CEGUI/widgets/TabButton.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-const String TabButton::EventNamespace("TabButton");
-const String TabButton::WidgetTypeName("CEGUI/TabButton");
+namespace CEGUI {
+    const String TabButton::EventNamespace("TabButton");
+    const String TabButton::WidgetTypeName("CEGUI/TabButton");
 
 
-/*************************************************************************
-	Event name constants
-*************************************************************************/
-const String TabButton::EventClicked( "Clicked" );
+    /*************************************************************************
+            Event name constants
+     *************************************************************************/
+    const String TabButton::EventClicked("Clicked");
 #ifndef PE_NO_MOUSE
-const String TabButton::EventDragged( "Dragged" );
+    const String TabButton::EventDragged("Dragged");
 #endif //PE_NO_MOUSE
-const String TabButton::EventScrolled( "Scrolled" );
+    const String TabButton::EventScrolled("Scrolled");
 
-
-/*************************************************************************
-	Constructor
-*************************************************************************/
-TabButton::TabButton(const String& type, const String& name) :
-	ButtonBase(type, name),
+    /*************************************************************************
+            Constructor
+     *************************************************************************/
+    TabButton::TabButton(const String& type, const String& name) :
+    ButtonBase(type, name),
 #ifndef PE_NO_MOUSE
     d_dragging(false),
 #endif //PE_NO_MOUSE
-    d_selected(false)
-{
-}
+    d_selected(false) {
+    }
 
+    /*************************************************************************
+            Destructor
+     *************************************************************************/
+    TabButton::~TabButton(void) {
+    }
 
-/*************************************************************************
-	Destructor
-*************************************************************************/
-TabButton::~TabButton(void)
-{
-}
+    /*************************************************************************
+    Set target window
+     *************************************************************************/
+    void TabButton::setTargetWindow(Window* wnd) {
+        d_targetWindow = wnd;
+        // Copy initial text
+        setText(wnd->getText());
+        // Parent control will keep text up to date, since changes affect layout
+    }
 
-
-/*************************************************************************
-Set target window
-*************************************************************************/
-void TabButton::setTargetWindow(Window* wnd)
-{
-    d_targetWindow = wnd;
-    // Copy initial text
-    setText(wnd->getText());
-    // Parent control will keep text up to date, since changes affect layout
-}
-
-
-/*************************************************************************
-	handler invoked internally when the button is clicked.
-*************************************************************************/
-void TabButton::onClicked(WindowEventArgs& e)
-{
-	fireEvent(EventClicked, e, EventNamespace);
-}
+    /*************************************************************************
+            handler invoked internally when the button is clicked.
+     *************************************************************************/
+    void TabButton::onClicked(WindowEventArgs& e) {
+        fireEvent(EventClicked, e, EventNamespace);
+    }
 
 
 #ifndef PE_NO_MOUSE
+
 /*************************************************************************
-	Handler for mouse button release events
-*************************************************************************/
-void TabButton::onMouseButtonDown(MouseEventArgs& e)
-{
-    if (e.button == MiddleButton)
-    {
-        captureInput ();
-        ++e.handled;
-        d_dragging = true;
+            Handler for mouse button release events
+     *************************************************************************/
+    void TabButton::onMouseButtonDown(MouseEventArgs& e) {
+        if (e.button == MiddleButton) {
+            captureInput();
+            ++e.handled;
+            d_dragging = true;
 
-        fireEvent(EventDragged, e, EventNamespace);
+            fireEvent(EventDragged, e, EventNamespace);
+        }
+
+        // default handling
+        ButtonBase::onMouseButtonDown(e);
     }
 
-	// default handling
-	ButtonBase::onMouseButtonDown(e);
-}
+    void TabButton::onMouseButtonUp(MouseEventArgs& e) {
+        if ((e.button == LeftButton) && isPushed()) {
+            Window* sheet = getGUIContext().getRootWindow();
 
-void TabButton::onMouseButtonUp(MouseEventArgs& e)
-{
-	if ((e.button == LeftButton) && isPushed())
-	{
-		Window* sheet = getGUIContext().getRootWindow();
+            if (sheet) {
+                // if mouse was released over this widget
+                // (use mouse position, as e.position has been unprojected)
+                if (this == sheet->getTargetChildAtPosition(
+                        getGUIContext().getMouseCursor().getPosition())) {
+                    // fire event
+                    WindowEventArgs args(this);
+                    onClicked(args);
+                }
+            }
 
-		if (sheet)
-		{
-			// if mouse was released over this widget
-            // (use mouse position, as e.position has been unprojected)
-			if (this == sheet->getTargetChildAtPosition(
-                                    getGUIContext().getMouseCursor().getPosition()))
-			{
-				// fire event
-				WindowEventArgs args(this);
-				onClicked(args);
-			}
-		}
+            ++e.handled;
+        } else if (e.button == MiddleButton) {
+            d_dragging = false;
+            releaseInput();
+            ++e.handled;
+        }
 
-		++e.handled;
-    }
-    else if (e.button == MiddleButton)
-    {
-        d_dragging = false;
-        releaseInput ();
-        ++e.handled;
+        // default handling
+        ButtonBase::onMouseButtonUp(e);
     }
 
-	// default handling
-	ButtonBase::onMouseButtonUp(e);
-}
+    void TabButton::onMouseMove(MouseEventArgs& e) {
+        if (d_dragging) {
+            fireEvent(EventDragged, e, EventNamespace);
+            ++e.handled;
+        }
 
-void TabButton::onMouseMove(MouseEventArgs& e)
-{
-    if (d_dragging)
-    {
-        fireEvent(EventDragged, e, EventNamespace);
-        ++e.handled;
+        // default handling
+        ButtonBase::onMouseMove(e);
     }
 
-	// default handling
-	ButtonBase::onMouseMove(e);
-}
+    void TabButton::onMouseWheel(MouseEventArgs& e) {
+        fireEvent(EventScrolled, e, EventNamespace);
 
-void TabButton::onMouseWheel(MouseEventArgs& e)
-{
-    fireEvent(EventScrolled, e, EventNamespace);
-
-	// default handling
-	ButtonBase::onMouseMove(e);
-}
+        // default handling
+        ButtonBase::onMouseMove(e);
+    }
 #endif //PE_NO_MOUSE
 
 } // End of  CEGUI namespace section

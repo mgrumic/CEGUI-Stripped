@@ -3,7 +3,7 @@
     author:     Paul D Turner
 
     purpose:    Defines class for a named collection of Event objects
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -36,326 +36,325 @@
 #include <map>
 
 #if defined (_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Class that collects together a set of Event objects.
-
-    The EventSet is a means for code to attach a handler function to some
-    named event, and later, for that event to be fired and the subscribed
-    handler(s) called.
-    \par
-    As of 0.5, the EventSet no longer needs to be filled with available events.
-    Events are now added to the set as they are first used; that is, the first
-    time a handler is subscribed to an event for a given EventSet, an Event
-    object is created and added to the EventSet.
-    \par
-    Instead of throwing an exception when firing an event that does not actually
-    exist in the set, we now do nothing (if the Event does not exist, then it
-    has no handlers subscribed, and therefore doing nothing is the correct
-    course action).
-*/
-class CEGUIEXPORT EventSet
-{
-public:
-    /*!
-    \brief
-        Constructor for EventSet objects
-    */
-    EventSet();
+namespace CEGUI {
 
     /*!
     \brief
-        Destructor for EventSet objects
-    */
-    virtual ~EventSet(void);
+        Class that collects together a set of Event objects.
 
-    /*!
-    \brief
-        Creates a new Event object with the given name and adds it to the
-        EventSet.
+        The EventSet is a means for code to attach a handler function to some
+        named event, and later, for that event to be fired and the subscribed
+        handler(s) called.
+        \par
+        As of 0.5, the EventSet no longer needs to be filled with available events.
+        Events are now added to the set as they are first used; that is, the first
+        time a handler is subscribed to an event for a given EventSet, an Event
+        object is created and added to the EventSet.
+        \par
+        Instead of throwing an exception when firing an event that does not actually
+        exist in the set, we now do nothing (if the Event does not exist, then it
+        has no handlers subscribed, and therefore doing nothing is the correct
+        course action).
+     */
+    class CEGUIEXPORT EventSet {
+    public:
+        /*!
+        \brief
+            Constructor for EventSet objects
+         */
+        EventSet();
 
-    \param name
-        String object containing the name to give the new Event.  The name must
-        be unique for the EventSet.
+        /*!
+        \brief
+            Destructor for EventSet objects
+         */
+        virtual ~EventSet(void);
 
-    \exception AlreadyExistsException
-        Thrown if an Event already exists named \a name.
-    */
-    void addEvent(const String& name);
+        /*!
+        \brief
+            Creates a new Event object with the given name and adds it to the
+            EventSet.
 
-    /*!
-    \brief
-        Adds the given Event object to the EventSet.  Ownership of the object
-        passes to EventSet and it will be deleted when it is removed from the
-        EventSet - whether explicitly via removeEvent or when the EventSet
-        is destroyed.
+        \param name
+            String object containing the name to give the new Event.  The name must
+            be unique for the EventSet.
 
-    \param event
-        Reference to an Event or Event based object that is to be added to the
-        EventSaet
+        \exception AlreadyExistsException
+            Thrown if an Event already exists named \a name.
+         */
+        void addEvent(const String& name);
 
-    \exception AlreadyExistsException
-        Thrown if the EventSet already contains an Event with the same name
-        as \a event.  Note that \a event will be destroyed under this scenario.
-    */
-    void addEvent(Event& event);
+        /*!
+        \brief
+            Adds the given Event object to the EventSet.  Ownership of the object
+            passes to EventSet and it will be deleted when it is removed from the
+            EventSet - whether explicitly via removeEvent or when the EventSet
+            is destroyed.
 
-    /*!
-    \brief
-        Removes the Event with the given name.  All connections to the event
-        are disconnected, and the underlying Event object is destroyed.
+        \param event
+            Reference to an Event or Event based object that is to be added to the
+            EventSaet
 
-    \param name
-        String object containing the name of the Event to remove.  If no such
-        Event exists, nothing happens.
-    */
-    void removeEvent(const String& name);
+        \exception AlreadyExistsException
+            Thrown if the EventSet already contains an Event with the same name
+            as \a event.  Note that \a event will be destroyed under this scenario.
+         */
+        void addEvent(Event& event);
 
-    /*!
-    \brief
-        Removes the given event from the EventSet.  All connections to the event
-        are disconnected, and the event object is destroyed.
+        /*!
+        \brief
+            Removes the Event with the given name.  All connections to the event
+            are disconnected, and the underlying Event object is destroyed.
 
-    \param event
-        Reference to the Event or Event based object to be removed from the
-        EventSet.
-    */
-    void removeEvent(Event& event);
+        \param name
+            String object containing the name of the Event to remove.  If no such
+            Event exists, nothing happens.
+         */
+        void removeEvent(const String& name);
 
-    /*!
-    \brief
-        Remove all Event objects from the EventSet.  Add connections will be
-        disconnected, and all Event objects destroyed.
-    */
-    void removeAllEvents(void);
+        /*!
+        \brief
+            Removes the given event from the EventSet.  All connections to the event
+            are disconnected, and the event object is destroyed.
 
-    /*!
-    \brief
-        Checks to see if an Event with the given name is present in this
-        EventSet.
+        \param event
+            Reference to the Event or Event based object to be removed from the
+            EventSet.
+         */
+        void removeEvent(Event& event);
 
-    \return
-        - true if an Event named \a name is defined for this EventSet.
-        - false if no Event named \a name is defined for this EventSet.
-    */
-    bool isEventPresent(const String& name);
+        /*!
+        \brief
+            Remove all Event objects from the EventSet.  Add connections will be
+            disconnected, and all Event objects destroyed.
+         */
+        void removeAllEvents(void);
 
-    /*!
-    \brief
-        Subscribes a handler to the named Event.  If the named Event is not yet
-        present in the EventSet, it is created and added.
+        /*!
+        \brief
+            Checks to see if an Event with the given name is present in this
+            EventSet.
 
-    \param name
-        String object containing the name of the Event to subscribe to.
+        \return
+            - true if an Event named \a name is defined for this EventSet.
+            - false if no Event named \a name is defined for this EventSet.
+         */
+        bool isEventPresent(const String& name);
 
-    \param subscriber
-        Function or object that is to be subscribed to the Event.
+        /*!
+        \brief
+            Subscribes a handler to the named Event.  If the named Event is not yet
+            present in the EventSet, it is created and added.
 
-    \return
-        Connection object that can be used to check the status of the Event
-        connection and to disconnect (unsubscribe) from the Event.
-    */
-    virtual Event::Connection subscribeEvent(const String& name,
-                                             Event::Subscriber subscriber);
+        \param name
+            String object containing the name of the Event to subscribe to.
 
-    /*!
-    \brief
-        Subscribes a handler to the specified group of the named Event.  If the
-        named Event is not yet present in the EventSet, it is created and added.
+        \param subscriber
+            Function or object that is to be subscribed to the Event.
 
-    \param name
-        String object containing the name of the Event to subscribe to.
+        \return
+            Connection object that can be used to check the status of the Event
+            connection and to disconnect (unsubscribe) from the Event.
+         */
+        virtual Event::Connection subscribeEvent(const String& name,
+                Event::Subscriber subscriber);
 
-    \param group
-        Group which is to be subscribed to.  Subscription groups are called in
-        ascending order.
+        /*!
+        \brief
+            Subscribes a handler to the specified group of the named Event.  If the
+            named Event is not yet present in the EventSet, it is created and added.
 
-    \param subscriber
-        Function or object that is to be subscribed to the Event.
+        \param name
+            String object containing the name of the Event to subscribe to.
 
-    \return
-        Connection object that can be used to check the status of the Event
-        connection and to disconnect (unsubscribe) from the Event.
-    */
-    virtual Event::Connection subscribeEvent(const String& name,
-                                             Event::Group group,
-                                             Event::Subscriber subscriber);
+        \param group
+            Group which is to be subscribed to.  Subscription groups are called in
+            ascending order.
 
-    /*!
-    \copydoc EventSet::subscribeEvent
+        \param subscriber
+            Function or object that is to be subscribed to the Event.
+
+        \return
+            Connection object that can be used to check the status of the Event
+            connection and to disconnect (unsubscribe) from the Event.
+         */
+        virtual Event::Connection subscribeEvent(const String& name,
+                Event::Group group,
+                Event::Subscriber subscriber);
+
+        /*!
+        \copydoc EventSet::subscribeEvent
     
-    \internal This is there just to make the syntax a tad easier
-    */
-    template<typename Arg1, typename Arg2>
-    inline Event::Connection subscribeEvent(const String& name, Arg1 arg1, Arg2 arg2)
-    {
-        return subscribeEvent(name, Event::Subscriber(arg1, arg2));
-    }
+        \internal This is there just to make the syntax a tad easier
+         */
+        template<typename Arg1, typename Arg2>
+        inline Event::Connection subscribeEvent(const String& name, Arg1 arg1, Arg2 arg2) {
+            return subscribeEvent(name, Event::Subscriber(arg1, arg2));
+        }
+
+        /*!
+        \copydoc EventSet::subscribeEvent
     
-    /*!
-    \copydoc EventSet::subscribeEvent
-    
-    \internal This is there just to make the syntax a tad easier
-    */
-    template<typename Arg1, typename Arg2>
-    inline Event::Connection subscribeEvent(const String& name, Event::Group group, Arg1 arg1, Arg2 arg2)
-    {
-        return subscribeEvent(name, group, Event::Subscriber(arg1, arg2));
-    }
-    
-    /*!
-    \brief
-        Subscribes the named Event to a scripted funtion
+        \internal This is there just to make the syntax a tad easier
+         */
+        template<typename Arg1, typename Arg2>
+        inline Event::Connection subscribeEvent(const String& name, Event::Group group, Arg1 arg1, Arg2 arg2) {
+            return subscribeEvent(name, group, Event::Subscriber(arg1, arg2));
+        }
 
-    \param name
-        String object containing the name of the Event to subscribe to.
+        /*!
+        \brief
+            Subscribes the named Event to a scripted funtion
 
-    \param subscriber_name
-        String object containing the name of the script funtion that is to be
-        subscribed to the Event.
+        \param name
+            String object containing the name of the Event to subscribe to.
 
-    \return
-        Connection object that can be used to check the status of the Event
-        connection and to disconnect (unsubscribe) from the Event.
-    */
-    virtual Event::Connection subscribeScriptedEvent(const String& name,
-                                                     const String& subscriber_name);
+        \param subscriber_name
+            String object containing the name of the script funtion that is to be
+            subscribed to the Event.
 
-    /*!
-    \brief
-        Subscribes the specified group of the named Event to a scripted funtion.
+        \return
+            Connection object that can be used to check the status of the Event
+            connection and to disconnect (unsubscribe) from the Event.
+         */
+        virtual Event::Connection subscribeScriptedEvent(const String& name,
+                const String& subscriber_name);
 
-    \param name
-        String object containing the name of the Event to subscribe to.
+        /*!
+        \brief
+            Subscribes the specified group of the named Event to a scripted funtion.
 
-    \param group
-        Group which is to be subscribed to.  Subscription groups are called in
-        ascending order.
+        \param name
+            String object containing the name of the Event to subscribe to.
 
-    \param subscriber_name
-        String object containing the name of the script funtion that is to be
-        subscribed to the Event.
+        \param group
+            Group which is to be subscribed to.  Subscription groups are called in
+            ascending order.
 
-    \return
-        Connection object that can be used to check the status of the Event
-        connection and to disconnect (unsubscribe) from the Event.
-    */
-    virtual Event::Connection subscribeScriptedEvent(const String& name,
-                                                     Event::Group group,
-                                                     const String& subscriber_name);
+        \param subscriber_name
+            String object containing the name of the script funtion that is to be
+            subscribed to the Event.
 
-    /*!
-    \brief
-        Fires the named event passing the given EventArgs object.
+        \return
+            Connection object that can be used to check the status of the Event
+            connection and to disconnect (unsubscribe) from the Event.
+         */
+        virtual Event::Connection subscribeScriptedEvent(const String& name,
+                Event::Group group,
+                const String& subscriber_name);
 
-    \param name
-        String object holding the name of the Event that is to be fired
-        (triggered)
+        /*!
+        \brief
+            Fires the named event passing the given EventArgs object.
 
-    \param args
-        The EventArgs (or derived) object that is to be bassed to each
-        subscriber of the Event.  Once all subscribers
-        have been called the 'handled' field of the event is updated
-        appropriately.
+        \param name
+            String object holding the name of the Event that is to be fired
+            (triggered)
 
-    \param eventNamespace
-        String object describing the global event namespace prefix for this
-        event.
-    */
-    virtual void fireEvent(const String& name, EventArgs& args,
-                           const String& eventNamespace = "");
+        \param args
+            The EventArgs (or derived) object that is to be bassed to each
+            subscriber of the Event.  Once all subscribers
+            have been called the 'handled' field of the event is updated
+            appropriately.
+
+        \param eventNamespace
+            String object describing the global event namespace prefix for this
+            event.
+         */
+        virtual void fireEvent(const String& name, EventArgs& args,
+                const String& eventNamespace = "");
 
 
-    /*!
-    \brief
-        Return whether the EventSet is muted or not.
+        /*!
+        \brief
+            Return whether the EventSet is muted or not.
 
-    \return
-        - true if the EventSet is muted.  All requests to fire events will be
-          ignored.
-        - false if the EventSet is not muted.  Requests to fire events are
-          processed as normal.
-    */
-    bool isMuted(void) const;
+        \return
+            - true if the EventSet is muted.  All requests to fire events will be
+              ignored.
+            - false if the EventSet is not muted.  Requests to fire events are
+              processed as normal.
+         */
+        bool isMuted(void) const;
 
-    /*!
-    \brief
-        Set the mute state for this EventSet.
+        /*!
+        \brief
+            Set the mute state for this EventSet.
 
-    \param setting
-        - true if the EventSet is to be muted (no further event firing requests
-          will be honoured until EventSet is unmuted).
-        - false if the EventSet is not to be muted and all events should fired
-          as requested.
-    */
-    void    setMutedState(bool setting);
+        \param setting
+            - true if the EventSet is to be muted (no further event firing requests
+              will be honoured until EventSet is unmuted).
+            - false if the EventSet is not to be muted and all events should fired
+              as requested.
+         */
+        void setMutedState(bool setting);
 
-    /*!
-    \brief
-        Return a pointer to the Event object with the given name, optionally
-        adding such an Event object to the EventSet if it does not already
-        exist.
+        /*!
+        \brief
+            Return a pointer to the Event object with the given name, optionally
+            adding such an Event object to the EventSet if it does not already
+            exist.
 
-    \param name
-        String object holding the name of the Event to return.
+        \param name
+            String object holding the name of the Event to return.
 
-    \param autoAdd
-        - true if an Event object named \a name should be added to the set
-          if such an Event does not currently exist.
-        - false if no object should automatically be added to the set.  In this
-          case, if the Event does not already exist 0 will be returned.
+        \param autoAdd
+            - true if an Event object named \a name should be added to the set
+              if such an Event does not currently exist.
+            - false if no object should automatically be added to the set.  In this
+              case, if the Event does not already exist 0 will be returned.
 
-    \return
-        Pointer to the Event object in this EventSet with the specifed name.
-        Or 0 if such an Event does not exist and \a autoAdd was false.
-    */
-    Event* getEventObject(const String& name, bool autoAdd = false);
+        \return
+            Pointer to the Event object in this EventSet with the specifed name.
+            Or 0 if such an Event does not exist and \a autoAdd was false.
+         */
+        Event* getEventObject(const String& name, bool autoAdd = false);
 
-protected:
-    //! Implementation event firing member
-    void fireEvent_impl(const String& name, EventArgs& args);
-    //! Helper to return the script module pointer or throw.
-    ScriptModule* getScriptModule() const;
+    protected:
+        //! Implementation event firing member
+        void fireEvent_impl(const String& name, EventArgs& args);
+        //! Helper to return the script module pointer or throw.
+        ScriptModule* getScriptModule() const;
 
-    // Do not allow copying, assignment, or any other usage than simple creation.
-    EventSet(EventSet&) {}
-    EventSet& operator=(EventSet&)
-    {
-        return *this;
-    }
+        // Do not allow copying, assignment, or any other usage than simple creation.
 
-    typedef std::map<String, Event*, StringFastLessCompare
-        CEGUI_MAP_ALLOC(String, Event*)> EventMap;
-    EventMap    d_events;
+        EventSet(EventSet&) {
+        }
 
-    bool    d_muted;    //!< true if events for this EventSet have been muted.
+        EventSet& operator=(EventSet&) {
+            return *this;
+        }
 
-public:
-    /*************************************************************************
-        Iterator stuff
-    *************************************************************************/
-    typedef ConstMapIterator<EventMap> EventIterator;
+        typedef std::map<String, Event*, StringFastLessCompare
+        CEGUI_MAP_ALLOC(String, Event*) > EventMap;
+        EventMap d_events;
 
-    /*!
-    \brief
-        Return a EventSet::EventIterator object to iterate over the events currently
-        added to the EventSet.
-    */
-    EventIterator getEventIterator(void) const;
-};
+        bool d_muted; //!< true if events for this EventSet have been muted.
+
+    public:
+        /*************************************************************************
+            Iterator stuff
+         *************************************************************************/
+        typedef ConstMapIterator<EventMap> EventIterator;
+
+        /*!
+        \brief
+            Return a EventSet::EventIterator object to iterate over the events currently
+            added to the EventSet.
+         */
+        EventIterator getEventIterator(void) const;
+    };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIEventSet_h_

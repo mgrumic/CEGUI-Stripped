@@ -32,68 +32,67 @@
 #include "CEGUI/String.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! String component that draws an image.
-class CEGUIEXPORT RenderedStringImageComponent : public RenderedStringComponent
-{
-public:
-    //! Constructor
-    RenderedStringImageComponent();
-    RenderedStringImageComponent(const String& name);
-    RenderedStringImageComponent(const Image* image);
+namespace CEGUI {
+    //! String component that draws an image.
 
-    //! Set the image to be drawn by this component.
-    void setImage(const String& name);
-    //! Set the image to be drawn by this component.
-    void setImage(const Image* image);
-    //! return the current set image that will be drawn by this component
-    const Image* getImage() const;
-    //! Set the colour values used when rendering this component.
-    void setColours(const ColourRect& cr);
-    //! Set the colour values used when rendering this component.
-    void setColours(const Colour& c);
-    //! return the ColourRect object used when drawing this component.
-    const ColourRect& getColours() const;
-    //! set the size for rendering the image (0s mean 'normal' size)
-    void setSize(const Sizef& sz);
-    //! return the size for rendering the image (0s mean 'normal' size)
-    const Sizef& getSize() const;
+    class CEGUIEXPORT RenderedStringImageComponent : public RenderedStringComponent {
+    public:
+        //! Constructor
+        RenderedStringImageComponent();
+        RenderedStringImageComponent(const String& name);
+        RenderedStringImageComponent(const Image* image);
 
-    // implementation of abstract base interface
-    void draw(const Window* ref_wnd, GeometryBuffer& buffer,
-              const Vector2f& position, const ColourRect* mod_colours,
-              const Rectf* clip_rect, const float vertical_space,
-              const float space_extra) const;
-    Sizef getPixelSize(const Window* ref_wnd) const;
-    bool canSplit() const;
-    RenderedStringImageComponent* split(const Window* ref_wnd,
-                                        float split_point,
-                                        bool first_component);
-    RenderedStringImageComponent* clone() const;
-    size_t getSpaceCount() const;
-    void setSelection(const Window* ref_wnd,
-                      const float start, const float end);
-protected:
-    //! pointer to the image drawn by the component.
-    const Image* d_image;
-    //! ColourRect object describing the colours to use when rendering.
-    ColourRect d_colours;
-    //! target size to render the image at (0s mean natural size)
-    Sizef d_size;
-    // whether the image is marked as selected.
-    bool d_selected;
-};
+        //! Set the image to be drawn by this component.
+        void setImage(const String& name);
+        //! Set the image to be drawn by this component.
+        void setImage(const Image* image);
+        //! return the current set image that will be drawn by this component
+        const Image* getImage() const;
+        //! Set the colour values used when rendering this component.
+        void setColours(const ColourRect& cr);
+        //! Set the colour values used when rendering this component.
+        void setColours(const Colour& c);
+        //! return the ColourRect object used when drawing this component.
+        const ColourRect& getColours() const;
+        //! set the size for rendering the image (0s mean 'normal' size)
+        void setSize(const Sizef& sz);
+        //! return the size for rendering the image (0s mean 'normal' size)
+        const Sizef& getSize() const;
+
+        // implementation of abstract base interface
+        void draw(const Window* ref_wnd, GeometryBuffer& buffer,
+                const Vector2f& position, const ColourRect* mod_colours,
+                const Rectf* clip_rect, const float vertical_space,
+                const float space_extra) const;
+        Sizef getPixelSize(const Window* ref_wnd) const;
+        bool canSplit() const;
+        RenderedStringImageComponent* split(const Window* ref_wnd,
+                float split_point,
+                bool first_component);
+        RenderedStringImageComponent* clone() const;
+        size_t getSpaceCount() const;
+        void setSelection(const Window* ref_wnd,
+                const float start, const float end);
+    protected:
+        //! pointer to the image drawn by the component.
+        const Image* d_image;
+        //! ColourRect object describing the colours to use when rendering.
+        ColourRect d_colours;
+        //! target size to render the image at (0s mean natural size)
+        Sizef d_size;
+        // whether the image is marked as selected.
+        bool d_selected;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif // end of guard _CEGUIRenderedStringImageComponent_h_

@@ -12,7 +12,7 @@
 
 namespace bp = boost::python;
 
-BOOST_PYTHON_MODULE(PyCEGUIOgreRenderer){
+BOOST_PYTHON_MODULE(PyCEGUIOgreRenderer) {
     register_OgreImageCodec_class();
 
     register_OgreRenderer_class();

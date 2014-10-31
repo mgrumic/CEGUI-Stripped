@@ -2,7 +2,7 @@
     created:    Tue Apr 30 2013
     authors:    Paul D Turner <paul@cegui.org.uk>
                 Lukas E Meindl
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2013 Paul D Turner & The CEGUI Development Team
  *
@@ -39,265 +39,269 @@
 #include <map>
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIOPENGLRENDERER_EXPORTS
-#       define OPENGL_GUIRENDERER_API __declspec(dllexport)
-#   else
-#       define OPENGL_GUIRENDERER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIOPENGLRENDERER_EXPORTS
+#define OPENGL_GUIRENDERER_API __declspec(dllexport)
 #else
-#   define OPENGL_GUIRENDERER_API
+#define OPENGL_GUIRENDERER_API __declspec(dllimport)
+#endif
+#else
+#define OPENGL_GUIRENDERER_API
 #endif
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
-class OpenGLTexture;
-class OpenGLGeometryBufferBase;
-struct mat4Pimpl;
+namespace CEGUI {
+    class OpenGLTexture;
+    class OpenGLGeometryBufferBase;
+    struct mat4Pimpl;
 
-//! Common base class used for other OpenGL based renderer modules.
-class OPENGL_GUIRENDERER_API OpenGLRendererBase : public Renderer
-{
-public:
-    // implement Renderer interface
-    RenderTarget& getDefaultRenderTarget();
-    GeometryBuffer& createGeometryBuffer();
-    void destroyGeometryBuffer(const GeometryBuffer& buffer);
-    void destroyAllGeometryBuffers();
-    TextureTarget* createTextureTarget();
-    void destroyTextureTarget(TextureTarget* target);
-    void destroyAllTextureTargets();
-    Texture& createTexture(const String& name);
-    Texture& createTexture(const String& name,
-                           const String& filename,
-                           const String& resourceGroup);
-    Texture& createTexture(const String& name, const Sizef& size);
-    void destroyTexture(Texture& texture);
-    void destroyTexture(const String& name);
-    void destroyAllTextures();
-    Texture& getTexture(const String& name) const;
-    bool isTextureDefined(const String& name) const;
-    void setDisplaySize(const Sizef& sz);
-    const Sizef& getDisplaySize() const;
-    const Vector2f& getDisplayDPI() const;
-    uint getMaxTextureSize() const;
-    const String& getIdentifierString() const;
+    //! Common base class used for other OpenGL based renderer modules.
 
-    /*!
-    \brief
-        Create a texture that uses an existing OpenGL texture with the specified
-        size.  Note that it is your responsibility to ensure that the OpenGL
-        texture is valid and that the specified size is accurate.
+    class OPENGL_GUIRENDERER_API OpenGLRendererBase : public Renderer {
+    public:
+        // implement Renderer interface
+        RenderTarget& getDefaultRenderTarget();
+        GeometryBuffer& createGeometryBuffer();
+        void destroyGeometryBuffer(const GeometryBuffer& buffer);
+        void destroyAllGeometryBuffers();
+        TextureTarget* createTextureTarget();
+        void destroyTextureTarget(TextureTarget* target);
+        void destroyAllTextureTargets();
+        Texture& createTexture(const String& name);
+        Texture& createTexture(const String& name,
+                const String& filename,
+                const String& resourceGroup);
+        Texture& createTexture(const String& name, const Sizef& size);
+        void destroyTexture(Texture& texture);
+        void destroyTexture(const String& name);
+        void destroyAllTextures();
+        Texture& getTexture(const String& name) const;
+        bool isTextureDefined(const String& name) const;
+        void setDisplaySize(const Sizef& sz);
+        const Sizef& getDisplaySize() const;
+        const Vector2f& getDisplayDPI() const;
+        uint getMaxTextureSize() const;
+        const String& getIdentifierString() const;
 
-    \param sz
-        Size object that describes the pixel size of the OpenGL texture
-        identified by \a tex.
+        /*!
+        \brief
+            Create a texture that uses an existing OpenGL texture with the specified
+            size.  Note that it is your responsibility to ensure that the OpenGL
+            texture is valid and that the specified size is accurate.
 
-    \param name
-        String holding the name for the new texture.  Texture names must be
-        unique within the Renderer.
+        \param sz
+            Size object that describes the pixel size of the OpenGL texture
+            identified by \a tex.
 
-    \return
-        Texture object that wraps the OpenGL texture \a tex, and whose size is
-        specified to be \a sz.
+        \param name
+            String holding the name for the new texture.  Texture names must be
+            unique within the Renderer.
 
-    \exceptions
-        - AlreadyExistsException - thrown if a Texture object named \a name
-          already exists within the system.
-    */
-    Texture& createTexture(const String& name, GLuint tex, const Sizef& sz);
+        \return
+            Texture object that wraps the OpenGL texture \a tex, and whose size is
+            specified to be \a sz.
 
-    /*!
-    \brief
-        Tells the renderer to initialise some extra states beyond what it
-        directly needs itself for CEGUI.
+        \exceptions
+            - AlreadyExistsException - thrown if a Texture object named \a name
+              already exists within the system.
+         */
+        Texture& createTexture(const String& name, GLuint tex, const Sizef& sz);
 
-        This option is useful in cases where you've made changes to the default
-        OpenGL state and do not want to save/restore those between CEGUI
-        rendering calls.  Note that this option will not deal with every
-        possible state or extension - if you want a state added here, make a
-        request and we'll consider it ;)
-    */
-    void enableExtraStateSettings(bool setting);
+        /*!
+        \brief
+            Tells the renderer to initialise some extra states beyond what it
+            directly needs itself for CEGUI.
 
-    /*!
-    \brief
-        Grabs all the loaded textures from Texture RAM and stores them in a
-        local data buffer.  This function invalidates all textures, and
-        restoreTextures must be called before any CEGUI rendering is done for
-        predictable results.
-    */
-    void grabTextures();
+            This option is useful in cases where you've made changes to the default
+            OpenGL state and do not want to save/restore those between CEGUI
+            rendering calls.  Note that this option will not deal with every
+            possible state or extension - if you want a state added here, make a
+            request and we'll consider it ;)
+         */
+        void enableExtraStateSettings(bool setting);
 
-    /*!
-    \brief
-        Restores all the loaded textures from the local data buffers previously
-        created by 'grabTextures'
-    */
-    void restoreTextures();
+        /*!
+        \brief
+            Grabs all the loaded textures from Texture RAM and stores them in a
+            local data buffer.  This function invalidates all textures, and
+            restoreTextures must be called before any CEGUI rendering is done for
+            predictable results.
+         */
+        void grabTextures();
 
-    /*!
-    \brief
-        Helper to return a valid texture size according to reported OpenGL
-        capabilities.
+        /*!
+        \brief
+            Restores all the loaded textures from the local data buffers previously
+            created by 'grabTextures'
+         */
+        void restoreTextures();
 
-    \param sz
-        Size object containing input size.
+        /*!
+        \brief
+            Helper to return a valid texture size according to reported OpenGL
+            capabilities.
 
-    \return
-        Size object containing - possibly different - output size.
-    */
-    virtual Sizef getAdjustedTextureSize(const Sizef& sz) const;
+        \param sz
+            Size object containing input size.
 
-    /*!
-    \brief
-        Utility function that will return \a f if it's a power of two, or the
-        next power of two up from \a f if it's not.
-    */
-    static float getNextPOTSize(const float f);
+        \return
+            Size object containing - possibly different - output size.
+         */
+        virtual Sizef getAdjustedTextureSize(const Sizef& sz) const;
 
-    //! set the render states for the specified BlendMode.
-    virtual void setupRenderingBlendMode(const BlendMode mode,
-                                         const bool force = false) = 0;
+        /*!
+        \brief
+            Utility function that will return \a f if it's a power of two, or the
+            next power of two up from \a f if it's not.
+         */
+        static float getNextPOTSize(const float f);
 
-    //! Return whether EXT_texture_compression_s3tc is supported
-    virtual bool isS3TCSupported() const = 0;
+        //! set the render states for the specified BlendMode.
+        virtual void setupRenderingBlendMode(const BlendMode mode,
+                const bool force = false) = 0;
 
-    /*!
-    \brief
-        Helper to return view projection matrix.
+        //! Return whether EXT_texture_compression_s3tc is supported
+        virtual bool isS3TCSupported() const = 0;
 
-    \return
-        The view projection matrix.
-    */
-    virtual const mat4Pimpl* getViewProjectionMatrix();
+        /*!
+        \brief
+            Helper to return view projection matrix.
 
-    /*!
-    \brief
-        Helper to set the view projection matrix.
+        \return
+            The view projection matrix.
+         */
+        virtual const mat4Pimpl* getViewProjectionMatrix();
 
-    \param viewProjectionMatrix
-        The view projection matrix.
-    */
-    virtual void setViewProjectionMatrix(const mat4Pimpl* viewProjectionMatrix);
+        /*!
+        \brief
+            Helper to set the view projection matrix.
 
-    /*!
-    \brief
-        Helper to get the viewport.
+        \param viewProjectionMatrix
+            The view projection matrix.
+         */
+        virtual void setViewProjectionMatrix(const mat4Pimpl* viewProjectionMatrix);
 
-    \return
-        The viewport.
-    */
-    const CEGUI::Rectf& getActiveViewPort();
+        /*!
+        \brief
+            Helper to get the viewport.
 
-    /*!
-    \brief
-        Helper to set the active render target.
+        \return
+            The viewport.
+         */
+        const CEGUI::Rectf& getActiveViewPort();
 
-    \param renderTarget
-        The active RenderTarget.
-    */
-    void setActiveRenderTarget(RenderTarget* renderTarget);
-        
-    /*!
-    \brief
-        Helper to get the active render target.
+        /*!
+        \brief
+            Helper to set the active render target.
 
-    \return
-        The active RenderTarget.
-    */
-    RenderTarget* getActiveRenderTarget();
+        \param renderTarget
+            The active RenderTarget.
+         */
+        void setActiveRenderTarget(RenderTarget* renderTarget);
 
-protected:
-    OpenGLRendererBase();
+        /*!
+        \brief
+            Helper to get the active render target.
 
-    /*!
-    \brief
-        Constructor.
+        \return
+            The active RenderTarget.
+         */
+        RenderTarget* getActiveRenderTarget();
 
-    \param display_size
-        Size object describing the initial display resolution.
-    */
-    OpenGLRendererBase(const Sizef& display_size);
+    protected:
+        OpenGLRendererBase();
 
-    //! Destructor!
-    virtual ~OpenGLRendererBase();
+        /*!
+        \brief
+            Constructor.
 
-    //! helper to safely log the creation of a named texture
-    static void logTextureCreation(const String& name);
-    //! helper to safely log the destruction of a named texture
-    static void logTextureDestruction(const String& name);
+        \param display_size
+            Size object describing the initial display resolution.
+         */
+        OpenGLRendererBase(const Sizef& display_size);
 
-    //! helper to set (rough) max texture size.
-    void initialiseMaxTextureSize();
+        //! Destructor!
+        virtual ~OpenGLRendererBase();
 
-    //! helper to set display size with current viewport size.
-    void initialiseDisplaySizeWithViewportSize();
+        //! helper to safely log the creation of a named texture
+        static void logTextureCreation(const String& name);
+        //! helper to safely log the destruction of a named texture
+        static void logTextureDestruction(const String& name);
 
-    //! return some appropriate OpenGLGeometryBufferBase subclass instance.
-    virtual OpenGLGeometryBufferBase* createGeometryBuffer_impl() = 0;
+        //! helper to set (rough) max texture size.
+        void initialiseMaxTextureSize();
 
-    //! return some appropriate TextureTarget subclass instance.
-    virtual TextureTarget* createTextureTarget_impl() = 0;
+        //! helper to set display size with current viewport size.
+        void initialiseDisplaySizeWithViewportSize();
 
-    //! String holding the renderer identification text.
-    static String d_rendererID;
-    //! What the renderer considers to be the current display size.
-    Sizef d_displaySize;
-    //! What the renderer considers to be the current display DPI resolution.
-    Vector2f d_displayDPI;
-    //! The default RenderTarget
-    RenderTarget* d_defaultTarget;
-    //! container type used to hold TextureTargets we create.
-    typedef std::vector<TextureTarget*> TextureTargetList;
-    //! Container used to track texture targets.
-    TextureTargetList d_textureTargets;
-    //! container type used to hold GeometryBuffers created.
-    typedef std::vector<OpenGLGeometryBufferBase*> GeometryBufferList;
-    //! Container used to track geometry buffers.
-    GeometryBufferList d_geometryBuffers;
-    //! container type used to hold Textures we create.
-    typedef std::map<String, OpenGLTexture*, StringFastLessCompare
-                     CEGUI_MAP_ALLOC(String, OpenGLTexture*)> TextureMap;
-    //! Container used to track textures.
-    TextureMap d_textures;
-    //! What the renderer thinks the max texture size is.
-    uint d_maxTextureSize;
-    //! option of whether to initialise extra states that may not be at default
-    bool d_initExtraStates;
-    //! What blend mode we think is active.
-    BlendMode d_activeBlendMode;
-    //! View projection matrix
-    mat4Pimpl* d_viewProjectionMatrix;
-    //! The active RenderTarget
-    RenderTarget* d_activeRenderTarget;
-};
+        //! return some appropriate OpenGLGeometryBufferBase subclass instance.
+        virtual OpenGLGeometryBufferBase* createGeometryBuffer_impl() = 0;
 
-/**
-    This class allows us to implement a factory template for creating and
-    destroying any type of TextureTarget.  The code that detects
-    the computer's abilities will generate an appropriate factory for a
-    TextureTarget based on what the host system can provide - or use the
-    default 'null' factory if no suitable TextureTargets are available.
-*/
-class OGLTextureTargetFactory :
-    public AllocatedObject<OGLTextureTargetFactory>
-{
-public:
-    OGLTextureTargetFactory() {}
-    virtual ~OGLTextureTargetFactory() {}
-    virtual TextureTarget* create(OpenGLRendererBase&) const
-        { return 0; }
-};
+        //! return some appropriate TextureTarget subclass instance.
+        virtual TextureTarget* createTextureTarget_impl() = 0;
+
+        //! String holding the renderer identification text.
+        static String d_rendererID;
+        //! What the renderer considers to be the current display size.
+        Sizef d_displaySize;
+        //! What the renderer considers to be the current display DPI resolution.
+        Vector2f d_displayDPI;
+        //! The default RenderTarget
+        RenderTarget* d_defaultTarget;
+        //! container type used to hold TextureTargets we create.
+        typedef std::vector<TextureTarget*> TextureTargetList;
+        //! Container used to track texture targets.
+        TextureTargetList d_textureTargets;
+        //! container type used to hold GeometryBuffers created.
+        typedef std::vector<OpenGLGeometryBufferBase*> GeometryBufferList;
+        //! Container used to track geometry buffers.
+        GeometryBufferList d_geometryBuffers;
+        //! container type used to hold Textures we create.
+        typedef std::map<String, OpenGLTexture*, StringFastLessCompare
+        CEGUI_MAP_ALLOC(String, OpenGLTexture*) > TextureMap;
+        //! Container used to track textures.
+        TextureMap d_textures;
+        //! What the renderer thinks the max texture size is.
+        uint d_maxTextureSize;
+        //! option of whether to initialise extra states that may not be at default
+        bool d_initExtraStates;
+        //! What blend mode we think is active.
+        BlendMode d_activeBlendMode;
+        //! View projection matrix
+        mat4Pimpl* d_viewProjectionMatrix;
+        //! The active RenderTarget
+        RenderTarget* d_activeRenderTarget;
+    };
+
+    /**
+        This class allows us to implement a factory template for creating and
+        destroying any type of TextureTarget.  The code that detects
+        the computer's abilities will generate an appropriate factory for a
+        TextureTarget based on what the host system can provide - or use the
+        default 'null' factory if no suitable TextureTargets are available.
+     */
+    class OGLTextureTargetFactory :
+    public AllocatedObject<OGLTextureTargetFactory> {
+    public:
+
+        OGLTextureTargetFactory() {
+        }
+
+        virtual ~OGLTextureTargetFactory() {
+        }
+
+        virtual TextureTarget* create(OpenGLRendererBase&) const {
+            return 0;
+        }
+    };
 
 }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif

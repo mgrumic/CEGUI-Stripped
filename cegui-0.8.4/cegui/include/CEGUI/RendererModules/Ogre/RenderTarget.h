@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 17 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -33,73 +33,72 @@
 #include <OgreMatrix4.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Intermediate RenderTarget implementing common parts for Ogre engine.
-template <typename T = RenderTarget>
-class OGRE_GUIRENDERER_API OgreRenderTarget : public T
-{
-public:
-    //! Constructor
-    OgreRenderTarget(OgreRenderer& owner, Ogre::RenderSystem& rs);
+namespace CEGUI {
+    //! Intermediate RenderTarget implementing common parts for Ogre engine.
 
-    //! Destructor
-    virtual ~OgreRenderTarget();
+    template <typename T = RenderTarget>
+    class OGRE_GUIRENDERER_API OgreRenderTarget : public T {
+    public:
+        //! Constructor
+        OgreRenderTarget(OgreRenderer& owner, Ogre::RenderSystem& rs);
 
-    /*!
-    \brief
-        Set the underlying viewport area directly - bypassing what the
-        RenderTarget considers to be it's area - thus allowing the view port
-        area used for rendering to be different to the area set for the target.
+        //! Destructor
+        virtual ~OgreRenderTarget();
 
-    \param area
-        Rect object describing the area to use in pixels.
+        /*!
+        \brief
+            Set the underlying viewport area directly - bypassing what the
+            RenderTarget considers to be it's area - thus allowing the view port
+            area used for rendering to be different to the area set for the target.
 
-    \deprecated
-        This function is deprecated and will be removed or changed considerably
-        in future releases.
-    */
-    void setOgreViewportDimensions(const Rectf& area);
+        \param area
+            Rect object describing the area to use in pixels.
 
-    // implement parts of CEGUI::RenderTarget interface
-    void draw(const GeometryBuffer& buffer);
-    void draw(const RenderQueue& queue);
-    void setArea(const Rectf& area);
-    const Rectf& getArea() const;
-    void activate();
-    void deactivate();
-    void unprojectPoint(const GeometryBuffer& buff,
-                        const Vector2f& p_in, Vector2f& p_out) const;
+        \deprecated
+            This function is deprecated and will be removed or changed considerably
+            in future releases.
+         */
+        void setOgreViewportDimensions(const Rectf& area);
 
-protected:
-    //! helper that initialises the cached matrix
-    void updateMatrix() const;
-    //! helper that initialises the viewport
-    void updateViewport();
-    //! helper to update the actual Ogre viewport dimensions
-    void updateOgreViewportDimensions(const Ogre::RenderTarget* const rt);
+        // implement parts of CEGUI::RenderTarget interface
+        void draw(const GeometryBuffer& buffer);
+        void draw(const RenderQueue& queue);
+        void setArea(const Rectf& area);
+        const Rectf& getArea() const;
+        void activate();
+        void deactivate();
+        void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in, Vector2f& p_out) const;
 
-    //! OgreRenderer object that owns this RenderTarget
-    OgreRenderer& d_owner;
-    //! Ogre RendererSystem used to affect the rendering process
-    Ogre::RenderSystem& d_renderSystem;
-    //! holds defined area for the RenderTarget
-    Rectf d_area;
-    //! Ogre render target that we are effectively wrapping
-    Ogre::RenderTarget* d_renderTarget;
-    //! Ogre viewport used for this target.
-    Ogre::Viewport* d_viewport;
-    //! projection / view matrix cache
-    mutable Ogre::Matrix4 d_matrix;
-    //! true when d_matrix is valid and up to date
-    mutable bool d_matrixValid;
-    //! tracks viewing distance (this is set up at the same time as d_matrix)
-    mutable float d_viewDistance;
-    //! true when d_viewport is up to date and valid.
-    bool d_viewportValid;
-    //! holds set Ogre viewport dimensions
-    Rectf d_ogreViewportDimensions;
-};
+    protected:
+        //! helper that initialises the cached matrix
+        void updateMatrix() const;
+        //! helper that initialises the viewport
+        void updateViewport();
+        //! helper to update the actual Ogre viewport dimensions
+        void updateOgreViewportDimensions(const Ogre::RenderTarget * const rt);
+
+        //! OgreRenderer object that owns this RenderTarget
+        OgreRenderer& d_owner;
+        //! Ogre RendererSystem used to affect the rendering process
+        Ogre::RenderSystem& d_renderSystem;
+        //! holds defined area for the RenderTarget
+        Rectf d_area;
+        //! Ogre render target that we are effectively wrapping
+        Ogre::RenderTarget* d_renderTarget;
+        //! Ogre viewport used for this target.
+        Ogre::Viewport* d_viewport;
+        //! projection / view matrix cache
+        mutable Ogre::Matrix4 d_matrix;
+        //! true when d_matrix is valid and up to date
+        mutable bool d_matrixValid;
+        //! tracks viewing distance (this is set up at the same time as d_matrix)
+        mutable float d_viewDistance;
+        //! true when d_viewport is up to date and valid.
+        bool d_viewportValid;
+        //! holds set Ogre viewport dimensions
+        Rectf d_ogreViewportDimensions;
+    };
 
 } // End of  CEGUI namespace section
 

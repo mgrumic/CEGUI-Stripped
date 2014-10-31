@@ -6,128 +6,128 @@
 
 namespace bp = boost::python;
 
-void register_KeyFrame_class(){
+void register_KeyFrame_class() {
 
     { //::CEGUI::KeyFrame
         typedef bp::class_< CEGUI::KeyFrame > KeyFrame_exposer_t;
-        KeyFrame_exposer_t KeyFrame_exposer = KeyFrame_exposer_t( "KeyFrame", bp::init< CEGUI::Affector *, float >(( bp::arg("parent"), bp::arg("position") ), "! internal constructor, please use Affector.createKeyFrame\n") );
-        bp::scope KeyFrame_scope( KeyFrame_exposer );
+        KeyFrame_exposer_t KeyFrame_exposer = KeyFrame_exposer_t("KeyFrame", bp::init< CEGUI::Affector *, float >((bp::arg("parent"), bp::arg("position")), "! internal constructor, please use Affector.createKeyFrame\n"));
+        bp::scope KeyFrame_scope(KeyFrame_exposer);
         bp::enum_< CEGUI::KeyFrame::Progression>("Progression")
-            .value("P_Linear", CEGUI::KeyFrame::P_Linear)
-            .value("P_QuadraticAccelerating", CEGUI::KeyFrame::P_QuadraticAccelerating)
-            .value("P_QuadraticDecelerating", CEGUI::KeyFrame::P_QuadraticDecelerating)
-            .value("P_Discrete", CEGUI::KeyFrame::P_Discrete)
-            .export_values()
-            ;
+                .value("P_Linear", CEGUI::KeyFrame::P_Linear)
+                .value("P_QuadraticAccelerating", CEGUI::KeyFrame::P_QuadraticAccelerating)
+                .value("P_QuadraticDecelerating", CEGUI::KeyFrame::P_QuadraticDecelerating)
+                .value("P_Discrete", CEGUI::KeyFrame::P_Discrete)
+                .export_values()
+                ;
         { //::CEGUI::KeyFrame::alterInterpolationPosition
-        
-            typedef float ( ::CEGUI::KeyFrame::*alterInterpolationPosition_function_type )( float ) ;
-            
-            KeyFrame_exposer.def( 
-                "alterInterpolationPosition"
-                , alterInterpolationPosition_function_type( &::CEGUI::KeyFrame::alterInterpolationPosition )
-                , ( bp::arg("position") )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::KeyFrame::*alterInterpolationPosition_function_type)(float);
+
+            KeyFrame_exposer.def(
+                    "alterInterpolationPosition"
+                    , alterInterpolationPosition_function_type(&::CEGUI::KeyFrame::alterInterpolationPosition)
+                    , (bp::arg("position"))
+                    , "*!\n\
             \n\
                 Internal method, alters interpolation position based on progression\n\
                 method. Don't use unless you know what you're doing!\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::getIdxInParent
-        
-            typedef ::size_t ( ::CEGUI::KeyFrame::*getIdxInParent_function_type )(  ) const;
-            
-            KeyFrame_exposer.def( 
-                "getIdxInParent"
-                , getIdxInParent_function_type( &::CEGUI::KeyFrame::getIdxInParent )
-                , "*!\n\
+
+            typedef ::size_t(::CEGUI::KeyFrame::*getIdxInParent_function_type)() const;
+
+            KeyFrame_exposer.def(
+                    "getIdxInParent"
+                    , getIdxInParent_function_type(&::CEGUI::KeyFrame::getIdxInParent)
+                    , "*!\n\
                 \n\
                     Retrieves index with which this keyframe is retrievable in parent Affector\n\
             \n\
                 \note\n\
                     The index is only valid as long as the list of affectors is unchanged in animation!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::KeyFrame::getParent
-        
-            typedef ::CEGUI::Affector * ( ::CEGUI::KeyFrame::*getParent_function_type )(  ) const;
-            
-            KeyFrame_exposer.def( 
-                "getParent"
-                , getParent_function_type( &::CEGUI::KeyFrame::getParent )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Affector * (::CEGUI::KeyFrame::*getParent_function_type)() const;
+
+            KeyFrame_exposer.def(
+                    "getParent"
+                    , getParent_function_type(&::CEGUI::KeyFrame::getParent)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Retrieves parent Affector of this Key Frame\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::getPosition
-        
-            typedef float ( ::CEGUI::KeyFrame::*getPosition_function_type )(  ) const;
-            
-            KeyFrame_exposer.def( 
-                "getPosition"
-                , getPosition_function_type( &::CEGUI::KeyFrame::getPosition )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::KeyFrame::*getPosition_function_type)() const;
+
+            KeyFrame_exposer.def(
+                    "getPosition"
+                    , getPosition_function_type(&::CEGUI::KeyFrame::getPosition)
+                    , "*!\n\
             \n\
                 Retrieves position of this key frame in the animation (in seconds)\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::getProgression
-        
-            typedef ::CEGUI::KeyFrame::Progression ( ::CEGUI::KeyFrame::*getProgression_function_type )(  ) const;
-            
-            KeyFrame_exposer.def( 
-                "getProgression"
-                , getProgression_function_type( &::CEGUI::KeyFrame::getProgression )
-                , "*!\n\
+
+            typedef ::CEGUI::KeyFrame::Progression(::CEGUI::KeyFrame::*getProgression_function_type)() const;
+
+            KeyFrame_exposer.def(
+                    "getProgression"
+                    , getProgression_function_type(&::CEGUI::KeyFrame::getProgression)
+                    , "*!\n\
             \n\
                 Retrieves progression method of this key frame\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::getSourceProperty
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::KeyFrame::*getSourceProperty_function_type )(  ) const;
-            
-            KeyFrame_exposer.def( 
-                "getSourceProperty"
-                , getSourceProperty_function_type( &::CEGUI::KeyFrame::getSourceProperty )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::KeyFrame::*getSourceProperty_function_type)() const;
+
+            KeyFrame_exposer.def(
+                    "getSourceProperty"
+                    , getSourceProperty_function_type(&::CEGUI::KeyFrame::getSourceProperty)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
             \n\
                 Gets the source property of this key frame\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::getValue
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::KeyFrame::*getValue_function_type )(  ) const;
-            
-            KeyFrame_exposer.def( 
-                "getValue"
-                , getValue_function_type( &::CEGUI::KeyFrame::getValue )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::KeyFrame::*getValue_function_type)() const;
+
+            KeyFrame_exposer.def(
+                    "getValue"
+                    , getValue_function_type(&::CEGUI::KeyFrame::getValue)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
             \n\
                 Retrieves value of this key frame\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::getValueForAnimation
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::KeyFrame::*getValueForAnimation_function_type )( ::CEGUI::AnimationInstance * ) const;
-            
-            KeyFrame_exposer.def( 
-                "getValueForAnimation"
-                , getValueForAnimation_function_type( &::CEGUI::KeyFrame::getValueForAnimation )
-                , ( bp::arg("instance") )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::KeyFrame::*getValueForAnimation_function_type)(::CEGUI::AnimationInstance *) const;
+
+            KeyFrame_exposer.def(
+                    "getValueForAnimation"
+                    , getValueForAnimation_function_type(&::CEGUI::KeyFrame::getValueForAnimation)
+                    , (bp::arg("instance"))
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Retrieves value of this for use when animating\n\
             \n\
@@ -137,32 +137,32 @@ void register_KeyFrame_class(){
                 \n\
                     This returns the base property value if source property is set on this\n\
                     keyframe, it works the same as getValue() if source property is empty\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::KeyFrame::moveToPosition
-        
-            typedef void ( ::CEGUI::KeyFrame::*moveToPosition_function_type )( float ) ;
-            
-            KeyFrame_exposer.def( 
-                "moveToPosition"
-                , moveToPosition_function_type( &::CEGUI::KeyFrame::moveToPosition )
-                , ( bp::arg("newPosition") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*moveToPosition_function_type)(float);
+
+            KeyFrame_exposer.def(
+                    "moveToPosition"
+                    , moveToPosition_function_type(&::CEGUI::KeyFrame::moveToPosition)
+                    , (bp::arg("newPosition"))
+                    , "*!\n\
             \n\
                 Moves this keyframe to a new given position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::notifyPositionChanged
-        
-            typedef void ( ::CEGUI::KeyFrame::*notifyPositionChanged_function_type )( float ) ;
-            
-            KeyFrame_exposer.def( 
-                "notifyPositionChanged"
-                , notifyPositionChanged_function_type( &::CEGUI::KeyFrame::notifyPositionChanged )
-                , ( bp::arg("newPosition") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*notifyPositionChanged_function_type)(float);
+
+            KeyFrame_exposer.def(
+                    "notifyPositionChanged"
+                    , notifyPositionChanged_function_type(&::CEGUI::KeyFrame::notifyPositionChanged)
+                    , (bp::arg("newPosition"))
+                    , "*!\n\
                 \n\
                     internal method, notifies this keyframe that it has been moved\n\
             \n\
@@ -171,33 +171,33 @@ void register_KeyFrame_class(){
             \n\
                 @see\n\
                     KeyFrame.moveToPosition\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::KeyFrame::savePropertyValue
-        
-            typedef void ( ::CEGUI::KeyFrame::*savePropertyValue_function_type )( ::CEGUI::AnimationInstance * ) ;
-            
-            KeyFrame_exposer.def( 
-                "savePropertyValue"
-                , savePropertyValue_function_type( &::CEGUI::KeyFrame::savePropertyValue )
-                , ( bp::arg("instance") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*savePropertyValue_function_type)(::CEGUI::AnimationInstance *);
+
+            KeyFrame_exposer.def(
+                    "savePropertyValue"
+                    , savePropertyValue_function_type(&::CEGUI::KeyFrame::savePropertyValue)
+                    , (bp::arg("instance"))
+                    , "*!\n\
             \n\
                 Internal method, if this keyframe is using source property, this\n\
                 saves it's value to given instance before it's affected\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::KeyFrame::setProgression
-        
-            typedef void ( ::CEGUI::KeyFrame::*setProgression_function_type )( ::CEGUI::KeyFrame::Progression ) ;
-            
-            KeyFrame_exposer.def( 
-                "setProgression"
-                , setProgression_function_type( &::CEGUI::KeyFrame::setProgression )
-                , ( bp::arg("p") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*setProgression_function_type)(::CEGUI::KeyFrame::Progression);
+
+            KeyFrame_exposer.def(
+                    "setProgression"
+                    , setProgression_function_type(&::CEGUI::KeyFrame::setProgression)
+                    , (bp::arg("p"))
+                    , "*!\n\
                 \n\
                     Sets the progression method of this key frame\n\
             \n\
@@ -208,18 +208,18 @@ void register_KeyFrame_class(){
                     That means that the progression of the first key frame is never used!\n\
             \n\
                     Please see KeyFrame.Progression\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::KeyFrame::setSourceProperty
-        
-            typedef void ( ::CEGUI::KeyFrame::*setSourceProperty_function_type )( ::CEGUI::String const & ) ;
-            
-            KeyFrame_exposer.def( 
-                "setSourceProperty"
-                , setSourceProperty_function_type( &::CEGUI::KeyFrame::setSourceProperty )
-                , ( bp::arg("sourceProperty") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*setSourceProperty_function_type)(::CEGUI::String const &);
+
+            KeyFrame_exposer.def(
+                    "setSourceProperty"
+                    , setSourceProperty_function_type(&::CEGUI::KeyFrame::setSourceProperty)
+                    , (bp::arg("sourceProperty"))
+                    , "*!\n\
                 \n\
                     Sets the source property of this key frame\n\
             \n\
@@ -230,18 +230,18 @@ void register_KeyFrame_class(){
             \n\
                     The decision about what value is used is simple, if there is a source\n\
                     property (sourceProperty is not empty, it's used)\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::KeyFrame::setValue
-        
-            typedef void ( ::CEGUI::KeyFrame::*setValue_function_type )( ::CEGUI::String const & ) ;
-            
-            KeyFrame_exposer.def( 
-                "setValue"
-                , setValue_function_type( &::CEGUI::KeyFrame::setValue )
-                , ( bp::arg("value") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*setValue_function_type)(::CEGUI::String const &);
+
+            KeyFrame_exposer.def(
+                    "setValue"
+                    , setValue_function_type(&::CEGUI::KeyFrame::setValue)
+                    , (bp::arg("value"))
+                    , "*!\n\
                 \n\
                     Sets the value of this key frame\n\
             \n\
@@ -250,25 +250,25 @@ void register_KeyFrame_class(){
             \n\
                 @see\n\
                     KeyFrame.setSourceProperty\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::KeyFrame::writeXMLToStream
-        
-            typedef void ( ::CEGUI::KeyFrame::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            KeyFrame_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type( &::CEGUI::KeyFrame::writeXMLToStream )
-                , ( bp::arg("xml_stream") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::KeyFrame::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+
+            KeyFrame_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::KeyFrame::writeXMLToStream)
+                    , (bp::arg("xml_stream"))
+                    , "*!\n\
                \n\
                   Writes an xml representation of this KeyFrame to  out_stream.\n\
             \n\
                @param xml_stream\n\
                   Stream where xml data should be output.\n\
-               *\n" );
-        
+               *\n");
+
         }
     }
 

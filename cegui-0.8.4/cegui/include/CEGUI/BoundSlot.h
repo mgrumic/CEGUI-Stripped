@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,106 +31,105 @@
 #include "CEGUI/SubscriberSlot.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Class that tracks a SubscriberSlot, its group, and the Event to which it was
-    subscribed.  This is effectively what gets returned from the calls to the
-    Event::subscribe members, though BoundSlot is always wrapped in a
-    reference counted pointer.  When a BoundSlot is deleted, the connection is
-    unsubscribed and the SubscriberSlot is deleted.
-*/
-class CEGUIEXPORT BoundSlot :
-    public AllocatedObject<BoundSlot>
-{
-public:
-    typedef unsigned int Group;
+namespace CEGUI {
 
     /*!
     \brief
-        Constructor.
+        Class that tracks a SubscriberSlot, its group, and the Event to which it was
+        subscribed.  This is effectively what gets returned from the calls to the
+        Event::subscribe members, though BoundSlot is always wrapped in a
+        reference counted pointer.  When a BoundSlot is deleted, the connection is
+        unsubscribed and the SubscriberSlot is deleted.
+     */
+    class CEGUIEXPORT BoundSlot :
+    public AllocatedObject<BoundSlot> {
+    public:
+        typedef unsigned int Group;
 
-    \param group
-        The subscriber group this slot is attached to.
+        /*!
+        \brief
+            Constructor.
 
-    \param subscriber
-        The actual slot object that is controlling this connection binding.
+        \param group
+            The subscriber group this slot is attached to.
 
-    \param event
-        The Event object to which the subscribed slot is attached.
-    */
-    BoundSlot(Group group, const SubscriberSlot& subscriber, Event& event);
+        \param subscriber
+            The actual slot object that is controlling this connection binding.
 
-    /*!
-    \brief
-        Copy constructor.
-    */
-    BoundSlot(const BoundSlot& other);
+        \param event
+            The Event object to which the subscribed slot is attached.
+         */
+        BoundSlot(Group group, const SubscriberSlot& subscriber, Event& event);
 
-    /*!
-    \brief
-        Destructor
-    */
-    ~BoundSlot();
+        /*!
+        \brief
+            Copy constructor.
+         */
+        BoundSlot(const BoundSlot& other);
 
-    /*!
-    \brief
-        Returns whether the slot which this object is tracking is still
-        internally connected to the signal / event mechanism.
+        /*!
+        \brief
+            Destructor
+         */
+        ~BoundSlot();
 
-    \return
-        - true to indicate that the slot is still connected.
-        - false to indicate that the slot has been disconnected.
-    */
-    bool connected() const;
+        /*!
+        \brief
+            Returns whether the slot which this object is tracking is still
+            internally connected to the signal / event mechanism.
 
-    /*!
-    \brief
-        Disconnects the slot.  Once disconnected, the slot will no longer be
-        called when the associated signal / event fires.  There is no way to
-        re-connect a slot once it has been disconnected, a new subscription to
-        the signal / event is required.
+        \return
+            - true to indicate that the slot is still connected.
+            - false to indicate that the slot has been disconnected.
+         */
+        bool connected() const;
 
-    \return
-        Nothing.
-    */
-    void disconnect();
+        /*!
+        \brief
+            Disconnects the slot.  Once disconnected, the slot will no longer be
+            called when the associated signal / event fires.  There is no way to
+            re-connect a slot once it has been disconnected, a new subscription to
+            the signal / event is required.
 
-    /*!
-    \brief
-        Equality operator
+        \return
+            Nothing.
+         */
+        void disconnect();
 
-    \param other
-        The BoundSlot to compare against.
+        /*!
+        \brief
+            Equality operator
 
-    \return
-        - true if the BoundSlot objects represent the same connection.
-        - false if the BoundSlot objects represent different connections.
-    */
-    bool operator==(const BoundSlot& other) const;
+        \param other
+            The BoundSlot to compare against.
 
-    /*!
-    \brief
-        Non-equality operator
+        \return
+            - true if the BoundSlot objects represent the same connection.
+            - false if the BoundSlot objects represent different connections.
+         */
+        bool operator==(const BoundSlot& other) const;
 
-    \param other
-        The BoundSlot to compare against.
+        /*!
+        \brief
+            Non-equality operator
 
-    \return
-        - true if the BoundSlot objects represent different connections.
-        - false if the BoundSlot objects represent the same connection.
-    */
-    bool operator!=(const BoundSlot& other) const;
+        \param other
+            The BoundSlot to compare against.
 
-private:
-    friend class Event;
-    // no assignment.
-    BoundSlot& operator=(const BoundSlot& other);
-    Group d_group;                  //! The group the slot subscription used.
-    SubscriberSlot* d_subscriber;   //! The actual slot object.
-    Event* d_event;                 //! The event to which the slot was attached
-};
+        \return
+            - true if the BoundSlot objects represent different connections.
+            - false if the BoundSlot objects represent the same connection.
+         */
+        bool operator!=(const BoundSlot& other) const;
+
+    private:
+        friend class Event;
+        // no assignment.
+        BoundSlot& operator=(const BoundSlot& other);
+        Group d_group; //! The group the slot subscription used.
+        SubscriberSlot* d_subscriber; //! The actual slot object.
+        Event* d_event; //! The event to which the slot was attached
+    };
 
 
 } // End of  CEGUI namespace section

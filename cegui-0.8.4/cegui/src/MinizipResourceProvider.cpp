@@ -3,7 +3,7 @@
     author:     Jeff A. Marr
 
     purpose:    Implements the MinizipResourceProvider
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -38,278 +38,263 @@
 #include <fstream>
 
 #if defined (__WIN32__) || defined(_WIN32)
-#   include <Shlwapi.h>
-#   define FNMATCH(p, s)    PathMatchSpec(s, p)
-#   ifdef _MSC_VER
-#       pragma comment(lib, "shlwapi.lib")
-#   endif
+#include <Shlwapi.h>
+#define FNMATCH(p, s)    PathMatchSpec(s, p)
+#ifdef _MSC_VER
+#pragma comment(lib, "shlwapi.lib")
+#endif
 #else
-#   include <fnmatch.h>
-#   define FNMATCH(p, s)    fnmatch(p, s, FNM_PATHNAME)
+#include <fnmatch.h>
+#define FNMATCH(p, s)    fnmatch(p, s, FNM_PATHNAME)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-// Impl struct: mainly used in order to keep unzip.h out of the public headers.
-struct MinizipResourceProvider::Impl
-{
-    Impl(const bool loadLocal) :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    // Impl struct: mainly used in order to keep unzip.h out of the public headers.
+
+    struct MinizipResourceProvider::Impl {
+
+        Impl(const bool loadLocal) :
         d_zfile(0),
-        d_loadLocal(loadLocal)
-    {
+        d_loadLocal(loadLocal) {
+        }
+
+        unzFile d_zfile;
+        String d_archive;
+        bool d_loadLocal;
+    };
+
+    //----------------------------------------------------------------------------//
+    // Helper function that matches names against the pattern.
+
+    bool nameMatchesPattern(const String& name, const String& pattern) {
+        return !FNMATCH(pattern.c_str(), name.c_str());
     }
 
-    unzFile d_zfile;
-    String  d_archive;
-    bool    d_loadLocal;
-};
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-// Helper function that matches names against the pattern.
-bool nameMatchesPattern(const String& name, const String& pattern)
-{
-    return !FNMATCH(pattern.c_str(), name.c_str());
-}
+    MinizipResourceProvider::MinizipResourceProvider() :
+    d_pimpl(new Impl(true)) {
+    }
 
-//----------------------------------------------------------------------------//
-MinizipResourceProvider::MinizipResourceProvider() :
-    d_pimpl(new Impl(true))
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-MinizipResourceProvider::MinizipResourceProvider(const String& archive,
-                                                 bool loadLocal) :
-    d_pimpl(new Impl(loadLocal))
-{
-    setArchive(archive);
-}
+    MinizipResourceProvider::MinizipResourceProvider(const String& archive,
+            bool loadLocal) :
+    d_pimpl(new Impl(loadLocal)) {
+        setArchive(archive);
+    }
 
-//----------------------------------------------------------------------------//
-MinizipResourceProvider::~MinizipResourceProvider()
-{
-    if (d_pimpl->d_zfile)
-        closeArchive();
+    //----------------------------------------------------------------------------//
 
-    delete d_pimpl;
-}
+    MinizipResourceProvider::~MinizipResourceProvider() {
+        if (d_pimpl->d_zfile)
+            closeArchive();
 
-//----------------------------------------------------------------------------//
-void MinizipResourceProvider::setArchive(const String& archive)
-{
-    if (d_pimpl->d_zfile)
-        closeArchive();
+        delete d_pimpl;
+    }
 
-    d_pimpl->d_archive = archive;
-    openArchive();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool MinizipResourceProvider::doesFileExist(const String& filename)
-{
-    std::ifstream dataFile(filename.c_str(), std::ios::binary | std::ios::ate);
+    void MinizipResourceProvider::setArchive(const String& archive) {
+        if (d_pimpl->d_zfile)
+            closeArchive();
 
-    if (dataFile)
-        return true;
+        d_pimpl->d_archive = archive;
+        openArchive();
+    }
 
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void MinizipResourceProvider::openArchive()
-{
-    d_pimpl->d_zfile = unzOpen(d_pimpl->d_archive.c_str());
+    bool MinizipResourceProvider::doesFileExist(const String& filename) {
+        std::ifstream dataFile(filename.c_str(), std::ios::binary | std::ios::ate);
 
-    if (d_pimpl->d_zfile == 0)
-    {
-        CEGUI_THROW(InvalidRequestException(
+        if (dataFile)
+            return true;
+
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void MinizipResourceProvider::openArchive() {
+        d_pimpl->d_zfile = unzOpen(d_pimpl->d_archive.c_str());
+
+        if (d_pimpl->d_zfile == 0) {
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "'" + d_pimpl->d_archive + "' does not exist"));
+                    "'" + d_pimpl->d_archive + "' does not exist"));
 #endif //PE_NO_THROW_MSGS
-    }
-}
-
-//----------------------------------------------------------------------------//
-void MinizipResourceProvider::closeArchive()
-{
-    if (unzClose(d_pimpl->d_zfile) != Z_OK)
-    {
-        // do not throw an exception as this method is called from the destructor!
-        if (CEGUI::Logger::getSingletonPtr())
-        {
-            CEGUI::Logger::getSingleton().logEvent(
-                "MinizipResourceProvider::closeArchive: '" +
-                d_pimpl->d_archive + "' error upon closing", Errors);
         }
     }
 
-    d_pimpl->d_zfile = 0;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void MinizipResourceProvider::loadRawDataContainer(const String& filename,
-                                                   RawDataContainer& output,
-                                                   const String& resourceGroup)
-{
-    const String final_filename = getFinalFilename(filename, resourceGroup);
+    void MinizipResourceProvider::closeArchive() {
+        if (unzClose(d_pimpl->d_zfile) != Z_OK) {
+            // do not throw an exception as this method is called from the destructor!
+            if (CEGUI::Logger::getSingletonPtr()) {
+                CEGUI::Logger::getSingleton().logEvent(
+                        "MinizipResourceProvider::closeArchive: '" +
+                        d_pimpl->d_archive + "' error upon closing", Errors);
+            }
+        }
 
-    if (d_pimpl->d_loadLocal && doesFileExist(final_filename))
-    {
-        DefaultResourceProvider::loadRawDataContainer(filename,
-                                                      output,
-                                                      resourceGroup);
-        return;
+        d_pimpl->d_zfile = 0;
     }
 
-    if (d_pimpl->d_zfile == 0)
-    {
-        CEGUI_THROW(InvalidRequestException(
+    //----------------------------------------------------------------------------//
+
+    void MinizipResourceProvider::loadRawDataContainer(const String& filename,
+            RawDataContainer& output,
+            const String& resourceGroup) {
+        const String final_filename = getFinalFilename(filename, resourceGroup);
+
+        if (d_pimpl->d_loadLocal && doesFileExist(final_filename)) {
+            DefaultResourceProvider::loadRawDataContainer(filename,
+                    output,
+                    resourceGroup);
+            return;
+        }
+
+        if (d_pimpl->d_zfile == 0) {
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "'" + final_filename + "' cannot be "
-            "loaded because the archive has not been set"));
+                    "'" + final_filename + "' cannot be "
+                    "loaded because the archive has not been set"));
 #endif //PE_NO_THROW_MSGS
-    }
+        }
 
-    if (unzLocateFile(d_pimpl->d_zfile, final_filename.c_str(), 0) != UNZ_OK)
-    {
-        CEGUI_THROW(InvalidRequestException(
+        if (unzLocateFile(d_pimpl->d_zfile, final_filename.c_str(), 0) != UNZ_OK) {
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "'" + final_filename +
-            "' does not exist"));
+                    "'" + final_filename +
+                    "' does not exist"));
 #endif //PE_NO_THROW_MSGS
-    }
+        }
 
-    unz_file_info file_info;
+        unz_file_info file_info;
 
-    if (unzGetCurrentFileInfo(d_pimpl->d_zfile, &file_info,
-                              0, 0, 0, 0, 0, 0) != UNZ_OK)
-    {
-        CEGUI_THROW(FileIOException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "'" + final_filename +
-            "' error reading file header"));
-#endif //PE_NO_THROW_MSGS
-    }
-
-    if (unzOpenCurrentFile(d_pimpl->d_zfile) != Z_OK)
-    {
-        CEGUI_THROW(FileIOException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "'" + final_filename +
-            "' error opening file"));
-#endif //PE_NO_THROW_MSGS
-    }
-
-    ulong size = file_info.uncompressed_size;
-    uint8* buffer = CEGUI_NEW_ARRAY_PT(uint8, size, RawDataContainer);
-
-    if (unzReadCurrentFile(d_pimpl->d_zfile, buffer, size) < 0)
-    {
-        CEGUI_THROW(FileIOException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "'" + final_filename +
-            "' error reading file"));
-#endif //PE_NO_THROW_MSGS
-    }
-
-    if (unzCloseCurrentFile(d_pimpl->d_zfile) != UNZ_OK)
-    {
-        CEGUI_THROW(GenericException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "'" + final_filename +
-            "' error validating file"));
-#endif //PE_NO_THROW_MSGS
-    }
-
-    output.setData(buffer);
-    output.setSize(size);
-}
-
-//----------------------------------------------------------------------------//
-size_t MinizipResourceProvider::getResourceGroupFileNames(
-                                std::vector<String>& out_vec,
-                                const String& file_pattern,
-                                const String& resource_group)
-{
-    // look-up resource group name
-    ResourceGroupMap::const_iterator iter =
-        d_resourceGroups.find(resource_group.empty() ? d_defaultResourceGroup :
-                              resource_group);
-    // get directory that's set for the resource group
-    const String dir_name(
-        iter != d_resourceGroups.end() ? (*iter).second : "");
-
-    size_t entries = 0;
-
-    // get local (non zip) matches if local mode is set.
-    if (d_pimpl->d_loadLocal)
-        entries += DefaultResourceProvider::getResourceGroupFileNames(
-                                        out_vec, file_pattern, resource_group);
-
-    // exit now if no zip file is loaded
-    if (!d_pimpl->d_zfile)
-        return entries;
-
-    char current_name[1024];
-    unz_file_info file_info;
-    
-    if (unzGoToFirstFile(d_pimpl->d_zfile) != UNZ_OK)
-    {
-        Logger::getSingleton().logEvent(
-            "MinizipResourceProvider::getResourceGroupFileNames: "
-            "unzGoToFirstFile failed, skipping zip file scan.", Errors);
-
-        return entries;
-    }
-
-    do
-    {
         if (unzGetCurrentFileInfo(d_pimpl->d_zfile, &file_info,
-                                  current_name, 1024, 0, 0, 0, 0) != UNZ_OK)
-        {
+                0, 0, 0, 0, 0, 0) != UNZ_OK) {
+            CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "'" + final_filename +
+                    "' error reading file header"));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        if (unzOpenCurrentFile(d_pimpl->d_zfile) != Z_OK) {
+            CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "'" + final_filename +
+                    "' error opening file"));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        ulong size = file_info.uncompressed_size;
+        uint8* buffer = CEGUI_NEW_ARRAY_PT(uint8, size, RawDataContainer);
+
+        if (unzReadCurrentFile(d_pimpl->d_zfile, buffer, size) < 0) {
+            CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "'" + final_filename +
+                    "' error reading file"));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        if (unzCloseCurrentFile(d_pimpl->d_zfile) != UNZ_OK) {
+            CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "'" + final_filename +
+                    "' error validating file"));
+#endif //PE_NO_THROW_MSGS
+        }
+
+        output.setData(buffer);
+        output.setSize(size);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    size_t MinizipResourceProvider::getResourceGroupFileNames(
+            std::vector<String>& out_vec,
+            const String& file_pattern,
+            const String& resource_group) {
+        // look-up resource group name
+        ResourceGroupMap::const_iterator iter =
+                d_resourceGroups.find(resource_group.empty() ? d_defaultResourceGroup :
+                resource_group);
+        // get directory that's set for the resource group
+        const String dir_name(
+                iter != d_resourceGroups.end() ? (*iter).second : "");
+
+        size_t entries = 0;
+
+        // get local (non zip) matches if local mode is set.
+        if (d_pimpl->d_loadLocal)
+            entries += DefaultResourceProvider::getResourceGroupFileNames(
+                out_vec, file_pattern, resource_group);
+
+        // exit now if no zip file is loaded
+        if (!d_pimpl->d_zfile)
+            return entries;
+
+        char current_name[1024];
+        unz_file_info file_info;
+
+        if (unzGoToFirstFile(d_pimpl->d_zfile) != UNZ_OK) {
             Logger::getSingleton().logEvent(
-                "MinizipResourceProvider::getResourceGroupFileNames: "
-                "unzGetCurrentFileInfo failed, terminating scan.", Errors);
+                    "MinizipResourceProvider::getResourceGroupFileNames: "
+                    "unzGoToFirstFile failed, skipping zip file scan.", Errors);
 
             return entries;
         }
 
-        // skip this file if it does not match the pattern.
-        if (!nameMatchesPattern(current_name, dir_name + file_pattern))
-            continue;
+        do {
+            if (unzGetCurrentFileInfo(d_pimpl->d_zfile, &file_info,
+                    current_name, 1024, 0, 0, 0, 0) != UNZ_OK) {
+                Logger::getSingleton().logEvent(
+                        "MinizipResourceProvider::getResourceGroupFileNames: "
+                        "unzGetCurrentFileInfo failed, terminating scan.", Errors);
 
-        // strip the resource directory name and append the matched file
-        out_vec.push_back(String(current_name).substr(dir_name.length()));
-        ++entries;
+                return entries;
+            }
+
+            // skip this file if it does not match the pattern.
+            if (!nameMatchesPattern(current_name, dir_name + file_pattern))
+                continue;
+
+            // strip the resource directory name and append the matched file
+            out_vec.push_back(String(current_name).substr(dir_name.length()));
+            ++entries;
+        } while (unzGoToNextFile(d_pimpl->d_zfile) == UNZ_OK);
+
+        return entries;
     }
-    while (unzGoToNextFile(d_pimpl->d_zfile) == UNZ_OK);
 
-    return entries;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void MinizipResourceProvider::setLoadLocal(bool load)
-{
-    d_pimpl->d_loadLocal = load;
-}
+    void MinizipResourceProvider::setLoadLocal(bool load) {
+        d_pimpl->d_loadLocal = load;
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

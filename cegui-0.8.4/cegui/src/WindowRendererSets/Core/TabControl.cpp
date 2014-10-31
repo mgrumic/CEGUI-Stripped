@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jul 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,21 +31,18 @@
 #include "CEGUI/widgets/TabButton.h"
 #include "CEGUI/TplWindowRendererProperty.h"
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardTabControl::TypeName("Core/TabControl");
 
     FalagardTabControl::FalagardTabControl(const String& type) :
-        TabControlWindowRenderer(type)
-    {
+    TabControlWindowRenderer(type) {
         CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardTabControl, String,
-        "TabButtonType", "Property to get/set the widget type used when creating tab buttons.  Value should be \"[widgetTypeName]\".",
-        &FalagardTabControl::setTabButtonType, &FalagardTabControl::getTabButtonType,
-        "");
+                "TabButtonType", "Property to get/set the widget type used when creating tab buttons.  Value should be \"[widgetTypeName]\".",
+                &FalagardTabControl::setTabButtonType, &FalagardTabControl::getTabButtonType,
+                "");
     }
 
-    void FalagardTabControl::render()
-    {
+    void FalagardTabControl::render() {
         const StateImagery* imagery;
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
@@ -54,30 +51,26 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    TabButton* FalagardTabControl::createTabButton(const String& name) const
-    {
-        if (d_tabButtonType.empty())
-        {
+    TabButton* FalagardTabControl::createTabButton(const String& name) const {
+        if (d_tabButtonType.empty()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "d_tabButtonType has not been set!"));
+                    "d_tabButtonType has not been set!"));
 #endif //PE_NO_THROW_MSGS
         }
 
         Window* button = WindowManager::getSingleton().createWindow(d_tabButtonType, name);
         button->setAutoWindow(true);
-        return static_cast<TabButton*>(button);
+        return static_cast<TabButton*> (button);
     }
 
-    const String& FalagardTabControl::getTabButtonType() const
-    {
+    const String& FalagardTabControl::getTabButtonType() const {
         return d_tabButtonType;
     }
 
-    void FalagardTabControl::setTabButtonType(const String& type)
-    {
+    void FalagardTabControl::setTabButtonType(const String& type) {
         d_tabButtonType = type;
     }
 

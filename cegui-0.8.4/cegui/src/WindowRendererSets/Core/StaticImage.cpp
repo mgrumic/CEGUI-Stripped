@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Jul 5 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,29 +30,25 @@
 #include "CEGUI/TplWindowRendererProperty.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardStaticImage::TypeName("Core/StaticImage");
 
     FalagardStaticImage::FalagardStaticImage(const String& type) :
-        FalagardStatic(type),
-        d_image(0)
-    {
+    FalagardStatic(type),
+    d_image(0) {
         CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardStaticImage, Image*,
-            "Image", "Property to get/set the image for the FalagardStaticImage widget."
-            "  Value should be \"set:[imageset name] image:[image name]\".",
-            &FalagardStaticImage::setImage, &FalagardStaticImage::getImage,
-            0);
+                "Image", "Property to get/set the image for the FalagardStaticImage widget."
+                "  Value should be \"set:[imageset name] image:[image name]\".",
+                &FalagardStaticImage::setImage, &FalagardStaticImage::getImage,
+                0);
     }
 
-    void FalagardStaticImage::render()
-    {
+    void FalagardStaticImage::render() {
         // base class rendering
         FalagardStatic::render();
 
         // render image if there is one
-        if (d_image!=0)
-        {
+        if (d_image != 0) {
             // get WidgetLookFeel for the assigned look.
             const WidgetLookFeel& wlf = getLookNFeel();
             String imagery_name = (!d_frameEnabled && wlf.isStateImageryPresent("NoFrameImage")) ? "NoFrameImage" : "WithFrameImage";
@@ -60,8 +56,7 @@ namespace CEGUI
         }
     }
 
-    void FalagardStaticImage::setImage(const Image* img)
-    {
+    void FalagardStaticImage::setImage(const Image* img) {
         d_image = img;
         d_window->invalidate();
     }

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,43 +33,44 @@
 #include "CEGUI/Window.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class that encapsulates information regarding a sub-widget required for a widget.
 
     \todo
         This is not finished in the slightest!  There will be many changes here...
-    */
+     */
     class CEGUIEXPORT WidgetComponent :
-        public AllocatedObject<WidgetComponent>
-    {
+    public AllocatedObject<WidgetComponent> {
     public:
-        WidgetComponent() {}
+
+        WidgetComponent() {
+        }
         WidgetComponent(const String& type,
-                        const String& look,
-                        const String& suffix,
-                        const String& renderer,
-                        bool autoWindow);
+                const String& look,
+                const String& suffix,
+                const String& renderer,
+                bool autoWindow);
 
         /*!
         \brief
             Create an instance of this widget component adding it as a child to
             the given Window.
-        */
+         */
         void create(Window& parent) const;
 
         /*!
         \brief
             Cleanup from the given parent widget, the instance of the child
             created for this WidgetComponent.
-        */
+         */
         void cleanup(Window& parent) const;
 
         const ComponentArea& getComponentArea() const;
@@ -115,7 +116,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
         /*!
@@ -126,7 +127,7 @@ namespace CEGUI
 
         \param propertyName
             The name of the property to look for.
-        */
+         */
         const PropertyInitialiser* findPropertyInitialiser(const String& propertyName) const;
 
         //! perform any processing required due to the given font having changed.
@@ -139,14 +140,14 @@ namespace CEGUI
 
     private:
         typedef std::vector<PropertyInitialiser
-            CEGUI_VECTOR_ALLOC(PropertyInitialiser)> PropertiesList;
+        CEGUI_VECTOR_ALLOC(PropertyInitialiser) > PropertiesList;
         typedef std::vector<EventAction
-            CEGUI_VECTOR_ALLOC(EventAction)> EventActionList;
+        CEGUI_VECTOR_ALLOC(EventAction) > EventActionList;
 
     public:
         /*************************************************************************
             Iterator stuff
-        *************************************************************************/
+         *************************************************************************/
         typedef ConstVectorIterator<PropertiesList> PropertyIterator;
         typedef ConstVectorIterator<EventActionList> EventActionIterator;
 
@@ -163,15 +164,15 @@ namespace CEGUI
         EventActionIterator getEventActionIterator() const;
 
     private:
-        ComponentArea   d_area;              //!< Destination area for the widget (relative to it's parent).
-        String   d_baseType;                 //!< Type of widget to be created.
-        String   d_imageryName;              //!< Name of a WidgetLookFeel to be used for the widget.
-        String   d_name;                     //!< name to create this widget with.
-        String   d_rendererType;             //!< Name of the window renderer type to assign to the widget.
-        bool     d_autoWindow;               //!< specifies whether to mark component as an auto-window.
-        VerticalAlignment    d_vertAlign;    //!< Vertical alignment to be used for this widget.
-        HorizontalAlignment  d_horzAlign;    //!< Horizontal alignment to be used for this widget.
-        PropertiesList  d_properties;        //!< Collection of PropertyInitialisers to be applied the the widget upon creation.
+        ComponentArea d_area; //!< Destination area for the widget (relative to it's parent).
+        String d_baseType; //!< Type of widget to be created.
+        String d_imageryName; //!< Name of a WidgetLookFeel to be used for the widget.
+        String d_name; //!< name to create this widget with.
+        String d_rendererType; //!< Name of the window renderer type to assign to the widget.
+        bool d_autoWindow; //!< specifies whether to mark component as an auto-window.
+        VerticalAlignment d_vertAlign; //!< Vertical alignment to be used for this widget.
+        HorizontalAlignment d_horzAlign; //!< Horizontal alignment to be used for this widget.
+        PropertiesList d_properties; //!< Collection of PropertyInitialisers to be applied the the widget upon creation.
         //! EventActions added to the WidgetComponent
         EventActionList d_eventActions;
     };
@@ -180,7 +181,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalWidgetComponent_h_

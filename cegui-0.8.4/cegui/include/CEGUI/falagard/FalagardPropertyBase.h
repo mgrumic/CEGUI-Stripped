@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jun 16 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -30,52 +30,53 @@
 #include "CEGUI/TypedProperty.h"
 #include "CEGUI/falagard/PropertyDefinitionBase.h"
 
-namespace CEGUI
-{
-template <typename T>
-class FalagardPropertyBase : public PropertyDefinitionBase, public TypedProperty<T>
-{
-public:
-    //------------------------------------------------------------------------//
-    typedef typename TypedProperty<T>::Helper Helper;
+namespace CEGUI {
 
-    //------------------------------------------------------------------------//
-    FalagardPropertyBase(const String& name, const String& help,
-                         const String& initialValue, const String& origin,
-                         bool redrawOnWrite, bool layoutOnWrite,
-                         const String& fireEvent, const String& eventNamespace) :
+    template <typename T>
+    class FalagardPropertyBase : public PropertyDefinitionBase, public TypedProperty<T> {
+    public:
+        //------------------------------------------------------------------------//
+        typedef typename TypedProperty<T>::Helper Helper;
+
+        //------------------------------------------------------------------------//
+
+        FalagardPropertyBase(const String& name, const String& help,
+                const String& initialValue, const String& origin,
+                bool redrawOnWrite, bool layoutOnWrite,
+                const String& fireEvent, const String& eventNamespace) :
         PropertyDefinitionBase(name, help, initialValue,
-                               redrawOnWrite, layoutOnWrite,
-                               fireEvent, eventNamespace)
-        ,TypedProperty<T>(name, help, origin,
-                         Helper::fromString(initialValue))
-    {}
-
-    //------------------------------------------------------------------------//
-    ~FalagardPropertyBase() {}
-
-protected:
-    
-    //------------------------------------------------------------------------//
-    void setNative_impl(PropertyReceiver* receiver,
-                        typename Helper::pass_type /*value*/)
-    {
-        if (d_writeCausesLayout)
-            static_cast<Window*>(receiver)->performChildWindowLayout();
-
-        if (d_writeCausesRedraw)
-            static_cast<Window*>(receiver)->invalidate();
-
-        if (!d_eventFiredOnWrite.empty())
-        {
-            WindowEventArgs args(static_cast<Window*>(receiver));
-            args.window->fireEvent(d_eventFiredOnWrite, args,
-                                   d_eventNamespace);
+        redrawOnWrite, layoutOnWrite,
+        fireEvent, eventNamespace)
+        , TypedProperty<T>(name, help, origin,
+        Helper::fromString(initialValue)) {
         }
-    }
 
-    //------------------------------------------------------------------------//
-};
+        //------------------------------------------------------------------------//
+
+        ~FalagardPropertyBase() {
+        }
+
+    protected:
+
+        //------------------------------------------------------------------------//
+
+        void setNative_impl(PropertyReceiver* receiver,
+                typename Helper::pass_type /*value*/) {
+            if (d_writeCausesLayout)
+                static_cast<Window*> (receiver)->performChildWindowLayout();
+
+            if (d_writeCausesRedraw)
+                static_cast<Window*> (receiver)->invalidate();
+
+            if (!d_eventFiredOnWrite.empty()) {
+                WindowEventArgs args(static_cast<Window*> (receiver));
+                args.window->fireEvent(d_eventFiredOnWrite, args,
+                        d_eventNamespace);
+            }
+        }
+
+        //------------------------------------------------------------------------//
+    };
 
 }
 

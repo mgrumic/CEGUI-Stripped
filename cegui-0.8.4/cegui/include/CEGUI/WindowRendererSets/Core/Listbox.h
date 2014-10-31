@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 4 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/Listbox.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Listbox class for the FalagardBase module.
@@ -57,16 +57,15 @@ namespace CEGUI
         Child Widgets:
             Scrollbar based widget with name suffix "__auto_vscrollbar__"
             Scrollbar based widget with name suffix "__auto_hscrollbar__"
-    */
-    class COREWRSET_API FalagardListbox : public ListboxWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardListbox : public ListboxWindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardListbox(const String& type);
 
         /*!
@@ -78,7 +77,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void cacheListboxBaseImagery();
 
         // overriden from ListboxWindowRenderer
@@ -87,9 +86,9 @@ namespace CEGUI
         Rectf getListRenderArea(void) const;
 
         void resizeListToContent(bool fit_width,
-                                 bool fit_height) const;
+                bool fit_height) const;
 
-        bool handleFontRenderSizeChange(const Font* const font);
+        bool handleFontRenderSizeChange(const Font * const font);
 
     protected:
         Rectf getItemRenderingArea(bool hscroll, bool vscroll) const;

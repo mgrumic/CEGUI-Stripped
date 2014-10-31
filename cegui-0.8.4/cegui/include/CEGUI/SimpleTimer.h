@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Feb 18 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -29,24 +29,29 @@
 
 #include "CEGUI/Base.h"
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-//! Simple timer class.
-class CEGUIEXPORT SimpleTimer :
-    public AllocatedObject<SimpleTimer>
-{
-    double d_baseTime;
+    //! Simple timer class.
 
-public:
-    //! returns time in seconds
-    static double currentTime();
+    class CEGUIEXPORT SimpleTimer :
+    public AllocatedObject<SimpleTimer> {
+        double d_baseTime;
 
-    SimpleTimer() : d_baseTime(currentTime()) {}
+    public:
+        //! returns time in seconds
+        static double currentTime();
 
-    void restart() { d_baseTime = currentTime(); }
-    double elapsed() { return currentTime() - d_baseTime; }
-};
+        SimpleTimer() : d_baseTime(currentTime()) {
+        }
+
+        void restart() {
+            d_baseTime = currentTime();
+        }
+
+        double elapsed() {
+            return currentTime() - d_baseTime;
+        }
+    };
 
 }
 

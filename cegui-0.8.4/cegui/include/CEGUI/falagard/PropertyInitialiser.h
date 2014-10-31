@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,17 +31,18 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class that holds information about a property and it's required initial value.
-    */
+     */
     class CEGUIEXPORT PropertyInitialiser :
-        public AllocatedObject<PropertyInitialiser>
-    {
+    public AllocatedObject<PropertyInitialiser> {
     public:
-        PropertyInitialiser() {};
+
+        PropertyInitialiser() {
+        };
         /*!
         \brief
             Constructor
@@ -51,7 +52,7 @@ namespace CEGUI
 
         \param value
             String holding the value to be set by this PropertyInitialiser.
-        */
+         */
         PropertyInitialiser(const String& property, const String& value);
 
         /*!
@@ -63,7 +64,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void apply(PropertySet& target) const;
         /*!
         \brief
@@ -74,7 +75,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setTargetPropertyName(const String& name);
 
         /*!
@@ -83,7 +84,7 @@ namespace CEGUI
 
         \return
             String object holding the name of the target property.
-        */
+         */
         const String& getTargetPropertyName() const;
 
         /*!
@@ -95,7 +96,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setInitialiserValue(const String& value);
 
         /*!
@@ -104,7 +105,7 @@ namespace CEGUI
 
         \return
             String object holding the value string.
-        */
+         */
         const String& getInitialiserValue() const;
 
         /*!
@@ -117,12 +118,12 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
     private:
-        CEGUI::String   d_propertyName;     //!< Name of a property to be set.
-        CEGUI::String   d_propertyValue;    //!< Value string to be set on the property.
+        CEGUI::String d_propertyName; //!< Name of a property to be set.
+        CEGUI::String d_propertyValue; //!< Value string to be set on the property.
     };
 
 } // End of  CEGUI namespace section

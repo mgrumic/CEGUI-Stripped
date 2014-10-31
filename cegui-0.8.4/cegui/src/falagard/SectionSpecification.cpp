@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -35,55 +35,52 @@
 #include <iostream>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
     SectionSpecification::SectionSpecification() :
-        d_usingColourOverride(false)
-    {}
+    d_usingColourOverride(false) {
+    }
 
     SectionSpecification::SectionSpecification(const String& owner,
-                                               const String& sectionName,
-                                               const String& controlPropertySource,
-                                               const String& controlPropertyValue,
-                                               const String& controlPropertyWidget) :
-        d_owner(owner),
-        d_sectionName(sectionName),
-        d_usingColourOverride(false),
-        d_renderControlProperty(controlPropertySource),
-        d_renderControlValue(controlPropertyValue),
-        d_renderControlWidget(controlPropertyWidget)
-    {}
+            const String& sectionName,
+            const String& controlPropertySource,
+            const String& controlPropertyValue,
+            const String& controlPropertyWidget) :
+    d_owner(owner),
+    d_sectionName(sectionName),
+    d_usingColourOverride(false),
+    d_renderControlProperty(controlPropertySource),
+    d_renderControlValue(controlPropertyValue),
+    d_renderControlWidget(controlPropertyWidget) {
+    }
 
     SectionSpecification::SectionSpecification(const String& owner,
-                                               const String& sectionName,
-                                               const String& controlPropertySource,
-                                               const String& controlPropertyValue,
-                                               const String& controlPropertyWidget,
-                                               const ColourRect& cols) :
-        d_owner(owner),
-        d_sectionName(sectionName),
-        d_coloursOverride(cols),
-        d_usingColourOverride(true),
-        d_renderControlProperty(controlPropertySource),
-        d_renderControlValue(controlPropertyValue),
-        d_renderControlWidget(controlPropertyWidget)
-    {}
+            const String& sectionName,
+            const String& controlPropertySource,
+            const String& controlPropertyValue,
+            const String& controlPropertyWidget,
+            const ColourRect& cols) :
+    d_owner(owner),
+    d_sectionName(sectionName),
+    d_coloursOverride(cols),
+    d_usingColourOverride(true),
+    d_renderControlProperty(controlPropertySource),
+    d_renderControlValue(controlPropertyValue),
+    d_renderControlWidget(controlPropertyWidget) {
+    }
 
     void SectionSpecification::render(Window& srcWindow,
-                                      const ColourRect* modcols,
-                                      const Rectf* clipper,
-                                      bool clipToDisplay) const
-    {
+            const ColourRect* modcols,
+            const Rectf* clipper,
+            bool clipToDisplay) const {
         // see if we need to bother rendering
         if (!shouldBeDrawn(srcWindow))
             return;
 
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             // get the imagery section object with the name we're set up to use
             const ImagerySection* sect =
-                &WidgetLookManager::getSingleton().getWidgetLook(d_owner).getImagerySection(d_sectionName);
+            &WidgetLookManager::getSingleton().getWidgetLook(d_owner).getImagerySection(d_sectionName);
 
             // decide what colours are to be used
             ColourRect finalColours;
@@ -97,24 +94,23 @@ namespace CEGUI
             sect->render(srcWindow, &finalColours, clipper, clipToDisplay);
         }
         // do nothing here, errors are non-faltal and are logged for debugging purposes.
-        CEGUI_CATCH (Exception&)
-        {}
+
+        CEGUI_CATCH(Exception&) {
+        }
     }
 
     void SectionSpecification::render(Window& srcWindow, const Rectf& baseRect,
-                                      const ColourRect* modcols,
-                                      const Rectf* clipper,
-                                      bool clipToDisplay) const
-    {
+            const ColourRect* modcols,
+            const Rectf* clipper,
+            bool clipToDisplay) const {
         // see if we need to bother rendering
         if (!shouldBeDrawn(srcWindow))
             return;
 
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             // get the imagery section object with the name we're set up to use
             const ImagerySection* sect =
-                &WidgetLookManager::getSingleton().getWidgetLook(d_owner).getImagerySection(d_sectionName);
+            &WidgetLookManager::getSingleton().getWidgetLook(d_owner).getImagerySection(d_sectionName);
 
             // decide what colours are to be used
             ColourRect finalColours;
@@ -128,97 +124,78 @@ namespace CEGUI
             sect->render(srcWindow, baseRect, &finalColours, clipper, clipToDisplay);
         }
         // do nothing here, errors are non-faltal and are logged for debugging purposes.
-        CEGUI_CATCH (Exception&)
-        {}
+
+        CEGUI_CATCH(Exception&) {
+        }
     }
 
-    const String& SectionSpecification::getOwnerWidgetLookFeel() const
-    {
+    const String& SectionSpecification::getOwnerWidgetLookFeel() const {
         return d_owner;
     }
 
-    const String& SectionSpecification::getSectionName() const
-    {
+    const String& SectionSpecification::getSectionName() const {
         return d_sectionName;
     }
 
-
-    void SectionSpecification::setOwnerWidgetLookFeel(const String& owner)
-    {
+    void SectionSpecification::setOwnerWidgetLookFeel(const String& owner) {
         d_owner = owner;
     }
 
-    void SectionSpecification::setSectionName(const String& name)
-    {
+    void SectionSpecification::setSectionName(const String& name) {
         d_sectionName = name;
     }
 
-    const ColourRect& SectionSpecification::getOverrideColours() const
-    {
+    const ColourRect& SectionSpecification::getOverrideColours() const {
         return d_coloursOverride;
     }
 
-    void SectionSpecification::setOverrideColours(const ColourRect& cols)
-    {
+    void SectionSpecification::setOverrideColours(const ColourRect& cols) {
         d_coloursOverride = cols;
     }
 
-    bool SectionSpecification::isUsingOverrideColours() const
-    {
+    bool SectionSpecification::isUsingOverrideColours() const {
         return d_usingColourOverride;
     }
 
-    void SectionSpecification::setUsingOverrideColours(bool setting)
-    {
+    void SectionSpecification::setUsingOverrideColours(bool setting) {
         d_usingColourOverride = setting;
     }
 
-    const String& SectionSpecification::getOverrideColoursPropertySource() const
-    {
+    const String& SectionSpecification::getOverrideColoursPropertySource() const {
         return d_colourPropertyName;
     }
 
-    void SectionSpecification::setOverrideColoursPropertySource(const String& property)
-    {
+    void SectionSpecification::setOverrideColoursPropertySource(const String& property) {
         d_colourPropertyName = property;
     }
 
-    void SectionSpecification::initColourRectForOverride(const Window& wnd, ColourRect& cr) const
-    {
+    void SectionSpecification::initColourRectForOverride(const Window& wnd, ColourRect& cr) const {
         // if no override set
-        if (!d_usingColourOverride)
-        {
-            Colour val(1,1,1,1);
-            cr.d_top_left     = val;
-            cr.d_top_right    = val;
-            cr.d_bottom_left  = val;
+        if (!d_usingColourOverride) {
+            Colour val(1, 1, 1, 1);
+            cr.d_top_left = val;
+            cr.d_top_right = val;
+            cr.d_bottom_left = val;
             cr.d_bottom_right = val;
-        }
-        // if override comes via a colour property
-        else if (!d_colourPropertyName.empty())
-        {
+        }            // if override comes via a colour property
+        else if (!d_colourPropertyName.empty()) {
             // if property accesses a ColourRect or a colour
             cr = wnd.getProperty<ColourRect>(d_colourPropertyName);
-        }
-        // override is an explicitly defined ColourRect.
-        else
-        {
+        }            // override is an explicitly defined ColourRect.
+        else {
             cr = d_coloursOverride;
         }
     }
 
-    const String& SectionSpecification::getRenderControlPropertySource() const
-    {
+    const String& SectionSpecification::getRenderControlPropertySource() const {
         return d_renderControlProperty;
     }
 
-    void SectionSpecification::setRenderControlPropertySource(const String& property)
-    {
+    void SectionSpecification::setRenderControlPropertySource(const String& property) {
         d_renderControlProperty = property;
     }
 
-    void SectionSpecification::writeXMLToStream(XMLSerializer& xml_stream) const
-    {
+    void SectionSpecification::writeXMLToStream(XMLSerializer& xml_stream) const {
         xml_stream.openTag(Falagard_xmlHandler::SectionElement);
 
         if (!d_owner.empty())
@@ -234,23 +211,19 @@ namespace CEGUI
         if (!d_renderControlWidget.empty())
             xml_stream.attribute(Falagard_xmlHandler::ControlWidgetAttribute, d_renderControlWidget);
 
-        if (d_usingColourOverride)
-        {
+        if (d_usingColourOverride) {
             // output modulative colours for this section
-            if (!d_colourPropertyName.empty())
-            {
+            if (!d_colourPropertyName.empty()) {
                 xml_stream.openTag(Falagard_xmlHandler::ColourRectPropertyElement);
                 xml_stream.attribute(Falagard_xmlHandler::NameAttribute, d_colourPropertyName)
-                    .closeTag();
-            }
-            else if (!d_coloursOverride.isMonochromatic() || d_coloursOverride.d_top_left != Colour(1,1,1,1))
-            {
+                        .closeTag();
+            } else if (!d_coloursOverride.isMonochromatic() || d_coloursOverride.d_top_left != Colour(1, 1, 1, 1)) {
                 xml_stream.openTag(Falagard_xmlHandler::ColoursElement)
-                    .attribute(Falagard_xmlHandler::TopLeftAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_top_left))
-                    .attribute(Falagard_xmlHandler::TopRightAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_top_right))
-                    .attribute(Falagard_xmlHandler::BottomLeftAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_bottom_left))
-                    .attribute(Falagard_xmlHandler::BottomRightAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_bottom_right))
-                    .closeTag();
+                        .attribute(Falagard_xmlHandler::TopLeftAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_top_left))
+                        .attribute(Falagard_xmlHandler::TopRightAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_top_right))
+                        .attribute(Falagard_xmlHandler::BottomLeftAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_bottom_left))
+                        .attribute(Falagard_xmlHandler::BottomRightAttribute, PropertyHelper<Colour>::toString(d_coloursOverride.d_bottom_right))
+                        .closeTag();
             }
 
         }
@@ -258,60 +231,60 @@ namespace CEGUI
         xml_stream.closeTag();
     }
 
-//----------------------------------------------------------------------------//
-bool SectionSpecification::shouldBeDrawn(const Window& wnd) const
-{
-    // test the simple case first.
-    if (d_renderControlProperty.empty())
-        return true;
+    //----------------------------------------------------------------------------//
 
-    const Window* property_source;
+    bool SectionSpecification::shouldBeDrawn(const Window& wnd) const {
+        // test the simple case first.
+        if (d_renderControlProperty.empty())
+            return true;
 
-    // work out which window the property should be accessed for.
-    if (d_renderControlWidget.empty())
-        property_source = &wnd;
-    else if (d_renderControlWidget == Falagard_xmlHandler::ParentIdentifier)
-        property_source = wnd.getParent();
-    else
-        property_source = wnd.getChild(d_renderControlWidget);
+        const Window* property_source;
 
-    // if no source window, we can't access the property, so never draw
-    if (!property_source)
-        return false;
+        // work out which window the property should be accessed for.
+        if (d_renderControlWidget.empty())
+            property_source = &wnd;
+        else if (d_renderControlWidget == Falagard_xmlHandler::ParentIdentifier)
+            property_source = wnd.getParent();
+        else
+            property_source = wnd.getChild(d_renderControlWidget);
 
-    // return whether to draw based on property value.
-    if (d_renderControlValue.empty())
-        return property_source->
-            getProperty<bool>(d_renderControlProperty);
-    else
-        return
+        // if no source window, we can't access the property, so never draw
+        if (!property_source)
+            return false;
+
+        // return whether to draw based on property value.
+        if (d_renderControlValue.empty())
+            return property_source->
+                getProperty<bool>(d_renderControlProperty);
+        else
+            return
             property_source->getProperty(d_renderControlProperty) == d_renderControlValue;
-}
+    }
 
-//----------------------------------------------------------------------------//
-const String& SectionSpecification::getRenderControlValue() const
-{
-    return d_renderControlValue;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void SectionSpecification::setRenderControlValue(const String& value)
-{
-    d_renderControlValue = value;
-}
+    const String& SectionSpecification::getRenderControlValue() const {
+        return d_renderControlValue;
+    }
 
-//----------------------------------------------------------------------------//
-const String& SectionSpecification::getRenderControlWidget() const
-{
-    return d_renderControlWidget;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void SectionSpecification::setRenderControlWidget(const String& widget)
-{
-    d_renderControlWidget = widget;
-}
+    void SectionSpecification::setRenderControlValue(const String& value) {
+        d_renderControlValue = value;
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    const String& SectionSpecification::getRenderControlWidget() const {
+        return d_renderControlWidget;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SectionSpecification::setRenderControlWidget(const String& widget) {
+        d_renderControlWidget = widget;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

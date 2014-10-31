@@ -43,40 +43,38 @@
 #define MAX_STACK 60
 
 /* character types */
-enum
-{
-  /* Strong Char Types */
-  L,		/* Left-to-Right char */
-  LRE,	/* Left-to-Right Embedding */
-  LRO,	/* Left-to-Right Override */
-  R,		/* Right-to-Left char */
-  AL,		/* Right-to-Left Arabic char */
-  RLE,	/* Right-to-Left Embedding */
-  RLO,	/* Right-to-Left Override */
-	/* Weak Char Types */
-  PDF,	/* Pop Directional Format */
-  EN,		/* European Number */
-  ES,		/* European Number Separator */
-  ET,		/* European Number Terminator */
-  AN,		/* Arabic Number */
-  CS,		/* Common Number Separator */
-  NSM,	/* Non Spacing Mark */
-  BN,		/* Boundary Neutral */
-  /* Neutral Char Types */
-  B,		/* Paragraph Separator */
-  S,		/* Segment Separator */
-  WS,		/* Whitespace */
-  ON,		/* Other Neutrals */
+enum {
+    /* Strong Char Types */
+    L, /* Left-to-Right char */
+    LRE, /* Left-to-Right Embedding */
+    LRO, /* Left-to-Right Override */
+    R, /* Right-to-Left char */
+    AL, /* Right-to-Left Arabic char */
+    RLE, /* Right-to-Left Embedding */
+    RLO, /* Right-to-Left Override */
+    /* Weak Char Types */
+    PDF, /* Pop Directional Format */
+    EN, /* European Number */
+    ES, /* European Number Separator */
+    ET, /* European Number Terminator */
+    AN, /* Arabic Number */
+    CS, /* Common Number Separator */
+    NSM, /* Non Spacing Mark */
+    BN, /* Boundary Neutral */
+    /* Neutral Char Types */
+    B, /* Paragraph Separator */
+    S, /* Segment Separator */
+    WS, /* Whitespace */
+    ON, /* Other Neutrals */
 };
 
 /* Shaping Types */
-enum
-{
-  SL, /* Left-Joining, doesnt exist in U+0600 - U+06FF */
-  SR, /* Right-Joining, ie has Isolated, Final */
-  SD, /* Dual-Joining, ie has Isolated, Final, Initial, Medial */
-  SU, /* Non-Joining */
-  SC  /* Join-Causing, like U+0640 (TATWEEL) */
+enum {
+    SL, /* Left-Joining, doesnt exist in U+0600 - U+06FF */
+    SR, /* Right-Joining, ie has Isolated, Final */
+    SD, /* Dual-Joining, ie has Isolated, Final, Initial, Medial */
+    SU, /* Non-Joining */
+    SC /* Join-Causing, like U+0640 (TATWEEL) */
 };
 
 #define odd(x) (x%2)
@@ -94,14 +92,14 @@ enum
 
 
 /* function declarations */
-int findIndexOfRun(unsigned char* level , int start, int count, int tlevel);
+int findIndexOfRun(unsigned char* level, int start, int count, int tlevel);
 unsigned char getType(CHARTYPE ch);
 unsigned char getCAPRtl(CHARTYPE ch);
 void doMirror(CHARTYPE* ch);
 
-typedef struct{
-	unsigned char type;
-	unsigned short form_b;
+typedef struct {
+    unsigned char type;
+    unsigned short form_b;
 } shape_node;
 
 /* Kept near the actual table, for verification. */
@@ -111,49 +109,91 @@ typedef struct{
  * could split it to 2 arrays or promote type to 2 bytes type
  */
 shape_node shapetypes[] = {
-/* index, Typ, Iso */
-/* 621 */ {SU, 0xFE80},
-/* 622 */ {SR, 0xFE81},
-/* 623 */ {SR, 0xFE83},
-/* 624 */ {SR, 0xFE85},
-/* 625 */ {SR, 0xFE87},
-/* 626 */ {SD, 0xFE89},
-/* 627 */ {SR, 0xFE8D},
-/* 628 */ {SD, 0xFE8F},
-/* 629 */ {SR, 0xFE93},
-/* 62A */ {SD, 0xFE95},
-/* 62B */ {SD, 0xFE99},
-/* 62C */ {SD, 0xFE9D},
-/* 62D */ {SD, 0xFEA1},
-/* 62E */ {SD, 0xFEA5},
-/* 62F */ {SR, 0xFEA9},
-/* 630 */ {SR, 0xFEAB},
-/* 631 */ {SR, 0xFEAD},
-/* 632 */ {SR, 0xFEAF},
-/* 633 */ {SD, 0xFEB1},
-/* 634 */ {SD, 0xFEB5},
-/* 635 */ {SD, 0xFEB9},
-/* 636 */ {SD, 0xFEBD},
-/* 637 */ {SD, 0xFEC1},
-/* 638 */ {SD, 0xFEC5},
-/* 639 */ {SD, 0xFEC9},
-/* 63A */ {SD, 0xFECD},
-/* 63B */ {SU, 0x0},
-/* 63C */ {SU, 0x0},
-/* 63D */ {SU, 0x0},
-/* 63E */ {SU, 0x0},
-/* 63F */ {SU, 0x0},
-/* 640 */ {SC, 0x0},
-/* 641 */ {SD, 0xFED1},
-/* 642 */ {SD, 0xFED5},
-/* 643 */ {SD, 0xFED9},
-/* 644 */ {SD, 0xFEDD},
-/* 645 */ {SD, 0xFEE1},
-/* 646 */ {SD, 0xFEE5},
-/* 647 */ {SD, 0xFEE9},
-/* 648 */ {SR, 0xFEED},
-/* 649 */ {SR, 0xFEEF}, /* SD */
-/* 64A */ {SD, 0xFEF1}
+    /* index, Typ, Iso */
+    /* 621 */
+    {SU, 0xFE80},
+    /* 622 */
+    {SR, 0xFE81},
+    /* 623 */
+    {SR, 0xFE83},
+    /* 624 */
+    {SR, 0xFE85},
+    /* 625 */
+    {SR, 0xFE87},
+    /* 626 */
+    {SD, 0xFE89},
+    /* 627 */
+    {SR, 0xFE8D},
+    /* 628 */
+    {SD, 0xFE8F},
+    /* 629 */
+    {SR, 0xFE93},
+    /* 62A */
+    {SD, 0xFE95},
+    /* 62B */
+    {SD, 0xFE99},
+    /* 62C */
+    {SD, 0xFE9D},
+    /* 62D */
+    {SD, 0xFEA1},
+    /* 62E */
+    {SD, 0xFEA5},
+    /* 62F */
+    {SR, 0xFEA9},
+    /* 630 */
+    {SR, 0xFEAB},
+    /* 631 */
+    {SR, 0xFEAD},
+    /* 632 */
+    {SR, 0xFEAF},
+    /* 633 */
+    {SD, 0xFEB1},
+    /* 634 */
+    {SD, 0xFEB5},
+    /* 635 */
+    {SD, 0xFEB9},
+    /* 636 */
+    {SD, 0xFEBD},
+    /* 637 */
+    {SD, 0xFEC1},
+    /* 638 */
+    {SD, 0xFEC5},
+    /* 639 */
+    {SD, 0xFEC9},
+    /* 63A */
+    {SD, 0xFECD},
+    /* 63B */
+    {SU, 0x0},
+    /* 63C */
+    {SU, 0x0},
+    /* 63D */
+    {SU, 0x0},
+    /* 63E */
+    {SU, 0x0},
+    /* 63F */
+    {SU, 0x0},
+    /* 640 */
+    {SC, 0x0},
+    /* 641 */
+    {SD, 0xFED1},
+    /* 642 */
+    {SD, 0xFED5},
+    /* 643 */
+    {SD, 0xFED9},
+    /* 644 */
+    {SD, 0xFEDD},
+    /* 645 */
+    {SD, 0xFEE1},
+    /* 646 */
+    {SD, 0xFEE5},
+    /* 647 */
+    {SD, 0xFEE9},
+    /* 648 */
+    {SR, 0xFEED},
+    /* 649 */
+    {SR, 0xFEEF}, /* SD */
+    /* 64A */
+    {SD, 0xFEF1}
 };
 
 /*
@@ -166,98 +206,86 @@ shape_node shapetypes[] = {
  * max: the maximum level found in this line (should be unsigned char)
  * count: line size in wchar_t
  */
-void flipThisRun(BLOCKTYPE from, unsigned char* level, int max, int count, int * v2l)
-{
-   int i, j, rcount, tlevel, tempInt;
-   CHARTYPE temp;
+void flipThisRun(BLOCKTYPE from, unsigned char* level, int max, int count, int * v2l) {
+    int i, j, rcount, tlevel, tempInt;
+    CHARTYPE temp;
 
-   j = i = 0;
-   while(i<count && j<count)
-   {
-      /* find the start of the run of level=max */
-      tlevel = max;
-      i = j = findIndexOfRun(level, i, count, max);
-      /* find the end of the run */
-      while((tlevel <= level[i]) && (i < count))
-      {
-	 i++;
-      }
-      rcount = i-j;
-      for(; rcount>((i-j)/2); rcount--)
-      {
-	 temp = GETCHAR(from, j+rcount-1);
-	 GETCHAR(from, j+rcount-1) = GETCHAR(from, i-rcount);
-	 GETCHAR(from, i-rcount) = temp;
-	 if(v2l)
-	 {
-		 tempInt = v2l[j+rcount-1];
-		 v2l[j+rcount-1] = v2l[i-rcount];
-		 v2l[i-rcount] = tempInt;
-	 }
-      }
-   }
+    j = i = 0;
+    while (i < count && j < count) {
+        /* find the start of the run of level=max */
+        tlevel = max;
+        i = j = findIndexOfRun(level, i, count, max);
+        /* find the end of the run */
+        while ((tlevel <= level[i]) && (i < count)) {
+            i++;
+        }
+        rcount = i - j;
+        for (; rcount > ((i - j) / 2); rcount--) {
+            temp = GETCHAR(from, j + rcount - 1);
+            GETCHAR(from, j + rcount - 1) = GETCHAR(from, i - rcount);
+            GETCHAR(from, i - rcount) = temp;
+            if (v2l) {
+                tempInt = v2l[j + rcount - 1];
+                v2l[j + rcount - 1] = v2l[i - rcount];
+                v2l[i - rcount] = tempInt;
+            }
+        }
+    }
 }
 
 /*
  * Finds the index of a run with level equals tlevel
  */
-int findIndexOfRun(unsigned char* level , int start, int count, int tlevel)
-{
-   int i;
-   for(i=start; i<count; i++)
-   {
-      if(tlevel <= level[i])
-      {
-	 return i;
-      }
-   }
-   return count;
+int findIndexOfRun(unsigned char* level, int start, int count, int tlevel) {
+    int i;
+    for (i = start; i < count; i++) {
+        if (tlevel <= level[i]) {
+            return i;
+        }
+    }
+    return count;
 }
 
-unsigned char GetParagraphLevel(BLOCKTYPE line, int count)
-{
-	int i;
-	for( i=0; i<count ; i++)
-	{
-		if(GetType(GETCHAR(line, i)) == R || GetType(/*line[i]*/ GETCHAR(line, i)) == AL)
-			return 1;
-		else if(GetType(GETCHAR(line, i)) == L)
-			return 0;
-	}
-	return 0;		/* Compiler Nag-Stopper */
+unsigned char GetParagraphLevel(BLOCKTYPE line, int count) {
+    int i;
+    for (i = 0; i < count; i++) {
+        if (GetType(GETCHAR(line, i)) == R || GetType(/*line[i]*/ GETCHAR(line, i)) == AL)
+            return 1;
+        else if (GetType(GETCHAR(line, i)) == L)
+            return 0;
+    }
+    return 0; /* Compiler Nag-Stopper */
 }
 
 /*
  * Returns character type of ch, by calling RLE table lookup
  * function
  */
-unsigned char getCAPRtl(CHARTYPE ch)
-{
-/* CAPRtl Charset */
-int TypesFromChar[]  =
-{
-//0   1   2   3   4   5   6   7   8   9   a   b   c   d   e   f
-  ON, ON, ON, ON,  L,  R, ON, ON, ON, ON, ON, ON, ON, B, RLO,RLE, /*00-0f*/
-  LRO,LRE,PDF,WS, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, /*10-1f*/
-  WS, ON, ON, ON, ET, ON, ON, ON, ON, ON, ON, ET, CS, ON, ES, ES, /*20-2f*/
-  EN, EN, EN, EN, EN, EN, AN, AN, AN, AN, LRE, RLE, RLO, PDF, LRO, ON, /*30-3f*/
-//  EN, EN, EN, EN, EN, EN, AN, AN, AN, AN, CS, ON, ON, ON, ON, ON, /*30-3f*/
-  R, AL, AL, AL, AL, AL, AL,  R,  R,  R,  R,  R,  R,  R,  R,  R, /*40-4f*/
-  R,  R,  R,  R,  R,  R,  R,  R,  R,  R,  R, ON,  B, ON, ON, ON, /*50-5f*/
-  NSM, L,  L,  L,  L,  L,  L,  L,  L,  L,  L,  L,  L,  L,  L,  L, /*60-6f*/
-  L,  L,  L,  L,  L,  L,  L,  L,  L,  L,  L, ON,  S, ON, ON, ON, /*70-7f*/
-};
+unsigned char getCAPRtl(CHARTYPE ch) {
+    /* CAPRtl Charset */
+    int TypesFromChar[] ={
+        //0   1   2   3   4   5   6   7   8   9   a   b   c   d   e   f
+        ON, ON, ON, ON, L, R, ON, ON, ON, ON, ON, ON, ON, B, RLO, RLE, /*00-0f*/
+        LRO, LRE, PDF, WS, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, /*10-1f*/
+        WS, ON, ON, ON, ET, ON, ON, ON, ON, ON, ON, ET, CS, ON, ES, ES, /*20-2f*/
+        EN, EN, EN, EN, EN, EN, AN, AN, AN, AN, LRE, RLE, RLO, PDF, LRO, ON, /*30-3f*/
+        //  EN, EN, EN, EN, EN, EN, AN, AN, AN, AN, CS, ON, ON, ON, ON, ON, /*30-3f*/
+        R, AL, AL, AL, AL, AL, AL, R, R, R, R, R, R, R, R, R, /*40-4f*/
+        R, R, R, R, R, R, R, R, R, R, R, ON, B, ON, ON, ON, /*50-5f*/
+        NSM, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, /*60-6f*/
+        L, L, L, L, L, L, L, L, L, L, L, ON, S, ON, ON, ON, /*70-7f*/
+    };
 
- if(ch <0x7f)
-   return TypesFromChar[ch];
- else 
-   return R;
+    if (ch < 0x7f)
+        return TypesFromChar[ch];
+    else
+        return R;
 }
 
-unsigned char getType(CHARTYPE ch)
-{
+unsigned char getType(CHARTYPE ch) {
+
     static const struct {
-	CHARTYPE first, last, type;
+        CHARTYPE first, last, type;
     } lookup[] = {
         {0x0000, 0x0008, BN},
         {0x0009, 0x0009, S},
@@ -820,13 +848,13 @@ unsigned char getType(CHARTYPE ch)
     j = lenof(lookup);
 
     while (j - i > 1) {
-	k = (i + j) / 2;
-	if (ch < lookup[k].first)
-	    j = k;
-	else if (ch > lookup[k].last)
-	    i = k;
-	else
-	    return (unsigned char)lookup[k].type;
+        k = (i + j) / 2;
+        if (ch < lookup[k].first)
+            j = k;
+        else if (ch > lookup[k].last)
+            i = k;
+        else
+            return (unsigned char) lookup[k].type;
     }
 
     /*
@@ -848,260 +876,230 @@ unsigned char getType(CHARTYPE ch)
  * from: start bidi at this index
  * count: number of characters in line
  */
-int doShape(BLOCKTYPE line, CHARTYPE* to, int from, int count)
-{
-	int i, j, ligFlag;
-	unsigned char prevTemp, nextTemp;
-	CHARTYPE tempChar;
+int doShape(BLOCKTYPE line, CHARTYPE* to, int from, int count) {
+    int i, j, ligFlag;
+    unsigned char prevTemp, nextTemp;
+    CHARTYPE tempChar;
 
-	ligFlag = 0;
-	prevTemp = SU;
-	nextTemp = SU;
-	for(i=from; i<count; i++)
-	{
-		/* Get Previous and next Characters type */
-		j=i;
-		while(--j >= 0)
-		{
-			if(GetType(GETCHAR(line, j)) != NSM)
-			{
-				prevTemp = STYPE(GETCHAR(line, j));
-				break;
-			}
-		}
-		j=i;
-		while(++j < count)
-		{
-			if(GetType(GETCHAR(line, j)) != NSM)
-			{
-				nextTemp = STYPE(GETCHAR(line, j));
-				break;
-			}else if(j == count-1)
-			{
-				nextTemp = SU;
-				break;
-			}
-		}
+    ligFlag = 0;
+    prevTemp = SU;
+    nextTemp = SU;
+    for (i = from; i < count; i++) {
+        /* Get Previous and next Characters type */
+        j = i;
+        while (--j >= 0) {
+            if (GetType(GETCHAR(line, j)) != NSM) {
+                prevTemp = STYPE(GETCHAR(line, j));
+                break;
+            }
+        }
+        j = i;
+        while (++j < count) {
+            if (GetType(GETCHAR(line, j)) != NSM) {
+                nextTemp = STYPE(GETCHAR(line, j));
+                break;
+            } else if (j == count - 1) {
+                nextTemp = SU;
+                break;
+            }
+        }
 
-		switch(STYPE(GETCHAR(line, i)))
-		{
-		case SC:
-		case SU:
-			to[i] = GETCHAR(line, i);
-			break;
+        switch (STYPE(GETCHAR(line, i))) {
+            case SC:
+            case SU:
+                to[i] = GETCHAR(line, i);
+                break;
 
-		case SR:
-			if(prevTemp == SD || prevTemp == SC)
-				to[i] = SFINAL(SISOLATED(GETCHAR(line, i)));
-			else
-				to[i] = SISOLATED(GETCHAR(line, i));
-			break;
+            case SR:
+                if (prevTemp == SD || prevTemp == SC)
+                    to[i] = SFINAL(SISOLATED(GETCHAR(line, i)));
+                else
+                    to[i] = SISOLATED(GETCHAR(line, i));
+                break;
 
-		case SD:
-      /* Make Ligatures */
-			if(GETCHAR(line, i) == 0x644)
-			{
-				j=i;
-				while(j++<count)
-				{
-					if(GetType(GETCHAR(line, j)) != NSM)
-					{
-						tempChar = GETCHAR(line, j);
-						break;
-					}
-				}
-				switch(tempChar)
-				{
-				case 0x622:
-					ligFlag = 1;
-					if(prevTemp == SD || prevTemp == SC)
-						to[i] = 0xFEF6;
-					else
-						to[i] = 0xFEF5;
-					break;
-				case 0x623:
-					ligFlag = 1;
-					if(prevTemp == SD || prevTemp == SC)
-						to[i] = 0xFEF8;
-					else
-						to[i] = 0xFEF7;
-					break;
-				case 0x625:
-					ligFlag = 1;
-					if(prevTemp == SD || prevTemp == SC)
-						to[i] = 0xFEFA;
-					else
-						to[i] = 0xFEF9;
-					break;
-				case 0x627:
-					ligFlag = 1;
-					if(prevTemp == SD || prevTemp == SC)
-						to[i] = 0xFEFC;
-					else
-						to[i] = 0xFEFB;
-					break;
-				}
-				if(ligFlag)
-				{
-					to[j] = 0x20;
-					i = j;
-					ligFlag = 0;
-					break;
-				}
-			}
-			if((prevTemp == SD) || (prevTemp == SC))
-			{
-				if(nextTemp == SR || nextTemp == SD || nextTemp == SC)
-					to[i] = SMEDIAL(SISOLATED(GETCHAR(line, i)));
-				else 
-					to[i] = SFINAL(SISOLATED(GETCHAR(line, i)));
-				break;
-			}else
-			{
-				if(nextTemp == SR || nextTemp == SD || nextTemp == SC)
-					to[i] = SINITIAL(SISOLATED(GETCHAR(line, i)));
-				else
-					to[i] = SISOLATED(GETCHAR(line, i));
-				break;
-			}
+            case SD:
+                /* Make Ligatures */
+                if (GETCHAR(line, i) == 0x644) {
+                    j = i;
+                    while (j++<count) {
+                        if (GetType(GETCHAR(line, j)) != NSM) {
+                            tempChar = GETCHAR(line, j);
+                            break;
+                        }
+                    }
+                    switch (tempChar) {
+                        case 0x622:
+                            ligFlag = 1;
+                            if (prevTemp == SD || prevTemp == SC)
+                                to[i] = 0xFEF6;
+                            else
+                                to[i] = 0xFEF5;
+                            break;
+                        case 0x623:
+                            ligFlag = 1;
+                            if (prevTemp == SD || prevTemp == SC)
+                                to[i] = 0xFEF8;
+                            else
+                                to[i] = 0xFEF7;
+                            break;
+                        case 0x625:
+                            ligFlag = 1;
+                            if (prevTemp == SD || prevTemp == SC)
+                                to[i] = 0xFEFA;
+                            else
+                                to[i] = 0xFEF9;
+                            break;
+                        case 0x627:
+                            ligFlag = 1;
+                            if (prevTemp == SD || prevTemp == SC)
+                                to[i] = 0xFEFC;
+                            else
+                                to[i] = 0xFEFB;
+                            break;
+                    }
+                    if (ligFlag) {
+                        to[j] = 0x20;
+                        i = j;
+                        ligFlag = 0;
+                        break;
+                    }
+                }
+                if ((prevTemp == SD) || (prevTemp == SC)) {
+                    if (nextTemp == SR || nextTemp == SD || nextTemp == SC)
+                        to[i] = SMEDIAL(SISOLATED(GETCHAR(line, i)));
+                    else
+                        to[i] = SFINAL(SISOLATED(GETCHAR(line, i)));
+                    break;
+                } else {
+                    if (nextTemp == SR || nextTemp == SD || nextTemp == SC)
+                        to[i] = SINITIAL(SISOLATED(GETCHAR(line, i)));
+                    else
+                        to[i] = SISOLATED(GETCHAR(line, i));
+                    break;
+                }
 
-		}
-		nextTemp = SU;
-	}
-	return 1;
+        }
+        nextTemp = SU;
+    }
+    return 1;
 }
 
 /* Rule (X1), (X2), (X3), (X4), (X5), (X6), (X7), (X8), (X9) 
  * returns the length of the string without explicit marks
  */
 int doTypes(BLOCKTYPE line, unsigned char paragraphLevel, unsigned char* types,
-			 unsigned char* levels, int count, int fX, int * v2l)
-{
-  
-  unsigned char tempType;
-  unsigned char currentEmbedding = paragraphLevel;
-  unsigned char currentOverride = ON;
-  int i, j;
-  unsigned char levelStack[MAX_STACK+2];
-  unsigned char overrideStack[MAX_STACK+2];
-  int stackTop = 0;
-  
-  if(fX)
-    {
-      for( i=0, j=0; i<count; i++)
-	{
-	  GETCHAR(line, j) = GETCHAR(line, i);
-	  if(v2l)
-	  {
-		  v2l[j] = v2l[i];
-	  }
-	  tempType = GetType(GETCHAR(line, i));
-	  switch(tempType)
-	    {
-	    case RLE:
-	      if(stackTop < MAX_STACK)
-		{
-		  levelStack[stackTop] = currentEmbedding;
-		  overrideStack[stackTop] = currentOverride;
-		  stackTop++;
-		  currentEmbedding = leastGreaterOdd(currentEmbedding);
-		  currentOverride = ON;
-		}
-	      break;
-	    case LRE:
-	      if(stackTop < MAX_STACK)
-		{
-		  levelStack[stackTop] = currentEmbedding;
-		  overrideStack[stackTop] = currentOverride;
-		  stackTop++;
-		  currentEmbedding = leastGreaterEven(currentEmbedding);
-		  currentOverride = ON;
-		}
-	      break;
-	    case RLO:
-	      if(stackTop < MAX_STACK)
-		{
-		  levelStack[stackTop] = currentEmbedding;
-		  overrideStack[stackTop] = currentOverride;
-		  stackTop++;
-		  currentEmbedding = leastGreaterOdd(currentEmbedding);
-		  currentOverride = R;
-		}
-	      break;
-	    case LRO:
-	      if(stackTop <= MAX_STACK)
-		{
-		  levelStack[stackTop] = currentEmbedding;
-		  overrideStack[stackTop] = currentOverride;
-		  stackTop++;
-		  currentEmbedding = leastGreaterEven(currentEmbedding);
-		  currentOverride = L;
-		}
-	      break;
-	    case PDF:
-	      if(stackTop > 0)
-		{
-		  currentEmbedding = levelStack[stackTop-1];
-		  currentOverride = overrideStack[stackTop-1];
-		  stackTop--;
-		}
-	      break;
-	      /* Whitespace is treated as neutral for now */
-	    case WS:
-	    case B:
-	    case S:
-	      levels[j] = currentEmbedding;
-	      tempType = ON;
-	      if(currentOverride != ON)
-		tempType = currentOverride;
-	      types[j] = tempType;
-	      j++;
-	      break;
-	    default:
-	      levels[j] = currentEmbedding;
-	      if(currentOverride != ON)
-		tempType = currentOverride;
-	      types[j] = tempType;
-	      j++;
-	      break;
-	    }
-	}
-    }else
-      {
-	j = count;
-	for( i=0; i<count; i++)
-	  {
-	    tempType = GetType(GETCHAR(line, i));
-	    switch(tempType)
-	      {
-	      case WS:
-	      case B:
-	      case S:
-		levels[i] = currentEmbedding;
-		tempType = ON;
-		if(currentOverride != ON)
-		  tempType = currentOverride;
-		break;
-	      default:
-		levels[i] = currentEmbedding;
-		if(currentOverride != ON)
-		  tempType = currentOverride;
-		break;
-	      }
-	    types[i] = tempType;
-	  }
-      }
-  return j;
+        unsigned char* levels, int count, int fX, int * v2l) {
+
+    unsigned char tempType;
+    unsigned char currentEmbedding = paragraphLevel;
+    unsigned char currentOverride = ON;
+    int i, j;
+    unsigned char levelStack[MAX_STACK + 2];
+    unsigned char overrideStack[MAX_STACK + 2];
+    int stackTop = 0;
+
+    if (fX) {
+        for (i = 0, j = 0; i < count; i++) {
+            GETCHAR(line, j) = GETCHAR(line, i);
+            if (v2l) {
+                v2l[j] = v2l[i];
+            }
+            tempType = GetType(GETCHAR(line, i));
+            switch (tempType) {
+                case RLE:
+                    if (stackTop < MAX_STACK) {
+                        levelStack[stackTop] = currentEmbedding;
+                        overrideStack[stackTop] = currentOverride;
+                        stackTop++;
+                        currentEmbedding = leastGreaterOdd(currentEmbedding);
+                        currentOverride = ON;
+                    }
+                    break;
+                case LRE:
+                    if (stackTop < MAX_STACK) {
+                        levelStack[stackTop] = currentEmbedding;
+                        overrideStack[stackTop] = currentOverride;
+                        stackTop++;
+                        currentEmbedding = leastGreaterEven(currentEmbedding);
+                        currentOverride = ON;
+                    }
+                    break;
+                case RLO:
+                    if (stackTop < MAX_STACK) {
+                        levelStack[stackTop] = currentEmbedding;
+                        overrideStack[stackTop] = currentOverride;
+                        stackTop++;
+                        currentEmbedding = leastGreaterOdd(currentEmbedding);
+                        currentOverride = R;
+                    }
+                    break;
+                case LRO:
+                    if (stackTop <= MAX_STACK) {
+                        levelStack[stackTop] = currentEmbedding;
+                        overrideStack[stackTop] = currentOverride;
+                        stackTop++;
+                        currentEmbedding = leastGreaterEven(currentEmbedding);
+                        currentOverride = L;
+                    }
+                    break;
+                case PDF:
+                    if (stackTop > 0) {
+                        currentEmbedding = levelStack[stackTop - 1];
+                        currentOverride = overrideStack[stackTop - 1];
+                        stackTop--;
+                    }
+                    break;
+                    /* Whitespace is treated as neutral for now */
+                case WS:
+                case B:
+                case S:
+                    levels[j] = currentEmbedding;
+                    tempType = ON;
+                    if (currentOverride != ON)
+                        tempType = currentOverride;
+                    types[j] = tempType;
+                    j++;
+                    break;
+                default:
+                    levels[j] = currentEmbedding;
+                    if (currentOverride != ON)
+                        tempType = currentOverride;
+                    types[j] = tempType;
+                    j++;
+                    break;
+            }
+        }
+    } else {
+        j = count;
+        for (i = 0; i < count; i++) {
+            tempType = GetType(GETCHAR(line, i));
+            switch (tempType) {
+                case WS:
+                case B:
+                case S:
+                    levels[i] = currentEmbedding;
+                    tempType = ON;
+                    if (currentOverride != ON)
+                        tempType = currentOverride;
+                    break;
+                default:
+                    levels[i] = currentEmbedding;
+                    if (currentOverride != ON)
+                        tempType = currentOverride;
+                    break;
+            }
+            types[i] = tempType;
+        }
+    }
+    return j;
 }
 
 /* Rule (W3) */
-void doALtoR(unsigned char* types, int count)
-{
-  int i=0;
-  for(; i<count; i++)
-    {
-      if(types[i] == AL)
-	types[i] = R;
+void doALtoR(unsigned char* types, int count) {
+    int i = 0;
+    for (; i < count; i++) {
+        if (types[i] == AL)
+            types[i] = R;
     }
 }
 
@@ -1112,876 +1110,808 @@ void doALtoR(unsigned char* types, int count)
  * line: a buffer of size count containing text to apply
  * the Bidirectional algorithm to.
  */
-int doBidi(BLOCKTYPE line, int count, int applyShape, int reorderCombining, int * v2l, int * l2v)
-{
-   unsigned char* types;
-   unsigned char* levels;
-   unsigned char paragraphLevel;
-   unsigned char tempType, tempTypeSec;
-   int i, j, imax, fX, fAL, fET, fNSM, tempInt;
-   CHARTYPE* shapeTo;
+int doBidi(BLOCKTYPE line, int count, int applyShape, int reorderCombining, int * v2l, int * l2v) {
+    unsigned char* types;
+    unsigned char* levels;
+    unsigned char paragraphLevel;
+    unsigned char tempType, tempTypeSec;
+    int i, j, imax, fX, fAL, fET, fNSM, tempInt;
+    CHARTYPE* shapeTo;
 
-   if (v2l)
-   {
-	   for(i=0; i<count; i++)
-	   {
-		   v2l[i] = i;
-		   l2v[i] = i;
-	   }
-   } 
+    if (v2l) {
+        for (i = 0; i < count; i++) {
+            v2l[i] = i;
+            l2v[i] = i;
+        }
+    }
 
-	fX = fAL = fET = fNSM = 0;
-	for(i=0; i<count; i++)
-	{
-		switch(GetType(line[i]))
-		{
-		case AL:
-		case R:
-			fAL = 1;
-			break;
-		case LRE:
-		case LRO:
-		case RLE:
-		case RLO:
-		case PDF:
-		case BN:
-			fX = 1;
-			break;
-		case ET:
-			fET = 1;
-			break;
-		case NSM:
-			fNSM = 1;
-			break;
-		}
-	}
+    fX = fAL = fET = fNSM = 0;
+    for (i = 0; i < count; i++) {
+        switch (GetType(line[i])) {
+            case AL:
+            case R:
+                fAL = 1;
+                break;
+            case LRE:
+            case LRO:
+            case RLE:
+            case RLO:
+            case PDF:
+            case BN:
+                fX = 1;
+                break;
+            case ET:
+                fET = 1;
+                break;
+            case NSM:
+                fNSM = 1;
+                break;
+        }
+    }
 
-	if(!fAL && !fX)
-		return 0;
+    if (!fAL && !fX)
+        return 0;
 
-   /* Initialize types, levels */
-   types = (unsigned char*)malloc(sizeof(unsigned char) * count);
-   levels = (unsigned char*)malloc(sizeof(unsigned char) * count);
-   if(applyShape)
-	   shapeTo = (CHARTYPE*)malloc(sizeof(CHARTYPE) * count);
+    /* Initialize types, levels */
+    types = (unsigned char*) malloc(sizeof (unsigned char) * count);
+    levels = (unsigned char*) malloc(sizeof (unsigned char) * count);
+    if (applyShape)
+        shapeTo = (CHARTYPE*) malloc(sizeof (CHARTYPE) * count);
 
-   /* Rule (P1)  NOT IMPLEMENTED
-    * P1. Split the text into separate paragraphs. A paragraph separator is
-    * kept with the previous paragraph. Within each paragraph, apply all the
-    * other rules of this algorithm.
-    */
+    /* Rule (P1)  NOT IMPLEMENTED
+     * P1. Split the text into separate paragraphs. A paragraph separator is
+     * kept with the previous paragraph. Within each paragraph, apply all the
+     * other rules of this algorithm.
+     */
 
-   /* Rule (P2), (P3)
-    * P2. In each paragraph, find the first character of type L, AL, or R.
-    * P3. If a character is found in P2 and it is of type AL or R, then set
-    * the paragraph embedding level to one; otherwise, set it to zero.
-    */
-   paragraphLevel = GetParagraphLevel(line, count);
+    /* Rule (P2), (P3)
+     * P2. In each paragraph, find the first character of type L, AL, or R.
+     * P3. If a character is found in P2 and it is of type AL or R, then set
+     * the paragraph embedding level to one; otherwise, set it to zero.
+     */
+    paragraphLevel = GetParagraphLevel(line, count);
 
-   /* Rule (X1), (X2), (X3), (X4), (X5), (X6), (X7), (X8), (X9)
-    * X1. Begin by setting the current embedding level to the paragraph
-	*     embedding level. Set the directional override status to neutral.
-    * X2. With each RLE, compute the least greater odd embedding level.
-    * X3. With each LRE, compute the least greater even embedding level.
-    * X4. With each RLO, compute the least greater odd embedding level.
-    * X5. With each LRO, compute the least greater even embedding level.
-    * X6. For all types besides RLE, LRE, RLO, LRO, and PDF:
-    *		a. Set the level of the current character to the current
-    *		    embedding level.
-    *		b.  Whenever the directional override status is not neutral,
-    *               reset the current character type to the directional
-    *               override status.
-    * X7. With each PDF, determine the matching embedding or override code.
-    * If there was a valid matching code, restore (pop) the last
-    * remembered (pushed) embedding level and directional override.
-    * X8. All explicit directional embeddings and overrides are completely
-    * terminated at the end of each paragraph. Paragraph separators are not
-    * included in the embedding. (Useless here) NOT IMPLEMENTED
-    * X9. Remove all RLE, LRE, RLO, LRO, PDF, and BN codes.
-    * Here, they're converted to BN.
-    */
+    /* Rule (X1), (X2), (X3), (X4), (X5), (X6), (X7), (X8), (X9)
+     * X1. Begin by setting the current embedding level to the paragraph
+     *     embedding level. Set the directional override status to neutral.
+     * X2. With each RLE, compute the least greater odd embedding level.
+     * X3. With each LRE, compute the least greater even embedding level.
+     * X4. With each RLO, compute the least greater odd embedding level.
+     * X5. With each LRO, compute the least greater even embedding level.
+     * X6. For all types besides RLE, LRE, RLO, LRO, and PDF:
+     *		a. Set the level of the current character to the current
+     *		    embedding level.
+     *		b.  Whenever the directional override status is not neutral,
+     *               reset the current character type to the directional
+     *               override status.
+     * X7. With each PDF, determine the matching embedding or override code.
+     * If there was a valid matching code, restore (pop) the last
+     * remembered (pushed) embedding level and directional override.
+     * X8. All explicit directional embeddings and overrides are completely
+     * terminated at the end of each paragraph. Paragraph separators are not
+     * included in the embedding. (Useless here) NOT IMPLEMENTED
+     * X9. Remove all RLE, LRE, RLO, LRO, PDF, and BN codes.
+     * Here, they're converted to BN.
+     */
 
-   count = doTypes(line, paragraphLevel, types, levels, count, fX, v2l);
-   GETCHAR(line, count) = 0;
+    count = doTypes(line, paragraphLevel, types, levels, count, fX, v2l);
+    GETCHAR(line, count) = 0;
 
 
-   /* Rule (W1)
-    * W1. Examine each non-spacing mark (NSM) in the level run, and change
-    * the type of the NSM to the type of the previous character. If the NSM
-    * is at the start of the level run, it will get the type of sor.
-    */
-	
-   if(fNSM)
-     {
-       if(types[0] == NSM)
-	 types[0] = paragraphLevel;
-       
-       for(i=1; i<count; i++)
-	 {
-	   if(types[i] == NSM)
-	     types[i] = types[i-1];
-	   /* Is this a safe assumption? 
-	    * I assumed the previous, IS a character.
-	    */
-	 }
-     }
-   
-   /* Rule (W2)
-    * W2. Search backwards from each instance of a European number until the
-    * first strong type (R, L, AL, or sor) is found.  If an AL is found,
-    * change the type of the European number to Arabic number.
-    */
-   for(i=0; i<count; i++)
-     {
-       if(types[i] == EN)
-	 {
-	   tempType = levels[i];
-	   j=i;
-	   while(--j >= 0 && levels[j] == tempType)
-	     {
-	       if(types[j] == AL)
-		 {
-		   types[i] = AN;
-		   break;
-		 }
-	       else if(types[j] == R || types[j] == L)
-		 {
-		   break;
-		 }
-	     }
-	 }
-     }
+    /* Rule (W1)
+     * W1. Examine each non-spacing mark (NSM) in the level run, and change
+     * the type of the NSM to the type of the previous character. If the NSM
+     * is at the start of the level run, it will get the type of sor.
+     */
 
-   /* Rule (W3)
-    * W3. Change all ALs to R.
-    * 
-    * Optimization: on Rule Xn, we might set a flag on AL type
-    * to prevent this loop in L R lines only...
-    */
-   doALtoR(types, count);
+    if (fNSM) {
+        if (types[0] == NSM)
+            types[0] = paragraphLevel;
 
-   /* Rule (W4)
-    * W4. A single European separator between two European numbers changes
-    * to a European number. A single common separator between two numbers
-    * of the same type changes to that type.
-    */
-   for( i=0; i<(count-1); i++)
-     {
-       if(types[i] == ES)
-	 {
-	   if(types[i-1] == EN && types[i+1] == EN)
-	     types[i] = EN;
-	 }else if(types[i] == CS)
-	   {
-	     if(types[i-1] == EN && types[i+1] == EN)
-	       types[i] = EN;
-	     else if(types[i-1] == AN && types[i+1] == AN)
-	       types[i] = AN;
-	   }
-     }
-   
-   /* Rule (W5)
-    * W5. A sequence of European terminators adjacent to European numbers
-    * changes to all European numbers.
-    *
-    * Optimization: lots here... else ifs need rearrangement
-    */
-   if(fET)
-     {
-       for(i=0; i<count; i++)
-	 {
-	   if(types[i] == ET)
-	     {
-	       if(types[i-1] == EN)
-		 {
-		   types[i] = EN;
-		   continue;
-		 }else if(types[i+1] == EN)
-		   {
-		     types[i] = EN;
-		     continue;
-		   }else if(types[i+1] == ET)
-		     {
-		       j=i;
-		       while(j <count && types[j] == ET)
-			 {
-			   j++;
-			 }
-		       if(types[j] == EN)
-			 types[i] = EN;
-		     }
-	     }
-	 }
-     }
-   
-   /* Rule (W6)
-    * W6. Otherwise, separators and terminators change to Other Neutral:
-    */
-   for(i=0; i<count; i++)
-     {
-       switch(types[i])
-	 {
-	 case ES:
-	 case ET:
-	 case CS:
-	   types[i] = ON;
-	   break;
-	 }
-     }
-   
-   /* Rule (W7)
-    * W7. Search backwards from each instance of a European number until
-    * the first strong type (R, L, or sor) is found. If an L is found,
-    * then change the type of the European number to L.
-    */
-	
-   for(i=0; i<count; i++)
-     {
-       if(types[i] == EN)
-	 {
-	   tempType = levels[i];
-	   j=i;
-	   while(--j >= 0 && levels[j] == tempType)
-	     {
-	       if(types[j] == L)
-		 {
-		   types[i] = L;
-		   break;
-		 }
-	       else if(types[j] == R || types[j] == AL)
-		 {
-		   break;
-		 }
-	       
-	     }
-	 }
-     }
-   
-	
-   /* Rule (N1)
-    * N1. A sequence of neutrals takes the direction of the surrounding
-    * strong text if the text on both sides has the same direction. European
-    * and Arabic numbers are treated as though they were R.
-    */
-   tempType = paragraphLevel;
-   for(i=0; i<count; i++)
-     {
-       if(types[i] == ON)
-	 {
-	   if(types[i-1] == R || types[i-1] == EN || types[i-1] == AN)
-	     tempType = R;
-	   else
-	     tempType = L;
-	   j=i;
-	   
-	   while(j < count)
-	     {
-	       tempTypeSec = types[j];
-	       if(tempTypeSec == ON)
-		 j++;
-	       else
-		 break;
-	     }
-	   if(j == count)
-	     tempTypeSec = odd(paragraphLevel) ? R : L;
-	   
-	   
-	   if(((tempTypeSec == L || tempTypeSec == LRE) && (tempType == L)) ||
-	      (((tempTypeSec == R) || (tempTypeSec == EN) || (tempTypeSec == AN)) && (tempType == R)))
-	     {
-	       while(i<j)
-		 {
-		   types[i++] = tempType;
-		 }
-	     }else
-	       i = j;
-	   
-	 }
-     }
+        for (i = 1; i < count; i++) {
+            if (types[i] == NSM)
+                types[i] = types[i - 1];
+            /* Is this a safe assumption? 
+             * I assumed the previous, IS a character.
+             */
+        }
+    }
 
-   /* Rule (N2)
-    * N2. Any remaining neutrals take the embedding direction.
-    */
-   for(i=0; i<count; i++)
-     {
-       if(types[i] == ON)
-	 {
-	   if((levels[i] % 2) == 0)
-	     types[i] = L;
-	   else
-	     types[i] = R;
-	 }
-     }
+    /* Rule (W2)
+     * W2. Search backwards from each instance of a European number until the
+     * first strong type (R, L, AL, or sor) is found.  If an AL is found,
+     * change the type of the European number to Arabic number.
+     */
+    for (i = 0; i < count; i++) {
+        if (types[i] == EN) {
+            tempType = levels[i];
+            j = i;
+            while (--j >= 0 && levels[j] == tempType) {
+                if (types[j] == AL) {
+                    types[i] = AN;
+                    break;
+                } else if (types[j] == R || types[j] == L) {
+                    break;
+                }
+            }
+        }
+    }
 
-   /* Rule (I1)
-    * I1. For all characters with an even (left-to-right) embedding
-    * direction, those of type R go up one level and those of type AN or
-    * EN go up two levels.
-    */
-   for(i=0; i<count; i++)
-     {
-       if((levels[i] % 2) == 0)
-	 {
-	   if(types[i] == R)
-	     levels[i] += 1;
-	   else if((types[i] == AN) || (types[i] == EN))
-	     levels[i] += 2;
-	 }else
-	   {
-	     if((types[i] == L) ||
-		(types[i] == EN) ||
-		(types[i] == AN))
-	       levels[i] += 1;
-	   }
-     }
-   
-   /* Rule (I2)
-    * I2. For all characters with an odd (right-to-left) embedding direction,
-    * those of type L, EN or AN go up one level.
-    */
+    /* Rule (W3)
+     * W3. Change all ALs to R.
+     * 
+     * Optimization: on Rule Xn, we might set a flag on AL type
+     * to prevent this loop in L R lines only...
+     */
+    doALtoR(types, count);
 
-   for(i=0; i<count; i++)
-   {
-      if((levels[i] % 2) == 1)
-      {
-	 if(types[i] == L || types[i] == EN || types[i] == AN)
-	    levels[i] += 1;
-      }
-   }
+    /* Rule (W4)
+     * W4. A single European separator between two European numbers changes
+     * to a European number. A single common separator between two numbers
+     * of the same type changes to that type.
+     */
+    for (i = 0; i < (count - 1); i++) {
+        if (types[i] == ES) {
+            if (types[i - 1] == EN && types[i + 1] == EN)
+                types[i] = EN;
+        } else if (types[i] == CS) {
+            if (types[i - 1] == EN && types[i + 1] == EN)
+                types[i] = EN;
+            else if (types[i - 1] == AN && types[i + 1] == AN)
+                types[i] = AN;
+        }
+    }
 
-   /* Rule (L1)
-    * L1. On each line, reset the embedding level of the following characters
-    * to the paragraph embedding level:
-    *		(1)segment separators, (2)paragraph separators,
-    *           (3)any sequence of whitespace characters preceding
-    *           a segment separator or paragraph separator,
-    *           (4)and any sequence of white space characters
-    *           at the end of the line.
-    * The types of characters used here are the original types, not those
-    * modified by the previous phase. 
-    */
+    /* Rule (W5)
+     * W5. A sequence of European terminators adjacent to European numbers
+     * changes to all European numbers.
+     *
+     * Optimization: lots here... else ifs need rearrangement
+     */
+    if (fET) {
+        for (i = 0; i < count; i++) {
+            if (types[i] == ET) {
+                if (types[i - 1] == EN) {
+                    types[i] = EN;
+                    continue;
+                } else if (types[i + 1] == EN) {
+                    types[i] = EN;
+                    continue;
+                } else if (types[i + 1] == ET) {
+                    j = i;
+                    while (j < count && types[j] == ET) {
+                        j++;
+                    }
+                    if (types[j] == EN)
+                        types[i] = EN;
+                }
+            }
+        }
+    }
 
-   j=count-1;
-   while(j>0 && (GetType(GETCHAR(line, j)) == WS))
-     {
-       j--;
-     }
-   if(j < (count-1))
-     {
-       for(j++; j<count; j++)
-	 levels[j] = paragraphLevel;
-     }
-   
-   for(i=0; i<count; i++)
-     {
-       tempType = GetType(GETCHAR(line, i));
-       if(tempType == WS)
-      {
-	j=i;
-	while((++j < count) && ((tempType == WS) || (tempType == RLE)) )
-	  {
-	    tempType = GetType(line[j]);
-	  }
-	
-	if(GetType(GETCHAR(line, j)) == B || GetType(GETCHAR(line, j)) == S)
-	  {
-	    for(j--; j>=i ; j--)
-	      {
-		levels[j] = paragraphLevel;
-	      }
-	  }
-      }else if(tempType == B || tempType == S)
-	levels[i] = paragraphLevel;
-   }
-   
-   /* Rule (L4)
-    * L4. A character that possesses the mirrored property as specified by
-    * Section 4.7, Mirrored, must be depicted by a mirrored glyph if the
-    * resolved directionality of that character is R.
-    */
-   /* Note: this is implemented before L2 for efficiency */
-   for(i=0; i<count; i++)
-     {
-       if((levels[i] % 2) == 1)
-	 doMirror(&GETCHAR(line, i));
-     }
-   
-   /* Rule (L3)
-    * L3. Combining marks applied to a right-to-left base character will at
-    * this point precede their base character. If the rendering engine
-    * expects them to follow the base characters in the final display
-    * process, then the ordering of the marks and the base character must
-    * be reversed.
-	* Combining marks are reordered to the right of each character on an
-	* odd level.
-    */
+    /* Rule (W6)
+     * W6. Otherwise, separators and terminators change to Other Neutral:
+     */
+    for (i = 0; i < count; i++) {
+        switch (types[i]) {
+            case ES:
+            case ET:
+            case CS:
+                types[i] = ON;
+                break;
+        }
+    }
 
-   if(fNSM && reorderCombining)
-   {
-     CHARTYPE temp;
-     int it;
-     for(i=0; i<count; i++)
-       {
-	 if(GetType(GETCHAR(line, i)) == NSM && odd(levels[i]))
-	   {
-	     j=i;
-	     while((++j < count) && (GetType(GETCHAR(line, j)) == NSM));
-	     j--; i--;
-	     for(it=j; j>i; i++, j--)
-	       {
-		 temp = GETCHAR(line, i);
-		 GETCHAR(line, i) = GETCHAR(line, j);
-		 GETCHAR(line, j) = temp;
+    /* Rule (W7)
+     * W7. Search backwards from each instance of a European number until
+     * the first strong type (R, L, or sor) is found. If an L is found,
+     * then change the type of the European number to L.
+     */
 
-		 if(v2l)
-		 {
-			 tempInt = v2l[i];
-			 v2l[i] = v2l[j];
-			 v2l[j] = tempInt;
-		 }
-	       }
-	     i=it+1;
-	   }
-       }
-   }
-   
-   /* Shaping 
-    * Shaping is Applied to each run of levels separately....
-    */
-   
-   if(applyShape)
-     {
-       
-       for(i=0; i<count; i++)
-	 {
-	   shapeTo[i] = GETCHAR(line, i);
-	 }
-       
-       j=i=0;
-       while(j < count)
-	 {
-	   if(GetType(GETCHAR(line, j)) == AL)
-	     {
-	       if(j<count && j >= i )
-		 {
-		   tempType = levels[j];
-		   i=j;
-		   while((i++ < count) && (levels[i] == tempType));
-		   doShape(line, shapeTo, j, i);
-		   j=i;
-		   tempType = levels[j];
-		   
-		 }
-	     }
-	   j++;
-	 }
-       for(i=0; i<count; i++)
-	 {
-	   GETCHAR(line, i) = shapeTo[i];
-	 }
-       free(shapeTo);		
-     }
-      
-   /* Rule (L2)
-    * L2. From the highest level found in the text to the lowest odd level on
-    * each line, including intermediate levels not actually present in the
-    * text, reverse any contiguous sequence of characters that are at that
-    * level or higher
-    */
-   /* we flip the character string and leave the level array */
-   imax = 0;
-   i=0;
-   tempType = levels[0];
-   while(i < count)
-     {
-       if(levels[i] > tempType)
-	 {
-	   tempType = levels[i];
-	   imax=i;
-	 }
-       i++;
-     }
-   /* maximum level in tempType, its index in imax. */
-   while(tempType > 0)		/* loop from highest level to the least odd, */
-     {				/* which i assume is 1 */
-       flipThisRun(line, levels, tempType, count, v2l);
-       tempType--;						
-     }
-   
-   free(types);
-   free(levels);
+    for (i = 0; i < count; i++) {
+        if (types[i] == EN) {
+            tempType = levels[i];
+            j = i;
+            while (--j >= 0 && levels[j] == tempType) {
+                if (types[j] == L) {
+                    types[i] = L;
+                    break;
+                } else if (types[j] == R || types[j] == AL) {
+                    break;
+                }
 
-   if (l2v && v2l)
-   {
-	   for(i=0; i<count; i++)
-	   {
-		   l2v[v2l[i]] = i;
-	   }
-   }
-   
-   return count;
+            }
+        }
+    }
+
+
+    /* Rule (N1)
+     * N1. A sequence of neutrals takes the direction of the surrounding
+     * strong text if the text on both sides has the same direction. European
+     * and Arabic numbers are treated as though they were R.
+     */
+    tempType = paragraphLevel;
+    for (i = 0; i < count; i++) {
+        if (types[i] == ON) {
+            if (types[i - 1] == R || types[i - 1] == EN || types[i - 1] == AN)
+                tempType = R;
+            else
+                tempType = L;
+            j = i;
+
+            while (j < count) {
+                tempTypeSec = types[j];
+                if (tempTypeSec == ON)
+                    j++;
+                else
+                    break;
+            }
+            if (j == count)
+                tempTypeSec = odd(paragraphLevel) ? R : L;
+
+
+            if (((tempTypeSec == L || tempTypeSec == LRE) && (tempType == L)) ||
+                    (((tempTypeSec == R) || (tempTypeSec == EN) || (tempTypeSec == AN)) && (tempType == R))) {
+                while (i < j) {
+                    types[i++] = tempType;
+                }
+            } else
+                i = j;
+
+        }
+    }
+
+    /* Rule (N2)
+     * N2. Any remaining neutrals take the embedding direction.
+     */
+    for (i = 0; i < count; i++) {
+        if (types[i] == ON) {
+            if ((levels[i] % 2) == 0)
+                types[i] = L;
+            else
+                types[i] = R;
+        }
+    }
+
+    /* Rule (I1)
+     * I1. For all characters with an even (left-to-right) embedding
+     * direction, those of type R go up one level and those of type AN or
+     * EN go up two levels.
+     */
+    for (i = 0; i < count; i++) {
+        if ((levels[i] % 2) == 0) {
+            if (types[i] == R)
+                levels[i] += 1;
+            else if ((types[i] == AN) || (types[i] == EN))
+                levels[i] += 2;
+        } else {
+            if ((types[i] == L) ||
+                    (types[i] == EN) ||
+                    (types[i] == AN))
+                levels[i] += 1;
+        }
+    }
+
+    /* Rule (I2)
+     * I2. For all characters with an odd (right-to-left) embedding direction,
+     * those of type L, EN or AN go up one level.
+     */
+
+    for (i = 0; i < count; i++) {
+        if ((levels[i] % 2) == 1) {
+            if (types[i] == L || types[i] == EN || types[i] == AN)
+                levels[i] += 1;
+        }
+    }
+
+    /* Rule (L1)
+     * L1. On each line, reset the embedding level of the following characters
+     * to the paragraph embedding level:
+     *		(1)segment separators, (2)paragraph separators,
+     *           (3)any sequence of whitespace characters preceding
+     *           a segment separator or paragraph separator,
+     *           (4)and any sequence of white space characters
+     *           at the end of the line.
+     * The types of characters used here are the original types, not those
+     * modified by the previous phase. 
+     */
+
+    j = count - 1;
+    while (j > 0 && (GetType(GETCHAR(line, j)) == WS)) {
+        j--;
+    }
+    if (j < (count - 1)) {
+        for (j++; j < count; j++)
+            levels[j] = paragraphLevel;
+    }
+
+    for (i = 0; i < count; i++) {
+        tempType = GetType(GETCHAR(line, i));
+        if (tempType == WS) {
+            j = i;
+            while ((++j < count) && ((tempType == WS) || (tempType == RLE))) {
+                tempType = GetType(line[j]);
+            }
+
+            if (GetType(GETCHAR(line, j)) == B || GetType(GETCHAR(line, j)) == S) {
+                for (j--; j >= i; j--) {
+                    levels[j] = paragraphLevel;
+                }
+            }
+        } else if (tempType == B || tempType == S)
+            levels[i] = paragraphLevel;
+    }
+
+    /* Rule (L4)
+     * L4. A character that possesses the mirrored property as specified by
+     * Section 4.7, Mirrored, must be depicted by a mirrored glyph if the
+     * resolved directionality of that character is R.
+     */
+    /* Note: this is implemented before L2 for efficiency */
+    for (i = 0; i < count; i++) {
+        if ((levels[i] % 2) == 1)
+            doMirror(&GETCHAR(line, i));
+    }
+
+    /* Rule (L3)
+     * L3. Combining marks applied to a right-to-left base character will at
+     * this point precede their base character. If the rendering engine
+     * expects them to follow the base characters in the final display
+     * process, then the ordering of the marks and the base character must
+     * be reversed.
+     * Combining marks are reordered to the right of each character on an
+     * odd level.
+     */
+
+    if (fNSM && reorderCombining) {
+        CHARTYPE temp;
+        int it;
+        for (i = 0; i < count; i++) {
+            if (GetType(GETCHAR(line, i)) == NSM && odd(levels[i])) {
+                j = i;
+                while ((++j < count) && (GetType(GETCHAR(line, j)) == NSM));
+                j--;
+                i--;
+                for (it = j; j > i; i++, j--) {
+                    temp = GETCHAR(line, i);
+                    GETCHAR(line, i) = GETCHAR(line, j);
+                    GETCHAR(line, j) = temp;
+
+                    if (v2l) {
+                        tempInt = v2l[i];
+                        v2l[i] = v2l[j];
+                        v2l[j] = tempInt;
+                    }
+                }
+                i = it + 1;
+            }
+        }
+    }
+
+    /* Shaping 
+     * Shaping is Applied to each run of levels separately....
+     */
+
+    if (applyShape) {
+
+        for (i = 0; i < count; i++) {
+            shapeTo[i] = GETCHAR(line, i);
+        }
+
+        j = i = 0;
+        while (j < count) {
+            if (GetType(GETCHAR(line, j)) == AL) {
+                if (j < count && j >= i) {
+                    tempType = levels[j];
+                    i = j;
+                    while ((i++ < count) && (levels[i] == tempType));
+                    doShape(line, shapeTo, j, i);
+                    j = i;
+                    tempType = levels[j];
+
+                }
+            }
+            j++;
+        }
+        for (i = 0; i < count; i++) {
+            GETCHAR(line, i) = shapeTo[i];
+        }
+        free(shapeTo);
+    }
+
+    /* Rule (L2)
+     * L2. From the highest level found in the text to the lowest odd level on
+     * each line, including intermediate levels not actually present in the
+     * text, reverse any contiguous sequence of characters that are at that
+     * level or higher
+     */
+    /* we flip the character string and leave the level array */
+    imax = 0;
+    i = 0;
+    tempType = levels[0];
+    while (i < count) {
+        if (levels[i] > tempType) {
+            tempType = levels[i];
+            imax = i;
+        }
+        i++;
+    }
+    /* maximum level in tempType, its index in imax. */
+    while (tempType > 0) /* loop from highest level to the least odd, */ { /* which i assume is 1 */
+        flipThisRun(line, levels, tempType, count, v2l);
+        tempType--;
+    }
+
+    free(types);
+    free(levels);
+
+    if (l2v && v2l) {
+        for (i = 0; i < count; i++) {
+            l2v[v2l[i]] = i;
+        }
+    }
+
+    return count;
 }
-
 
 /*
  * takes a pointer to a character that is checked for
  * having a mirror glyph, and replaced on the spot
  */
-void doMirror(CHARTYPE* ch)
-{
-  static const struct{
-    CHARTYPE first, mirror;
-  } lookup[] = {
-  {0x0028, 0x0029},
-  {0x0029, 0x0028},
-  {0x003C, 0x003E},
-  {0x003E, 0x003C},
-  {0x005B, 0x005D},
-  {0x005D, 0x005B},
-  {0x007B, 0x007D},
-  {0x007D, 0x007B},
-  {0x00AB, 0x00BB},
-  {0x00BB, 0x00AB},
-  {0x2039, 0x203A},
-  {0x203A, 0x2039},
-  {0x2045, 0x2046},
-  {0x2046, 0x2045},
-  {0x207D, 0x207E},
-  {0x207E, 0x207D},
-  {0x208D, 0x208E},
-  {0x208E, 0x208D},
-  {0x2208, 0x220B},
-  {0x2209, 0x220C},
-  {0x220A, 0x220D},
-  {0x220B, 0x2208},
-  {0x220C, 0x2209},
-  {0x220D, 0x220A},
-  {0x2215, 0x29F5},
-  {0x223C, 0x223D},
-  {0x223D, 0x223C},
-  {0x2243, 0x22CD},
-  {0x2252, 0x2253},
-  {0x2253, 0x2252},
-  {0x2254, 0x2255},
-  {0x2255, 0x2254},
-  {0x2264, 0x2265},
-  {0x2265, 0x2264},
-  {0x2266, 0x2267},
-  {0x2267, 0x2266},
-  {0x2268, 0x2269},
-  {0x2269, 0x2268},
-  {0x226A, 0x226B},
-  {0x226B, 0x226A},
-  {0x226E, 0x226F},
-  {0x226F, 0x226E},
-  {0x2270, 0x2271},
-  {0x2271, 0x2270},
-  {0x2272, 0x2273},
-  {0x2273, 0x2272},
-  {0x2274, 0x2275},
-  {0x2275, 0x2274},
-  {0x2276, 0x2277},
-  {0x2277, 0x2276},
-  {0x2278, 0x2279},
-  {0x2279, 0x2278},
-  {0x227A, 0x227B},
-  {0x227B, 0x227A},
-  {0x227C, 0x227D},
-  {0x227D, 0x227C},
-  {0x227E, 0x227F},
-  {0x227F, 0x227E},
-  {0x2280, 0x2281},
-  {0x2281, 0x2280},
-  {0x2282, 0x2283},
-  {0x2283, 0x2282},
-  {0x2284, 0x2285},
-  {0x2285, 0x2284},
-  {0x2286, 0x2287},
-  {0x2287, 0x2286},
-  {0x2288, 0x2289},
-  {0x2289, 0x2288},
-  {0x228A, 0x228B},
-  {0x228B, 0x228A},
-  {0x228F, 0x2290},
-  {0x2290, 0x228F},
-  {0x2291, 0x2292},
-  {0x2292, 0x2291},
-  {0x2298, 0x29B8},
-  {0x22A2, 0x22A3},
-  {0x22A3, 0x22A2},
-  {0x22A6, 0x2ADE},
-  {0x22A8, 0x2AE4},
-  {0x22A9, 0x2AE3},
-  {0x22AB, 0x2AE5},
-  {0x22B0, 0x22B1},
-  {0x22B1, 0x22B0},
-  {0x22B2, 0x22B3},
-  {0x22B3, 0x22B2},
-  {0x22B4, 0x22B5},
-  {0x22B5, 0x22B4},
-  {0x22B6, 0x22B7},
-  {0x22B7, 0x22B6},
-  {0x22C9, 0x22CA},
-  {0x22CA, 0x22C9},
-  {0x22CB, 0x22CC},
-  {0x22CC, 0x22CB},
-  {0x22CD, 0x2243},
-  {0x22D0, 0x22D1},
-  {0x22D1, 0x22D0},
-  {0x22D6, 0x22D7},
-  {0x22D7, 0x22D6},
-  {0x22D8, 0x22D9},
-  {0x22D9, 0x22D8},
-  {0x22DA, 0x22DB},
-  {0x22DB, 0x22DA},
-  {0x22DC, 0x22DD},
-  {0x22DD, 0x22DC},
-  {0x22DE, 0x22DF},
-  {0x22DF, 0x22DE},
-  {0x22E0, 0x22E1},
-  {0x22E1, 0x22E0},
-  {0x22E2, 0x22E3},
-  {0x22E3, 0x22E2},
-  {0x22E4, 0x22E5},
-  {0x22E5, 0x22E4},
-  {0x22E6, 0x22E7},
-  {0x22E7, 0x22E6},
-  {0x22E8, 0x22E9},
-  {0x22E9, 0x22E8},
-  {0x22EA, 0x22EB},
-  {0x22EB, 0x22EA},
-  {0x22EC, 0x22ED},
-  {0x22ED, 0x22EC},
-  {0x22F0, 0x22F1},
-  {0x22F1, 0x22F0},
-  {0x22F2, 0x22FA},
-  {0x22F3, 0x22FB},
-  {0x22F4, 0x22FC},
-  {0x22F6, 0x22FD},
-  {0x22F7, 0x22FE},
-  {0x22FA, 0x22F2},
-  {0x22FB, 0x22F3},
-  {0x22FC, 0x22F4},
-  {0x22FD, 0x22F6},
-  {0x22FE, 0x22F7},
-  {0x2308, 0x2309},
-  {0x2309, 0x2308},
-  {0x230A, 0x230B},
-  {0x230B, 0x230A},
-  {0x2329, 0x232A},
-  {0x232A, 0x2329},
-  {0x2768, 0x2769},
-  {0x2769, 0x2768},
-  {0x276A, 0x276B},
-  {0x276B, 0x276A},
-  {0x276C, 0x276D},
-  {0x276D, 0x276C},
-  {0x276E, 0x276F},
-  {0x276F, 0x276E},
-  {0x2770, 0x2771},
-  {0x2771, 0x2770},
-  {0x2772, 0x2773},
-  {0x2773, 0x2772},
-  {0x2774, 0x2775},
-  {0x2775, 0x2774},
-  {0x27C3, 0x27C4},
-  {0x27C4, 0x27C3},
-  {0x27C5, 0x27C6},
-  {0x27C6, 0x27C5},
-  {0x27D5, 0x27D6},
-  {0x27D6, 0x27D5},
-  {0x27DD, 0x27DE},
-  {0x27DE, 0x27DD},
-  {0x27E2, 0x27E3},
-  {0x27E3, 0x27E2},
-  {0x27E4, 0x27E5},
-  {0x27E5, 0x27E4},
-  {0x27E6, 0x27E7},
-  {0x27E7, 0x27E6},
-  {0x27E8, 0x27E9},
-  {0x27E9, 0x27E8},
-  {0x27EA, 0x27EB},
-  {0x27EB, 0x27EA},
-  {0x2983, 0x2984},
-  {0x2984, 0x2983},
-  {0x2985, 0x2986},
-  {0x2986, 0x2985},
-  {0x2987, 0x2988},
-  {0x2988, 0x2987},
-  {0x2989, 0x298A},
-  {0x298A, 0x2989},
-  {0x298B, 0x298C},
-  {0x298C, 0x298B},
-  {0x298D, 0x2990},
-  {0x298E, 0x298F},
-  {0x298F, 0x298E},
-  {0x2990, 0x298D},
-  {0x2991, 0x2992},
-  {0x2992, 0x2991},
-  {0x2993, 0x2994},
-  {0x2994, 0x2993},
-  {0x2995, 0x2996},
-  {0x2996, 0x2995},
-  {0x2997, 0x2998},
-  {0x2998, 0x2997},
-  {0x29B8, 0x2298},
-  {0x29C0, 0x29C1},
-  {0x29C1, 0x29C0},
-  {0x29C4, 0x29C5},
-  {0x29C5, 0x29C4},
-  {0x29CF, 0x29D0},
-  {0x29D0, 0x29CF},
-  {0x29D1, 0x29D2},
-  {0x29D2, 0x29D1},
-  {0x29D4, 0x29D5},
-  {0x29D5, 0x29D4},
-  {0x29D8, 0x29D9},
-  {0x29D9, 0x29D8},
-  {0x29DA, 0x29DB},
-  {0x29DB, 0x29DA},
-  {0x29F5, 0x2215},
-  {0x29F8, 0x29F9},
-  {0x29F9, 0x29F8},
-  {0x29FC, 0x29FD},
-  {0x29FD, 0x29FC},
-  {0x2A2B, 0x2A2C},
-  {0x2A2C, 0x2A2B},
-  {0x2A2D, 0x2A2E},
-  {0x2A2E, 0x2A2D},
-  {0x2A34, 0x2A35},
-  {0x2A35, 0x2A34},
-  {0x2A3C, 0x2A3D},
-  {0x2A3D, 0x2A3C},
-  {0x2A64, 0x2A65},
-  {0x2A65, 0x2A64},
-  {0x2A79, 0x2A7A},
-  {0x2A7A, 0x2A79},
-  {0x2A7D, 0x2A7E},
-  {0x2A7E, 0x2A7D},
-  {0x2A7F, 0x2A80},
-  {0x2A80, 0x2A7F},
-  {0x2A81, 0x2A82},
-  {0x2A82, 0x2A81},
-  {0x2A83, 0x2A84},
-  {0x2A84, 0x2A83},
-  {0x2A8B, 0x2A8C},
-  {0x2A8C, 0x2A8B},
-  {0x2A91, 0x2A92},
-  {0x2A92, 0x2A91},
-  {0x2A93, 0x2A94},
-  {0x2A94, 0x2A93},
-  {0x2A95, 0x2A96},
-  {0x2A96, 0x2A95},
-  {0x2A97, 0x2A98},
-  {0x2A98, 0x2A97},
-  {0x2A99, 0x2A9A},
-  {0x2A9A, 0x2A99},
-  {0x2A9B, 0x2A9C},
-  {0x2A9C, 0x2A9B},
-  {0x2AA1, 0x2AA2},
-  {0x2AA2, 0x2AA1},
-  {0x2AA6, 0x2AA7},
-  {0x2AA7, 0x2AA6},
-  {0x2AA8, 0x2AA9},
-  {0x2AA9, 0x2AA8},
-  {0x2AAA, 0x2AAB},
-  {0x2AAB, 0x2AAA},
-  {0x2AAC, 0x2AAD},
-  {0x2AAD, 0x2AAC},
-  {0x2AAF, 0x2AB0},
-  {0x2AB0, 0x2AAF},
-  {0x2AB3, 0x2AB4},
-  {0x2AB4, 0x2AB3},
-  {0x2ABB, 0x2ABC},
-  {0x2ABC, 0x2ABB},
-  {0x2ABD, 0x2ABE},
-  {0x2ABE, 0x2ABD},
-  {0x2ABF, 0x2AC0},
-  {0x2AC0, 0x2ABF},
-  {0x2AC1, 0x2AC2},
-  {0x2AC2, 0x2AC1},
-  {0x2AC3, 0x2AC4},
-  {0x2AC4, 0x2AC3},
-  {0x2AC5, 0x2AC6},
-  {0x2AC6, 0x2AC5},
-  {0x2ACD, 0x2ACE},
-  {0x2ACE, 0x2ACD},
-  {0x2ACF, 0x2AD0},
-  {0x2AD0, 0x2ACF},
-  {0x2AD1, 0x2AD2},
-  {0x2AD2, 0x2AD1},
-  {0x2AD3, 0x2AD4},
-  {0x2AD4, 0x2AD3},
-  {0x2AD5, 0x2AD6},
-  {0x2AD6, 0x2AD5},
-  {0x2ADE, 0x22A6},
-  {0x2AE3, 0x22A9},
-  {0x2AE4, 0x22A8},
-  {0x2AE5, 0x22AB},
-  {0x2AEC, 0x2AED},
-  {0x2AED, 0x2AEC},
-  {0x2AF7, 0x2AF8},
-  {0x2AF8, 0x2AF7},
-  {0x2AF9, 0x2AFA},
-  {0x2AFA, 0x2AF9},
-  {0x2E02, 0x2E03},
-  {0x2E03, 0x2E02},
-  {0x2E04, 0x2E05},
-  {0x2E05, 0x2E04},
-  {0x2E09, 0x2E0A},
-  {0x2E0A, 0x2E09},
-  {0x2E0C, 0x2E0D},
-  {0x2E0D, 0x2E0C},
-  {0x2E1C, 0x2E1D},
-  {0x2E1D, 0x2E1C},
-  {0x3008, 0x3009},
-  {0x3009, 0x3008},
-  {0x300A, 0x300B},
-  {0x300B, 0x300A},
-  {0x300C, 0x300D},
-  {0x300D, 0x300C},
-  {0x300E, 0x300F},
-  {0x300F, 0x300E},
-  {0x3010, 0x3011},
-  {0x3011, 0x3010},
-  {0x3014, 0x3015},
-  {0x3015, 0x3014},
-  {0x3016, 0x3017},
-  {0x3017, 0x3016},
-  {0x3018, 0x3019},
-  {0x3019, 0x3018},
-  {0x301A, 0x301B},
-  {0x301B, 0x301A},
-  {0xFF08, 0xFF09},
-  {0xFF09, 0xFF08},
-  {0xFF1C, 0xFF1E},
-  {0xFF1E, 0xFF1C},
-  {0xFF3B, 0xFF3D},
-  {0xFF3D, 0xFF3B},
-  {0xFF5B, 0xFF5D},
-  {0xFF5D, 0xFF5B},
-  {0xFF5F, 0xFF60},
-  {0xFF60, 0xFF5F},
-  {0xFF62, 0xFF63},
-  {0xFF63, 0xFF62},
-  };
-  
-  int i, j, k;
-  
-  i = -1;
-  j = lenof(lookup);
-  
-  while (j - i > 1) {
-    k = (i + j) / 2;
-    if (*ch < lookup[k].first)
-      j = k;
-    else if (*ch > lookup[k].first)
-      i = k;
-    else if(*ch == lookup[k].first)
-      {
-	//return (unsigned char)lookup[k].type;
-	*ch = lookup[k].mirror;
-	return;
-      }
-  }
+void doMirror(CHARTYPE* ch) {
+
+    static const struct {
+        CHARTYPE first, mirror;
+    } lookup[] = {
+        {0x0028, 0x0029},
+        {0x0029, 0x0028},
+        {0x003C, 0x003E},
+        {0x003E, 0x003C},
+        {0x005B, 0x005D},
+        {0x005D, 0x005B},
+        {0x007B, 0x007D},
+        {0x007D, 0x007B},
+        {0x00AB, 0x00BB},
+        {0x00BB, 0x00AB},
+        {0x2039, 0x203A},
+        {0x203A, 0x2039},
+        {0x2045, 0x2046},
+        {0x2046, 0x2045},
+        {0x207D, 0x207E},
+        {0x207E, 0x207D},
+        {0x208D, 0x208E},
+        {0x208E, 0x208D},
+        {0x2208, 0x220B},
+        {0x2209, 0x220C},
+        {0x220A, 0x220D},
+        {0x220B, 0x2208},
+        {0x220C, 0x2209},
+        {0x220D, 0x220A},
+        {0x2215, 0x29F5},
+        {0x223C, 0x223D},
+        {0x223D, 0x223C},
+        {0x2243, 0x22CD},
+        {0x2252, 0x2253},
+        {0x2253, 0x2252},
+        {0x2254, 0x2255},
+        {0x2255, 0x2254},
+        {0x2264, 0x2265},
+        {0x2265, 0x2264},
+        {0x2266, 0x2267},
+        {0x2267, 0x2266},
+        {0x2268, 0x2269},
+        {0x2269, 0x2268},
+        {0x226A, 0x226B},
+        {0x226B, 0x226A},
+        {0x226E, 0x226F},
+        {0x226F, 0x226E},
+        {0x2270, 0x2271},
+        {0x2271, 0x2270},
+        {0x2272, 0x2273},
+        {0x2273, 0x2272},
+        {0x2274, 0x2275},
+        {0x2275, 0x2274},
+        {0x2276, 0x2277},
+        {0x2277, 0x2276},
+        {0x2278, 0x2279},
+        {0x2279, 0x2278},
+        {0x227A, 0x227B},
+        {0x227B, 0x227A},
+        {0x227C, 0x227D},
+        {0x227D, 0x227C},
+        {0x227E, 0x227F},
+        {0x227F, 0x227E},
+        {0x2280, 0x2281},
+        {0x2281, 0x2280},
+        {0x2282, 0x2283},
+        {0x2283, 0x2282},
+        {0x2284, 0x2285},
+        {0x2285, 0x2284},
+        {0x2286, 0x2287},
+        {0x2287, 0x2286},
+        {0x2288, 0x2289},
+        {0x2289, 0x2288},
+        {0x228A, 0x228B},
+        {0x228B, 0x228A},
+        {0x228F, 0x2290},
+        {0x2290, 0x228F},
+        {0x2291, 0x2292},
+        {0x2292, 0x2291},
+        {0x2298, 0x29B8},
+        {0x22A2, 0x22A3},
+        {0x22A3, 0x22A2},
+        {0x22A6, 0x2ADE},
+        {0x22A8, 0x2AE4},
+        {0x22A9, 0x2AE3},
+        {0x22AB, 0x2AE5},
+        {0x22B0, 0x22B1},
+        {0x22B1, 0x22B0},
+        {0x22B2, 0x22B3},
+        {0x22B3, 0x22B2},
+        {0x22B4, 0x22B5},
+        {0x22B5, 0x22B4},
+        {0x22B6, 0x22B7},
+        {0x22B7, 0x22B6},
+        {0x22C9, 0x22CA},
+        {0x22CA, 0x22C9},
+        {0x22CB, 0x22CC},
+        {0x22CC, 0x22CB},
+        {0x22CD, 0x2243},
+        {0x22D0, 0x22D1},
+        {0x22D1, 0x22D0},
+        {0x22D6, 0x22D7},
+        {0x22D7, 0x22D6},
+        {0x22D8, 0x22D9},
+        {0x22D9, 0x22D8},
+        {0x22DA, 0x22DB},
+        {0x22DB, 0x22DA},
+        {0x22DC, 0x22DD},
+        {0x22DD, 0x22DC},
+        {0x22DE, 0x22DF},
+        {0x22DF, 0x22DE},
+        {0x22E0, 0x22E1},
+        {0x22E1, 0x22E0},
+        {0x22E2, 0x22E3},
+        {0x22E3, 0x22E2},
+        {0x22E4, 0x22E5},
+        {0x22E5, 0x22E4},
+        {0x22E6, 0x22E7},
+        {0x22E7, 0x22E6},
+        {0x22E8, 0x22E9},
+        {0x22E9, 0x22E8},
+        {0x22EA, 0x22EB},
+        {0x22EB, 0x22EA},
+        {0x22EC, 0x22ED},
+        {0x22ED, 0x22EC},
+        {0x22F0, 0x22F1},
+        {0x22F1, 0x22F0},
+        {0x22F2, 0x22FA},
+        {0x22F3, 0x22FB},
+        {0x22F4, 0x22FC},
+        {0x22F6, 0x22FD},
+        {0x22F7, 0x22FE},
+        {0x22FA, 0x22F2},
+        {0x22FB, 0x22F3},
+        {0x22FC, 0x22F4},
+        {0x22FD, 0x22F6},
+        {0x22FE, 0x22F7},
+        {0x2308, 0x2309},
+        {0x2309, 0x2308},
+        {0x230A, 0x230B},
+        {0x230B, 0x230A},
+        {0x2329, 0x232A},
+        {0x232A, 0x2329},
+        {0x2768, 0x2769},
+        {0x2769, 0x2768},
+        {0x276A, 0x276B},
+        {0x276B, 0x276A},
+        {0x276C, 0x276D},
+        {0x276D, 0x276C},
+        {0x276E, 0x276F},
+        {0x276F, 0x276E},
+        {0x2770, 0x2771},
+        {0x2771, 0x2770},
+        {0x2772, 0x2773},
+        {0x2773, 0x2772},
+        {0x2774, 0x2775},
+        {0x2775, 0x2774},
+        {0x27C3, 0x27C4},
+        {0x27C4, 0x27C3},
+        {0x27C5, 0x27C6},
+        {0x27C6, 0x27C5},
+        {0x27D5, 0x27D6},
+        {0x27D6, 0x27D5},
+        {0x27DD, 0x27DE},
+        {0x27DE, 0x27DD},
+        {0x27E2, 0x27E3},
+        {0x27E3, 0x27E2},
+        {0x27E4, 0x27E5},
+        {0x27E5, 0x27E4},
+        {0x27E6, 0x27E7},
+        {0x27E7, 0x27E6},
+        {0x27E8, 0x27E9},
+        {0x27E9, 0x27E8},
+        {0x27EA, 0x27EB},
+        {0x27EB, 0x27EA},
+        {0x2983, 0x2984},
+        {0x2984, 0x2983},
+        {0x2985, 0x2986},
+        {0x2986, 0x2985},
+        {0x2987, 0x2988},
+        {0x2988, 0x2987},
+        {0x2989, 0x298A},
+        {0x298A, 0x2989},
+        {0x298B, 0x298C},
+        {0x298C, 0x298B},
+        {0x298D, 0x2990},
+        {0x298E, 0x298F},
+        {0x298F, 0x298E},
+        {0x2990, 0x298D},
+        {0x2991, 0x2992},
+        {0x2992, 0x2991},
+        {0x2993, 0x2994},
+        {0x2994, 0x2993},
+        {0x2995, 0x2996},
+        {0x2996, 0x2995},
+        {0x2997, 0x2998},
+        {0x2998, 0x2997},
+        {0x29B8, 0x2298},
+        {0x29C0, 0x29C1},
+        {0x29C1, 0x29C0},
+        {0x29C4, 0x29C5},
+        {0x29C5, 0x29C4},
+        {0x29CF, 0x29D0},
+        {0x29D0, 0x29CF},
+        {0x29D1, 0x29D2},
+        {0x29D2, 0x29D1},
+        {0x29D4, 0x29D5},
+        {0x29D5, 0x29D4},
+        {0x29D8, 0x29D9},
+        {0x29D9, 0x29D8},
+        {0x29DA, 0x29DB},
+        {0x29DB, 0x29DA},
+        {0x29F5, 0x2215},
+        {0x29F8, 0x29F9},
+        {0x29F9, 0x29F8},
+        {0x29FC, 0x29FD},
+        {0x29FD, 0x29FC},
+        {0x2A2B, 0x2A2C},
+        {0x2A2C, 0x2A2B},
+        {0x2A2D, 0x2A2E},
+        {0x2A2E, 0x2A2D},
+        {0x2A34, 0x2A35},
+        {0x2A35, 0x2A34},
+        {0x2A3C, 0x2A3D},
+        {0x2A3D, 0x2A3C},
+        {0x2A64, 0x2A65},
+        {0x2A65, 0x2A64},
+        {0x2A79, 0x2A7A},
+        {0x2A7A, 0x2A79},
+        {0x2A7D, 0x2A7E},
+        {0x2A7E, 0x2A7D},
+        {0x2A7F, 0x2A80},
+        {0x2A80, 0x2A7F},
+        {0x2A81, 0x2A82},
+        {0x2A82, 0x2A81},
+        {0x2A83, 0x2A84},
+        {0x2A84, 0x2A83},
+        {0x2A8B, 0x2A8C},
+        {0x2A8C, 0x2A8B},
+        {0x2A91, 0x2A92},
+        {0x2A92, 0x2A91},
+        {0x2A93, 0x2A94},
+        {0x2A94, 0x2A93},
+        {0x2A95, 0x2A96},
+        {0x2A96, 0x2A95},
+        {0x2A97, 0x2A98},
+        {0x2A98, 0x2A97},
+        {0x2A99, 0x2A9A},
+        {0x2A9A, 0x2A99},
+        {0x2A9B, 0x2A9C},
+        {0x2A9C, 0x2A9B},
+        {0x2AA1, 0x2AA2},
+        {0x2AA2, 0x2AA1},
+        {0x2AA6, 0x2AA7},
+        {0x2AA7, 0x2AA6},
+        {0x2AA8, 0x2AA9},
+        {0x2AA9, 0x2AA8},
+        {0x2AAA, 0x2AAB},
+        {0x2AAB, 0x2AAA},
+        {0x2AAC, 0x2AAD},
+        {0x2AAD, 0x2AAC},
+        {0x2AAF, 0x2AB0},
+        {0x2AB0, 0x2AAF},
+        {0x2AB3, 0x2AB4},
+        {0x2AB4, 0x2AB3},
+        {0x2ABB, 0x2ABC},
+        {0x2ABC, 0x2ABB},
+        {0x2ABD, 0x2ABE},
+        {0x2ABE, 0x2ABD},
+        {0x2ABF, 0x2AC0},
+        {0x2AC0, 0x2ABF},
+        {0x2AC1, 0x2AC2},
+        {0x2AC2, 0x2AC1},
+        {0x2AC3, 0x2AC4},
+        {0x2AC4, 0x2AC3},
+        {0x2AC5, 0x2AC6},
+        {0x2AC6, 0x2AC5},
+        {0x2ACD, 0x2ACE},
+        {0x2ACE, 0x2ACD},
+        {0x2ACF, 0x2AD0},
+        {0x2AD0, 0x2ACF},
+        {0x2AD1, 0x2AD2},
+        {0x2AD2, 0x2AD1},
+        {0x2AD3, 0x2AD4},
+        {0x2AD4, 0x2AD3},
+        {0x2AD5, 0x2AD6},
+        {0x2AD6, 0x2AD5},
+        {0x2ADE, 0x22A6},
+        {0x2AE3, 0x22A9},
+        {0x2AE4, 0x22A8},
+        {0x2AE5, 0x22AB},
+        {0x2AEC, 0x2AED},
+        {0x2AED, 0x2AEC},
+        {0x2AF7, 0x2AF8},
+        {0x2AF8, 0x2AF7},
+        {0x2AF9, 0x2AFA},
+        {0x2AFA, 0x2AF9},
+        {0x2E02, 0x2E03},
+        {0x2E03, 0x2E02},
+        {0x2E04, 0x2E05},
+        {0x2E05, 0x2E04},
+        {0x2E09, 0x2E0A},
+        {0x2E0A, 0x2E09},
+        {0x2E0C, 0x2E0D},
+        {0x2E0D, 0x2E0C},
+        {0x2E1C, 0x2E1D},
+        {0x2E1D, 0x2E1C},
+        {0x3008, 0x3009},
+        {0x3009, 0x3008},
+        {0x300A, 0x300B},
+        {0x300B, 0x300A},
+        {0x300C, 0x300D},
+        {0x300D, 0x300C},
+        {0x300E, 0x300F},
+        {0x300F, 0x300E},
+        {0x3010, 0x3011},
+        {0x3011, 0x3010},
+        {0x3014, 0x3015},
+        {0x3015, 0x3014},
+        {0x3016, 0x3017},
+        {0x3017, 0x3016},
+        {0x3018, 0x3019},
+        {0x3019, 0x3018},
+        {0x301A, 0x301B},
+        {0x301B, 0x301A},
+        {0xFF08, 0xFF09},
+        {0xFF09, 0xFF08},
+        {0xFF1C, 0xFF1E},
+        {0xFF1E, 0xFF1C},
+        {0xFF3B, 0xFF3D},
+        {0xFF3D, 0xFF3B},
+        {0xFF5B, 0xFF5D},
+        {0xFF5D, 0xFF5B},
+        {0xFF5F, 0xFF60},
+        {0xFF60, 0xFF5F},
+        {0xFF62, 0xFF63},
+        {0xFF63, 0xFF62},
+    };
+
+    int i, j, k;
+
+    i = -1;
+    j = lenof(lookup);
+
+    while (j - i > 1) {
+        k = (i + j) / 2;
+        if (*ch < lookup[k].first)
+            j = k;
+        else if (*ch > lookup[k].first)
+            i = k;
+        else if (*ch == lookup[k].first) {
+            //return (unsigned char)lookup[k].type;
+            *ch = lookup[k].mirror;
+            return;
+        }
+    }
 }

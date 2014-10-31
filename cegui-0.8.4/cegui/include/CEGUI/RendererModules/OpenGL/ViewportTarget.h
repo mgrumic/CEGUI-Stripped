@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jan 11 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,37 +31,36 @@
 #include "../../Rect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    OpenGL implementation of a RenderTarget that represents am on-scren
-    viewport.
-*/
-class OPENGL_GUIRENDERER_API OpenGLViewportTarget : public OpenGLRenderTarget<>
-{
-public:
-    /*!
-    \brief
-        Construct a default OpenGLViewportTarget that uses the currently
-        defined OpenGL viewport as it's initial area.
-    */
-    OpenGLViewportTarget(OpenGLRendererBase& owner);
+namespace CEGUI {
 
     /*!
     \brief
-        Construct a OpenGLViewportTarget that uses the specified Rect as it's
-        initial area.
+        OpenGL implementation of a RenderTarget that represents am on-scren
+        viewport.
+     */
+    class OPENGL_GUIRENDERER_API OpenGLViewportTarget : public OpenGLRenderTarget<> {
+    public:
+        /*!
+        \brief
+            Construct a default OpenGLViewportTarget that uses the currently
+            defined OpenGL viewport as it's initial area.
+         */
+        OpenGLViewportTarget(OpenGLRendererBase& owner);
 
-    \param area
-        Rect object describing the initial viewport area that should be used for
-        the RenderTarget.
-    */
-    OpenGLViewportTarget(OpenGLRendererBase& owner, const Rectf& area);
+        /*!
+        \brief
+            Construct a OpenGLViewportTarget that uses the specified Rect as it's
+            initial area.
 
-    // implementations of RenderTarget interface
-    bool isImageryCache() const;
-};
+        \param area
+            Rect object describing the initial viewport area that should be used for
+            the RenderTarget.
+         */
+        OpenGLViewportTarget(OpenGLRendererBase& owner, const Rectf& area);
+
+        // implementations of RenderTarget interface
+        bool isImageryCache() const;
+    };
 
 } // End of  CEGUI namespace section
 

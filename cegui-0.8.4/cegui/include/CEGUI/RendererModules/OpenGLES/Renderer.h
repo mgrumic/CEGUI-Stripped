@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jan 11 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -36,352 +36,350 @@
 #include <map>
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIOPENGLESRENDERER_EXPORTS
-#       define OPENGLES_GUIRENDERER_API __declspec(dllexport)
-#   else
-#       define OPENGLES_GUIRENDERER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIOPENGLESRENDERER_EXPORTS
+#define OPENGLES_GUIRENDERER_API __declspec(dllexport)
 #else
-#   define OPENGLES_GUIRENDERER_API
+#define OPENGLES_GUIRENDERER_API __declspec(dllimport)
+#endif
+#else
+#define OPENGLES_GUIRENDERER_API
 #endif
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OpenGLESTexture;
-class OpenGLESTextureTarget;
-class OpenGLESGeometryBuffer;
-class OGLTextureTargetFactory;
-
-/*!
-\brief
-    Renderer class to interface with OpenGLES
-*/
-class OPENGLES_GUIRENDERER_API OpenGLESRenderer : public Renderer
-{
-public:
-    //! Enumeration of valid texture target types.
-    enum TextureTargetType
-    {
-        //! Automatically choose the best type available.
-        TTT_AUTO,
-        //! Use targets based on frame buffer objects if available, else none.
-        TTT_FBO,
-        //! Use targets based on pbuffer support if available, else none.
-        TTT_PBUFFER,
-        //! Disable texture targets.
-        TTT_NONE
-    };
+namespace CEGUI {
+    class OpenGLESTexture;
+    class OpenGLESTextureTarget;
+    class OpenGLESGeometryBuffer;
+    class OGLTextureTargetFactory;
 
     /*!
     \brief
-        Convenience function that creates the required objects to initialise the
-        CEGUI system.
+        Renderer class to interface with OpenGLES
+     */
+    class OPENGLES_GUIRENDERER_API OpenGLESRenderer : public Renderer {
+    public:
+        //! Enumeration of valid texture target types.
 
-        The created Renderer will use the current OpenGL ES viewport as it's
-        default surface size.
+        enum TextureTargetType {
+            //! Automatically choose the best type available.
+            TTT_AUTO,
+            //! Use targets based on frame buffer objects if available, else none.
+            TTT_FBO,
+            //! Use targets based on pbuffer support if available, else none.
+            TTT_PBUFFER,
+            //! Disable texture targets.
+            TTT_NONE
+        };
 
-        This will create and initialise the following objects for you:
-        - CEGUI::OpenGLESRenderer
-        - CEGUI::DefaultResourceProvider
-        - CEGUI::System
+        /*!
+        \brief
+            Convenience function that creates the required objects to initialise the
+            CEGUI system.
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.  Defaults to TTT_AUTO.
+            The created Renderer will use the current OpenGL ES viewport as it's
+            default surface size.
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
+            This will create and initialise the following objects for you:
+            - CEGUI::OpenGLESRenderer
+            - CEGUI::DefaultResourceProvider
+            - CEGUI::System
 
-    \return
-        Reference to the CEGUI::OpenGLESRenderer object that was created.
-    */
-    static OpenGLESRenderer& bootstrapSystem(
-                                const TextureTargetType tt_type = TTT_AUTO,
-                                const int abi = CEGUI_VERSION_ABI);
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.  Defaults to TTT_AUTO.
 
-    /*!
-    \brief
-        Convenience function that creates the required objects to initialise the
-        CEGUI system.
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
 
-        The created Renderer will use /a display_size as the default surface
-        size.
+        \return
+            Reference to the CEGUI::OpenGLESRenderer object that was created.
+         */
+        static OpenGLESRenderer& bootstrapSystem(
+                const TextureTargetType tt_type = TTT_AUTO,
+                const int abi = CEGUI_VERSION_ABI);
 
-        This will create and initialise the following objects for you:
-        - CEGUI::OpenGLESRenderer
-        - CEGUI::DefaultResourceProvider
-        - CEGUI::System
+        /*!
+        \brief
+            Convenience function that creates the required objects to initialise the
+            CEGUI system.
 
-    \param display_size
-        Size object describing the initial display dimensions.
+            The created Renderer will use /a display_size as the default surface
+            size.
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.  Defaults to TTT_AUTO.
+            This will create and initialise the following objects for you:
+            - CEGUI::OpenGLESRenderer
+            - CEGUI::DefaultResourceProvider
+            - CEGUI::System
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
+        \param display_size
+            Size object describing the initial display dimensions.
 
-    \return
-        Reference to the CEGUI::OpenGLESRenderer object that was created.
-    */
-    static OpenGLESRenderer& bootstrapSystem(
-                                const Sizef& display_size,
-                                const TextureTargetType tt_type = TTT_AUTO,
-                                const int abi = CEGUI_VERSION_ABI);
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.  Defaults to TTT_AUTO.
 
-    /*!
-    \brief
-        Convenience function to cleanup the CEGUI system and related objects
-        that were created by calling the bootstrapSystem function.
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
 
-        This function will destroy the following objects for you:
-        - CEGUI::System
-        - CEGUI::DefaultResourceProvider
-        - CEGUI::OpenGLRenderer
+        \return
+            Reference to the CEGUI::OpenGLESRenderer object that was created.
+         */
+        static OpenGLESRenderer& bootstrapSystem(
+                const Sizef& display_size,
+                const TextureTargetType tt_type = TTT_AUTO,
+                const int abi = CEGUI_VERSION_ABI);
 
-    \note
-        If you did not initialise CEGUI by calling the bootstrapSystem function,
-        you should \e not call this, but rather delete any objects you created
-        manually.
-    */
-    static void destroySystem();
+        /*!
+        \brief
+            Convenience function to cleanup the CEGUI system and related objects
+            that were created by calling the bootstrapSystem function.
 
-    /*!
-    \brief
-        Create an OpenGLESRenderer object.
+            This function will destroy the following objects for you:
+            - CEGUI::System
+            - CEGUI::DefaultResourceProvider
+            - CEGUI::OpenGLRenderer
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
+        \note
+            If you did not initialise CEGUI by calling the bootstrapSystem function,
+            you should \e not call this, but rather delete any objects you created
+            manually.
+         */
+        static void destroySystem();
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
-    */
-    static OpenGLESRenderer& create(const TextureTargetType tt_type = TTT_AUTO,
-                                    const int abi = CEGUI_VERSION_ABI);
+        /*!
+        \brief
+            Create an OpenGLESRenderer object.
 
-    /*!
-    \brief
-        Create an OpenGLESRenderer object.
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
 
-    \param display_size
-        Size object describing the initial display resolution.
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
+         */
+        static OpenGLESRenderer& create(const TextureTargetType tt_type = TTT_AUTO,
+                const int abi = CEGUI_VERSION_ABI);
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
+        /*!
+        \brief
+            Create an OpenGLESRenderer object.
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
-    */
-    static OpenGLESRenderer& create(const Sizef& display_size,
-                                    const TextureTargetType tt_type = TTT_AUTO,
-                                    const int abi = CEGUI_VERSION_ABI);
+        \param display_size
+            Size object describing the initial display resolution.
 
-    /*!
-    \brief
-        Destroy an OpenGLESRenderer object.
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
 
-    \param renderer
-        The OpenGLESRenderer object to be destroyed.
-    */
-    static void destroy(OpenGLESRenderer& renderer);
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
+         */
+        static OpenGLESRenderer& create(const Sizef& display_size,
+                const TextureTargetType tt_type = TTT_AUTO,
+                const int abi = CEGUI_VERSION_ABI);
 
-	/*!
+        /*!
+        \brief
+            Destroy an OpenGLESRenderer object.
+
+        \param renderer
+            The OpenGLESRenderer object to be destroyed.
+         */
+        static void destroy(OpenGLESRenderer& renderer);
+
+        /*!
     \brief
         Check if provided extension is supported on current platform.
-		Khronos reference implementation.
+                Khronos reference implementation.
 
     \param extension
         Provided extension string identification
-    */
-	static bool isGLExtensionSupported( const char* extension );
+         */
+        static bool isGLExtensionSupported(const char* extension);
 
-    // implement Renderer interface
-    RenderTarget& getDefaultRenderTarget();
-    GeometryBuffer& createGeometryBuffer();
-    void destroyGeometryBuffer(const GeometryBuffer& buffer);
-    void destroyAllGeometryBuffers();
-    TextureTarget* createTextureTarget();
-    void destroyTextureTarget(TextureTarget* target);
-    void destroyAllTextureTargets();
-    Texture& createTexture(const String& name);
-    Texture& createTexture(const String& name,
-                           const String& filename,
-                           const String& resourceGroup);
-    Texture& createTexture(const String& name, const Sizef& size);
-    void destroyTexture(Texture& texture);
-    void destroyTexture(const String& name);
-    void destroyAllTextures();
-    Texture& getTexture(const String& name) const;
-    bool isTextureDefined(const String& name) const;
-    void beginRendering();
-    void endRendering();
-    void setDisplaySize(const Sizef& sz);
-    const Sizef& getDisplaySize() const;
-    const Vector2f& getDisplayDPI() const;
-    uint getMaxTextureSize() const;
-    const String& getIdentifierString() const;
+        // implement Renderer interface
+        RenderTarget& getDefaultRenderTarget();
+        GeometryBuffer& createGeometryBuffer();
+        void destroyGeometryBuffer(const GeometryBuffer& buffer);
+        void destroyAllGeometryBuffers();
+        TextureTarget* createTextureTarget();
+        void destroyTextureTarget(TextureTarget* target);
+        void destroyAllTextureTargets();
+        Texture& createTexture(const String& name);
+        Texture& createTexture(const String& name,
+                const String& filename,
+                const String& resourceGroup);
+        Texture& createTexture(const String& name, const Sizef& size);
+        void destroyTexture(Texture& texture);
+        void destroyTexture(const String& name);
+        void destroyAllTextures();
+        Texture& getTexture(const String& name) const;
+        bool isTextureDefined(const String& name) const;
+        void beginRendering();
+        void endRendering();
+        void setDisplaySize(const Sizef& sz);
+        const Sizef& getDisplaySize() const;
+        const Vector2f& getDisplayDPI() const;
+        uint getMaxTextureSize() const;
+        const String& getIdentifierString() const;
 
-    /*!
-    \brief
-        Create a texture that uses an existing OpenGLES texture with the specified
-        size.  Note that it is your responsibility to ensure that the OpenGLES
-        texture is valid and that the specified size is accurate.
+        /*!
+        \brief
+            Create a texture that uses an existing OpenGLES texture with the specified
+            size.  Note that it is your responsibility to ensure that the OpenGLES
+            texture is valid and that the specified size is accurate.
 
-    \param sz
-        Size object that describes the pixel size of the OpenGLES texture
-        identified by \a tex.
+        \param sz
+            Size object that describes the pixel size of the OpenGLES texture
+            identified by \a tex.
 
-    \return
-        Texture object that wraps the OpenGLES texture \a tex, and whose size is
-        specified to be \a sz.
-    */
-    Texture& createTexture(const String& name, GLuint tex, const Sizef& sz);
+        \return
+            Texture object that wraps the OpenGLES texture \a tex, and whose size is
+            specified to be \a sz.
+         */
+        Texture& createTexture(const String& name, GLuint tex, const Sizef& sz);
 
-    /*!
-    \brief
-        Tells the renderer to initialise some extra states beyond what it
-        directly needs itself for CEGUI.
+        /*!
+        \brief
+            Tells the renderer to initialise some extra states beyond what it
+            directly needs itself for CEGUI.
 
-        This option is useful in cases where you've made changes to the default
-        OpenGLES state and do not want to save/restore those between CEGUI
-        rendering calls.  Note that this option will not deal with every
-        possible state or extension - if you want a state added here, make a
-        request and we'll consider it ;)
-    */
-    void enableExtraStateSettings(bool setting);
+            This option is useful in cases where you've made changes to the default
+            OpenGLES state and do not want to save/restore those between CEGUI
+            rendering calls.  Note that this option will not deal with every
+            possible state or extension - if you want a state added here, make a
+            request and we'll consider it ;)
+         */
+        void enableExtraStateSettings(bool setting);
 
-    /*!
-    \brief
-        Grabs all the loaded textures from Texture RAM and stores them in a
-        local data buffer.  This function invalidates all textures, and
-        restoreTextures must be called before any CEGUI rendering is done for
-        predictable results.
-    */
-    void grabTextures();
+        /*!
+        \brief
+            Grabs all the loaded textures from Texture RAM and stores them in a
+            local data buffer.  This function invalidates all textures, and
+            restoreTextures must be called before any CEGUI rendering is done for
+            predictable results.
+         */
+        void grabTextures();
 
-    /*!
-    \brief
-        Restores all the loaded textures from the local data buffers previously
-        created by 'grabTextures'
-    */
-    void restoreTextures();
+        /*!
+        \brief
+            Restores all the loaded textures from the local data buffers previously
+            created by 'grabTextures'
+         */
+        void restoreTextures();
 
-    /*!
-    \brief
-        Helper to return a valid texture size according to reported OpenGLES
-        capabilities.
+        /*!
+        \brief
+            Helper to return a valid texture size according to reported OpenGLES
+            capabilities.
 
-    \param sz
-        Size object containing input size.
+        \param sz
+            Size object containing input size.
 
-    \return
-        Size object containing - possibly different - output size.
-    */
-    Sizef getAdjustedTextureSize(const Sizef& sz) const;
+        \return
+            Size object containing - possibly different - output size.
+         */
+        Sizef getAdjustedTextureSize(const Sizef& sz) const;
 
-    /*!
-    \brief
-        Utility function that will return \a f if it's a power of two, or the
-        next power of two up from \a f if it's not.
-    */
-    static float getNextPOTSize(const float f);
+        /*!
+        \brief
+            Utility function that will return \a f if it's a power of two, or the
+            next power of two up from \a f if it's not.
+         */
+        static float getNextPOTSize(const float f);
 
-private:
-    /*!
-    \brief
-        Constructor for OpenGLES Renderer objects
+    private:
+        /*!
+        \brief
+            Constructor for OpenGLES Renderer objects
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
-    */
-    OpenGLESRenderer(const TextureTargetType tt_type);
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
+         */
+        OpenGLESRenderer(const TextureTargetType tt_type);
 
-    /*!
-    \brief
-        Constructor for OpenGLES Renderer objects.
+        /*!
+        \brief
+            Constructor for OpenGLES Renderer objects.
 
-    \param display_size
-        Size object describing the initial display resolution.
+        \param display_size
+            Size object describing the initial display resolution.
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
-    */
-    OpenGLESRenderer(const Sizef& display_size, const TextureTargetType tt_type);
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
+         */
+        OpenGLESRenderer(const Sizef& display_size, const TextureTargetType tt_type);
 
-    /*!
-    \brief
-        Destructor for OpenGLESRenderer objects
-    */
-    virtual ~OpenGLESRenderer();
+        /*!
+        \brief
+            Destructor for OpenGLESRenderer objects
+         */
+        virtual ~OpenGLESRenderer();
 
-    //! init the extra GL states enabled via enableExtraStateSettings
-    void setupExtraStates();
+        //! init the extra GL states enabled via enableExtraStateSettings
+        void setupExtraStates();
 
-    //! cleanup the extra GL states enabled via enableExtraStateSettings
-    void cleanupExtraStates();
+        //! cleanup the extra GL states enabled via enableExtraStateSettings
+        void cleanupExtraStates();
 
-    //! initialise OGLTextureTargetFactory that will generate TextureTargets
-    void initialiseTextureTargetFactory(const TextureTargetType tt_type);
+        //! initialise OGLTextureTargetFactory that will generate TextureTargets
+        void initialiseTextureTargetFactory(const TextureTargetType tt_type);
 
-    //! Log about the fact we destroyed a named texture.
-    void logTextureDestruction(const String& name);
+        //! Log about the fact we destroyed a named texture.
+        void logTextureDestruction(const String& name);
 
-	//! Replacement for glPushAttrib =(
-	struct RenderStates
-	{
-		GLboolean glScissorTest;
-		GLboolean texturing;
-		GLboolean blend;
-		GLint arrayBuffer;
-		GLint texture;
-		GLint texEnvParam;
-	} glPreRenderStates;
+        //! Replacement for glPushAttrib =(
 
-    //! String holding the renderer identification text.
-    static String d_rendererID;
-    //! What the renderer considers to be the current display size.
-    Sizef d_displaySize;
-    //! What the renderer considers to be the current display DPI resolution.
-    Vector2f d_displayDPI;
-    //! The default RenderTarget
-    RenderTarget* d_defaultTarget;
-    //! container type used to hold TextureTargets we create.
-    typedef std::vector<TextureTarget*> TextureTargetList;
-    //! Container used to track texture targets.
-    TextureTargetList d_textureTargets;
-    //! container type used to hold GeometryBuffers we create.
-    typedef std::vector<OpenGLESGeometryBuffer*> GeometryBufferList;
-    //! Container used to track geometry buffers.
-    GeometryBufferList d_geometryBuffers;
-    //! container type used to hold Textures we create.
-    typedef std::map<String, OpenGLESTexture*, StringFastLessCompare
-                     CEGUI_MAP_ALLOC(String, OpenGLESTexture*)> TextureMap;
-    //! Container used to track textures.
-    TextureMap d_textures;
-    //! What the renderer thinks the max texture size is.
-    uint d_maxTextureSize;
-    //! option of whether to initialise extra states that may not be at default
-    bool d_initExtraStates;
-    //! pointer to a helper that creates TextureTargets supported by the system.
-    OGLTextureTargetFactory* d_textureTargetFactory;
-  };
+        struct RenderStates {
+            GLboolean glScissorTest;
+            GLboolean texturing;
+            GLboolean blend;
+            GLint arrayBuffer;
+            GLint texture;
+            GLint texEnvParam;
+        } glPreRenderStates;
+
+        //! String holding the renderer identification text.
+        static String d_rendererID;
+        //! What the renderer considers to be the current display size.
+        Sizef d_displaySize;
+        //! What the renderer considers to be the current display DPI resolution.
+        Vector2f d_displayDPI;
+        //! The default RenderTarget
+        RenderTarget* d_defaultTarget;
+        //! container type used to hold TextureTargets we create.
+        typedef std::vector<TextureTarget*> TextureTargetList;
+        //! Container used to track texture targets.
+        TextureTargetList d_textureTargets;
+        //! container type used to hold GeometryBuffers we create.
+        typedef std::vector<OpenGLESGeometryBuffer*> GeometryBufferList;
+        //! Container used to track geometry buffers.
+        GeometryBufferList d_geometryBuffers;
+        //! container type used to hold Textures we create.
+        typedef std::map<String, OpenGLESTexture*, StringFastLessCompare
+        CEGUI_MAP_ALLOC(String, OpenGLESTexture*) > TextureMap;
+        //! Container used to track textures.
+        TextureMap d_textures;
+        //! What the renderer thinks the max texture size is.
+        uint d_maxTextureSize;
+        //! option of whether to initialise extra states that may not be at default
+        bool d_initExtraStates;
+        //! pointer to a helper that creates TextureTargets supported by the system.
+        OGLTextureTargetFactory* d_textureTargetFactory;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif // end of guard _CEGUIOpenGLESRenderer_h_

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jan 9 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -31,77 +31,76 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Class that represents a queue of GeometryBuffer objects to be rendered.
-
-\note
-    The RenderQueue does not make copies of added GeometryBuffers, nor does it
-    take ownership of them - it is up to other parts of the system to manage the
-    lifetime of the GeometryBuffer objects (and to remove them from any
-    RenderQueue to which they may be attached prior to destoying them).
-*/
-class CEGUIEXPORT RenderQueue :
-    public AllocatedObject<RenderQueue> 
-{
-public:
-    /*!
-    \brief
-        Draw all GeometryBuffer objects currently listed in the RenderQueue.
-        The GeometryBuffer objects remain in the queue after drawing has taken
-        place.
-    */
-    void draw() const;
+namespace CEGUI {
 
     /*!
     \brief
-        Add a GeometryBuffer to the RenderQueue.  Ownership of the
-        GeometryBuffer does not pass to the RenderQueue.
+        Class that represents a queue of GeometryBuffer objects to be rendered.
 
-    \param buffer
-        GeometryBuffer that is to be added to the RenderQueue for later drawing.
-    */
-    void addGeometryBuffer(const GeometryBuffer& buffer);
+    \note
+        The RenderQueue does not make copies of added GeometryBuffers, nor does it
+        take ownership of them - it is up to other parts of the system to manage the
+        lifetime of the GeometryBuffer objects (and to remove them from any
+        RenderQueue to which they may be attached prior to destoying them).
+     */
+    class CEGUIEXPORT RenderQueue :
+    public AllocatedObject<RenderQueue> {
+    public:
+        /*!
+        \brief
+            Draw all GeometryBuffer objects currently listed in the RenderQueue.
+            The GeometryBuffer objects remain in the queue after drawing has taken
+            place.
+         */
+        void draw() const;
 
-    /*!
-    \brief
-        Remove a GeometryBuffer previously queued for drawing.  If the specified
-        GeometryBuffer is not added to the queue, no action is taken.  The
-        removed GeometryBuffer is not destroyed or modified in any way.
+        /*!
+        \brief
+            Add a GeometryBuffer to the RenderQueue.  Ownership of the
+            GeometryBuffer does not pass to the RenderQueue.
 
-    \param buffer
-        GeometryBuffer to be removed from the queue.
-    */
-    void removeGeometryBuffer(const GeometryBuffer& buffer);
+        \param buffer
+            GeometryBuffer that is to be added to the RenderQueue for later drawing.
+         */
+        void addGeometryBuffer(const GeometryBuffer& buffer);
 
-    /*!
-    \brief
-        Remove any and all queued GeometryBuffer objects and restore the queue
-        to the default state.  Any GeometryBuffer objects removed are not
-        destroyed or modified in any way.
-    */
-    void reset();
+        /*!
+        \brief
+            Remove a GeometryBuffer previously queued for drawing.  If the specified
+            GeometryBuffer is not added to the queue, no action is taken.  The
+            removed GeometryBuffer is not destroyed or modified in any way.
 
-private:
-    //! Type to use for the GeometryBuffer collection.
-    typedef std::vector<const GeometryBuffer*
+        \param buffer
+            GeometryBuffer to be removed from the queue.
+         */
+        void removeGeometryBuffer(const GeometryBuffer& buffer);
+
+        /*!
+        \brief
+            Remove any and all queued GeometryBuffer objects and restore the queue
+            to the default state.  Any GeometryBuffer objects removed are not
+            destroyed or modified in any way.
+         */
+        void reset();
+
+    private:
+        //! Type to use for the GeometryBuffer collection.
+        typedef std::vector<const GeometryBuffer*
         CEGUI_VECTOR_ALLOC(const GeometryBuffer)> BufferList;
-    //! Collection of GeometryBuffer objects that comprise this RenderQueue.
-    BufferList d_buffers;
-};
+        //! Collection of GeometryBuffer objects that comprise this RenderQueue.
+        BufferList d_buffers;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIRenderQueue_h_

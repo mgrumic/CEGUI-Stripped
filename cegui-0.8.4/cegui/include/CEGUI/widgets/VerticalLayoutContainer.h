@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Interface to a vertical layout container
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -33,39 +33,38 @@
 #include "../WindowFactory.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    A Layout Container window layouting it's children vertically
-*/
-class CEGUIEXPORT VerticalLayoutContainer : public SequentialLayoutContainer
-{
-public:
-    /*************************************************************************
-        Constants
-    *************************************************************************/
-    //! The unique typename of this widget
-    static const String WidgetTypeName;
-
-    /*************************************************************************
-        Construction and Destruction
-    *************************************************************************/
-    /*!
-    \brief
-        Constructor for GUISheet windows.
-    */
-    VerticalLayoutContainer(const String& type, const String& name);
+namespace CEGUI {
 
     /*!
     \brief
-        Destructor for GUISheet windows.
-    */
-    virtual ~VerticalLayoutContainer(void);
+        A Layout Container window layouting it's children vertically
+     */
+    class CEGUIEXPORT VerticalLayoutContainer : public SequentialLayoutContainer {
+    public:
+        /*************************************************************************
+            Constants
+         *************************************************************************/
+        //! The unique typename of this widget
+        static const String WidgetTypeName;
 
-    //! @copydoc LayoutContainer::layout
-    virtual void layout();
-};
+        /*************************************************************************
+            Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+            Constructor for GUISheet windows.
+         */
+        VerticalLayoutContainer(const String& type, const String& name);
+
+        /*!
+        \brief
+            Destructor for GUISheet windows.
+         */
+        virtual ~VerticalLayoutContainer(void);
+
+        //! @copydoc LayoutContainer::layout
+        virtual void layout();
+    };
 
 } // End of  CEGUI namespace section
 

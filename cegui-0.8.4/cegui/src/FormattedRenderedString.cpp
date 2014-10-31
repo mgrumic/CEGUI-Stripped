@@ -27,31 +27,30 @@
 #include "CEGUI/FormattedRenderedString.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-FormattedRenderedString::FormattedRenderedString(const RenderedString& string) :
-    d_renderedString(&string)
-{
-}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-FormattedRenderedString::~FormattedRenderedString()
-{
-}
+    FormattedRenderedString::FormattedRenderedString(const RenderedString& string) :
+    d_renderedString(&string) {
+    }
 
-//----------------------------------------------------------------------------//
-void FormattedRenderedString::setRenderedString(const RenderedString& string)
-{
-    d_renderedString = &string;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-const RenderedString& FormattedRenderedString::getRenderedString() const
-{
-    return *d_renderedString;
-}
+    FormattedRenderedString::~FormattedRenderedString() {
+    }
 
-//----------------------------------------------------------------------------//
-    
+    //----------------------------------------------------------------------------//
+
+    void FormattedRenderedString::setRenderedString(const RenderedString& string) {
+        d_renderedString = &string;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const RenderedString& FormattedRenderedString::getRenderedString() const {
+        return *d_renderedString;
+    }
+
+    //----------------------------------------------------------------------------//
+
 } // End of  CEGUI namespace section

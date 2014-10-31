@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Nov 21 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -31,73 +31,72 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-
-/*!
-\brief
-    LinkedEvent is an Event subclass that provides a mechanism to link or chain
-    Events together, such that when a specified target event is fired, then
-    this event will additionally fire in response.
-    \par
-    The expected use of this mechanism is for container or compound widgets to
-    be able to expose events of component widgets without needing to provide
-    repetetive boilerplate event forwarding code, and also for scenarios where
-    code is not typically provided (i.e. data based skinning scenarios).
-*/
-class CEGUIEXPORT LinkedEvent : public Event
-{
-public:
-    /*!
-    \brief
-        Constructor
-
-    \param name
-        String object describing the name that this Event will use.
-
-    \param target_event_set
-        EventSet that the LinkedEvent should add itself to.
-    */
-    LinkedEvent(const String& event_name, EventSet* target_event_set);
-    ~LinkedEvent();
+namespace CEGUI {
 
     /*!
     \brief
-        Add a link target for this event.  A link target is an event that
-        will trigger this event.
+        LinkedEvent is an Event subclass that provides a mechanism to link or chain
+        Events together, such that when a specified target event is fired, then
+        this event will additionally fire in response.
+        \par
+        The expected use of this mechanism is for container or compound widgets to
+        be able to expose events of component widgets without needing to provide
+        repetetive boilerplate event forwarding code, and also for scenarios where
+        code is not typically provided (i.e. data based skinning scenarios).
+     */
+    class CEGUIEXPORT LinkedEvent : public Event {
+    public:
+        /*!
+        \brief
+            Constructor
 
-    \param link_target
-        Reference to an Event that, when fired, will additionally cause
-        this Event to fire.
+        \param name
+            String object describing the name that this Event will use.
 
-    \note
-        Once an event link is established it can not currently be broken
-        without destroying this Event completely.
-    */
-    void addLinkedTarget(Event& link_target);
+        \param target_event_set
+            EventSet that the LinkedEvent should add itself to.
+         */
+        LinkedEvent(const String& event_name, EventSet* target_event_set);
+        ~LinkedEvent();
 
-protected:
-    bool handler(const EventArgs& args);
+        /*!
+        \brief
+            Add a link target for this event.  A link target is an event that
+            will trigger this event.
 
-    LinkedEvent(const LinkedEvent& e) : Event(e) {}
+        \param link_target
+            Reference to an Event that, when fired, will additionally cause
+            this Event to fire.
 
-    typedef std::vector<Event::Connection
-        CEGUI_VECTOR_ALLOC(Event::Connection)> LinkedConnections;
-    //! collection of connection to the linked Events.
-    LinkedConnections d_connections;
-    //! reference to the event set that we added ourself to
-    const EventSet* d_owner;
-};
+        \note
+            Once an event link is established it can not currently be broken
+            without destroying this Event completely.
+         */
+        void addLinkedTarget(Event& link_target);
+
+    protected:
+        bool handler(const EventArgs& args);
+
+        LinkedEvent(const LinkedEvent& e) : Event(e) {
+        }
+
+        typedef std::vector<Event::Connection
+        CEGUI_VECTOR_ALLOC(Event::Connection) > LinkedConnections;
+        //! collection of connection to the linked Events.
+        LinkedConnections d_connections;
+        //! reference to the event set that we added ourself to
+        const EventSet* d_owner;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUILinkedEvent_h_

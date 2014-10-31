@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Feb 1 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -31,53 +31,51 @@
 #include "CEGUI/RendererModules/OpenGL/TextureTarget.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OpenGLTexture;
+namespace CEGUI {
+    class OpenGLTexture;
 
-/*!
-\brief
-    OpenGLApplePBTextureTarget - allows rendering to an OpenGL texture via the
-    Apple pbuffer extension.
-*/
-class OpenGLApplePBTextureTarget : public OpenGLTextureTarget
-{
-public:
-    OpenGLApplePBTextureTarget(OpenGLRendererBase& owner);
-    virtual ~OpenGLApplePBTextureTarget();
+    /*!
+    \brief
+        OpenGLApplePBTextureTarget - allows rendering to an OpenGL texture via the
+        Apple pbuffer extension.
+     */
+    class OpenGLApplePBTextureTarget : public OpenGLTextureTarget {
+    public:
+        OpenGLApplePBTextureTarget(OpenGLRendererBase& owner);
+        virtual ~OpenGLApplePBTextureTarget();
 
-    // overrides from OpenGLRenderTarget
-    void activate();
-    void deactivate();
-    // implementation of TextureTarget interface
-    void clear();
-    void declareRenderSize(const Sizef& sz);
-    // specialise functions from OpenGLTextureTarget
-    void grabTexture();
-    void restoreTexture();
+        // overrides from OpenGLRenderTarget
+        void activate();
+        void deactivate();
+        // implementation of TextureTarget interface
+        void clear();
+        void declareRenderSize(const Sizef& sz);
+        // specialise functions from OpenGLTextureTarget
+        void grabTexture();
+        void restoreTexture();
 
-protected:
-    //! default size of created texture objects
-    static const float DEFAULT_SIZE;
+    protected:
+        //! default size of created texture objects
+        static const float DEFAULT_SIZE;
 
-    //! Perform basic initialisation of the texture we're going to use.
-    void initialiseTexture();
+        //! Perform basic initialisation of the texture we're going to use.
+        void initialiseTexture();
 
-    //! Switch rendering so it targets the pbuffer
-    void enablePBuffer() const;
+        //! Switch rendering so it targets the pbuffer
+        void enablePBuffer() const;
 
-    //! Switch rendering to target what was active before the pbuffer was used.
-    void disablePBuffer() const;
+        //! Switch rendering to target what was active before the pbuffer was used.
+        void disablePBuffer() const;
 
-    //! The current pbuffer object used by this TextureTarget.
-    CGLPBufferObj d_pbuffer;
-    //! The GL context that's used by this TextureTarget.
-    CGLContextObj d_context;
-    //! virtual screen used by the "parent" context
-    GLint d_screen;
-    //! Context that was active before ours was activated.
-    mutable CGLContextObj d_prevContext;
-};
+        //! The current pbuffer object used by this TextureTarget.
+        CGLPBufferObj d_pbuffer;
+        //! The GL context that's used by this TextureTarget.
+        CGLContextObj d_context;
+        //! virtual screen used by the "parent" context
+        GLint d_screen;
+        //! Context that was active before ours was activated.
+        mutable CGLContextObj d_prevContext;
+    };
 
 } // End of  CEGUI namespace section
 

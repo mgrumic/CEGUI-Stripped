@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Fri Apr 30 2010
-	author:		Tobias Schlegel
+        created:	Fri Apr 30 2010
+        author:		Tobias Schlegel
 	
-	purpose:	This codec provides stb_image.c based image loading.
-*************************************************************************/
+        purpose:	This codec provides stb_image.c based image loading.
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -35,14 +35,14 @@
   \brief 
   exported function that creates the ImageCodec based object and 
   returns a pointer to that object.
-*/
+ */
 extern "C" CEGUISTBIMAGECODEC_API CEGUI::ImageCodec* createImageCodec(void);
 
 /*!
   \brief
   exported function that deletes an ImageCodec based object previously 
   created by this module.
-*/
+ */
 extern "C" CEGUISTBIMAGECODEC_API void destroyImageCodec(CEGUI::ImageCodec* imageCodec);
 
 

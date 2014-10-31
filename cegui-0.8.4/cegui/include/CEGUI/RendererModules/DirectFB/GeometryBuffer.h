@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 10 2009
     author:     Paul D Turner (parts based on code by Keith Mok)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -35,79 +35,78 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class DirectFBRenderer;
-class DirectFBTexture;
+namespace CEGUI {
+    class DirectFBRenderer;
+    class DirectFBTexture;
 
-//! Implemetation of CEGUI::GeometryBuffer for DirectFB.
-class DirectFBGeometryBuffer : public GeometryBuffer
-{
-public:
-    //! Constructor.
-    DirectFBGeometryBuffer(DirectFBRenderer& owner);
-    //! Destructor
-    ~DirectFBGeometryBuffer();
+    //! Implemetation of CEGUI::GeometryBuffer for DirectFB.
 
-    // Implement GeometryBuffer interface.
-    void draw() const;
-    void setTranslation(const Vector3f& v);
-    void setRotation(const Quaternion& r);
-    void setPivot(const Vector3f& p);
-    void setClippingRegion(const Rectf& region);
-    void appendVertex(const Vertex& vertex);
-    void appendGeometry(const Vertex* const vbuff, uint vertex_count);
-    void setActiveTexture(Texture* texture);
-    void reset();
-    Texture* getActiveTexture() const;
-    uint getVertexCount() const;
-    uint getBatchCount() const;
-    void setRenderEffect(RenderEffect* effect);
-    RenderEffect* getRenderEffect();
-    void setClippingActive(const bool active);
-    bool isClippingActive() const;
+    class DirectFBGeometryBuffer : public GeometryBuffer {
+    public:
+        //! Constructor.
+        DirectFBGeometryBuffer(DirectFBRenderer& owner);
+        //! Destructor
+        ~DirectFBGeometryBuffer();
 
-protected:
-    //! update cached matrix
-    void updateMatrix() const;
+        // Implement GeometryBuffer interface.
+        void draw() const;
+        void setTranslation(const Vector3f& v);
+        void setRotation(const Quaternion& r);
+        void setPivot(const Vector3f& p);
+        void setClippingRegion(const Rectf& region);
+        void appendVertex(const Vertex& vertex);
+        void appendGeometry(const Vertex * const vbuff, uint vertex_count);
+        void setActiveTexture(Texture* texture);
+        void reset();
+        Texture* getActiveTexture() const;
+        uint getVertexCount() const;
+        uint getBatchCount() const;
+        void setRenderEffect(RenderEffect* effect);
+        RenderEffect* getRenderEffect();
+        void setClippingActive(const bool active);
+        bool isClippingActive() const;
 
-    //! type to track info for per-texture sub batches of geometry
-    struct BatchInfo
-    {
-        IDirectFBSurface* texture;
-        uint vertexCount;
-        bool clip;
+    protected:
+        //! update cached matrix
+        void updateMatrix() const;
+
+        //! type to track info for per-texture sub batches of geometry
+
+        struct BatchInfo {
+            IDirectFBSurface* texture;
+            uint vertexCount;
+            bool clip;
+        };
+
+        //! DirectFBRenderer object that created and owns this GeometryBuffer.
+        DirectFBRenderer& d_owner;
+        //! last texture that was set as active
+        DirectFBTexture* d_activeTexture;
+        //! type of container that tracks BatchInfos.
+        typedef std::vector<BatchInfo> BatchList;
+        //! list of texture batches added to the geometry buffer
+        BatchList d_batches;
+        //! type of container used to queue the geometry
+        typedef std::vector<DFBVertex> VertexList;
+        //! container where added geometry is stored.
+        VertexList d_vertices;
+        //! rectangular clip region
+        Rectf d_clipRect;
+        //! whether clipping will be active for the current batch
+        bool d_clippingActive;
+        //! translation vector
+        Vector3f d_translation;
+        //! rotation vector
+        Quaternion d_rotation;
+        //! pivot point for rotation
+        Vector3f d_pivot;
+        //! RenderEffect that will be used by the GeometryBuffer
+        RenderEffect* d_effect;
+        //! model matrix cache
+        mutable s32 d_matrix[9];
+        //! true when d_matrix is valid and up to date
+        mutable bool d_matrixValid;
     };
-
-    //! DirectFBRenderer object that created and owns this GeometryBuffer.
-    DirectFBRenderer& d_owner;
-    //! last texture that was set as active
-    DirectFBTexture* d_activeTexture;
-    //! type of container that tracks BatchInfos.
-    typedef std::vector<BatchInfo> BatchList;
-    //! list of texture batches added to the geometry buffer
-    BatchList d_batches;
-    //! type of container used to queue the geometry
-    typedef std::vector<DFBVertex> VertexList;
-    //! container where added geometry is stored.
-    VertexList d_vertices;
-    //! rectangular clip region
-    Rectf d_clipRect;
-    //! whether clipping will be active for the current batch
-    bool d_clippingActive;
-    //! translation vector
-    Vector3f d_translation;
-    //! rotation vector
-    Quaternion d_rotation;
-    //! pivot point for rotation
-    Vector3f d_pivot;
-    //! RenderEffect that will be used by the GeometryBuffer
-    RenderEffect* d_effect;
-    //! model matrix cache
-    mutable s32 d_matrix[9];
-    //! true when d_matrix is valid and up to date
-    mutable bool d_matrixValid;
-};
 
 } // End of  CEGUI namespace section
 

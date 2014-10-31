@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Oct 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -33,233 +33,225 @@
 #include <vector>
 
 #if defined (_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-    Class representing a property that links to another property defined on
-    an attached child widget.
-*/
-template <typename T>
-class PropertyLinkDefinition : public FalagardPropertyBase<T>
-{
-public:
-    //------------------------------------------------------------------------//
-    typedef typename TypedProperty<T>::Helper Helper;
+    /*!
+    \brief
+        Class representing a property that links to another property defined on
+        an attached child widget.
+     */
+    template <typename T>
+    class PropertyLinkDefinition : public FalagardPropertyBase<T> {
+    public:
+        //------------------------------------------------------------------------//
+        typedef typename TypedProperty<T>::Helper Helper;
 
-    //------------------------------------------------------------------------//
-    PropertyLinkDefinition(const String& propertyName, const String& widgetName,
-                           const String& targetProperty, const String& initialValue,
-                           const String& origin,
-                           bool redrawOnWrite, bool layoutOnWrite,
-                           const String& fireEvent, const String& eventNamespace) :
+        //------------------------------------------------------------------------//
+
+        PropertyLinkDefinition(const String& propertyName, const String& widgetName,
+                const String& targetProperty, const String& initialValue,
+                const String& origin,
+                bool redrawOnWrite, bool layoutOnWrite,
+                const String& fireEvent, const String& eventNamespace) :
         FalagardPropertyBase<T>(propertyName,
-                                Falagard_xmlHandler::PropertyLinkDefinitionHelpDefaultValue,
-                                initialValue, origin,
-                                redrawOnWrite, layoutOnWrite,
-                                fireEvent, eventNamespace)
-    {
-        // add initial target if it was specified via constructor
-        // (typically meaning it came via XML attributes)
-        if (!widgetName.empty() || !targetProperty.empty())
-            addLinkTarget(widgetName, targetProperty);
-    }
-
-    ~PropertyLinkDefinition() {}
-
-    //------------------------------------------------------------------------//
-    //! add a new link target to \a property on \a widget (name).
-    void addLinkTarget(const String& widget, const String& property)
-    {
-        d_targets.push_back(std::make_pair(widget,property));
-    }
-
-    //------------------------------------------------------------------------//
-    //! clear all link targets from this link definition.
-    void clearLinkTargets()
-    {
-        d_targets.clear();
-    }
-
-    //------------------------------------------------------------------------//
-    // return whether a the given widget / property pair is a target of this
-    // property link.
-    bool isTargetProperty(const String& widget, const String& property) const
-    {
-        LinkTargetCollection::const_iterator i = d_targets.begin();
-        for (; i != d_targets.end(); ++i)
-        {
-            if (property == i->second && widget == i->first)
-                return true;
+        Falagard_xmlHandler::PropertyLinkDefinitionHelpDefaultValue,
+        initialValue, origin,
+        redrawOnWrite, layoutOnWrite,
+        fireEvent, eventNamespace) {
+            // add initial target if it was specified via constructor
+            // (typically meaning it came via XML attributes)
+            if (!widgetName.empty() || !targetProperty.empty())
+                addLinkTarget(widgetName, targetProperty);
         }
 
-        return false;
-    }
-
-    //------------------------------------------------------------------------//
-    void initialisePropertyReceiver(PropertyReceiver* receiver) const
-    {
-        updateLinkTargets(receiver, Helper::fromString(this->d_default));
-    }
-
-    //------------------------------------------------------------------------//
-    Property* clone() const
-    {
-        return CEGUI_NEW_AO PropertyLinkDefinition<T>(*this);
-    }
-
-protected:
-    // override members from FalagardPropertyBase
-    //------------------------------------------------------------------------//
-    typename Helper::safe_method_return_type
-    getNative_impl(const PropertyReceiver* receiver) const
-    {
-        const LinkTargetCollection::const_iterator i(d_targets.begin());
-
-        const Window* const target_wnd =
-            getTargetWindow(receiver, i->first);
-
-        // if no target, or target (currently) invalid, return the default value
-        if (d_targets.empty() || !target_wnd)
-            return Helper::fromString(TypedProperty<T>::d_default);
-
-        // otherwise return the value of the property for first target, since
-        // this is considered the 'master' target for get operations.
-        return Helper::fromString(target_wnd->getProperty(i->second.empty() ?
-                TypedProperty<T>::d_name : i->second));
-    }
-
-    //------------------------------------------------------------------------//
-    void setNative_impl(PropertyReceiver* receiver,
-                        typename Helper::pass_type value)
-    {
-        updateLinkTargets(receiver, value);
-
-        // base handles things like ensuring redraws and such happen
-        FalagardPropertyBase<T>::setNative_impl(receiver, value);
-    }
-
-    //------------------------------------------------------------------------//
-    void updateLinkTargets(PropertyReceiver* receiver,
-                           typename Helper::pass_type value) const
-    {
-        LinkTargetCollection::const_iterator i = d_targets.begin();
-        for ( ; i != d_targets.end(); ++i)
-        {
-            Window* target_wnd = getTargetWindow(receiver, i->first);
-
-            // only try to set property if target is currently valid.
-            if (target_wnd)
-                target_wnd->setProperty(i->second.empty() ?
-                    TypedProperty<T>::d_name : i->second, Helper::toString(value));
+        ~PropertyLinkDefinition() {
         }
-    }
 
-    //------------------------------------------------------------------------//
-    void writeDefinitionXMLElementType(XMLSerializer& xml_stream) const
-    {
-        xml_stream.openTag(Falagard_xmlHandler::PropertyLinkDefinitionElement);
-        writeFalagardXMLAttributes(xml_stream);
-        writeDefinitionXMLAdditionalAttributes(xml_stream);
-    }
+        //------------------------------------------------------------------------//
+        //! add a new link target to \a property on \a widget (name).
 
-    //------------------------------------------------------------------------//
-    void writeDefinitionXMLAdditionalAttributes(XMLSerializer& xml_stream) const
-    {
-        if(FalagardPropertyBase<T>::d_dataType.compare(Falagard_xmlHandler::GenericDataType) != 0)
-            xml_stream.attribute(Falagard_xmlHandler::TypeAttribute, FalagardPropertyBase<T>::d_dataType);
-
-        if (!PropertyDefinitionBase::d_helpString.empty() && PropertyDefinitionBase::d_helpString.compare(CEGUI::Falagard_xmlHandler::PropertyLinkDefinitionHelpDefaultValue) != 0)
-            xml_stream.attribute(Falagard_xmlHandler::HelpStringAttribute, PropertyDefinitionBase::d_helpString);
-    }
-
-    //------------------------------------------------------------------------//
-    void writeFalagardXMLAttributes(XMLSerializer& xml_stream) const
-    {
-        // HACK: Here we abuse some intimate knowledge in that we know it's
-        // safe to write our sub-elements out although the function is named
-        // for writing attributes.  The alternative was to repeat code from the
-        // base class, also demonstrating intimate knowledge ;)
-
-        LinkTargetCollection::const_iterator i(d_targets.begin());
-
-        // if there is one target only, write it out as attributes
-        if (d_targets.size() == 1)
-        {
-            if (!i->first.empty())
-                xml_stream.attribute(Falagard_xmlHandler::WidgetAttribute, i->first);
-
-            if (!i->second.empty())
-                xml_stream.attribute(Falagard_xmlHandler::TargetPropertyAttribute, i->second);
+        void addLinkTarget(const String& widget, const String& property) {
+            d_targets.push_back(std::make_pair(widget, property));
         }
-        // we have multiple targets, so write them as PropertyLinkTarget tags
-        else
-        {
-            for ( ; i != d_targets.end(); ++i)
-            {
-                xml_stream.openTag(Falagard_xmlHandler::PropertyLinkTargetElement);
 
+        //------------------------------------------------------------------------//
+        //! clear all link targets from this link definition.
+
+        void clearLinkTargets() {
+            d_targets.clear();
+        }
+
+        //------------------------------------------------------------------------//
+        // return whether a the given widget / property pair is a target of this
+        // property link.
+
+        bool isTargetProperty(const String& widget, const String& property) const {
+            LinkTargetCollection::const_iterator i = d_targets.begin();
+            for (; i != d_targets.end(); ++i) {
+                if (property == i->second && widget == i->first)
+                    return true;
+            }
+
+            return false;
+        }
+
+        //------------------------------------------------------------------------//
+
+        void initialisePropertyReceiver(PropertyReceiver* receiver) const {
+            updateLinkTargets(receiver, Helper::fromString(this->d_default));
+        }
+
+        //------------------------------------------------------------------------//
+
+        Property* clone() const {
+            return CEGUI_NEW_AO PropertyLinkDefinition<T>(*this);
+        }
+
+    protected:
+        // override members from FalagardPropertyBase
+        //------------------------------------------------------------------------//
+
+        typename Helper::safe_method_return_type
+        getNative_impl(const PropertyReceiver* receiver) const {
+            const LinkTargetCollection::const_iterator i(d_targets.begin());
+
+            const Window * const target_wnd =
+                    getTargetWindow(receiver, i->first);
+
+            // if no target, or target (currently) invalid, return the default value
+            if (d_targets.empty() || !target_wnd)
+                return Helper::fromString(TypedProperty<T>::d_default);
+
+            // otherwise return the value of the property for first target, since
+            // this is considered the 'master' target for get operations.
+            return Helper::fromString(target_wnd->getProperty(i->second.empty() ?
+                    TypedProperty<T>::d_name : i->second));
+        }
+
+        //------------------------------------------------------------------------//
+
+        void setNative_impl(PropertyReceiver* receiver,
+                typename Helper::pass_type value) {
+            updateLinkTargets(receiver, value);
+
+            // base handles things like ensuring redraws and such happen
+            FalagardPropertyBase<T>::setNative_impl(receiver, value);
+        }
+
+        //------------------------------------------------------------------------//
+
+        void updateLinkTargets(PropertyReceiver* receiver,
+                typename Helper::pass_type value) const {
+            LinkTargetCollection::const_iterator i = d_targets.begin();
+            for (; i != d_targets.end(); ++i) {
+                Window* target_wnd = getTargetWindow(receiver, i->first);
+
+                // only try to set property if target is currently valid.
+                if (target_wnd)
+                    target_wnd->setProperty(i->second.empty() ?
+                        TypedProperty<T>::d_name : i->second, Helper::toString(value));
+            }
+        }
+
+        //------------------------------------------------------------------------//
+
+        void writeDefinitionXMLElementType(XMLSerializer& xml_stream) const {
+            xml_stream.openTag(Falagard_xmlHandler::PropertyLinkDefinitionElement);
+            writeFalagardXMLAttributes(xml_stream);
+            writeDefinitionXMLAdditionalAttributes(xml_stream);
+        }
+
+        //------------------------------------------------------------------------//
+
+        void writeDefinitionXMLAdditionalAttributes(XMLSerializer& xml_stream) const {
+            if (FalagardPropertyBase<T>::d_dataType.compare(Falagard_xmlHandler::GenericDataType) != 0)
+                xml_stream.attribute(Falagard_xmlHandler::TypeAttribute, FalagardPropertyBase<T>::d_dataType);
+
+            if (!PropertyDefinitionBase::d_helpString.empty() && PropertyDefinitionBase::d_helpString.compare(CEGUI::Falagard_xmlHandler::PropertyLinkDefinitionHelpDefaultValue) != 0)
+                xml_stream.attribute(Falagard_xmlHandler::HelpStringAttribute, PropertyDefinitionBase::d_helpString);
+        }
+
+        //------------------------------------------------------------------------//
+
+        void writeFalagardXMLAttributes(XMLSerializer& xml_stream) const {
+            // HACK: Here we abuse some intimate knowledge in that we know it's
+            // safe to write our sub-elements out although the function is named
+            // for writing attributes.  The alternative was to repeat code from the
+            // base class, also demonstrating intimate knowledge ;)
+
+            LinkTargetCollection::const_iterator i(d_targets.begin());
+
+            // if there is one target only, write it out as attributes
+            if (d_targets.size() == 1) {
                 if (!i->first.empty())
                     xml_stream.attribute(Falagard_xmlHandler::WidgetAttribute, i->first);
 
                 if (!i->second.empty())
-                    xml_stream.attribute(Falagard_xmlHandler::PropertyAttribute, i->second);
+                    xml_stream.attribute(Falagard_xmlHandler::TargetPropertyAttribute, i->second);
+            }                // we have multiple targets, so write them as PropertyLinkTarget tags
+            else {
+                for (; i != d_targets.end(); ++i) {
+                    xml_stream.openTag(Falagard_xmlHandler::PropertyLinkTargetElement);
 
-                xml_stream.closeTag();
+                    if (!i->first.empty())
+                        xml_stream.attribute(Falagard_xmlHandler::WidgetAttribute, i->first);
+
+                    if (!i->second.empty())
+                        xml_stream.attribute(Falagard_xmlHandler::PropertyAttribute, i->second);
+
+                    xml_stream.closeTag();
+                }
             }
         }
-    }
 
-    //------------------------------------------------------------------------//
-    //! Return a pointer to the target window with the given name.
-    const Window* getTargetWindow(const PropertyReceiver* receiver,
-                                  const String& name) const
-    {
-        if (name.empty())
-            return static_cast<const Window*>(receiver);
+        //------------------------------------------------------------------------//
+        //! Return a pointer to the target window with the given name.
 
-        // handle link back to parent.  Return receiver if no parent.
-        if (name == Falagard_xmlHandler::ParentIdentifier)
-            return static_cast<const Window*>(receiver)->getParent();
+        const Window* getTargetWindow(const PropertyReceiver* receiver,
+                const String& name) const {
+            if (name.empty())
+                return static_cast<const Window*> (receiver);
 
-        return static_cast<const Window*>(receiver)->getChild(name);
-    }
+            // handle link back to parent.  Return receiver if no parent.
+            if (name == Falagard_xmlHandler::ParentIdentifier)
+                return static_cast<const Window*> (receiver)->getParent();
 
-    //------------------------------------------------------------------------//
-    //! Return a pointer to the target window with the given name.
-    Window* getTargetWindow(PropertyReceiver* receiver,
-                            const String& name) const
-    {
-        return const_cast<Window*>(
-            getTargetWindow(static_cast<const PropertyReceiver*>(receiver), name));
-    }
+            return static_cast<const Window*> (receiver)->getChild(name);
+        }
 
-    //------------------------------------------------------------------------//
-    typedef std::pair<String,String> StringPair;
-    //! type used for the collection of targets.
-    typedef std::vector<StringPair CEGUI_VECTOR_ALLOC(StringPair)> LinkTargetCollection;
+        //------------------------------------------------------------------------//
+        //! Return a pointer to the target window with the given name.
 
-    //! collection of targets for this PropertyLinkDefinition.
-    LinkTargetCollection d_targets;
+        Window* getTargetWindow(PropertyReceiver* receiver,
+                const String& name) const {
+            return const_cast<Window*> (
+                    getTargetWindow(static_cast<const PropertyReceiver*> (receiver), name));
+        }
 
-public:
-    typedef ConstVectorIterator<LinkTargetCollection> LinkTargetIterator;
+        //------------------------------------------------------------------------//
+        typedef std::pair<String, String> StringPair;
+        //! type used for the collection of targets.
+        typedef std::vector<StringPair CEGUI_VECTOR_ALLOC(StringPair) > LinkTargetCollection;
 
-    LinkTargetIterator getLinkTargetIterator() const
-    {
-        return LinkTargetIterator(d_targets.begin(),d_targets.end());
-    }
-};
+        //! collection of targets for this PropertyLinkDefinition.
+        LinkTargetCollection d_targets;
+
+    public:
+        typedef ConstVectorIterator<LinkTargetCollection> LinkTargetIterator;
+
+        LinkTargetIterator getLinkTargetIterator() const {
+            return LinkTargetIterator(d_targets.begin(), d_targets.end());
+        }
+    };
 
 }
 
 #if defined (_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif

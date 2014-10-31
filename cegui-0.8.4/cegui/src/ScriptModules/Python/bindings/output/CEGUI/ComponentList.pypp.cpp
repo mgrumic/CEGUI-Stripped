@@ -8,13 +8,13 @@
 
 namespace bp = boost::python;
 
-void register_ComponentList_class(){
+void register_ComponentList_class() {
 
     { //::std::vector< CEGUI::RenderedStringComponent* >
         typedef bp::class_< std::vector< CEGUI::RenderedStringComponent* > > ComponentList_exposer_t;
-        ComponentList_exposer_t ComponentList_exposer = ComponentList_exposer_t( "ComponentList" );
-        bp::scope ComponentList_scope( ComponentList_exposer );
-        ComponentList_exposer.def( bp::indexing::vector_suite< std::vector< CEGUI::RenderedStringComponent* > >::with_policies(bp::return_internal_reference< >()) );
+        ComponentList_exposer_t ComponentList_exposer = ComponentList_exposer_t("ComponentList");
+        bp::scope ComponentList_scope(ComponentList_exposer);
+        ComponentList_exposer.def(bp::indexing::vector_suite< std::vector< CEGUI::RenderedStringComponent* > >::with_policies(bp::return_internal_reference< >()));
     }
 
 }

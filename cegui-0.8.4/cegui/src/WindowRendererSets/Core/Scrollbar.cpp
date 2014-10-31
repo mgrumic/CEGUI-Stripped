@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 4 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,23 +34,20 @@
 #include "CEGUI/TplWindowRendererProperty.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardScrollbar::TypeName("Core/Scrollbar");
 
     FalagardScrollbar::FalagardScrollbar(const String& type) :
-        ScrollbarWindowRenderer(type),
-        d_vertical(false)
-    {
+    ScrollbarWindowRenderer(type),
+    d_vertical(false) {
         CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardScrollbar, bool,
-        "VerticalScrollbar", "Property to get/set whether the Scrollbar operates in the vertical direction."
-        "  Value is either \"true\" or \"false\".",
-        &FalagardScrollbar::setVertical, &FalagardScrollbar::isVertical,
-        false);
+                "VerticalScrollbar", "Property to get/set whether the Scrollbar operates in the vertical direction."
+                "  Value is either \"true\" or \"false\".",
+                &FalagardScrollbar::setVertical, &FalagardScrollbar::isVertical,
+                false);
     }
 
-    void FalagardScrollbar::render()
-    {
+    void FalagardScrollbar::render() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.
@@ -61,14 +58,12 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    void FalagardScrollbar::performChildWindowLayout()
-    {
+    void FalagardScrollbar::performChildWindowLayout() {
         updateThumb();
     }
 
-    void FalagardScrollbar::updateThumb(void)
-    {
-        Scrollbar* w = (Scrollbar*)d_window;
+    void FalagardScrollbar::updateThumb(void) {
+        Scrollbar* w = (Scrollbar*) d_window;
         const WidgetLookFeel& wlf = getLookNFeel();
         Rectf area(wlf.getNamedArea("ThumbTrackArea").getArea().getPixelRect(*w));
 
@@ -77,87 +72,66 @@ namespace CEGUI
         float posExtent = w->getDocumentSize() - w->getPageSize();
         float slideExtent;
 
-        if (d_vertical)
-        {
-            if(w->getPixelSize().d_height != 0.0f && posExtent != 0.0f)
-            {
+        if (d_vertical) {
+            if (w->getPixelSize().d_height != 0.0f && posExtent != 0.0f) {
                 slideExtent = area.getHeight() - theThumb->getPixelSize().d_height;
                 theThumb->setVertRange(area.top() / w->getPixelSize().d_height, (area.top() + slideExtent) / w->getPixelSize().d_height);
                 theThumb->setPosition(UVector2(cegui_absdim(area.left()),
-                    cegui_reldim((area.top() + (w->getScrollPosition() * (slideExtent / posExtent))) / w->getPixelSize().d_height)));
-            }
-            else
-            {
+                        cegui_reldim((area.top() + (w->getScrollPosition() * (slideExtent / posExtent))) / w->getPixelSize().d_height)));
+            } else {
                 theThumb->setVertRange(0.0f, 0.0f);
                 theThumb->setPosition(UVector2(cegui_absdim(area.left()), cegui_reldim(0.0f)));
             }
-        }
-        else
-        {
-            if(w->getPixelSize().d_width != 0.0f && posExtent != 0.0f)
-            {
+        } else {
+            if (w->getPixelSize().d_width != 0.0f && posExtent != 0.0f) {
                 slideExtent = area.getWidth() - theThumb->getPixelSize().d_width;
-                theThumb->setHorzRange(area.left() / w->getPixelSize().d_width, (area.left() + slideExtent)  / w->getPixelSize().d_width);
+                theThumb->setHorzRange(area.left() / w->getPixelSize().d_width, (area.left() + slideExtent) / w->getPixelSize().d_width);
                 theThumb->setPosition(UVector2(cegui_reldim((area.left() + (w->getScrollPosition() * (slideExtent / posExtent))) / w->getPixelSize().d_width),
-                                                     cegui_absdim(area.top())));
-            }
-            else
-            {
+                        cegui_absdim(area.top())));
+            } else {
                 theThumb->setHorzRange(0.0f, 0.0f);
                 theThumb->setPosition(UVector2(cegui_reldim(0.0f), cegui_absdim(area.top())));
             }
         }
     }
 
-    float FalagardScrollbar::getValueFromThumb(void) const
-    {
-        Scrollbar* w = (Scrollbar*)d_window;
+    float FalagardScrollbar::getValueFromThumb(void) const {
+        Scrollbar* w = (Scrollbar*) d_window;
         const WidgetLookFeel& wlf = getLookNFeel();
         const Rectf area(wlf.getNamedArea("ThumbTrackArea").getArea().getPixelRect(*w));
 
         Thumb* theThumb = w->getThumb();
         float posExtent = w->getDocumentSize() - w->getPageSize();
 
-        if (d_vertical)
-        {
+        if (d_vertical) {
             float slideExtent = area.getHeight() - theThumb->getPixelSize().d_height;
             return (CoordConverter::asAbsolute(theThumb->getYPosition(), w->getPixelSize().d_height) - area.top()) / (slideExtent / posExtent);
-        }
-        else
-        {
+        } else {
             float slideExtent = area.getWidth() - theThumb->getPixelSize().d_width;
             return (CoordConverter::asAbsolute(theThumb->getXPosition(), w->getPixelSize().d_width) - area.left()) / (slideExtent / posExtent);
         }
     }
 
-    float FalagardScrollbar::getAdjustDirectionFromPoint(const Vector2f& pt) const
-    {
-        Scrollbar* w = (Scrollbar*)d_window;
-        const Rectf& absrect(w->getThumb()->getUnclippedOuterRect().get());
+    float FalagardScrollbar::getAdjustDirectionFromPoint(const Vector2f& pt) const {
+        Scrollbar* w = (Scrollbar*) d_window;
+        const Rectf & absrect(w->getThumb()->getUnclippedOuterRect().get());
 
         if ((d_vertical && (pt.d_y > absrect.bottom())) ||
-            (!d_vertical && (pt.d_x > absrect.right())))
-        {
+                (!d_vertical && (pt.d_x > absrect.right()))) {
             return 1;
-        }
-        else if ((d_vertical && (pt.d_y < absrect.top())) ||
-            (!d_vertical && (pt.d_x < absrect.left())))
-        {
+        } else if ((d_vertical && (pt.d_y < absrect.top())) ||
+                (!d_vertical && (pt.d_x < absrect.left()))) {
             return -1;
-        }
-        else
-        {
+        } else {
             return 0;
         }
     }
 
-    bool FalagardScrollbar::isVertical() const
-    {
+    bool FalagardScrollbar::isVertical() const {
         return d_vertical;
     }
 
-    void FalagardScrollbar::setVertical(bool setting)
-    {
+    void FalagardScrollbar::setVertical(bool setting) {
         d_vertical = setting;
     }
 

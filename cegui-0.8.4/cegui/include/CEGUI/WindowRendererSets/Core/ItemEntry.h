@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Sep 22 2005
     author:     Tomas Lindquist Olsen
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/ItemEntry.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         ItemEntry class for the FalagardBase module.
@@ -53,16 +53,15 @@ namespace CEGUI
 
         Named areas:
             - ContentSize
-    */
-    class COREWRSET_API FalagardItemEntry : public ItemEntryWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardItemEntry : public ItemEntryWindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardItemEntry(const String& type);
 
         void render();

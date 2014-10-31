@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jun 26 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,18 +30,19 @@
 #include "./Dimensions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         NamedArea defines an area for a component which may later be obtained
         and referenced by a name unique to the WidgetLook holding the NamedArea.
-    */
+     */
     class CEGUIEXPORT NamedArea :
-        public AllocatedObject<NamedArea>
-    {
+    public AllocatedObject<NamedArea> {
     public:
-        NamedArea() {}
+
+        NamedArea() {
+        }
         NamedArea(const String& name);
 
         /*!
@@ -50,7 +51,7 @@ namespace CEGUI
 
         \return
             String object holding the name of this NamedArea.
-        */
+         */
         const String& getName() const;
 
         /*!
@@ -62,7 +63,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setName(const String& name);
 
         /*!
@@ -71,7 +72,7 @@ namespace CEGUI
 
         \return
             ComponentArea object describing the NamedArea's current target area.
-        */
+         */
         const ComponentArea& getArea() const;
 
         /*!
@@ -83,7 +84,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setArea(const ComponentArea& area);
 
         /*!
@@ -95,7 +96,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
         //! perform any processing required due to the given font having changed.

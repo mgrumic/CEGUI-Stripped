@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl (based on code by Paul D Turner)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -32,56 +32,55 @@
 #include "../../Rect.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
-/*!
-\brief
-    Intermediate OpenGL implementation of a RenderTarget.
-*/
-template <typename T = RenderTarget>
-class OPENGL_GUIRENDERER_API OpenGLRenderTarget : public T
-{
-public:
-    //! Constructor
-    OpenGLRenderTarget(OpenGLRendererBase& owner);
-    virtual ~OpenGLRenderTarget();
+namespace CEGUI {
 
-    // implement parts of RenderTarget interface
-    void draw(const GeometryBuffer& buffer);
-    void draw(const RenderQueue& queue);
-    void setArea(const Rectf& area);
-    const Rectf& getArea() const;
-    void activate();
-    void deactivate();
-    void unprojectPoint(const GeometryBuffer& buff,
-                        const Vector2f& p_in, Vector2f& p_out) const;
+    /*!
+    \brief
+        Intermediate OpenGL implementation of a RenderTarget.
+     */
+    template <typename T = RenderTarget>
+    class OPENGL_GUIRENDERER_API OpenGLRenderTarget : public T {
+    public:
+        //! Constructor
+        OpenGLRenderTarget(OpenGLRendererBase& owner);
+        virtual ~OpenGLRenderTarget();
 
-protected:
-    //! helper that initialises the cached matrix
-    virtual void updateMatrix() const;
+        // implement parts of RenderTarget interface
+        void draw(const GeometryBuffer& buffer);
+        void draw(const RenderQueue& queue);
+        void setArea(const Rectf& area);
+        const Rectf& getArea() const;
+        void activate();
+        void deactivate();
+        void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in, Vector2f& p_out) const;
 
-    //! OpenGLRendererBase that created this object
-    OpenGLRendererBase& d_owner;
-    //! holds defined area for the RenderTarget
-    Rectf d_area;
-    //! tangent of the y FOV half-angle; used to calculate viewing distance.
-    static const double d_yfov_tan;
-    //! saved copy of projection matrix
-    mutable mat4Pimpl* d_matrix;
-    //! true if saved matrix is up to date
-    mutable bool d_matrixValid;
-    //! tracks viewing distance (this is set up at the same time as d_matrix)
-    mutable double d_viewDistance;
-};
+    protected:
+        //! helper that initialises the cached matrix
+        virtual void updateMatrix() const;
+
+        //! OpenGLRendererBase that created this object
+        OpenGLRendererBase& d_owner;
+        //! holds defined area for the RenderTarget
+        Rectf d_area;
+        //! tangent of the y FOV half-angle; used to calculate viewing distance.
+        static const double d_yfov_tan;
+        //! saved copy of projection matrix
+        mutable mat4Pimpl* d_matrix;
+        //! true if saved matrix is up to date
+        mutable bool d_matrixValid;
+        //! tracks viewing distance (this is set up at the same time as d_matrix)
+        mutable double d_viewDistance;
+    };
 
 }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif

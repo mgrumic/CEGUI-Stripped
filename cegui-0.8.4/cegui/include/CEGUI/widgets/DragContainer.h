@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	14/2/2005
-	author:		Paul D Turner
-*************************************************************************/
+        created:	14/2/2005
+        author:		Paul D Turner
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,8 +30,8 @@
 #include "../Window.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 #ifndef PE_NO_MOUSE
@@ -40,20 +40,19 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Generic drag & drop enabled window class
-    */
-    class CEGUIEXPORT DragContainer : public Window
-    {
+     */
+    class CEGUIEXPORT DragContainer : public Window {
     public:
         /*************************************************************************
             Constants
-        *************************************************************************/
-        static const String WidgetTypeName;     //!< Type name for DragContainer.
-        static const String EventNamespace;     //!< Namespace for global events
+         *************************************************************************/
+        static const String WidgetTypeName; //!< Type name for DragContainer.
+        static const String EventNamespace; //!< Namespace for global events
         /** Event fired when the user begins dragging the DragContainer.
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the DragContainer that the user
@@ -108,22 +107,22 @@ namespace CEGUI
 
         /*************************************************************************
             Object Construction and Destruction
-        *************************************************************************/
+         *************************************************************************/
         /*!
         \brief
             Constructor for DragContainer objects
-        */
+         */
         DragContainer(const String& type, const String& name);
 
         /*!
         \brief
             Destructor for DragContainer objects
-        */
+         */
         virtual ~DragContainer(void);
 
         /*************************************************************************
-        	Public Interface to DragContainer
-        *************************************************************************/
+                Public Interface to DragContainer
+         *************************************************************************/
         /*!
         \brief
             Return whether dragging is currently enabled for this DragContainer.
@@ -131,7 +130,7 @@ namespace CEGUI
         \return
             - true if dragging is enabled and the DragContainer may be dragged.
             - false if dragging is disabled and the DragContainer may not be dragged.
-        */
+         */
         bool isDraggingEnabled(void) const;
 
         /*!
@@ -144,7 +143,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setDraggingEnabled(bool setting);
 
         /*!
@@ -154,7 +153,7 @@ namespace CEGUI
         \return
             - true if the DragContainer is being dragged.
             - false if te DragContainer is not being dragged.
-        */
+         */
         bool isBeingDragged(void) const;
 
         /*!
@@ -167,7 +166,7 @@ namespace CEGUI
         
         \return
             float value indicating the current drag threshold value.
-        */
+         */
         float getPixelDragThreshold(void) const;
 
         /*!
@@ -183,7 +182,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setPixelDragThreshold(float pixels);
 
         /*!
@@ -193,7 +192,7 @@ namespace CEGUI
 
         \return
             Current alpha value to use whilst dragging.
-        */
+         */
         float getDragAlpha(void) const;
 
         /*!
@@ -210,7 +209,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setDragAlpha(float alpha);
 
         /*!
@@ -220,7 +219,7 @@ namespace CEGUI
 
         \return
             Image object currently set to be used as the mouse cursor when dragging.
-        */
+         */
         const Image* getDragCursorImage(void) const;
 
         /*!
@@ -236,7 +235,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setDragCursorImage(const Image* image);
 
         /*!
@@ -254,7 +253,7 @@ namespace CEGUI
             Nothing.
 
         \exception UnknownObjectException   thrown if Image \name is unknown.
-        */
+         */
         void setDragCursorImage(const String& name);
 
         /*!
@@ -267,7 +266,7 @@ namespace CEGUI
         \return
             Pointer to a Window object that contains the DragContainer whilst being dragged, or
             0 to indicate no current target.
-        */
+         */
         Window* getCurrentDropTarget(void) const;
 
         /*!
@@ -277,7 +276,7 @@ namespace CEGUI
         \return
             - true if sticky mode is enabled.
             - false if sticky mode is disabled.
-        */
+         */
         bool isStickyModeEnabled() const;
 
         /*!
@@ -287,7 +286,7 @@ namespace CEGUI
         \param setting
             - true to enable sticky mode.
             - false to disable sticky mode.
-        */
+         */
         void setStickyModeEnabled(bool setting);
 
         /*!
@@ -305,7 +304,7 @@ namespace CEGUI
         \return
             - true if the DragContainer was successfully picked up.
             - false if the DragContainer was not picked up.
-        */
+         */
         bool pickUp(const bool force_sticky = false);
 
         /*!
@@ -320,7 +319,7 @@ namespace CEGUI
         \note
             This offset is only used if it's use is enabled via the
             setUsingFixedDragOffset function.
-        */
+         */
         void setFixedDragOffset(const UVector2& offset);
 
         /*!
@@ -335,7 +334,7 @@ namespace CEGUI
         \note
             This offset is only used if it's use is enabled via the
             setUsingFixedDragOffset function.
-        */
+         */
         const UVector2& getFixedDragOffset() const;
 
         /*!
@@ -347,7 +346,7 @@ namespace CEGUI
         \param enable
             - true to enabled the use of the fixed offset.
             - false to use the regular logic.
-        */
+         */
         void setUsingFixedDragOffset(const bool enable);
 
         /*!
@@ -359,7 +358,7 @@ namespace CEGUI
         \param enable
             - true to enabled the use of the fixed offset.
             - false to use the regular logic.
-        */
+         */
         bool isUsingFixedDragOffset() const;
 
         // Window class overrides.
@@ -367,8 +366,8 @@ namespace CEGUI
 
     protected:
         /*************************************************************************
-        	Protected Implementation Methods
-        *************************************************************************/
+                Protected Implementation Methods
+         *************************************************************************/
         /*!
         \brief
             Return whether the required minimum movement threshold before initiating dragging
@@ -380,54 +379,54 @@ namespace CEGUI
         \return
             - true if the threshold has been exceeded and dragging should be initiated.
             - false if the threshold has not been exceeded.
-        */		
+         */
         bool isDraggingThresholdExceeded(const Vector2f& local_mouse);
 
-	    /*!
-	    \brief
-		    Initialise the required states to put the window into dragging mode.
+        /*!
+        \brief
+                Initialise the required states to put the window into dragging mode.
 
-        \return
-            Nothing.
-	    */
+    \return
+        Nothing.
+         */
         void initialiseDragging(void);
 
         /*!
-	    \brief
-		    Update state for window dragging.
+            \brief
+                    Update state for window dragging.
 
-	    \param local_mouse
-		    Mouse position as a pixel offset from the top-left corner of this window.
+            \param local_mouse
+                    Mouse position as a pixel offset from the top-left corner of this window.
 
-	    \return
-		    Nothing.
-	    */
+            \return
+                    Nothing.
+         */
         void doDragging(const Vector2f& local_mouse);
 
         /*!
         \brief
             Method to update mouse cursor image
-        */
+         */
         void updateActiveMouseCursor(void) const;
 
         /*************************************************************************
-        	Overrides of methods in Window
-        *************************************************************************/
+                Overrides of methods in Window
+         *************************************************************************/
 
         /*************************************************************************
-        	Overrides for Event handler methods
-        *************************************************************************/
+                Overrides for Event handler methods
+         *************************************************************************/
         virtual void onMouseButtonDown(MouseEventArgs& e);
         virtual void onMouseButtonUp(MouseEventArgs& e);
         virtual void onMouseMove(MouseEventArgs& e);
         virtual void onCaptureLost(WindowEventArgs& e);
         virtual void onAlphaChanged(WindowEventArgs& e);
-        virtual void onClippingChanged(WindowEventArgs& e);/*Window::drawSelf(z);*/
+        virtual void onClippingChanged(WindowEventArgs& e); /*Window::drawSelf(z);*/
         virtual void onMoved(ElementEventArgs& e);
 
         /*************************************************************************
-        	New Event handler methods
-        *************************************************************************/
+                New Event handler methods
+         *************************************************************************/
         /*!
         \brief
             Method called when dragging commences
@@ -437,7 +436,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onDragStarted(WindowEventArgs& e);
 
         /*!
@@ -449,7 +448,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onDragEnded(WindowEventArgs& e);
 
         /*!
@@ -461,7 +460,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         virtual void onDragPositionChanged(WindowEventArgs& e);
 
         /*!
@@ -471,7 +470,7 @@ namespace CEGUI
             WindowEventArgs object.
         \return
             Nothing.
-        */
+         */
         virtual void onDragEnabledChanged(WindowEventArgs& e);
 
         /*!
@@ -481,7 +480,7 @@ namespace CEGUI
             WindowEventArgs object.
         \return
             Nothing.
-        */
+         */
         virtual void onDragAlphaChanged(WindowEventArgs& e);
 
         /*!
@@ -491,7 +490,7 @@ namespace CEGUI
             WindowEventArgs object.
         \return
             Nothing.
-        */
+         */
         virtual void onDragMouseCursorChanged(WindowEventArgs& e);
 
         /*!
@@ -501,7 +500,7 @@ namespace CEGUI
             WindowEventArgs object.
         \return
             Nothing.
-        */
+         */
         virtual void onDragThresholdChanged(WindowEventArgs& e);
 
         /*!
@@ -518,24 +517,24 @@ namespace CEGUI
             - window is initialised to point to the Window which will be the new drop target.
         \return
             Nothing.
-        */
+         */
         virtual void onDragDropTargetChanged(DragDropEventArgs& e);
 
         /*************************************************************************
-        	Data
-        *************************************************************************/
-        bool    d_draggingEnabled;  //!< True when dragging is enabled.
-        bool    d_leftMouseDown;    //!< True when left mouse button is down.
-        bool    d_dragging;         //!< true when being dragged.
-        UVector2 d_dragPoint;       //!< point we are being dragged at.
-        UVector2 d_startPosition;   //!< position prior to dragging.
-        float   d_dragThreshold;    //!< Pixels mouse must move before dragging commences.
-        float   d_dragAlpha;        //!< Alpha value to set when dragging.
-        float   d_storedAlpha;      //!< Alpha value to re-set when dragging ends.
-        bool    d_storedClipState;  //!< Parent clip state to re-set.
-        Window* d_dropTarget;       //!< Target window for possible drop operation.
+                Data
+         *************************************************************************/
+        bool d_draggingEnabled; //!< True when dragging is enabled.
+        bool d_leftMouseDown; //!< True when left mouse button is down.
+        bool d_dragging; //!< true when being dragged.
+        UVector2 d_dragPoint; //!< point we are being dragged at.
+        UVector2 d_startPosition; //!< position prior to dragging.
+        float d_dragThreshold; //!< Pixels mouse must move before dragging commences.
+        float d_dragAlpha; //!< Alpha value to set when dragging.
+        float d_storedAlpha; //!< Alpha value to re-set when dragging ends.
+        bool d_storedClipState; //!< Parent clip state to re-set.
+        Window* d_dropTarget; //!< Target window for possible drop operation.
         const Image* d_dragCursorImage; //!< Image to use for mouse cursor when dragging.
-        bool d_dropflag;            //!< True when we're being dropped
+        bool d_dropflag; //!< True when we're being dropped
         //! true when we're in 'sticky' mode.
         bool d_stickyMode;
         //! true after been picked-up / dragged via sticky mode
@@ -547,15 +546,15 @@ namespace CEGUI
 
     private:
         /*************************************************************************
-        	Implementation methods
-        *************************************************************************/
+                Implementation methods
+         *************************************************************************/
         /*!
         \brief
             Adds properties specific to the DragContainer base class.
         
         \return
             Nothing.
-        */
+         */
         void addDragContainerProperties(void);
     };
 
@@ -566,7 +565,7 @@ namespace CEGUI
 #endif //PE_NO_MOUSE
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIDragContainer_h_

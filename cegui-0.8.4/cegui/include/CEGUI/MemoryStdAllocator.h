@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	14/10/2010
-	author:		Martin Preisler
+        created:	14/10/2010
+        author:		Martin Preisler
 
-	purpose:	Implements the default "dummy" allocator
-*************************************************************************/
+        purpose:	Implements the default "dummy" allocator
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -32,35 +32,32 @@
 #include <stdlib.h>
 #include <limits>
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-class CEGUIEXPORT StdAllocator
-{
-public:
-	static inline void* allocateBytes(size_t count)
-	{
-        return malloc(count);
-	}
+    class CEGUIEXPORT StdAllocator {
+    public:
 
-	static inline void deallocateBytes(void* ptr)
-	{
-        free(ptr);
-	}
+        static inline void* allocateBytes(size_t count) {
+            return malloc(count);
+        }
 
-    // !!! IF YOU GET AN ERROR HERE:
-    // that says something like: "You can't call allocateBytes with 4 arguments",
-    // you are using StdAllocator and trying to enable CEGUI_CUSTOM_ALLOCATORS_DEBUG, you
-    // have to provide your own custom memory allocator if you want memory debugging.
+        static inline void deallocateBytes(void* ptr) {
+            free(ptr);
+        }
 
-	/// Get the maximum size of a single allocation
-	static inline size_t getMaxAllocationSize()
-	{
-		return std::numeric_limits<size_t>::max();
-	}
-};
+        // !!! IF YOU GET AN ERROR HERE:
+        // that says something like: "You can't call allocateBytes with 4 arguments",
+        // you are using StdAllocator and trying to enable CEGUI_CUSTOM_ALLOCATORS_DEBUG, you
+        // have to provide your own custom memory allocator if you want memory debugging.
 
-CEGUI_SET_DEFAULT_ALLOCATOR(StdAllocator)
+        /// Get the maximum size of a single allocation
+
+        static inline size_t getMaxAllocationSize() {
+            return std::numeric_limits<size_t>::max();
+        }
+    };
+
+    CEGUI_SET_DEFAULT_ALLOCATOR(StdAllocator)
 
 }
 

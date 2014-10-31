@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jul 2 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,18 +31,15 @@
 #include "CEGUI/widgets/Titlebar.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardFrameWindow::TypeName("Core/FrameWindow");
 
     FalagardFrameWindow::FalagardFrameWindow(const String& type) :
-        WindowRenderer(type)
-    {
+    WindowRenderer(type) {
     }
 
-    void FalagardFrameWindow::render()
-    {
-        FrameWindow* w = (FrameWindow*)d_window;
+    void FalagardFrameWindow::render() {
+        FrameWindow* w = (FrameWindow*) d_window;
         // do not render anything for the rolled-up state.
         if (w->isRolledup())
             return;
@@ -54,15 +51,14 @@ namespace CEGUI
 
         const StateImagery* imagery;
 
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             // get WidgetLookFeel for the assigned look.
             const WidgetLookFeel& wlf = getLookNFeel();
             // try and get imagery for our current state
             imagery = &wlf.getStateImagery(stateName);
         }
-        CEGUI_CATCH (UnknownObjectException&)
-        {
+
+        CEGUI_CATCH(UnknownObjectException&) {
             // log error so we know imagery is missing, and then quit.
             return;
         }
@@ -71,9 +67,8 @@ namespace CEGUI
         imagery->render(*w);
     }
 
-    Rectf FalagardFrameWindow::getUnclippedInnerRect(void) const
-    {
-        FrameWindow* w = (FrameWindow*)d_window;
+    Rectf FalagardFrameWindow::getUnclippedInnerRect(void) const {
+        FrameWindow* w = (FrameWindow*) d_window;
         if (w->isRolledup())
             return Rectf(0, 0, 0, 0);
 

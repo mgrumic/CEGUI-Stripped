@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jan 23 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -28,11 +28,11 @@
 #define _CEGUIOpenGLES_h_
 
 #ifdef __APPLE__
-#   include <OpenGLES/ES1/gl.h>
-#   include <OpenGLES/ES1/glext.h>
+#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/glext.h>
 #else
-#   include <GLES/gl.h>
-#   include <GLES/glext.h>
+#include <GLES/gl.h>
+#include <GLES/glext.h>
 #endif
 
 #endif  // end of guard _CEGUIOpenGLES_h_

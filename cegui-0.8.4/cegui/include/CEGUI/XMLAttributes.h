@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Mar 12 2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,20 +32,19 @@
 #include <map>
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class representing a block of attributes associated with an XML element.
      */
     class CEGUIEXPORT XMLAttributes :
-        public AllocatedObject<XMLAttributes>
-    {
+    public AllocatedObject<XMLAttributes> {
     public:
         /*!
         \brief
@@ -74,7 +73,7 @@ namespace CEGUI
             Nothing.
          */
         void add(const String& attrName, const String& attrValue);
-        
+
         /*!
         \brief
             Removes an attribute from the attribute block.
@@ -97,7 +96,7 @@ namespace CEGUI
         \return
             - true if an attribute with the name \a attrName is present in the attribute block.
             - false if no attribute named \a attrName is present in the attribute block.
-        */
+         */
         bool exists(const String& attrName) const;
 
         /*!
@@ -124,9 +123,9 @@ namespace CEGUI
             String object holding the name of the attribute at the requested index.
 
         \exception IllegalRequestException  thrown if \a index is out of range for this attribute block.
-        */
+         */
         const String& getName(size_t index) const;
-        
+
         /*!
         \brief
             Return the value string of an attribute based upon its index within the attribute block.
@@ -142,7 +141,7 @@ namespace CEGUI
             String object holding the string value of the attribute at the requested index.
 
         \exception IllegalRequestException  thrown if \a index is out of range for this attribute block.
-        */
+         */
         const String& getValue(size_t index) const;
 
         /*!
@@ -192,9 +191,9 @@ namespace CEGUI
             bool value equal to the value of attribute \a attrName if present, or \a def if not.
 
         \exception IllegalRequestException  thrown if the attribute value string coul dnot be converted to the requested type.
-        */
+         */
         bool getValueAsBool(const String& attrName, bool def = false) const;
-        
+
         /*!
         \brief
             Return the value of attribute \a attrName as a integer value.
@@ -211,9 +210,9 @@ namespace CEGUI
             integer value equal to the value of attribute \a attrName if present, or \a def if not.
         
         \exception IllegalRequestException  thrown if the attribute value string coul dnot be converted to the requested type.
-        */
+         */
         int getValueAsInteger(const String& attrName, int def = 0) const;
-        
+
         /*!
         \brief
             Return the value of attribute \a attrName as a floating point value.
@@ -230,19 +229,19 @@ namespace CEGUI
             float value equal to the value of attribute \a attrName if present, or \a def if not.
 
         \exception IllegalRequestException  thrown if the attribute value string coul dnot be converted to the requested type.
-        */
+         */
         float getValueAsFloat(const String& attrName, float def = 0.0f) const;
 
     protected:
         typedef std::map<String, String, StringFastLessCompare> AttributeMap;
-        AttributeMap    d_attrs;
+        AttributeMap d_attrs;
     };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIXMLAttributes_h_

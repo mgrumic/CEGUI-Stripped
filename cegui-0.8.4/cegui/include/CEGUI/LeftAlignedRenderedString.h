@@ -30,29 +30,28 @@
 #include "CEGUI/FormattedRenderedString.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    FormattedRenderedString implementation that renders the RenderedString with
-    left aligned formatting.
-*/
-class CEGUIEXPORT LeftAlignedRenderedString : public FormattedRenderedString
-{
-public:
-    //! Constructor.
-    LeftAlignedRenderedString(const RenderedString& string);
+namespace CEGUI {
 
-    // implementation of base interface
-    void format(const Window* ref_wnd, const Sizef& area_size);
-    void draw(const Window* ref_wnd, GeometryBuffer& buffer,
-              const Vector2f& position, const ColourRect* mod_colours,
-              const Rectf* clip_rect) const;
-    size_t getFormattedLineCount() const;
-    float getHorizontalExtent(const Window* ref_wnd) const;
-    float getVerticalExtent(const Window* ref_wnd) const;
-};
-    
+    /*!
+    \brief
+        FormattedRenderedString implementation that renders the RenderedString with
+        left aligned formatting.
+     */
+    class CEGUIEXPORT LeftAlignedRenderedString : public FormattedRenderedString {
+    public:
+        //! Constructor.
+        LeftAlignedRenderedString(const RenderedString& string);
+
+        // implementation of base interface
+        void format(const Window* ref_wnd, const Sizef& area_size);
+        void draw(const Window* ref_wnd, GeometryBuffer& buffer,
+                const Vector2f& position, const ColourRect* mod_colours,
+                const Rectf* clip_rect) const;
+        size_t getFormattedLineCount() const;
+        float getHorizontalExtent(const Window* ref_wnd) const;
+        float getVerticalExtent(const Window* ref_wnd) const;
+    };
+
 } // End of  CEGUI namespace section
 
 #endif // end of guard _CEGUILeftAlignedRenderedString_h_

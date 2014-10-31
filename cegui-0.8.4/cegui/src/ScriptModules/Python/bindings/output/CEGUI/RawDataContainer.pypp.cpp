@@ -6,18 +6,18 @@
 
 namespace bp = boost::python;
 
-void register_RawDataContainer_class(){
+void register_RawDataContainer_class() {
 
     { //::CEGUI::RawDataContainer
         typedef bp::class_< CEGUI::RawDataContainer > RawDataContainer_exposer_t;
-        RawDataContainer_exposer_t RawDataContainer_exposer = RawDataContainer_exposer_t( "RawDataContainer", bp::init< >("*************************************************************************\n\
+        RawDataContainer_exposer_t RawDataContainer_exposer = RawDataContainer_exposer_t("RawDataContainer", bp::init< >("*************************************************************************\n\
            Construction and Destruction\n\
         *************************************************************************\n\
         *!\n\
         \n\
            Constructor for RawDataContainer class\n\
-        *\n") );
-        bp::scope RawDataContainer_scope( RawDataContainer_exposer );
+        *\n"));
+        bp::scope RawDataContainer_scope(RawDataContainer_exposer);
     }
 
 }

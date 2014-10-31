@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	28/07/2006
-	author:		Olivier Delannoy 
+        created:	28/07/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide Corona based image loading.  
-*************************************************************************/
+        purpose:	This codec provide Corona based image loading.  
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -28,14 +28,10 @@
  ***************************************************************************/
 #include "CEGUI/ImageCodecModules/Corona/ImageCodecModule.h" 
 
-
-CEGUI::ImageCodec* createImageCodec(void)
-{
-  return CEGUI_NEW_AO CEGUI::CoronaImageCodec();
+CEGUI::ImageCodec* createImageCodec(void) {
+    return CEGUI_NEW_AO CEGUI::CoronaImageCodec();
 }
 
-
-void destroyImageCodec(CEGUI::ImageCodec* imageCodec)
-{
-  CEGUI_DELETE_AO imageCodec;
+void destroyImageCodec(CEGUI::ImageCodec* imageCodec) {
+    CEGUI_DELETE_AO imageCodec;
 }

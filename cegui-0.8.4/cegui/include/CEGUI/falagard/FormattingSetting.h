@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jun 15 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -30,118 +30,119 @@
 #include "CEGUI/Window.h"
 #include "CEGUI/falagard/XMLEnumHelper.h"
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-template<typename T>
-class FormattingSetting
-{
-public:
-    //------------------------------------------------------------------------//
-    FormattingSetting() :
-        d_value(FalagardXMLHelper<T>::fromString(""))
-    {}
+    template<typename T>
+    class FormattingSetting {
+    public:
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    FormattingSetting(const String& property_name) :
+        FormattingSetting() :
+        d_value(FalagardXMLHelper<T>::fromString("")) {
+        }
+
+        //------------------------------------------------------------------------//
+
+        FormattingSetting(const String& property_name) :
         d_value(FalagardXMLHelper<T>::fromString("")),
-        d_propertySource(property_name)
-    {}
+        d_propertySource(property_name) {
+        }
 
-    //------------------------------------------------------------------------//
-    FormattingSetting(T val) :
-        d_value(val)
-    {}
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    T get(const Window& wnd) const
-    {
-        if (d_propertySource.empty())
+        FormattingSetting(T val) :
+        d_value(val) {
+        }
+
+        //------------------------------------------------------------------------//
+
+        T get(const Window& wnd) const {
+            if (d_propertySource.empty())
+                return d_value;
+
+            return FalagardXMLHelper<T>::fromString(
+                    wnd.getProperty(d_propertySource));
+        }
+
+        //------------------------------------------------------------------------//
+
+        void set(T val) {
+            d_value = val;
+            d_propertySource.clear();
+        }
+
+        //------------------------------------------------------------------------//
+
+        T getValue() const {
             return d_value;
+        }
 
-        return FalagardXMLHelper<T>::fromString(
-            wnd.getProperty(d_propertySource));
-    }
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    void set(T val)
-    {
-        d_value = val;
-        d_propertySource.clear();
-    }
+        void setPropertySource(const String& property_name) {
+            d_propertySource = property_name;
+        }
 
-    //------------------------------------------------------------------------//
-    T getValue() const
-    {
-        return d_value;
-    }
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    void setPropertySource(const String& property_name)
-    {
-        d_propertySource = property_name;
-    }
+        bool isFetchedFromProperty() const {
+            return !d_propertySource.empty();
+        }
 
-    //------------------------------------------------------------------------//
-    bool isFetchedFromProperty() const
-    {
-        return !d_propertySource.empty();
-    }
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    void writeXMLToStream(XMLSerializer& xml_stream) const
-    {
-        writeXMLTagToStream(xml_stream);
-        writeXMLAttributesToStream(xml_stream);
-        xml_stream.closeTag();
-    }
+        void writeXMLToStream(XMLSerializer& xml_stream) const {
+            writeXMLTagToStream(xml_stream);
+            writeXMLAttributesToStream(xml_stream);
+            xml_stream.closeTag();
+        }
 
-    //------------------------------------------------------------------------//
-    virtual void writeXMLTagToStream(XMLSerializer& xml_stream) const
-    {
-        // This does nothing and needs to be specialised or overridden
-    }
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    virtual void writeXMLAttributesToStream(XMLSerializer& xml_stream) const
-    {
-        // This does nothing and needs to be specialised or overridden
-    }
+        virtual void writeXMLTagToStream(XMLSerializer& xml_stream) const {
+            // This does nothing and needs to be specialised or overridden
+        }
 
-    //------------------------------------------------------------------------//
-    bool operator==(const FormattingSetting<T>& rhs) const
-    {
-        return d_value == rhs.d_value &&
-               d_propertySource == rhs.d_propertySource;
-    }
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    bool operator!=(const FormattingSetting<T>& rhs) const
-    {
-        return !operator==(rhs);
-    }
+        virtual void writeXMLAttributesToStream(XMLSerializer& xml_stream) const {
+            // This does nothing and needs to be specialised or overridden
+        }
 
-protected:
-    T d_value;
-    String d_propertySource;
-};
+        //------------------------------------------------------------------------//
 
-template<> void CEGUIEXPORT FormattingSetting<VerticalFormatting>::writeXMLTagToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<VerticalFormatting>::writeXMLAttributesToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<HorizontalFormatting>::writeXMLTagToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<HorizontalFormatting>::writeXMLAttributesToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<VerticalTextFormatting>::writeXMLTagToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<VerticalTextFormatting>::writeXMLAttributesToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<HorizontalTextFormatting>::writeXMLTagToStream(
-                                            XMLSerializer& xml_stream) const;
-template<> void CEGUIEXPORT FormattingSetting<HorizontalTextFormatting>::writeXMLAttributesToStream(
-                                            XMLSerializer& xml_stream) const;
+        bool operator==(const FormattingSetting<T>& rhs) const {
+            return d_value == rhs.d_value &&
+                    d_propertySource == rhs.d_propertySource;
+        }
+
+        //------------------------------------------------------------------------//
+
+        bool operator!=(const FormattingSetting<T>& rhs) const {
+            return !operator==(rhs);
+        }
+
+    protected:
+        T d_value;
+        String d_propertySource;
+    };
+
+    template<> void CEGUIEXPORT FormattingSetting<VerticalFormatting>::writeXMLTagToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<VerticalFormatting>::writeXMLAttributesToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<HorizontalFormatting>::writeXMLTagToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<HorizontalFormatting>::writeXMLAttributesToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<VerticalTextFormatting>::writeXMLTagToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<VerticalTextFormatting>::writeXMLAttributesToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<HorizontalTextFormatting>::writeXMLTagToStream(
+            XMLSerializer& xml_stream) const;
+    template<> void CEGUIEXPORT FormattingSetting<HorizontalTextFormatting>::writeXMLAttributesToStream(
+            XMLSerializer& xml_stream) const;
 }
 
 #endif

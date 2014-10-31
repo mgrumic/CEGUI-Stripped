@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	28/10/2010
-	author:		Martin Preisler (inspired by Ogre3D)
+        created:	28/10/2010
+        author:		Martin Preisler (inspired by Ogre3D)
 
-	purpose:	Overrides new an delete operators and uses given Allocator
-*************************************************************************/
+        purpose:	Overrides new an delete operators and uses given Allocator
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -30,88 +30,82 @@
 #define _CEGUIMemoryAllocatedObject_h_
 
 #ifndef _CEGUIMemoryAllocation_h_
-#   error Dont include this directly! Include CEGUIBase.h instead.
+#error Dont include this directly! Include CEGUIBase.h instead.
 #endif
 
-namespace CEGUI
-{
- 
+namespace CEGUI {
+
 #ifdef CEGUI_CUSTOM_ALLOCATORS
 
-/*!
-\brief
-    Defines a 'allocated object' class
+    /*!
+    \brief
+        Defines a 'allocated object' class
 
-    This is used to allocate CEGUI classes via custom allocators. It's
-    basically a wrapper that calls given Allocator when new/delete is called.
-    This is managed via overloading of new and delete operators.
-*/
-template <typename Class>
-class AllocatedObject
-{
-public:
-    typedef typename AllocatorConfig<Class>::Allocator Allocator;
+        This is used to allocate CEGUI classes via custom allocators. It's
+        basically a wrapper that calls given Allocator when new/delete is called.
+        This is managed via overloading of new and delete operators.
+     */
+    template <typename Class>
+    class AllocatedObject {
+    public:
+        typedef typename AllocatorConfig<Class>::Allocator Allocator;
 
-	inline explicit AllocatedObject()
-	{}
-
-#ifndef CEGUI_CUSTOM_ALLOCATORS_DEBUG
-	inline void* operator new(size_t size)
-	{
-		return Allocator::allocateBytes(size);
-	}
-#else
-	inline void* operator new(size_t size, const char* file, int line, const char* func)
-	{
-		return Allocator::allocateBytes(size, file, line, func);
-	}
-#endif
-
-	inline void operator delete(void* ptr)
-	{
-		Allocator::deallocateBytes(ptr);
-	}
+        inline explicit AllocatedObject() {
+        }
 
 #ifndef CEGUI_CUSTOM_ALLOCATORS_DEBUG
-	inline void* operator new[] (size_t size)
-	{
-		return Allocator::allocateBytes(size);
-	}
+
+        inline void* operator new(size_t size) {
+            return Allocator::allocateBytes(size);
+        }
 #else
-	inline void* operator new[] (size_t size, const char* file, int line, const char* func)
-	{
-		return Allocator::allocateBytes(size, file, line, func);
-	}
+
+        inline void* operator new(size_t size, const char* file, int line, const char* func) {
+            return Allocator::allocateBytes(size, file, line, func);
+        }
 #endif
 
-	inline void operator delete[] (void* ptr)
-	{
-		Allocator::deallocateBytes(ptr);
-	}
+        inline void operator delete(void* ptr) {
+            Allocator::deallocateBytes(ptr);
+        }
 
-    // todo: does debug variant even make sense with placement new?
-	inline void* operator new(size_t size, void* ptr)
-	{
-		(void) size;
-		return ptr;
-	}
+#ifndef CEGUI_CUSTOM_ALLOCATORS_DEBUG
+        inline void* operator new[] (size_t size) {
+            return Allocator::allocateBytes(size);
+        }
+#else
+        inline void* operator new[] (size_t size, const char* file, int line, const char* func) {
+            return Allocator::allocateBytes(size, file, line, func);
+        }
+#endif
 
-    inline void operator delete(void* ptr, void*)
-	{
-		Allocator::deallocateBytes(ptr);
-	}
-};
+        inline void operator delete[] (void* ptr) {
+            Allocator::deallocateBytes(ptr);
+        }
+
+        // todo: does debug variant even make sense with placement new?
+
+        inline void* operator new(size_t size, void* ptr) {
+            (void) size;
+            return ptr;
+        }
+
+        inline void operator delete(void* ptr, void*) {
+            Allocator::deallocateBytes(ptr);
+        }
+    };
 
 #else
 
-// allocated object is just a stub template class if custom memory allocators aren't used
-template<typename Allocator>
-class AllocatedObject
-{
-public:
-    inline explicit AllocatedObject()
-	{}
-};
+    // allocated object is just a stub template class if custom memory allocators aren't used
+
+    template<typename Allocator>
+    class AllocatedObject {
+    public:
+
+        inline explicit AllocatedObject() {
+        }
+    };
 
 #endif
 

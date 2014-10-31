@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jul 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/ItemListBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         PopupMenu class for the FalagardBase module.
@@ -45,16 +45,15 @@ namespace CEGUI
 
         Named Areas:
             ItemRenderArea
-    */
-    class COREWRSET_API FalagardPopupMenu : public ItemListBaseWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardPopupMenu : public ItemListBaseWindowRenderer {
     public:
-        static const String TypeName;     //! type name for this widget.
+        static const String TypeName; //! type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardPopupMenu(const String& type);
 
         // overridden from PopupMenu base class.

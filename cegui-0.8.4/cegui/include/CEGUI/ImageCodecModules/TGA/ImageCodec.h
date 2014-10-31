@@ -1,10 +1,10 @@
 /***********************************************************************
-	created:	03/06/2006
-	author:		Olivier Delannoy 
+        created:	03/06/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide TGA image loading, it's the default 
+        purpose:	This codec provide TGA image loading, it's the default 
                 codec 
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,75 +32,74 @@
 #include "../../ImageCodec.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUITGAIMAGECODEC_EXPORTS
-#       define CEGUITGAIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUITGAIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUITGAIMAGECODEC_EXPORTS
+#define CEGUITGAIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUITGAIMAGECODEC_API
+#define CEGUITGAIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUITGAIMAGECODEC_API
 #endif
 
-namespace CEGUI 
-{
-/*!
-  \brief 
-  Default image codec 
+namespace CEGUI {
 
-  This image codec is able to load TGA file only. 
-  it is always available. 
-*/
-class CEGUITGAIMAGECODEC_API TGAImageCodec : public ImageCodec
-{
-    /*! 
+    /*!
       \brief 
-      This is our image structure for our targa data
-    */
-    struct ImageTGA
-    {
-        int channels;        //!< The channels in the image (3 = RGB : 4 = RGBA)
-        int sizeX;           //!< The width of the image in pixels
-        int sizeY;           //!< The height of the image in pixels
-        unsigned char *data; //!< The image pixel data
+      Default image codec 
+
+      This image codec is able to load TGA file only. 
+      it is always available. 
+     */
+    class CEGUITGAIMAGECODEC_API TGAImageCodec : public ImageCodec {
+
+        /*! 
+          \brief 
+          This is our image structure for our targa data
+         */
+        struct ImageTGA {
+            int channels; //!< The channels in the image (3 = RGB : 4 = RGBA)
+            int sizeX; //!< The width of the image in pixels
+            int sizeY; //!< The height of the image in pixels
+            unsigned char *data; //!< The image pixel data
+        };
+
+        //! vertically flip data for tImageTGA 'img'
+        static void flipVertImageTGA(ImageTGA* img);
+        //! horizontally flip data for tImageTGA 'img'
+        static void flipHorzImageTGA(ImageTGA* img);
+
+        /*!
+          \brief 
+          load a TGA from a byte buffer 
+         */
+        static ImageTGA* loadTGA(const unsigned char* buffer, size_t buffer_size);
+        /*!
+          \brief 
+          convert 24 bits Image to 32 bits one 
+         */
+        static void convertRGBToRGBA(ImageTGA* img);
+
+    public:
+        TGAImageCodec();
+
+        ~TGAImageCodec();
+
+        // Took this code from http://www.gametutorials.com still ne
+        // tImageTGA *LoadTGA(const char *filename)
+        //
+        // This is our cool function that loads the targa (TGA) file, then returns it's data.  
+        // This tutorial supports 16, 24 and 32 bit images, along with RLE compression.
+        //
+        //
+        // Ben Humphrey (DigiBen)
+        // Game Programmer
+        // DigiBen@GameTutorials.com
+        // Co-Web Host of www.GameTutorials.com
+        Texture* load(const RawDataContainer& data, Texture* result);
+
+    protected:
+    private:
     };
-    
-    //! vertically flip data for tImageTGA 'img'
-    static void flipVertImageTGA(ImageTGA* img);
-    //! horizontally flip data for tImageTGA 'img'
-    static void flipHorzImageTGA(ImageTGA* img);
-
-    /*!
-      \brief 
-      load a TGA from a byte buffer 
-    */
-    static ImageTGA* loadTGA(const unsigned char* buffer, size_t buffer_size);
-    /*!
-      \brief 
-      convert 24 bits Image to 32 bits one 
-    */
-    static void convertRGBToRGBA(ImageTGA* img);
-        
-public:
-    TGAImageCodec();
-
-    ~TGAImageCodec();
-    
-    // Took this code from http://www.gametutorials.com still ne
-    // tImageTGA *LoadTGA(const char *filename)
-    //
-    // This is our cool function that loads the targa (TGA) file, then returns it's data.  
-    // This tutorial supports 16, 24 and 32 bit images, along with RLE compression.
-    //
-    //
-    // Ben Humphrey (DigiBen)
-    // Game Programmer
-    // DigiBen@GameTutorials.com
-    // Co-Web Host of www.GameTutorials.com
-    Texture* load(const RawDataContainer& data, Texture* result);
-
-protected:
-private:
-};
 
 } // End of CEGUI namespace section 
 

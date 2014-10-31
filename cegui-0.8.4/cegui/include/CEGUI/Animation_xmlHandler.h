@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 11 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -31,151 +31,150 @@
 #ifndef PE_NO_ANIMATION
 #include "CEGUI/String.h"
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Class used to parse stand alone Animation XML files.
-class CEGUIEXPORT Animation_xmlHandler : public ChainedXMLHandler
-{
-public:
-	//! String holding the element handled by this class.
-    static const String ElementName;
+namespace CEGUI {
+    //! Class used to parse stand alone Animation XML files.
 
-    Animation_xmlHandler();
-    
-    #ifndef PE_NO_ANIMATION
-    virtual ~Animation_xmlHandler();
-    #endif //PE_NO_ANIMATION
+    class CEGUIEXPORT Animation_xmlHandler : public ChainedXMLHandler {
+    public:
+        //! String holding the element handled by this class.
+        static const String ElementName;
 
-    // XMLHandler overrides
-    const String& getSchemaName() const;
-    const String& getDefaultResourceGroup() const;
+        Animation_xmlHandler();
 
-protected:
-    // implement ChainedXMLHandler interface.
-    void elementStartLocal(const String& element,
-                           const XMLAttributes& attributes);
-    void elementEndLocal(const String& element);
-};
+#ifndef PE_NO_ANIMATION
+        virtual ~Animation_xmlHandler();
+#endif //PE_NO_ANIMATION
 
-//----------------------------------------------------------------------------//
-//! Chained sub-handler for AnimationDefinition XML elements
-class CEGUIEXPORT AnimationDefinitionHandler : public ChainedXMLHandler
-{
-public:
-    //! String holding the element handled by this class.
-    static const String ElementName;
+        // XMLHandler overrides
+        const String& getSchemaName() const;
+        const String& getDefaultResourceGroup() const;
 
-    static const String NameAttribute;
-    static const String DurationAttribute;
+    protected:
+        // implement ChainedXMLHandler interface.
+        void elementStartLocal(const String& element,
+                const XMLAttributes& attributes);
+        void elementEndLocal(const String& element);
+    };
 
-    static const String ReplayModeAttribute;
-    static const String ReplayModeOnce;
-    static const String ReplayModeLoop;
-    static const String ReplayModeBounce;
+    //----------------------------------------------------------------------------//
+    //! Chained sub-handler for AnimationDefinition XML elements
 
-    static const String AutoStartAttribute;
+    class CEGUIEXPORT AnimationDefinitionHandler : public ChainedXMLHandler {
+    public:
+        //! String holding the element handled by this class.
+        static const String ElementName;
 
-    AnimationDefinitionHandler(const XMLAttributes& attributes,
-                               const String& name_prefix);
-    virtual ~AnimationDefinitionHandler();
+        static const String NameAttribute;
+        static const String DurationAttribute;
 
-protected:
-    // implement ChainedXMLHandler interface.
-    void elementStartLocal(const String& element,
-                           const XMLAttributes& attributes);
-    void elementEndLocal(const String& element);
+        static const String ReplayModeAttribute;
+        static const String ReplayModeOnce;
+        static const String ReplayModeLoop;
+        static const String ReplayModeBounce;
 
-    //! Pointer to the Animation created by this handler.
-    #ifndef PE_NO_ANIMATION
-    Animation* d_anim;
-    #endif //PE_NO_ANIMATION
-};
+        static const String AutoStartAttribute;
 
-//----------------------------------------------------------------------------//
-//! Chained sub-handler for Affector XML elements
-class CEGUIEXPORT AnimationAffectorHandler : public ChainedXMLHandler
-{
-public:
-    //! String holding the element handled by this class.
-    static const String ElementName;
+        AnimationDefinitionHandler(const XMLAttributes& attributes,
+                const String& name_prefix);
+        virtual ~AnimationDefinitionHandler();
 
-    static const String TargetPropertyAttribute;
-    static const String InterpolatorAttribute;
+    protected:
+        // implement ChainedXMLHandler interface.
+        void elementStartLocal(const String& element,
+                const XMLAttributes& attributes);
+        void elementEndLocal(const String& element);
 
-    static const String ApplicationMethodAttribute;
-    static const String ApplicationMethodAbsolute;
-    static const String ApplicationMethodRelative;
-    static const String ApplicationMethodRelativeMultiply;
-    
-    #ifndef PE_NO_ANIMATION
-    AnimationAffectorHandler(const XMLAttributes& attributes,
-                             Animation& anim);
-    
-    #endif //PE_NO_ANIMATION
-    virtual ~AnimationAffectorHandler();
+        //! Pointer to the Animation created by this handler.
+#ifndef PE_NO_ANIMATION
+        Animation* d_anim;
+#endif //PE_NO_ANIMATION
+    };
 
-protected:
-    // implement ChainedXMLHandler interface.
-    void elementStartLocal(const String& element,
-                           const XMLAttributes& attributes);
-    void elementEndLocal(const String& element);
+    //----------------------------------------------------------------------------//
+    //! Chained sub-handler for Affector XML elements
 
-    //! Affector created by this handler.
-    Affector* d_affector;
-};
+    class CEGUIEXPORT AnimationAffectorHandler : public ChainedXMLHandler {
+    public:
+        //! String holding the element handled by this class.
+        static const String ElementName;
 
-//----------------------------------------------------------------------------//
-//! Chained sub-handler for KeyFrame XML elements.
-class CEGUIEXPORT AnimationKeyFrameHandler : public ChainedXMLHandler
-{
-public:
-    //! String holding the element handled by this class.
-    static const String ElementName;
+        static const String TargetPropertyAttribute;
+        static const String InterpolatorAttribute;
 
-    static const String PositionAttribute;
-    static const String ValueAttribute;
-    static const String SourcePropertyAttribute;
+        static const String ApplicationMethodAttribute;
+        static const String ApplicationMethodAbsolute;
+        static const String ApplicationMethodRelative;
+        static const String ApplicationMethodRelativeMultiply;
 
-    static const String ProgressionAttribute;
-    static const String ProgressionLinear;
-    static const String ProgressionDiscrete;
-    static const String ProgressionQuadraticAccelerating;
-    static const String ProgressionQuadraticDecelerating;
+#ifndef PE_NO_ANIMATION
+        AnimationAffectorHandler(const XMLAttributes& attributes,
+                Animation& anim);
 
-    AnimationKeyFrameHandler(const XMLAttributes& attributes,
-                             Affector& affector);
-    virtual ~AnimationKeyFrameHandler();
+#endif //PE_NO_ANIMATION
+        virtual ~AnimationAffectorHandler();
 
-protected:
-    // implement ChainedXMLHandler interface.
-    void elementStartLocal(const String& element,
-                           const XMLAttributes& attributes);
-    void elementEndLocal(const String& element);
-};
+    protected:
+        // implement ChainedXMLHandler interface.
+        void elementStartLocal(const String& element,
+                const XMLAttributes& attributes);
+        void elementEndLocal(const String& element);
 
-//----------------------------------------------------------------------------//
-//! Chained sub-handler for Subscription XML elements.
-class CEGUIEXPORT AnimationSubscriptionHandler : public ChainedXMLHandler
-{
-public:
-    //! String holding the element handled by this class.
-    static const String ElementName;
+        //! Affector created by this handler.
+        Affector* d_affector;
+    };
 
-    static const String EventAttribute;
-    static const String ActionAttribute;
+    //----------------------------------------------------------------------------//
+    //! Chained sub-handler for KeyFrame XML elements.
 
-    #ifndef PE_NO_ANIMATION
-    AnimationSubscriptionHandler(const XMLAttributes& attributes,
-                                 Animation& anim);
-    #endif //PE_NO_ANIMATION
-    virtual ~AnimationSubscriptionHandler();
+    class CEGUIEXPORT AnimationKeyFrameHandler : public ChainedXMLHandler {
+    public:
+        //! String holding the element handled by this class.
+        static const String ElementName;
 
-protected:
-    // implement ChainedXMLHandler interface.
-    void elementStartLocal(const String& element,
-                           const XMLAttributes& attributes);
-    void elementEndLocal(const String& element);
-};
+        static const String PositionAttribute;
+        static const String ValueAttribute;
+        static const String SourcePropertyAttribute;
+
+        static const String ProgressionAttribute;
+        static const String ProgressionLinear;
+        static const String ProgressionDiscrete;
+        static const String ProgressionQuadraticAccelerating;
+        static const String ProgressionQuadraticDecelerating;
+
+        AnimationKeyFrameHandler(const XMLAttributes& attributes,
+                Affector& affector);
+        virtual ~AnimationKeyFrameHandler();
+
+    protected:
+        // implement ChainedXMLHandler interface.
+        void elementStartLocal(const String& element,
+                const XMLAttributes& attributes);
+        void elementEndLocal(const String& element);
+    };
+
+    //----------------------------------------------------------------------------//
+    //! Chained sub-handler for Subscription XML elements.
+
+    class CEGUIEXPORT AnimationSubscriptionHandler : public ChainedXMLHandler {
+    public:
+        //! String holding the element handled by this class.
+        static const String ElementName;
+
+        static const String EventAttribute;
+        static const String ActionAttribute;
+
+#ifndef PE_NO_ANIMATION
+        AnimationSubscriptionHandler(const XMLAttributes& attributes,
+                Animation& anim);
+#endif //PE_NO_ANIMATION
+        virtual ~AnimationSubscriptionHandler();
+
+    protected:
+        // implement ChainedXMLHandler interface.
+        void elementStartLocal(const String& element,
+                const XMLAttributes& attributes);
+        void elementEndLocal(const String& element);
+    };
 
 } // End of  CEGUI namespace section
 

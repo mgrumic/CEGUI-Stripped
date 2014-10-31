@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jun 22 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,28 +31,27 @@
 #include "CEGUI/WindowRenderer.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUICOREWINDOWRENDERERSET_EXPORTS
-#       define COREWRSET_API __declspec(dllexport)
-#   else
-#       define COREWRSET_API __declspec(dllimport)
-#   endif
+#ifdef CEGUICOREWINDOWRENDERERSET_EXPORTS
+#define COREWRSET_API __declspec(dllexport)
 #else
-#   define COREWRSET_API
+#define COREWRSET_API __declspec(dllimport)
+#endif
+#else
+#define COREWRSET_API
 #endif
 
 //! Function we're required to export.
 extern "C"
 COREWRSET_API CEGUI::FactoryModule& getWindowRendererFactoryModule();
 
-namespace CEGUI
-{
-//! Implementation of WindowRendererModule for the Falagard window renderers
-class CoreWindowRendererModule : public CEGUI::FactoryModule
-{
-public:
-    CoreWindowRendererModule();
-    ~CoreWindowRendererModule();
-};
+namespace CEGUI {
+    //! Implementation of WindowRendererModule for the Falagard window renderers
+
+    class CoreWindowRendererModule : public CEGUI::FactoryModule {
+    public:
+        CoreWindowRendererModule();
+        ~CoreWindowRendererModule();
+    };
 
 }
 

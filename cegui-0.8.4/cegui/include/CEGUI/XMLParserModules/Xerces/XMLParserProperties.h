@@ -30,38 +30,37 @@
 #include "../../Property.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Properties for the XercesParser XML parser module.
-namespace XercesParserProperties
-{    
-/*!
-\brief
-    Property to access the resource group used to load .xsd schema files.
- 
-\par Usage:
-    - Name: SchemaDefaultResourceGroup
-    - Format: "[resource group name]".
- 
- */
-class SchemaDefaultResourceGroup : public Property
-{
-public:
-    SchemaDefaultResourceGroup() : Property(
-        "SchemaDefaultResourceGroup",
-        "Property to get/set the resource group used when loading xsd schema "
-        "files.  Value is a string describing the resource group name.",
-        "")
-    {}
-    
-    // implement property interface
-    String get(const PropertyReceiver* receiver) const;
-    void set(PropertyReceiver* receiver, const String& value);
-    Property* clone() const;
-};
+namespace CEGUI {
+    //! Properties for the XercesParser XML parser module.
+    namespace XercesParserProperties {
 
-} // End of XercesParserProperties namespace section
-    
+        /*!
+        \brief
+            Property to access the resource group used to load .xsd schema files.
+ 
+        \par Usage:
+            - Name: SchemaDefaultResourceGroup
+            - Format: "[resource group name]".
+ 
+         */
+        class SchemaDefaultResourceGroup : public Property {
+        public:
+
+            SchemaDefaultResourceGroup() : Property(
+            "SchemaDefaultResourceGroup",
+            "Property to get/set the resource group used when loading xsd schema "
+            "files.  Value is a string describing the resource group name.",
+            "") {
+            }
+
+            // implement property interface
+            String get(const PropertyReceiver* receiver) const;
+            void set(PropertyReceiver* receiver, const String& value);
+            Property* clone() const;
+        };
+
+    } // End of XercesParserProperties namespace section
+
 } // End of  CEGUI namespace section
 
 #endif // end of guard _CEGUIXercesParserProperties_h_

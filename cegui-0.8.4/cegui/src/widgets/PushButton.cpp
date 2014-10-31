@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	13/4/2004
-	author:		Paul D Turner
+        created:	13/4/2004
+        author:		Paul D Turner
 
-	purpose:	Implementation of PushButton widget base class
-*************************************************************************/
+        purpose:	Implementation of PushButton widget base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,77 +29,70 @@
 #include "CEGUI/widgets/PushButton.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*************************************************************************
-	constants
-*************************************************************************/
-// event strings
-const String PushButton::EventNamespace("PushButton");
-const String PushButton::WidgetTypeName("CEGUI/PushButton");
+    /*************************************************************************
+            constants
+     *************************************************************************/
+    // event strings
+    const String PushButton::EventNamespace("PushButton");
+    const String PushButton::WidgetTypeName("CEGUI/PushButton");
 #ifndef PE_NO_MOUSE
-const String PushButton::EventClicked( "Clicked" );
+    const String PushButton::EventClicked("Clicked");
 #endif //PE_NO_MOUSE
 
-/*************************************************************************
-	Constructor
-*************************************************************************/
-PushButton::PushButton(const String& type, const String& name) :
-	ButtonBase(type, name)
-{
-}
+    /*************************************************************************
+            Constructor
+     *************************************************************************/
+    PushButton::PushButton(const String& type, const String& name) :
+    ButtonBase(type, name) {
+    }
 
-
-/*************************************************************************
-	Destructor
-*************************************************************************/
-PushButton::~PushButton(void)
-{
-}
+    /*************************************************************************
+            Destructor
+     *************************************************************************/
+    PushButton::~PushButton(void) {
+    }
 
 
 #ifndef PE_NO_MOUSE
+
 /*************************************************************************
-	handler invoked internally when the button is clicked.
-*************************************************************************/
-void PushButton::onClicked(WindowEventArgs& e)
-{
-	fireEvent(EventClicked, e, EventNamespace);
-}
+            handler invoked internally when the button is clicked.
+     *************************************************************************/
+    void PushButton::onClicked(WindowEventArgs& e) {
+        fireEvent(EventClicked, e, EventNamespace);
+    }
 #endif //PE_NO_MOUSE
 
 
 #ifndef PE_NO_MOUSE
+
 /*************************************************************************
-	Handler for mouse button release events
-*************************************************************************/
-void PushButton::onMouseButtonUp(MouseEventArgs& e)
-{
-	if ((e.button == LeftButton) && isPushed())
-	{
-		Window* sheet = getGUIContext().getRootWindow();
+            Handler for mouse button release events
+     *************************************************************************/
+    void PushButton::onMouseButtonUp(MouseEventArgs& e) {
+        if ((e.button == LeftButton) && isPushed()) {
+            Window* sheet = getGUIContext().getRootWindow();
 
-		if (sheet)
-		{
-			// if mouse was released over this widget
-            // (use position from mouse, as e.position has been unprojected)
-			if (this == sheet->getTargetChildAtPosition(
-                getGUIContext().getMouseCursor().getPosition()))
-			{
-				// fire event
-				WindowEventArgs args(this);
-				onClicked(args);
-			}
+            if (sheet) {
+                // if mouse was released over this widget
+                // (use position from mouse, as e.position has been unprojected)
+                if (this == sheet->getTargetChildAtPosition(
+                        getGUIContext().getMouseCursor().getPosition())) {
+                    // fire event
+                    WindowEventArgs args(this);
+                    onClicked(args);
+                }
 
-		}
+            }
 
-		++e.handled;
-	}
+            ++e.handled;
+        }
 
-	// default handling
-	ButtonBase::onMouseButtonUp(e);
-}
+        // default handling
+        ButtonBase::onMouseButtonUp(e);
+    }
 #endif //PE_NO_MOUSE
 
 } // End of  CEGUI namespace section

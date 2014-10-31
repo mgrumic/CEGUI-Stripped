@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Nov 21 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -33,59 +33,58 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class CEGUIEXPORT EventLinkDefinition :
-    public AllocatedObject<EventLinkDefinition>
-{
-public:
-    EventLinkDefinition(const String& event_name);
-    ~EventLinkDefinition();
+namespace CEGUI {
 
-    //! add a new link target to \a event on \a widget (name).
-    void addLinkTarget(const String& widget, const String& event);
-    //! clear all link targets from this link definition.
-    void clearLinkTargets();
+    class CEGUIEXPORT EventLinkDefinition :
+    public AllocatedObject<EventLinkDefinition> {
+    public:
+        EventLinkDefinition(const String& event_name);
+        ~EventLinkDefinition();
 
-    //! initialise \a window with an event link as specified here.
-    void initialiseWidget(Window& window) const;
+        //! add a new link target to \a event on \a widget (name).
+        void addLinkTarget(const String& widget, const String& event);
+        //! clear all link targets from this link definition.
+        void clearLinkTargets();
 
-    //! clean this event from \a window.
-    void cleanUpWidget(Window& window) const;
+        //! initialise \a window with an event link as specified here.
+        void initialiseWidget(Window& window) const;
+
+        //! clean this event from \a window.
+        void cleanUpWidget(Window& window) const;
 
 
-    void setName(const String& name);
-    //! return the name of the Event defined here.
-    const String& getName() const;
+        void setName(const String& name);
+        //! return the name of the Event defined here.
+        const String& getName() const;
 
-protected:
-    //! Return a pointer to the target window with the given name.
-    Window* getTargetWindow(Window& start_wnd,
-                            const String& name) const;
+    protected:
+        //! Return a pointer to the target window with the given name.
+        Window* getTargetWindow(Window& start_wnd,
+                const String& name) const;
 
-    //! String holding the name of the event being defined
-    String d_eventName;
+        //! String holding the name of the event being defined
+        String d_eventName;
 
-    typedef std::pair<String,String> StringPair;
-    //! type used for the collection of target events.
-    typedef std::vector<StringPair CEGUI_VECTOR_ALLOC(StringPair)> LinkTargetCollection;
+        typedef std::pair<String, String> StringPair;
+        //! type used for the collection of target events.
+        typedef std::vector<StringPair CEGUI_VECTOR_ALLOC(StringPair) > LinkTargetCollection;
 
-    //! collection of targets for this EventLinkDefinition.
-    LinkTargetCollection d_targets;
-public:
-    typedef ConstVectorIterator<LinkTargetCollection> LinkTargetIterator;
-    LinkTargetIterator getLinkTargetIterator() const;
-};
+        //! collection of targets for this EventLinkDefinition.
+        LinkTargetCollection d_targets;
+    public:
+        typedef ConstVectorIterator<LinkTargetCollection> LinkTargetIterator;
+        LinkTargetIterator getLinkTargetIterator() const;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalEventLinkDefinition_h_

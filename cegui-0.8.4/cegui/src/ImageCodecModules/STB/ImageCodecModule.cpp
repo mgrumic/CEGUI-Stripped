@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Fri Apr 30 2010
-	author:		Tobias Schlegel
+        created:	Fri Apr 30 2010
+        author:		Tobias Schlegel
 	
-	purpose:	This codec provides stb_image.c based image loading.  
-*************************************************************************/
+        purpose:	This codec provides stb_image.c based image loading.  
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -29,15 +29,14 @@
 #include "CEGUI/ImageCodecModules/STB/ImageCodecModule.h" 
 
 //----------------------------------------------------------------------------//
-CEGUI::ImageCodec* createImageCodec(void)
-{
+
+CEGUI::ImageCodec* createImageCodec(void) {
     return CEGUI_NEW_AO CEGUI::STBImageCodec();
 }
 
 //----------------------------------------------------------------------------//
 
-void destroyImageCodec(CEGUI::ImageCodec* imageCodec)
-{
+void destroyImageCodec(CEGUI::ImageCodec* imageCodec) {
     CEGUI_DELETE_AO imageCodec;
 }
 

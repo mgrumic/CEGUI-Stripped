@@ -8,72 +8,72 @@ namespace bp = boost::python;
 
 struct OgreImageCodec_wrapper : CEGUI::OgreImageCodec, bp::wrapper< CEGUI::OgreImageCodec > {
 
-    OgreImageCodec_wrapper( )
-    : CEGUI::OgreImageCodec( )
-      , bp::wrapper< CEGUI::OgreImageCodec >(){
+    OgreImageCodec_wrapper()
+    : CEGUI::OgreImageCodec()
+    , bp::wrapper< CEGUI::OgreImageCodec >() {
         // null constructor
-    
+
     }
 
-    virtual ::CEGUI::Texture * load( ::CEGUI::RawDataContainer const & data, ::CEGUI::Texture * result ) {
-        if( bp::override func_load = this->get_override( "load" ) )
-            return func_load( boost::ref(data), boost::python::ptr(result) );
-        else{
-            return this->CEGUI::OgreImageCodec::load( boost::ref(data), boost::python::ptr(result) );
+    virtual ::CEGUI::Texture * load(::CEGUI::RawDataContainer const & data, ::CEGUI::Texture * result) {
+        if (bp::override func_load = this->get_override("load"))
+            return func_load(boost::ref(data), boost::python::ptr(result));
+        else {
+            return this->CEGUI::OgreImageCodec::load(boost::ref(data), boost::python::ptr(result));
         }
     }
-    
-    ::CEGUI::Texture * default_load( ::CEGUI::RawDataContainer const & data, ::CEGUI::Texture * result ) {
-        return CEGUI::OgreImageCodec::load( boost::ref(data), boost::python::ptr(result) );
+
+    ::CEGUI::Texture * default_load(::CEGUI::RawDataContainer const & data, ::CEGUI::Texture * result) {
+        return CEGUI::OgreImageCodec::load(boost::ref(data), boost::python::ptr(result));
     }
 
 };
 
-void register_OgreImageCodec_class(){
+void register_OgreImageCodec_class() {
 
     { //::CEGUI::OgreImageCodec
         typedef bp::class_< OgreImageCodec_wrapper, bp::bases< ::CEGUI::ImageCodec >, boost::noncopyable > OgreImageCodec_exposer_t;
-        OgreImageCodec_exposer_t OgreImageCodec_exposer = OgreImageCodec_exposer_t( "OgreImageCodec", "*!\n\
+        OgreImageCodec_exposer_t OgreImageCodec_exposer = OgreImageCodec_exposer_t("OgreImageCodec", "*!\n\
         \n\
             ImageCodec object that loads data via image loading facilities in Ogre.\n\
-        *\n", bp::init< >("! Constructor.\n") );
-        bp::scope OgreImageCodec_scope( OgreImageCodec_exposer );
+        *\n", bp::init< >("! Constructor.\n"));
+        bp::scope OgreImageCodec_scope(OgreImageCodec_exposer);
         { //::CEGUI::OgreImageCodec::getImageFileDataType
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::OgreImageCodec::*getImageFileDataType_function_type )(  ) const;
-            
-            OgreImageCodec_exposer.def( 
-                "getImageFileDataType"
-                , getImageFileDataType_function_type( &::CEGUI::OgreImageCodec::getImageFileDataType )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::OgreImageCodec::*getImageFileDataType_function_type)() const;
+
+            OgreImageCodec_exposer.def(
+                    "getImageFileDataType"
+                    , getImageFileDataType_function_type(&::CEGUI::OgreImageCodec::getImageFileDataType)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
             \n\
                 Return the string descibing the currently set file type.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::OgreImageCodec::load
-        
-            typedef ::CEGUI::Texture * ( ::CEGUI::OgreImageCodec::*load_function_type )( ::CEGUI::RawDataContainer const &,::CEGUI::Texture * ) ;
-            typedef ::CEGUI::Texture * ( OgreImageCodec_wrapper::*default_load_function_type )( ::CEGUI::RawDataContainer const &,::CEGUI::Texture * ) ;
-            
-            OgreImageCodec_exposer.def( 
-                "load"
-                , load_function_type(&::CEGUI::OgreImageCodec::load)
-                , default_load_function_type(&OgreImageCodec_wrapper::default_load)
-                , ( bp::arg("data"), bp::arg("result") )
-                , bp::return_value_policy< bp::reference_existing_object >() );
-        
+
+            typedef ::CEGUI::Texture * (::CEGUI::OgreImageCodec::*load_function_type)(::CEGUI::RawDataContainer const &, ::CEGUI::Texture *);
+            typedef ::CEGUI::Texture * (OgreImageCodec_wrapper::*default_load_function_type)(::CEGUI::RawDataContainer const &, ::CEGUI::Texture *);
+
+            OgreImageCodec_exposer.def(
+                    "load"
+                    , load_function_type(&::CEGUI::OgreImageCodec::load)
+                    , default_load_function_type(&OgreImageCodec_wrapper::default_load)
+                    , (bp::arg("data"), bp::arg("result"))
+                    , bp::return_value_policy< bp::reference_existing_object >());
+
         }
         { //::CEGUI::OgreImageCodec::setImageFileDataType
-        
-            typedef void ( ::CEGUI::OgreImageCodec::*setImageFileDataType_function_type )( ::CEGUI::String const & ) ;
-            
-            OgreImageCodec_exposer.def( 
-                "setImageFileDataType"
-                , setImageFileDataType_function_type( &::CEGUI::OgreImageCodec::setImageFileDataType )
-                , ( bp::arg("type") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::OgreImageCodec::*setImageFileDataType_function_type)(::CEGUI::String const &);
+
+            OgreImageCodec_exposer.def(
+                    "setImageFileDataType"
+                    , setImageFileDataType_function_type(&::CEGUI::OgreImageCodec::setImageFileDataType)
+                    , (bp::arg("type"))
+                    , "*!\n\
                 \n\
                     Set the file-type identifier that will be used for future load\n\
                     operations.\n\
@@ -90,8 +90,8 @@ void register_OgreImageCodec_class(){
                     String object that describes the type of file data that will be passed\n\
                     in subsequent load operations.  Note that this type will typically be\n\
                     the file extension (or equivalent).\n\
-                *\n" );
-        
+                *\n");
+
         }
     }
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jun 22 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,53 +29,44 @@
 #include "CEGUI/falagard/WidgetLookFeel.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardButton::TypeName("Core/Button");
 
     FalagardButton::FalagardButton(const String& type) :
-        WindowRenderer(type)
-    {
+    WindowRenderer(type) {
     }
 
-    void FalagardButton::render()
-    {
-        ButtonBase* w = (ButtonBase*)d_window;
+    void FalagardButton::render() {
+        ButtonBase* w = (ButtonBase*) d_window;
         const WidgetLookFeel& wlf = getLookNFeel();
 
         bool norm = false;
         String state;
 
-		if (w->isEffectiveDisabled())
-		{
-		    state = "Disabled";
-		}
-		else if (w->isPushed())
-		{
-            state = 
+        if (w->isEffectiveDisabled()) {
+            state = "Disabled";
+        } else if (w->isPushed()) {
+            state =
 #ifndef PE_NO_MOUSE
-                w->isHovering() ?
+                    w->isHovering() ?
 #endif //PE_NO_MOUSE
-                "Pushed"
+                    "Pushed"
 #ifndef PE_NO_MOUSE
-                : "PushedOff"
+                    : "PushedOff"
 #endif //PE_NO_MOUSE
-                ;
-		}
+                    ;
+        }
 #ifndef PE_NO_MOUSE
-        else if (w->isHovering())
-		{
-		    state = "Hover";
-		}
+        else if (w->isHovering()) {
+            state = "Hover";
+        }
 #endif //PE_NO_MOUSE
-		else
-		{
-		    state = "Normal";
-		    norm = true;
-		}
+        else {
+            state = "Normal";
+            norm = true;
+        }
 
-        if (!norm && !wlf.isStateImageryPresent(actualStateName(state)))
-        {
+        if (!norm && !wlf.isStateImageryPresent(actualStateName(state))) {
             state = "Normal";
         }
 

@@ -1,7 +1,7 @@
 /*******************************************************************************
 Created:  14.07.2011
 Author:   Hans Mackowiak (Hanmac) hanmac@gmx.de
-*******************************************************************************/
+ *******************************************************************************/
 /***************************************************************************
  Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
 
@@ -23,7 +23,7 @@ Author:   Hans Mackowiak (Hanmac) hanmac@gmx.de
  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
-***************************************************************************/
+ ***************************************************************************/
 #ifndef _CEGUICompositeResourceProvider_h_
 #define _CEGUICompositeResourceProvider_h_
 #include "CEGUI/Base.h"
@@ -33,101 +33,100 @@ Author:   Hans Mackowiak (Hanmac) hanmac@gmx.de
 #include <map>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class CEGUIEXPORT CompositeResourceProvider : public ResourceProvider
-{
-public:
-  /*************************************************************************
-    Construction and Destruction
-  *************************************************************************/
-  CompositeResourceProvider();
-  ~CompositeResourceProvider(void);
-  /*!
-      \brief
-          adds a ResourceProvider
+namespace CEGUI {
 
-      \param prov
-          A pointer to an ResourceProvider (ownership is taken).
+    class CEGUIEXPORT CompositeResourceProvider : public ResourceProvider {
+    public:
+        /*************************************************************************
+          Construction and Destruction
+         *************************************************************************/
+        CompositeResourceProvider();
+        ~CompositeResourceProvider(void);
+        /*!
+            \brief
+                adds a ResourceProvider
 
-      \param name
-          A String thats names the provider inside this holder.
+            \param prov
+                A pointer to an ResourceProvider (ownership is taken).
 
-      \return
-          Nothing.
-      */
-  void add(ResourceProvider *prov,const String& name);
-  /*!
-      \brief
-          creates and add a ResourceProvider
+            \param name
+                A String thats names the provider inside this holder.
 
-      \param name
-          A String thats names the provider inside this holder.
+            \return
+                Nothing.
+         */
+        void add(ResourceProvider *prov, const String& name);
 
-      \return
-          Nothing.
-      */
-  template<typename T>void add(const String& name)
-  {
-    add(CEGUI_NEW_AO T,name);
-  }
-  /*!
-      \brief
-          removes a ResourceProvider
+        /*!
+            \brief
+                creates and add a ResourceProvider
 
-      \param prov
-          A pointer to an ResourceProvider.
+            \param name
+                A String thats names the provider inside this holder.
 
-      \return
-          Nothing.
-      */
-  void remove(ResourceProvider *prov);
-  /*!
-      \brief
-          removes a ResourceProvider
+            \return
+                Nothing.
+         */
+        template<typename T>void add(const String& name) {
+            add(CEGUI_NEW_AO T, name);
+        }
+        /*!
+            \brief
+                removes a ResourceProvider
 
-      \param name
-          A String thats names the provider inside this holder.
+            \param prov
+                A pointer to an ResourceProvider.
 
-      \return
-          Nothing.
-      */
-  void remove(const String& name);
-  /*!
-      \brief
-         get a ResourceProvider
+            \return
+                Nothing.
+         */
+        void remove(ResourceProvider *prov);
+        /*!
+            \brief
+                removes a ResourceProvider
 
-      \param name
-          A String thats names the provider inside this holder.
+            \param name
+                A String thats names the provider inside this holder.
 
-      \return
-          ResourceProvider Pointer.
-      */      
-  ResourceProvider* get(const String& name);
+            \return
+                Nothing.
+         */
+        void remove(const String& name);
+        /*!
+            \brief
+               get a ResourceProvider
 
-  void loadRawDataContainer(const String& filename,
-        RawDataContainer& output,
-        const String& resourceGroup);
-  size_t getResourceGroupFileNames(std::vector<String>& out_vec,
-         const String& file_pattern,
-         const String& resource_group);
-protected:
-  typedef std::map<String, ResourceProvider*, StringFastLessCompare> Providermap;
-  Providermap  d_providerlist;
-public:
-  typedef ConstMapIterator<Providermap> ProviderIterator;
-  ProviderIterator  getIterator() const;
-};
+            \param name
+                A String thats names the provider inside this holder.
+
+            \return
+                ResourceProvider Pointer.
+         */
+        ResourceProvider* get(const String& name);
+
+        void loadRawDataContainer(const String& filename,
+                RawDataContainer& output,
+                const String& resourceGroup);
+        size_t getResourceGroupFileNames(std::vector<String>& out_vec,
+                const String& file_pattern,
+                const String& resource_group);
+    protected:
+        typedef std::map<String, ResourceProvider*, StringFastLessCompare> Providermap;
+        Providermap d_providerlist;
+    public:
+        typedef ConstMapIterator<Providermap> ProviderIterator;
+        ProviderIterator getIterator() const;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUICompositeResourceProvider_h_

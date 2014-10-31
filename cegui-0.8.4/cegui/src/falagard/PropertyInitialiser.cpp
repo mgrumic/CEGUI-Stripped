@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,49 +30,44 @@
 #include <iostream>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-    PropertyInitialiser::PropertyInitialiser(const String& property, const String& value) :
-        d_propertyName(property),
-        d_propertyValue(value)
-    {}
+namespace CEGUI {
 
-    void PropertyInitialiser::apply(CEGUI::PropertySet& target) const
-    {
-        CEGUI_TRY
-        {
+    PropertyInitialiser::PropertyInitialiser(const String& property, const String& value) :
+    d_propertyName(property),
+    d_propertyValue(value) {
+    }
+
+    void PropertyInitialiser::apply(CEGUI::PropertySet& target) const {
+        CEGUI_TRY{
             target.setProperty(d_propertyName, d_propertyValue);
         }
         // allow 'missing' properties
-        CEGUI_CATCH (UnknownObjectException&)
-        {}
+
+        CEGUI_CATCH(UnknownObjectException&) {
+        }
     }
 
-    void PropertyInitialiser::setTargetPropertyName(const String& name)
-    {
+    void PropertyInitialiser::setTargetPropertyName(const String& name) {
         d_propertyName = name;
     }
 
-    const String& PropertyInitialiser::getTargetPropertyName() const
-    {
+    const String& PropertyInitialiser::getTargetPropertyName() const {
         return d_propertyName;
     }
 
-    void PropertyInitialiser::setInitialiserValue(const String& value)
-    {
+    void PropertyInitialiser::setInitialiserValue(const String& value) {
         d_propertyValue = value;
     }
-    const String& PropertyInitialiser::getInitialiserValue() const
-    {
+
+    const String& PropertyInitialiser::getInitialiserValue() const {
         return d_propertyValue;
     }
 
-    void PropertyInitialiser::writeXMLToStream(XMLSerializer& xml_stream) const
-    {
+    void PropertyInitialiser::writeXMLToStream(XMLSerializer& xml_stream) const {
         xml_stream.openTag(Falagard_xmlHandler::PropertyElement)
-            .attribute(Falagard_xmlHandler::NameAttribute, d_propertyName)
-            .attribute(Falagard_xmlHandler::ValueAttribute, d_propertyValue)
-            .closeTag();
+                .attribute(Falagard_xmlHandler::NameAttribute, d_propertyName)
+                .attribute(Falagard_xmlHandler::ValueAttribute, d_propertyValue)
+                .closeTag();
     }
 
 } // End of  CEGUI namespace section

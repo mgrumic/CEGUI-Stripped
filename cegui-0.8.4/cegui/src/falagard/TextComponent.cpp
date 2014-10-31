@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jun 19 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -39,62 +39,59 @@
 #include <iostream>
 
 #if defined (CEGUI_USE_FRIBIDI)
-    #include "CEGUI/FribidiVisualMapping.h"
+#include "CEGUI/FribidiVisualMapping.h"
 #elif defined (CEGUI_USE_MINIBIDI)
-    #include "CEGUI/MinibidiVisualMapping.h"
+#include "CEGUI/MinibidiVisualMapping.h"
 #else
-    #include "CEGUI/BidiVisualMapping.h"
+#include "CEGUI/BidiVisualMapping.h"
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     TextComponent::TextComponent() :
 #ifndef CEGUI_BIDI_SUPPORT
-        d_bidiVisualMapping(0),
+    d_bidiVisualMapping(0),
 #elif defined (CEGUI_USE_FRIBIDI)
-        d_bidiVisualMapping(CEGUI_NEW_AO FribidiVisualMapping),
+    d_bidiVisualMapping(CEGUI_NEW_AO FribidiVisualMapping),
 #elif defined (CEGUI_USE_MINIBIDI)
-        d_bidiVisualMapping(CEGUI_NEW_AO MinibidiVisualMapping),
+    d_bidiVisualMapping(CEGUI_NEW_AO MinibidiVisualMapping),
 #else
-    #error "BIDI Configuration is inconsistant, check your config!"
+#error "BIDI Configuration is inconsistant, check your config!"
 #endif
-        d_bidiDataValid(false),
-        d_formattedRenderedString(CEGUI_NEW_AO LeftAlignedRenderedString(d_renderedString)),
-        d_lastHorzFormatting(HTF_LEFT_ALIGNED),
-        d_vertFormatting(VTF_TOP_ALIGNED),
-        d_horzFormatting(HTF_LEFT_ALIGNED)
-    {}
+    d_bidiDataValid(false),
+    d_formattedRenderedString(CEGUI_NEW_AO LeftAlignedRenderedString(d_renderedString)),
+    d_lastHorzFormatting(HTF_LEFT_ALIGNED),
+    d_vertFormatting(VTF_TOP_ALIGNED),
+    d_horzFormatting(HTF_LEFT_ALIGNED) {
+    }
 
-    TextComponent::~TextComponent()
-    {
+    TextComponent::~TextComponent() {
         CEGUI_DELETE_AO d_bidiVisualMapping;
     }
 
     TextComponent::TextComponent(const TextComponent& obj) :
-        FalagardComponentBase(obj),
-        d_textLogical(obj.d_textLogical),
+    FalagardComponentBase(obj),
+    d_textLogical(obj.d_textLogical),
 #ifndef CEGUI_BIDI_SUPPORT
-        d_bidiVisualMapping(0),
+    d_bidiVisualMapping(0),
 #elif defined (CEGUI_USE_FRIBIDI)
-        d_bidiVisualMapping(CEGUI_NEW_AO FribidiVisualMapping),
+    d_bidiVisualMapping(CEGUI_NEW_AO FribidiVisualMapping),
 #elif defined (CEGUI_USE_MINIBIDI)
-        d_bidiVisualMapping(CEGUI_NEW_AO MinibidiVisualMapping),
+    d_bidiVisualMapping(CEGUI_NEW_AO MinibidiVisualMapping),
 #endif
-        d_bidiDataValid(false),
-        d_renderedString(obj.d_renderedString),
-        d_formattedRenderedString(obj.d_formattedRenderedString),
-        d_lastHorzFormatting(obj.d_lastHorzFormatting),
-        d_font(obj.d_font),
-        d_vertFormatting(obj.d_vertFormatting),
-        d_horzFormatting(obj.d_horzFormatting),
-        d_textPropertyName(obj.d_textPropertyName),
-        d_fontPropertyName(obj.d_fontPropertyName)
-    {
+    d_bidiDataValid(false),
+    d_renderedString(obj.d_renderedString),
+    d_formattedRenderedString(obj.d_formattedRenderedString),
+    d_lastHorzFormatting(obj.d_lastHorzFormatting),
+    d_font(obj.d_font),
+    d_vertFormatting(obj.d_vertFormatting),
+    d_horzFormatting(obj.d_horzFormatting),
+    d_textPropertyName(obj.d_textPropertyName),
+    d_fontPropertyName(obj.d_fontPropertyName) {
     }
 
-    TextComponent& TextComponent::operator=(const TextComponent& other)
-    {
+    TextComponent& TextComponent::operator=(const TextComponent& other) {
         if (this == &other)
             return *this;
 
@@ -117,123 +114,109 @@ namespace CEGUI
         return *this;
     }
 
-    const String& TextComponent::getText() const
-    {
+    const String& TextComponent::getText() const {
         return d_textLogical;
     }
 
-    void TextComponent::setText(const String& text)
-    {
+    void TextComponent::setText(const String& text) {
         d_textLogical = text;
         d_bidiDataValid = false;
     }
 
-    const String& TextComponent::getFont() const
-    {
+    const String& TextComponent::getFont() const {
         return d_font;
     }
 
-    void TextComponent::setFont(const String& font)
-    {
+    void TextComponent::setFont(const String& font) {
         d_font = font;
     }
 
-    VerticalTextFormatting TextComponent::getVerticalFormatting(const Window& wnd) const
-    {
+    VerticalTextFormatting TextComponent::getVerticalFormatting(const Window& wnd) const {
         return d_vertFormatting.get(wnd);
     }
 
-    void TextComponent::setVerticalFormatting(VerticalTextFormatting fmt)
-    {
+    void TextComponent::setVerticalFormatting(VerticalTextFormatting fmt) {
         d_vertFormatting.set(fmt);
     }
 
-    HorizontalTextFormatting TextComponent::getHorizontalFormatting(const Window& wnd) const
-    {
+    HorizontalTextFormatting TextComponent::getHorizontalFormatting(const Window& wnd) const {
         return d_horzFormatting.get(wnd);
     }
 
-    void TextComponent::setHorizontalFormatting(HorizontalTextFormatting fmt)
-    {
+    void TextComponent::setHorizontalFormatting(HorizontalTextFormatting fmt) {
         d_horzFormatting.set(fmt);
     }
 
     void TextComponent::setHorizontalFormattingPropertySource(
-                                                const String& property_name)
-    {
+            const String& property_name) {
         d_horzFormatting.setPropertySource(property_name);
     }
 
     void TextComponent::setVerticalFormattingPropertySource(
-                                                const String& property_name)
-    {
+            const String& property_name) {
         d_vertFormatting.setPropertySource(property_name);
     }
 
     void TextComponent::setupStringFormatter(const Window& window,
-                                             const RenderedString& rendered_string) const
-    {
+            const RenderedString& rendered_string) const {
         const HorizontalTextFormatting horzFormatting = d_horzFormatting.get(window);
 
         // no formatting change
-        if (horzFormatting == d_lastHorzFormatting)
-        {
+        if (horzFormatting == d_lastHorzFormatting) {
             d_formattedRenderedString->setRenderedString(rendered_string);
             return;
         }
 
         d_lastHorzFormatting = horzFormatting;
 
-        switch(horzFormatting)
-        {
-        case HTF_LEFT_ALIGNED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO LeftAlignedRenderedString(rendered_string);
-            break;
+        switch (horzFormatting) {
+            case HTF_LEFT_ALIGNED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO LeftAlignedRenderedString(rendered_string);
+                break;
 
-        case HTF_CENTRE_ALIGNED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO CentredRenderedString(rendered_string);
-            break;
+            case HTF_CENTRE_ALIGNED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO CentredRenderedString(rendered_string);
+                break;
 
-        case HTF_RIGHT_ALIGNED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO RightAlignedRenderedString(rendered_string);
-            break;
+            case HTF_RIGHT_ALIGNED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO RightAlignedRenderedString(rendered_string);
+                break;
 
-        case HTF_JUSTIFIED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO JustifiedRenderedString(rendered_string);
-            break;
+            case HTF_JUSTIFIED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO JustifiedRenderedString(rendered_string);
+                break;
 
-        case HTF_WORDWRAP_LEFT_ALIGNED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO RenderedStringWordWrapper
-                    <LeftAlignedRenderedString>(rendered_string);
-            break;
+            case HTF_WORDWRAP_LEFT_ALIGNED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO RenderedStringWordWrapper
+                        <LeftAlignedRenderedString>(rendered_string);
+                break;
 
-        case HTF_WORDWRAP_CENTRE_ALIGNED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO RenderedStringWordWrapper
-                    <CentredRenderedString>(rendered_string);
-            break;
+            case HTF_WORDWRAP_CENTRE_ALIGNED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO RenderedStringWordWrapper
+                        <CentredRenderedString>(rendered_string);
+                break;
 
-        case HTF_WORDWRAP_RIGHT_ALIGNED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO RenderedStringWordWrapper
-                    <RightAlignedRenderedString>(rendered_string);
-            break;
+            case HTF_WORDWRAP_RIGHT_ALIGNED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO RenderedStringWordWrapper
+                        <RightAlignedRenderedString>(rendered_string);
+                break;
 
-        case HTF_WORDWRAP_JUSTIFIED:
-            d_formattedRenderedString =
-                CEGUI_NEW_AO RenderedStringWordWrapper
-                    <JustifiedRenderedString>(rendered_string);
-            break;
+            case HTF_WORDWRAP_JUSTIFIED:
+                d_formattedRenderedString =
+                        CEGUI_NEW_AO RenderedStringWordWrapper
+                        <JustifiedRenderedString>(rendered_string);
+                break;
         }
     }
 
-    void TextComponent::render_impl(Window& srcWindow, Rectf& destRect, const CEGUI::ColourRect* modColours, const Rectf* clipper, bool /*clipToDisplay*/) const
-    {
+    void TextComponent::render_impl(Window& srcWindow, Rectf& destRect, const CEGUI::ColourRect* modColours, const Rectf* clipper, bool /*clipToDisplay*/) const {
         const Font* font = getFontObject(srcWindow);
 
         // exit if we have no font to use.
@@ -242,31 +225,29 @@ namespace CEGUI
 
         const RenderedString* rs = &d_renderedString;
         // do we fetch text from a property
-        if (!d_textPropertyName.empty())
-        {
+        if (!d_textPropertyName.empty()) {
             // fetch text & do bi-directional reordering as needed
             String vis;
-            #ifdef CEGUI_BIDI_SUPPORT
-                BidiVisualMapping::StrIndexList l2v, v2l;
-                d_bidiVisualMapping->reorderFromLogicalToVisual(
+#ifdef CEGUI_BIDI_SUPPORT
+            BidiVisualMapping::StrIndexList l2v, v2l;
+            d_bidiVisualMapping->reorderFromLogicalToVisual(
                     srcWindow.getProperty(d_textPropertyName), vis, l2v, v2l);
-            #else
-                vis = srcWindow.getProperty(d_textPropertyName);
-            #endif
+#else
+            vis = srcWindow.getProperty(d_textPropertyName);
+#endif
             // parse string using parser from Window.
             d_renderedString =
-                srcWindow.getRenderedStringParser().parse(vis, font, 0);
-        }
-        // do we use a static text string from the looknfeel
+                    srcWindow.getRenderedStringParser().parse(vis, font, 0);
+        }            // do we use a static text string from the looknfeel
         else if (!getTextVisual().empty())
             // parse string using parser from Window.
             d_renderedString = srcWindow.getRenderedStringParser().
-                parse(getTextVisual(), font, 0);
-        // do we have to override the font?
+            parse(getTextVisual(), font, 0);
+            // do we have to override the font?
         else if (font != srcWindow.getFont())
             d_renderedString = srcWindow.getRenderedStringParser().
-                parse(srcWindow.getTextVisual(), font, 0);
-        // use ready-made RenderedString from the Window itself
+            parse(srcWindow.getTextVisual(), font, 0);
+            // use ready-made RenderedString from the Window itself
         else
             rs = &srcWindow.getRenderedString();
 
@@ -279,19 +260,18 @@ namespace CEGUI
         // handle dest area adjustments for vertical formatting.
         const VerticalTextFormatting vertFormatting = d_vertFormatting.get(srcWindow);
 
-        switch(vertFormatting)
-        {
-        case VTF_CENTRE_ALIGNED:
-            destRect.d_min.d_y += (destRect.getHeight() - textHeight) * 0.5f;
-            break;
+        switch (vertFormatting) {
+            case VTF_CENTRE_ALIGNED:
+                destRect.d_min.d_y += (destRect.getHeight() - textHeight) * 0.5f;
+                break;
 
-        case VTF_BOTTOM_ALIGNED:
-            destRect.d_min.d_y = destRect.d_max.d_y - textHeight;
-            break;
+            case VTF_BOTTOM_ALIGNED:
+                destRect.d_min.d_y = destRect.d_max.d_y - textHeight;
+                break;
 
-        default:
-            // default is VTF_TOP_ALIGNED, for which we take no action.
-            break;
+            default:
+                // default is VTF_TOP_ALIGNED, for which we take no action.
+                break;
         }
 
         // calculate final colours to be used
@@ -300,34 +280,30 @@ namespace CEGUI
 
         // add geometry for text to the target window.
         d_formattedRenderedString->draw(&srcWindow, srcWindow.getGeometryBuffer(),
-                                        destRect.getPosition(),
-                                        &finalColours, clipper);
+                destRect.getPosition(),
+                &finalColours, clipper);
     }
 
-    const Font* TextComponent::getFontObject(const Window& window) const
-    {
-        CEGUI_TRY
-        {
+    const Font* TextComponent::getFontObject(const Window& window) const {
+        CEGUI_TRY{
             return d_fontPropertyName.empty() ?
-                (d_font.empty() ? window.getFont() : &FontManager::getSingleton().get(d_font))
-                : &FontManager::getSingleton().get(window.getProperty(d_fontPropertyName));
+            (d_font.empty() ? window.getFont() : &FontManager::getSingleton().get(d_font))
+            : &FontManager::getSingleton().get(window.getProperty(d_fontPropertyName));
         }
-        CEGUI_CATCH (UnknownObjectException&)
-        {
+
+        CEGUI_CATCH(UnknownObjectException&) {
             return 0;
         }
     }
 
-    void TextComponent::writeXMLToStream(XMLSerializer& xml_stream) const
-    {
+    void TextComponent::writeXMLToStream(XMLSerializer& xml_stream) const {
         // opening tag
         xml_stream.openTag(Falagard_xmlHandler::TextComponentElement);
         // write out area
         d_area.writeXMLToStream(xml_stream);
 
         // write text element
-        if (!d_font.empty() && !getText().empty())
-        {
+        if (!d_font.empty() && !getText().empty()) {
             xml_stream.openTag(Falagard_xmlHandler::TextElement);
             if (!d_font.empty())
                 xml_stream.attribute(Falagard_xmlHandler::FontAttribute, d_font);
@@ -337,19 +313,17 @@ namespace CEGUI
         }
 
         // write text property element
-        if (!d_textPropertyName.empty())
-        {
+        if (!d_textPropertyName.empty()) {
             xml_stream.openTag(Falagard_xmlHandler::TextPropertyElement)
-                .attribute(Falagard_xmlHandler::NameAttribute, d_textPropertyName)
-                .closeTag();
+                    .attribute(Falagard_xmlHandler::NameAttribute, d_textPropertyName)
+                    .closeTag();
         }
 
         // write font property element
-        if (!d_fontPropertyName.empty())
-        {
+        if (!d_fontPropertyName.empty()) {
             xml_stream.openTag(Falagard_xmlHandler::FontPropertyElement)
-                .attribute(Falagard_xmlHandler::NameAttribute, d_fontPropertyName)
-                .closeTag();
+                    .attribute(Falagard_xmlHandler::NameAttribute, d_fontPropertyName)
+                    .closeTag();
         }
 
         // get base class to write colours
@@ -362,44 +336,36 @@ namespace CEGUI
         xml_stream.closeTag();
     }
 
-    bool TextComponent::isTextFetchedFromProperty() const
-    {
+    bool TextComponent::isTextFetchedFromProperty() const {
         return !d_textPropertyName.empty();
     }
 
-    const String& TextComponent::getTextPropertySource() const
-    {
+    const String& TextComponent::getTextPropertySource() const {
         return d_textPropertyName;
     }
 
-    void TextComponent::setTextPropertySource(const String& property)
-    {
+    void TextComponent::setTextPropertySource(const String& property) {
         d_textPropertyName = property;
     }
 
-    bool TextComponent::isFontFetchedFromProperty() const
-    {
+    bool TextComponent::isFontFetchedFromProperty() const {
         return !d_fontPropertyName.empty();
     }
 
-    const String& TextComponent::getFontPropertySource() const
-    {
+    const String& TextComponent::getFontPropertySource() const {
         return d_fontPropertyName;
     }
 
-    void TextComponent::setFontPropertySource(const String& property)
-    {
+    void TextComponent::setFontPropertySource(const String& property) {
         d_fontPropertyName = property;
     }
 
-    const String& TextComponent::getTextVisual() const
-    {
+    const String& TextComponent::getTextVisual() const {
         // no bidi support
         if (!d_bidiVisualMapping)
             return d_textLogical;
 
-        if (!d_bidiDataValid)
-        {
+        if (!d_bidiDataValid) {
             d_bidiVisualMapping->updateVisual(d_textLogical);
             d_bidiDataValid = true;
         }
@@ -407,24 +373,20 @@ namespace CEGUI
         return d_bidiVisualMapping->getTextVisual();
     }
 
-    float TextComponent::getHorizontalTextExtent(const Window& window) const
-    {
+    float TextComponent::getHorizontalTextExtent(const Window& window) const {
         return d_formattedRenderedString->getHorizontalExtent(&window);
     }
 
-    float TextComponent::getVerticalTextExtent(const Window& window) const
-    {
+    float TextComponent::getVerticalTextExtent(const Window& window) const {
         return d_formattedRenderedString->getVerticalExtent(&window);
     }
 
     bool TextComponent::handleFontRenderSizeChange(Window& window,
-                                                   const Font* font) const
-    {
-        const bool res = 
-            FalagardComponentBase::handleFontRenderSizeChange(window, font);
+            const Font* font) const {
+        const bool res =
+                FalagardComponentBase::handleFontRenderSizeChange(window, font);
 
-        if (font == getFontObject(window))
-        {
+        if (font == getFontObject(window)) {
             window.invalidate();
             return true;
         }
@@ -432,56 +394,52 @@ namespace CEGUI
         return res;
     }
 
-//----------------------------------------------------------------------------//
-String TextComponent::getEffectiveText(const Window& wnd) const
-{
-    if (!d_textPropertyName.empty())
-        return wnd.getProperty(d_textPropertyName);
-    else if (d_textLogical.empty())
-        return wnd.getText();
-    else
-        return d_textLogical;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-String TextComponent::getEffectiveVisualText(const Window& wnd) const
-{
-#ifndef CEGUI_BIDI_SUPPORT
-    return getEffectiveText(wnd);
-#else
-    if (!d_textPropertyName.empty())
-    {
-        String visual;
-        BidiVisualMapping::StrIndexList l2v, v2l;
-        d_bidiVisualMapping->reorderFromLogicalToVisual(
-            wnd.getProperty(d_textPropertyName), visual, l2v, v2l);
-
-        return visual;
-    }
-    // do we use a static text string from the looknfeel
-    else if (d_textLogical.empty())
-        return wnd.getTextVisual();
-    else
-        getTextVisual();
-#endif
-}
-
-//----------------------------------------------------------------------------//
-String TextComponent::getEffectiveFont(const Window& wnd) const
-{
-    if (!d_fontPropertyName.empty())
-        return wnd.getProperty(d_fontPropertyName);
-    else if (d_font.empty())
-    {
-        if (const Font* font = wnd.getFont())
-            return font->getName();
+    String TextComponent::getEffectiveText(const Window& wnd) const {
+        if (!d_textPropertyName.empty())
+            return wnd.getProperty(d_textPropertyName);
+        else if (d_textLogical.empty())
+            return wnd.getText();
         else
-            return String();
+            return d_textLogical;
     }
-    else
-        return d_font;
-}
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    String TextComponent::getEffectiveVisualText(const Window& wnd) const {
+#ifndef CEGUI_BIDI_SUPPORT
+        return getEffectiveText(wnd);
+#else
+        if (!d_textPropertyName.empty()) {
+            String visual;
+            BidiVisualMapping::StrIndexList l2v, v2l;
+            d_bidiVisualMapping->reorderFromLogicalToVisual(
+                    wnd.getProperty(d_textPropertyName), visual, l2v, v2l);
+
+            return visual;
+        }            // do we use a static text string from the looknfeel
+        else if (d_textLogical.empty())
+            return wnd.getTextVisual();
+        else
+            getTextVisual();
+#endif
+    }
+
+    //----------------------------------------------------------------------------//
+
+    String TextComponent::getEffectiveFont(const Window& wnd) const {
+        if (!d_fontPropertyName.empty())
+            return wnd.getProperty(d_fontPropertyName);
+        else if (d_font.empty()) {
+            if (const Font * font = wnd.getFont())
+                return font->getName();
+            else
+                return String();
+        } else
+            return d_font;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

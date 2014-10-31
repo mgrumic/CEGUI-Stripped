@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl (based on code by Paul D Turner)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2013 Paul D Turner & The CEGUI Development Team
  *
@@ -29,49 +29,48 @@
 
 #include "CEGUI/RendererModules/OpenGL/GeometryBufferBase.h"
 
-namespace CEGUI
-{
-class OpenGL3Shader;
-class OpenGL3StateChangeWrapper;
-class OpenGL3Renderer;
+namespace CEGUI {
+    class OpenGL3Shader;
+    class OpenGL3StateChangeWrapper;
+    class OpenGL3Renderer;
 
-//! OpenGL3 based implementation of the GeometryBuffer interface.
-class OPENGL_GUIRENDERER_API OpenGL3GeometryBuffer : public OpenGLGeometryBufferBase
-{
-public:
-    //! Constructor
-    OpenGL3GeometryBuffer(OpenGL3Renderer& owner);
-    virtual ~OpenGL3GeometryBuffer();
+    //! OpenGL3 based implementation of the GeometryBuffer interface.
 
-    void initialiseOpenGLBuffers();
-    void deinitialiseOpenGLBuffers();
-    void updateOpenGLBuffers();
+    class OPENGL_GUIRENDERER_API OpenGL3GeometryBuffer : public OpenGLGeometryBufferBase {
+    public:
+        //! Constructor
+        OpenGL3GeometryBuffer(OpenGL3Renderer& owner);
+        virtual ~OpenGL3GeometryBuffer();
 
-    // implementation/overrides of members from GeometryBuffer
-    void draw() const;
-    void appendGeometry(const Vertex* const vbuff, uint vertex_count);
-    void reset();
+        void initialiseOpenGLBuffers();
+        void deinitialiseOpenGLBuffers();
+        void updateOpenGLBuffers();
 
-protected:
-    //! OpenGL vao used for the vertices
-    GLuint d_verticesVAO;
-    //! OpenGL vbo containing all vertex data
-    GLuint d_verticesVBO;
-    //! Reference to the OpenGL shader inside the Renderer, that is used to render all geometry
-    CEGUI::OpenGL3Shader*& d_shader;
-    //! Position variable location inside the shader, for OpenGL
-    const GLint d_shaderPosLoc;
-    //! TexCoord variable location inside the shader, for OpenGL
-    const GLint d_shaderTexCoordLoc;
-    //! Color variable location inside the shader, for OpenGL
-    const GLint d_shaderColourLoc;
-    //! Matrix uniform location inside the shader, for OpenGL
-    const GLint d_shaderStandardMatrixLoc;
-    //! Pointer to the OpenGL state changer wrapper that was created inside the Renderer
-    OpenGL3StateChangeWrapper* d_glStateChanger;
-    //! Size of the buffer that is currently in use
-    GLuint d_bufferSize;
-};
+        // implementation/overrides of members from GeometryBuffer
+        void draw() const;
+        void appendGeometry(const Vertex * const vbuff, uint vertex_count);
+        void reset();
+
+    protected:
+        //! OpenGL vao used for the vertices
+        GLuint d_verticesVAO;
+        //! OpenGL vbo containing all vertex data
+        GLuint d_verticesVBO;
+        //! Reference to the OpenGL shader inside the Renderer, that is used to render all geometry
+        CEGUI::OpenGL3Shader*& d_shader;
+        //! Position variable location inside the shader, for OpenGL
+        const GLint d_shaderPosLoc;
+        //! TexCoord variable location inside the shader, for OpenGL
+        const GLint d_shaderTexCoordLoc;
+        //! Color variable location inside the shader, for OpenGL
+        const GLint d_shaderColourLoc;
+        //! Matrix uniform location inside the shader, for OpenGL
+        const GLint d_shaderStandardMatrixLoc;
+        //! Pointer to the OpenGL state changer wrapper that was created inside the Renderer
+        OpenGL3StateChangeWrapper* d_glStateChanger;
+        //! Size of the buffer that is currently in use
+        GLuint d_bufferSize;
+    };
 
 }
 

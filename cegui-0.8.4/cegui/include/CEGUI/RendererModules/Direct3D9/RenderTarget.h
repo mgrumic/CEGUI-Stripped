@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 10 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -33,59 +33,58 @@
 #include <d3dx9.h>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Intermediate Direct3D9 implementation of a RenderTarget.
-*/
-template <typename T = RenderTarget>
-class DIRECT3D9_GUIRENDERER_API Direct3D9RenderTarget : public T
-{
-public:
-    //! Constructor
-    Direct3D9RenderTarget(Direct3D9Renderer& owner);
+namespace CEGUI {
 
-    // implement parts of RenderTarget interface
-    void draw(const GeometryBuffer& buffer);
-    void draw(const RenderQueue& queue);
-    void setArea(const Rectf& area);
-    const Rectf& getArea() const;
-    void activate();
-    void deactivate();
-    void unprojectPoint(const GeometryBuffer& buff,
-                        const Vector2f& p_in,
-                        Vector2f& p_out) const;
+    /*!
+    \brief
+        Intermediate Direct3D9 implementation of a RenderTarget.
+     */
+    template <typename T = RenderTarget>
+    class DIRECT3D9_GUIRENDERER_API Direct3D9RenderTarget : public T {
+    public:
+        //! Constructor
+        Direct3D9RenderTarget(Direct3D9Renderer& owner);
 
-protected:
-    //! helper that initialises the cached matrix
-    void updateMatrix() const;
-    //! helper to initialise the D3DVIEWPORT9 \a vp for this target.
-    void setupViewport(D3DVIEWPORT9& vp) const;
+        // implement parts of RenderTarget interface
+        void draw(const GeometryBuffer& buffer);
+        void draw(const RenderQueue& queue);
+        void setArea(const Rectf& area);
+        const Rectf& getArea() const;
+        void activate();
+        void deactivate();
+        void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in,
+                Vector2f& p_out) const;
 
-    //! Direct3D9Renderer that created this object
-    Direct3D9Renderer& d_owner;
-    //! Direct3DDevice9 interface obtained from our owner.
-    LPDIRECT3DDEVICE9 d_device;
-    //! holds defined area for the RenderTarget
-    Rectf d_area;
-    //! projection / view matrix cache
-    mutable D3DXMATRIX d_matrix;
-    //! true when d_matrix is valid and up to date
-    mutable bool d_matrixValid;
-    //! tracks viewing distance (this is set up at the same time as d_matrix)
-    mutable float d_viewDistance;
-};
+    protected:
+        //! helper that initialises the cached matrix
+        void updateMatrix() const;
+        //! helper to initialise the D3DVIEWPORT9 \a vp for this target.
+        void setupViewport(D3DVIEWPORT9& vp) const;
+
+        //! Direct3D9Renderer that created this object
+        Direct3D9Renderer& d_owner;
+        //! Direct3DDevice9 interface obtained from our owner.
+        LPDIRECT3DDEVICE9 d_device;
+        //! holds defined area for the RenderTarget
+        Rectf d_area;
+        //! projection / view matrix cache
+        mutable D3DXMATRIX d_matrix;
+        //! true when d_matrix is valid and up to date
+        mutable bool d_matrixValid;
+        //! tracks viewing distance (this is set up at the same time as d_matrix)
+        mutable float d_viewDistance;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIDirect3D9RenderTarget_h_

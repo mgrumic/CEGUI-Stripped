@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Mon Mar 20 2006
     author:     Tomas Lindquist Olsen
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,18 +31,15 @@
 #include "CEGUI/CoordConverter.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardItemListbox::TypeName("Core/ItemListbox");
 
     FalagardItemListbox::FalagardItemListbox(const String& type) :
-        ItemListBaseWindowRenderer(type),
-        d_widgetLookAssigned(false)
-    {
+    ItemListBaseWindowRenderer(type),
+    d_widgetLookAssigned(false) {
     }
 
-    void FalagardItemListbox::render()
-    {
+    void FalagardItemListbox::render() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.
@@ -53,28 +50,26 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    Rectf FalagardItemListbox::getItemRenderArea(void) const
-    {
-        ItemListbox* lb = static_cast<ItemListbox*>(d_window);
+    Rectf FalagardItemListbox::getItemRenderArea(void) const {
+        ItemListbox* lb = static_cast<ItemListbox*> (d_window);
         return getItemRenderingArea(lb->getHorzScrollbar()->isVisible(),
-                                    lb->getVertScrollbar()->isVisible());
+                lb->getVertScrollbar()->isVisible());
     }
 
     Rectf FalagardItemListbox::getItemRenderingArea(bool hscroll,
-                                                    bool vscroll) const
-    {
-    	const ItemListbox* const lb = static_cast<ItemListbox*>(d_window);
+            bool vscroll) const {
+        const ItemListbox * const lb = static_cast<ItemListbox*> (d_window);
         const WidgetLookFeel& wlf = getLookNFeel();
         const String area_name("ItemRenderArea");
         const String alternate_name("ItemRenderingArea");
         const String scroll_suffix(
-            vscroll ? hscroll ? "HVScroll" : "VScroll" : hscroll ? "HScroll" : "");
+                vscroll ? hscroll ? "HVScroll" : "VScroll" : hscroll ? "HScroll" : "");
 
         if (wlf.isNamedAreaDefined(area_name + scroll_suffix))
-                return wlf.getNamedArea(area_name + scroll_suffix).getArea().getPixelRect(*lb);
+            return wlf.getNamedArea(area_name + scroll_suffix).getArea().getPixelRect(*lb);
 
         if (wlf.isNamedAreaDefined(alternate_name + scroll_suffix))
-                return wlf.getNamedArea(alternate_name + scroll_suffix).getArea().getPixelRect(*lb);
+            return wlf.getNamedArea(alternate_name + scroll_suffix).getArea().getPixelRect(*lb);
 
         // default to plain ItemRenderingArea
         if (wlf.isNamedAreaDefined(area_name))
@@ -83,18 +78,15 @@ namespace CEGUI
             return wlf.getNamedArea(alternate_name).getArea().getPixelRect(*lb);
     }
 
-    void FalagardItemListbox::onLookNFeelAssigned()
-    {
+    void FalagardItemListbox::onLookNFeelAssigned() {
         d_widgetLookAssigned = true;
     }
 
-    void FalagardItemListbox::onLookNFeelUnassigned()
-    {
+    void FalagardItemListbox::onLookNFeelUnassigned() {
         d_widgetLookAssigned = false;
     }
 
-    Rectf FalagardItemListbox::getUnclippedInnerRect() const
-    {
+    Rectf FalagardItemListbox::getUnclippedInnerRect() const {
         if (!d_widgetLookAssigned)
             return d_window->getUnclippedOuterRect().get();
 

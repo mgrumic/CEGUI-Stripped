@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 11 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -27,85 +27,80 @@
 #include "CEGUI/ChainedXMLHandler.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-ChainedXMLHandler::ChainedXMLHandler() :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    ChainedXMLHandler::ChainedXMLHandler() :
     d_chainedHandler(0),
     d_completed(false),
-    d_deleteChaniedHandler(true)
-{
-}
-
-//----------------------------------------------------------------------------//
-ChainedXMLHandler::~ChainedXMLHandler()
-{
-    cleanupChainedHandler();
-}
-
-//----------------------------------------------------------------------------//
-const String& ChainedXMLHandler::getSchemaName() const
-{
-    // this isn't likely to be used in ChainedXMLHandler instances
-    static String empty = "";
-    return empty;
-}
-
-//----------------------------------------------------------------------------//
-const String& ChainedXMLHandler::getDefaultResourceGroup() const
-{
-    // this isn't likely to be used in ChainedXMLHandler instances
-    static String empty = "";
-    return empty;
-}
-
-//----------------------------------------------------------------------------//
-void ChainedXMLHandler::elementStart(const String& element,
-                                     const XMLAttributes& attributes)
-{
-    // chained handler gets first crack at this element
-    if (d_chainedHandler)
-    {
-        d_chainedHandler->elementStart(element, attributes);
-        // clean up if completed
-        if (d_chainedHandler->completed())
-            cleanupChainedHandler();
+    d_deleteChaniedHandler(true) {
     }
-    else
-        elementStartLocal(element, attributes);
-}
 
-//----------------------------------------------------------------------------//
-void ChainedXMLHandler::elementEnd(const String& element)
-{
-    // chained handler gets first crack at this element
-    if (d_chainedHandler)
-    {
-        d_chainedHandler->elementEnd(element);
-        // clean up if completed
-        if (d_chainedHandler->completed())
-            cleanupChainedHandler();
+    //----------------------------------------------------------------------------//
+
+    ChainedXMLHandler::~ChainedXMLHandler() {
+        cleanupChainedHandler();
     }
-    else
-        elementEndLocal(element);
-}
 
-//----------------------------------------------------------------------------//
-bool ChainedXMLHandler::completed() const
-{
-    return d_completed;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void ChainedXMLHandler::cleanupChainedHandler()
-{
-    if (d_deleteChaniedHandler)
-        CEGUI_DELETE_AO d_chainedHandler;
+    const String& ChainedXMLHandler::getSchemaName() const {
+        // this isn't likely to be used in ChainedXMLHandler instances
+        static String empty = "";
+        return empty;
+    }
 
-    d_chainedHandler = 0;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    const String& ChainedXMLHandler::getDefaultResourceGroup() const {
+        // this isn't likely to be used in ChainedXMLHandler instances
+        static String empty = "";
+        return empty;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void ChainedXMLHandler::elementStart(const String& element,
+            const XMLAttributes& attributes) {
+        // chained handler gets first crack at this element
+        if (d_chainedHandler) {
+            d_chainedHandler->elementStart(element, attributes);
+            // clean up if completed
+            if (d_chainedHandler->completed())
+                cleanupChainedHandler();
+        } else
+            elementStartLocal(element, attributes);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void ChainedXMLHandler::elementEnd(const String& element) {
+        // chained handler gets first crack at this element
+        if (d_chainedHandler) {
+            d_chainedHandler->elementEnd(element);
+            // clean up if completed
+            if (d_chainedHandler->completed())
+                cleanupChainedHandler();
+        } else
+            elementEndLocal(element);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool ChainedXMLHandler::completed() const {
+        return d_completed;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void ChainedXMLHandler::cleanupChainedHandler() {
+        if (d_deleteChaniedHandler)
+            CEGUI_DELETE_AO d_chainedHandler;
+
+        d_chainedHandler = 0;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

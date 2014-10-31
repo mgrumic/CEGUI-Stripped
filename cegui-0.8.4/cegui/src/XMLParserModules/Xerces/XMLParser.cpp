@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Mar 12 2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -38,13 +38,12 @@
 
 #include <iostream> // Debug 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     // Static data definition for default schema resource group name
     String XercesParser::d_defaultSchemaResourceGroup("");
     // static data definition of the SchemaDefaultResourceGroup property.
     XercesParserProperties::SchemaDefaultResourceGroup
-        XercesParser::s_schemaDefaultResourceGroupProperty;
+    XercesParser::s_schemaDefaultResourceGroupProperty;
 
     ////////////////////////////////////////////////////////////////////////////////
     //
@@ -52,19 +51,17 @@ namespace CEGUI
     //
     ////////////////////////////////////////////////////////////////////////////////
 
-    XercesParser::XercesParser(void)
-    {
+    XercesParser::XercesParser(void) {
         // set ID string
         d_identifierString = "CEGUI::XercesParser - Official Xerces-C++ based parser module for CEGUI";
         // add property
         addProperty(&s_schemaDefaultResourceGroupProperty);
     }
 
-    XercesParser::~XercesParser(void)
-    {}
+    XercesParser::~XercesParser(void) {
+    }
 
-    void XercesParser::parseXML(XMLHandler& handler, const RawDataContainer& source, const String& schemaName)
-    {
+    void XercesParser::parseXML(XMLHandler& handler, const RawDataContainer& source, const String& schemaName) {
         XERCES_CPP_NAMESPACE_USE;
 
         XercesHandler xercesHandler(handler);
@@ -72,21 +69,19 @@ namespace CEGUI
         // create parser
         SAX2XMLReader* reader = createReader(xercesHandler);
 
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             // set up schema
             initialiseSchema(reader, schemaName);
             // do parse
             doParse(reader, source);
         }
-        CEGUI_CATCH(const XMLException& exc)
-        {
-            if (exc.getCode() != XMLExcepts::NoError)
-            {
+
+        CEGUI_CATCH(const XMLException & exc) {
+            if (exc.getCode() != XMLExcepts::NoError) {
                 delete reader;
 
                 char* excmsg = XMLString::transcode(exc.getMessage());
-                String message("An error occurred at line nr. " + PropertyHelper<uint>::toString((uint)exc.getSrcLine()) + " while parsing XML.  Additional information: ");
+                String message("An error occurred at line nr. " + PropertyHelper<uint>::toString((uint) exc.getSrcLine()) + " while parsing XML.  Additional information: ");
                 message += excmsg;
                 XMLString::release(&excmsg);
 
@@ -94,19 +89,19 @@ namespace CEGUI
             }
 
         }
-        CEGUI_CATCH(const SAXParseException& exc)
-        {
+
+        CEGUI_CATCH(const SAXParseException & exc) {
             delete reader;
 
             char* excmsg = XMLString::transcode(exc.getMessage());
-            String message("An error occurred at line nr. " + PropertyHelper<uint>::toString((uint)exc.getLineNumber()) + " while parsing XML.  Additional information: ");
+            String message("An error occurred at line nr. " + PropertyHelper<uint>::toString((uint) exc.getLineNumber()) + " while parsing XML.  Additional information: ");
             message += excmsg;
             XMLString::release(&excmsg);
 
             CEGUI_THROW(FileIOException(message));
         }
-        CEGUI_CATCH(...)
-        {
+
+        CEGUI_CATCH(...) {
             delete reader;
 
             Logger::getSingleton().logEvent("An unexpected error occurred while parsing XML", Errors);
@@ -117,17 +112,15 @@ namespace CEGUI
         delete reader;
     }
 
-    bool XercesParser::initialiseImpl(void)
-    {
+    bool XercesParser::initialiseImpl(void) {
         XERCES_CPP_NAMESPACE_USE;
 
         // initialise Xerces-C XML system
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             XMLPlatformUtils::Initialize();
         }
-        CEGUI_CATCH(XMLException& exc)
-        {
+
+        CEGUI_CATCH(XMLException & exc) {
             // prepare a message about the failure
             char* excmsg = XMLString::transcode(exc.getMessage());
             String message("An exception occurred while initialising the Xerces-C XML system.  Additional information: ");
@@ -141,21 +134,18 @@ namespace CEGUI
         return true;
     }
 
-    void XercesParser::cleanupImpl(void)
-    {
+    void XercesParser::cleanupImpl(void) {
         // cleanup XML stuff
         XERCES_CPP_NAMESPACE_USE;
         XMLPlatformUtils::Terminate();
     }
-    
-    void XercesParser::populateAttributesBlock(const XERCES_CPP_NAMESPACE::Attributes& src, XMLAttributes& dest)
-    {
+
+    void XercesParser::populateAttributesBlock(const XERCES_CPP_NAMESPACE::Attributes& src, XMLAttributes& dest) {
         XERCES_CPP_NAMESPACE_USE;
         String attributeName;
         String attributeValue;
 
-        for (uint i = 0; i < src.getLength(); ++i)
-        {
+        for (uint i = 0; i < src.getLength(); ++i) {
             // TODO dalfy: Optimize this using temporary value. 
             attributeName = transcodeXmlCharToString(src.getLocalName(i), XMLString::stringLen(src.getLocalName(i)));
             attributeValue = transcodeXmlCharToString(src.getValue(i), XMLString::stringLen(src.getValue(i)));
@@ -163,15 +153,13 @@ namespace CEGUI
         }
     }
 
-    String XercesParser::transcodeXmlCharToString(const XMLCh* const xmlch_str, unsigned int inputLength)
-    {
+    String XercesParser::transcodeXmlCharToString(const XMLCh * const xmlch_str, unsigned int inputLength) {
         XERCES_CPP_NAMESPACE_USE;
 
-        XMLTransService::Codes  res;
-        XMLTranscoder* transcoder = XMLPlatformUtils::fgTransService->makeNewTranscoderFor(XMLRecognizer::UTF_8, res, 4096, XMLPlatformUtils::fgMemoryManager );
+        XMLTransService::Codes res;
+        XMLTranscoder* transcoder = XMLPlatformUtils::fgTransService->makeNewTranscoderFor(XMLRecognizer::UTF_8, res, 4096, XMLPlatformUtils::fgMemoryManager);
 
-        if (res == XMLTransService::Ok)
-        {
+        if (res == XMLTransService::Ok) {
             String out;
 #if _XERCES_VERSION >= 30000
             XMLByte outBuff[128];
@@ -184,12 +172,11 @@ namespace CEGUI
             unsigned int eaten = 0;
             unsigned int offset = 0;
 #endif /* _XERCES_VERSION >= 30000 */
-//            unsigned int inputLength = XMLString::stringLen(xmlch_str); // dalfy caracters node need to transcode but give the size 
+            //            unsigned int inputLength = XMLString::stringLen(xmlch_str); // dalfy caracters node need to transcode but give the size 
 
-            while (inputLength)
-            {
+            while (inputLength) {
                 outputLength = transcoder->transcodeTo(xmlch_str + offset, inputLength, outBuff, 128, eaten, XMLTranscoder::UnRep_RepChar);
-                out.append((encoded_char*)outBuff, outputLength);
+                out.append((encoded_char*) outBuff, outputLength);
                 offset += eaten;
                 inputLength -= eaten;
             }
@@ -197,12 +184,10 @@ namespace CEGUI
             delete transcoder;
 
             return out;
-        }
-        else
-        {
+        } else {
             CEGUI_THROW(GenericException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
                     "Internal Error: Could not create UTF-8 string transcoder."));
 #endif //PE_NO_THROW_MSGS
@@ -210,8 +195,7 @@ namespace CEGUI
 
     }
 
-    void XercesParser::initialiseSchema(XERCES_CPP_NAMESPACE::SAX2XMLReader* reader, const String& schemaName)
-    {
+    void XercesParser::initialiseSchema(XERCES_CPP_NAMESPACE::SAX2XMLReader* reader, const String& schemaName) {
         XERCES_CPP_NAMESPACE_USE;
 
         // enable schema use and set validation options
@@ -226,11 +210,11 @@ namespace CEGUI
         System::getSingleton().getResourceProvider()->loadRawDataContainer(schemaName, rawSchemaData, d_defaultSchemaResourceGroup);
 
         // wrap schema data in a xerces MemBufInputSource object
-        MemBufInputSource  schemaData(
-            rawSchemaData.getDataPtr(),
-            static_cast<const unsigned int>(rawSchemaData.getSize()),
-            schemaName.c_str(),
-            false);
+        MemBufInputSource schemaData(
+                rawSchemaData.getDataPtr(),
+                static_cast<const unsigned int> (rawSchemaData.getSize()),
+                schemaName.c_str(),
+                false);
         reader->loadGrammar(schemaData, Grammar::SchemaGrammarType, true);
         // enable grammar reuse
         reader->setFeature(XMLUni::fgXercesUseCachedGrammarInParse, true);
@@ -245,8 +229,7 @@ namespace CEGUI
         System::getSingleton().getResourceProvider()->unloadRawDataContainer(rawSchemaData);
     }
 
-    XERCES_CPP_NAMESPACE::SAX2XMLReader* XercesParser::createReader(XERCES_CPP_NAMESPACE::DefaultHandler& handler)
-    {
+    XERCES_CPP_NAMESPACE::SAX2XMLReader* XercesParser::createReader(XERCES_CPP_NAMESPACE::DefaultHandler& handler) {
         XERCES_CPP_NAMESPACE_USE;
 
         SAX2XMLReader* reader = XMLReaderFactory::createXMLReader();
@@ -261,19 +244,18 @@ namespace CEGUI
         return reader;
     }
 
-    void XercesParser::doParse(XERCES_CPP_NAMESPACE::SAX2XMLReader* parser, const RawDataContainer& source)
-    {
+    void XercesParser::doParse(XERCES_CPP_NAMESPACE::SAX2XMLReader* parser, const RawDataContainer& source) {
         XERCES_CPP_NAMESPACE_USE;
 
-        MemBufInputSource  fileData(
-            source.getDataPtr(),
-            static_cast<const unsigned int>(source.getSize()),
-            "Unknown",
-            false);
+        MemBufInputSource fileData(
+                source.getDataPtr(),
+                static_cast<const unsigned int> (source.getSize()),
+                "Unknown",
+                false);
 
-         parser->parse(fileData);
+        parser->parse(fileData);
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////////
     //
     // XercesHandler methods
@@ -281,14 +263,13 @@ namespace CEGUI
     ////////////////////////////////////////////////////////////////////////////////
 
     XercesHandler::XercesHandler(XMLHandler& handler) :
-            d_handler(handler)
-    {}
+    d_handler(handler) {
+    }
 
-    XercesHandler::~XercesHandler(void)
-    {}
+    XercesHandler::~XercesHandler(void) {
+    }
 
-    void XercesHandler::startElement(const XMLCh* const /*uri*/, const XMLCh* const localname, const XMLCh* const /*qname*/, const XERCES_CPP_NAMESPACE::Attributes& attrs)
-    {
+    void XercesHandler::startElement(const XMLCh * const /*uri*/, const XMLCh * const localname, const XMLCh * const /*qname*/, const XERCES_CPP_NAMESPACE::Attributes& attrs) {
         XERCES_CPP_NAMESPACE_USE;
         XMLAttributes cegui_attributes;
         XercesParser::populateAttributesBlock(attrs, cegui_attributes);
@@ -296,24 +277,23 @@ namespace CEGUI
         d_handler.elementStart(element, cegui_attributes);
     }
 
-    void XercesHandler::endElement(const XMLCh* const /*uri*/, const XMLCh* const localname, const XMLCh* const /*qname*/)
-    {
+    void XercesHandler::endElement(const XMLCh * const /*uri*/, const XMLCh * const localname, const XMLCh * const /*qname*/) {
         XERCES_CPP_NAMESPACE_USE;
-        String element(XercesParser::transcodeXmlCharToString(localname,XMLString::stringLen(localname)));
+        String element(XercesParser::transcodeXmlCharToString(localname, XMLString::stringLen(localname)));
         d_handler.elementEnd(element);
     }
 
 #if _XERCES_VERSION >= 30000
-    void XercesHandler::characters(const XMLCh* const chars, const XMLSize_t length)
+    void XercesHandler::characters(const XMLCh * const chars, const XMLSize_t length)
 #else /* _XERCES_VERSION >= 30000 */
-    void XercesHandler::characters (const XMLCh *const chars, const unsigned int length)
+
+    void XercesHandler::characters(const XMLCh * const chars, const unsigned int length)
 #endif /* _XERCES_VERSION >= 30000 */
     {
         d_handler.text(XercesParser::transcodeXmlCharToString(chars, length));
     }
 
-    void XercesHandler::warning (const XERCES_CPP_NAMESPACE::SAXParseException &exc)
-    {
+    void XercesHandler::warning(const XERCES_CPP_NAMESPACE::SAXParseException &exc) {
         XERCES_CPP_NAMESPACE_USE;
 
         // prepare a message about the warning
@@ -324,13 +304,11 @@ namespace CEGUI
         Logger::getSingleton().logEvent(message);
     }
 
-    void XercesHandler::error (const XERCES_CPP_NAMESPACE::SAXParseException &exc)
-    {
+    void XercesHandler::error(const XERCES_CPP_NAMESPACE::SAXParseException &exc) {
         CEGUI_THROW(exc);
     }
 
-    void XercesHandler::fatalError (const XERCES_CPP_NAMESPACE::SAXParseException &exc)
-    {
+    void XercesHandler::fatalError(const XERCES_CPP_NAMESPACE::SAXParseException &exc) {
         CEGUI_THROW(exc);
     }
 

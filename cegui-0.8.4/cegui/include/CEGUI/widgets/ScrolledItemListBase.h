@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Sat Oct 29 2005
     author:     Tomas Lindquist Olsen
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,175 +31,178 @@
 #include "./Scrollbar.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 // begin CEGUI namespace
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-    ScrolledItemListBase window class
-*/
-class CEGUIEXPORT ScrolledItemListBase : public ItemListBase
-{
-public:
-    static const String EventNamespace; //!< Namespace for global events
-
-    /************************************************************************
-        Constants
-    *************************************************************************/
-    static const String VertScrollbarName; //!< Name for vertical scrollbar component
-    static const String HorzScrollbarName; //!< Name for horizontal scrollbar component
-    static const String ContentPaneName;   //!< Name for the content pane component
-
-    /** Event fired when the vertical scroll bar mode changes.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the ScrolledItemListBase whose vertical
-     * scroll bar mode has been changed.
+    /*!
+    \brief
+        ScrolledItemListBase window class
      */
-    static const String EventVertScrollbarModeChanged;
-    /** Event fired when the horizontal scroll bar mode change.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the ScrolledItemListBase whose horizontal
-     * scroll bar mode has been changed.
-     */
-    static const String EventHorzScrollbarModeChanged;
+    class CEGUIEXPORT ScrolledItemListBase : public ItemListBase {
+    public:
+        static const String EventNamespace; //!< Namespace for global events
 
-    /************************************************************************
-        Accessors
-    *************************************************************************/
-    /*!
-    \brief
-        Returns whether the vertical scrollbar is being forced visible. Despite content size.
-    */
-    bool isVertScrollbarAlwaysShown(void) const {return d_forceVScroll;}
+        /************************************************************************
+            Constants
+         *************************************************************************/
+        static const String VertScrollbarName; //!< Name for vertical scrollbar component
+        static const String HorzScrollbarName; //!< Name for horizontal scrollbar component
+        static const String ContentPaneName; //!< Name for the content pane component
 
-    /*!
-    \brief
-        Returns whether the horizontal scrollbar is being forced visible. Despite content size.
-    */
-    bool isHorzScrollbarAlwaysShown(void) const {return d_forceHScroll;}
+        /** Event fired when the vertical scroll bar mode changes.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the ScrolledItemListBase whose vertical
+         * scroll bar mode has been changed.
+         */
+        static const String EventVertScrollbarModeChanged;
+        /** Event fired when the horizontal scroll bar mode change.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the ScrolledItemListBase whose horizontal
+         * scroll bar mode has been changed.
+         */
+        static const String EventHorzScrollbarModeChanged;
 
-    /*!
-    \brief
-        Get the vertical scrollbar component attached to this window.
-    */
-    Scrollbar* getVertScrollbar() const;
+        /************************************************************************
+            Accessors
+         *************************************************************************/
 
-    /*!
-    \brief
-        Get the horizontal scrollbar component attached to this window.
-    */
-    Scrollbar* getHorzScrollbar() const;
+        /*!
+        \brief
+            Returns whether the vertical scrollbar is being forced visible. Despite content size.
+         */
+        bool isVertScrollbarAlwaysShown(void) const {
+            return d_forceVScroll;
+        }
 
-    /************************************************************************
-        Manipulators
-    *************************************************************************/
-    /*!
-    \brief
-        Sets whether the vertical scrollbar should be forced visible. Despite content size.
-    */
-    void setShowVertScrollbar(bool mode);
+        /*!
+        \brief
+            Returns whether the horizontal scrollbar is being forced visible. Despite content size.
+         */
+        bool isHorzScrollbarAlwaysShown(void) const {
+            return d_forceHScroll;
+        }
 
-    /*!
-    \brief
-        Sets whether the horizontal scrollbar should be forced visible. Despite content size.
-    */
-    void setShowHorzScrollbar(bool mode);
+        /*!
+        \brief
+            Get the vertical scrollbar component attached to this window.
+         */
+        Scrollbar* getVertScrollbar() const;
 
-    /*!
-    \brief
-        Scroll the vertical list position if needed to ensure that the ItemEntry
-        \a item is, if possible,  fully visible witin the ScrolledItemListBase
-        viewable area.
+        /*!
+        \brief
+            Get the horizontal scrollbar component attached to this window.
+         */
+        Scrollbar* getHorzScrollbar() const;
 
-    \param item
-        const reference to an ItemEntry attached to this ScrolledItemListBase
-        that should be made visible in the view area.
+        /************************************************************************
+            Manipulators
+         *************************************************************************/
+        /*!
+        \brief
+            Sets whether the vertical scrollbar should be forced visible. Despite content size.
+         */
+        void setShowVertScrollbar(bool mode);
 
-    \return
-        Nothing.
-    */
-    void ensureItemIsVisibleVert(const ItemEntry& item);
+        /*!
+        \brief
+            Sets whether the horizontal scrollbar should be forced visible. Despite content size.
+         */
+        void setShowHorzScrollbar(bool mode);
 
-    /*!
-    \brief
-        Scroll the horizontal list position if needed to ensure that the
-        ItemEntry \a item is, if possible, fully visible witin the
-        ScrolledItemListBase viewable area.
+        /*!
+        \brief
+            Scroll the vertical list position if needed to ensure that the ItemEntry
+            \a item is, if possible,  fully visible witin the ScrolledItemListBase
+            viewable area.
 
-    \param item
-        const reference to an ItemEntry attached to this ScrolledItemListBase
-        that should be made visible in the view area.
+        \param item
+            const reference to an ItemEntry attached to this ScrolledItemListBase
+            that should be made visible in the view area.
 
-    \return
-        Nothing.
-    */
-    void ensureItemIsVisibleHorz(const ItemEntry& item);
+        \return
+            Nothing.
+         */
+        void ensureItemIsVisibleVert(const ItemEntry& item);
 
-    /************************************************************************
-        Object Construction and Destruction
-    *************************************************************************/
-    /*!
-    \brief
-        Constructor for the ScrolledItemListBase base class constructor
-    */
-    ScrolledItemListBase(const String& type, const String& name);
+        /*!
+        \brief
+            Scroll the horizontal list position if needed to ensure that the
+            ItemEntry \a item is, if possible, fully visible witin the
+            ScrolledItemListBase viewable area.
 
-    /*!
-    \brief
-        Destructor for the ScrolledItemListBase base class.
-     */
-    virtual ~ScrolledItemListBase(void);
+        \param item
+            const reference to an ItemEntry attached to this ScrolledItemListBase
+            that should be made visible in the view area.
 
-    // overridden from ItemListBase
-    virtual void initialiseComponents(void);
+        \return
+            Nothing.
+         */
+        void ensureItemIsVisibleHorz(const ItemEntry& item);
 
-protected:
-    /************************************************************************
-        Implementation functions
-    ************************************************************************/
-    /*!
-    \brief
-        Configure scrollbars
-    */
-    void configureScrollbars(const Sizef& doc_size);
+        /************************************************************************
+            Object Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+            Constructor for the ScrolledItemListBase base class constructor
+         */
+        ScrolledItemListBase(const String& type, const String& name);
 
-    /************************************************************************
-        New event handlers
-    ************************************************************************/
-    virtual void onVertScrollbarModeChanged(WindowEventArgs& e);
-    virtual void onHorzScrollbarModeChanged(WindowEventArgs& e);
+        /*!
+        \brief
+            Destructor for the ScrolledItemListBase base class.
+         */
+        virtual ~ScrolledItemListBase(void);
+
+        // overridden from ItemListBase
+        virtual void initialiseComponents(void);
+
+    protected:
+        /************************************************************************
+            Implementation functions
+         ************************************************************************/
+        /*!
+        \brief
+            Configure scrollbars
+         */
+        void configureScrollbars(const Sizef& doc_size);
+
+        /************************************************************************
+            New event handlers
+         ************************************************************************/
+        virtual void onVertScrollbarModeChanged(WindowEventArgs& e);
+        virtual void onHorzScrollbarModeChanged(WindowEventArgs& e);
 
 #ifndef PE_NO_MOUSE
-    /************************************************************************
-        Overridden event handlers
-    ************************************************************************/
-    virtual void onMouseWheel(MouseEventArgs& e);
+        /************************************************************************
+            Overridden event handlers
+         ************************************************************************/
+        virtual void onMouseWheel(MouseEventArgs& e);
 #endif //PE_NO_MOUSE
 
-    /************************************************************************
-        Event subscribers
-    ************************************************************************/
-    bool handle_VScroll(const EventArgs& e);
-    bool handle_HScroll(const EventArgs& e);
+        /************************************************************************
+            Event subscribers
+         ************************************************************************/
+        bool handle_VScroll(const EventArgs& e);
+        bool handle_HScroll(const EventArgs& e);
 
-    /************************************************************************
-        Implementation data
-    ************************************************************************/
-    bool d_forceVScroll;
-    bool d_forceHScroll;
+        /************************************************************************
+            Implementation data
+         ************************************************************************/
+        bool d_forceVScroll;
+        bool d_forceHScroll;
 
-private:
-    void addScrolledItemListBaseProperties(void);
-};
+    private:
+        void addScrolledItemListBaseProperties(void);
+    };
 
 } // end CEGUI namespace
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif // end of guard _CEGUIScrolledItemListBase_h_

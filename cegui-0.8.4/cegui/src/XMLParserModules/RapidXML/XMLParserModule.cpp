@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mar 27 2010
     author:     Jay Sprenkle
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -28,14 +28,14 @@
 #include "CEGUI/XMLParserModules/RapidXML/XMLParser.h"
 
 //----------------------------------------------------------------------------//
-CEGUI::XMLParser* createParser(void)
-{
+
+CEGUI::XMLParser* createParser(void) {
     return CEGUI_NEW_AO CEGUI::RapidXMLParser();
 }
 
 //----------------------------------------------------------------------------//
-void destroyParser(CEGUI::XMLParser* parser)
-{
+
+void destroyParser(CEGUI::XMLParser* parser) {
     CEGUI_DELETE_AO parser;
 }
 

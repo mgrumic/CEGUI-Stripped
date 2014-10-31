@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Mar 19 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,56 +31,56 @@
 #include "CEGUI/WindowRendererManager.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Template based implementation of FactoryRegisterer that allows easy
-    registration of a factory for any WindowRenderer type.
-*/
-template <typename T>
-class TplWRFactoryRegisterer : public FactoryRegisterer
-{
-public:
-    //! Constructor.
-    TplWRFactoryRegisterer();
+namespace CEGUI {
 
-    void unregisterFactory() const;
+    /*!
+    \brief
+        Template based implementation of FactoryRegisterer that allows easy
+        registration of a factory for any WindowRenderer type.
+     */
+    template <typename T>
+    class TplWRFactoryRegisterer : public FactoryRegisterer {
+    public:
+        //! Constructor.
+        TplWRFactoryRegisterer();
 
-protected:
-    void doFactoryAdd() const;
-    bool isAlreadyRegistered() const;
-};
+        void unregisterFactory() const;
+
+    protected:
+        void doFactoryAdd() const;
+        bool isAlreadyRegistered() const;
+    };
 
 
-//----------------------------------------------------------------------------//
-template <typename T>
-TplWRFactoryRegisterer<T>::TplWRFactoryRegisterer() :
-    FactoryRegisterer(T::TypeName)
-{}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-template <typename T>
-void TplWRFactoryRegisterer<T>::unregisterFactory() const
-{
-    WindowRendererManager::getSingleton().removeFactory(d_type);
-}
+    template <typename T>
+    TplWRFactoryRegisterer<T>::TplWRFactoryRegisterer() :
+    FactoryRegisterer(T::TypeName) {
+    }
 
-//----------------------------------------------------------------------------//
-template <typename T>
-void TplWRFactoryRegisterer<T>::doFactoryAdd() const
-{
-    WindowRendererManager::addWindowRendererType<T>();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-template <typename T>
-bool TplWRFactoryRegisterer<T>::isAlreadyRegistered() const
-{
-    return WindowRendererManager::getSingleton().isFactoryPresent(d_type);
-}
+    template <typename T>
+    void TplWRFactoryRegisterer<T>::unregisterFactory() const {
+        WindowRendererManager::getSingleton().removeFactory(d_type);
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    template <typename T>
+    void TplWRFactoryRegisterer<T>::doFactoryAdd() const {
+        WindowRendererManager::addWindowRendererType<T>();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    template <typename T>
+    bool TplWRFactoryRegisterer<T>::isAlreadyRegistered() const {
+        return WindowRendererManager::getSingleton().isFactoryPresent(d_type);
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Jul 7 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,17 +30,14 @@
 #include "CEGUI/CoordConverter.h"
 #ifndef PE_NO_MOUSE
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardTooltip::TypeName("Core/Tooltip");
 
     FalagardTooltip::FalagardTooltip(const String& type) :
-        TooltipWindowRenderer(type)
-    {
+    TooltipWindowRenderer(type) {
     }
 
-    void FalagardTooltip::render()
-    {
+    void FalagardTooltip::render() {
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
@@ -49,9 +46,8 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    Sizef FalagardTooltip::getTextSize() const
-    {
-        Tooltip* w = (Tooltip*)d_window;
+    Sizef FalagardTooltip::getTextSize() const {
+        Tooltip* w = (Tooltip*) d_window;
         Sizef sz(w->getTextSize_impl());
 
         // get WidgetLookFeel for the assigned look.
@@ -60,7 +56,7 @@ namespace CEGUI
         const Rectf textArea(wlf.getNamedArea("TextArea").getArea().getPixelRect(*w));
         const Rectf wndArea(CoordConverter::asAbsolute(w->getArea(), w->getParentPixelSize()));
 
-        sz.d_width  = CoordConverter::alignToPixels(sz.d_width + wndArea.getWidth() - textArea.getWidth());
+        sz.d_width = CoordConverter::alignToPixels(sz.d_width + wndArea.getWidth() - textArea.getWidth());
         sz.d_height = CoordConverter::alignToPixels(sz.d_height + wndArea.getHeight() - textArea.getHeight());
         return sz;
     }

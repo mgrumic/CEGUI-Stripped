@@ -9,9 +9,9 @@
 
 namespace bp = boost::python;
 
-void register_vector_less__CEGUI_scope_UDim__greater__class(){
+void register_vector_less__CEGUI_scope_UDim__greater__class() {
 
-    bp::class_< std::vector< CEGUI::UDim > >("vector_less__CEGUI_scope_UDim__greater_")    
-        .def( bp::indexing::vector_suite< std::vector< CEGUI::UDim > >() );
+    bp::class_< std::vector< CEGUI::UDim > >("vector_less__CEGUI_scope_UDim__greater_")
+            .def(bp::indexing::vector_suite< std::vector< CEGUI::UDim > >());
 
 }

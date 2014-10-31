@@ -8,7 +8,7 @@
 
 namespace bp = boost::python;
 
-BOOST_PYTHON_MODULE(PyCEGUINullRenderer){
+BOOST_PYTHON_MODULE(PyCEGUINullRenderer) {
     boost::python::scope().attr("CompileDate__") = __DATE__;
 
     boost::python::scope().attr("CompileTime__") = __TIME__;

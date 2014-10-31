@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -28,24 +28,24 @@
 #define _CEGUISlotFunctorBase_h_
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-// forward refs
-class EventArgs;
+    // forward refs
+    class EventArgs;
 
-/*!
-\brief
-    Defines abstract interface which will be used when constructing various
-    functor objects that bind slots to signals (or in CEGUI terms, handlers to
-    events).
-*/
-class SlotFunctorBase
-{
-public:
-    virtual ~SlotFunctorBase() {};
-    virtual bool operator()(const EventArgs& args) = 0;
-};
+    /*!
+    \brief
+        Defines abstract interface which will be used when constructing various
+        functor objects that bind slots to signals (or in CEGUI terms, handlers to
+        events).
+     */
+    class SlotFunctorBase {
+    public:
+
+        virtual ~SlotFunctorBase() {
+        };
+        virtual bool operator()(const EventArgs& args) = 0;
+    };
 
 
 } // End of  CEGUI namespace section

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,20 +31,19 @@
 #include "../Window.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class that encapsulates a single layer of imagery.
-    */
+     */
     class CEGUIEXPORT LayerSpecification :
-        public AllocatedObject<LayerSpecification>
-    {
+    public AllocatedObject<LayerSpecification> {
     public:
         /*!
         \brief
@@ -53,7 +52,7 @@ namespace CEGUI
         \param priority
             Specifies the priority of the layer.  Layers with higher priorities will be drawn on top
             of layers with lower priorities.
-        */
+         */
         LayerSpecification(uint priority = 0);
 
         /*!
@@ -65,7 +64,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const ColourRect* modcols = 0, const Rectf* clipper = 0, bool clipToDisplay = false) const;
 
         /*!
@@ -80,7 +79,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const Rectf& baseRect, const ColourRect* modcols = 0, const Rectf* clipper = 0, bool clipToDisplay = false) const;
 
         /*!
@@ -94,7 +93,7 @@ namespace CEGUI
 
         \return
             Nothing,
-        */
+         */
         void addSectionSpecification(const SectionSpecification& section);
 
         /*!
@@ -103,7 +102,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void clearSectionSpecifications();
 
         /*!
@@ -112,7 +111,7 @@ namespace CEGUI
 
         \return
             uint value descibing the priority of this LayerSpecification.
-        */
+         */
         uint getLayerPriority() const;
         /*!
         \brief
@@ -120,7 +119,7 @@ namespace CEGUI
 
         \return
             uint value descibing the priority of this LayerSpecification.
-        */
+         */
         void setLayerPriority(uint priority);
 
         // required to sort layers according to priority
@@ -136,15 +135,15 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
     private:
         typedef std::vector<SectionSpecification
-            CEGUI_VECTOR_ALLOC(SectionSpecification)> SectionList;
+        CEGUI_VECTOR_ALLOC(SectionSpecification) > SectionList;
 
-        SectionList d_sections;         //!< Collection of SectionSpecification objects descibing the sections to be drawn for this layer.
-        uint        d_layerPriority;    //!< Priority of the layer.
+        SectionList d_sections; //!< Collection of SectionSpecification objects descibing the sections to be drawn for this layer.
+        uint d_layerPriority; //!< Priority of the layer.
     public:
         typedef ConstVectorIterator<SectionList> SectionIterator;
 
@@ -155,7 +154,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalLayerSpecification_h_

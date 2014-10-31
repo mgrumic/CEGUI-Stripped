@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,30 +30,28 @@
 #include "CEGUI/SlotFunctorBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Slot functor class that calls back via a free function pointer.
-*/
-class FreeFunctionSlot : public SlotFunctorBase
-{
-public:
-    //! Slot function type.
-    typedef bool (SlotFunction)(const EventArgs&);
+namespace CEGUI {
 
-    FreeFunctionSlot(SlotFunction* func) :
-        d_function(func)
-    {}
+    /*!
+    \brief
+        Slot functor class that calls back via a free function pointer.
+     */
+    class FreeFunctionSlot : public SlotFunctorBase {
+    public:
+        //! Slot function type.
+        typedef bool (SlotFunction) (const EventArgs&);
 
-    virtual bool operator()(const EventArgs& args)
-    {
-        return d_function(args);
-    }
+        FreeFunctionSlot(SlotFunction* func) :
+        d_function(func) {
+        }
 
-private:
-    SlotFunction* d_function;
-};
+        virtual bool operator()(const EventArgs& args) {
+            return d_function(args);
+        }
+
+    private:
+        SlotFunction* d_function;
+    };
 
 
 } // End of  CEGUI namespace section

@@ -3,7 +3,7 @@
     author:     Tomas Lindquist Olsen (based on code by Paul D Turner)
 
     purpose:    Interface to base class for MenuBase widget
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -35,203 +35,197 @@
 
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-    Abstract base class for menus.
-*/
-class CEGUIEXPORT MenuBase : public ItemListBase
-{
-public:
-    static const String EventNamespace;             //!< Namespace for global events
-
-
-    /*************************************************************************
-        Event name constants
-    *************************************************************************/
-    // generated internally by Window
-    /** Event fired when a MenuItem attached to this menu opened a PopupMenu.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the PopupMenu that was opened.
+    /*!
+    \brief
+        Abstract base class for menus.
      */
+    class CEGUIEXPORT MenuBase : public ItemListBase {
+    public:
+        static const String EventNamespace; //!< Namespace for global events
+
+
+        /*************************************************************************
+            Event name constants
+         *************************************************************************/
+        // generated internally by Window
+        /** Event fired when a MenuItem attached to this menu opened a PopupMenu.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the PopupMenu that was opened.
+         */
 #ifdef PE_NO_POPUP_MENU_H
-    static const String EventPopupOpened;
-    /** Event fired when a MenuItem attached to this menu closed a PopupMenu.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the PopupMenu that was closed.
-     */
-    static const String EventPopupClosed;
+        static const String EventPopupOpened;
+        /** Event fired when a MenuItem attached to this menu closed a PopupMenu.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the PopupMenu that was closed.
+         */
+        static const String EventPopupClosed;
 #endif
 
-    /*************************************************************************
-        Accessor type functions
-    *************************************************************************/
-    /*!
-    \brief
-        Get the item spacing for this menu.
+        /*************************************************************************
+            Accessor type functions
+         *************************************************************************/
 
-    \return
-        A float value with the current item spacing for this menu
-    */
-    float   getItemSpacing(void) const
-    {
-        return d_itemSpacing;
-    }
+        /*!
+        \brief
+            Get the item spacing for this menu.
 
+        \return
+            A float value with the current item spacing for this menu
+         */
+        float getItemSpacing(void) const {
+            return d_itemSpacing;
+        }
 
-    /*!
-    \brief
-        Return whether this menu allows multiple popup menus to open at the same time.
+        /*!
+        \brief
+            Return whether this menu allows multiple popup menus to open at the same time.
 
-    \return
-        true if this menu allows multiple popup menus to be opened simultaneously. false if not
-    */
-    bool    isMultiplePopupsAllowed(void) const
-    {
-        return d_allowMultiplePopups;
-    }
+        \return
+            true if this menu allows multiple popup menus to be opened simultaneously. false if not
+         */
+        bool isMultiplePopupsAllowed(void) const {
+            return d_allowMultiplePopups;
+        }
 
-    /*!
-    \brief
-        Return whether this menu should close all its open child popups, when it gets hidden
+        /*!
+        \brief
+            Return whether this menu should close all its open child popups, when it gets hidden
 
-    \return
-        true if the menu should close all its open child popups, when it gets hidden
-    */
-    bool    getAutoCloseNestedPopups(void) const
-    {
-        return d_autoCloseNestedPopups;
-    }
+        \return
+            true if the menu should close all its open child popups, when it gets hidden
+         */
+        bool getAutoCloseNestedPopups(void) const {
+            return d_autoCloseNestedPopups;
+        }
 
-    /*!
-    \brief
-        Get currently opened MenuItem in this menu. Returns NULL if no menu item is open.
+        /*!
+        \brief
+            Get currently opened MenuItem in this menu. Returns NULL if no menu item is open.
 
-    \return
-        Pointer to the MenuItem currently open.
-    */
+        \return
+            Pointer to the MenuItem currently open.
+         */
 #ifdef PE_NO_POPUP_MENU_H
-    MenuItem*   getPopupMenuItem(void) const
-    {
-        return d_popupItem;
-    }
+
+        MenuItem* getPopupMenuItem(void) const {
+            return d_popupItem;
+        }
 #endif
 
-    /*************************************************************************
-        Manipulators
-    *************************************************************************/
-    /*!
-    \brief
-        Set the item spacing for this menu.
-    */
-    void    setItemSpacing(float spacing)
-    {
-        d_itemSpacing = spacing;
-        handleUpdatedItemData();
-    }
+        /*************************************************************************
+            Manipulators
+         *************************************************************************/
+
+        /*!
+        \brief
+            Set the item spacing for this menu.
+         */
+        void setItemSpacing(float spacing) {
+            d_itemSpacing = spacing;
+            handleUpdatedItemData();
+        }
 
 
-    /*!
-    \brief
-        Change the currently open MenuItem in this menu.
+        /*!
+        \brief
+            Change the currently open MenuItem in this menu.
 
-    \param item
-        Pointer to a MenuItem to open or NULL to close any opened.
-    */
+        \param item
+            Pointer to a MenuItem to open or NULL to close any opened.
+         */
 #ifdef PE_NO_POPUP_MENU_H
-    void    changePopupMenuItem(MenuItem* item);
+        void changePopupMenuItem(MenuItem* item);
 
 
-    /*!
-    \brief
-        Set whether this menu allows multiple popup menus to be opened simultaneously.
-    */
-    void    setAllowMultiplePopups(bool setting);
+        /*!
+        \brief
+            Set whether this menu allows multiple popup menus to be opened simultaneously.
+         */
+        void setAllowMultiplePopups(bool setting);
 
-    /*!
-    \brief
-        Set whether the menu should close all its open child popups, when it gets hidden
-    */
-    void    setAutoCloseNestedPopups(bool setting)
-    {
-        d_autoCloseNestedPopups = setting;
-    }
-    /*!
-    \brief
-        tells the current popup that it should start its closing timer.
-    */
-    void    setPopupMenuItemClosing();
+        /*!
+        \brief
+            Set whether the menu should close all its open child popups, when it gets hidden
+         */
+        void setAutoCloseNestedPopups(bool setting) {
+            d_autoCloseNestedPopups = setting;
+        }
+        /*!
+        \brief
+            tells the current popup that it should start its closing timer.
+         */
+        void setPopupMenuItemClosing();
 
 #endif
-    /*************************************************************************
-        Construction and Destruction
-    *************************************************************************/
-    /*!
-    \brief
-        Constructor for MenuBase objects
-    */
-    MenuBase(const String& type, const String& name);
+        /*************************************************************************
+            Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+            Constructor for MenuBase objects
+         */
+        MenuBase(const String& type, const String& name);
 
 
-    /*!
-    \brief
-        Destructor for MenuBase objects
-    */
-    virtual ~MenuBase(void);
+        /*!
+        \brief
+            Destructor for MenuBase objects
+         */
+        virtual ~MenuBase(void);
 
 
-protected:
-    /*************************************************************************
-        New Event Handlers
-    *************************************************************************/
-    /*!
-    \brief
-        handler invoked internally when the a MenuItem attached to this menu opens its popup.
-    */
+    protected:
+        /*************************************************************************
+            New Event Handlers
+         *************************************************************************/
+        /*!
+        \brief
+            handler invoked internally when the a MenuItem attached to this menu opens its popup.
+         */
 #ifdef PE_NO_POPUP_MENU_H
-    virtual void    onPopupOpened(WindowEventArgs& e);
+        virtual void onPopupOpened(WindowEventArgs& e);
 
 
-    /*!
-    \brief
-        handler invoked internally when the a MenuItem attached to this menu closes its popup.
-    */
-    virtual void    onPopupClosed(WindowEventArgs& e);
+        /*!
+        \brief
+            handler invoked internally when the a MenuItem attached to this menu closes its popup.
+         */
+        virtual void onPopupClosed(WindowEventArgs& e);
 #endif
-    // overridden from base
-    virtual void onChildRemoved(ElementEventArgs& e);
-    virtual void onHidden(WindowEventArgs& e);
+        // overridden from base
+        virtual void onChildRemoved(ElementEventArgs& e);
+        virtual void onHidden(WindowEventArgs& e);
 
-    /*************************************************************************
-        Implementation Data
-    *************************************************************************/
-    float d_itemSpacing;        //!< The spacing in pixels between items.
+        /*************************************************************************
+            Implementation Data
+         *************************************************************************/
+        float d_itemSpacing; //!< The spacing in pixels between items.
 
-    MenuItem* d_popupItem;      //!< The currently open MenuItem. NULL if no item is open. If multiple popups are allowed, this means nothing.
-    bool d_allowMultiplePopups; //!< true if multiple popup menus are allowed simultaneously.  false if not.
-    bool d_autoCloseNestedPopups; //!< true if the menu should close all its open child popups, when it gets hidden
+        MenuItem* d_popupItem; //!< The currently open MenuItem. NULL if no item is open. If multiple popups are allowed, this means nothing.
+        bool d_allowMultiplePopups; //!< true if multiple popup menus are allowed simultaneously.  false if not.
+        bool d_autoCloseNestedPopups; //!< true if the menu should close all its open child popups, when it gets hidden
 
 
-private:
-    /*************************************************************************
-    Private methods
-    *************************************************************************/
-    void    addMenuBaseProperties(void);
-};
+    private:
+        /*************************************************************************
+        Private methods
+         *************************************************************************/
+        void addMenuBaseProperties(void);
+    };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIMenuBase_h_

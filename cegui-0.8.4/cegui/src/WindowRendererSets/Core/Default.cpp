@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 14 2006
     author:     Tomas Lindquist Olsen <tomas@famolsen.dk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -28,17 +28,14 @@
 #include "CEGUI/falagard/WidgetLookFeel.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardDefault::TypeName("Core/Default");
 
     FalagardDefault::FalagardDefault(const String& type) :
-        WindowRenderer(type)
-    {
+    WindowRenderer(type) {
     }
 
-    void FalagardDefault::render()
-    {
+    void FalagardDefault::render() {
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // render basic imagery

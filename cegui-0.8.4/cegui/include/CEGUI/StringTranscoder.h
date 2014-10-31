@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu May 31 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -29,95 +29,96 @@
 
 #include "CEGUI/String.h"
 
-namespace CEGUI
-{
-/*!
-\brief
-    Interface for a string transcoding utility.  Instances of classes that
-    implement this interface can be used to transcode CEGUI::Strings to and
-    from some other character encodings not directly supported by the
-    CEGUI::String class.
-*/
-class CEGUIEXPORT StringTranscoder :
-    public AllocatedObject<StringTranscoder>
-{
-public:
-    /*!
-    \brief
-        Transcode the given string to a UTF-16 encoded buffer.
-
-    \param input
-        String object with the text to be transcoded.
-
-    \return
-        Pointer to an array of utf16 values.  This buffer should be deleted by
-        calling the deleteUTF16Buffer function.
-    */
-    virtual uint16* stringToUTF16(const String& input) const = 0;
+namespace CEGUI {
 
     /*!
     \brief
-        Transcode the given string to a std::wstring object.
+        Interface for a string transcoding utility.  Instances of classes that
+        implement this interface can be used to transcode CEGUI::Strings to and
+        from some other character encodings not directly supported by the
+        CEGUI::String class.
+     */
+    class CEGUIEXPORT StringTranscoder :
+    public AllocatedObject<StringTranscoder> {
+    public:
+        /*!
+        \brief
+            Transcode the given string to a UTF-16 encoded buffer.
 
-    \param input
-        String object with the text to be transcoded.
+        \param input
+            String object with the text to be transcoded.
 
-    \return
-        std::wstring holding the transcoded data in some appropriate encoding.
+        \return
+            Pointer to an array of utf16 values.  This buffer should be deleted by
+            calling the deleteUTF16Buffer function.
+         */
+        virtual uint16* stringToUTF16(const String& input) const = 0;
 
-    \note
-        What is represented by std::wstring and how it should be interpreted is
-        implementation specific.  This means that the content of the returned
-        std::wstring may vary according to the operating system and compiler
-        used - although what is returned should be consistent with other
-        std::wstring data running on the same implementation.  This largely
-        means that on Microsoft Windows you will have UTF-16 and on *nix type
-        environments you will have UTF-32.
-    */
-    virtual std::wstring stringToStdWString(const String& input) const = 0;
+        /*!
+        \brief
+            Transcode the given string to a std::wstring object.
 
-    /*
-    \brief
-        Constructs a String object from the given null terminated UTF-16 encoded
-        buffer.
+        \param input
+            String object with the text to be transcoded.
 
-    \param input
-        Pointer to a null terminated array of uint16 values representing a
-        string encoded using UTF-16.
+        \return
+            std::wstring holding the transcoded data in some appropriate encoding.
 
-    \return
-        String object holding the transcoded data.
-    */
-    virtual String stringFromUTF16(const uint16* input) const = 0;
+        \note
+            What is represented by std::wstring and how it should be interpreted is
+            implementation specific.  This means that the content of the returned
+            std::wstring may vary according to the operating system and compiler
+            used - although what is returned should be consistent with other
+            std::wstring data running on the same implementation.  This largely
+            means that on Microsoft Windows you will have UTF-16 and on *nix type
+            environments you will have UTF-32.
+         */
+        virtual std::wstring stringToStdWString(const String& input) const = 0;
 
-    /*
-    \brief
-        Constructs a String object from the given std::wstring.
+        /*
+        \brief
+            Constructs a String object from the given null terminated UTF-16 encoded
+            buffer.
 
-    \param input
-        reference to a std::wstring object holding the string data to be
-        transcoded.
+        \param input
+            Pointer to a null terminated array of uint16 values representing a
+            string encoded using UTF-16.
 
-    \return
-        String object holding the transcoded data.
+        \return
+            String object holding the transcoded data.
+         */
+        virtual String stringFromUTF16(const uint16* input) const = 0;
 
-    \note
-        What is represented by std::wstring and how it should be interpreted is
-        implementation specific.  This means that the content of the
-        std::wstring you pass must be consistent with what is expected given the
-        implementation.  This largely means that on Microsoft Windows you will
-        use UTF-16 and on *nix type environments you will use UTF-32.  Do NOT
-        assume that blithely passing what you think is UTF-16 data in a
-        std::wstring will work everywhere - because it wont.
-    */
-    virtual String stringFromStdWString(const std::wstring& input) const = 0;
+        /*
+        \brief
+            Constructs a String object from the given std::wstring.
 
-    //! deletes a buffer returned from the stringToUTF16 function.
-    virtual void deleteUTF16Buffer(uint16* input) const = 0;
+        \param input
+            reference to a std::wstring object holding the string data to be
+            transcoded.
 
-protected:
-    virtual ~StringTranscoder() {}
-};
+        \return
+            String object holding the transcoded data.
+
+        \note
+            What is represented by std::wstring and how it should be interpreted is
+            implementation specific.  This means that the content of the
+            std::wstring you pass must be consistent with what is expected given the
+            implementation.  This largely means that on Microsoft Windows you will
+            use UTF-16 and on *nix type environments you will use UTF-32.  Do NOT
+            assume that blithely passing what you think is UTF-16 data in a
+            std::wstring will work everywhere - because it wont.
+         */
+        virtual String stringFromStdWString(const std::wstring& input) const = 0;
+
+        //! deletes a buffer returned from the stringToUTF16 function.
+        virtual void deleteUTF16Buffer(uint16* input) const = 0;
+
+    protected:
+
+        virtual ~StringTranscoder() {
+        }
+    };
 
 }
 

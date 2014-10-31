@@ -8,93 +8,93 @@ namespace bp = boost::python;
 
 struct ListboxItem_wrapper : CEGUI::ListboxItem, bp::wrapper< CEGUI::ListboxItem > {
 
-    ListboxItem_wrapper(::CEGUI::String const & text, ::CEGUI::uint item_id=0, void * item_data=0, bool disabled=false, bool auto_delete=true )
-    : CEGUI::ListboxItem( boost::ref(text), item_id, item_data, disabled, auto_delete )
-      , bp::wrapper< CEGUI::ListboxItem >(){
+    ListboxItem_wrapper(::CEGUI::String const & text, ::CEGUI::uint item_id = 0, void * item_data = 0, bool disabled = false, bool auto_delete = true)
+    : CEGUI::ListboxItem(boost::ref(text), item_id, item_data, disabled, auto_delete)
+    , bp::wrapper< CEGUI::ListboxItem >() {
         // constructor
-    
+
     }
 
-    ::CEGUI::Colour calculateModulatedAlphaColour( ::CEGUI::Colour col, float alpha ) const {
-        return CEGUI::ListboxItem::calculateModulatedAlphaColour( col, alpha );
+    ::CEGUI::Colour calculateModulatedAlphaColour(::CEGUI::Colour col, float alpha) const {
+        return CEGUI::ListboxItem::calculateModulatedAlphaColour(col, alpha);
     }
 
-    virtual void draw( ::CEGUI::GeometryBuffer & buffer, ::CEGUI::Rectf const & targetRect, float alpha, ::CEGUI::Rectf const * clipper ) const {
-        bp::override func_draw = this->get_override( "draw" );
-        func_draw( boost::ref(buffer), boost::ref(targetRect), alpha, boost::python::ptr(clipper) );
+    virtual void draw(::CEGUI::GeometryBuffer & buffer, ::CEGUI::Rectf const & targetRect, float alpha, ::CEGUI::Rectf const * clipper) const {
+        bp::override func_draw = this->get_override("draw");
+        func_draw(boost::ref(buffer), boost::ref(targetRect), alpha, boost::python::ptr(clipper));
     }
 
-    ::CEGUI::ColourRect getModulateAlphaColourRect( ::CEGUI::ColourRect const & cols, float alpha ) const {
-        return CEGUI::ListboxItem::getModulateAlphaColourRect( boost::ref(cols), alpha );
+    ::CEGUI::ColourRect getModulateAlphaColourRect(::CEGUI::ColourRect const & cols, float alpha) const {
+        return CEGUI::ListboxItem::getModulateAlphaColourRect(boost::ref(cols), alpha);
     }
 
-    virtual ::CEGUI::Sizef getPixelSize(  ) const {
-        bp::override func_getPixelSize = this->get_override( "getPixelSize" );
-        return func_getPixelSize(  );
+    virtual ::CEGUI::Sizef getPixelSize() const {
+        bp::override func_getPixelSize = this->get_override("getPixelSize");
+        return func_getPixelSize();
     }
 
-    virtual bool handleFontRenderSizeChange( ::CEGUI::Font const * const font ) {
-        if( bp::override func_handleFontRenderSizeChange = this->get_override( "handleFontRenderSizeChange" ) )
-            return func_handleFontRenderSizeChange( font );
-        else{
-            return this->CEGUI::ListboxItem::handleFontRenderSizeChange( font );
+    virtual bool handleFontRenderSizeChange(::CEGUI::Font const * const font) {
+        if (bp::override func_handleFontRenderSizeChange = this->get_override("handleFontRenderSizeChange"))
+            return func_handleFontRenderSizeChange(font);
+        else {
+            return this->CEGUI::ListboxItem::handleFontRenderSizeChange(font);
         }
     }
-    
-    bool default_handleFontRenderSizeChange( ::CEGUI::Font const * const font ) {
-        return CEGUI::ListboxItem::handleFontRenderSizeChange( font );
+
+    bool default_handleFontRenderSizeChange(::CEGUI::Font const * const font) {
+        return CEGUI::ListboxItem::handleFontRenderSizeChange(font);
     }
 
-    virtual void setText( ::CEGUI::String const & text ) {
-        if( bp::override func_setText = this->get_override( "setText" ) )
-            func_setText( boost::ref(text) );
-        else{
-            this->CEGUI::ListboxItem::setText( boost::ref(text) );
+    virtual void setText(::CEGUI::String const & text) {
+        if (bp::override func_setText = this->get_override("setText"))
+            func_setText(boost::ref(text));
+        else {
+            this->CEGUI::ListboxItem::setText(boost::ref(text));
         }
     }
-    
-    void default_setText( ::CEGUI::String const & text ) {
-        CEGUI::ListboxItem::setText( boost::ref(text) );
+
+    void default_setText(::CEGUI::String const & text) {
+        CEGUI::ListboxItem::setText(boost::ref(text));
     }
 
 };
 
-void register_ListboxItem_class(){
+void register_ListboxItem_class() {
 
     { //::CEGUI::ListboxItem
         typedef bp::class_< ListboxItem_wrapper, boost::noncopyable > ListboxItem_exposer_t;
-        ListboxItem_exposer_t ListboxItem_exposer = ListboxItem_exposer_t( "ListboxItem", bp::init< CEGUI::String const &, bp::optional< CEGUI::uint, void *, bool, bool > >(( bp::arg("text"), bp::arg("item_id")=(::CEGUI::uint)(0), bp::arg("item_data")=bp::object(), bp::arg("disabled")=(bool)(false), bp::arg("auto_delete")=(bool)(true) ), "*************************************************************************\n\
+        ListboxItem_exposer_t ListboxItem_exposer = ListboxItem_exposer_t("ListboxItem", bp::init < CEGUI::String const &, bp::optional < CEGUI::uint, void *, bool, bool > >((bp::arg("text"), bp::arg("item_id") = (::CEGUI::uint)(0), bp::arg("item_data") = bp::object(), bp::arg("disabled") = (bool)(false), bp::arg("auto_delete") = (bool)(true)), "*************************************************************************\n\
             Construction and Destruction\n\
         *************************************************************************\n\
         *!\n\
         \n\
             base class constructor\n\
-        *\n") );
-        bp::scope ListboxItem_scope( ListboxItem_exposer );
+        *\n"));
+        bp::scope ListboxItem_scope(ListboxItem_exposer);
         { //::CEGUI::ListboxItem::calculateModulatedAlphaColour
-        
-            typedef ::CEGUI::Colour ( ListboxItem_wrapper::*calculateModulatedAlphaColour_function_type )( ::CEGUI::Colour,float ) const;
-            
-            ListboxItem_exposer.def( 
-                "calculateModulatedAlphaColour"
-                , calculateModulatedAlphaColour_function_type( &ListboxItem_wrapper::calculateModulatedAlphaColour )
-                , ( bp::arg("col"), bp::arg("alpha") )
-                , "*!\n\
+
+            typedef ::CEGUI::Colour(ListboxItem_wrapper::*calculateModulatedAlphaColour_function_type)(::CEGUI::Colour, float) const;
+
+            ListboxItem_exposer.def(
+                    "calculateModulatedAlphaColour"
+                    , calculateModulatedAlphaColour_function_type(&ListboxItem_wrapper::calculateModulatedAlphaColour)
+                    , (bp::arg("col"), bp::arg("alpha"))
+                    , "*!\n\
             \n\
                 Return a colour value describing the colour specified by  col after having its alpha\n\
                 component modulated by the value  alpha.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::ListboxItem::draw
-        
-            typedef void ( ::CEGUI::ListboxItem::*draw_function_type )( ::CEGUI::GeometryBuffer &,::CEGUI::Rectf const &,float,::CEGUI::Rectf const * ) const;
-            
-            ListboxItem_exposer.def( 
-                "draw"
-                , bp::pure_virtual( draw_function_type(&::CEGUI::ListboxItem::draw) )
-                , ( bp::arg("buffer"), bp::arg("targetRect"), bp::arg("alpha"), bp::arg("clipper") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*draw_function_type)(::CEGUI::GeometryBuffer &, ::CEGUI::Rectf const &, float, ::CEGUI::Rectf const *) const;
+
+            ListboxItem_exposer.def(
+                    "draw"
+                    , bp::pure_virtual(draw_function_type(&::CEGUI::ListboxItem::draw))
+                    , (bp::arg("buffer"), bp::arg("targetRect"), bp::arg("alpha"), bp::arg("clipper"))
+                    , "*!\n\
                 \n\
                     Draw the list box item in its current state\n\
             \n\
@@ -110,17 +110,17 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::ListboxItem::*getID_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getID"
-                , getID_function_type( &::CEGUI::ListboxItem::getID )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::ListboxItem::*getID_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getID"
+                    , getID_function_type(&::CEGUI::ListboxItem::getID)
+                    , "*!\n\
                 \n\
                     Return the current ID assigned to this list box item.\n\
             \n\
@@ -130,36 +130,36 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     ID code currently assigned to this list box item\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getModulateAlphaColourRect
-        
-            typedef ::CEGUI::ColourRect ( ListboxItem_wrapper::*getModulateAlphaColourRect_function_type )( ::CEGUI::ColourRect const &,float ) const;
-            
-            ListboxItem_exposer.def( 
-                "getModulateAlphaColourRect"
-                , getModulateAlphaColourRect_function_type( &ListboxItem_wrapper::getModulateAlphaColourRect )
-                , ( bp::arg("cols"), bp::arg("alpha") )
-                , "*************************************************************************\n\
+
+            typedef ::CEGUI::ColourRect(ListboxItem_wrapper::*getModulateAlphaColourRect_function_type)(::CEGUI::ColourRect const &, float) const;
+
+            ListboxItem_exposer.def(
+                    "getModulateAlphaColourRect"
+                    , getModulateAlphaColourRect_function_type(&ListboxItem_wrapper::getModulateAlphaColourRect)
+                    , (bp::arg("cols"), bp::arg("alpha"))
+                    , "*************************************************************************\n\
                 Implementation methods\n\
             *************************************************************************\n\
             *!\n\
             \n\
                 Return a ColourRect object describing the colours in  cols after having their alpha\n\
                 component modulated by the value  alpha.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::ListboxItem::getOwnerWindow
-        
-            typedef ::CEGUI::Window const * ( ::CEGUI::ListboxItem::*getOwnerWindow_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getOwnerWindow"
-                , getOwnerWindow_function_type( &::CEGUI::ListboxItem::getOwnerWindow )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Window const * (::CEGUI::ListboxItem::*getOwnerWindow_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getOwnerWindow"
+                    , getOwnerWindow_function_type(&::CEGUI::ListboxItem::getOwnerWindow)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Get the owner window for this ListboxItem.\n\
                     \n\
@@ -168,17 +168,17 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Ponter to the window that is considered the owner of this ListboxItem.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getPixelSize
-        
-            typedef ::CEGUI::Sizef ( ::CEGUI::ListboxItem::*getPixelSize_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getPixelSize"
-                , bp::pure_virtual( getPixelSize_function_type(&::CEGUI::ListboxItem::getPixelSize) )
-                , "*************************************************************************\n\
+
+            typedef ::CEGUI::Sizef(::CEGUI::ListboxItem::*getPixelSize_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getPixelSize"
+                    , bp::pure_virtual(getPixelSize_function_type(&::CEGUI::ListboxItem::getPixelSize))
+                    , "*************************************************************************\n\
                     Abstract portion of interface\n\
                 *************************************************************************\n\
                 *!\n\
@@ -187,72 +187,72 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Size object describing the size of the list box item in pixels.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getSelectionBrushImage
-        
-            typedef ::CEGUI::Image const * ( ::CEGUI::ListboxItem::*getSelectionBrushImage_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getSelectionBrushImage"
-                , getSelectionBrushImage_function_type( &::CEGUI::ListboxItem::getSelectionBrushImage )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Image const * (::CEGUI::ListboxItem::*getSelectionBrushImage_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getSelectionBrushImage"
+                    , getSelectionBrushImage_function_type(&::CEGUI::ListboxItem::getSelectionBrushImage)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Return the current selection highlighting brush.\n\
             \n\
                 @return\n\
                     Pointer to the Image object currently used for selection highlighting.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getSelectionColours
-        
-            typedef ::CEGUI::ColourRect ( ::CEGUI::ListboxItem::*getSelectionColours_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getSelectionColours"
-                , getSelectionColours_function_type( &::CEGUI::ListboxItem::getSelectionColours )
-                , "*!\n\
+
+            typedef ::CEGUI::ColourRect(::CEGUI::ListboxItem::*getSelectionColours_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getSelectionColours"
+                    , getSelectionColours_function_type(&::CEGUI::ListboxItem::getSelectionColours)
+                    , "*!\n\
                 \n\
                     Return the current colours used for selection highlighting.\n\
             \n\
                 @return\n\
                     ColourRect object describing the currently set colours\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getText
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::ListboxItem::*getText_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getText"
-                , getText_function_type( &::CEGUI::ListboxItem::getText )
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::String const & (::CEGUI::ListboxItem::*getText_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getText"
+                    , getText_function_type(&::CEGUI::ListboxItem::getText)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::ListboxItem::getTextVisual
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::ListboxItem::*getTextVisual_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getTextVisual"
-                , getTextVisual_function_type( &::CEGUI::ListboxItem::getTextVisual )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "! return text string with  e visual ordering of glyphs.\n" );
-        
+
+            typedef ::CEGUI::String const & (::CEGUI::ListboxItem::*getTextVisual_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getTextVisual"
+                    , getTextVisual_function_type(&::CEGUI::ListboxItem::getTextVisual)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "! return text string with  e visual ordering of glyphs.\n");
+
         }
         { //::CEGUI::ListboxItem::getTooltipText
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::ListboxItem::*getTooltipText_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getTooltipText"
-                , getTooltipText_function_type( &::CEGUI::ListboxItem::getTooltipText )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*************************************************************************\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::ListboxItem::*getTooltipText_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getTooltipText"
+                    , getTooltipText_function_type(&::CEGUI::ListboxItem::getTooltipText)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*************************************************************************\n\
                     Accessors\n\
                 *************************************************************************\n\
                 *!\n\
@@ -265,18 +265,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     String object containing the current text for the list box item.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::getUserData
-        
-            typedef void * ( ::CEGUI::ListboxItem::*getUserData_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "getUserData"
-                , getUserData_function_type( &::CEGUI::ListboxItem::getUserData )
-                , bp::return_value_policy< bp::return_opaque_pointer >()
-                , "*!\n\
+
+            typedef void * (::CEGUI::ListboxItem::*getUserData_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "getUserData"
+                    , getUserData_function_type(&::CEGUI::ListboxItem::getUserData)
+                    , bp::return_value_policy< bp::return_opaque_pointer >()
+                    , "*!\n\
                 \n\
                     Return the pointer to any client assigned user data attached to this lis box item.\n\
             \n\
@@ -285,29 +285,29 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Pointer to the currently assigned user data.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::handleFontRenderSizeChange
-        
-            typedef bool ( ::CEGUI::ListboxItem::*handleFontRenderSizeChange_function_type )( ::CEGUI::Font const * const ) ;
-            typedef bool ( ListboxItem_wrapper::*default_handleFontRenderSizeChange_function_type )( ::CEGUI::Font const * const ) ;
-            
-            ListboxItem_exposer.def( 
-                "handleFontRenderSizeChange"
-                , handleFontRenderSizeChange_function_type(&::CEGUI::ListboxItem::handleFontRenderSizeChange)
-                , default_handleFontRenderSizeChange_function_type(&ListboxItem_wrapper::default_handleFontRenderSizeChange)
-                , ( bp::arg("font") ) );
-        
+
+            typedef bool ( ::CEGUI::ListboxItem::*handleFontRenderSizeChange_function_type)(::CEGUI::Font const * const);
+            typedef bool ( ListboxItem_wrapper::*default_handleFontRenderSizeChange_function_type)(::CEGUI::Font const * const);
+
+            ListboxItem_exposer.def(
+                    "handleFontRenderSizeChange"
+                    , handleFontRenderSizeChange_function_type(&::CEGUI::ListboxItem::handleFontRenderSizeChange)
+                    , default_handleFontRenderSizeChange_function_type(&ListboxItem_wrapper::default_handleFontRenderSizeChange)
+                    , (bp::arg("font")));
+
         }
         { //::CEGUI::ListboxItem::isAutoDeleted
-        
-            typedef bool ( ::CEGUI::ListboxItem::*isAutoDeleted_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "isAutoDeleted"
-                , isAutoDeleted_function_type( &::CEGUI::ListboxItem::isAutoDeleted )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::ListboxItem::*isAutoDeleted_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "isAutoDeleted"
+                    , isAutoDeleted_function_type(&::CEGUI::ListboxItem::isAutoDeleted)
+                    , "*!\n\
                 \n\
                     return whether this item will be automatically deleted when the list box it is attached to\n\
                     is destroyed, or when the item is removed from the list box.\n\
@@ -318,52 +318,52 @@ void register_ListboxItem_class(){
                     destroyed, or when the item is removed from the list.  false if client code must destroy\
                     the\n\
                     item after it is removed from the list.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::isDisabled
-        
-            typedef bool ( ::CEGUI::ListboxItem::*isDisabled_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "isDisabled"
-                , isDisabled_function_type( &::CEGUI::ListboxItem::isDisabled )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::ListboxItem::*isDisabled_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "isDisabled"
+                    , isDisabled_function_type(&::CEGUI::ListboxItem::isDisabled)
+                    , "*!\n\
                 \n\
                     return whether this item is disabled.\n\
             \n\
                 @return\n\
                     true if the item is disabled, false if the item is enabled.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::isSelected
-        
-            typedef bool ( ::CEGUI::ListboxItem::*isSelected_function_type )(  ) const;
-            
-            ListboxItem_exposer.def( 
-                "isSelected"
-                , isSelected_function_type( &::CEGUI::ListboxItem::isSelected )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::ListboxItem::*isSelected_function_type)() const;
+
+            ListboxItem_exposer.def(
+                    "isSelected"
+                    , isSelected_function_type(&::CEGUI::ListboxItem::isSelected)
+                    , "*!\n\
                 \n\
                     return whether this item is selected.\n\
             \n\
                 @return\n\
                     true if the item is selected, false if the item is not selected.\n\
-                *\n" );
-        
+                *\n");
+
         }
-        ListboxItem_exposer.def( bp::self < bp::self );
-        ListboxItem_exposer.def( bp::self > bp::self );
+        ListboxItem_exposer.def(bp::self < bp::self);
+        ListboxItem_exposer.def(bp::self > bp::self);
         { //::CEGUI::ListboxItem::setAutoDeleted
-        
-            typedef void ( ::CEGUI::ListboxItem::*setAutoDeleted_function_type )( bool ) ;
-            
-            ListboxItem_exposer.def( 
-                "setAutoDeleted"
-                , setAutoDeleted_function_type( &::CEGUI::ListboxItem::setAutoDeleted )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setAutoDeleted_function_type)(bool);
+
+            ListboxItem_exposer.def(
+                    "setAutoDeleted"
+                    , setAutoDeleted_function_type(&::CEGUI::ListboxItem::setAutoDeleted)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                 \n\
                     Set whether this item will be automatically deleted when the list box it is attached to\n\
                     is destroyed, or when the item is removed from the list box.\n\
@@ -377,18 +377,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setDisabled
-        
-            typedef void ( ::CEGUI::ListboxItem::*setDisabled_function_type )( bool ) ;
-            
-            ListboxItem_exposer.def( 
-                "setDisabled"
-                , setDisabled_function_type( &::CEGUI::ListboxItem::setDisabled )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setDisabled_function_type)(bool);
+
+            ListboxItem_exposer.def(
+                    "setDisabled"
+                    , setDisabled_function_type(&::CEGUI::ListboxItem::setDisabled)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                 \n\
                     set whether this item is disabled.\n\
             \n\
@@ -397,18 +397,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setID
-        
-            typedef void ( ::CEGUI::ListboxItem::*setID_function_type )( ::CEGUI::uint ) ;
-            
-            ListboxItem_exposer.def( 
-                "setID"
-                , setID_function_type( &::CEGUI::ListboxItem::setID )
-                , ( bp::arg("item_id") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setID_function_type)(::CEGUI::uint);
+
+            ListboxItem_exposer.def(
+                    "setID"
+                    , setID_function_type(&::CEGUI::ListboxItem::setID)
+                    , (bp::arg("item_id"))
+                    , "*!\n\
                 \n\
                     Set the ID assigned to this list box item.\n\
             \n\
@@ -421,18 +421,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setOwnerWindow
-        
-            typedef void ( ::CEGUI::ListboxItem::*setOwnerWindow_function_type )( ::CEGUI::Window const * ) ;
-            
-            ListboxItem_exposer.def( 
-                "setOwnerWindow"
-                , setOwnerWindow_function_type( &::CEGUI::ListboxItem::setOwnerWindow )
-                , ( bp::arg("owner") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setOwnerWindow_function_type)(::CEGUI::Window const *);
+
+            ListboxItem_exposer.def(
+                    "setOwnerWindow"
+                    , setOwnerWindow_function_type(&::CEGUI::ListboxItem::setOwnerWindow)
+                    , (bp::arg("owner"))
+                    , "*!\n\
                 \n\
                     Set the owner window for this ListboxItem.  This is called by all the list box widgets\
                     when\n\
@@ -443,18 +443,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setSelected
-        
-            typedef void ( ::CEGUI::ListboxItem::*setSelected_function_type )( bool ) ;
-            
-            ListboxItem_exposer.def( 
-                "setSelected"
-                , setSelected_function_type( &::CEGUI::ListboxItem::setSelected )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setSelected_function_type)(bool);
+
+            ListboxItem_exposer.def(
+                    "setSelected"
+                    , setSelected_function_type(&::CEGUI::ListboxItem::setSelected)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                 \n\
                     set whether this item is selected.\n\
             \n\
@@ -463,18 +463,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setSelectionBrushImage
-        
-            typedef void ( ::CEGUI::ListboxItem::*setSelectionBrushImage_function_type )( ::CEGUI::Image const * ) ;
-            
-            ListboxItem_exposer.def( 
-                "setSelectionBrushImage"
-                , setSelectionBrushImage_function_type( &::CEGUI::ListboxItem::setSelectionBrushImage )
-                , ( bp::arg("image") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setSelectionBrushImage_function_type)(::CEGUI::Image const *);
+
+            ListboxItem_exposer.def(
+                    "setSelectionBrushImage"
+                    , setSelectionBrushImage_function_type(&::CEGUI::ListboxItem::setSelectionBrushImage)
+                    , (bp::arg("image"))
+                    , "*!\n\
                 \n\
                     Set the selection highlighting brush image.\n\
             \n\
@@ -483,18 +483,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setSelectionBrushImage
-        
-            typedef void ( ::CEGUI::ListboxItem::*setSelectionBrushImage_function_type )( ::CEGUI::String const & ) ;
-            
-            ListboxItem_exposer.def( 
-                "setSelectionBrushImage"
-                , setSelectionBrushImage_function_type( &::CEGUI::ListboxItem::setSelectionBrushImage )
-                , ( bp::arg("name") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setSelectionBrushImage_function_type)(::CEGUI::String const &);
+
+            ListboxItem_exposer.def(
+                    "setSelectionBrushImage"
+                    , setSelectionBrushImage_function_type(&::CEGUI::ListboxItem::setSelectionBrushImage)
+                    , (bp::arg("name"))
+                    , "*!\n\
                 \n\
                     Set the selection highlighting brush image.\n\
             \n\
@@ -503,18 +503,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setSelectionColours
-        
-            typedef void ( ::CEGUI::ListboxItem::*setSelectionColours_function_type )( ::CEGUI::ColourRect const & ) ;
-            
-            ListboxItem_exposer.def( 
-                "setSelectionColours"
-                , setSelectionColours_function_type( &::CEGUI::ListboxItem::setSelectionColours )
-                , ( bp::arg("cols") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setSelectionColours_function_type)(::CEGUI::ColourRect const &);
+
+            ListboxItem_exposer.def(
+                    "setSelectionColours"
+                    , setSelectionColours_function_type(&::CEGUI::ListboxItem::setSelectionColours)
+                    , (bp::arg("cols"))
+                    , "*!\n\
                 \n\
                     Set the colours used for selection highlighting.\n\
             \n\
@@ -523,18 +523,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setSelectionColours
-        
-            typedef void ( ::CEGUI::ListboxItem::*setSelectionColours_function_type )( ::CEGUI::Colour,::CEGUI::Colour,::CEGUI::Colour,::CEGUI::Colour ) ;
-            
-            ListboxItem_exposer.def( 
-                "setSelectionColours"
-                , setSelectionColours_function_type( &::CEGUI::ListboxItem::setSelectionColours )
-                , ( bp::arg("top_left_colour"), bp::arg("top_right_colour"), bp::arg("bottom_left_colour"), bp::arg("bottom_right_colour") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setSelectionColours_function_type)(::CEGUI::Colour, ::CEGUI::Colour, ::CEGUI::Colour, ::CEGUI::Colour);
+
+            ListboxItem_exposer.def(
+                    "setSelectionColours"
+                    , setSelectionColours_function_type(&::CEGUI::ListboxItem::setSelectionColours)
+                    , (bp::arg("top_left_colour"), bp::arg("top_right_colour"), bp::arg("bottom_left_colour"), bp::arg("bottom_right_colour"))
+                    , "*!\n\
                 \n\
                     Set the colours used for selection highlighting.\n\
             \n\
@@ -552,18 +552,18 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setSelectionColours
-        
-            typedef void ( ::CEGUI::ListboxItem::*setSelectionColours_function_type )( ::CEGUI::Colour ) ;
-            
-            ListboxItem_exposer.def( 
-                "setSelectionColours"
-                , setSelectionColours_function_type( &::CEGUI::ListboxItem::setSelectionColours )
-                , ( bp::arg("col") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setSelectionColours_function_type)(::CEGUI::Colour);
+
+            ListboxItem_exposer.def(
+                    "setSelectionColours"
+                    , setSelectionColours_function_type(&::CEGUI::ListboxItem::setSelectionColours)
+                    , (bp::arg("col"))
+                    , "*!\n\
                 \n\
                     Set the colours used for selection highlighting.\n\
             \n\
@@ -572,40 +572,40 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ListboxItem::setText
-        
-            typedef void ( ::CEGUI::ListboxItem::*setText_function_type )( ::CEGUI::String const & ) ;
-            typedef void ( ListboxItem_wrapper::*default_setText_function_type )( ::CEGUI::String const & ) ;
-            
-            ListboxItem_exposer.def( 
-                "setText"
-                , setText_function_type(&::CEGUI::ListboxItem::setText)
-                , default_setText_function_type(&ListboxItem_wrapper::default_setText)
-                , ( bp::arg("text") ) );
-        
+
+            typedef void ( ::CEGUI::ListboxItem::*setText_function_type)(::CEGUI::String const &);
+            typedef void ( ListboxItem_wrapper::*default_setText_function_type)(::CEGUI::String const &);
+
+            ListboxItem_exposer.def(
+                    "setText"
+                    , setText_function_type(&::CEGUI::ListboxItem::setText)
+                    , default_setText_function_type(&ListboxItem_wrapper::default_setText)
+                    , (bp::arg("text")));
+
         }
         { //::CEGUI::ListboxItem::setTooltipText
-        
-            typedef void ( ::CEGUI::ListboxItem::*setTooltipText_function_type )( ::CEGUI::String const & ) ;
-            
-            ListboxItem_exposer.def( 
-                "setTooltipText"
-                , setTooltipText_function_type( &::CEGUI::ListboxItem::setTooltipText )
-                , ( bp::arg("text") ) );
-        
+
+            typedef void ( ::CEGUI::ListboxItem::*setTooltipText_function_type)(::CEGUI::String const &);
+
+            ListboxItem_exposer.def(
+                    "setTooltipText"
+                    , setTooltipText_function_type(&::CEGUI::ListboxItem::setTooltipText)
+                    , (bp::arg("text")));
+
         }
         { //::CEGUI::ListboxItem::setUserData
-        
-            typedef void ( ::CEGUI::ListboxItem::*setUserData_function_type )( void * ) ;
-            
-            ListboxItem_exposer.def( 
-                "setUserData"
-                , setUserData_function_type( &::CEGUI::ListboxItem::setUserData )
-                , ( bp::arg("item_data") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ListboxItem::*setUserData_function_type)(void *);
+
+            ListboxItem_exposer.def(
+                    "setUserData"
+                    , setUserData_function_type(&::CEGUI::ListboxItem::setUserData)
+                    , (bp::arg("item_data"))
+                    , "*!\n\
                 \n\
                     Set the client assigned user data attached to this lis box item.\n\
             \n\
@@ -617,12 +617,12 @@ void register_ListboxItem_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
-        ListboxItem_exposer.def_readonly( "DefaultSelectionColour", CEGUI::ListboxItem::DefaultSelectionColour, "*************************************************************************\n\
+        ListboxItem_exposer.def_readonly("DefaultSelectionColour", CEGUI::ListboxItem::DefaultSelectionColour, "*************************************************************************\n\
             Constants\n\
-        *************************************************************************\n" );
+        *************************************************************************\n");
     }
 
 }

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,8 +32,7 @@
 #include "CEGUI/Logger.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     ////////////////////////////////////////////////////////////////////////////////
     // Static data definitions.
     template<> WidgetLookManager* Singleton<WidgetLookManager>::ms_Singleton = 0;
@@ -41,72 +40,64 @@ namespace CEGUI
     String WidgetLookManager::d_defaultResourceGroup;
     ////////////////////////////////////////////////////////////////////////////////
 
-    WidgetLookManager::WidgetLookManager()
-    {
+    WidgetLookManager::WidgetLookManager() {
 #ifndef PE_NO_LOGGER
         char addr_buff[32];
-        sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
         Logger::getSingleton().logEvent("CEGUI::WidgetLookManager singleton "
-            "created. " + String(addr_buff));
+                "created. " + String(addr_buff));
 #endif //PE_NO_LOGGER
     }
 
-    WidgetLookManager::~ WidgetLookManager()
-    {
+    WidgetLookManager::~WidgetLookManager() {
 #ifndef PE_NO_LOGGER
         char addr_buff[32];
-        sprintf(addr_buff, "(%p)", static_cast<void*>(this));
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
         Logger::getSingleton().logEvent("CEGUI::WidgetLookManager singleton "
-            "destroyed. " + String(addr_buff));
+                "destroyed. " + String(addr_buff));
 #endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
-		Return singleton object
-	  *************************************************************************/
-	  WidgetLookManager&	WidgetLookManager::getSingleton(void)
-	  {
-		  return Singleton<WidgetLookManager>::getSingleton();
-	  }
+                Return singleton object
+     *************************************************************************/
+    WidgetLookManager& WidgetLookManager::getSingleton(void) {
+        return Singleton<WidgetLookManager>::getSingleton();
+    }
 
-	  /*************************************************************************
-		  Return singleton pointer
-	  *************************************************************************/
-	  WidgetLookManager*	WidgetLookManager::getSingletonPtr(void)
-	  {
-		  return Singleton<WidgetLookManager>::getSingletonPtr();
-  	}
+    /*************************************************************************
+            Return singleton pointer
+     *************************************************************************/
+    WidgetLookManager* WidgetLookManager::getSingletonPtr(void) {
+        return Singleton<WidgetLookManager>::getSingletonPtr();
+    }
 
-    void WidgetLookManager::parseLookNFeelSpecificationFromContainer(const RawDataContainer& source)
-    {
+    void WidgetLookManager::parseLookNFeelSpecificationFromContainer(const RawDataContainer& source) {
         // create handler object
         Falagard_xmlHandler handler(this);
 
         // perform parse of XML data
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             System::getSingleton().getXMLParser()->parseXML(
-                handler, source, FalagardSchemaName);
+            handler, source, FalagardSchemaName);
         }
-        CEGUI_CATCH(...)
-        {
+
+        CEGUI_CATCH(...) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecificationFromContainer - loading of look and feel data from raw data container has failed.", Errors);
 #endif //PE_NO_LOGGER
             CEGUI_RETHROW;
         }
     }
-    
-    void WidgetLookManager::parseLookNFeelSpecificationFromFile(const String& filename, const String& resourceGroup)
-    {
+
+    void WidgetLookManager::parseLookNFeelSpecificationFromFile(const String& filename, const String& resourceGroup) {
         // valid filenames are required!
-        if (filename.empty())
-        {
+        if (filename.empty()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "Filename supplied for look & feel file must be valid"));
+                    "Filename supplied for look & feel file must be valid"));
 #endif //PE_NO_THROW_MSGS
         }
 
@@ -114,34 +105,31 @@ namespace CEGUI
         Falagard_xmlHandler handler(this);
 
         // perform parse of XML data
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             System::getSingleton().getXMLParser()->parseXMLFile(
-                handler, filename, FalagardSchemaName,
-                resourceGroup.empty() ? d_defaultResourceGroup : resourceGroup);
+            handler, filename, FalagardSchemaName,
+            resourceGroup.empty() ? d_defaultResourceGroup : resourceGroup);
         }
-        CEGUI_CATCH(...)
-        {
+
+        CEGUI_CATCH(...) {
 #ifndef PE_NO_LOGGER
-            Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecification - loading of look and feel data from file '" + filename +"' has failed.", Errors);
+            Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecification - loading of look and feel data from file '" + filename + "' has failed.", Errors);
 #endif //PE_NO_LOGGER
             CEGUI_RETHROW;
         }
     }
-    
-    void WidgetLookManager::parseLookNFeelSpecificationFromString(const String& source)
-    {
+
+    void WidgetLookManager::parseLookNFeelSpecificationFromString(const String& source) {
         // create handler object
         Falagard_xmlHandler handler(this);
 
         // perform parse of XML data
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             System::getSingleton().getXMLParser()->parseXMLString(
-                handler, source, FalagardSchemaName);
+            handler, source, FalagardSchemaName);
         }
-        CEGUI_CATCH(...)
-        {
+
+        CEGUI_CATCH(...) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::parseLookNFeelSpecification - loading of look and feel data from string has failed.", Errors);
 #endif //PE_NO_LOGGER
@@ -149,79 +137,66 @@ namespace CEGUI
         }
     }
 
-    bool WidgetLookManager::isWidgetLookAvailable(const String& widget) const
-    {
+    bool WidgetLookManager::isWidgetLookAvailable(const String& widget) const {
         return d_widgetLooks.find(widget) != d_widgetLooks.end();
     }
 
-    const WidgetLookFeel& WidgetLookManager::getWidgetLook(const String& widget) const
-    {
+    const WidgetLookFeel& WidgetLookManager::getWidgetLook(const String& widget) const {
         WidgetLookList::const_iterator wlf = d_widgetLooks.find(widget);
 
-        if (wlf != d_widgetLooks.end())
-        {
+        if (wlf != d_widgetLooks.end()) {
             return (*wlf).second;
         }
 
         CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "WidgetLook '" + widget + "' does not exist."));
+                "WidgetLook '" + widget + "' does not exist."));
 #endif //PE_NO_THROW_MSGS
     }
 
-    void WidgetLookManager::eraseWidgetLook(const String& widget)
-    {
+    void WidgetLookManager::eraseWidgetLook(const String& widget) {
         WidgetLookList::iterator wlf = d_widgetLooks.find(widget);
-        if (wlf != d_widgetLooks.end())
-        {
+        if (wlf != d_widgetLooks.end()) {
             d_widgetLooks.erase(wlf);
-        }
-        else
-        {
+        } else {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
-                "WidgetLookManager::eraseWidgetLook - Widget look and feel '" + widget + "' did not exist.");
+                    "WidgetLookManager::eraseWidgetLook - Widget look and feel '" + widget + "' did not exist.");
 #endif //PE_NO_LOGGER
         }
     }
 
-
-    void WidgetLookManager::eraseAllWidgetLooks()
-    {
+    void WidgetLookManager::eraseAllWidgetLooks() {
         d_widgetLooks.clear();
     }
 
-    void WidgetLookManager::addWidgetLook(const WidgetLookFeel& look)
-    {
-        if (isWidgetLookAvailable(look.getName()))
-        {
+    void WidgetLookManager::addWidgetLook(const WidgetLookFeel& look) {
+        if (isWidgetLookAvailable(look.getName())) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
-                "WidgetLookManager::addWidgetLook - Widget look and feel '" + look.getName() + "' already exists.  Replacing previous definition.");
+                    "WidgetLookManager::addWidgetLook - Widget look and feel '" + look.getName() + "' already exists.  Replacing previous definition.");
 #endif //PE_NO_LOGGER
         }
 
         d_widgetLooks[look.getName()] = look;
     }
 
-    void WidgetLookManager::writeWidgetLookToStream(const String& name, OutStream& out_stream) const
-    {
+    void WidgetLookManager::writeWidgetLookToStream(const String& name, OutStream& out_stream) const {
         // start of file
         // output xml header
         XMLSerializer xml(out_stream);
         // output root element
         xml.openTag(Falagard_xmlHandler::FalagardElement);
         xml.attribute(Falagard_xmlHandler::VersionAttribute, Falagard_xmlHandler::NativeVersion);
-        
-        CEGUI_TRY
-        {
+
+        CEGUI_TRY{
             // output the desired widget look data
             getWidgetLook(name).writeXMLToStream(xml);
         }
-        CEGUI_CATCH (UnknownObjectException&)
-        {
+
+        CEGUI_CATCH(UnknownObjectException&) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("WidgetLookManager::writeWidgetLookToStream - Failed to write widget look XML data to stream.", Errors);
 #endif //PE_NO_LOGGER
@@ -231,16 +206,14 @@ namespace CEGUI
         xml.closeTag();
     }
 
-    String WidgetLookManager::getWidgetLookAsString(const String& widgetLookName) const
-    {
+    String WidgetLookManager::getWidgetLookAsString(const String& widgetLookName) const {
         std::ostringstream str;
         writeWidgetLookToStream(widgetLookName, str);
 
-        return String(reinterpret_cast<const encoded_char*>(str.str().c_str()));
+        return String(reinterpret_cast<const encoded_char*> (str.str().c_str()));
     }
 
-    void WidgetLookManager::writeWidgetLookSeriesToStream(const String& prefix, OutStream& out_stream) const
-    {
+    void WidgetLookManager::writeWidgetLookSeriesToStream(const String& prefix, OutStream& out_stream) const {
         // start of file
         // output xml header
         XMLSerializer xml(out_stream);
@@ -248,8 +221,7 @@ namespace CEGUI
         xml.openTag(Falagard_xmlHandler::FalagardElement);
         xml.attribute(Falagard_xmlHandler::VersionAttribute, Falagard_xmlHandler::NativeVersion);
 
-        for (WidgetLookList::const_iterator curr = d_widgetLooks.begin(); curr != d_widgetLooks.end(); ++curr)
-        {
+        for (WidgetLookList::const_iterator curr = d_widgetLooks.begin(); curr != d_widgetLooks.end(); ++curr) {
             if ((*curr).first.compare(0, prefix.length(), prefix) == 0)
                 (*curr).second.writeXMLToStream(xml);
         }
@@ -258,8 +230,7 @@ namespace CEGUI
         xml.closeTag();
     }
 
-    void WidgetLookManager::writeWidgetLookSetToStream(const WidgetLookNameSet& widgetLookNameSet, OutStream& out_stream) const
-    {
+    void WidgetLookManager::writeWidgetLookSetToStream(const WidgetLookNameSet& widgetLookNameSet, OutStream& out_stream) const {
         // start of file
         // output xml header
         XMLSerializer xml(out_stream);
@@ -267,8 +238,7 @@ namespace CEGUI
         xml.openTag(Falagard_xmlHandler::FalagardElement);
         xml.attribute(Falagard_xmlHandler::VersionAttribute, Falagard_xmlHandler::NativeVersion);
 
-        for (WidgetLookNameSet::const_iterator iter = widgetLookNameSet.begin(); iter != widgetLookNameSet.end(); ++iter)
-        {
+        for (WidgetLookNameSet::const_iterator iter = widgetLookNameSet.begin(); iter != widgetLookNameSet.end(); ++iter) {
             const CEGUI::String& currentWidgetLookName = *iter;
 
             const WidgetLookFeel& curWidgetLookFeel = this->getWidgetLook(currentWidgetLookName);
@@ -279,18 +249,16 @@ namespace CEGUI
         xml.closeTag();
     }
 
-    String WidgetLookManager::getWidgetLookSetAsString(const WidgetLookNameSet& widgetLookNameSet) const
-    {
+    String WidgetLookManager::getWidgetLookSetAsString(const WidgetLookNameSet& widgetLookNameSet) const {
         std::ostringstream str;
         writeWidgetLookSetToStream(widgetLookNameSet, str);
 
-        return String(reinterpret_cast<const encoded_char*>(str.str().c_str()));
+        return String(reinterpret_cast<const encoded_char*> (str.str().c_str()));
     }
 
     WidgetLookManager::WidgetLookIterator
-    WidgetLookManager::getWidgetLookIterator() const
-    {
-        return WidgetLookIterator(d_widgetLooks.begin(),d_widgetLooks.end());
+    WidgetLookManager::getWidgetLookIterator() const {
+        return WidgetLookIterator(d_widgetLooks.begin(), d_widgetLooks.end());
     }
 
 

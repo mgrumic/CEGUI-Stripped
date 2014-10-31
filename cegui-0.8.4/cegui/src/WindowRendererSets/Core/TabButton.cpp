@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jul 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,22 +31,19 @@
 #include "CEGUI/widgets/TabControl.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardTabButton::TypeName("Core/TabButton");
 
     FalagardTabButton::FalagardTabButton(const String& type) :
-        WindowRenderer(type, "TabButton")
-    {
+    WindowRenderer(type, "TabButton") {
     }
 
-    void FalagardTabButton::render()
-    {
-        TabButton* w = static_cast<TabButton*>(d_window);
+    void FalagardTabButton::render() {
+        TabButton* w = static_cast<TabButton*> (d_window);
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
 
-        TabControl* tc = w->getParent() ? dynamic_cast<TabControl*>(w->getParent()->getParent()) : 0;
+        TabControl* tc = w->getParent() ? dynamic_cast<TabControl*> (w->getParent()->getParent()) : 0;
         String prefix((tc && tc->getTabPanePosition() == TabControl::Bottom) ? "Bottom" : "Top");
 
         String state;
@@ -63,8 +60,7 @@ namespace CEGUI
         else
             state = "Normal";
 
-        if (!wlf.isStateImageryPresent(prefix + state))
-        {
+        if (!wlf.isStateImageryPresent(prefix + state)) {
             state = "Normal";
             if (!wlf.isStateImageryPresent(prefix + state))
                 prefix = "";

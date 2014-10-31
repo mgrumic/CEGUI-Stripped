@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 6 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,43 +31,42 @@
 #include <vector>
 
 #if defined (_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    FormattedRenderedString implementation that renders the RenderedString with
-    justified formatting.
-*/
-class CEGUIEXPORT JustifiedRenderedString : public FormattedRenderedString
-{
-public:
-    //! Constructor.
-    JustifiedRenderedString(const RenderedString& string);
+namespace CEGUI {
 
-    // implementation of base interface
-    void format(const Window* ref_wnd, const Sizef& area_size);
-    void draw(const Window* ref_wnd, GeometryBuffer& buffer,
-              const Vector2f& position, const ColourRect* mod_colours,
-              const Rectf* clip_rect) const;
-    size_t getFormattedLineCount() const;
-    float getHorizontalExtent(const Window* ref_wnd) const;
-    float getVerticalExtent(const Window* ref_wnd) const;
+    /*!
+    \brief
+        FormattedRenderedString implementation that renders the RenderedString with
+        justified formatting.
+     */
+    class CEGUIEXPORT JustifiedRenderedString : public FormattedRenderedString {
+    public:
+        //! Constructor.
+        JustifiedRenderedString(const RenderedString& string);
 
-protected:
-    //! space extra size for each line to achieve justified formatting.
-    std::vector<float
+        // implementation of base interface
+        void format(const Window* ref_wnd, const Sizef& area_size);
+        void draw(const Window* ref_wnd, GeometryBuffer& buffer,
+                const Vector2f& position, const ColourRect* mod_colours,
+                const Rectf* clip_rect) const;
+        size_t getFormattedLineCount() const;
+        float getHorizontalExtent(const Window* ref_wnd) const;
+        float getVerticalExtent(const Window* ref_wnd) const;
+
+    protected:
+        //! space extra size for each line to achieve justified formatting.
+        std::vector<float
         CEGUI_VECTOR_ALLOC(float)> d_spaceExtras;
-};
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined (_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIJustifiedRenderedString_h_

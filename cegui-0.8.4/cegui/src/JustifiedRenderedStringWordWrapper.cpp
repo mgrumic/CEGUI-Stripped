@@ -32,45 +32,42 @@
 // for Justified formatting so that the last line is handled correctly.
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-template <>
-void RenderedStringWordWrapper<JustifiedRenderedString>::format(
-                                                        const Window* ref_wnd,
-                                                        const Sizef& area_size)
-{
-    deleteFormatters();
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    RenderedString rstring, lstring;
-    rstring = *d_renderedString;
-    float rs_width;
+    template <>
+    void RenderedStringWordWrapper<JustifiedRenderedString>::format(
+            const Window* ref_wnd,
+            const Sizef& area_size) {
+        deleteFormatters();
 
-    FormattedRenderedString* frs;
+        RenderedString rstring, lstring;
+        rstring = *d_renderedString;
+        float rs_width;
 
-    for (size_t line = 0; line < rstring.getLineCount(); ++line)
-    {
-        while ((rs_width = rstring.getPixelSize(ref_wnd, line).d_width) > 0)
-        {
-            // skip line if no wrapping occurs
-            if (rs_width <= area_size.d_width)
-                break;
+        FormattedRenderedString* frs;
 
-            // split rstring at width into lstring and remaining rstring
-            rstring.split(ref_wnd, line, area_size.d_width, lstring);
-            frs = CEGUI_NEW_AO JustifiedRenderedString(*CEGUI_NEW_AO RenderedString(lstring));
-            frs->format(ref_wnd, area_size);
-            d_lines.push_back(frs);
-            line = 0;
+        for (size_t line = 0; line < rstring.getLineCount(); ++line) {
+            while ((rs_width = rstring.getPixelSize(ref_wnd, line).d_width) > 0) {
+                // skip line if no wrapping occurs
+                if (rs_width <= area_size.d_width)
+                    break;
+
+                // split rstring at width into lstring and remaining rstring
+                rstring.split(ref_wnd, line, area_size.d_width, lstring);
+                frs = CEGUI_NEW_AO JustifiedRenderedString(*CEGUI_NEW_AO RenderedString(lstring));
+                frs->format(ref_wnd, area_size);
+                d_lines.push_back(frs);
+                line = 0;
+            }
         }
+
+        // last line (which we do not justify)
+        frs = CEGUI_NEW_AO LeftAlignedRenderedString(*CEGUI_NEW_AO RenderedString(rstring));
+        frs->format(ref_wnd, area_size);
+        d_lines.push_back(frs);
     }
 
-    // last line (which we do not justify)
-    frs = CEGUI_NEW_AO LeftAlignedRenderedString(*CEGUI_NEW_AO RenderedString(rstring));
-    frs->format(ref_wnd, area_size);
-    d_lines.push_back(frs);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-    
 } // End of  CEGUI namespace section

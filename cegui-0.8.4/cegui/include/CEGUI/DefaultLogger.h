@@ -3,7 +3,7 @@
     author:     Andrew Zabolotny
     
     purpose:    Defines interface for the default Logger implementation
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -33,50 +33,49 @@
 #ifndef PE_NO_LOGGER
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4275)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4275)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
-/*!
-\brief
-    Default implementation for the Logger class.
-    If you want to redirect CEGUI logs to some place other than a text file,
-    implement your own Logger implementation and create a object of the
-    Logger type before creating the CEGUI::System singleton.
-*/
-class CEGUIEXPORT DefaultLogger : public Logger
-{
-public:
-    DefaultLogger(void);
-    ~DefaultLogger(void);
+namespace CEGUI {
 
-    // overridden from Logger
-    void logEvent(const String& message, LoggingLevel level = Standard);
-    void setLogFilename(const String& filename, bool append = false);
+    /*!
+    \brief
+        Default implementation for the Logger class.
+        If you want to redirect CEGUI logs to some place other than a text file,
+        implement your own Logger implementation and create a object of the
+        Logger type before creating the CEGUI::System singleton.
+     */
+    class CEGUIEXPORT DefaultLogger : public Logger {
+    public:
+        DefaultLogger(void);
+        ~DefaultLogger(void);
 
-protected:
-    //! Stream used to implement the logger
-    std::ofstream d_ostream;
-    //! Used to build log entry strings. 
-    std::ostringstream d_workstream;
+        // overridden from Logger
+        void logEvent(const String& message, LoggingLevel level = Standard);
+        void setLogFilename(const String& filename, bool append = false);
+
+    protected:
+        //! Stream used to implement the logger
+        std::ofstream d_ostream;
+        //! Used to build log entry strings. 
+        std::ostringstream d_workstream;
 #ifndef PE_NO_LOGGER
-    typedef std::pair<String, LoggingLevel> CacheItem;
-    typedef std::vector<CacheItem
-        CEGUI_VECTOR_ALLOC(CacheItem)> Cache;
-    //! Used to cache log entries before log file is created. 
-    Cache d_cache;
+        typedef std::pair<String, LoggingLevel> CacheItem;
+        typedef std::vector<CacheItem
+        CEGUI_VECTOR_ALLOC(CacheItem) > Cache;
+        //! Used to cache log entries before log file is created. 
+        Cache d_cache;
 #endif //PE_NO_LOGGER
-    //! true while log entries are beign cached (prior to logfile creation)
-    bool d_caching;
-};
+        //! true while log entries are beign cached (prior to logfile creation)
+        bool d_caching;
+    };
 
 }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif //PE_NO_LOGGER

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Sep 17 2005
     author:     Tomas Lindquist Olsen (based on code by Paul D Turner)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,13 +30,13 @@
 #include "CEGUI/WindowRendererSets/Core/Module.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Static class for the FalagardBase module.
@@ -52,16 +52,15 @@ namespace CEGUI
             - WithFrameDisabledBackground - backdrop rendering for disabled state with frame enabled.
             - NoFrameEnabledBackground    - backdrop rendering for enabled state with frame disabled.
             - NoFrameDisabledBackground   - backdrop rendering for disabled state with frame disabled.
-    */
-    class COREWRSET_API FalagardStatic : public WindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardStatic : public WindowRenderer {
     public:
-        static const String TypeName;     //! type name for this widget.
+        static const String TypeName; //! type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardStatic(const String& type);
 
         /*!
@@ -70,8 +69,10 @@ namespace CEGUI
 
         \return
             true if the frame is enabled and will be rendered.  false is the frame is disabled and will not be rendered.
-        */
-        bool    isFrameEnabled(void) const        {return d_frameEnabled;}
+         */
+        bool isFrameEnabled(void) const {
+            return d_frameEnabled;
+        }
 
         /*!
         \brief
@@ -79,8 +80,10 @@ namespace CEGUI
 
         \return
             true if the background is enabled and will be rendered.  false if the background is disabled and will not be rendered.
-        */
-        bool    isBackgroundEnabled(void) const        {return d_backgroundEnabled;}
+         */
+        bool isBackgroundEnabled(void) const {
+            return d_backgroundEnabled;
+        }
 
         /*!
         \brief
@@ -88,8 +91,8 @@ namespace CEGUI
 
         \param setting
             true to enable rendering of a frame.  false to disable rendering of a frame.
-        */
-        void    setFrameEnabled(bool setting);
+         */
+        void setFrameEnabled(bool setting);
 
         /*!
         \brief
@@ -97,21 +100,21 @@ namespace CEGUI
 
         \param setting
             true to enable rendering of the background.  false to disable rendering of the background.
-        */
-        void    setBackgroundEnabled(bool setting);
+         */
+        void setBackgroundEnabled(bool setting);
 
         virtual void render();
 
     protected:
         // implementation data
-        bool d_frameEnabled;        //!< True when the frame is enabled.
-        bool d_backgroundEnabled;   //!< true when the background is enabled.
+        bool d_frameEnabled; //!< True when the frame is enabled.
+        bool d_backgroundEnabled; //!< true when the background is enabled.
     };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalStatic_h_

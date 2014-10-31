@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jul 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,122 +31,113 @@
 #include "CEGUI/widgets/Menubar.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-const String FalagardMenuItem::TypeName("Core/MenuItem");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    const String FalagardMenuItem::TypeName("Core/MenuItem");
 
-//----------------------------------------------------------------------------//
-FalagardMenuItem::FalagardMenuItem(const String& type) :
-    ItemEntryWindowRenderer(type)
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Sizef FalagardMenuItem::getItemPixelSize() const
-{
-    return getContentNamedArea().getArea().getPixelRect(*d_window).getSize();
-}
+    FalagardMenuItem::FalagardMenuItem(const String& type) :
+    ItemEntryWindowRenderer(type) {
+    }
 
-//----------------------------------------------------------------------------//
-const NamedArea& FalagardMenuItem::getContentNamedArea() const
-{
-    const WidgetLookFeel& wlf(getLookNFeel());
+    //----------------------------------------------------------------------------//
+
+    Sizef FalagardMenuItem::getItemPixelSize() const {
+        return getContentNamedArea().getArea().getPixelRect(*d_window).getSize();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const NamedArea& FalagardMenuItem::getContentNamedArea() const {
+        const WidgetLookFeel & wlf(getLookNFeel());
 
 #ifdef PE_NO_POPUP_MENU_H
-    if (static_cast<MenuItem*>(d_window)->getPopupMenu() && !parentIsMenubar() &&
-        wlf.isNamedAreaDefined("HasPopupContentSize"))
-    {
-        return wlf.getNamedArea("HasPopupContentSize");
-    }
-    else
-    {
-        return wlf.getNamedArea("ContentSize");
-    }
+        if (static_cast<MenuItem*> (d_window)->getPopupMenu() && !parentIsMenubar() &&
+                wlf.isNamedAreaDefined("HasPopupContentSize")) {
+            return wlf.getNamedArea("HasPopupContentSize");
+        } else {
+            return wlf.getNamedArea("ContentSize");
+        }
 #else
-	return wlf.getNamedArea("ContentSize");
+        return wlf.getNamedArea("ContentSize");
 #endif
-}
+    }
 
-//----------------------------------------------------------------------------//
-bool FalagardMenuItem::parentIsMenubar() const
-{
-    const Window* const parent = d_window->getParent();
-    return parent && dynamic_cast<const Menubar*>(parent);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void FalagardMenuItem::render()
-{
-    MenuItem* w = (MenuItem*)d_window;
-    // build name of state we're in
-    String stateName(w->isEffectiveDisabled() ? "Disabled" : "Enabled");
+    bool FalagardMenuItem::parentIsMenubar() const {
+        const Window * const parent = d_window->getParent();
+        return parent && dynamic_cast<const Menubar*> (parent);
+    }
 
-    String suffix;
+    //----------------------------------------------------------------------------//
 
-	// only show opened imagery if the menu items popup window is not closing
-	// (otherwise it might look odd)
-    suffix = "Normal";
+    void FalagardMenuItem::render() {
+        MenuItem* w = (MenuItem*) d_window;
+        // build name of state we're in
+        String stateName(w->isEffectiveDisabled() ? "Disabled" : "Enabled");
+
+        String suffix;
+
+        // only show opened imagery if the menu items popup window is not closing
+        // (otherwise it might look odd)
+        suffix = "Normal";
 #ifdef PE_NO_POPUP_MENU_H
-	if (w->isOpened() && !(w->hasAutoPopup() && w->isPopupClosing()))
-        suffix = "PopupOpen";
+        if (w->isOpened() && !(w->hasAutoPopup() && w->isPopupClosing()))
+            suffix = "PopupOpen";
 #endif
 #ifndef PE_NO_MOUSE
-    if (w->isPushed())
-        suffix = w->isHovering() ? "Pushed" : "PushedOff";
-    else if (w->isHovering())
-        suffix = "Hover";
+        if (w->isPushed())
+            suffix = w->isHovering() ? "Pushed" : "PushedOff";
+        else if (w->isHovering())
+            suffix = "Hover";
 #endif //PE_NO_MOUSE
-    
-        
-    const StateImagery* imagery;
-    // get WidgetLookFeel for the assigned look.
-    const WidgetLookFeel& wlf = getLookNFeel();
 
-    // try and get imagery for our current state
-    if (wlf.isStateImageryPresent(stateName + suffix))
-    {
-        
-        imagery = &wlf.getStateImagery(stateName + suffix);
-    }
-    else
-    {
-        imagery = &wlf.getStateImagery(stateName + "Normal");
-    }
 
-    // peform the rendering operation.
-    imagery->render(*w);
+        const StateImagery* imagery;
+        // get WidgetLookFeel for the assigned look.
+        const WidgetLookFeel& wlf = getLookNFeel();
 
-    // only draw popup-open/closed-icon if we have a popup menu, and parent is not a menubar
-    Window* parent_window = w->getParent();
-    bool not_menubar = (!parent_window) ? true : !dynamic_cast<Menubar*>(parent_window);
+        // try and get imagery for our current state
+        if (wlf.isStateImageryPresent(stateName + suffix)) {
 
-#ifdef PE_NO_POPUP_MENU_H
-	if (w->getPopupMenu() && not_menubar)
-    {
-        // get imagery for popup open/closed state
-        imagery = &wlf.getStateImagery(w->isOpened() ? "PopupOpenIcon" : "PopupClosedIcon");
+            imagery = &wlf.getStateImagery(stateName + suffix);
+        } else {
+            imagery = &wlf.getStateImagery(stateName + "Normal");
+        }
+
         // peform the rendering operation.
         imagery->render(*w);
-    }
+
+        // only draw popup-open/closed-icon if we have a popup menu, and parent is not a menubar
+        Window* parent_window = w->getParent();
+        bool not_menubar = (!parent_window) ? true : !dynamic_cast<Menubar*> (parent_window);
+
+#ifdef PE_NO_POPUP_MENU_H
+        if (w->getPopupMenu() && not_menubar) {
+            // get imagery for popup open/closed state
+            imagery = &wlf.getStateImagery(w->isOpened() ? "PopupOpenIcon" : "PopupClosedIcon");
+            // peform the rendering operation.
+            imagery->render(*w);
+        }
 #endif
-}
-
-//----------------------------------------------------------------------------//
-bool FalagardMenuItem::handleFontRenderSizeChange(const Font* const font)
-{
-    if (getContentNamedArea().handleFontRenderSizeChange(*d_window, font))
-    {
-        if (Window* const parent = d_window->getParent())
-            parent->performChildWindowLayout();
-
-        return true;
     }
 
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool FalagardMenuItem::handleFontRenderSizeChange(const Font * const font) {
+        if (getContentNamedArea().handleFontRenderSizeChange(*d_window, font)) {
+            if (Window * const parent = d_window->getParent())
+                parent->performChildWindowLayout();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 }
 

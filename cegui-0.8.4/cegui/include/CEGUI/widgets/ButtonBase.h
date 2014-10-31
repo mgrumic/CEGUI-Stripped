@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	13/4/2004
-	author:		Paul D Turner
+        created:	13/4/2004
+        author:		Paul D Turner
 	
-	purpose:	Interface to base class for ButtonBase widget
-*************************************************************************/
+        purpose:	Interface to base class for ButtonBase widget
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,110 +34,112 @@
 
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-	Base class for all the 'button' type widgets (push button, radio button, check-box, etc)
-*/
-class CEGUIEXPORT ButtonBase : public Window
-{
-public:
-
-#ifndef PE_NO_MOUSE
-	/*************************************************************************
-		Accessor type functions
-	*************************************************************************/
-	/*!
-	\brief
-		return true if user is hovering over this widget (or it's pushed and user is not over it for highlight)
-
-	\return
-		true if the user is hovering or if the button is pushed and the mouse is not over the button.  Otherwise return false.
-	*/
-	bool	isHovering(void) const			{return d_hovering;}
-#endif //PE_NO_MOUSE
-
-
-	/*!
-	\brief
-		Return true if the button widget is in the pushed state.
-
-	\return
-		true if the button-type widget is pushed, false if the widget is not pushed.
-	*/
-	bool	isPushed(void) const			{return d_pushed;}
-
-    /** Internal function to set button's pushed state.  Normally you would
-     * not call this, except perhaps when building compound widgets.
+    /*!
+    \brief
+            Base class for all the 'button' type widgets (push button, radio button, check-box, etc)
      */
-   
-	/*************************************************************************
-		Construction and Destruction
-	*************************************************************************/
-	/*!
-	\brief
-		Constructor for ButtonBase objects
-	*/
-	ButtonBase(const String& type, const String& name);
+    class CEGUIEXPORT ButtonBase : public Window {
+    public:
 
-
-	/*!
-	\brief
-		Destructor for ButtonBase objects
-	*/
-	virtual ~ButtonBase(void);
-
-
-    void setPushedState(const bool pushed);
-protected:
-	/*************************************************************************
-		Overridden event handlers
-	*************************************************************************/
-
-    virtual void	onCaptureLost(WindowEventArgs& e);
 #ifndef PE_NO_MOUSE
-    virtual void	onMouseMove(MouseEventArgs& e);
-	virtual void	onMouseButtonDown(MouseEventArgs& e);
-	virtual void	onMouseButtonUp(MouseEventArgs& e);
-	virtual void	onMouseLeaves(MouseEventArgs& e);
+        /*************************************************************************
+                Accessor type functions
+         *************************************************************************/
+
+        /*!
+        \brief
+                return true if user is hovering over this widget (or it's pushed and user is not over it for highlight)
+
+        \return
+                true if the user is hovering or if the button is pushed and the mouse is not over the button.  Otherwise return false.
+         */
+        bool isHovering(void) const {
+            return d_hovering;
+        }
 #endif //PE_NO_MOUSE
 
-	/*************************************************************************
-		Implementation Functions
-	*************************************************************************/
-	/*!
-	\brief
-		Update the internal state of the widget with the mouse at the given position.
+        /*!
+        \brief
+                Return true if the button widget is in the pushed state.
 
-	\param mouse_pos
-		Point object describing, in screen pixel co-ordinates, the location of the mouse cursor.
+        \return
+                true if the button-type widget is pushed, false if the widget is not pushed.
+         */
+        bool isPushed(void) const {
+            return d_pushed;
+        }
 
-	\return
-		Nothing
-	*/
-	void	updateInternalState(const Vector2f& mouse_pos);
+        /** Internal function to set button's pushed state.  Normally you would
+         * not call this, except perhaps when building compound widgets.
+         */
 
-    bool calculateCurrentHoverState(const Vector2f& mouse_pos);
+        /*************************************************************************
+                Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+                Constructor for ButtonBase objects
+         */
+        ButtonBase(const String& type, const String& name);
 
-	/*************************************************************************
-		Implementation Data
-	*************************************************************************/
-	bool	d_pushed;			//!< true when widget is pushed
-	bool	d_hovering;			//!< true when the button is in 'hover' state and requires the hover rendering.
-};
+
+        /*!
+        \brief
+                Destructor for ButtonBase objects
+         */
+        virtual ~ButtonBase(void);
+
+
+        void setPushedState(const bool pushed);
+    protected:
+        /*************************************************************************
+                Overridden event handlers
+         *************************************************************************/
+
+        virtual void onCaptureLost(WindowEventArgs& e);
+#ifndef PE_NO_MOUSE
+        virtual void onMouseMove(MouseEventArgs& e);
+        virtual void onMouseButtonDown(MouseEventArgs& e);
+        virtual void onMouseButtonUp(MouseEventArgs& e);
+        virtual void onMouseLeaves(MouseEventArgs& e);
+#endif //PE_NO_MOUSE
+
+        /*************************************************************************
+                Implementation Functions
+         *************************************************************************/
+        /*!
+        \brief
+                Update the internal state of the widget with the mouse at the given position.
+
+        \param mouse_pos
+                Point object describing, in screen pixel co-ordinates, the location of the mouse cursor.
+
+        \return
+                Nothing
+         */
+        void updateInternalState(const Vector2f& mouse_pos);
+
+        bool calculateCurrentHoverState(const Vector2f& mouse_pos);
+
+        /*************************************************************************
+                Implementation Data
+         *************************************************************************/
+        bool d_pushed; //!< true when widget is pushed
+        bool d_hovering; //!< true when the button is in 'hover' state and requires the hover rendering.
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIButtonBase_h_

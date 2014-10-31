@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	07/06/2006
-	author:		Olivier Delannoy 
+        created:	07/06/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide DevIL based image loading 
-*************************************************************************/
+        purpose:	This codec provide DevIL based image loading 
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,45 +31,44 @@
 #include "../../ImageCodec.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIDEVILIMAGECODEC_EXPORTS
-#       define CEGUIDEVILIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUIDEVILIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIDEVILIMAGECODEC_EXPORTS
+#define CEGUIDEVILIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUIDEVILIMAGECODEC_API
+#define CEGUIDEVILIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUIDEVILIMAGECODEC_API
 #endif
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4275)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4275)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-  \brief 
-  Image codec based on the DevIL library 
-*/
-class CEGUIDEVILIMAGECODEC_API DevILImageCodec : public ImageCodec 
-{
-public:
-    DevILImageCodec();
-    ~DevILImageCodec();
-    
-    Texture* load(const RawDataContainer& data, Texture* result);
-protected:
+namespace CEGUI {
 
-private:
+    /*!
+      \brief 
+      Image codec based on the DevIL library 
+     */
+    class CEGUIDEVILIMAGECODEC_API DevILImageCodec : public ImageCodec {
+    public:
+        DevILImageCodec();
+        ~DevILImageCodec();
 
-};    
+        Texture* load(const RawDataContainer& data, Texture* result);
+    protected:
+
+    private:
+
+    };
 
 } // End of CEGUI namespace section 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 

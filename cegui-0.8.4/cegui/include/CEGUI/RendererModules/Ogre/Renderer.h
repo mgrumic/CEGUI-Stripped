@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 17 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2013 Paul D Turner & The CEGUI Development Team
  *
@@ -35,380 +35,378 @@
 #include <vector>
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIOGRERENDERER_EXPORTS
-#       define OGRE_GUIRENDERER_API __declspec(dllexport)
-#   else
-#       define OGRE_GUIRENDERER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIOGRERENDERER_EXPORTS
+#define OGRE_GUIRENDERER_API __declspec(dllexport)
 #else
-#   define OGRE_GUIRENDERER_API
+#define OGRE_GUIRENDERER_API __declspec(dllimport)
+#endif
+#else
+#define OGRE_GUIRENDERER_API
 #endif
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace Ogre
-{
-class Root;
-class RenderSystem;
-class RenderTarget;
+namespace Ogre {
+    class Root;
+    class RenderSystem;
+    class RenderTarget;
 #if (CEGUI_OGRE_VERSION < ((1 << 16) | (9 << 8) | 0))
-class TexturePtr;
+    class TexturePtr;
 #else
-template<typename T> class SharedPtr;
-class Texture;
-typedef SharedPtr<Texture> TexturePtr;
+    template<typename T> class SharedPtr;
+    class Texture;
+    typedef SharedPtr<Texture> TexturePtr;
 #endif
-class Matrix4;
+    class Matrix4;
 }
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OgreGeometryBuffer;
-class OgreTexture;
-class OgreResourceProvider;
-class OgreImageCodec;
-class OgreWindowTarget;
-struct OgreRenderer_impl;
+namespace CEGUI {
+    class OgreGeometryBuffer;
+    class OgreTexture;
+    class OgreResourceProvider;
+    class OgreImageCodec;
+    class OgreWindowTarget;
+    struct OgreRenderer_impl;
 
-//! CEGUI::Renderer implementation for the Ogre engine.
-class OGRE_GUIRENDERER_API OgreRenderer : public Renderer
-{
-public:
-    /*!
-    \brief
-        Convenience function that creates all the Ogre specific objects and
-        then initialises the CEGUI system with them.
+    //! CEGUI::Renderer implementation for the Ogre engine.
 
-        The created Renderer will use the default Ogre rendering window as the
-        default output surface.
+    class OGRE_GUIRENDERER_API OgreRenderer : public Renderer {
+    public:
+        /*!
+        \brief
+            Convenience function that creates all the Ogre specific objects and
+            then initialises the CEGUI system with them.
 
-        This will create and initialise the following objects for you:
-        - CEGUI::OgreRenderer
-        - CEGUI::OgreResourceProvider
-        - CEGUI::OgreImageCodec
-        - CEGUI::System
+            The created Renderer will use the default Ogre rendering window as the
+            default output surface.
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
+            This will create and initialise the following objects for you:
+            - CEGUI::OgreRenderer
+            - CEGUI::OgreResourceProvider
+            - CEGUI::OgreImageCodec
+            - CEGUI::System
 
-    \return
-        Reference to the CEGUI::OgreRenderer object that was created.
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
 
-    \note
-        For this to succeed you must have initialised Ogre to auto create the
-        rendering window.  If you have not done this, then you'll be wanting to
-        use the overload that takes an Ogre::RenderTarget as input.
-    */
-    static OgreRenderer& bootstrapSystem(const int abi = CEGUI_VERSION_ABI);
+        \return
+            Reference to the CEGUI::OgreRenderer object that was created.
 
-    /*!
-    \brief
-        Convenience function that creates all the Ogre specific objects and
-        then initialises the CEGUI system with them.
+        \note
+            For this to succeed you must have initialised Ogre to auto create the
+            rendering window.  If you have not done this, then you'll be wanting to
+            use the overload that takes an Ogre::RenderTarget as input.
+         */
+        static OgreRenderer& bootstrapSystem(const int abi = CEGUI_VERSION_ABI);
 
-        The create Renderer will use the specified Ogre::RenderTarget as the
-        default output surface.
+        /*!
+        \brief
+            Convenience function that creates all the Ogre specific objects and
+            then initialises the CEGUI system with them.
 
-        This will create and initialise the following objects for you:
-        - CEGUI::OgreRenderer
-        - CEGUI::OgreResourceProvider
-        - CEGUI::OgreImageCodec
-        - CEGUI::System
+            The create Renderer will use the specified Ogre::RenderTarget as the
+            default output surface.
 
-    \param target
-        Reference to the Ogre::RenderTarget object that the created OgreRenderer
-        will use as the default rendering root.
+            This will create and initialise the following objects for you:
+            - CEGUI::OgreRenderer
+            - CEGUI::OgreResourceProvider
+            - CEGUI::OgreImageCodec
+            - CEGUI::System
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
+        \param target
+            Reference to the Ogre::RenderTarget object that the created OgreRenderer
+            will use as the default rendering root.
 
-    \return
-        Reference to the CEGUI::OgreRenderer object that was created.
-    */
-    static OgreRenderer& bootstrapSystem(Ogre::RenderTarget& target,
-                                         const int abi = CEGUI_VERSION_ABI);
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
 
-    /*!
-    \brief
-        Convenience function to cleanup the CEGUI system and related objects
-        that were created by calling the bootstrapSystem function.
+        \return
+            Reference to the CEGUI::OgreRenderer object that was created.
+         */
+        static OgreRenderer& bootstrapSystem(Ogre::RenderTarget& target,
+                const int abi = CEGUI_VERSION_ABI);
 
-        This function will destroy the following objects for you:
-        - CEGUI::System
-        - CEGUI::OgreImageCodec
-        - CEGUI::OgreResourceProvider
-        - CEGUI::OgreRenderer
+        /*!
+        \brief
+            Convenience function to cleanup the CEGUI system and related objects
+            that were created by calling the bootstrapSystem function.
 
-    \note
-        If you did not initialise CEGUI by calling the bootstrapSystem function,
-        you should \e not call this, but rather delete any objects you created
-        manually.
-    */
-    static void destroySystem();
+            This function will destroy the following objects for you:
+            - CEGUI::System
+            - CEGUI::OgreImageCodec
+            - CEGUI::OgreResourceProvider
+            - CEGUI::OgreRenderer
 
-    /*!
-    \brief
-        Create an OgreRenderer object that uses the default Ogre rendering
-        window as the default output surface.
+        \note
+            If you did not initialise CEGUI by calling the bootstrapSystem function,
+            you should \e not call this, but rather delete any objects you created
+            manually.
+         */
+        static void destroySystem();
 
-    \note
-        For this to succeed you must have initialised Ogre to auto create the
-        rendering window.  If you have not done this, then you'll be wanting to
-        use the overload that takes an Ogre::RenderTarget as input.
-    */
-    static OgreRenderer& create(const int abi = CEGUI_VERSION_ABI);
+        /*!
+        \brief
+            Create an OgreRenderer object that uses the default Ogre rendering
+            window as the default output surface.
 
-    /*!
-    \brief
-        Create an OgreRenderer object that uses the specified Ogre::RenderTarget
-        as the default output surface.
-    */
-    static OgreRenderer& create(Ogre::RenderTarget& target,
-                                const int abi = CEGUI_VERSION_ABI);
+        \note
+            For this to succeed you must have initialised Ogre to auto create the
+            rendering window.  If you have not done this, then you'll be wanting to
+            use the overload that takes an Ogre::RenderTarget as input.
+         */
+        static OgreRenderer& create(const int abi = CEGUI_VERSION_ABI);
 
-    //! destory an OgreRenderer object.
-    static void destroy(OgreRenderer& renderer);
+        /*!
+        \brief
+            Create an OgreRenderer object that uses the specified Ogre::RenderTarget
+            as the default output surface.
+         */
+        static OgreRenderer& create(Ogre::RenderTarget& target,
+                const int abi = CEGUI_VERSION_ABI);
 
-    //! function to create a CEGUI::OgreResourceProvider object
-    static OgreResourceProvider& createOgreResourceProvider();
+        //! destory an OgreRenderer object.
+        static void destroy(OgreRenderer& renderer);
 
-    //! function to destroy a CEGUI::OgreResourceProvider object
-    static void destroyOgreResourceProvider(OgreResourceProvider& rp);
+        //! function to create a CEGUI::OgreResourceProvider object
+        static OgreResourceProvider& createOgreResourceProvider();
 
-    //! function to create a CEGUI::OgreImageCodec object.
-    static OgreImageCodec& createOgreImageCodec();
+        //! function to destroy a CEGUI::OgreResourceProvider object
+        static void destroyOgreResourceProvider(OgreResourceProvider& rp);
 
-    //! function to destroy a CEGUI::OgreImageCodec object.
-    static void destroyOgreImageCodec(OgreImageCodec& ic);
+        //! function to create a CEGUI::OgreImageCodec object.
+        static OgreImageCodec& createOgreImageCodec();
 
-    //! set whether CEGUI rendering will occur
-    void setRenderingEnabled(const bool enabled);
+        //! function to destroy a CEGUI::OgreImageCodec object.
+        static void destroyOgreImageCodec(OgreImageCodec& ic);
 
-    //! return whether CEGUI rendering is enabled.
-    bool isRenderingEnabled() const;
+        //! set whether CEGUI rendering will occur
+        void setRenderingEnabled(const bool enabled);
 
-    /*!
-    \brief
-        Create a CEGUI::Texture that wraps an existing Ogre texture.
+        //! return whether CEGUI rendering is enabled.
+        bool isRenderingEnabled() const;
 
-    \param name
-        The name for tne new texture being created.
+        /*!
+        \brief
+            Create a CEGUI::Texture that wraps an existing Ogre texture.
 
-    \param tex
-        Ogre::TexturePtr for the texture that will be used by the created
-        CEGUI::Texture.
+        \param name
+            The name for tne new texture being created.
 
-    \param take_ownership
-        - true if the created Texture will assume ownership of \a tex and
-        thus destroy \a tex when the Texture is destroyed.
-        - false if ownership of \a tex remains with the client app, and so
-        no attempt will be made to destroy \a tex when the Texture is destroyed.
-    */
-    Texture& createTexture(const String& name, Ogre::TexturePtr& tex,
-                           bool take_ownership = false);
+        \param tex
+            Ogre::TexturePtr for the texture that will be used by the created
+            CEGUI::Texture.
 
-    //! set the render states for the specified BlendMode.
-    void setupRenderingBlendMode(const BlendMode mode,
-                                 const bool force = false);
+        \param take_ownership
+            - true if the created Texture will assume ownership of \a tex and
+            thus destroy \a tex when the Texture is destroyed.
+            - false if ownership of \a tex remains with the client app, and so
+            no attempt will be made to destroy \a tex when the Texture is destroyed.
+         */
+        Texture& createTexture(const String& name, Ogre::TexturePtr& tex,
+                bool take_ownership = false);
 
-    /*!
-    \brief
-        Controls whether rendering done by CEGUI will be wrapped with calls to
-        Ogre::RenderSystem::_beginFrame and Ogre::RenderSystem::_endFrame.
+        //! set the render states for the specified BlendMode.
+        void setupRenderingBlendMode(const BlendMode mode,
+                const bool force = false);
 
-        This defaults to enabled and is required when using the default hook
-        that automatically calls CEGUI::System::renderGUI via a frame listener.
-        If you disable this setting, the automated rendering will also be
-        disabled, which is useful when you wish to perform your own calls to the
-        CEGUI::System::renderGUI function (and is the sole purpose for this
-        setting).
+        /*!
+        \brief
+            Controls whether rendering done by CEGUI will be wrapped with calls to
+            Ogre::RenderSystem::_beginFrame and Ogre::RenderSystem::_endFrame.
 
-    \param enabled
-        - true if _beginFrame and _endFrame should be called.
-        - false if _beginFrame and _endFrame should not be called (also disables
-          default renderGUI call).
-    */
-    void setFrameControlExecutionEnabled(const bool enabled);
+            This defaults to enabled and is required when using the default hook
+            that automatically calls CEGUI::System::renderGUI via a frame listener.
+            If you disable this setting, the automated rendering will also be
+            disabled, which is useful when you wish to perform your own calls to the
+            CEGUI::System::renderGUI function (and is the sole purpose for this
+            setting).
 
-    /*!
-    \brief
-        Returns whether rendering done by CEGUI will be wrapped with calls to
-        Ogre::RenderSystem::_beginFrame and Ogre::RenderSystem::_endFrame.
+        \param enabled
+            - true if _beginFrame and _endFrame should be called.
+            - false if _beginFrame and _endFrame should not be called (also disables
+              default renderGUI call).
+         */
+        void setFrameControlExecutionEnabled(const bool enabled);
 
-        This defaults to enabled and is required when using the default hook
-        that automatically calls CEGUI::System::renderGUI via a frame listener.
-        If you disable this setting, the automated rendering will also be
-        disabled, which is useful when you wish to perform your own calls to the
-        CEGUI::System::renderGUI function (and is the sole purpose for this
-        setting).
+        /*!
+        \brief
+            Returns whether rendering done by CEGUI will be wrapped with calls to
+            Ogre::RenderSystem::_beginFrame and Ogre::RenderSystem::_endFrame.
 
-    \return
-        - true if _beginFrame and _endFrame will be called.
-        - false if _beginFrame and _endFrame will not be called (also means
-          default renderGUI call will not be made).
-    */
-    bool isFrameControlExecutionEnabled() const;
+            This defaults to enabled and is required when using the default hook
+            that automatically calls CEGUI::System::renderGUI via a frame listener.
+            If you disable this setting, the automated rendering will also be
+            disabled, which is useful when you wish to perform your own calls to the
+            CEGUI::System::renderGUI function (and is the sole purpose for this
+            setting).
 
-    /*!
-    \brief
-        Sets all the required render states needed for CEGUI rendering.
+        \return
+            - true if _beginFrame and _endFrame will be called.
+            - false if _beginFrame and _endFrame will not be called (also means
+              default renderGUI call will not be made).
+         */
+        bool isFrameControlExecutionEnabled() const;
 
-        This is a low-level function intended for certain advanced concepts; in
-        general it will not be required to call this function directly, since it
-        is called automatically by the system when rendering is done.
-    */
-    void initialiseRenderStateSettings();
+        /*!
+        \brief
+            Sets all the required render states needed for CEGUI rendering.
 
-    /*!
-    \brief
-        Sets the Ogre::RenderTarget that should be targetted by the default
-        GUIContext.
+            This is a low-level function intended for certain advanced concepts; in
+            general it will not be required to call this function directly, since it
+            is called automatically by the system when rendering is done.
+         */
+        void initialiseRenderStateSettings();
 
-    \param target
-        Reference to the Ogre::RenderTarget object that is to be used as the
-        target for output from the default GUIContext.
-    */
-    void setDefaultRootRenderTarget(Ogre::RenderTarget& target);
+        /*!
+        \brief
+            Sets the Ogre::RenderTarget that should be targetted by the default
+            GUIContext.
 
-    /*!
-    \brief
-        Returns whether the OgreRenderer is currently set to use shaders when
-        doing its rendering operations.
+        \param target
+            Reference to the Ogre::RenderTarget object that is to be used as the
+            target for output from the default GUIContext.
+         */
+        void setDefaultRootRenderTarget(Ogre::RenderTarget& target);
 
-    \return
-        - true if rendering is being done using shaders.
-        - false if rendering is being done using the fixed function pipeline
-    */
-    bool isUsingShaders() const;
+        /*!
+        \brief
+            Returns whether the OgreRenderer is currently set to use shaders when
+            doing its rendering operations.
 
-    /*!
-    \brief
-        Set whether the OgreRenderer shound use shaders when performing its
-        rendering operations.
+        \return
+            - true if rendering is being done using shaders.
+            - false if rendering is being done using the fixed function pipeline
+         */
+        bool isUsingShaders() const;
 
-    \param use_shaders
-        - true if rendering shaders should be used to perform rendering.
-        - false if the fixed function pipeline should be used to perform
-          rendering.
+        /*!
+        \brief
+            Set whether the OgreRenderer shound use shaders when performing its
+            rendering operations.
 
-    \note
-        When compiled against Ogre 1.8 or later, shaders will automatically
-        be enabled if the render sytem does not support the fixed function
-        pipeline (such as with Direct3D 11). If you are compiling against
-        earlier releases of Ogre, you must explicity enable the use of
-        shaders by calling this function - if you are unsure what you'll be
-        compiling against, it is safe to call this function anyway.
-    */
-    void setUsingShaders(const bool use_shaders);
+        \param use_shaders
+            - true if rendering shaders should be used to perform rendering.
+            - false if the fixed function pipeline should be used to perform
+              rendering.
 
-    /*!
-    \brief
-        Perform required operations to bind shaders (or unbind them) depending
-        on whether shader based rendering is currently enabled.
+        \note
+            When compiled against Ogre 1.8 or later, shaders will automatically
+            be enabled if the render sytem does not support the fixed function
+            pipeline (such as with Direct3D 11). If you are compiling against
+            earlier releases of Ogre, you must explicity enable the use of
+            shaders by calling this function - if you are unsure what you'll be
+            compiling against, it is safe to call this function anyway.
+         */
+        void setUsingShaders(const bool use_shaders);
 
-        Normally you would not need to call this function directly, although
-        that might be required if you are using RenderEffect objects that
-        also use shaders.
-    */
-    void bindShaders();
+        /*!
+        \brief
+            Perform required operations to bind shaders (or unbind them) depending
+            on whether shader based rendering is currently enabled.
 
-    /*!
-    \brief
-        Updates the shader constant parameters (i.e. uniforms).
+            Normally you would not need to call this function directly, although
+            that might be required if you are using RenderEffect objects that
+            also use shaders.
+         */
+        void bindShaders();
 
-        You do not normally need to call this function directly. Some may need
-        to call this function if you're doing non-standard or advanced things.
-    */
-    void updateShaderParams() const;
+        /*!
+        \brief
+            Updates the shader constant parameters (i.e. uniforms).
 
-    //! Set the current world matrix to the given matrix.
-    void setWorldMatrix(const Ogre::Matrix4& m);
-    //! Set the current view matrix to the given matrix.
-    void setViewMatrix(const Ogre::Matrix4& m);
-    //! Set the current projection matrix to the given matrix.
-    void setProjectionMatrix(const Ogre::Matrix4& m);
-    //! return a const reference to the current world matrix.
-    const Ogre::Matrix4& getWorldMatrix() const;
-    //! return a const reference to the current view matrix.
-    const Ogre::Matrix4& getViewMatrix() const;
-    //! return a const reference to the current projection matrix.
-    const Ogre::Matrix4& getProjectionMatrix() const;
+            You do not normally need to call this function directly. Some may need
+            to call this function if you're doing non-standard or advanced things.
+         */
+        void updateShaderParams() const;
 
-    /*!
-    \brief
-        Return a const reference to the final transformation matrix that
-        should be used when transforming geometry.
+        //! Set the current world matrix to the given matrix.
+        void setWorldMatrix(const Ogre::Matrix4& m);
+        //! Set the current view matrix to the given matrix.
+        void setViewMatrix(const Ogre::Matrix4& m);
+        //! Set the current projection matrix to the given matrix.
+        void setProjectionMatrix(const Ogre::Matrix4& m);
+        //! return a const reference to the current world matrix.
+        const Ogre::Matrix4& getWorldMatrix() const;
+        //! return a const reference to the current view matrix.
+        const Ogre::Matrix4& getViewMatrix() const;
+        //! return a const reference to the current projection matrix.
+        const Ogre::Matrix4& getProjectionMatrix() const;
 
-    \note
-        The projection used when building this matrix is correctly adjusted
-        according to whether the current Ogre::RenderTarget requires textures
-        to be flipped (i.e it does the right thing for both D3D and OpenGL).
-    */
-    const Ogre::Matrix4& getWorldViewProjMatrix() const;
+        /*!
+        \brief
+            Return a const reference to the final transformation matrix that
+            should be used when transforming geometry.
 
-    // implement CEGUI::Renderer interface
-    RenderTarget& getDefaultRenderTarget();
-    GeometryBuffer& createGeometryBuffer();
-    void destroyGeometryBuffer(const GeometryBuffer& buffer);
-    void destroyAllGeometryBuffers();
-    TextureTarget* createTextureTarget();
-    void destroyTextureTarget(TextureTarget* target);
-    void destroyAllTextureTargets();
-    Texture& createTexture(const String& name);
-    Texture& createTexture(const String& name,
-                           const String& filename,
-                           const String& resourceGroup);
-    Texture& createTexture(const String& name, const Sizef& size);
-    void destroyTexture(Texture& texture);
-    void destroyTexture(const String& name);
-    void destroyAllTextures();
-    Texture& getTexture(const String& name) const;
-    bool isTextureDefined(const String& name) const;
-    void beginRendering();
-    void endRendering();
-    void setDisplaySize(const Sizef& sz);
-    const Sizef& getDisplaySize() const;
-    const Vector2f& getDisplayDPI() const;
-    uint getMaxTextureSize() const;
-    const String& getIdentifierString() const;
+        \note
+            The projection used when building this matrix is correctly adjusted
+            according to whether the current Ogre::RenderTarget requires textures
+            to be flipped (i.e it does the right thing for both D3D and OpenGL).
+         */
+        const Ogre::Matrix4& getWorldViewProjMatrix() const;
 
-protected:
-    //! default constructor.
-    OgreRenderer();
-    //! constructor takin the Ogre::RenderTarget to use as the default root.
-    OgreRenderer(Ogre::RenderTarget& target);
-    //! destructor.
-    virtual ~OgreRenderer();
+        // implement CEGUI::Renderer interface
+        RenderTarget& getDefaultRenderTarget();
+        GeometryBuffer& createGeometryBuffer();
+        void destroyGeometryBuffer(const GeometryBuffer& buffer);
+        void destroyAllGeometryBuffers();
+        TextureTarget* createTextureTarget();
+        void destroyTextureTarget(TextureTarget* target);
+        void destroyAllTextureTargets();
+        Texture& createTexture(const String& name);
+        Texture& createTexture(const String& name,
+                const String& filename,
+                const String& resourceGroup);
+        Texture& createTexture(const String& name, const Sizef& size);
+        void destroyTexture(Texture& texture);
+        void destroyTexture(const String& name);
+        void destroyAllTextures();
+        Texture& getTexture(const String& name) const;
+        bool isTextureDefined(const String& name) const;
+        void beginRendering();
+        void endRendering();
+        void setDisplaySize(const Sizef& sz);
+        const Sizef& getDisplaySize() const;
+        const Vector2f& getDisplayDPI() const;
+        uint getMaxTextureSize() const;
+        const String& getIdentifierString() const;
 
-    //! checks Ogre initialisation.  throws exceptions if an issue is detected.
-    void checkOgreInitialised();
-    //! helper to throw exception if name is already used.
-    void throwIfNameExists(const String& name) const;
-    //! helper to safely log the creation of a named texture
-    static void logTextureCreation(const String& name);
-    //! helper to safely log the destruction of a named texture
-    static void logTextureDestruction(const String& name);
+    protected:
+        //! default constructor.
+        OgreRenderer();
+        //! constructor takin the Ogre::RenderTarget to use as the default root.
+        OgreRenderer(Ogre::RenderTarget& target);
+        //! destructor.
+        virtual ~OgreRenderer();
 
-    //! common parts of constructor
-    void constructor_impl(Ogre::RenderTarget& target);
-    //! helper that creates and sets up shaders
-    void initialiseShaders();
-    //! helper to clean up shaders
-    void cleanupShaders();
+        //! checks Ogre initialisation.  throws exceptions if an issue is detected.
+        void checkOgreInitialised();
+        //! helper to throw exception if name is already used.
+        void throwIfNameExists(const String& name) const;
+        //! helper to safely log the creation of a named texture
+        static void logTextureCreation(const String& name);
+        //! helper to safely log the destruction of a named texture
+        static void logTextureDestruction(const String& name);
 
-    //! Pointer to the hidden implementation data
-    OgreRenderer_impl* d_pimpl;
-};
+        //! common parts of constructor
+        void constructor_impl(Ogre::RenderTarget& target);
+        //! helper that creates and sets up shaders
+        void initialiseShaders();
+        //! helper to clean up shaders
+        void cleanupShaders();
+
+        //! Pointer to the hidden implementation data
+        OgreRenderer_impl* d_pimpl;
+    };
 
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIOgreRenderer_h_

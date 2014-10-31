@@ -8,116 +8,116 @@ namespace bp = boost::python;
 
 struct ConstBaseIterator_less__std_scope_vector_less__CEGUI_scope_FrameComponent__greater__comma__CEGUI_scope_FrameComponent__greater__wrapper : CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >, bp::wrapper< CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > > {
 
-    ConstBaseIterator_less__std_scope_vector_less__CEGUI_scope_FrameComponent__greater__comma__CEGUI_scope_FrameComponent__greater__wrapper( )
-    : CEGUI::ConstBaseIterator<std::vector<CEGUI::FrameComponent, std::allocator<CEGUI::FrameComponent> >, CEGUI::FrameComponent>( )
-      , bp::wrapper< CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > >(){
+    ConstBaseIterator_less__std_scope_vector_less__CEGUI_scope_FrameComponent__greater__comma__CEGUI_scope_FrameComponent__greater__wrapper()
+    : CEGUI::ConstBaseIterator<std::vector<CEGUI::FrameComponent, std::allocator<CEGUI::FrameComponent> >, CEGUI::FrameComponent>()
+    , bp::wrapper< CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > >() {
         // null constructor
-    
+
     }
 
-    virtual ::CEGUI::FrameComponent getCurrentValue(  ) const {
-        bp::override func_getCurrentValue = this->get_override( "getCurrentValue" );
-        return func_getCurrentValue(  );
+    virtual ::CEGUI::FrameComponent getCurrentValue() const {
+        bp::override func_getCurrentValue = this->get_override("getCurrentValue");
+        return func_getCurrentValue();
     }
 
 };
 
-void register_ConstBaseIterator_937e880515ad590c17d4b2b82a347310_class(){
+void register_ConstBaseIterator_937e880515ad590c17d4b2b82a347310_class() {
 
     { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >
         typedef bp::class_< ConstBaseIterator_less__std_scope_vector_less__CEGUI_scope_FrameComponent__greater__comma__CEGUI_scope_FrameComponent__greater__wrapper, boost::noncopyable > ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer_t;
-        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer_t ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer = ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer_t( "ConstBaseIterator_937e880515ad590c17d4b2b82a347310", bp::no_init );
-        bp::scope ConstBaseIterator_937e880515ad590c17d4b2b82a347310_scope( ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer );
-        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( bp::init< >("*************************************************************************\n\
+        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer_t ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer = ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer_t("ConstBaseIterator_937e880515ad590c17d4b2b82a347310", bp::no_init);
+        bp::scope ConstBaseIterator_937e880515ad590c17d4b2b82a347310_scope(ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer);
+        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(bp::init< >("*************************************************************************\n\
            No default construction available\n\
-        *************************************************************************\n") );
+        *************************************************************************\n"));
         { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::getCurrentValue
-        
+
             typedef CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > exported_class_t;
-            typedef ::CEGUI::FrameComponent ( exported_class_t::*getCurrentValue_function_type )(  ) const;
-            
-            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( 
-                "getCurrentValue"
-                , bp::pure_virtual( getCurrentValue_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::getCurrentValue) )
-                , "*!\n\
+            typedef ::CEGUI::FrameComponent(exported_class_t::*getCurrentValue_function_type)() const;
+
+            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(
+                    "getCurrentValue"
+                    , bp::pure_virtual(getCurrentValue_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::getCurrentValue))
+                    , "*!\n\
             \n\
                Return the value for the item at the current iterator position.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::isAtEnd
-        
+
             typedef CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > exported_class_t;
-            typedef bool ( exported_class_t::*isAtEnd_function_type )(  ) const;
-            
-            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( 
-                "isAtEnd"
-                , isAtEnd_function_type( &::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::isAtEnd )
-                , "*!\n\
+            typedef bool ( exported_class_t::*isAtEnd_function_type)() const;
+
+            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(
+                    "isAtEnd"
+                    , isAtEnd_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::isAtEnd)
+                    , "*!\n\
             \n\
                Return whether the current iterator position is at the end of the iterators range.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::isAtStart
-        
+
             typedef CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > exported_class_t;
-            typedef bool ( exported_class_t::*isAtStart_function_type )(  ) const;
-            
-            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( 
-                "isAtStart"
-                , isAtStart_function_type( &::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::isAtStart )
-                , "*!\n\
+            typedef bool ( exported_class_t::*isAtStart_function_type)() const;
+
+            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(
+                    "isAtStart"
+                    , isAtStart_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::isAtStart)
+                    , "*!\n\
             \n\
                Return whether the current iterator position is at the start of the iterators range.\n\
-            *\n" );
-        
+            *\n");
+
         }
-        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( bp::self != bp::self );
+        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(bp::self != bp::self);
         { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::operator=
-        
+
             typedef CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > exported_class_t;
-            typedef ::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > & ( exported_class_t::*assign_function_type )( ::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > const & ) ;
-            
-            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( 
-                "assign"
-                , assign_function_type( &::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::operator= )
-                , ( bp::arg("rhs") )
-                , bp::return_self< >()
-                , "*!\n\
+            typedef ::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > & (exported_class_t::*assign_function_type)(::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > const &);
+
+            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(
+                    "assign"
+                    , assign_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::operator=)
+                    , (bp::arg("rhs"))
+                    , bp::return_self< >()
+                    , "*!\n\
             \n\
                ConstBaseIterator assignment operator\n\
-            *\n" );
-        
+            *\n");
+
         }
-        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( bp::self == bp::self );
+        ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(bp::self == bp::self);
         { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::toEnd
-        
+
             typedef CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > exported_class_t;
-            typedef void ( exported_class_t::*toEnd_function_type )(  ) ;
-            
-            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( 
-                "toEnd"
-                , toEnd_function_type( &::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::toEnd )
-                , "*!\n\
+            typedef void ( exported_class_t::*toEnd_function_type)();
+
+            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(
+                    "toEnd"
+                    , toEnd_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::toEnd)
+                    , "*!\n\
             \n\
                Set the iterator current position to the end position.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::toStart
-        
+
             typedef CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent > exported_class_t;
-            typedef void ( exported_class_t::*toStart_function_type )(  ) ;
-            
-            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def( 
-                "toStart"
-                , toStart_function_type( &::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::toStart )
-                , "*!\n\
+            typedef void ( exported_class_t::*toStart_function_type)();
+
+            ConstBaseIterator_937e880515ad590c17d4b2b82a347310_exposer.def(
+                    "toStart"
+                    , toStart_function_type(&::CEGUI::ConstBaseIterator< std::vector< CEGUI::FrameComponent >, CEGUI::FrameComponent >::toStart)
+                    , "*!\n\
             \n\
                Set the iterator current position to the start position.\n\
-            *\n" );
-        
+            *\n");
+
         }
     }
 

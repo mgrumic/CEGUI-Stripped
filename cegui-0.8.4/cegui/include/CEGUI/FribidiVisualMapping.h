@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 5 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,17 +30,16 @@
 #include "CEGUI/BidiVisualMapping.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! fribidi based implementation of BidiVisualMapping.
-class FribidiVisualMapping : public BidiVisualMapping
-{
-public:
-    // implement required interface.
-    BidiCharType getBidiCharType(const utf32 char_to_check) const;
-    bool reorderFromLogicalToVisual(const String& logical, String& visual,
-                                    StrIndexList& l2v, StrIndexList& v2l) const;
-};
+namespace CEGUI {
+    //! fribidi based implementation of BidiVisualMapping.
+
+    class FribidiVisualMapping : public BidiVisualMapping {
+    public:
+        // implement required interface.
+        BidiCharType getBidiCharType(const utf32 char_to_check) const;
+        bool reorderFromLogicalToVisual(const String& logical, String& visual,
+                StrIndexList& l2v, StrIndexList& v2l) const;
+    };
 
 } // End of  CEGUI namespace section
 

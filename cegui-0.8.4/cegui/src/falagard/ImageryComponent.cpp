@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -38,74 +38,63 @@
 // void	draw(const Rect& dest_rect, float z, const Rect& clip_rect,const ColourRect& colours);
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-    ImageryComponent::ImageryComponent() :
-        d_image(0),
-        d_vertFormatting(VF_TOP_ALIGNED),
-        d_horzFormatting(HF_LEFT_ALIGNED)
-    {}
+namespace CEGUI {
 
-    const Image* ImageryComponent::getImage() const
-    {
+    ImageryComponent::ImageryComponent() :
+    d_image(0),
+    d_vertFormatting(VF_TOP_ALIGNED),
+    d_horzFormatting(HF_LEFT_ALIGNED) {
+    }
+
+    const Image* ImageryComponent::getImage() const {
         return d_image;
     }
 
-    void ImageryComponent::setImage(const Image* image)
-    {
+    void ImageryComponent::setImage(const Image* image) {
         d_image = image;
     }
 
-    void ImageryComponent::setImage(const String& name)
-    {
-        CEGUI_TRY
-        {
+    void ImageryComponent::setImage(const String& name) {
+        CEGUI_TRY{
             d_image = &ImageManager::getSingleton().get(name);
         }
-        CEGUI_CATCH (UnknownObjectException&)
-        {
+
+        CEGUI_CATCH(UnknownObjectException&) {
             d_image = 0;
         }
     }
 
-    VerticalFormatting ImageryComponent::getVerticalFormatting(const Window& wnd) const
-    {
+    VerticalFormatting ImageryComponent::getVerticalFormatting(const Window& wnd) const {
         return d_vertFormatting.get(wnd);
     }
 
-    void ImageryComponent::setVerticalFormatting(VerticalFormatting fmt)
-    {
+    void ImageryComponent::setVerticalFormatting(VerticalFormatting fmt) {
         d_vertFormatting.set(fmt);
     }
 
-    HorizontalFormatting ImageryComponent::getHorizontalFormatting(const Window& wnd) const
-    {
+    HorizontalFormatting ImageryComponent::getHorizontalFormatting(const Window& wnd) const {
         return d_horzFormatting.get(wnd);
     }
 
-    void ImageryComponent::setHorizontalFormatting(HorizontalFormatting fmt)
-    {
+    void ImageryComponent::setHorizontalFormatting(HorizontalFormatting fmt) {
         d_horzFormatting.set(fmt);
     }
-    
+
     void ImageryComponent::setHorizontalFormattingPropertySource(
-                                                const String& property_name)
-    {
+            const String& property_name) {
         d_horzFormatting.setPropertySource(property_name);
     }
 
     void ImageryComponent::setVerticalFormattingPropertySource(
-                                                const String& property_name)
-    {
+            const String& property_name) {
         d_vertFormatting.setPropertySource(property_name);
     }
 
-    void ImageryComponent::render_impl(Window& srcWindow, Rectf& destRect, const CEGUI::ColourRect* modColours, const Rectf* clipper, bool /*clipToDisplay*/) const
-    {
+    void ImageryComponent::render_impl(Window& srcWindow, Rectf& destRect, const CEGUI::ColourRect* modColours, const Rectf* clipper, bool /*clipToDisplay*/) const {
         // get final image to use.
         const Image* img = isImageFetchedFromProperty() ?
-            srcWindow.getProperty<Image*>(d_imagePropertyName) :
-            d_image;
+                srcWindow.getProperty<Image*>(d_imagePropertyName) :
+                d_image;
 
         // do not draw anything if image is not set.
         if (!img)
@@ -124,8 +113,7 @@ namespace CEGUI
         initColoursRect(srcWindow, modColours, finalColours);
 
         // calculate initial x co-ordinate and horizontal tile count according to formatting options
-        switch (horzFormatting)
-        {
+        switch (horzFormatting) {
             case HF_STRETCHED:
                 imgSz.d_width = destRect.getWidth();
                 xpos = destRect.left();
@@ -134,8 +122,8 @@ namespace CEGUI
 
             case HF_TILED:
                 xpos = destRect.left();
-                horzTiles = std::abs(static_cast<int>(
-                    (destRect.getWidth() + (imgSz.d_width - 1)) / imgSz.d_width));
+                horzTiles = std::abs(static_cast<int> (
+                        (destRect.getWidth() + (imgSz.d_width - 1)) / imgSz.d_width));
                 break;
 
             case HF_LEFT_ALIGNED:
@@ -156,15 +144,14 @@ namespace CEGUI
             default:
                 CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                        ""));
 #else
-                    "An unknown HorizontalFormatting value was specified."));
+                        "An unknown HorizontalFormatting value was specified."));
 #endif //PE_NO_THROW_MSGS
         }
 
         // calculate initial y co-ordinate and vertical tile count according to formatting options
-        switch (vertFormatting)
-        {
+        switch (vertFormatting) {
             case VF_STRETCHED:
                 imgSz.d_height = destRect.getHeight();
                 ypos = destRect.top();
@@ -173,8 +160,8 @@ namespace CEGUI
 
             case VF_TILED:
                 ypos = destRect.top();
-                vertTiles = std::abs(static_cast<int>(
-                    (destRect.getHeight() + (imgSz.d_height - 1)) / imgSz.d_height));
+                vertTiles = std::abs(static_cast<int> (
+                        (destRect.getHeight() + (imgSz.d_height - 1)) / imgSz.d_height));
                 break;
 
             case VF_TOP_ALIGNED:
@@ -195,9 +182,9 @@ namespace CEGUI
             default:
                 CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                        ""));
 #else
-                    "An unknown VerticalFormatting value was specified."));
+                        "An unknown VerticalFormatting value was specified."));
 #endif //PE_NO_THROW_MSGS
         }
 
@@ -208,23 +195,18 @@ namespace CEGUI
         finalRect.top(ypos);
         finalRect.bottom(ypos + imgSz.d_height);
 
-        for (uint row = 0; row < vertTiles; ++row)
-        {
+        for (uint row = 0; row < vertTiles; ++row) {
             finalRect.left(xpos);
             finalRect.right(xpos + imgSz.d_width);
 
-            for (uint col = 0; col < horzTiles; ++col)
-            {
+            for (uint col = 0; col < horzTiles; ++col) {
                 // use custom clipping for right and bottom edges when tiling the imagery
                 if (((vertFormatting == VF_TILED) && row == vertTiles - 1) ||
-                    ((horzFormatting == HF_TILED) && col == horzTiles - 1))
-                {
+                        ((horzFormatting == HF_TILED) && col == horzTiles - 1)) {
                     finalClipper = clipper ? clipper->getIntersection(destRect) : destRect;
                     clippingRect = &finalClipper;
-                }
-                // not tiliing, or not on far edges, just used passed in clipper (if any).
-                else
-                {
+                }                    // not tiliing, or not on far edges, just used passed in clipper (if any).
+                else {
                     clippingRect = clipper;
                 }
 
@@ -240,8 +222,7 @@ namespace CEGUI
         }
     }
 
-    void ImageryComponent::writeXMLToStream(XMLSerializer& xml_stream) const
-    {
+    void ImageryComponent::writeXMLToStream(XMLSerializer& xml_stream) const {
         // opening tag
         xml_stream.openTag(Falagard_xmlHandler::ImageryComponentElement);
         // write out area
@@ -251,11 +232,11 @@ namespace CEGUI
         if (isImageFetchedFromProperty())
             xml_stream.openTag(Falagard_xmlHandler::ImagePropertyElement)
             .attribute(Falagard_xmlHandler::NameAttribute, d_imagePropertyName)
-                .closeTag();
+            .closeTag();
         else
             xml_stream.openTag(Falagard_xmlHandler::ImageElement)
-                .attribute(Falagard_xmlHandler::NameAttribute, d_image->getName())
-                .closeTag();
+            .attribute(Falagard_xmlHandler::NameAttribute, d_image->getName())
+            .closeTag();
 
         // get base class to write colours
         writeColoursXML(xml_stream);
@@ -267,18 +248,15 @@ namespace CEGUI
         xml_stream.closeTag();
     }
 
-    bool ImageryComponent::isImageFetchedFromProperty() const
-    {
+    bool ImageryComponent::isImageFetchedFromProperty() const {
         return !d_imagePropertyName.empty();
     }
 
-    const String& ImageryComponent::getImagePropertySource() const
-    {
+    const String& ImageryComponent::getImagePropertySource() const {
         return d_imagePropertyName;
     }
 
-    void ImageryComponent::setImagePropertySource(const String& property)
-    {
+    void ImageryComponent::setImagePropertySource(const String& property) {
         d_imagePropertyName = property;
     }
 

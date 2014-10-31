@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Aug 18 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,105 +30,99 @@
 #include "CEGUI/Size.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-IrrlichtImageCodec::IrrlichtImageCodec(irr::video::IVideoDriver& driver) :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    IrrlichtImageCodec::IrrlichtImageCodec(irr::video::IVideoDriver& driver) :
     ImageCodec("IrrlichtImageCodec - "
-               "Integrated ImageCodec using the Irrlicht engine."),
-    d_driver(driver)
-{
-}
+    "Integrated ImageCodec using the Irrlicht engine."),
+    d_driver(driver) {
+    }
 
-//----------------------------------------------------------------------------//
-Texture* IrrlichtImageCodec::load(const RawDataContainer& data, Texture* result)
-{
-    using namespace irr;
+    //----------------------------------------------------------------------------//
 
-    // wrap data in a IrrlichtMemoryFile so Irrlicht can try to 'load' it.
-    IrrlichtMemoryFile imf("IrrlichtImageCodec::load",
-                           data.getDataPtr(),
-                           data.getSize());
+    Texture* IrrlichtImageCodec::load(const RawDataContainer& data, Texture* result) {
+        using namespace irr;
 
-    // get irrlicht to parse the file data
-    video::IImage* image = d_driver.createImageFromFile(&imf);
+        // wrap data in a IrrlichtMemoryFile so Irrlicht can try to 'load' it.
+        IrrlichtMemoryFile imf("IrrlichtImageCodec::load",
+                data.getDataPtr(),
+                data.getSize());
 
-    if (!image)
-        CEGUI_THROW(FileIOException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-            "Irrlicht failed to create irr::video::IImage from file data."));
-#endif //PE_NO_THROW_MSGS
+        // get irrlicht to parse the file data
+        video::IImage* image = d_driver.createImageFromFile(&imf);
 
-    // get format of image
-    Texture::PixelFormat format;
-    int components;
-    switch (image->getColorFormat())
-    {
-        case video::ECF_A8R8G8B8:
-            format = Texture::PF_RGBA;
-            components = 4;
-            break;
-
-        case video::ECF_R8G8B8:
-            format = Texture::PF_RGB;
-            components = 3;
-            break;
-
-        default:
-            image->drop();
+        if (!image)
             CEGUI_THROW(FileIOException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-                "File data was of an unsupported format."));
+                "Irrlicht failed to create irr::video::IImage from file data."));
 #endif //PE_NO_THROW_MSGS
-    }
 
-    const core::dimension2d<s32> sz(image->getDimension());
-    uchar* dat = static_cast<uchar*>(image->lock());
-    const uchar* const image_data = dat;
+        // get format of image
+        Texture::PixelFormat format;
+        int components;
+        switch (image->getColorFormat()) {
+            case video::ECF_A8R8G8B8:
+                format = Texture::PF_RGBA;
+                components = 4;
+                break;
 
-    // ONLY for RGBA, switch R and B components
-    // (we should probably check the R and B masks and decide based on those)
-    if (format == Texture::PF_RGBA)
-    {
-        for (uint j = 0; j < sz.Height; ++j)
-        {
-            for (uint i = 0; i < sz.Width; ++i)
-            {
-                const uchar tmp = dat[i * components + 0];
-                dat[i * components + 0] = dat[i * components + 2];
-                dat[i * components + 2] = tmp;
-            }
+            case video::ECF_R8G8B8:
+                format = Texture::PF_RGB;
+                components = 3;
+                break;
 
-            dat += image->getPitch();
+            default:
+                image->drop();
+                CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+                        ""));
+#else
+                        "File data was of an unsupported format."));
+#endif //PE_NO_THROW_MSGS
         }
-    }
 
-    // load the resulting image into the texture
-    CEGUI_TRY
-    {
-        result->loadFromMemory(image_data, Sizef(static_cast<float>(sz.Width),
-                                                  static_cast<float>(sz.Height)),
-                               format);
-    }
-    CEGUI_CATCH (...)
-    {
-        // cleanup when there's an exception
+        const core::dimension2d<s32> sz(image->getDimension());
+        uchar* dat = static_cast<uchar*> (image->lock());
+        const uchar * const image_data = dat;
+
+        // ONLY for RGBA, switch R and B components
+        // (we should probably check the R and B masks and decide based on those)
+        if (format == Texture::PF_RGBA) {
+            for (uint j = 0; j < sz.Height; ++j) {
+                for (uint i = 0; i < sz.Width; ++i) {
+                    const uchar tmp = dat[i * components + 0];
+                    dat[i * components + 0] = dat[i * components + 2];
+                    dat[i * components + 2] = tmp;
+                }
+
+                dat += image->getPitch();
+            }
+        }
+
+        // load the resulting image into the texture
+        CEGUI_TRY{
+            result->loadFromMemory(image_data, Sizef(static_cast<float> (sz.Width),
+            static_cast<float> (sz.Height)),
+            format);
+        }
+
+        CEGUI_CATCH(...) {
+            // cleanup when there's an exception
+            image->unlock();
+            image->drop();
+            CEGUI_RETHROW;
+        }
+
+        // cleanup.
         image->unlock();
         image->drop();
-        CEGUI_RETHROW;
+
+        return result;
     }
 
-    // cleanup.
-    image->unlock();
-    image->drop();
-
-    return result;
-}
-
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

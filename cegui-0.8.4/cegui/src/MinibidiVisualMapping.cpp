@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 5 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -25,7 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #ifdef HAVE_CONFIG_H
-#   include "config.h"
+#include "config.h"
 #endif
 
 #include "CEGUI/Config.h"
@@ -39,49 +39,47 @@
 #include "minibidi.cpp"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-BidiCharType MinibidiVisualMapping::getBidiCharType(const utf32 char_to_check) const
-{
-    switch (getType(char_to_check))
-    {
-    case R:
-        return BCT_RIGHT_TO_LEFT;
-        break;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    case L:
-        return BCT_LEFT_TO_RIGHT;
-        break;
+    BidiCharType MinibidiVisualMapping::getBidiCharType(const utf32 char_to_check) const {
+        switch (getType(char_to_check)) {
+            case R:
+                return BCT_RIGHT_TO_LEFT;
+                break;
 
-    default:
-        return BCT_NEUTRAL;
-        break;
+            case L:
+                return BCT_LEFT_TO_RIGHT;
+                break;
+
+            default:
+                return BCT_NEUTRAL;
+                break;
+        }
     }
-}
 
-//----------------------------------------------------------------------------//
-bool MinibidiVisualMapping::reorderFromLogicalToVisual(const String& logical,
-                                                       String& visual,
-                                                       StrIndexList& l2v,
-                                                       StrIndexList& v2l) const
-{
-    visual = logical;
+    //----------------------------------------------------------------------------//
 
-    if (logical.length() <= 1)
+    bool MinibidiVisualMapping::reorderFromLogicalToVisual(const String& logical,
+            String& visual,
+            StrIndexList& l2v,
+            StrIndexList& v2l) const {
+        visual = logical;
+
+        if (logical.length() <= 1)
+            return true;
+
+        l2v.resize(logical.length());
+        v2l.resize(logical.length());
+
+        doBidi(visual.ptr(), static_cast<int> (logical.length()),
+                true, false,
+                &v2l[0], &l2v[0]);
+
         return true;
+    }
 
-    l2v.resize(logical.length());
-    v2l.resize(logical.length());
-
-    doBidi(visual.ptr(), static_cast<int>(logical.length()),
-           true, false,
-           &v2l[0], &l2v[0]);
-
-    return true;
-}
-
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Jul 7 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,42 +32,34 @@
 #include "CEGUI/CoordConverter.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardScrollablePane::TypeName("Core/ScrollablePane");
 
-
     FalagardScrollablePane::FalagardScrollablePane(const String& type) :
-        ScrollablePaneWindowRenderer(type),
-        d_widgetLookAssigned(false)
-    {
+    ScrollablePaneWindowRenderer(type),
+    d_widgetLookAssigned(false) {
     }
 
-    Rectf FalagardScrollablePane::getViewableArea(void) const
-    {
-        ScrollablePane* w = (ScrollablePane*)d_window;
+    Rectf FalagardScrollablePane::getViewableArea(void) const {
+        ScrollablePane* w = (ScrollablePane*) d_window;
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         bool v_visible = w->getVertScrollbar()->isVisible();
         bool h_visible = w->getHorzScrollbar()->isVisible();
 
         // if either of the scrollbars are visible, we might want to use another text rendering area
-        if (v_visible || h_visible)
-        {
+        if (v_visible || h_visible) {
             String area_name("ViewableArea");
 
-            if (h_visible)
-            {
+            if (h_visible) {
                 area_name += "H";
             }
-            if (v_visible)
-            {
+            if (v_visible) {
                 area_name += "V";
             }
             area_name += "Scroll";
 
-            if (wlf.isNamedAreaDefined(area_name))
-            {
+            if (wlf.isNamedAreaDefined(area_name)) {
                 return wlf.getNamedArea(area_name).getArea().getPixelRect(*w);
             }
         }
@@ -76,8 +68,7 @@ namespace CEGUI
         return wlf.getNamedArea("ViewableArea").getArea().getPixelRect(*w);
     }
 
-    void FalagardScrollablePane::render()
-    {
+    void FalagardScrollablePane::render() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.
@@ -88,18 +79,15 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    void FalagardScrollablePane::onLookNFeelAssigned()
-    {
+    void FalagardScrollablePane::onLookNFeelAssigned() {
         d_widgetLookAssigned = true;
     }
 
-    void FalagardScrollablePane::onLookNFeelUnassigned()
-    {
+    void FalagardScrollablePane::onLookNFeelUnassigned() {
         d_widgetLookAssigned = false;
     }
 
-    Rectf FalagardScrollablePane::getUnclippedInnerRect() const
-    {
+    Rectf FalagardScrollablePane::getUnclippedInnerRect() const {
         if (!d_widgetLookAssigned)
             return d_window->getUnclippedOuterRect().get();
 

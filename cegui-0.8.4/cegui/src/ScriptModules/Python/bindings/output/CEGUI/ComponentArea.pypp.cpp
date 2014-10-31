@@ -6,39 +6,39 @@
 
 namespace bp = boost::python;
 
-void register_ComponentArea_class(){
+void register_ComponentArea_class() {
 
     { //::CEGUI::ComponentArea
         typedef bp::class_< CEGUI::ComponentArea > ComponentArea_exposer_t;
-        ComponentArea_exposer_t ComponentArea_exposer = ComponentArea_exposer_t( "ComponentArea", bp::init< >() );
-        bp::scope ComponentArea_scope( ComponentArea_exposer );
+        ComponentArea_exposer_t ComponentArea_exposer = ComponentArea_exposer_t("ComponentArea", bp::init< >());
+        bp::scope ComponentArea_scope(ComponentArea_exposer);
         { //::CEGUI::ComponentArea::getAreaPropertySource
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::ComponentArea::*getAreaPropertySource_function_type )(  ) const;
-            
-            ComponentArea_exposer.def( 
-                "getAreaPropertySource"
-                , getAreaPropertySource_function_type( &::CEGUI::ComponentArea::getAreaPropertySource )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::ComponentArea::*getAreaPropertySource_function_type)() const;
+
+            ComponentArea_exposer.def(
+                    "getAreaPropertySource"
+                    , getAreaPropertySource_function_type(&::CEGUI::ComponentArea::getAreaPropertySource)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Return the name of the property that will be used to determine the pixel\n\
                     area for this ComponentArea.\n\
             \n\
                 @return\n\
                     String object holding the name of a Propery.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ComponentArea::getPixelRect
-        
-            typedef ::CEGUI::Rectf ( ::CEGUI::ComponentArea::*getPixelRect_function_type )( ::CEGUI::Window const & ) const;
-            
-            ComponentArea_exposer.def( 
-                "getPixelRect"
-                , getPixelRect_function_type( &::CEGUI::ComponentArea::getPixelRect )
-                , ( bp::arg("wnd") )
-                , "*!\n\
+
+            typedef ::CEGUI::Rectf(::CEGUI::ComponentArea::*getPixelRect_function_type)(::CEGUI::Window const &) const;
+
+            ComponentArea_exposer.def(
+                    "getPixelRect"
+                    , getPixelRect_function_type(&::CEGUI::ComponentArea::getPixelRect)
+                    , (bp::arg("wnd"))
+                    , "*!\n\
                 \n\
                     Return a Rect describing the absolute pixel area represented by this\n\
                     ComponentArea.\n\
@@ -50,18 +50,18 @@ void register_ComponentArea_class(){
                     Rectf object describing the pixels area represented by this ComponentArea\n\
                     when using  wnd as a reference for calculating the final pixel\n\
                     dimensions.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ComponentArea::getPixelRect
-        
-            typedef ::CEGUI::Rectf ( ::CEGUI::ComponentArea::*getPixelRect_function_type )( ::CEGUI::Window const &,::CEGUI::Rectf const & ) const;
-            
-            ComponentArea_exposer.def( 
-                "getPixelRect"
-                , getPixelRect_function_type( &::CEGUI::ComponentArea::getPixelRect )
-                , ( bp::arg("wnd"), bp::arg("container") )
-                , "*!\n\
+
+            typedef ::CEGUI::Rectf(::CEGUI::ComponentArea::*getPixelRect_function_type)(::CEGUI::Window const &, ::CEGUI::Rectf const &) const;
+
+            ComponentArea_exposer.def(
+                    "getPixelRect"
+                    , getPixelRect_function_type(&::CEGUI::ComponentArea::getPixelRect)
+                    , (bp::arg("wnd"), bp::arg("container"))
+                    , "*!\n\
                 \n\
                     Return a Rectd describing the absolute pixel area represented by this\n\
                     ComponentArea.\n\
@@ -77,28 +77,28 @@ void register_ComponentArea_class(){
                     Rectf object describing the pixels area represented by this\n\
                     ComponentArea when using  wnd and  container as a reference for\n\
                     calculating the final pixel dimensions.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ComponentArea::handleFontRenderSizeChange
-        
-            typedef bool ( ::CEGUI::ComponentArea::*handleFontRenderSizeChange_function_type )( ::CEGUI::Window &,::CEGUI::Font const * ) const;
-            
-            ComponentArea_exposer.def( 
-                "handleFontRenderSizeChange"
-                , handleFontRenderSizeChange_function_type( &::CEGUI::ComponentArea::handleFontRenderSizeChange )
-                , ( bp::arg("window"), bp::arg("font") )
-                , "! perform any processing required due to the given font having changed.\n" );
-        
+
+            typedef bool ( ::CEGUI::ComponentArea::*handleFontRenderSizeChange_function_type)(::CEGUI::Window &, ::CEGUI::Font const *) const;
+
+            ComponentArea_exposer.def(
+                    "handleFontRenderSizeChange"
+                    , handleFontRenderSizeChange_function_type(&::CEGUI::ComponentArea::handleFontRenderSizeChange)
+                    , (bp::arg("window"), bp::arg("font"))
+                    , "! perform any processing required due to the given font having changed.\n");
+
         }
         { //::CEGUI::ComponentArea::isAreaFetchedFromNamedArea
-        
-            typedef bool ( ::CEGUI::ComponentArea::*isAreaFetchedFromNamedArea_function_type )(  ) const;
-            
-            ComponentArea_exposer.def( 
-                "isAreaFetchedFromNamedArea"
-                , isAreaFetchedFromNamedArea_function_type( &::CEGUI::ComponentArea::isAreaFetchedFromNamedArea )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::ComponentArea::*isAreaFetchedFromNamedArea_function_type)() const;
+
+            ComponentArea_exposer.def(
+                    "isAreaFetchedFromNamedArea"
+                    , isAreaFetchedFromNamedArea_function_type(&::CEGUI::ComponentArea::isAreaFetchedFromNamedArea)
+                    , "*!\n\
                 \n\
                     Return whether this ComponentArea fetches it's area via a named area\n\
                     defined.\n\
@@ -106,17 +106,17 @@ void register_ComponentArea_class(){
                 @return\n\
                     - true if the area comes via a named area defined in a WidgetLook.\n\
                     - false if the area is not sourced from a named area.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ComponentArea::isAreaFetchedFromProperty
-        
-            typedef bool ( ::CEGUI::ComponentArea::*isAreaFetchedFromProperty_function_type )(  ) const;
-            
-            ComponentArea_exposer.def( 
-                "isAreaFetchedFromProperty"
-                , isAreaFetchedFromProperty_function_type( &::CEGUI::ComponentArea::isAreaFetchedFromProperty )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::ComponentArea::*isAreaFetchedFromProperty_function_type)() const;
+
+            ComponentArea_exposer.def(
+                    "isAreaFetchedFromProperty"
+                    , isAreaFetchedFromProperty_function_type(&::CEGUI::ComponentArea::isAreaFetchedFromProperty)
+                    , "*!\n\
                 \n\
                     Return whether this ComponentArea fetches it's area via a property on\n\
                     the target window.\n\
@@ -124,18 +124,18 @@ void register_ComponentArea_class(){
                 @return\n\
                     - true if the area comes via a Propery.\n\
                     - false if the area is not sourced from a Property.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ComponentArea::setAreaPropertySource
-        
-            typedef void ( ::CEGUI::ComponentArea::*setAreaPropertySource_function_type )( ::CEGUI::String const & ) ;
-            
-            ComponentArea_exposer.def( 
-                "setAreaPropertySource"
-                , setAreaPropertySource_function_type( &::CEGUI::ComponentArea::setAreaPropertySource )
-                , ( bp::arg("property") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ComponentArea::*setAreaPropertySource_function_type)(::CEGUI::String const &);
+
+            ComponentArea_exposer.def(
+                    "setAreaPropertySource"
+                    , setAreaPropertySource_function_type(&::CEGUI::ComponentArea::setAreaPropertySource)
+                    , (bp::arg("property"))
+                    , "*!\n\
                 \n\
                     Set the name of the property that will be used to determine the pixel\n\
                     area for this ComponentArea.\n\
@@ -146,44 +146,44 @@ void register_ComponentArea_class(){
                 @param property\n\
                     String object holding the name of a Propery.  The property should access\n\
                     a URect type property.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::ComponentArea::setNamedAreaSouce
-        
-            typedef void ( ::CEGUI::ComponentArea::*setNamedAreaSouce_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            ComponentArea_exposer.def( 
-                "setNamedAreaSouce"
-                , setNamedAreaSouce_function_type( &::CEGUI::ComponentArea::setNamedAreaSouce )
-                , ( bp::arg("widget_look"), bp::arg("area_name") )
-                , "! Set the named area source of the ComponentArea.\n" );
-        
+
+            typedef void ( ::CEGUI::ComponentArea::*setNamedAreaSouce_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            ComponentArea_exposer.def(
+                    "setNamedAreaSouce"
+                    , setNamedAreaSouce_function_type(&::CEGUI::ComponentArea::setNamedAreaSouce)
+                    , (bp::arg("widget_look"), bp::arg("area_name"))
+                    , "! Set the named area source of the ComponentArea.\n");
+
         }
         { //::CEGUI::ComponentArea::writeXMLToStream
-        
-            typedef void ( ::CEGUI::ComponentArea::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            ComponentArea_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type( &::CEGUI::ComponentArea::writeXMLToStream )
-                , ( bp::arg("xml_stream") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::ComponentArea::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+
+            ComponentArea_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::ComponentArea::writeXMLToStream)
+                    , (bp::arg("xml_stream"))
+                    , "*!\n\
                 \n\
                     Writes an xml representation of this ComponentArea to  out_stream.\n\
             \n\
                 @param xml_stream\n\
                     XMLSerializer where xml data should be output.\n\
-                *\n" );
-        
+                *\n");
+
         }
-        ComponentArea_exposer.def_readwrite( "d_bottom_or_height", &CEGUI::ComponentArea::d_bottom_or_height, "! Either the right edge or the width of the area.\n\
-        ! Either the bototm edge or the height of the area.\n" );
-        ComponentArea_exposer.def_readwrite( "d_left", &CEGUI::ComponentArea::d_left, "! Left edge of the area.\n" );
-        ComponentArea_exposer.def_readwrite( "d_right_or_width", &CEGUI::ComponentArea::d_right_or_width, "! Top edge of the area.\n\
-        ! Either the right edge or the width of the area.\n" );
-        ComponentArea_exposer.def_readwrite( "d_top", &CEGUI::ComponentArea::d_top, "! Left edge of the area.\n\
-        ! Top edge of the area.\n" );
+        ComponentArea_exposer.def_readwrite("d_bottom_or_height", &CEGUI::ComponentArea::d_bottom_or_height, "! Either the right edge or the width of the area.\n\
+        ! Either the bototm edge or the height of the area.\n");
+        ComponentArea_exposer.def_readwrite("d_left", &CEGUI::ComponentArea::d_left, "! Left edge of the area.\n");
+        ComponentArea_exposer.def_readwrite("d_right_or_width", &CEGUI::ComponentArea::d_right_or_width, "! Top edge of the area.\n\
+        ! Either the right edge or the width of the area.\n");
+        ComponentArea_exposer.def_readwrite("d_top", &CEGUI::ComponentArea::d_top, "! Left edge of the area.\n\
+        ! Top edge of the area.\n");
     }
 
 }

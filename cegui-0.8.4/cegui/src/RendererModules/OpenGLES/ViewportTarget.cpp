@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jan 11 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,37 +31,36 @@
 #include "CEGUI/Exceptions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-OpenGLESViewportTarget::OpenGLESViewportTarget(OpenGLESRenderer& owner) :
-    OpenGLESRenderTarget<>(owner)
-{
-    // viewport area defaults to whatever the current OpenGLES viewport is set to
-    GLint vp[4];
-    glGetIntegerv(GL_VIEWPORT, vp);
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    Rectf init_area(Vector2f(static_cast<float>(vp[0]), static_cast<float>(vp[1])),
-                   Sizef(static_cast<float>(vp[2]), static_cast<float>(vp[3])));
+    OpenGLESViewportTarget::OpenGLESViewportTarget(OpenGLESRenderer& owner) :
+    OpenGLESRenderTarget<>(owner) {
+        // viewport area defaults to whatever the current OpenGLES viewport is set to
+        GLint vp[4];
+        glGetIntegerv(GL_VIEWPORT, vp);
 
-    setArea(init_area);
-}
+        Rectf init_area(Vector2f(static_cast<float> (vp[0]), static_cast<float> (vp[1])),
+                Sizef(static_cast<float> (vp[2]), static_cast<float> (vp[3])));
 
-//----------------------------------------------------------------------------//
-OpenGLESViewportTarget::OpenGLESViewportTarget(OpenGLESRenderer& owner,
-                                               const Rectf& area) :
-        OpenGLESRenderTarget<>(owner)
-{
-    setArea(area);
-}
+        setArea(init_area);
+    }
 
-//----------------------------------------------------------------------------//
-bool OpenGLESViewportTarget::isImageryCache() const
-{
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    OpenGLESViewportTarget::OpenGLESViewportTarget(OpenGLESRenderer& owner,
+            const Rectf& area) :
+    OpenGLESRenderTarget<>(owner) {
+        setArea(area);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool OpenGLESViewportTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 14 2006
     author:     Tomas Lindquist Olsen <tomas@famolsen.dk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,19 +30,16 @@
 #include "CEGUI/falagard/WidgetLookFeel.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardToggleButton::TypeName("Core/ToggleButton");
 
     FalagardToggleButton::FalagardToggleButton(const String& type) :
-        FalagardButton(type)
-    {
+    FalagardButton(type) {
     }
 
-    String FalagardToggleButton::actualStateName(const String& name) const
-    {
-    	bool selected = d_window->getProperty<bool>("Selected");
-        return selected ? "Selected"+name : name;
+    String FalagardToggleButton::actualStateName(const String& name) const {
+        bool selected = d_window->getProperty<bool>("Selected");
+        return selected ? "Selected" + name : name;
     }
 
 } // End of  CEGUI namespace section

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Sep 22 2005
     author:     Tomas Lindquist Olsen
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,18 +29,15 @@
 #include "CEGUI/falagard/WidgetLookFeel.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardItemEntry::TypeName("Core/ItemEntry");
 
     FalagardItemEntry::FalagardItemEntry(const String& type) :
-        ItemEntryWindowRenderer(type)
-    {
+    ItemEntryWindowRenderer(type) {
     }
 
-    void FalagardItemEntry::render()
-    {
-        ItemEntry* item = static_cast<ItemEntry*>(d_window);
+    void FalagardItemEntry::render() {
+        ItemEntry* item = static_cast<ItemEntry*> (d_window);
 
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
@@ -48,19 +45,15 @@ namespace CEGUI
         const StateImagery* imagery;
         // render basic imagery
         String state = item->isEffectiveDisabled() ? "Disabled" : "Enabled";
-        if (item->isSelectable() && item->isSelected())
-        {
+        if (item->isSelectable() && item->isSelected()) {
             imagery = &wlf.getStateImagery(item->isEffectiveDisabled() ? "SelectedDisabled" : "SelectedEnabled");
-        }
-        else
-        {
+        } else {
             imagery = &wlf.getStateImagery(item->isEffectiveDisabled() ? "Disabled" : "Enabled");
         }
         imagery->render(*d_window);
     }
 
-    Sizef FalagardItemEntry::getItemPixelSize() const
-    {
+    Sizef FalagardItemEntry::getItemPixelSize() const {
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         return wlf.getNamedArea("ContentSize").getArea().getPixelRect(*d_window).getSize();

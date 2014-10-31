@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mar 27 2010
     author:     Jay Sprenkle
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -33,14 +33,14 @@
 \brief
     exported function that creates an XMLParser based object and returns
     a pointer to that object.
-*/
+ */
 extern "C" CEGUIRAPIDXMLPARSER_API CEGUI::XMLParser* createParser(void);
 
 /*!
 \brief
     exported function that deletes an XMLParser based object previously
     created by this module.
-*/
+ */
 extern "C" CEGUIRAPIDXMLPARSER_API void destroyParser(CEGUI::XMLParser* parser);
 
 #endif // end of guard _CEGUIRapidXMLParserModule_h_

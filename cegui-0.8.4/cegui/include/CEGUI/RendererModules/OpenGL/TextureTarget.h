@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Oct 15 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,67 +31,66 @@
 #include "../../TextureTarget.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4250)
+#pragma warning(push)
+#pragma warning(disable : 4250)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    OpenGLTextureTarget - Common base class for all OpenGL render targets
-    based on some form of RTT support.
-*/
-class OPENGL_GUIRENDERER_API OpenGLTextureTarget : public OpenGLRenderTarget<TextureTarget>
-{
-public:
-    //! constructor.
-    OpenGLTextureTarget(OpenGLRendererBase& owner);
-    //! destructor
-    virtual ~OpenGLTextureTarget();
-
-    // implementation of RenderTarget interface
-    bool isImageryCache() const;
-    // implementation of parts of TextureTarget interface
-    Texture& getTexture() const;
-    bool isRenderingInverted() const;
+namespace CEGUI {
 
     /*!
     \brief
-        Grab the texture to a local buffer.
+        OpenGLTextureTarget - Common base class for all OpenGL render targets
+        based on some form of RTT support.
+     */
+    class OPENGL_GUIRENDERER_API OpenGLTextureTarget : public OpenGLRenderTarget<TextureTarget> {
+    public:
+        //! constructor.
+        OpenGLTextureTarget(OpenGLRendererBase& owner);
+        //! destructor
+        virtual ~OpenGLTextureTarget();
 
-        This will destroy the OpenGL texture, and restoreTexture must be called
-        before using it again.
-    */
-    virtual void grabTexture();
+        // implementation of RenderTarget interface
+        bool isImageryCache() const;
+        // implementation of parts of TextureTarget interface
+        Texture& getTexture() const;
+        bool isRenderingInverted() const;
 
-    /*!
-    \brief
-        Restore the texture from the locally buffered copy previously create by
-        a call to grabTexture.
-    */
-    virtual void restoreTexture();
+        /*!
+        \brief
+            Grab the texture to a local buffer.
 
-protected:
-    //! helper to generate unique texture names
-    static String generateTextureName();
-    //! static data used for creating texture names
-    static uint s_textureNumber;
+            This will destroy the OpenGL texture, and restoreTexture must be called
+            before using it again.
+         */
+        virtual void grabTexture();
 
-    //! helper to create CEGUI::Texture d_CEGUITexture;
-    void createCEGUITexture();
+        /*!
+        \brief
+            Restore the texture from the locally buffered copy previously create by
+            a call to grabTexture.
+         */
+        virtual void restoreTexture();
 
-    //! Associated OpenGL texture ID
-    GLuint d_texture;
-    //! we use this to wrap d_texture so it can be used by the core CEGUI lib.
-    OpenGLTexture* d_CEGUITexture;
-};
+    protected:
+        //! helper to generate unique texture names
+        static String generateTextureName();
+        //! static data used for creating texture names
+        static uint s_textureNumber;
+
+        //! helper to create CEGUI::Texture d_CEGUITexture;
+        void createCEGUITexture();
+
+        //! Associated OpenGL texture ID
+        GLuint d_texture;
+        //! we use this to wrap d_texture so it can be used by the core CEGUI lib.
+        OpenGLTexture* d_CEGUITexture;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIOpenGLTextureTarget_h_

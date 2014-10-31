@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Oct 07 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -32,42 +32,40 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class FactoryRegisterer;
+namespace CEGUI {
+    class FactoryRegisterer;
 
-class CEGUIEXPORT FactoryModule :
-    public AllocatedObject<FactoryModule>
-{
-public:
-    //! Destructor.
-    virtual ~FactoryModule();
-    //! Register the factory for objects of the specified type.
-    void registerFactory(const String& type_name);
-    //! Register factories for all object types in the module.
-    uint registerAllFactories();
-    //! Unregister the factory for objects of the specified type.
-    void unregisterFactory(const String& type_name);
-    //! Unregister factories for all object types in the module.
-    uint unregisterAllFactories();
+    class CEGUIEXPORT FactoryModule :
+    public AllocatedObject<FactoryModule> {
+    public:
+        //! Destructor.
+        virtual ~FactoryModule();
+        //! Register the factory for objects of the specified type.
+        void registerFactory(const String& type_name);
+        //! Register factories for all object types in the module.
+        uint registerAllFactories();
+        //! Unregister the factory for objects of the specified type.
+        void unregisterFactory(const String& type_name);
+        //! Unregister factories for all object types in the module.
+        uint unregisterAllFactories();
 
-protected:
-    //! Collection type that holds pointers to the factory registerer objects.
-    typedef std::vector<FactoryRegisterer*
-        CEGUI_VECTOR_ALLOC(FactoryRegisterer*)> FactoryRegistry;
-    //! The collection of factorty registerer object pointers.
-    FactoryRegistry d_registry;
-};
+    protected:
+        //! Collection type that holds pointers to the factory registerer objects.
+        typedef std::vector<FactoryRegisterer*
+        CEGUI_VECTOR_ALLOC(FactoryRegisterer*) > FactoryRegistry;
+        //! The collection of factorty registerer object pointers.
+        FactoryRegistry d_registry;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFactoryModule_h_

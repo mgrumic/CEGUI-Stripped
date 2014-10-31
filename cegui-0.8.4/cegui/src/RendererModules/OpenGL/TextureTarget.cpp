@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Oct 15 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -29,78 +29,76 @@
 #include "CEGUI/PropertyHelper.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-uint OpenGLTextureTarget::s_textureNumber = 0;
+namespace CEGUI {
+    uint OpenGLTextureTarget::s_textureNumber = 0;
 
-//----------------------------------------------------------------------------//
-OpenGLTextureTarget::OpenGLTextureTarget(OpenGLRendererBase& owner) :
+    //----------------------------------------------------------------------------//
+
+    OpenGLTextureTarget::OpenGLTextureTarget(OpenGLRendererBase& owner) :
     OpenGLRenderTarget<TextureTarget>(owner),
-    d_texture(0)
-{
-    createCEGUITexture();
-}
-
-//----------------------------------------------------------------------------//
-OpenGLTextureTarget::~OpenGLTextureTarget()
-{
-    d_owner.destroyTexture(*d_CEGUITexture);
-}
-
-//----------------------------------------------------------------------------//
-bool OpenGLTextureTarget::isImageryCache() const
-{
-    return true;
-}
-
-//----------------------------------------------------------------------------//
-Texture& OpenGLTextureTarget::getTexture() const
-{
-    return *d_CEGUITexture;
-}
-
-//----------------------------------------------------------------------------//
-bool OpenGLTextureTarget::isRenderingInverted() const
-{
-    return true;
-}
-
-//----------------------------------------------------------------------------//
-void OpenGLTextureTarget::grabTexture()
-{
-    if (d_CEGUITexture)
-    {
-        d_owner.destroyTexture(*d_CEGUITexture);
-        d_texture = 0;
-        d_CEGUITexture = 0;
-    }
-}
-
-//----------------------------------------------------------------------------//
-void OpenGLTextureTarget::restoreTexture()
-{
-    if (!d_CEGUITexture)
+    d_texture(0) {
         createCEGUITexture();
-}
+    }
 
-//----------------------------------------------------------------------------//
-void OpenGLTextureTarget::createCEGUITexture()
-{
-    d_CEGUITexture = &static_cast<OpenGLTexture&>(
-        d_owner.createTexture(generateTextureName(),
-                              d_texture, d_area.getSize()));
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-String OpenGLTextureTarget::generateTextureName()
-{
-    String tmp("_ogl_tt_tex_");
-    tmp.append(PropertyHelper<uint>::toString(s_textureNumber++));
+    OpenGLTextureTarget::~OpenGLTextureTarget() {
+        d_owner.destroyTexture(*d_CEGUITexture);
+    }
 
-    return tmp;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool OpenGLTextureTarget::isImageryCache() const {
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Texture& OpenGLTextureTarget::getTexture() const {
+        return *d_CEGUITexture;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool OpenGLTextureTarget::isRenderingInverted() const {
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void OpenGLTextureTarget::grabTexture() {
+        if (d_CEGUITexture) {
+            d_owner.destroyTexture(*d_CEGUITexture);
+            d_texture = 0;
+            d_CEGUITexture = 0;
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void OpenGLTextureTarget::restoreTexture() {
+        if (!d_CEGUITexture)
+            createCEGUITexture();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void OpenGLTextureTarget::createCEGUITexture() {
+        d_CEGUITexture = &static_cast<OpenGLTexture&> (
+                d_owner.createTexture(generateTextureName(),
+                d_texture, d_area.getSize()));
+    }
+
+    //----------------------------------------------------------------------------//
+
+    String OpenGLTextureTarget::generateTextureName() {
+        String tmp("_ogl_tt_tex_");
+        tmp.append(PropertyHelper<uint>::toString(s_textureNumber++));
+
+        return tmp;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

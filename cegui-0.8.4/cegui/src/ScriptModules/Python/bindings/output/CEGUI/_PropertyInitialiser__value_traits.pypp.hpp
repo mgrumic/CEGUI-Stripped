@@ -3,24 +3,28 @@
 #ifndef _PropertyInitialiser__value_traits_pypp_hpp_hpp__pyplusplus_wrapper
 #define _PropertyInitialiser__value_traits_pypp_hpp_hpp__pyplusplus_wrapper
 
-namespace boost { namespace python { namespace indexing {
+namespace boost {
+    namespace python {
+        namespace indexing {
 
-template<>
-struct value_traits< CEGUI::PropertyInitialiser >{
+            template<>
+            struct value_traits< CEGUI::PropertyInitialiser > {
+                static bool const equality_comparable = false;
 
-    static bool const equality_comparable = false;
-    
 
-    static bool const less_than_comparable = false;
-    
+                static bool const less_than_comparable = false;
 
-    template<typename PythonClass, typename Policy>
-    static void visit_container_class(PythonClass &, Policy const &){
-        
+                template<typename PythonClass, typename Policy>
+                static void visit_container_class(PythonClass &, Policy const &) {
+
+                }
+
+            };
+
+        }
+        /*indexing*/
     }
-
-};
-
-}/*indexing*/ } /*python*/ } /*boost*/
+    /*python*/
+} /*boost*/
 
 #endif//_PropertyInitialiser__value_traits_pypp_hpp_hpp__pyplusplus_wrapper

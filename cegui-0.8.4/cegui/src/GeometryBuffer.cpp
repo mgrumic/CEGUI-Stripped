@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jan 13 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -27,32 +27,31 @@
 #include "CEGUI/GeometryBuffer.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//---------------------------------------------------------------------------//
-GeometryBuffer::GeometryBuffer() :
-    d_blendMode(BM_NORMAL)
-{
-}
+namespace CEGUI {
+    //---------------------------------------------------------------------------//
 
-//---------------------------------------------------------------------------//
-GeometryBuffer::~GeometryBuffer()
-{
-}
+    GeometryBuffer::GeometryBuffer() :
+    d_blendMode(BM_NORMAL) {
+    }
 
-//---------------------------------------------------------------------------//
-void GeometryBuffer::setBlendMode(const BlendMode mode)
-{
-    d_blendMode = mode;
-}
+    //---------------------------------------------------------------------------//
 
-//---------------------------------------------------------------------------//
-BlendMode GeometryBuffer::getBlendMode() const
-{
-    return d_blendMode;
-}
+    GeometryBuffer::~GeometryBuffer() {
+    }
 
-//---------------------------------------------------------------------------//
+    //---------------------------------------------------------------------------//
+
+    void GeometryBuffer::setBlendMode(const BlendMode mode) {
+        d_blendMode = mode;
+    }
+
+    //---------------------------------------------------------------------------//
+
+    BlendMode GeometryBuffer::getBlendMode() const {
+        return d_blendMode;
+    }
+
+    //---------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

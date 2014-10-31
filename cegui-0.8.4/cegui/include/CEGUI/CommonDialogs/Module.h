@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Oct 09 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -28,13 +28,13 @@
 #define _CEGUICommonDialogsModule_h_
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUICOMMONDIALOGS_EXPORTS
-#       define CEGUI_COMMONDIALOGS_API __declspec(dllexport)
-#   else
-#       define CEGUI_COMMONDIALOGS_API __declspec(dllimport)
-#   endif
+#ifdef CEGUICOMMONDIALOGS_EXPORTS
+#define CEGUI_COMMONDIALOGS_API __declspec(dllexport)
 #else
-#   define CEGUI_COMMONDIALOGS_API
+#define CEGUI_COMMONDIALOGS_API __declspec(dllimport)
+#endif
+#else
+#define CEGUI_COMMONDIALOGS_API
 #endif
 
 extern "C"
@@ -43,7 +43,7 @@ extern "C"
 Initialise common dialogs library ready for use.
 
 This should be called prior to creating any common dialog windows.
-*/
+ */
 CEGUI_COMMONDIALOGS_API void initialiseCEGUICommonDialogs();
 
 #endif

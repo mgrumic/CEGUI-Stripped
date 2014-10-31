@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Dec 23 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -27,125 +27,124 @@
 #include "CEGUI/RenderEffectManager.h"
 #ifndef PE_NO_RENDEREFFECT
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//---------------------------------------------------------------------------//
-template<>
-RenderEffectManager* Singleton<RenderEffectManager>::ms_Singleton = 0;
+namespace CEGUI {
+    //---------------------------------------------------------------------------//
+    template<>
+    RenderEffectManager* Singleton<RenderEffectManager>::ms_Singleton = 0;
 
-//---------------------------------------------------------------------------//
-RenderEffectManager::RenderEffectManager()
-{
+    //---------------------------------------------------------------------------//
+
+    RenderEffectManager::RenderEffectManager() {
 #ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-    Logger::getSingleton().logEvent(
-        "CEGUI::RenderEffectManager singleton created " + String(addr_buff));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::RenderEffectManager singleton created " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
+    }
 
-//---------------------------------------------------------------------------//
-RenderEffectManager::~RenderEffectManager()
-{
-    // Destroy any RenderEffect objects we created that still exist.
-    while (!d_effects.empty())
-        destroy(*d_effects.begin()->first);
+    //---------------------------------------------------------------------------//
 
-    // Remove (destroy) all the RenderEffectFactory objects.
-    while (!d_effectRegistry.empty())
-        removeEffect(d_effectRegistry.begin()->first);
+    RenderEffectManager::~RenderEffectManager() {
+        // Destroy any RenderEffect objects we created that still exist.
+        while (!d_effects.empty())
+            destroy(*d_effects.begin()->first);
+
+        // Remove (destroy) all the RenderEffectFactory objects.
+        while (!d_effectRegistry.empty())
+            removeEffect(d_effectRegistry.begin()->first);
 
 #ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-    Logger::getSingleton().logEvent(
-        "CEGUI::RenderEffectManager singleton destroyed " + String(addr_buff));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::RenderEffectManager singleton destroyed " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
+    }
 
-//---------------------------------------------------------------------------//
-void RenderEffectManager::removeEffect(const String& name)
-{
-    RenderEffectRegistry::iterator i(d_effectRegistry.find(name));
+    //---------------------------------------------------------------------------//
 
-    // exit if no factory exists for this type
-    if (i == d_effectRegistry.end())
-        return;
+    void RenderEffectManager::removeEffect(const String& name) {
+        RenderEffectRegistry::iterator i(d_effectRegistry.find(name));
+
+        // exit if no factory exists for this type
+        if (i == d_effectRegistry.end())
+            return;
 #ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent(
-        "Unregistered RenderEffect named '" + name + "'");
+        Logger::getSingleton().logEvent(
+                "Unregistered RenderEffect named '" + name + "'");
 #endif //PE_NO_LOGGER
 
-    CEGUI_DELETE_AO i->second;
-	d_effectRegistry.erase(name);
-}
+        CEGUI_DELETE_AO i->second;
+        d_effectRegistry.erase(name);
+    }
 
-//---------------------------------------------------------------------------//
-bool RenderEffectManager::isEffectAvailable(const String& name) const
-{
-    return d_effectRegistry.find(name) != d_effectRegistry.end();
-}
+    //---------------------------------------------------------------------------//
 
-//---------------------------------------------------------------------------//
-RenderEffect& RenderEffectManager::create(const String& name, Window* window)
-{
-    RenderEffectRegistry::iterator i(d_effectRegistry.find(name));
+    bool RenderEffectManager::isEffectAvailable(const String& name) const {
+        return d_effectRegistry.find(name) != d_effectRegistry.end();
+    }
 
-    // throw if no factory exists for this type
-    if (i == d_effectRegistry.end())
-        CEGUI_THROW(UnknownObjectException(
+    //---------------------------------------------------------------------------//
+
+    RenderEffect& RenderEffectManager::create(const String& name, Window* window) {
+        RenderEffectRegistry::iterator i(d_effectRegistry.find(name));
+
+        // throw if no factory exists for this type
+        if (i == d_effectRegistry.end())
+            CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "No RenderEffect has been registered with the name '" + name + "'"));
+                "No RenderEffect has been registered with the name '" + name + "'"));
 #endif //PE_NO_THROW_MSGS
 
-    RenderEffect& effect = i->second->create(window);
+        RenderEffect& effect = i->second->create(window);
 
-    // here we keep track of the factory used to create the effect object.
-    d_effects[&effect] = i->second;
+        // here we keep track of the factory used to create the effect object.
+        d_effects[&effect] = i->second;
 
 #ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "%p", static_cast<void*>(&effect));
-    Logger::getSingleton().logEvent("RenderEffectManager::create: Created "
-        "instance of effect '" + name + "' at " + String(addr_buff));
+        char addr_buff[32];
+        sprintf(addr_buff, "%p", static_cast<void*> (&effect));
+        Logger::getSingleton().logEvent("RenderEffectManager::create: Created "
+                "instance of effect '" + name + "' at " + String(addr_buff));
 #endif //PE_NO_LOGGER
 
-    return effect;
-}
+        return effect;
+    }
 
-//---------------------------------------------------------------------------//
-void RenderEffectManager::destroy(RenderEffect& effect)
-{
-    EffectCreatorMap::iterator i(d_effects.find(&effect));
+    //---------------------------------------------------------------------------//
 
-    // We will only destroy effects that we created (and throw otherwise)
-    if (i == d_effects.end())
-        CEGUI_THROW(InvalidRequestException(
+    void RenderEffectManager::destroy(RenderEffect& effect) {
+        EffectCreatorMap::iterator i(d_effects.find(&effect));
+
+        // We will only destroy effects that we created (and throw otherwise)
+        if (i == d_effects.end())
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "The given RenderEffect was not created by the "
-            "RenderEffectManager - perhaps you created it directly?"));
+                "The given RenderEffect was not created by the "
+                "RenderEffectManager - perhaps you created it directly?"));
 #endif //PE_NO_THROW_MSGS
 
-    // Get string of object address before we delete it.
-    char addr_buff[32];
-    sprintf(addr_buff, "%p", static_cast<void*>(&effect));
+        // Get string of object address before we delete it.
+        char addr_buff[32];
+        sprintf(addr_buff, "%p", static_cast<void*> (&effect));
 
-    // use the same factory to delete the RenderEffect as what created it
-    i->second->destroy(effect);
+        // use the same factory to delete the RenderEffect as what created it
+        i->second->destroy(effect);
 
-    // erase record of the object now it's gone
-    d_effects.erase(i);
+        // erase record of the object now it's gone
+        d_effects.erase(i);
 #ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent("RenderEffectManager::destroy: Destroyed "
-        "RenderEffect object at " + String(addr_buff));
+        Logger::getSingleton().logEvent("RenderEffectManager::destroy: Destroyed "
+                "RenderEffect object at " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
+    }
 
-//---------------------------------------------------------------------------//
+    //---------------------------------------------------------------------------//
 } // End of  CEGUI namespace section
 #endif //PE_NO_RENDEREFFECT
 

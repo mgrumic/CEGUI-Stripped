@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 10 2009
     author:     Paul D Turner (parts based on code by Keith Mok)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -32,36 +32,35 @@
 #include <directfb.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class DirectFBRenderer;
+namespace CEGUI {
+    class DirectFBRenderer;
 
-//! Implementation of CEGUI::RenderTarget for DirectFB
-class DirectFBRenderTarget : public RenderTarget
-{
-public:
-    //! Constructor.
-    DirectFBRenderTarget(DirectFBRenderer& owner, IDirectFBSurface& target);
+    //! Implementation of CEGUI::RenderTarget for DirectFB
 
-    // Implement RenderTarget interface
-    void draw(const GeometryBuffer& buffer);
-    void draw(const RenderQueue& queue);
-    void setArea(const Rectf& area);
-    const Rectf& getArea() const;
-    bool isImageryCache() const;
-    void activate();
-    void deactivate();
-    void unprojectPoint(const GeometryBuffer& buff,
-                                const Vector2f& p_in, Vector2f& p_out) const;
+    class DirectFBRenderTarget : public RenderTarget {
+    public:
+        //! Constructor.
+        DirectFBRenderTarget(DirectFBRenderer& owner, IDirectFBSurface& target);
 
-protected:
-    //! DirectFBRenderer that created and owns this RenderTarget.
-    DirectFBRenderer& d_owner;
-    //! IDirectFBSurface targetted by this RenderTarget.
-    IDirectFBSurface& d_target;
-    //! holds defined area for the RenderTarget
-    Rectf d_area;
-};
+        // Implement RenderTarget interface
+        void draw(const GeometryBuffer& buffer);
+        void draw(const RenderQueue& queue);
+        void setArea(const Rectf& area);
+        const Rectf& getArea() const;
+        bool isImageryCache() const;
+        void activate();
+        void deactivate();
+        void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in, Vector2f& p_out) const;
+
+    protected:
+        //! DirectFBRenderer that created and owns this RenderTarget.
+        DirectFBRenderer& d_owner;
+        //! IDirectFBSurface targetted by this RenderTarget.
+        IDirectFBSurface& d_target;
+        //! holds defined area for the RenderTarget
+        Rectf d_area;
+    };
 
 } // End of  CEGUI namespace section
 

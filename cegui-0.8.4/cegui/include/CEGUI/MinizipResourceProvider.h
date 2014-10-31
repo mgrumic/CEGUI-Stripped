@@ -3,7 +3,7 @@
     author:     Jeff A. Marr
 
     purpose:    Defines a resource provider for minizip archives
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -33,8 +33,8 @@
 #include "CEGUI/DefaultResourceProvider.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // NOTE: While the DefaultResourceProvider (DRP) was not originally intended
@@ -44,47 +44,46 @@
 // outside the archive.
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class CEGUIEXPORT MinizipResourceProvider : public DefaultResourceProvider
-{
-public:
-    /*************************************************************************
-        Construction and Destruction
-    *************************************************************************/
-    MinizipResourceProvider();
-    MinizipResourceProvider(const String& archive, bool loadLocal = true);
-    ~MinizipResourceProvider(void);
+namespace CEGUI {
 
-    /*!
-    \brief
-        sets the archive from which files are retrieved.
+    class CEGUIEXPORT MinizipResourceProvider : public DefaultResourceProvider {
+    public:
+        /*************************************************************************
+            Construction and Destruction
+         *************************************************************************/
+        MinizipResourceProvider();
+        MinizipResourceProvider(const String& archive, bool loadLocal = true);
+        ~MinizipResourceProvider(void);
 
-    \param archive
-        The filepath to the archive
-    */
-    void setArchive(const String& archive);
-    void setLoadLocal(bool load = true);
+        /*!
+        \brief
+            sets the archive from which files are retrieved.
 
-    void loadRawDataContainer(const String& filename,
-                              RawDataContainer& output,
-                              const String& resourceGroup);
-    size_t getResourceGroupFileNames(std::vector<String>& out_vec,
-                                     const String& file_pattern,
-                                     const String& resource_group);
-protected:
-    bool doesFileExist(const String& filename);
-    void openArchive();
-    void closeArchive();
+        \param archive
+            The filepath to the archive
+         */
+        void setArchive(const String& archive);
+        void setLoadLocal(bool load = true);
 
-    struct Impl;
-    Impl* d_pimpl;
-};
+        void loadRawDataContainer(const String& filename,
+                RawDataContainer& output,
+                const String& resourceGroup);
+        size_t getResourceGroupFileNames(std::vector<String>& out_vec,
+                const String& file_pattern,
+                const String& resource_group);
+    protected:
+        bool doesFileExist(const String& filename);
+        void openArchive();
+        void closeArchive();
+
+        struct Impl;
+        Impl* d_pimpl;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIMinizipResourceProvider_h_

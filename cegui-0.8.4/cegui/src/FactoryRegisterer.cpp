@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Oct 07 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -28,34 +28,33 @@
 #include "CEGUI/Logger.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-FactoryRegisterer::FactoryRegisterer(const String& type) :
-    d_type(type)
-{}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-FactoryRegisterer::~FactoryRegisterer()
-{}
-
-//----------------------------------------------------------------------------//
-void FactoryRegisterer::registerFactory() const
-{
-    if (this->isAlreadyRegistered())
-    {
-#ifndef PE_NO_LOGGER
-        CEGUI::Logger::getSingleton().logEvent(
-            "Factory for '" + CEGUI::String(d_type) +
-            "' appears to be  already registered, skipping.",
-            CEGUI::Informative);
-#endif //PE_NO_LOGGER
+    FactoryRegisterer::FactoryRegisterer(const String& type) :
+    d_type(type) {
     }
-    else
-        this->doFactoryAdd();
-}
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    FactoryRegisterer::~FactoryRegisterer() {
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void FactoryRegisterer::registerFactory() const {
+        if (this->isAlreadyRegistered()) {
+#ifndef PE_NO_LOGGER
+            CEGUI::Logger::getSingleton().logEvent(
+                    "Factory for '" + CEGUI::String(d_type) +
+                    "' appears to be  already registered, skipping.",
+                    CEGUI::Informative);
+#endif //PE_NO_LOGGER
+        } else
+            this->doFactoryAdd();
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

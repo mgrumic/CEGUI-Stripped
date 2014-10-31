@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	13/4/2004
-	author:		Paul D Turner
+        created:	13/4/2004
+        author:		Paul D Turner
 	
-	purpose:	Implementation of ButtonBase widget
-*************************************************************************/
+        purpose:	Implementation of ButtonBase widget
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,166 +30,153 @@
 #include "CEGUI/MouseCursor.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*************************************************************************
-	Constructor
-*************************************************************************/
-ButtonBase::ButtonBase(const String& type, const String& name) :
-	Window(type, name),
-	d_pushed(false),
-	d_hovering(false)
-{
-}
+    /*************************************************************************
+            Constructor
+     *************************************************************************/
+    ButtonBase::ButtonBase(const String& type, const String& name) :
+    Window(type, name),
+    d_pushed(false),
+    d_hovering(false) {
+    }
 
+    /*************************************************************************
+            Destructor
+     *************************************************************************/
+    ButtonBase::~ButtonBase(void) {
+    }
 
-/*************************************************************************
-	Destructor
-*************************************************************************/
-ButtonBase::~ButtonBase(void)
-{
-}
+    /*************************************************************************
+            Update the internal state of the Widget
+     *************************************************************************/
+    void ButtonBase::updateInternalState(const Vector2f& mouse_pos) {
+        const bool oldstate = d_hovering;
 
+        d_hovering = calculateCurrentHoverState(mouse_pos);
 
-/*************************************************************************
-	Update the internal state of the Widget
-*************************************************************************/
-void ButtonBase::updateInternalState(const Vector2f& mouse_pos)
-{
-	const bool oldstate = d_hovering;
+        if (oldstate != d_hovering)
+            invalidate();
+    }
 
-    d_hovering = calculateCurrentHoverState(mouse_pos);
+    //----------------------------------------------------------------------------//
 
-	if (oldstate != d_hovering)
-		invalidate();
-}
-
-//----------------------------------------------------------------------------//
-bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos)
-{
-    if (const Window* capture_wnd = getCaptureWindow())
-        return
-        (capture_wnd == this ||
-        (capture_wnd->distributesCapturedInputs() && isAncestor(capture_wnd))) && isHit(mouse_pos);
-    else
-        return
+    bool ButtonBase::calculateCurrentHoverState(const Vector2f& mouse_pos) {
+        if (const Window * capture_wnd = getCaptureWindow())
+            return
+            (capture_wnd == this ||
+                (capture_wnd->distributesCapturedInputs() && isAncestor(capture_wnd))) && isHit(mouse_pos);
+        else
+            return
 #ifndef PE_NO_MOUSE
-        getGUIContext().getWindowContainingMouse() == this;
+            getGUIContext().getWindowContainingMouse() == this;
 #else 
-        false;
+            false;
 #endif //PE_NO_MOUSE
-}
+    }
 
-/*************************************************************************
-	Handler for when the mouse moves
-*************************************************************************/
+    /*************************************************************************
+            Handler for when the mouse moves
+     *************************************************************************/
 #ifndef PE_NO_MOUSE
-void ButtonBase::onMouseMove(MouseEventArgs& e)
-{
-	// this is needed to discover whether mouse is in the widget area or not.
-	// The same thing used to be done each frame in the rendering method,
-	// but in this version the rendering method may not be called every frame
-	// so we must discover the internal widget state here - which is actually
-	// more efficient anyway.
 
-	// base class processing
-	Window::onMouseMove(e);
+void ButtonBase::onMouseMove(MouseEventArgs& e) {
+        // this is needed to discover whether mouse is in the widget area or not.
+        // The same thing used to be done each frame in the rendering method,
+        // but in this version the rendering method may not be called every frame
+        // so we must discover the internal widget state here - which is actually
+        // more efficient anyway.
 
-	updateInternalState(e.position);
-	++e.handled;
-}
+        // base class processing
+        Window::onMouseMove(e);
 
+        updateInternalState(e.position);
+        ++e.handled;
+    }
 
-/*************************************************************************
-	Handler for mouse button pressed events
-*************************************************************************/
-void ButtonBase::onMouseButtonDown(MouseEventArgs& e)
-{
-	// default processing
-	Window::onMouseButtonDown(e);
+    /*************************************************************************
+            Handler for mouse button pressed events
+     *************************************************************************/
+    void ButtonBase::onMouseButtonDown(MouseEventArgs& e) {
+        // default processing
+        Window::onMouseButtonDown(e);
 
-	if (e.button == LeftButton)
-	{
-        if (captureInput())
-        {
-			d_pushed = true;
-			updateInternalState(e.position);
-			invalidate();
+        if (e.button == LeftButton) {
+            if (captureInput()) {
+                d_pushed = true;
+                updateInternalState(e.position);
+                invalidate();
+            }
+
+            // event was handled by us.
+            ++e.handled;
         }
 
-		// event was handled by us.
-		++e.handled;
-	}
+    }
 
-}
+    /*************************************************************************
+    Handler for mouse button release events
+     *************************************************************************/
+    void ButtonBase::onMouseButtonUp(MouseEventArgs& e) {
+        // default processing
+        Window::onMouseButtonUp(e);
+
+        if (e.button == LeftButton) {
+            releaseInput();
+
+            // event was handled by us.
+            ++e.handled;
+        }
+
+    }
+
+
+    //----------------------------------------------------------------------------//
+
+    void ButtonBase::setPushedState(const bool pushed) {
+        d_pushed = pushed;
+
+        if (!pushed)
+            updateInternalState(getUnprojectedPosition(
+                getGUIContext().getMouseCursor().getPosition()));
+        else
+            d_hovering = true;
+
+        invalidate();
+    }
+
+#endif //PE_NO_MOUSE
 
 /*************************************************************************
-Handler for mouse button release events
-*************************************************************************/
-void ButtonBase::onMouseButtonUp(MouseEventArgs& e)
-{
-    // default processing
-    Window::onMouseButtonUp(e);
+            Handler for when mouse capture is lost
+     *************************************************************************/
+    void ButtonBase::onCaptureLost(WindowEventArgs& e) {
+        // Default processing
+        Window::onCaptureLost(e);
 
-    if (e.button == LeftButton)
-    {
-        releaseInput();
+        d_pushed = false;
+#ifndef PE_NO_MOUSE
+        getGUIContext().updateWindowContainingMouse();
+#endif //PE_NO_MOUSE
+        invalidate();
 
         // event was handled by us.
         ++e.handled;
     }
 
-}
-
-
-//----------------------------------------------------------------------------//
-void ButtonBase::setPushedState(const bool pushed)
-{
-    d_pushed = pushed;
-
-    if (!pushed)
-	    updateInternalState(getUnprojectedPosition(
-            getGUIContext().getMouseCursor().getPosition()));
-    else
-        d_hovering = true;
-
-    invalidate();
-}
-
-#endif //PE_NO_MOUSE
-/*************************************************************************
-	Handler for when mouse capture is lost
-*************************************************************************/
-void ButtonBase::onCaptureLost(WindowEventArgs& e)
-{
-	// Default processing
-	Window::onCaptureLost(e);
-
-	d_pushed = false;
-#ifndef PE_NO_MOUSE
-    getGUIContext().updateWindowContainingMouse();
-#endif //PE_NO_MOUSE
-	invalidate();
-
-	// event was handled by us.
-	++e.handled;
-}
-
 #ifndef PE_NO_MOUSE
 
-/*************************************************************************
-	Handler for when mouse leaves the widget
-*************************************************************************/
-void ButtonBase::onMouseLeaves(MouseEventArgs& e)
-{
-	// deafult processing
-	Window::onMouseLeaves(e);
+    /*************************************************************************
+            Handler for when mouse leaves the widget
+     *************************************************************************/
+    void ButtonBase::onMouseLeaves(MouseEventArgs& e) {
+        // deafult processing
+        Window::onMouseLeaves(e);
 
-	d_hovering = false;
-	invalidate();
+        d_hovering = false;
+        invalidate();
 
-	++e.handled;
-}
+        ++e.handled;
+    }
 #endif //PE_NO_MOUSE
 } // End of  CEGUI namespace section

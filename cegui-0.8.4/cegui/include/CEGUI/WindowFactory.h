@@ -3,7 +3,7 @@
     author:     Paul D Turner
 
     purpose:    Defines abstract base class for WindowFactory objects
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -51,7 +51,7 @@
         WindowFactory* wf = &(getMyWidgetFactory());
     or
         WindowFactory* wf = &CEGUI_WINDOW_FACTORY(MyWidget);
-*/
+ */
 #define CEGUI_DECLARE_WINDOW_FACTORY( T )\
     class T ## Factory : public WindowFactory\
     {\
@@ -72,7 +72,7 @@
 \brief
     Generates code for the constructor for the instance of the window factory
     generated from the class name \a T
-*/
+ */
 #define CEGUI_DEFINE_WINDOW_FACTORY( T )\
     T ## Factory& get ## T ## Factory()\
     {\
@@ -84,88 +84,90 @@
 \brief
     Helper macro that return the real factory class name from a given class
     name \a T
-*/
+ */
 #define CEGUI_WINDOW_FACTORY( T ) (get ## T ## Factory())
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Abstract class that defines the required interface for all WindowFactory
-    objects.
-
-    A WindowFactory is used to create and destroy windows of a specific type.
-    For every type of Window object wihin the system (widgets, dialogs, movable
-    windows etc) there must be an associated WindowFactory registered with the
-    WindowFactoryManager so that the system knows how to create and destroy
-    those types of Window base object.
-
-\note
-    The use if of the CEGUI_DECLARE_WINDOW_FACTORY, CEGUI_DEFINE_WINDOW_FACTORY
-    and CEGUI_WINDOW_FACTORY macros is deprecated in favour of the
-    template class TplWindowFactory and templatised
-    WindowFactoryManager::addFactory function, whereby you no longer need to
-    directly create any supporting structure for your new window type, and can
-    simply do:
-    \code
-    CEGUI::WindowFactoryManager::addFactory<TplWindowFactory<MyWidget> >();
-    \endcode
-*/
-class CEGUIEXPORT WindowFactory :
-    public AllocatedObject<WindowFactory>
-{
-public:
-    /*!
-    \brief
-        Create a new Window object of whatever type this WindowFactory produces.
-
-    \param name
-        A unique name that is to be assigned to the newly created Window object
-
-    \return
-        Pointer to the new Window object.
-    */
-    virtual Window* createWindow(const String& name) = 0;
+namespace CEGUI {
 
     /*!
     \brief
-        Destroys the given Window object.
+        Abstract class that defines the required interface for all WindowFactory
+        objects.
 
-    \param window
-        Pointer to the Window object to be destroyed.
+        A WindowFactory is used to create and destroy windows of a specific type.
+        For every type of Window object wihin the system (widgets, dialogs, movable
+        windows etc) there must be an associated WindowFactory registered with the
+        WindowFactoryManager so that the system knows how to create and destroy
+        those types of Window base object.
 
-    \return
-        Nothing.
-    */
-    virtual void destroyWindow(Window* window) = 0;
+    \note
+        The use if of the CEGUI_DECLARE_WINDOW_FACTORY, CEGUI_DEFINE_WINDOW_FACTORY
+        and CEGUI_WINDOW_FACTORY macros is deprecated in favour of the
+        template class TplWindowFactory and templatised
+        WindowFactoryManager::addFactory function, whereby you no longer need to
+        directly create any supporting structure for your new window type, and can
+        simply do:
+        \code
+        CEGUI::WindowFactoryManager::addFactory<TplWindowFactory<MyWidget> >();
+        \endcode
+     */
+    class CEGUIEXPORT WindowFactory :
+    public AllocatedObject<WindowFactory> {
+    public:
+        /*!
+        \brief
+            Create a new Window object of whatever type this WindowFactory produces.
 
-    /*!
-    \brief
-        Get the string that describes the type of Window object this
-        WindowFactory produces.
+        \param name
+            A unique name that is to be assigned to the newly created Window object
 
-    \return
-        String object that contains the unique Window object type produced by
-        this WindowFactory
-    */
-    const String& getTypeName() const
-    { return d_type; }
+        \return
+            Pointer to the new Window object.
+         */
+        virtual Window* createWindow(const String& name) = 0;
 
-    //! Destructor.
-    virtual ~WindowFactory()
-    {}
+        /*!
+        \brief
+            Destroys the given Window object.
 
-protected:
-    //! Constructor
-    WindowFactory(const String& type) :
-        d_type(type)
-    {}
+        \param window
+            Pointer to the Window object to be destroyed.
 
-protected:
-    //! String holding the type of object created by this factory.
-    String  d_type;
-};
+        \return
+            Nothing.
+         */
+        virtual void destroyWindow(Window* window) = 0;
+
+        /*!
+        \brief
+            Get the string that describes the type of Window object this
+            WindowFactory produces.
+
+        \return
+            String object that contains the unique Window object type produced by
+            this WindowFactory
+         */
+        const String& getTypeName() const {
+            return d_type;
+        }
+
+        //! Destructor.
+
+        virtual ~WindowFactory() {
+        }
+
+    protected:
+        //! Constructor
+
+        WindowFactory(const String& type) :
+        d_type(type) {
+        }
+
+    protected:
+        //! String holding the type of object created by this factory.
+        String d_type;
+    };
 
 } // End of  CEGUI namespace section
 

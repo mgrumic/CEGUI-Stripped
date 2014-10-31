@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,64 +29,54 @@
 #include <iostream>
 #include "CEGUI/PropertyHelper.h"
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-    LayerSpecification::LayerSpecification(uint priority) :
-        d_layerPriority(priority)
-    {}
+namespace CEGUI {
 
-    void LayerSpecification::render(Window& srcWindow, const ColourRect* modcols, const Rectf* clipper, bool clipToDisplay) const
-    {
+    LayerSpecification::LayerSpecification(uint priority) :
+    d_layerPriority(priority) {
+    }
+
+    void LayerSpecification::render(Window& srcWindow, const ColourRect* modcols, const Rectf* clipper, bool clipToDisplay) const {
         // render all sections in this layer
-        for(SectionList::const_iterator curr = d_sections.begin(); curr != d_sections.end(); ++curr)
-        {
+        for (SectionList::const_iterator curr = d_sections.begin(); curr != d_sections.end(); ++curr) {
             (*curr).render(srcWindow, modcols, clipper, clipToDisplay);
         }
     }
 
-    void LayerSpecification::render(Window& srcWindow, const Rectf& baseRect, const ColourRect* modcols, const Rectf* clipper, bool clipToDisplay) const
-    {
+    void LayerSpecification::render(Window& srcWindow, const Rectf& baseRect, const ColourRect* modcols, const Rectf* clipper, bool clipToDisplay) const {
         // render all sections in this layer
-        for(SectionList::const_iterator curr = d_sections.begin(); curr != d_sections.end(); ++curr)
-        {
+        for (SectionList::const_iterator curr = d_sections.begin(); curr != d_sections.end(); ++curr) {
             (*curr).render(srcWindow, baseRect, modcols, clipper, clipToDisplay);
         }
     }
 
-    void LayerSpecification::addSectionSpecification(const SectionSpecification& section)
-    {
+    void LayerSpecification::addSectionSpecification(const SectionSpecification& section) {
         d_sections.push_back(section);
     }
 
-    void LayerSpecification::clearSectionSpecifications()
-    {
+    void LayerSpecification::clearSectionSpecifications() {
         d_sections.clear();
     }
 
-    uint LayerSpecification::getLayerPriority() const
-    {
+    uint LayerSpecification::getLayerPriority() const {
         return d_layerPriority;
     }
 
-    void LayerSpecification::setLayerPriority(uint priority)
-    {
+    void LayerSpecification::setLayerPriority(uint priority) {
         d_layerPriority = priority;
     }
-    bool LayerSpecification::operator<(const LayerSpecification& other) const
-    {
+
+    bool LayerSpecification::operator<(const LayerSpecification& other) const {
         return d_layerPriority < other.d_layerPriority;
     }
 
-    void LayerSpecification::writeXMLToStream(XMLSerializer& xml_stream) const
-    {
+    void LayerSpecification::writeXMLToStream(XMLSerializer& xml_stream) const {
         xml_stream.openTag(Falagard_xmlHandler::LayerElement);
 
         if (d_layerPriority != 0)
             xml_stream.attribute(Falagard_xmlHandler::PriorityAttribute, PropertyHelper<uint>::toString(d_layerPriority));
 
         // ouput all sections in this layer
-        for(SectionList::const_iterator curr = d_sections.begin(); curr != d_sections.end(); ++curr)
-        {
+        for (SectionList::const_iterator curr = d_sections.begin(); curr != d_sections.end(); ++curr) {
             (*curr).writeXMLToStream(xml_stream);
         }
 
@@ -94,8 +84,7 @@ namespace CEGUI
     }
 
     LayerSpecification::SectionIterator
-    LayerSpecification::getSectionIterator() const
-    {
+    LayerSpecification::getSectionIterator() const {
         return SectionIterator(d_sections.begin(), d_sections.end());
     }
 } // End of  CEGUI namespace section

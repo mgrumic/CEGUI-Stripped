@@ -28,34 +28,31 @@
 #include "CEGUI/XMLParserModules/Xerces/XMLParser.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-namespace XercesParserProperties
-{    
-//----------------------------------------------------------------------------//
+    namespace XercesParserProperties {
+        //----------------------------------------------------------------------------//
 
-String SchemaDefaultResourceGroup::get(const PropertyReceiver* receiver) const
-{
-    return static_cast<const XercesParser*>(receiver)->
-        getSchemaDefaultResourceGroup();
-}
+        String SchemaDefaultResourceGroup::get(const PropertyReceiver* receiver) const {
+            return static_cast<const XercesParser*> (receiver)->
+                    getSchemaDefaultResourceGroup();
+        }
 
-//----------------------------------------------------------------------------//
-void SchemaDefaultResourceGroup::set(PropertyReceiver* receiver,
-                                     const String& value)
-{
-    static_cast<XercesParser*>(receiver)->setSchemaDefaultResourceGroup(value);
-}
+        //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Property* SchemaDefaultResourceGroup::clone() const
-{
-    return CEGUI_NEW_AO SchemaDefaultResourceGroup(*this);
-}
+        void SchemaDefaultResourceGroup::set(PropertyReceiver* receiver,
+                const String& value) {
+            static_cast<XercesParser*> (receiver)->setSchemaDefaultResourceGroup(value);
+        }
 
-//----------------------------------------------------------------------------//
-//
-} // End of XercesParserProperties namespace section
-    
+        //----------------------------------------------------------------------------//
+
+        Property* SchemaDefaultResourceGroup::clone() const {
+            return CEGUI_NEW_AO SchemaDefaultResourceGroup(*this);
+        }
+
+        //----------------------------------------------------------------------------//
+        //
+    } // End of XercesParserProperties namespace section
+
 } // End of  CEGUI namespace section

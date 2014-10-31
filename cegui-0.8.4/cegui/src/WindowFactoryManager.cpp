@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	22/2/2004
-	author:		Paul D Turner
+        created:	22/2/2004
+        author:		Paul D Turner
 
-	purpose:	Implements the WindowFactoryManager
-*************************************************************************/
+        purpose:	Implements the WindowFactoryManager
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,447 +32,386 @@
 #include <algorithm>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*************************************************************************
-	Static Data Definitions
-*************************************************************************/
-// singleton instance pointer
-template<> WindowFactoryManager* Singleton<WindowFactoryManager>::ms_Singleton	= 0;
-// list of owned WindowFactory object pointers
-WindowFactoryManager::OwnedWindowFactoryList WindowFactoryManager::d_ownedFactories;
+namespace CEGUI {
+    /*************************************************************************
+            Static Data Definitions
+     *************************************************************************/
+    // singleton instance pointer
+    template<> WindowFactoryManager* Singleton<WindowFactoryManager>::ms_Singleton = 0;
+    // list of owned WindowFactory object pointers
+    WindowFactoryManager::OwnedWindowFactoryList WindowFactoryManager::d_ownedFactories;
 
-//----------------------------------------------------------------------------//
-WindowFactoryManager::WindowFactoryManager(void)
-{
-#ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent(
-        "CEGUI::WindowFactoryManager singleton created");
-#endif //PE_NO_LOGGER
+    //----------------------------------------------------------------------------//
 
-    // complete addition of any pre-added WindowFactory objects
-    WindowFactoryManager::OwnedWindowFactoryList::iterator i =
-        d_ownedFactories.begin();
-
-    if (d_ownedFactories.end() != i)
-    {
+    WindowFactoryManager::WindowFactoryManager(void) {
 #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent(
-        "---- Adding pre-registered WindowFactory objects ----");
+                "CEGUI::WindowFactoryManager singleton created");
 #endif //PE_NO_LOGGER
 
-        for (; d_ownedFactories.end() != i; ++i)
-            addFactory(*i);
-    }
-}
+        // complete addition of any pre-added WindowFactory objects
+        WindowFactoryManager::OwnedWindowFactoryList::iterator i =
+                d_ownedFactories.begin();
 
-/*************************************************************************
-	Adds a WindowFactory object to the registry
-*************************************************************************/
-void WindowFactoryManager::addFactory(WindowFactory* factory)
-{
-	// throw exception if passed factory is null.
-	if (!factory)
-	{
-		CEGUI_THROW(NullObjectException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-            "The provided WindowFactory pointer was invalid."));
-#endif //PE_NO_THROW_MSGS
-	}
-
-	// throw exception if type name for factory is already in use
-	if (d_factoryRegistry.find(factory->getTypeName()) != d_factoryRegistry.end())
-	{
-		CEGUI_THROW(AlreadyExistsException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-            "A WindowFactory for type '" + factory->getTypeName() +
-            "' is already registered."));
-#endif //PE_NO_THROW_MSGS
-	}
-
-	// add the factory to the registry
-	d_factoryRegistry[factory->getTypeName()] = factory;
-
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(factory));
+        if (d_ownedFactories.end() != i) {
 #ifndef PE_NO_LOGGER
-	Logger::getSingleton().logEvent("WindowFactory for '" +
-       factory->getTypeName() +"' windows added. " + addr_buff);
-#endif //PE_NO_LOGGER
-}
-
-
-/*************************************************************************
-	removes a WindowFactory from the registry (by name)
-*************************************************************************/
-void WindowFactoryManager::removeFactory(const String& name)
-{
-    WindowFactoryRegistry::iterator i = d_factoryRegistry.find(name);
-
-    // exit if no factory exists for this type
-    if (i == d_factoryRegistry.end())
-        return;
-
-    // see if we own this factory
-    OwnedWindowFactoryList::iterator j = std::find(d_ownedFactories.begin(),
-                                                   d_ownedFactories.end(),
-                                                   (*i).second);
-
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>((*i).second));
-
-	d_factoryRegistry.erase(name);
-#ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent("WindowFactory for '" + name +
-                                    "' windows removed. " + addr_buff);
+            Logger::getSingleton().logEvent(
+                    "---- Adding pre-registered WindowFactory objects ----");
 #endif //PE_NO_LOGGER
 
-    // delete factory object if we created it
-    if (j != d_ownedFactories.end())
-    {
-#ifndef PE_NO_LOGGER
-        Logger::getSingleton().logEvent("Deleted WindowFactory for '" +
-                                        (*j)->getTypeName() +
-                                        "' windows.");
-#endif //PE_NO_LOGGER
-
-        CEGUI_DELETE_AO (*j);
-        d_ownedFactories.erase(j);
-    }
-}
-
-
-/*************************************************************************
-	removes a WindowFactory from the registry (by pointer)
-*************************************************************************/
-void WindowFactoryManager::removeFactory(WindowFactory* factory)
-{
-	if (factory)
-	{
-		removeFactory(factory->getTypeName());
-	}
-
-}
-
-//----------------------------------------------------------------------------//
-void WindowFactoryManager::removeAllFactories(void)
-{
-    while (!d_factoryRegistry.empty())
-        removeFactory((*d_factoryRegistry.begin()).second);
-}
-
-
-/*************************************************************************
-	returns a pointer to the requested WindowFactory object
-*************************************************************************/
-WindowFactory* WindowFactoryManager::getFactory(const String& type) const
-{
-    // first, dereference aliased types, as needed.
-    String targetType(getDereferencedAliasType(type));
-
-	// try for a 'real' type
-	WindowFactoryRegistry::const_iterator pos = d_factoryRegistry.find(targetType);
-
-	// found an actual factory for this type
-	if (pos != d_factoryRegistry.end())
-	{
-		return pos->second;
-	}
-    // no concrete type, try for a falagard mapped type
-    else
-    {
-        FalagardMapRegistry::const_iterator falagard = d_falagardRegistry.find(targetType);
-
-        // found falagard mapping for this type
-        if (falagard != d_falagardRegistry.end())
-        {
-            // recursively call getFactory on the target base type
-            return getFactory(falagard->second.d_baseType);
-        }
-        // type not found anywhere, give up with an exception.
-        else
-        {
-            CEGUI_THROW(UnknownObjectException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "A WindowFactory object, an alias, or mapping for '" + type +
-                "' Window objects is not registered with the system."));
-#endif //PE_NO_THROW_MSGS
+            for (; d_ownedFactories.end() != i; ++i)
+                addFactory(*i);
         }
     }
-}
 
-
-/*************************************************************************
-    Returns true if a WindowFactory, an alias, or a falagard mapping for
-    a specified window type is present
-*************************************************************************/
-bool WindowFactoryManager::isFactoryPresent(const String& name) const
-{
-    // first, dereference aliased types, as needed.
-    String targetType(getDereferencedAliasType(name));
-
-    // now try for a 'real' type
-    if (d_factoryRegistry.find(targetType) != d_factoryRegistry.end())
-    {
-        return true;
-    }
-    // not a concrete type, so return whether it's a Falagard mapped type.
-    else
-    {
-        return (d_falagardRegistry.find(targetType) != d_falagardRegistry.end());
-    }
-}
-
-
-/*************************************************************************
-	Return a WindowFactoryManager::WindowFactoryIterator object to
-	iterate over the available WindowFactory types.
-*************************************************************************/
-WindowFactoryManager::WindowFactoryIterator	WindowFactoryManager::getIterator(void) const
-{
-	return WindowFactoryIterator(d_factoryRegistry.begin(), d_factoryRegistry.end());
-}
-
-
-/*************************************************************************
-	Return a WindowFactoryManager::TypeAliasIterator object to iterate
-	over the defined aliases for window types.
-*************************************************************************/
-WindowFactoryManager::TypeAliasIterator WindowFactoryManager::getAliasIterator(void) const
-{
-	return TypeAliasIterator(d_aliasRegistry.begin(), d_aliasRegistry.end());
-}
-
-
-/*************************************************************************
-	Add a window type alias mapping
-*************************************************************************/
-void WindowFactoryManager::addWindowTypeAlias(const String& aliasName, const String& targetType)
-{
-	TypeAliasRegistry::iterator pos = d_aliasRegistry.find(aliasName);
-
-	if (pos == d_aliasRegistry.end())
-	{
-		d_aliasRegistry[aliasName].d_targetStack.push_back(targetType);
-	}
-	// alias already exists, add our new entry to the list already there
-	else
-	{
-		pos->second.d_targetStack.push_back(targetType);
-	}
-#ifndef PE_NO_LOGGER
-	Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' added for window type '" + targetType +"'.");
-#endif //PE_NO_LOGGER
-}
-
-
-/*************************************************************************
-	Remove a window type alias mapping
-*************************************************************************/
-void WindowFactoryManager::removeWindowTypeAlias(const String& aliasName, const String& targetType)
-{
-	// find alias name
-	TypeAliasRegistry::iterator pos = d_aliasRegistry.find(aliasName);
-
-	// if alias name exists
-	if (pos != d_aliasRegistry.end())
-	{
-		// find the specified target for this alias
-		AliasTargetStack::TargetTypeStack::iterator aliasPos = std::find(pos->second.d_targetStack.begin(), pos->second.d_targetStack.end(), targetType);
-
-		// if the target exists for this alias
-		if (aliasPos != pos->second.d_targetStack.end())
-		{
-			// erase the target mapping
-			pos->second.d_targetStack.erase(aliasPos);
-#ifndef PE_NO_LOGGER
-			Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' removed for window type '" + targetType +"'.");
-#endif //PE_NO_LOGGER
-
-			// if the list of targets for this alias is now empty
-			if (pos->second.d_targetStack.empty())
-			{
-				// erase the alias name also
-				d_aliasRegistry.erase(aliasName);
-#ifndef PE_NO_LOGGER
-				Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' has no more targets and has been removed.", Informative);
-#endif //PE_NO_LOGGER
-			}
-
-		}
-
-	}
-
-}
-
-void WindowFactoryManager::removeAllWindowTypeAliases()
-{
-	d_aliasRegistry.clear();
-}
-
-void WindowFactoryManager::addFalagardWindowMapping(const String& newType,
-                                                    const String& targetType,
-                                                    const String& lookName,
-                                                    const String& renderer,
-                                                    const String& effectName)
-{
-    WindowFactoryManager::FalagardWindowMapping mapping;
-    mapping.d_windowType = newType;
-    mapping.d_baseType   = targetType;
-    mapping.d_lookName   = lookName;
-    mapping.d_rendererType = renderer;
-    mapping.d_effectName = effectName;
-
-    // see if the type we're creating already exists
-    if (d_falagardRegistry.find(newType) != d_falagardRegistry.end())
-    {
-#ifndef PE_NO_LOGGER
-        // type already exists, log the fact that it's going to be replaced.
-        Logger::getSingleton().logEvent("Falagard mapping for type '" + newType + "' already exists - current mapping will be replaced.");
-#endif //PE_NO_LOGGER
-    }
-
-#ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(&mapping));
-    Logger::getSingleton().logEvent("Creating falagard mapping for type '" +
-        newType + "' using base type '" + targetType + "', window renderer '" +
-        renderer + "' Look'N'Feel '" + lookName + "' and RenderEffect '" +
-        effectName + "'. " + addr_buff);
-#endif //PE_NO_LOGGER
-
-    d_falagardRegistry[newType] = mapping;
-}
-
-void WindowFactoryManager::removeFalagardWindowMapping(const String& type)
-{
-    FalagardMapRegistry::iterator iter = d_falagardRegistry.find(type);
-
-    if (iter != d_falagardRegistry.end())
-    {
-#ifndef PE_NO_LOGGER
-        Logger::getSingleton().logEvent("Removing falagard mapping for type '" + type + "'.");
-#endif //PE_NO_LOGGER
-        d_falagardRegistry.erase(iter);
-    }
-}
-
-void WindowFactoryManager::removeAllFalagardWindowMappings()
-{
-	d_falagardRegistry.clear();
-}
-
-WindowFactoryManager::FalagardMappingIterator WindowFactoryManager::getFalagardMappingIterator() const
-{
-    return FalagardMappingIterator(d_falagardRegistry.begin(), d_falagardRegistry.end());
-}
-
-bool WindowFactoryManager::isFalagardMappedType(const String& type) const
-{
-    return d_falagardRegistry.find(getDereferencedAliasType(type)) != d_falagardRegistry.end();
-}
-
-const String& WindowFactoryManager::getMappedLookForType(const String& type) const
-{
-    FalagardMapRegistry::const_iterator iter =
-        d_falagardRegistry.find(getDereferencedAliasType(type));
-
-    if (iter != d_falagardRegistry.end())
-    {
-        return (*iter).second.d_lookName;
-    }
-    // type does not exist as a mapped type (or an alias for one)
-    else
-    {
-        CEGUI_THROW(InvalidRequestException(
+    /*************************************************************************
+            Adds a WindowFactory object to the registry
+     *************************************************************************/
+    void WindowFactoryManager::addFactory(WindowFactory* factory) {
+        // throw exception if passed factory is null.
+        if (!factory) {
+            CEGUI_THROW(NullObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "Window factory type '" + type +
-            "' is not a falagard mapped type (or an alias for one)."));
+                    "The provided WindowFactory pointer was invalid."));
 #endif //PE_NO_THROW_MSGS
-    }
-}
+        }
 
-const String& WindowFactoryManager::getMappedRendererForType(const String& type) const
-{
-    FalagardMapRegistry::const_iterator iter =
-        d_falagardRegistry.find(getDereferencedAliasType(type));
-
-    if (iter != d_falagardRegistry.end())
-    {
-        return (*iter).second.d_rendererType;
-    }
-    // type does not exist as a mapped type (or an alias for one)
-    else
-    {
-        CEGUI_THROW(InvalidRequestException(
+        // throw exception if type name for factory is already in use
+        if (d_factoryRegistry.find(factory->getTypeName()) != d_factoryRegistry.end()) {
+            CEGUI_THROW(AlreadyExistsException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "Window factory type '" + type +
-            "' is not a falagard mapped type (or an alias for one)."));
+                    "A WindowFactory for type '" + factory->getTypeName() +
+                    "' is already registered."));
 #endif //PE_NO_THROW_MSGS
+        }
+
+        // add the factory to the registry
+        d_factoryRegistry[factory->getTypeName()] = factory;
+
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (factory));
+#ifndef PE_NO_LOGGER
+        Logger::getSingleton().logEvent("WindowFactory for '" +
+                factory->getTypeName() + "' windows added. " + addr_buff);
+#endif //PE_NO_LOGGER
     }
-}
 
-String WindowFactoryManager::getDereferencedAliasType(const String& type) const
-{
-    TypeAliasRegistry::const_iterator alias = d_aliasRegistry.find(type);
+    /*************************************************************************
+            removes a WindowFactory from the registry (by name)
+     *************************************************************************/
+    void WindowFactoryManager::removeFactory(const String& name) {
+        WindowFactoryRegistry::iterator i = d_factoryRegistry.find(name);
 
-    // if this is an aliased type, ensure to fully dereference by recursively
-    // calling ourselves on the active target for the given type.
-    if (alias != d_aliasRegistry.end())
-        return getDereferencedAliasType(alias->second.getActiveTarget());
+        // exit if no factory exists for this type
+        if (i == d_factoryRegistry.end())
+            return;
 
-    // we're not an alias, so return the input type unchanged
-    return type;
-}
+        // see if we own this factory
+        OwnedWindowFactoryList::iterator j = std::find(d_ownedFactories.begin(),
+                d_ownedFactories.end(),
+                (*i).second);
 
-const WindowFactoryManager::FalagardWindowMapping& WindowFactoryManager::getFalagardMappingForType(const String& type) const
-{
-    FalagardMapRegistry::const_iterator iter =
-        d_falagardRegistry.find(getDereferencedAliasType(type));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> ((*i).second));
 
-    if (iter != d_falagardRegistry.end())
-    {
-        return (*iter).second;
+        d_factoryRegistry.erase(name);
+#ifndef PE_NO_LOGGER
+        Logger::getSingleton().logEvent("WindowFactory for '" + name +
+                "' windows removed. " + addr_buff);
+#endif //PE_NO_LOGGER
+
+        // delete factory object if we created it
+        if (j != d_ownedFactories.end()) {
+#ifndef PE_NO_LOGGER
+            Logger::getSingleton().logEvent("Deleted WindowFactory for '" +
+                    (*j)->getTypeName() +
+                    "' windows.");
+#endif //PE_NO_LOGGER
+
+            CEGUI_DELETE_AO(*j);
+            d_ownedFactories.erase(j);
+        }
     }
-    // type does not exist as a mapped type (or an alias for one)
-    else
-    {
-        CEGUI_THROW(InvalidRequestException(
+
+    /*************************************************************************
+            removes a WindowFactory from the registry (by pointer)
+     *************************************************************************/
+    void WindowFactoryManager::removeFactory(WindowFactory* factory) {
+        if (factory) {
+            removeFactory(factory->getTypeName());
+        }
+
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void WindowFactoryManager::removeAllFactories(void) {
+        while (!d_factoryRegistry.empty())
+            removeFactory((*d_factoryRegistry.begin()).second);
+    }
+
+    /*************************************************************************
+            returns a pointer to the requested WindowFactory object
+     *************************************************************************/
+    WindowFactory* WindowFactoryManager::getFactory(const String& type) const {
+        // first, dereference aliased types, as needed.
+        String targetType(getDereferencedAliasType(type));
+
+        // try for a 'real' type
+        WindowFactoryRegistry::const_iterator pos = d_factoryRegistry.find(targetType);
+
+        // found an actual factory for this type
+        if (pos != d_factoryRegistry.end()) {
+            return pos->second;
+        }            // no concrete type, try for a falagard mapped type
+        else {
+            FalagardMapRegistry::const_iterator falagard = d_falagardRegistry.find(targetType);
+
+            // found falagard mapping for this type
+            if (falagard != d_falagardRegistry.end()) {
+                // recursively call getFactory on the target base type
+                return getFactory(falagard->second.d_baseType);
+            }                // type not found anywhere, give up with an exception.
+            else {
+                CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                        ""));
 #else
-            "Window factory type '" + type +
-            "' is not a falagard mapped type (or an alias for one)."));
+                        "A WindowFactory object, an alias, or mapping for '" + type +
+                        "' Window objects is not registered with the system."));
 #endif //PE_NO_THROW_MSGS
+            }
+        }
     }
-}
+
+    /*************************************************************************
+        Returns true if a WindowFactory, an alias, or a falagard mapping for
+        a specified window type is present
+     *************************************************************************/
+    bool WindowFactoryManager::isFactoryPresent(const String& name) const {
+        // first, dereference aliased types, as needed.
+        String targetType(getDereferencedAliasType(name));
+
+        // now try for a 'real' type
+        if (d_factoryRegistry.find(targetType) != d_factoryRegistry.end()) {
+            return true;
+        }            // not a concrete type, so return whether it's a Falagard mapped type.
+        else {
+            return (d_falagardRegistry.find(targetType) != d_falagardRegistry.end());
+        }
+    }
+
+    /*************************************************************************
+            Return a WindowFactoryManager::WindowFactoryIterator object to
+            iterate over the available WindowFactory types.
+     *************************************************************************/
+    WindowFactoryManager::WindowFactoryIterator WindowFactoryManager::getIterator(void) const {
+        return WindowFactoryIterator(d_factoryRegistry.begin(), d_factoryRegistry.end());
+    }
+
+    /*************************************************************************
+            Return a WindowFactoryManager::TypeAliasIterator object to iterate
+            over the defined aliases for window types.
+     *************************************************************************/
+    WindowFactoryManager::TypeAliasIterator WindowFactoryManager::getAliasIterator(void) const {
+        return TypeAliasIterator(d_aliasRegistry.begin(), d_aliasRegistry.end());
+    }
+
+    /*************************************************************************
+            Add a window type alias mapping
+     *************************************************************************/
+    void WindowFactoryManager::addWindowTypeAlias(const String& aliasName, const String& targetType) {
+        TypeAliasRegistry::iterator pos = d_aliasRegistry.find(aliasName);
+
+        if (pos == d_aliasRegistry.end()) {
+            d_aliasRegistry[aliasName].d_targetStack.push_back(targetType);
+        }            // alias already exists, add our new entry to the list already there
+        else {
+            pos->second.d_targetStack.push_back(targetType);
+        }
+#ifndef PE_NO_LOGGER
+        Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' added for window type '" + targetType + "'.");
+#endif //PE_NO_LOGGER
+    }
+
+    /*************************************************************************
+            Remove a window type alias mapping
+     *************************************************************************/
+    void WindowFactoryManager::removeWindowTypeAlias(const String& aliasName, const String& targetType) {
+        // find alias name
+        TypeAliasRegistry::iterator pos = d_aliasRegistry.find(aliasName);
+
+        // if alias name exists
+        if (pos != d_aliasRegistry.end()) {
+            // find the specified target for this alias
+            AliasTargetStack::TargetTypeStack::iterator aliasPos = std::find(pos->second.d_targetStack.begin(), pos->second.d_targetStack.end(), targetType);
+
+            // if the target exists for this alias
+            if (aliasPos != pos->second.d_targetStack.end()) {
+                // erase the target mapping
+                pos->second.d_targetStack.erase(aliasPos);
+#ifndef PE_NO_LOGGER
+                Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' removed for window type '" + targetType + "'.");
+#endif //PE_NO_LOGGER
+
+                // if the list of targets for this alias is now empty
+                if (pos->second.d_targetStack.empty()) {
+                    // erase the alias name also
+                    d_aliasRegistry.erase(aliasName);
+#ifndef PE_NO_LOGGER
+                    Logger::getSingleton().logEvent("Window type alias named '" + aliasName + "' has no more targets and has been removed.", Informative);
+#endif //PE_NO_LOGGER
+                }
+
+            }
+
+        }
+
+    }
+
+    void WindowFactoryManager::removeAllWindowTypeAliases() {
+        d_aliasRegistry.clear();
+    }
+
+    void WindowFactoryManager::addFalagardWindowMapping(const String& newType,
+            const String& targetType,
+            const String& lookName,
+            const String& renderer,
+            const String& effectName) {
+        WindowFactoryManager::FalagardWindowMapping mapping;
+        mapping.d_windowType = newType;
+        mapping.d_baseType = targetType;
+        mapping.d_lookName = lookName;
+        mapping.d_rendererType = renderer;
+        mapping.d_effectName = effectName;
+
+        // see if the type we're creating already exists
+        if (d_falagardRegistry.find(newType) != d_falagardRegistry.end()) {
+#ifndef PE_NO_LOGGER
+            // type already exists, log the fact that it's going to be replaced.
+            Logger::getSingleton().logEvent("Falagard mapping for type '" + newType + "' already exists - current mapping will be replaced.");
+#endif //PE_NO_LOGGER
+        }
+
+#ifndef PE_NO_LOGGER
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (&mapping));
+        Logger::getSingleton().logEvent("Creating falagard mapping for type '" +
+                newType + "' using base type '" + targetType + "', window renderer '" +
+                renderer + "' Look'N'Feel '" + lookName + "' and RenderEffect '" +
+                effectName + "'. " + addr_buff);
+#endif //PE_NO_LOGGER
+
+        d_falagardRegistry[newType] = mapping;
+    }
+
+    void WindowFactoryManager::removeFalagardWindowMapping(const String& type) {
+        FalagardMapRegistry::iterator iter = d_falagardRegistry.find(type);
+
+        if (iter != d_falagardRegistry.end()) {
+#ifndef PE_NO_LOGGER
+            Logger::getSingleton().logEvent("Removing falagard mapping for type '" + type + "'.");
+#endif //PE_NO_LOGGER
+            d_falagardRegistry.erase(iter);
+        }
+    }
+
+    void WindowFactoryManager::removeAllFalagardWindowMappings() {
+        d_falagardRegistry.clear();
+    }
+
+    WindowFactoryManager::FalagardMappingIterator WindowFactoryManager::getFalagardMappingIterator() const {
+        return FalagardMappingIterator(d_falagardRegistry.begin(), d_falagardRegistry.end());
+    }
+
+    bool WindowFactoryManager::isFalagardMappedType(const String& type) const {
+        return d_falagardRegistry.find(getDereferencedAliasType(type)) != d_falagardRegistry.end();
+    }
+
+    const String& WindowFactoryManager::getMappedLookForType(const String& type) const {
+        FalagardMapRegistry::const_iterator iter =
+                d_falagardRegistry.find(getDereferencedAliasType(type));
+
+        if (iter != d_falagardRegistry.end()) {
+            return (*iter).second.d_lookName;
+        }            // type does not exist as a mapped type (or an alias for one)
+        else {
+            CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "Window factory type '" + type +
+                    "' is not a falagard mapped type (or an alias for one)."));
+#endif //PE_NO_THROW_MSGS
+        }
+    }
+
+    const String& WindowFactoryManager::getMappedRendererForType(const String& type) const {
+        FalagardMapRegistry::const_iterator iter =
+                d_falagardRegistry.find(getDereferencedAliasType(type));
+
+        if (iter != d_falagardRegistry.end()) {
+            return (*iter).second.d_rendererType;
+        }            // type does not exist as a mapped type (or an alias for one)
+        else {
+            CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "Window factory type '" + type +
+                    "' is not a falagard mapped type (or an alias for one)."));
+#endif //PE_NO_THROW_MSGS
+        }
+    }
+
+    String WindowFactoryManager::getDereferencedAliasType(const String& type) const {
+        TypeAliasRegistry::const_iterator alias = d_aliasRegistry.find(type);
+
+        // if this is an aliased type, ensure to fully dereference by recursively
+        // calling ourselves on the active target for the given type.
+        if (alias != d_aliasRegistry.end())
+            return getDereferencedAliasType(alias->second.getActiveTarget());
+
+        // we're not an alias, so return the input type unchanged
+        return type;
+    }
+
+    const WindowFactoryManager::FalagardWindowMapping& WindowFactoryManager::getFalagardMappingForType(const String& type) const {
+        FalagardMapRegistry::const_iterator iter =
+                d_falagardRegistry.find(getDereferencedAliasType(type));
+
+        if (iter != d_falagardRegistry.end()) {
+            return (*iter).second;
+        }            // type does not exist as a mapped type (or an alias for one)
+        else {
+            CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "Window factory type '" + type +
+                    "' is not a falagard mapped type (or an alias for one)."));
+#endif //PE_NO_THROW_MSGS
+        }
+    }
 
 
-//////////////////////////////////////////////////////////////////////////
-/*************************************************************************
-	Methods for AliasTargetStack class
-*************************************************************************/
-//////////////////////////////////////////////////////////////////////////
-const String& WindowFactoryManager::AliasTargetStack::getActiveTarget(void) const
-{
-	return d_targetStack.back();
-}
+    //////////////////////////////////////////////////////////////////////////
+    /*************************************************************************
+            Methods for AliasTargetStack class
+     *************************************************************************/
+    //////////////////////////////////////////////////////////////////////////
 
+    const String& WindowFactoryManager::AliasTargetStack::getActiveTarget(void) const {
+        return d_targetStack.back();
+    }
 
-uint WindowFactoryManager::AliasTargetStack::getStackedTargetCount(void) const
-{
-	return (uint)d_targetStack.size();
-}
+    uint WindowFactoryManager::AliasTargetStack::getStackedTargetCount(void) const {
+        return (uint) d_targetStack.size();
+    }
 
 
 } // End of  CEGUI namespace section

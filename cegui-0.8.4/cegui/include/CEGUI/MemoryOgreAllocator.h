@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	18/10/2010
-	author:		Martin Preisler
+        created:	18/10/2010
+        author:		Martin Preisler
 
-	purpose:	Implements an allocator that delegates to Ogre
-*************************************************************************/
+        purpose:	Implements an allocator that delegates to Ogre
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -31,14 +31,13 @@
 
 #include <OgreMemoryAllocatorConfig.h>
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-// I deliberately kept the interface exactly the same,
-// so this will do just fine...
+    // I deliberately kept the interface exactly the same,
+    // so this will do just fine...
 
-CEGUI_SET_DEFAULT_ALLOCATOR(::Ogre::GeneralAllocPolicy)
-CEGUI_SET_ALLOCATOR(System, ::Ogre::GeneralAllocPolicy)
+    CEGUI_SET_DEFAULT_ALLOCATOR(::Ogre::GeneralAllocPolicy)
+    CEGUI_SET_ALLOCATOR(System, ::Ogre::GeneralAllocPolicy)
 
 }
 

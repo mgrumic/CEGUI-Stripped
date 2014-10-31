@@ -1,6 +1,6 @@
 /***********************************************************************
     created:    Wed May 5 2010
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -27,44 +27,43 @@
 #include "CEGUI/Exceptions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-Direct3D11ViewportTarget::Direct3D11ViewportTarget(Direct3D11Renderer& owner) :
-    Direct3D11RenderTarget<>(owner)
-{
-    // initialise renderer size
-    D3D11_VIEWPORT vp;
-    UINT vp_count = 1;
-    d_device.d_context->RSGetViewports(&vp_count, &vp);
-    if (vp_count != 1)
-        CEGUI_THROW(RendererException(
-            "Unable to access required view port information from "
-            "ID3D11Device."));
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    Rectf area(
-        Vector2f(static_cast<float>(vp.TopLeftX), static_cast<float>(vp.TopLeftY)),
-        Sizef(static_cast<float>(vp.Width), static_cast<float>(vp.Height))
-    );
+    Direct3D11ViewportTarget::Direct3D11ViewportTarget(Direct3D11Renderer& owner) :
+    Direct3D11RenderTarget<>(owner) {
+        // initialise renderer size
+        D3D11_VIEWPORT vp;
+        UINT vp_count = 1;
+        d_device.d_context->RSGetViewports(&vp_count, &vp);
+        if (vp_count != 1)
+            CEGUI_THROW(RendererException(
+                "Unable to access required view port information from "
+                "ID3D11Device."));
 
-    setArea(area);
-}
+        Rectf area(
+                Vector2f(static_cast<float> (vp.TopLeftX), static_cast<float> (vp.TopLeftY)),
+                Sizef(static_cast<float> (vp.Width), static_cast<float> (vp.Height))
+                );
 
-//----------------------------------------------------------------------------//
-Direct3D11ViewportTarget::Direct3D11ViewportTarget(Direct3D11Renderer& owner,
-                                                   const Rectf& area) :
-    Direct3D11RenderTarget<>(owner)
-{
-    setArea(area);
-}
+        setArea(area);
+    }
 
-//----------------------------------------------------------------------------//
-bool Direct3D11ViewportTarget::isImageryCache() const
-{
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    Direct3D11ViewportTarget::Direct3D11ViewportTarget(Direct3D11Renderer& owner,
+            const Rectf& area) :
+    Direct3D11RenderTarget<>(owner) {
+        setArea(area);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool Direct3D11ViewportTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

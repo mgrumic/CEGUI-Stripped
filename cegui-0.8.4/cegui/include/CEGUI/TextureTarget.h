@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jan 11 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,67 +30,66 @@
 #include "CEGUI/RenderTarget.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Specialisation of RenderTarget interface that should be used as the base
-    class for RenderTargets that are implemented using textures.
-*/
-class CEGUIEXPORT TextureTarget : public RenderTarget
-{
-public:
-    /*!
-    \brief
-        Clear the surface of the underlying texture.
-    */
-    virtual void clear() = 0;
+namespace CEGUI {
 
     /*!
     \brief
-        Return a pointer to the CEGUI::Texture that the TextureTarget is using.
+        Specialisation of RenderTarget interface that should be used as the base
+        class for RenderTargets that are implemented using textures.
+     */
+    class CEGUIEXPORT TextureTarget : public RenderTarget {
+    public:
+        /*!
+        \brief
+            Clear the surface of the underlying texture.
+         */
+        virtual void clear() = 0;
 
-    \return
-        Texture object that the TextureTarget uses when rendering imagery.
-    */
-    virtual Texture& getTexture() const = 0;
+        /*!
+        \brief
+            Return a pointer to the CEGUI::Texture that the TextureTarget is using.
 
-    /*!
-    \brief
-        Used to declare to the TextureTarget the largest size, in pixels, of the
-        next set of incoming rendering operations.
+        \return
+            Texture object that the TextureTarget uses when rendering imagery.
+         */
+        virtual Texture& getTexture() const = 0;
 
-    \note
-        The main purpose of this is to allow for the implemenatation to resize
-        the underlying texture so that it can hold the imagery that will be
-        drawn.
+        /*!
+        \brief
+            Used to declare to the TextureTarget the largest size, in pixels, of the
+            next set of incoming rendering operations.
 
-    \param sz
-        Size object describing the largest area that will be rendererd in the
-        next batch of rendering operations.
+        \note
+            The main purpose of this is to allow for the implemenatation to resize
+            the underlying texture so that it can hold the imagery that will be
+            drawn.
 
-    \exception InvalidRequestException
-        May be thrown if the TextureTarget would not be able to handle the
-        operations rendering content of the given size.
-    */
-    virtual void declareRenderSize(const Sizef& sz) = 0;
+        \param sz
+            Size object describing the largest area that will be rendererd in the
+            next batch of rendering operations.
 
-    /*!
-    \brief
-        Return whether rendering done on the target texture is inverted in
-        relation to regular textures.
+        \exception InvalidRequestException
+            May be thrown if the TextureTarget would not be able to handle the
+            operations rendering content of the given size.
+         */
+        virtual void declareRenderSize(const Sizef& sz) = 0;
 
-        This is intended to be used when generating geometry for rendering the
-        TextureTarget onto another surface.
+        /*!
+        \brief
+            Return whether rendering done on the target texture is inverted in
+            relation to regular textures.
 
-    \return
-        - true if the texture content should be considered as inverted
-        vertically in comparison with other regular textures.
-        - false if the texture content has the same orientation as regular
-        textures.
-    */
-    virtual bool isRenderingInverted() const = 0;
-};
+            This is intended to be used when generating geometry for rendering the
+            TextureTarget onto another surface.
+
+        \return
+            - true if the texture content should be considered as inverted
+            vertically in comparison with other regular textures.
+            - false if the texture content has the same orientation as regular
+            textures.
+         */
+        virtual bool isRenderingInverted() const = 0;
+    };
 
 } // End of  CEGUI namespace section
 

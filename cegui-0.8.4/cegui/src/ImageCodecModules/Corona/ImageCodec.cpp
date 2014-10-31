@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	07/06/2006
-	author:		Olivier Delannoy 
+        created:	07/06/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide Corona based image loading 
-*************************************************************************/
+        purpose:	This codec provide Corona based image loading 
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -33,66 +33,57 @@
 #include <corona.h> 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-CoronaImageCodec::CoronaImageCodec()
-    : ImageCodec("CoronaImageCodec - Official Corona based image codec")
-{
-    corona::FileFormatDesc** formats = corona::GetSupportedReadFormats();
-    for (size_t i = 0 ; formats[i] ; ++i)
-    {
-        for (size_t j = 0 ; j < formats[i]->getExtensionCount() ; ++j)
-        {
-            d_supportedFormat += formats[i]->getExtension(j);
+namespace CEGUI {
+
+    CoronaImageCodec::CoronaImageCodec()
+    : ImageCodec("CoronaImageCodec - Official Corona based image codec") {
+        corona::FileFormatDesc** formats = corona::GetSupportedReadFormats();
+        for (size_t i = 0; formats[i]; ++i) {
+            for (size_t j = 0; j < formats[i]->getExtensionCount(); ++j) {
+                d_supportedFormat += formats[i]->getExtension(j);
+            }
         }
     }
-}
 
-CoronaImageCodec::~CoronaImageCodec()
-{
-    
-}
+    CoronaImageCodec::~CoronaImageCodec() {
 
-Texture* CoronaImageCodec::load(const RawDataContainer& data, Texture* result)
-{
-    corona::File* texFile = corona::CreateMemoryFile(data.getDataPtr(), (int)data.getSize());
-    if (texFile == 0)
-    {
-        Logger::getSingleton().logEvent("Unable to create corona::File object", Errors);
-        return 0;
     }
-    corona::Image* texImg = corona::OpenImage(texFile);
-    delete texFile;
-    if (texImg == 0)
-    {
-        Logger::getSingleton().logEvent("Unable to load image, corona::OpenImage failed", Errors);
-        return 0;
+
+    Texture* CoronaImageCodec::load(const RawDataContainer& data, Texture* result) {
+        corona::File* texFile = corona::CreateMemoryFile(data.getDataPtr(), (int) data.getSize());
+        if (texFile == 0) {
+            Logger::getSingleton().logEvent("Unable to create corona::File object", Errors);
+            return 0;
+        }
+        corona::Image* texImg = corona::OpenImage(texFile);
+        delete texFile;
+        if (texImg == 0) {
+            Logger::getSingleton().logEvent("Unable to load image, corona::OpenImage failed", Errors);
+            return 0;
+        }
+        Texture::PixelFormat cefmt;
+        switch (texImg->getFormat()) {
+            case corona::PF_R8G8B8:
+                texImg = corona::ConvertImage(texImg, corona::PF_R8G8B8);
+                cefmt = Texture::PF_RGB;
+                break;
+            default:
+                texImg = corona::ConvertImage(texImg, corona::PF_R8G8B8A8);
+                cefmt = Texture::PF_RGBA;
+                break;
+        }
+        texImg = corona::ConvertImage(texImg, corona::PF_R8G8B8A8);
+        if (texImg == 0) {
+            Logger::getSingleton().logEvent("Unable to convert image to RGBA", Errors);
+            return 0;
+        }
+        result->loadFromMemory(texImg->getPixels(),
+                Sizef(texImg->getWidth(),
+                texImg->getHeight()),
+                cefmt);
+        delete texImg;
+        return result;
     }
-    Texture::PixelFormat cefmt;
-    switch(texImg->getFormat())
-    {
-        case corona::PF_R8G8B8:
-            texImg = corona::ConvertImage(texImg, corona::PF_R8G8B8);
-            cefmt = Texture::PF_RGB;
-            break;
-        default:
-            texImg = corona::ConvertImage(texImg, corona::PF_R8G8B8A8);
-            cefmt = Texture::PF_RGBA;
-            break;
-    }
-    texImg = corona::ConvertImage(texImg, corona::PF_R8G8B8A8);
-    if (texImg == 0)
-    {
-        Logger::getSingleton().logEvent("Unable to convert image to RGBA", Errors);
-        return 0; 
-    }
-    result->loadFromMemory(texImg->getPixels(),
-                           Sizef(texImg->getWidth(),
-                                  texImg->getHeight()),
-                           cefmt);
-    delete texImg;
-    return result;    
-}
 
 
 } // End of CEGUI namespace section 

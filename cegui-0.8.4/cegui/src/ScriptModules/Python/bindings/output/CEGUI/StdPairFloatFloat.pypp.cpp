@@ -6,18 +6,18 @@
 
 namespace bp = boost::python;
 
-void register_StdPairFloatFloat_class(){
+void register_StdPairFloatFloat_class() {
 
     { //::std::pair< float, float >
         typedef bp::class_< std::pair< float, float > > StdPairFloatFloat_exposer_t;
-        StdPairFloatFloat_exposer_t StdPairFloatFloat_exposer = StdPairFloatFloat_exposer_t( "StdPairFloatFloat", bp::init< >("_GLIBCXX_RESOLVE_LIB_DEFECTS\n\
+        StdPairFloatFloat_exposer_t StdPairFloatFloat_exposer = StdPairFloatFloat_exposer_t("StdPairFloatFloat", bp::init< >("_GLIBCXX_RESOLVE_LIB_DEFECTS\n\
          265.  std.pair.pair() effects overly restrictive\n\
         ** The default constructor creates @c first and @c second using their\n\
-         *  respective default constructors.  *\n") );
-        bp::scope StdPairFloatFloat_scope( StdPairFloatFloat_exposer );
-        StdPairFloatFloat_exposer.def( bp::init< float const &, float const & >(( bp::arg("__a"), bp::arg("__b") ), "** Two objects may be passed to a @c pair constructor to be copied.  *\n") );
-        StdPairFloatFloat_exposer.def_readwrite( "first", &std::pair< float, float >::first );
-        StdPairFloatFloat_exposer.def_readwrite( "second", &std::pair< float, float >::second );
+         *  respective default constructors.  *\n"));
+        bp::scope StdPairFloatFloat_scope(StdPairFloatFloat_exposer);
+        StdPairFloatFloat_exposer.def(bp::init< float const &, float const & >((bp::arg("__a"), bp::arg("__b")), "** Two objects may be passed to a @c pair constructor to be copied.  *\n"));
+        StdPairFloatFloat_exposer.def_readwrite("first", &std::pair< float, float >::first);
+        StdPairFloatFloat_exposer.def_readwrite("second", &std::pair< float, float >::second);
     }
 
 }

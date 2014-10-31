@@ -6,15 +6,15 @@
 
 namespace bp = boost::python;
 
-void register_RegexMatchStateEventArgs_class(){
+void register_RegexMatchStateEventArgs_class() {
 
     { //::CEGUI::RegexMatchStateEventArgs
         typedef bp::class_< CEGUI::RegexMatchStateEventArgs, bp::bases< CEGUI::WindowEventArgs > > RegexMatchStateEventArgs_exposer_t;
-        RegexMatchStateEventArgs_exposer_t RegexMatchStateEventArgs_exposer = RegexMatchStateEventArgs_exposer_t( "RegexMatchStateEventArgs", "** WindowEventArgs based class that is used for notifications regarding\n\
+        RegexMatchStateEventArgs_exposer_t RegexMatchStateEventArgs_exposer = RegexMatchStateEventArgs_exposer_t("RegexMatchStateEventArgs", "** WindowEventArgs based class that is used for notifications regarding\n\
          * RegexMatcher.MatchState changes for some component.\n\
-         *\n", bp::init< CEGUI::Window *, CEGUI::RegexMatcher::MatchState >(( bp::arg("wnd"), bp::arg("state") )) );
-        bp::scope RegexMatchStateEventArgs_scope( RegexMatchStateEventArgs_exposer );
-        RegexMatchStateEventArgs_exposer.def_readwrite( "matchState", &CEGUI::RegexMatchStateEventArgs::matchState );
+         *\n", bp::init< CEGUI::Window *, CEGUI::RegexMatcher::MatchState >((bp::arg("wnd"), bp::arg("state"))));
+        bp::scope RegexMatchStateEventArgs_scope(RegexMatchStateEventArgs_exposer);
+        RegexMatchStateEventArgs_exposer.def_readwrite("matchState", &CEGUI::RegexMatchStateEventArgs::matchState);
     }
 
 }

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 5 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -27,20 +27,19 @@
 #include "CEGUI/BidiVisualMapping.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-BidiVisualMapping::~BidiVisualMapping()
-{
-}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool BidiVisualMapping::updateVisual(const String& logical)
-{
-    return reorderFromLogicalToVisual(logical, d_textVisual,
-                                      d_l2vMapping, d_v2lMapping);
-}
+    BidiVisualMapping::~BidiVisualMapping() {
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    bool BidiVisualMapping::updateVisual(const String& logical) {
+        return reorderFromLogicalToVisual(logical, d_textVisual,
+                d_l2vMapping, d_v2lMapping);
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

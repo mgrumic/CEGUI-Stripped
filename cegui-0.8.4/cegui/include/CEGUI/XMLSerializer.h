@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thue May 16 2006
     author:     Olivier Delannoy 
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,13 +31,13 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief 
          Class used to create XML Document. 
@@ -81,10 +81,9 @@ namespace CEGUI
        return 0;
     }
     @endcode
-    */
+     */
     class CEGUIEXPORT XMLSerializer :
-        public AllocatedObject<XMLSerializer>
-    {
+    public AllocatedObject<XMLSerializer> {
     public:
         /*!
         \brief XMLSerializer constructor 
@@ -93,13 +92,13 @@ namespace CEGUI
          
          
         \param indentSpace The indentation level (0 to disable indentation)
-        */
+         */
         XMLSerializer(OutStream& out, size_t indentSpace = 4);
-        
+
         /*! 
         \brief XMLSerializer destructor
-        */ 
-        virtual ~XMLSerializer(void);  
+         */
+        virtual ~XMLSerializer(void);
 
         /*!
         \brief Start a new tag in the xml document.  
@@ -108,14 +107,14 @@ namespace CEGUI
         
         \return 
             A reference to the current object for chaining operation 
-        */
+         */
         XMLSerializer& openTag(const String& name);
         /*!
         \brief Close the current tag. 
         
         \return 
             A reference to the current object for chaining operation 
-        */
+         */
         XMLSerializer& closeTag(void);
         /*!
         \brief After an opening tag you can populate attribute list with this function 
@@ -126,7 +125,7 @@ namespace CEGUI
         
         \return 
             A reference to the current object for chaining operation 
-        */
+         */
         XMLSerializer& attribute(const String& name, const String& value);
         /*! 
         \brief Create a text node 
@@ -135,38 +134,38 @@ namespace CEGUI
         
         \return 
             A reference to the current object for chaining operation 
-        */
+         */
         XMLSerializer& text(const String& text);
-        
+
         /*! 
         \brief 
         report the nimber of tags created in the document 
 
         \return 
             return the number of tag created in the document 
-        */
+         */
         unsigned int getTagCount() const;
+
         /*!
         \brief Check wether the XML Serializer status is valid 
         
         \return 
             True if all previous operations where successfull 
-        */
-        operator bool () const
-        {
+         */
+        operator bool () const {
             return false == d_error;
         }
+
         /*!
         \brief Check wether the XML Serializer status is invalid 
         
         \return 
             True if one operations failed
-        */ 
-        bool operator!() const
-        {
+         */
+        bool operator!() const {
             return false != d_error;
         }
-        
+
     protected:
     private:
         bool d_error; //!< Store the status of the serializer 
@@ -177,31 +176,31 @@ namespace CEGUI
         bool d_lastIsText; //!< Store whether the last operation was a text node or not 
         OutStream& d_stream; //!< A reference to the stream object use
         std::vector<String
-            CEGUI_VECTOR_ALLOC(String)> d_tagStack; //!< Store the tag stack for correct closing of the tags. 
-  
+        CEGUI_VECTOR_ALLOC(String) > d_tagStack; //!< Store the tag stack for correct closing of the tags. 
+
         /*!
         \brief put padding in the stream before line data 
-        */
+         */
         void indentLine();
         /*!
         \brief convert special char to there corresponding entity in text data. 
-        */
+         */
         static String convertEntityInText(const String& text);
         /*!
         \brief convert special char into entities including line ending for use in attributes.
-        */
+         */
         static String convertEntityInAttribute(const String& attributeValue);
-        
+
 
         // Disabled operation 
         XMLSerializer(const XMLSerializer& obj);
         // Disabled operation 
-        XMLSerializer& operator=(const XMLSerializer& obj);  
+        XMLSerializer& operator=(const XMLSerializer& obj);
     };
 }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif 

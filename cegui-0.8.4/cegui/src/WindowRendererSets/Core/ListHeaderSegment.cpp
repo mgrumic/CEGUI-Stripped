@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Jul 5 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,40 +30,32 @@
 #include "CEGUI/widgets/ListHeaderSegment.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardListHeaderSegment::TypeName("Core/ListHeaderSegment");
 
     FalagardListHeaderSegment::FalagardListHeaderSegment(const String& type) :
-        WindowRenderer(type)
-    {
+    WindowRenderer(type) {
     }
 
-    void FalagardListHeaderSegment::render()
-    {
-        ListHeaderSegment* w = (ListHeaderSegment*)d_window;
+    void FalagardListHeaderSegment::render() {
+        ListHeaderSegment* w = (ListHeaderSegment*) d_window;
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
 
         const StateImagery* imagery;
 
         // get imagery for main state.
-        if (w->isEffectiveDisabled())
-        {
+        if (w->isEffectiveDisabled()) {
             imagery = &wlf.getStateImagery("Disabled");
         }
 #ifndef PE_NO_MOUSE
-        else if ((w->isSegmentHovering() != w->isSegmentPushed()) && !w->isSplitterHovering() && w->isClickable())
-        {
+        else if ((w->isSegmentHovering() != w->isSegmentPushed()) && !w->isSplitterHovering() && w->isClickable()) {
             imagery = &wlf.getStateImagery("Hover");
-        }
-        else if (w->isSplitterHovering())
-        {
+        } else if (w->isSplitterHovering()) {
             imagery = &wlf.getStateImagery("SplitterHover");
         }
 #endif //PE_NO_MOUSE
-        else
-        {
+        else {
             imagery = &wlf.getStateImagery("Normal");
         }
 
@@ -72,20 +64,16 @@ namespace CEGUI
 
         // Render sorting icon as needed
         ListHeaderSegment::SortDirection sort_dir = w->getSortDirection();
-        if (sort_dir == ListHeaderSegment::Ascending)
-        {
+        if (sort_dir == ListHeaderSegment::Ascending) {
             imagery = &wlf.getStateImagery("AscendingSortIcon");
             imagery->render(*w);
-        }
-        else if (sort_dir == ListHeaderSegment::Descending)
-        {
+        } else if (sort_dir == ListHeaderSegment::Descending) {
             imagery = &wlf.getStateImagery("DescendingSortIcon");
             imagery->render(*w);
         }
 #ifndef PE_NO_MOUSE
         // draw ghost copy if the segment is being dragged.
-        if (w->isBeingDragMoved())
-        {
+        if (w->isBeingDragMoved()) {
             Sizef pixel_size = w->getPixelSize();
             Rectf targetArea(0, 0, pixel_size.d_width, pixel_size.d_height);
             targetArea.offset(w->getDragMoveOffset());
@@ -93,13 +81,10 @@ namespace CEGUI
             imagery->render(*w, targetArea);
 
             // Render sorting icon as needed
-            if (sort_dir == ListHeaderSegment::Ascending)
-            {
+            if (sort_dir == ListHeaderSegment::Ascending) {
                 imagery = &wlf.getStateImagery("GhostAscendingSortIcon");
                 imagery->render(*w, targetArea);
-            }
-            else if (sort_dir == ListHeaderSegment::Descending)
-            {
+            } else if (sort_dir == ListHeaderSegment::Descending) {
                 imagery = &wlf.getStateImagery("GhostDescendingSortIcon");
                 imagery->render(*w, targetArea);
             }

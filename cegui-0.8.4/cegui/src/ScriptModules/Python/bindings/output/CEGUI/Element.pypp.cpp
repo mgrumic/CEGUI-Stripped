@@ -8,393 +8,393 @@ namespace bp = boost::python;
 
 struct Element_wrapper : CEGUI::Element, bp::wrapper< CEGUI::Element > {
 
-    Element_wrapper( )
-    : CEGUI::Element( )
-      , bp::wrapper< CEGUI::Element >(){
+    Element_wrapper()
+    : CEGUI::Element()
+    , bp::wrapper< CEGUI::Element >() {
         // null constructor
-    
+
     }
 
-    virtual void addChild_impl( ::CEGUI::Element * element ){
-        if( bp::override func_addChild_impl = this->get_override( "addChild_impl" ) )
-            func_addChild_impl( boost::python::ptr(element) );
-        else{
-            this->CEGUI::Element::addChild_impl( boost::python::ptr(element) );
+    virtual void addChild_impl(::CEGUI::Element * element) {
+        if (bp::override func_addChild_impl = this->get_override("addChild_impl"))
+            func_addChild_impl(boost::python::ptr(element));
+        else {
+            this->CEGUI::Element::addChild_impl(boost::python::ptr(element));
         }
     }
-    
-    virtual void default_addChild_impl( ::CEGUI::Element * element ){
-        CEGUI::Element::addChild_impl( boost::python::ptr(element) );
+
+    virtual void default_addChild_impl(::CEGUI::Element * element) {
+        CEGUI::Element::addChild_impl(boost::python::ptr(element));
     }
 
-    void addElementProperties(  ){
-        CEGUI::Element::addElementProperties(  );
+    void addElementProperties() {
+        CEGUI::Element::addElementProperties();
     }
 
-    void fireAreaChangeEvents( bool const moved, bool const sized ){
-        CEGUI::Element::fireAreaChangeEvents( moved, sized );
+    void fireAreaChangeEvents(bool const moved, bool const sized) {
+        CEGUI::Element::fireAreaChangeEvents(moved, sized);
     }
 
-    virtual ::CEGUI::Rectf getUnclippedInnerRect_impl( bool skipAllPixelAlignment ) const {
-        if( bp::override func_getUnclippedInnerRect_impl = this->get_override( "getUnclippedInnerRect_impl" ) )
-            return func_getUnclippedInnerRect_impl( skipAllPixelAlignment );
-        else{
-            return this->CEGUI::Element::getUnclippedInnerRect_impl( skipAllPixelAlignment );
+    virtual ::CEGUI::Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+        if (bp::override func_getUnclippedInnerRect_impl = this->get_override("getUnclippedInnerRect_impl"))
+            return func_getUnclippedInnerRect_impl(skipAllPixelAlignment);
+        else {
+            return this->CEGUI::Element::getUnclippedInnerRect_impl(skipAllPixelAlignment);
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getUnclippedInnerRect_impl( bool skipAllPixelAlignment ) const {
-        return CEGUI::Element::getUnclippedInnerRect_impl( skipAllPixelAlignment );
+
+    virtual ::CEGUI::Rectf default_getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+        return CEGUI::Element::getUnclippedInnerRect_impl(skipAllPixelAlignment);
     }
 
-    virtual ::CEGUI::Rectf getUnclippedOuterRect_impl( bool skipAllPixelAlignment ) const {
-        if( bp::override func_getUnclippedOuterRect_impl = this->get_override( "getUnclippedOuterRect_impl" ) )
-            return func_getUnclippedOuterRect_impl( skipAllPixelAlignment );
-        else{
-            return this->CEGUI::Element::getUnclippedOuterRect_impl( skipAllPixelAlignment );
+    virtual ::CEGUI::Rectf getUnclippedOuterRect_impl(bool skipAllPixelAlignment) const {
+        if (bp::override func_getUnclippedOuterRect_impl = this->get_override("getUnclippedOuterRect_impl"))
+            return func_getUnclippedOuterRect_impl(skipAllPixelAlignment);
+        else {
+            return this->CEGUI::Element::getUnclippedOuterRect_impl(skipAllPixelAlignment);
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getUnclippedOuterRect_impl( bool skipAllPixelAlignment ) const {
-        return CEGUI::Element::getUnclippedOuterRect_impl( skipAllPixelAlignment );
+
+    virtual ::CEGUI::Rectf default_getUnclippedOuterRect_impl(bool skipAllPixelAlignment) const {
+        return CEGUI::Element::getUnclippedOuterRect_impl(skipAllPixelAlignment);
     }
 
-    bool isInnerRectSizeChanged(  ) const {
-        return CEGUI::Element::isInnerRectSizeChanged(  );
+    bool isInnerRectSizeChanged() const {
+        return CEGUI::Element::isInnerRectSizeChanged();
     }
 
-    void notifyChildrenOfSizeChange( bool const non_client, bool const client ){
-        CEGUI::Element::notifyChildrenOfSizeChange( non_client, client );
+    void notifyChildrenOfSizeChange(bool const non_client, bool const client) {
+        CEGUI::Element::notifyChildrenOfSizeChange(non_client, client);
     }
 
-    virtual void notifyScreenAreaChanged( bool recursive=true ) {
-        if( bp::override func_notifyScreenAreaChanged = this->get_override( "notifyScreenAreaChanged" ) )
-            func_notifyScreenAreaChanged( recursive );
-        else{
-            this->CEGUI::Element::notifyScreenAreaChanged( recursive );
+    virtual void notifyScreenAreaChanged(bool recursive = true) {
+        if (bp::override func_notifyScreenAreaChanged = this->get_override("notifyScreenAreaChanged"))
+            func_notifyScreenAreaChanged(recursive);
+        else {
+            this->CEGUI::Element::notifyScreenAreaChanged(recursive);
         }
     }
-    
-    void default_notifyScreenAreaChanged( bool recursive=true ) {
-        CEGUI::Element::notifyScreenAreaChanged( recursive );
+
+    void default_notifyScreenAreaChanged(bool recursive = true) {
+        CEGUI::Element::notifyScreenAreaChanged(recursive);
     }
 
-    virtual void onChildAdded( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onChildAdded = this->get_override( "onChildAdded" ) )
-            func_onChildAdded( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onChildAdded( boost::ref(e) );
+    virtual void onChildAdded(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onChildAdded = this->get_override("onChildAdded"))
+            func_onChildAdded(boost::ref(e));
+        else {
+            this->CEGUI::Element::onChildAdded(boost::ref(e));
         }
     }
-    
-    virtual void default_onChildAdded( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onChildAdded( boost::ref(e) );
+
+    virtual void default_onChildAdded(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onChildAdded(boost::ref(e));
     }
 
-    virtual void onChildRemoved( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onChildRemoved = this->get_override( "onChildRemoved" ) )
-            func_onChildRemoved( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onChildRemoved( boost::ref(e) );
+    virtual void onChildRemoved(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onChildRemoved = this->get_override("onChildRemoved"))
+            func_onChildRemoved(boost::ref(e));
+        else {
+            this->CEGUI::Element::onChildRemoved(boost::ref(e));
         }
     }
-    
-    virtual void default_onChildRemoved( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onChildRemoved( boost::ref(e) );
+
+    virtual void default_onChildRemoved(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onChildRemoved(boost::ref(e));
     }
 
-    virtual void onHorizontalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onHorizontalAlignmentChanged = this->get_override( "onHorizontalAlignmentChanged" ) )
-            func_onHorizontalAlignmentChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onHorizontalAlignmentChanged( boost::ref(e) );
+    virtual void onHorizontalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onHorizontalAlignmentChanged = this->get_override("onHorizontalAlignmentChanged"))
+            func_onHorizontalAlignmentChanged(boost::ref(e));
+        else {
+            this->CEGUI::Element::onHorizontalAlignmentChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onHorizontalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onHorizontalAlignmentChanged( boost::ref(e) );
+
+    virtual void default_onHorizontalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onHorizontalAlignmentChanged(boost::ref(e));
     }
 
-    virtual void onMoved( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onMoved = this->get_override( "onMoved" ) )
-            func_onMoved( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onMoved( boost::ref(e) );
+    virtual void onMoved(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onMoved = this->get_override("onMoved"))
+            func_onMoved(boost::ref(e));
+        else {
+            this->CEGUI::Element::onMoved(boost::ref(e));
         }
     }
-    
-    virtual void default_onMoved( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onMoved( boost::ref(e) );
+
+    virtual void default_onMoved(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onMoved(boost::ref(e));
     }
 
-    virtual void onNonClientChanged( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onNonClientChanged = this->get_override( "onNonClientChanged" ) )
-            func_onNonClientChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onNonClientChanged( boost::ref(e) );
+    virtual void onNonClientChanged(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onNonClientChanged = this->get_override("onNonClientChanged"))
+            func_onNonClientChanged(boost::ref(e));
+        else {
+            this->CEGUI::Element::onNonClientChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onNonClientChanged( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onNonClientChanged( boost::ref(e) );
+
+    virtual void default_onNonClientChanged(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onNonClientChanged(boost::ref(e));
     }
 
-    virtual void onParentSized( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onParentSized = this->get_override( "onParentSized" ) )
-            func_onParentSized( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onParentSized( boost::ref(e) );
+    virtual void onParentSized(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onParentSized = this->get_override("onParentSized"))
+            func_onParentSized(boost::ref(e));
+        else {
+            this->CEGUI::Element::onParentSized(boost::ref(e));
         }
     }
-    
-    virtual void default_onParentSized( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onParentSized( boost::ref(e) );
+
+    virtual void default_onParentSized(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onParentSized(boost::ref(e));
     }
 
-    virtual void onRotated( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onRotated = this->get_override( "onRotated" ) )
-            func_onRotated( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onRotated( boost::ref(e) );
+    virtual void onRotated(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onRotated = this->get_override("onRotated"))
+            func_onRotated(boost::ref(e));
+        else {
+            this->CEGUI::Element::onRotated(boost::ref(e));
         }
     }
-    
-    virtual void default_onRotated( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onRotated( boost::ref(e) );
+
+    virtual void default_onRotated(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onRotated(boost::ref(e));
     }
 
-    virtual void onSized( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onSized = this->get_override( "onSized" ) )
-            func_onSized( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onSized( boost::ref(e) );
+    virtual void onSized(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onSized = this->get_override("onSized"))
+            func_onSized(boost::ref(e));
+        else {
+            this->CEGUI::Element::onSized(boost::ref(e));
         }
     }
-    
-    virtual void default_onSized( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onSized( boost::ref(e) );
+
+    virtual void default_onSized(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onSized(boost::ref(e));
     }
 
-    virtual void onVerticalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onVerticalAlignmentChanged = this->get_override( "onVerticalAlignmentChanged" ) )
-            func_onVerticalAlignmentChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onVerticalAlignmentChanged( boost::ref(e) );
+    virtual void onVerticalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onVerticalAlignmentChanged = this->get_override("onVerticalAlignmentChanged"))
+            func_onVerticalAlignmentChanged(boost::ref(e));
+        else {
+            this->CEGUI::Element::onVerticalAlignmentChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onVerticalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onVerticalAlignmentChanged( boost::ref(e) );
+
+    virtual void default_onVerticalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onVerticalAlignmentChanged(boost::ref(e));
     }
 
-    virtual void removeChild_impl( ::CEGUI::Element * element ){
-        if( bp::override func_removeChild_impl = this->get_override( "removeChild_impl" ) )
-            func_removeChild_impl( boost::python::ptr(element) );
-        else{
-            this->CEGUI::Element::removeChild_impl( boost::python::ptr(element) );
+    virtual void removeChild_impl(::CEGUI::Element * element) {
+        if (bp::override func_removeChild_impl = this->get_override("removeChild_impl"))
+            func_removeChild_impl(boost::python::ptr(element));
+        else {
+            this->CEGUI::Element::removeChild_impl(boost::python::ptr(element));
         }
     }
-    
-    virtual void default_removeChild_impl( ::CEGUI::Element * element ){
-        CEGUI::Element::removeChild_impl( boost::python::ptr(element) );
+
+    virtual void default_removeChild_impl(::CEGUI::Element * element) {
+        CEGUI::Element::removeChild_impl(boost::python::ptr(element));
     }
 
-    virtual void setArea( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size ) {
-        if( bp::override func_setArea = this->get_override( "setArea" ) )
-            func_setArea( boost::ref(pos), boost::ref(size) );
-        else{
-            this->CEGUI::Element::setArea( boost::ref(pos), boost::ref(size) );
+    virtual void setArea(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size) {
+        if (bp::override func_setArea = this->get_override("setArea"))
+            func_setArea(boost::ref(pos), boost::ref(size));
+        else {
+            this->CEGUI::Element::setArea(boost::ref(pos), boost::ref(size));
         }
     }
-    
-    void default_setArea( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size ) {
-        CEGUI::Element::setArea( boost::ref(pos), boost::ref(size) );
+
+    void default_setArea(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size) {
+        CEGUI::Element::setArea(boost::ref(pos), boost::ref(size));
     }
 
-    virtual void setArea_impl( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing=false, bool fireEvents=true ){
-        if( bp::override func_setArea_impl = this->get_override( "setArea_impl" ) )
-            func_setArea_impl( boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents );
-        else{
-            this->CEGUI::Element::setArea_impl( boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents );
+    virtual void setArea_impl(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing = false, bool fireEvents = true) {
+        if (bp::override func_setArea_impl = this->get_override("setArea_impl"))
+            func_setArea_impl(boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents);
+        else {
+            this->CEGUI::Element::setArea_impl(boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents);
         }
     }
-    
-    virtual void default_setArea_impl( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing=false, bool fireEvents=true ){
-        CEGUI::Element::setArea_impl( boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents );
+
+    virtual void default_setArea_impl(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing = false, bool fireEvents = true) {
+        CEGUI::Element::setArea_impl(boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents);
     }
 
-    virtual void setHorizontalAlignment( ::CEGUI::HorizontalAlignment const alignment ) {
-        if( bp::override func_setHorizontalAlignment = this->get_override( "setHorizontalAlignment" ) )
-            func_setHorizontalAlignment( alignment );
-        else{
-            this->CEGUI::Element::setHorizontalAlignment( alignment );
+    virtual void setHorizontalAlignment(::CEGUI::HorizontalAlignment const alignment) {
+        if (bp::override func_setHorizontalAlignment = this->get_override("setHorizontalAlignment"))
+            func_setHorizontalAlignment(alignment);
+        else {
+            this->CEGUI::Element::setHorizontalAlignment(alignment);
         }
     }
-    
-    void default_setHorizontalAlignment( ::CEGUI::HorizontalAlignment const alignment ) {
-        CEGUI::Element::setHorizontalAlignment( alignment );
+
+    void default_setHorizontalAlignment(::CEGUI::HorizontalAlignment const alignment) {
+        CEGUI::Element::setHorizontalAlignment(alignment);
     }
 
-    virtual void setParent( ::CEGUI::Element * parent ){
-        if( bp::override func_setParent = this->get_override( "setParent" ) )
-            func_setParent( boost::python::ptr(parent) );
-        else{
-            this->CEGUI::Element::setParent( boost::python::ptr(parent) );
+    virtual void setParent(::CEGUI::Element * parent) {
+        if (bp::override func_setParent = this->get_override("setParent"))
+            func_setParent(boost::python::ptr(parent));
+        else {
+            this->CEGUI::Element::setParent(boost::python::ptr(parent));
         }
     }
-    
-    virtual void default_setParent( ::CEGUI::Element * parent ){
-        CEGUI::Element::setParent( boost::python::ptr(parent) );
+
+    virtual void default_setParent(::CEGUI::Element * parent) {
+        CEGUI::Element::setParent(boost::python::ptr(parent));
     }
 
-    virtual void setVerticalAlignment( ::CEGUI::VerticalAlignment const alignment ) {
-        if( bp::override func_setVerticalAlignment = this->get_override( "setVerticalAlignment" ) )
-            func_setVerticalAlignment( alignment );
-        else{
-            this->CEGUI::Element::setVerticalAlignment( alignment );
+    virtual void setVerticalAlignment(::CEGUI::VerticalAlignment const alignment) {
+        if (bp::override func_setVerticalAlignment = this->get_override("setVerticalAlignment"))
+            func_setVerticalAlignment(alignment);
+        else {
+            this->CEGUI::Element::setVerticalAlignment(alignment);
         }
     }
-    
-    void default_setVerticalAlignment( ::CEGUI::VerticalAlignment const alignment ) {
-        CEGUI::Element::setVerticalAlignment( alignment );
+
+    void default_setVerticalAlignment(::CEGUI::VerticalAlignment const alignment) {
+        CEGUI::Element::setVerticalAlignment(alignment);
     }
 
-    virtual void fireEvent( ::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace="" ) {
-        if( bp::override func_fireEvent = this->get_override( "fireEvent" ) )
-            func_fireEvent( boost::ref(name), boost::ref(args), boost::ref(eventNamespace) );
-        else{
-            this->CEGUI::EventSet::fireEvent( boost::ref(name), boost::ref(args), boost::ref(eventNamespace) );
+    virtual void fireEvent(::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace = "") {
+        if (bp::override func_fireEvent = this->get_override("fireEvent"))
+            func_fireEvent(boost::ref(name), boost::ref(args), boost::ref(eventNamespace));
+        else {
+            this->CEGUI::EventSet::fireEvent(boost::ref(name), boost::ref(args), boost::ref(eventNamespace));
         }
     }
-    
-    void default_fireEvent( ::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace="" ) {
-        CEGUI::EventSet::fireEvent( boost::ref(name), boost::ref(args), boost::ref(eventNamespace) );
+
+    void default_fireEvent(::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace = "") {
+        CEGUI::EventSet::fireEvent(boost::ref(name), boost::ref(args), boost::ref(eventNamespace));
     }
 
-    void fireEvent_impl( ::CEGUI::String const & name, ::CEGUI::EventArgs & args ){
-        CEGUI::EventSet::fireEvent_impl( boost::ref(name), boost::ref(args) );
+    void fireEvent_impl(::CEGUI::String const & name, ::CEGUI::EventArgs & args) {
+        CEGUI::EventSet::fireEvent_impl(boost::ref(name), boost::ref(args));
     }
 
-    ::CEGUI::ScriptModule * getScriptModule(  ) const {
-        return CEGUI::EventSet::getScriptModule(  );
+    ::CEGUI::ScriptModule * getScriptModule() const {
+        return CEGUI::EventSet::getScriptModule();
     }
 
-    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent( ::CEGUI::String const & name, ::CEGUI::String const & subscriber_name ) {
-        if( bp::override func_subscribeScriptedEvent = this->get_override( "subscribeScriptedEvent" ) )
-            return func_subscribeScriptedEvent( boost::ref(name), boost::ref(subscriber_name) );
-        else{
-            return this->CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), boost::ref(subscriber_name) );
+    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent(::CEGUI::String const & name, ::CEGUI::String const & subscriber_name) {
+        if (bp::override func_subscribeScriptedEvent = this->get_override("subscribeScriptedEvent"))
+            return func_subscribeScriptedEvent(boost::ref(name), boost::ref(subscriber_name));
+        else {
+            return this->CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), boost::ref(subscriber_name));
         }
     }
-    
-    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent( ::CEGUI::String const & name, ::CEGUI::String const & subscriber_name ) {
-        return CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), boost::ref(subscriber_name) );
+
+    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent(::CEGUI::String const & name, ::CEGUI::String const & subscriber_name) {
+        return CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), boost::ref(subscriber_name));
     }
 
-    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent( ::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name ) {
-        if( bp::override func_subscribeScriptedEvent = this->get_override( "subscribeScriptedEvent" ) )
-            return func_subscribeScriptedEvent( boost::ref(name), group, boost::ref(subscriber_name) );
-        else{
-            return this->CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), group, boost::ref(subscriber_name) );
+    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent(::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name) {
+        if (bp::override func_subscribeScriptedEvent = this->get_override("subscribeScriptedEvent"))
+            return func_subscribeScriptedEvent(boost::ref(name), group, boost::ref(subscriber_name));
+        else {
+            return this->CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), group, boost::ref(subscriber_name));
         }
     }
-    
-    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent( ::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name ) {
-        return CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), group, boost::ref(subscriber_name) );
+
+    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent(::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name) {
+        return CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), group, boost::ref(subscriber_name));
     }
 
 };
 
-void register_Element_class(){
+void register_Element_class() {
 
     { //::CEGUI::Element
         typedef bp::class_< Element_wrapper, bp::bases< CEGUI::PropertySet, CEGUI::EventSet >, boost::noncopyable > Element_exposer_t;
-        Element_exposer_t Element_exposer = Element_exposer_t( "Element", bp::init< >("*!\n\
+        Element_exposer_t Element_exposer = Element_exposer_t("Element", bp::init< >("*!\n\
          Constructor\n\
-        *\n") );
-        bp::scope Element_scope( Element_exposer );
+        *\n"));
+        bp::scope Element_scope(Element_exposer);
         { //::CEGUI::Element::CachedRectf
             typedef bp::class_< CEGUI::Element::CachedRectf > CachedRectf_exposer_t;
-            CachedRectf_exposer_t CachedRectf_exposer = CachedRectf_exposer_t( "CachedRectf", "*!\n\
+            CachedRectf_exposer_t CachedRectf_exposer = CachedRectf_exposer_t("CachedRectf", "*!\n\
                  A tiny wrapper to hide some of the dirty work of rect caching\n\
             \n\
                 This is used internally by CEGUI.Element and other classes, it is passed\n\
                 to the user in several methods. In those circumstances you most likely\n\
                 want the result of either the get() or getFresh(..) methods.\n\
-                *\n", bp::no_init );
-            bp::scope CachedRectf_scope( CachedRectf_exposer );
+                *\n", bp::no_init);
+            bp::scope CachedRectf_scope(CachedRectf_exposer);
             { //::CEGUI::Element::CachedRectf::get
-            
-                typedef ::CEGUI::Rectf const & ( ::CEGUI::Element::CachedRectf::*get_function_type )(  ) const;
-                
-                CachedRectf_exposer.def( 
-                    "get"
-                    , get_function_type( &::CEGUI::Element::CachedRectf::get )
-                    , bp::return_value_policy< bp::copy_const_reference >()
-                    , "*!\n\
+
+                typedef ::CEGUI::Rectf const & (::CEGUI::Element::CachedRectf::*get_function_type)() const;
+
+                CachedRectf_exposer.def(
+                        "get"
+                        , get_function_type(&::CEGUI::Element::CachedRectf::get)
+                        , bp::return_value_policy< bp::copy_const_reference >()
+                        , "*!\n\
                  Retrieves cached Rectf or generated a fresh one and caches it\n\
-                *\n" );
-            
+                *\n");
+
             }
             { //::CEGUI::Element::CachedRectf::getFresh
-            
-                typedef ::CEGUI::Rectf ( ::CEGUI::Element::CachedRectf::*getFresh_function_type )( bool ) const;
-                
-                CachedRectf_exposer.def( 
-                    "getFresh"
-                    , getFresh_function_type( &::CEGUI::Element::CachedRectf::getFresh )
-                    , ( bp::arg("skipAllPixelAlignment")=(bool)(false) )
-                    , "*!\n\
+
+                typedef ::CEGUI::Rectf(::CEGUI::Element::CachedRectf::*getFresh_function_type)(bool) const;
+
+                CachedRectf_exposer.def(
+                        "getFresh"
+                        , getFresh_function_type(&::CEGUI::Element::CachedRectf::getFresh)
+                        , (bp::arg("skipAllPixelAlignment") = (bool)(false))
+                        , "*!\n\
                          Skips all caching and calls the generator\n\
                 \n\
                         This method will cache the result if cache is invalid and\n\
                         alignment is not being skipped.\n\
-                        *\n" );
-            
+                        *\n");
+
             }
             { //::CEGUI::Element::CachedRectf::invalidateCache
-            
-                typedef void ( ::CEGUI::Element::CachedRectf::*invalidateCache_function_type )(  ) const;
-                
-                CachedRectf_exposer.def( 
-                    "invalidateCache"
-                    , invalidateCache_function_type( &::CEGUI::Element::CachedRectf::invalidateCache )
-                    , "*!\n\
+
+                typedef void ( ::CEGUI::Element::CachedRectf::*invalidateCache_function_type)() const;
+
+                CachedRectf_exposer.def(
+                        "invalidateCache"
+                        , invalidateCache_function_type(&::CEGUI::Element::CachedRectf::invalidateCache)
+                        , "*!\n\
                          Invalidates the cached Rectf causing it to be regenerated\n\
                 \n\
                         The regeneration will not happen immediately, it will happen when user\n\
                         requests the data.\n\
-                        *\n" );
-            
+                        *\n");
+
             }
             { //::CEGUI::Element::CachedRectf::isCacheValid
-            
-                typedef bool ( ::CEGUI::Element::CachedRectf::*isCacheValid_function_type )(  ) const;
-                
-                CachedRectf_exposer.def( 
-                    "isCacheValid"
-                    , isCacheValid_function_type( &::CEGUI::Element::CachedRectf::isCacheValid ) );
-            
+
+                typedef bool ( ::CEGUI::Element::CachedRectf::*isCacheValid_function_type)() const;
+
+                CachedRectf_exposer.def(
+                        "isCacheValid"
+                        , isCacheValid_function_type(&::CEGUI::Element::CachedRectf::isCacheValid));
+
             }
             { //::CEGUI::Element::CachedRectf::regenerateCache
-            
-                typedef void ( ::CEGUI::Element::CachedRectf::*regenerateCache_function_type )(  ) const;
-                
-                CachedRectf_exposer.def( 
-                    "regenerateCache"
-                    , regenerateCache_function_type( &::CEGUI::Element::CachedRectf::regenerateCache ) );
-            
+
+                typedef void ( ::CEGUI::Element::CachedRectf::*regenerateCache_function_type)() const;
+
+                CachedRectf_exposer.def(
+                        "regenerateCache"
+                        , regenerateCache_function_type(&::CEGUI::Element::CachedRectf::regenerateCache));
+
             }
         }
         { //::CEGUI::Element::addChild
-        
-            typedef void ( ::CEGUI::Element::*addChild_function_type )( ::CEGUI::Element * ) ;
-            
-            Element_exposer.def( 
-                "addChild"
-                , addChild_function_type( &::CEGUI::Element::addChild )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*addChild_function_type)(::CEGUI::Element *);
+
+            Element_exposer.def(
+                    "addChild"
+                    , addChild_function_type(&::CEGUI::Element::addChild)
+                    , (bp::arg("element"))
+                    , "*!\n\
                 \n\
                     Add the specified Element as a child of this Element.\n\
             \n\
@@ -413,45 +413,45 @@ void register_Element_class(){
                 @exception InvalidRequestException\n\
                     thrown if Element  element is an ancestor of this Element, to prevent\n\
                     cyclic Element structures.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::addChild_impl
-        
-            typedef void ( Element_wrapper::*addChild_impl_function_type )( ::CEGUI::Element * ) ;
-            
-            Element_exposer.def( 
-                "addChild_impl"
-                , addChild_impl_function_type( &Element_wrapper::default_addChild_impl )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*addChild_impl_function_type)(::CEGUI::Element *);
+
+            Element_exposer.def(
+                    "addChild_impl"
+                    , addChild_impl_function_type(&Element_wrapper::default_addChild_impl)
+                    , (bp::arg("element"))
+                    , "*!\n\
             \n\
                 Add given element to child list at an appropriate position\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::addElementProperties
-        
-            typedef void ( Element_wrapper::*addElementProperties_function_type )(  ) ;
-            
-            Element_exposer.def( 
-                "addElementProperties"
-                , addElementProperties_function_type( &Element_wrapper::addElementProperties )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*addElementProperties_function_type)();
+
+            Element_exposer.def(
+                    "addElementProperties"
+                    , addElementProperties_function_type(&Element_wrapper::addElementProperties)
+                    , "*!\n\
             \n\
                 Add standard CEGUI.Element properties.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::calculatePixelSize
-        
-            typedef ::CEGUI::Sizef ( ::CEGUI::Element::*calculatePixelSize_function_type )( bool ) const;
-            
-            Element_exposer.def( 
-                "calculatePixelSize"
-                , calculatePixelSize_function_type( &::CEGUI::Element::calculatePixelSize )
-                , ( bp::arg("skipAllPixelAlignment")=(bool)(false) )
-                , "*!\n\
+
+            typedef ::CEGUI::Sizef(::CEGUI::Element::*calculatePixelSize_function_type)(bool) const;
+
+            Element_exposer.def(
+                    "calculatePixelSize"
+                    , calculatePixelSize_function_type(&::CEGUI::Element::calculatePixelSize)
+                    , (bp::arg("skipAllPixelAlignment") = (bool)(false))
+                    , "*!\n\
                  Calculates this element's pixel size\n\
             \n\
                 @param skipAllPixelAlignment \n\
@@ -460,29 +460,29 @@ void register_Element_class(){
                 If you want to get the pixel size you most probably want to use the\n\
                 Element.getPixelSize method. This method skips caching and might\n\
                 impact performance!\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::fireAreaChangeEvents
-        
-            typedef void ( Element_wrapper::*fireAreaChangeEvents_function_type )( bool const,bool const ) ;
-            
-            Element_exposer.def( 
-                "fireAreaChangeEvents"
-                , fireAreaChangeEvents_function_type( &Element_wrapper::fireAreaChangeEvents )
-                , ( bp::arg("moved"), bp::arg("sized") )
-                , "! helper to fire events based on changes to area rect\n" );
-        
+
+            typedef void ( Element_wrapper::*fireAreaChangeEvents_function_type)(bool const, bool const);
+
+            Element_exposer.def(
+                    "fireAreaChangeEvents"
+                    , fireAreaChangeEvents_function_type(&Element_wrapper::fireAreaChangeEvents)
+                    , (bp::arg("moved"), bp::arg("sized"))
+                    , "! helper to fire events based on changes to area rect\n");
+
         }
         { //::CEGUI::Element::getArea
-        
-            typedef ::CEGUI::URect const & ( ::CEGUI::Element::*getArea_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getArea"
-                , getArea_function_type( &::CEGUI::Element::getArea )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::URect const & (::CEGUI::Element::*getArea_function_type)() const;
+
+            Element_exposer.def(
+                    "getArea"
+                    , getArea_function_type(&::CEGUI::Element::getArea)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Return the element's area.\n\
             \n\
@@ -495,49 +495,49 @@ void register_Element_class(){
                     URect describing the rectangle of the element area.\n\
             \n\
                 @see UDim\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getAspectMode
-        
-            typedef ::CEGUI::AspectMode ( ::CEGUI::Element::*getAspectMode_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getAspectMode"
-                , getAspectMode_function_type( &::CEGUI::Element::getAspectMode )
-                , "*!\n\
+
+            typedef ::CEGUI::AspectMode(::CEGUI::Element::*getAspectMode_function_type)() const;
+
+            Element_exposer.def(
+                    "getAspectMode"
+                    , getAspectMode_function_type(&::CEGUI::Element::getAspectMode)
+                    , "*!\n\
                 \n\
                     Retrieves currently used aspect mode\n\
             \n\
                 @see Element.setAspectMode\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getAspectRatio
-        
-            typedef float ( ::CEGUI::Element::*getAspectRatio_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getAspectRatio"
-                , getAspectRatio_function_type( &::CEGUI::Element::getAspectRatio )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::Element::*getAspectRatio_function_type)() const;
+
+            Element_exposer.def(
+                    "getAspectRatio"
+                    , getAspectRatio_function_type(&::CEGUI::Element::getAspectRatio)
+                    , "*!\n\
                 \n\
                     Retrieves target aspect ratio\n\
             \n\
                 @see Element.setAspectRatio\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getChildContentArea
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getChildContentArea_function_type )( bool const ) const;
-            
-            Element_exposer.def( 
-                "getChildContentArea"
-                , getChildContentArea_function_type( &::CEGUI::Element::getChildContentArea )
-                , ( bp::arg("non_client")=(bool const)(false) )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getChildContentArea_function_type)(bool const) const;
+
+            Element_exposer.def(
+                    "getChildContentArea"
+                    , getChildContentArea_function_type(&::CEGUI::Element::getChildContentArea)
+                    , (bp::arg("non_client") = (bool const) (false))
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                  Return a Rect that is used to position and size child elements\n\
             \n\
                 It is used as the reference area for positioning and its size is used for\n\
@@ -557,31 +557,31 @@ void register_Element_class(){
                 @param non_client\n\
                     - true to return the non-client child content area.\n\
                     - false to return the client child content area (default).\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getChildCount
-        
-            typedef ::size_t ( ::CEGUI::Element::*getChildCount_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getChildCount"
-                , getChildCount_function_type( &::CEGUI::Element::getChildCount )
-                , "*!\n\
+
+            typedef ::size_t(::CEGUI::Element::*getChildCount_function_type)() const;
+
+            Element_exposer.def(
+                    "getChildCount"
+                    , getChildCount_function_type(&::CEGUI::Element::getChildCount)
+                    , "*!\n\
              Returns number of child elements attached to this Element\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::getChildElementAtIdx
-        
-            typedef ::CEGUI::Element * ( ::CEGUI::Element::*getChildElementAtIdx_function_type )( ::size_t ) const;
-            
-            Element_exposer.def( 
-                "getChildElementAtIdx"
-                , getChildElementAtIdx_function_type( &::CEGUI::Element::getChildElementAtIdx )
-                , ( bp::arg("idx") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Element * (::CEGUI::Element::*getChildElementAtIdx_function_type)(::size_t) const;
+
+            Element_exposer.def(
+                    "getChildElementAtIdx"
+                    , getChildElementAtIdx_function_type(&::CEGUI::Element::getChildElementAtIdx)
+                    , (bp::arg("idx"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     return a pointer to the child element that is attached to 'this' at the\n\
                     given index.\n\
@@ -593,37 +593,37 @@ void register_Element_class(){
             \n\
                 @return\n\
                     Pointer to the child element currently attached at index position  idx\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getClientChildContentArea
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getClientChildContentArea_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getClientChildContentArea"
-                , getClientChildContentArea_function_type(&::CEGUI::Element::getClientChildContentArea)
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getClientChildContentArea_function_type)() const;
+
+            Element_exposer.def(
+                    "getClientChildContentArea"
+                    , getClientChildContentArea_function_type(&::CEGUI::Element::getClientChildContentArea)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::Element::getHeight
-        
-            typedef ::CEGUI::UDim ( ::CEGUI::Element::*getHeight_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getHeight"
-                , getHeight_function_type( &::CEGUI::Element::getHeight )
-                , "!  overload\n" );
-        
+
+            typedef ::CEGUI::UDim(::CEGUI::Element::*getHeight_function_type)() const;
+
+            Element_exposer.def(
+                    "getHeight"
+                    , getHeight_function_type(&::CEGUI::Element::getHeight)
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::getHorizontalAlignment
-        
-            typedef ::CEGUI::HorizontalAlignment ( ::CEGUI::Element::*getHorizontalAlignment_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getHorizontalAlignment"
-                , getHorizontalAlignment_function_type( &::CEGUI::Element::getHorizontalAlignment )
-                , "*!\n\
+
+            typedef ::CEGUI::HorizontalAlignment(::CEGUI::Element::*getHorizontalAlignment_function_type)() const;
+
+            Element_exposer.def(
+                    "getHorizontalAlignment"
+                    , getHorizontalAlignment_function_type(&::CEGUI::Element::getHorizontalAlignment)
+                    , "*!\n\
                 \n\
                     Get the horizontal alignment.\n\
             \n\
@@ -632,18 +632,18 @@ void register_Element_class(){
             \n\
                 @return\n\
                     One of the HorizontalAlignment enumerated values.\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Element::getMaxSize
-        
-            typedef ::CEGUI::USize const & ( ::CEGUI::Element::*getMaxSize_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getMaxSize"
-                , getMaxSize_function_type( &::CEGUI::Element::getMaxSize )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::USize const & (::CEGUI::Element::*getMaxSize_function_type)() const;
+
+            Element_exposer.def(
+                    "getMaxSize"
+                    , getMaxSize_function_type(&::CEGUI::Element::getMaxSize)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Get the element's maximum size.\n\
             \n\
@@ -655,18 +655,18 @@ void register_Element_class(){
                     UVector2 describing the maximum size of the element's area.\n\
             \n\
                 @see Element.setMaxSize\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Element::getMinSize
-        
-            typedef ::CEGUI::USize const & ( ::CEGUI::Element::*getMinSize_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getMinSize"
-                , getMinSize_function_type( &::CEGUI::Element::getMinSize )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::USize const & (::CEGUI::Element::*getMinSize_function_type)() const;
+
+            Element_exposer.def(
+                    "getMinSize"
+                    , getMinSize_function_type(&::CEGUI::Element::getMinSize)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Get the element's minimum size.\n\
             \n\
@@ -678,45 +678,45 @@ void register_Element_class(){
                     UVector2 describing the minimum size of the element's area.\n\
             \n\
                 @see Element.setMinSize\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getNonClientChildContentArea
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getNonClientChildContentArea_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getNonClientChildContentArea"
-                , getNonClientChildContentArea_function_type(&::CEGUI::Element::getNonClientChildContentArea)
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getNonClientChildContentArea_function_type)() const;
+
+            Element_exposer.def(
+                    "getNonClientChildContentArea"
+                    , getNonClientChildContentArea_function_type(&::CEGUI::Element::getNonClientChildContentArea)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::Element::getParentElement
-        
-            typedef ::CEGUI::Element * ( ::CEGUI::Element::*getParentElement_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getParentElement"
-                , getParentElement_function_type( &::CEGUI::Element::getParentElement )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Element * (::CEGUI::Element::*getParentElement_function_type)() const;
+
+            Element_exposer.def(
+                    "getParentElement"
+                    , getParentElement_function_type(&::CEGUI::Element::getParentElement)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
               Retrieves parent of this element\n\
             \n\
              @returns\n\
                  pointer to parent or 0, 0 means that this Element is a root of\n\
                  the subtree it represents\n\
-             *\n" );
-        
+             *\n");
+
         }
         { //::CEGUI::Element::getParentPixelSize
-        
-            typedef ::CEGUI::Sizef ( ::CEGUI::Element::*getParentPixelSize_function_type )( bool ) const;
-            
-            Element_exposer.def( 
-                "getParentPixelSize"
-                , getParentPixelSize_function_type( &::CEGUI::Element::getParentPixelSize )
-                , ( bp::arg("skipAllPixelAlignment")=(bool)(false) )
-                , "*!\n\
+
+            typedef ::CEGUI::Sizef(::CEGUI::Element::*getParentPixelSize_function_type)(bool) const;
+
+            Element_exposer.def(
+                    "getParentPixelSize"
+                    , getParentPixelSize_function_type(&::CEGUI::Element::getParentPixelSize)
+                    , (bp::arg("skipAllPixelAlignment") = (bool)(false))
+                    , "*!\n\
                  Return the pixel size of the parent element.\n\
             \n\
                 If this element doesn't have any parent, the display size will be returned.\n\
@@ -724,53 +724,53 @@ void register_Element_class(){
             \n\
                 @return\n\
                     Size object that describes the pixel dimensions of this Element's parent\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getPixelPosition
-        
-            typedef ::CEGUI::Vector2f const & ( ::CEGUI::Element::*getPixelPosition_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getPixelPosition"
-                , getPixelPosition_function_type( &::CEGUI::Element::getPixelPosition )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Vector2f const & (::CEGUI::Element::*getPixelPosition_function_type)() const;
+
+            Element_exposer.def(
+                    "getPixelPosition"
+                    , getPixelPosition_function_type(&::CEGUI::Element::getPixelPosition)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Return the element's absolute (or screen, depending on the type of the element) position in\
                     pixels.\n\
             \n\
                 @return\n\
                     Vector2f object describing this element's absolute position in pixels.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getPixelSize
-        
-            typedef ::CEGUI::Sizef const & ( ::CEGUI::Element::*getPixelSize_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getPixelSize"
-                , getPixelSize_function_type( &::CEGUI::Element::getPixelSize )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Sizef const & (::CEGUI::Element::*getPixelSize_function_type)() const;
+
+            Element_exposer.def(
+                    "getPixelSize"
+                    , getPixelSize_function_type(&::CEGUI::Element::getPixelSize)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Return the element's size in pixels.\n\
             \n\
                 @return\n\
                     Size object describing this element's size in pixels.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getPosition
-        
-            typedef ::CEGUI::UVector2 const & ( ::CEGUI::Element::*getPosition_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getPosition"
-                , getPosition_function_type( &::CEGUI::Element::getPosition )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::UVector2 const & (::CEGUI::Element::*getPosition_function_type)() const;
+
+            Element_exposer.def(
+                    "getPosition"
+                    , getPosition_function_type(&::CEGUI::Element::getPosition)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Get the element's position.\n\
             \n\
@@ -783,42 +783,42 @@ void register_Element_class(){
                     UVector2 describing the position of the element area.\n\
             \n\
                 @see UDim\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getRootContainerSize
-        
-            typedef ::CEGUI::Sizef const & ( ::CEGUI::Element::*getRootContainerSize_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getRootContainerSize"
-                , getRootContainerSize_function_type(&::CEGUI::Element::getRootContainerSize)
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::Sizef const & (::CEGUI::Element::*getRootContainerSize_function_type)() const;
+
+            Element_exposer.def(
+                    "getRootContainerSize"
+                    , getRootContainerSize_function_type(&::CEGUI::Element::getRootContainerSize)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::Element::getRotation
-        
-            typedef ::CEGUI::Quaternion const & ( ::CEGUI::Element::*getRotation_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getRotation"
-                , getRotation_function_type( &::CEGUI::Element::getRotation )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Quaternion const & (::CEGUI::Element::*getRotation_function_type)() const;
+
+            Element_exposer.def(
+                    "getRotation"
+                    , getRotation_function_type(&::CEGUI::Element::getRotation)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                  retrieves rotation of this widget\n\
             \n\
                 @see Element.setRotation\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getSize
-        
-            typedef ::CEGUI::USize ( ::CEGUI::Element::*getSize_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getSize"
-                , getSize_function_type( &::CEGUI::Element::getSize )
-                , "*!\n\
+
+            typedef ::CEGUI::USize(::CEGUI::Element::*getSize_function_type)() const;
+
+            Element_exposer.def(
+                    "getSize"
+                    , getSize_function_type(&::CEGUI::Element::getSize)
+                    , "*!\n\
                 \n\
                     Get the element's size.\n\
             \n\
@@ -828,18 +828,18 @@ void register_Element_class(){
                     USize describing the size of the element's area.\n\
             \n\
                 @see UDim\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getUnclippedInnerRect
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getUnclippedInnerRect_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getUnclippedInnerRect"
-                , getUnclippedInnerRect_function_type( &::CEGUI::Element::getUnclippedInnerRect )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getUnclippedInnerRect_function_type)() const;
+
+            Element_exposer.def(
+                    "getUnclippedInnerRect"
+                    , getUnclippedInnerRect_function_type(&::CEGUI::Element::getUnclippedInnerRect)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                  Return a Rect that describes the unclipped inner rect area of the Element\n\
             \n\
                 The inner rectangle is typically an area that excludes some frame or other decorations\n\
@@ -851,30 +851,30 @@ void register_Element_class(){
                 @return\n\
                     Rect object that describes, in unclipped screen pixel co-ordinates, the\n\
                     element object's inner rect area.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getUnclippedInnerRect_impl
-        
-            typedef ::CEGUI::Rectf ( Element_wrapper::*getUnclippedInnerRect_impl_function_type )( bool ) const;
-            
-            Element_exposer.def( 
-                "getUnclippedInnerRect_impl"
-                , getUnclippedInnerRect_impl_function_type( &Element_wrapper::default_getUnclippedInnerRect_impl )
-                , ( bp::arg("skipAllPixelAlignment") )
-                , "! Default implementation of function to return Element's outer rect area.\n\
-            ! Default implementation of function to return Element's inner rect area.\n" );
-        
+
+            typedef ::CEGUI::Rectf(Element_wrapper::*getUnclippedInnerRect_impl_function_type)(bool) const;
+
+            Element_exposer.def(
+                    "getUnclippedInnerRect_impl"
+                    , getUnclippedInnerRect_impl_function_type(&Element_wrapper::default_getUnclippedInnerRect_impl)
+                    , (bp::arg("skipAllPixelAlignment"))
+                    , "! Default implementation of function to return Element's outer rect area.\n\
+            ! Default implementation of function to return Element's inner rect area.\n");
+
         }
         { //::CEGUI::Element::getUnclippedOuterRect
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getUnclippedOuterRect_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getUnclippedOuterRect"
-                , getUnclippedOuterRect_function_type( &::CEGUI::Element::getUnclippedOuterRect )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getUnclippedOuterRect_function_type)() const;
+
+            Element_exposer.def(
+                    "getUnclippedOuterRect"
+                    , getUnclippedOuterRect_function_type(&::CEGUI::Element::getUnclippedOuterRect)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                  Return a Rect that describes the unclipped outer rect area of the Element\n\
             \n\
                 The unclipped outer rectangle is the entire area of the element, including\n\
@@ -886,30 +886,30 @@ void register_Element_class(){
                 \note\n\
                     If you take position of the result rectangle it is the same as pixel\n\
                     position of the Element in screenspace.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getUnclippedOuterRect_impl
-        
-            typedef ::CEGUI::Rectf ( Element_wrapper::*getUnclippedOuterRect_impl_function_type )( bool ) const;
-            
-            Element_exposer.def( 
-                "getUnclippedOuterRect_impl"
-                , getUnclippedOuterRect_impl_function_type( &Element_wrapper::default_getUnclippedOuterRect_impl )
-                , ( bp::arg("skipAllPixelAlignment") )
-                , "! Default implementation of function to return Element's outer rect area.\n" );
-        
+
+            typedef ::CEGUI::Rectf(Element_wrapper::*getUnclippedOuterRect_impl_function_type)(bool) const;
+
+            Element_exposer.def(
+                    "getUnclippedOuterRect_impl"
+                    , getUnclippedOuterRect_impl_function_type(&Element_wrapper::default_getUnclippedOuterRect_impl)
+                    , (bp::arg("skipAllPixelAlignment"))
+                    , "! Default implementation of function to return Element's outer rect area.\n");
+
         }
         { //::CEGUI::Element::getUnclippedRect
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getUnclippedRect_function_type )( bool const ) const;
-            
-            Element_exposer.def( 
-                "getUnclippedRect"
-                , getUnclippedRect_function_type( &::CEGUI::Element::getUnclippedRect )
-                , ( bp::arg("inner") )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getUnclippedRect_function_type)(bool const) const;
+
+            Element_exposer.def(
+                    "getUnclippedRect"
+                    , getUnclippedRect_function_type(&::CEGUI::Element::getUnclippedRect)
+                    , (bp::arg("inner"))
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                  Return a Rect that describes the unclipped area covered by the Element.\n\
             \n\
                 This function can return either the inner or outer area dependant upon\n\
@@ -921,17 +921,17 @@ void register_Element_class(){
             \n\
                 @see Element.getUnclippedOuterRect\n\
                 @see Element.getUnclippedInnerRect\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::getVerticalAlignment
-        
-            typedef ::CEGUI::VerticalAlignment ( ::CEGUI::Element::*getVerticalAlignment_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getVerticalAlignment"
-                , getVerticalAlignment_function_type( &::CEGUI::Element::getVerticalAlignment )
-                , "*!\n\
+
+            typedef ::CEGUI::VerticalAlignment(::CEGUI::Element::*getVerticalAlignment_function_type)() const;
+
+            Element_exposer.def(
+                    "getVerticalAlignment"
+                    , getVerticalAlignment_function_type(&::CEGUI::Element::getVerticalAlignment)
+                    , "*!\n\
                 \n\
                     Get the vertical alignment.\n\
             \n\
@@ -940,50 +940,50 @@ void register_Element_class(){
             \n\
                 @return\n\
                     One of the VerticalAlignment enumerated values.\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Element::getWidth
-        
-            typedef ::CEGUI::UDim ( ::CEGUI::Element::*getWidth_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getWidth"
-                , getWidth_function_type( &::CEGUI::Element::getWidth )
-                , "!  overload\n" );
-        
+
+            typedef ::CEGUI::UDim(::CEGUI::Element::*getWidth_function_type)() const;
+
+            Element_exposer.def(
+                    "getWidth"
+                    , getWidth_function_type(&::CEGUI::Element::getWidth)
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::getXPosition
-        
-            typedef ::CEGUI::UDim const & ( ::CEGUI::Element::*getXPosition_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getXPosition"
-                , getXPosition_function_type( &::CEGUI::Element::getXPosition )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "!  overload\n" );
-        
+
+            typedef ::CEGUI::UDim const & (::CEGUI::Element::*getXPosition_function_type)() const;
+
+            Element_exposer.def(
+                    "getXPosition"
+                    , getXPosition_function_type(&::CEGUI::Element::getXPosition)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::getYPosition
-        
-            typedef ::CEGUI::UDim const & ( ::CEGUI::Element::*getYPosition_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getYPosition"
-                , getYPosition_function_type( &::CEGUI::Element::getYPosition )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "!  overload\n" );
-        
+
+            typedef ::CEGUI::UDim const & (::CEGUI::Element::*getYPosition_function_type)() const;
+
+            Element_exposer.def(
+                    "getYPosition"
+                    , getYPosition_function_type(&::CEGUI::Element::getYPosition)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::isAncestor
-        
-            typedef bool ( ::CEGUI::Element::*isAncestor_function_type )( ::CEGUI::Element const * ) const;
-            
-            Element_exposer.def( 
-                "isAncestor"
-                , isAncestor_function_type( &::CEGUI::Element::isAncestor )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Element::*isAncestor_function_type)(::CEGUI::Element const *) const;
+
+            Element_exposer.def(
+                    "isAncestor"
+                    , isAncestor_function_type(&::CEGUI::Element::isAncestor)
+                    , (bp::arg("element"))
+                    , "*!\n\
                  Checks whether the specified Element is an ancestor of this Element\n\
             \n\
                 @param element\n\
@@ -995,129 +995,129 @@ void register_Element_class(){
                     - true if  element was found to be an ancestor (parent, or parent of\n\
                       parent, etc) of this Element.\n\
                     - false if  element is not an ancestor of this element.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::isChild
-        
-            typedef bool ( ::CEGUI::Element::*isChild_function_type )( ::CEGUI::Element const * ) const;
-            
-            Element_exposer.def( 
-                "isChild"
-                , isChild_function_type( &::CEGUI::Element::isChild )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Element::*isChild_function_type)(::CEGUI::Element const *) const;
+
+            Element_exposer.def(
+                    "isChild"
+                    , isChild_function_type(&::CEGUI::Element::isChild)
+                    , (bp::arg("element"))
+                    , "*!\n\
              Checks whether given element is attached to this Element\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::isInnerRectSizeChanged
-        
-            typedef bool ( Element_wrapper::*isInnerRectSizeChanged_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "isInnerRectSizeChanged"
-                , isInnerRectSizeChanged_function_type( &Element_wrapper::isInnerRectSizeChanged )
-                , "! helper to return whether the inner rect size has changed\n" );
-        
+
+            typedef bool ( Element_wrapper::*isInnerRectSizeChanged_function_type)() const;
+
+            Element_exposer.def(
+                    "isInnerRectSizeChanged"
+                    , isInnerRectSizeChanged_function_type(&Element_wrapper::isInnerRectSizeChanged)
+                    , "! helper to return whether the inner rect size has changed\n");
+
         }
         { //::CEGUI::Element::isNonClient
-        
-            typedef bool ( ::CEGUI::Element::*isNonClient_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "isNonClient"
-                , isNonClient_function_type( &::CEGUI::Element::isNonClient )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Element::*isNonClient_function_type)() const;
+
+            Element_exposer.def(
+                    "isNonClient"
+                    , isNonClient_function_type(&::CEGUI::Element::isNonClient)
+                    , "*!\n\
                  Checks whether this element was set to be non client\n\
             \n\
                 @see Element.setNonClient\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::isPixelAligned
-        
-            typedef bool ( ::CEGUI::Element::*isPixelAligned_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "isPixelAligned"
-                , isPixelAligned_function_type( &::CEGUI::Element::isPixelAligned )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Element::*isPixelAligned_function_type)() const;
+
+            Element_exposer.def(
+                    "isPixelAligned"
+                    , isPixelAligned_function_type(&::CEGUI::Element::isPixelAligned)
+                    , "*!\n\
             \n\
                 Checks whether this Element is pixel aligned\n\
                 \n\
             @see\n\
                 Element.setPixelAligned\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::notifyChildrenOfSizeChange
-        
-            typedef void ( Element_wrapper::*notifyChildrenOfSizeChange_function_type )( bool const,bool const ) ;
-            
-            Element_exposer.def( 
-                "notifyChildrenOfSizeChange"
-                , notifyChildrenOfSizeChange_function_type( &Element_wrapper::notifyChildrenOfSizeChange )
-                , ( bp::arg("non_client"), bp::arg("client") ) );
-        
+
+            typedef void ( Element_wrapper::*notifyChildrenOfSizeChange_function_type)(bool const, bool const);
+
+            Element_exposer.def(
+                    "notifyChildrenOfSizeChange"
+                    , notifyChildrenOfSizeChange_function_type(&Element_wrapper::notifyChildrenOfSizeChange)
+                    , (bp::arg("non_client"), bp::arg("client")));
+
         }
         { //::CEGUI::Element::notifyScreenAreaChanged
-        
-            typedef void ( ::CEGUI::Element::*notifyScreenAreaChanged_function_type )( bool ) ;
-            typedef void ( Element_wrapper::*default_notifyScreenAreaChanged_function_type )( bool ) ;
-            
-            Element_exposer.def( 
-                "notifyScreenAreaChanged"
-                , notifyScreenAreaChanged_function_type(&::CEGUI::Element::notifyScreenAreaChanged)
-                , default_notifyScreenAreaChanged_function_type(&Element_wrapper::default_notifyScreenAreaChanged)
-                , ( bp::arg("recursive")=(bool)(true) ) );
-        
+
+            typedef void ( ::CEGUI::Element::*notifyScreenAreaChanged_function_type)(bool);
+            typedef void ( Element_wrapper::*default_notifyScreenAreaChanged_function_type)(bool);
+
+            Element_exposer.def(
+                    "notifyScreenAreaChanged"
+                    , notifyScreenAreaChanged_function_type(&::CEGUI::Element::notifyScreenAreaChanged)
+                    , default_notifyScreenAreaChanged_function_type(&Element_wrapper::default_notifyScreenAreaChanged)
+                    , (bp::arg("recursive") = (bool)(true)));
+
         }
         { //::CEGUI::Element::onChildAdded
-        
-            typedef void ( Element_wrapper::*onChildAdded_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onChildAdded"
-                , onChildAdded_function_type( &Element_wrapper::default_onChildAdded )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onChildAdded_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onChildAdded"
+                    , onChildAdded_function_type(&Element_wrapper::default_onChildAdded)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a child element is added to this element.\n\
             \n\
                 @param e\n\
                     ElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that has been added.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onChildRemoved
-        
-            typedef void ( Element_wrapper::*onChildRemoved_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onChildRemoved"
-                , onChildRemoved_function_type( &Element_wrapper::default_onChildRemoved )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onChildRemoved_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onChildRemoved"
+                    , onChildRemoved_function_type(&Element_wrapper::default_onChildRemoved)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a child element is removed from this element.\n\
             \n\
                 @param e\n\
                     ElementEventArgs object whose 'element' pointer field is set the element\n\
                     that has been removed.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onHorizontalAlignmentChanged
-        
-            typedef void ( Element_wrapper::*onHorizontalAlignmentChanged_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onHorizontalAlignmentChanged"
-                , onHorizontalAlignmentChanged_function_type( &Element_wrapper::default_onHorizontalAlignmentChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onHorizontalAlignmentChanged_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onHorizontalAlignmentChanged"
+                    , onHorizontalAlignmentChanged_function_type(&Element_wrapper::default_onHorizontalAlignmentChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the horizontal alignment setting for the element is\n\
                     changed.\n\
@@ -1126,36 +1126,36 @@ void register_Element_class(){
                     ElementEventArgs object initialised as follows:\n\
                     - element field is set to point to the element object who's alignment has\n\
                       changed (typically 'this').\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onMoved
-        
-            typedef void ( Element_wrapper::*onMoved_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onMoved"
-                , onMoved_function_type( &Element_wrapper::default_onMoved )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onMoved_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onMoved"
+                    , onMoved_function_type(&Element_wrapper::default_onMoved)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the element's position changes.\n\
             \n\
                 @param e\n\
                     ElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that triggered the event.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onNonClientChanged
-        
-            typedef void ( Element_wrapper::*onNonClientChanged_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onNonClientChanged"
-                , onNonClientChanged_function_type( &Element_wrapper::default_onNonClientChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onNonClientChanged_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onNonClientChanged"
+                    , onNonClientChanged_function_type(&Element_wrapper::default_onNonClientChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the element's non-client setting, affecting it's\n\
                     position and size relative to it's parent is changed.\n\
@@ -1164,18 +1164,18 @@ void register_Element_class(){
                     ElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that triggered the event. For this event the trigger element is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onParentSized
-        
-            typedef void ( Element_wrapper::*onParentSized_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onParentSized"
-                , onParentSized_function_type( &Element_wrapper::default_onParentSized )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onParentSized_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onParentSized"
+                    , onParentSized_function_type(&Element_wrapper::default_onParentSized)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this element's parent element has been resized.  If\n\
                     this element is the root  GUI Sheet element, this call will be made when\n\
@@ -1185,36 +1185,36 @@ void register_Element_class(){
                     ElementEventArgs object whose 'element' pointer field is set the the\n\
                     element that caused the event; this is typically either this element's\n\
                     parent element, or NULL to indicate the screen size has changed.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onRotated
-        
-            typedef void ( Element_wrapper::*onRotated_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onRotated"
-                , onRotated_function_type( &Element_wrapper::default_onRotated )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onRotated_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onRotated"
+                    , onRotated_function_type(&Element_wrapper::default_onRotated)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the element's rotation is changed.\n\
             \n\
                 @param e\n\
                     ElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that triggered the event.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onSized
-        
-            typedef void ( Element_wrapper::*onSized_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onSized"
-                , onSized_function_type( &Element_wrapper::default_onSized )
-                , ( bp::arg("e") )
-                , "*************************************************************************\n\
+
+            typedef void ( Element_wrapper::*onSized_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onSized"
+                    , onSized_function_type(&Element_wrapper::default_onSized)
+                    , (bp::arg("e"))
+                    , "*************************************************************************\n\
                     Event trigger methods\n\
                 *************************************************************************\n\
                 *!\n\
@@ -1224,18 +1224,18 @@ void register_Element_class(){
                 @param e\n\
                     ElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that triggered the event.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onVerticalAlignmentChanged
-        
-            typedef void ( Element_wrapper::*onVerticalAlignmentChanged_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            Element_exposer.def( 
-                "onVerticalAlignmentChanged"
-                , onVerticalAlignmentChanged_function_type( &Element_wrapper::default_onVerticalAlignmentChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*onVerticalAlignmentChanged_function_type)(::CEGUI::ElementEventArgs &);
+
+            Element_exposer.def(
+                    "onVerticalAlignmentChanged"
+                    , onVerticalAlignmentChanged_function_type(&Element_wrapper::default_onVerticalAlignmentChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the vertical alignment setting for the element is\n\
                     changed.\n\
@@ -1244,18 +1244,18 @@ void register_Element_class(){
                     ElementEventArgs object initialised as follows:\n\
                     - element field is set to point to the element object who's alignment has\n\
                       changed (typically 'this').\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::removeChild
-        
-            typedef void ( ::CEGUI::Element::*removeChild_function_type )( ::CEGUI::Element * ) ;
-            
-            Element_exposer.def( 
-                "removeChild"
-                , removeChild_function_type( &::CEGUI::Element::removeChild )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*removeChild_function_type)(::CEGUI::Element *);
+
+            Element_exposer.def(
+                    "removeChild"
+                    , removeChild_function_type(&::CEGUI::Element::removeChild)
+                    , (bp::arg("element"))
+                    , "*!\n\
                 \n\
                     Remove the Element Element's child list.\n\
                     \n\
@@ -1264,66 +1264,66 @@ void register_Element_class(){
             \n\
                 @see\n\
                     Element.addChild\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::removeChild_impl
-        
-            typedef void ( Element_wrapper::*removeChild_impl_function_type )( ::CEGUI::Element * ) ;
-            
-            Element_exposer.def( 
-                "removeChild_impl"
-                , removeChild_impl_function_type( &Element_wrapper::default_removeChild_impl )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*removeChild_impl_function_type)(::CEGUI::Element *);
+
+            Element_exposer.def(
+                    "removeChild_impl"
+                    , removeChild_impl_function_type(&Element_wrapper::default_removeChild_impl)
+                    , (bp::arg("element"))
+                    , "*!\n\
             \n\
                 Remove given element from child list\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::setArea
-        
-            typedef void ( ::CEGUI::Element::*setArea_function_type )( ::CEGUI::UVector2 const &,::CEGUI::USize const & ) ;
-            typedef void ( Element_wrapper::*default_setArea_function_type )( ::CEGUI::UVector2 const &,::CEGUI::USize const & ) ;
-            
-            Element_exposer.def( 
-                "setArea"
-                , setArea_function_type(&::CEGUI::Element::setArea)
-                , default_setArea_function_type(&Element_wrapper::default_setArea)
-                , ( bp::arg("pos"), bp::arg("size") ) );
-        
+
+            typedef void ( ::CEGUI::Element::*setArea_function_type)(::CEGUI::UVector2 const &, ::CEGUI::USize const &);
+            typedef void ( Element_wrapper::*default_setArea_function_type)(::CEGUI::UVector2 const &, ::CEGUI::USize const &);
+
+            Element_exposer.def(
+                    "setArea"
+                    , setArea_function_type(&::CEGUI::Element::setArea)
+                    , default_setArea_function_type(&Element_wrapper::default_setArea)
+                    , (bp::arg("pos"), bp::arg("size")));
+
         }
         { //::CEGUI::Element::setArea
-        
-            typedef void ( ::CEGUI::Element::*setArea_function_type )( ::CEGUI::UDim const &,::CEGUI::UDim const &,::CEGUI::UDim const &,::CEGUI::UDim const & ) ;
-            
-            Element_exposer.def( 
-                "setArea"
-                , setArea_function_type( &::CEGUI::Element::setArea )
-                , ( bp::arg("xpos"), bp::arg("ypos"), bp::arg("width"), bp::arg("height") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setArea_function_type)(::CEGUI::UDim const &, ::CEGUI::UDim const &, ::CEGUI::UDim const &, ::CEGUI::UDim const &);
+
+            Element_exposer.def(
+                    "setArea"
+                    , setArea_function_type(&::CEGUI::Element::setArea)
+                    , (bp::arg("xpos"), bp::arg("ypos"), bp::arg("width"), bp::arg("height"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::setArea
-        
-            typedef void ( ::CEGUI::Element::*setArea_function_type )( ::CEGUI::URect const & ) ;
-            
-            Element_exposer.def( 
-                "setArea"
-                , setArea_function_type( &::CEGUI::Element::setArea )
-                , ( bp::arg("area") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setArea_function_type)(::CEGUI::URect const &);
+
+            Element_exposer.def(
+                    "setArea"
+                    , setArea_function_type(&::CEGUI::Element::setArea)
+                    , (bp::arg("area"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::setArea_impl
-        
-            typedef void ( Element_wrapper::*setArea_impl_function_type )( ::CEGUI::UVector2 const &,::CEGUI::USize const &,bool,bool ) ;
-            
-            Element_exposer.def( 
-                "setArea_impl"
-                , setArea_impl_function_type( &Element_wrapper::default_setArea_impl )
-                , ( bp::arg("pos"), bp::arg("size"), bp::arg("topLeftSizing")=(bool)(false), bp::arg("fireEvents")=(bool)(true) )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*setArea_impl_function_type)(::CEGUI::UVector2 const &, ::CEGUI::USize const &, bool, bool);
+
+            Element_exposer.def(
+                    "setArea_impl"
+                    , setArea_impl_function_type(&Element_wrapper::default_setArea_impl)
+                    , (bp::arg("pos"), bp::arg("size"), bp::arg("topLeftSizing") = (bool)(false), bp::arg("fireEvents") = (bool)(true))
+                    , "*!\n\
                 \n\
                     Implementation method to modify element area while correctly applying\n\
                     min  max size processing, and firing any appropriate events.\n\
@@ -1352,36 +1352,36 @@ void register_Element_class(){
                     - true if events should be fired as normal.\n\
                     - false to inhibit firing of events (required, for example, if you need\n\
                       to call this from the onSizeonMove handlers).\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Element::setAspectMode
-        
-            typedef void ( ::CEGUI::Element::*setAspectMode_function_type )( ::CEGUI::AspectMode const ) ;
-            
-            Element_exposer.def( 
-                "setAspectMode"
-                , setAspectMode_function_type( &::CEGUI::Element::setAspectMode )
-                , ( bp::arg("mode") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setAspectMode_function_type)(::CEGUI::AspectMode const);
+
+            Element_exposer.def(
+                    "setAspectMode"
+                    , setAspectMode_function_type(&::CEGUI::Element::setAspectMode)
+                    , (bp::arg("mode"))
+                    , "*!\n\
                  Sets current aspect mode and recalculates the area rect\n\
             \n\
                 @param mode the new aspect mode to set\n\
             \n\
                 @see CEGUI.AspectMode\n\
                 @see CEGUI.setAspectRatio\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setAspectRatio
-        
-            typedef void ( ::CEGUI::Element::*setAspectRatio_function_type )( float const ) ;
-            
-            Element_exposer.def( 
-                "setAspectRatio"
-                , setAspectRatio_function_type( &::CEGUI::Element::setAspectRatio )
-                , ( bp::arg("ratio") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setAspectRatio_function_type)(float const);
+
+            Element_exposer.def(
+                    "setAspectRatio"
+                    , setAspectRatio_function_type(&::CEGUI::Element::setAspectRatio)
+                    , (bp::arg("ratio"))
+                    , "*!\n\
                 \n\
                     Sets target aspect ratio\n\
             \n\
@@ -1393,41 +1393,41 @@ void register_Element_class(){
                     This is ignored if AspectMode is AM_IGNORE.\n\
             \n\
                 @see Element.setAspectMode\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setHeight
-        
-            typedef void ( ::CEGUI::Element::*setHeight_function_type )( ::CEGUI::UDim const & ) ;
-            
-            Element_exposer.def( 
-                "setHeight"
-                , setHeight_function_type( &::CEGUI::Element::setHeight )
-                , ( bp::arg("height") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setHeight_function_type)(::CEGUI::UDim const &);
+
+            Element_exposer.def(
+                    "setHeight"
+                    , setHeight_function_type(&::CEGUI::Element::setHeight)
+                    , (bp::arg("height"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::setHorizontalAlignment
-        
-            typedef void ( ::CEGUI::Element::*setHorizontalAlignment_function_type )( ::CEGUI::HorizontalAlignment const ) ;
-            typedef void ( Element_wrapper::*default_setHorizontalAlignment_function_type )( ::CEGUI::HorizontalAlignment const ) ;
-            
-            Element_exposer.def( 
-                "setHorizontalAlignment"
-                , setHorizontalAlignment_function_type(&::CEGUI::Element::setHorizontalAlignment)
-                , default_setHorizontalAlignment_function_type(&Element_wrapper::default_setHorizontalAlignment)
-                , ( bp::arg("alignment") ) );
-        
+
+            typedef void ( ::CEGUI::Element::*setHorizontalAlignment_function_type)(::CEGUI::HorizontalAlignment const);
+            typedef void ( Element_wrapper::*default_setHorizontalAlignment_function_type)(::CEGUI::HorizontalAlignment const);
+
+            Element_exposer.def(
+                    "setHorizontalAlignment"
+                    , setHorizontalAlignment_function_type(&::CEGUI::Element::setHorizontalAlignment)
+                    , default_setHorizontalAlignment_function_type(&Element_wrapper::default_setHorizontalAlignment)
+                    , (bp::arg("alignment")));
+
         }
         { //::CEGUI::Element::setMaxSize
-        
-            typedef void ( ::CEGUI::Element::*setMaxSize_function_type )( ::CEGUI::USize const & ) ;
-            
-            Element_exposer.def( 
-                "setMaxSize"
-                , setMaxSize_function_type( &::CEGUI::Element::setMaxSize )
-                , ( bp::arg("size") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setMaxSize_function_type)(::CEGUI::USize const &);
+
+            Element_exposer.def(
+                    "setMaxSize"
+                    , setMaxSize_function_type(&::CEGUI::Element::setMaxSize)
+                    , (bp::arg("size"))
+                    , "*!\n\
                 \n\
                     Set the element's maximum size.\n\
             \n\
@@ -1445,18 +1445,18 @@ void register_Element_class(){
                     unbounded.\n\
             \n\
                 @see Element.setSize\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setMinSize
-        
-            typedef void ( ::CEGUI::Element::*setMinSize_function_type )( ::CEGUI::USize const & ) ;
-            
-            Element_exposer.def( 
-                "setMinSize"
-                , setMinSize_function_type( &::CEGUI::Element::setMinSize )
-                , ( bp::arg("size") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setMinSize_function_type)(::CEGUI::USize const &);
+
+            Element_exposer.def(
+                    "setMinSize"
+                    , setMinSize_function_type(&::CEGUI::Element::setMinSize)
+                    , (bp::arg("size"))
+                    , "*!\n\
                 \n\
                     Set the element's minimum size.\n\
             \n\
@@ -1472,18 +1472,18 @@ void register_Element_class(){
                     USize describing the new minimum size of the element's area.\n\
             \n\
                 @see Element.setSize\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setNonClient
-        
-            typedef void ( ::CEGUI::Element::*setNonClient_function_type )( bool const ) ;
-            
-            Element_exposer.def( 
-                "setNonClient"
-                , setNonClient_function_type( &::CEGUI::Element::setNonClient )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setNonClient_function_type)(bool const);
+
+            Element_exposer.def(
+                    "setNonClient"
+                    , setNonClient_function_type(&::CEGUI::Element::setNonClient)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                  Set whether the Element is non-client.\n\
             \n\
                 A non-client element is clipped, positioned and sized according to the\n\
@@ -1495,18 +1495,18 @@ void register_Element_class(){
                     to the full area rectangle of it's parent.\n\
                     - false if the element should be clipped, positioned and sized according\n\
                     to the inner rect area of it's parent.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setParent
-        
-            typedef void ( Element_wrapper::*setParent_function_type )( ::CEGUI::Element * ) ;
-            
-            Element_exposer.def( 
-                "setParent"
-                , setParent_function_type( &Element_wrapper::default_setParent )
-                , ( bp::arg("parent") )
-                , "*!\n\
+
+            typedef void ( Element_wrapper::*setParent_function_type)(::CEGUI::Element *);
+
+            Element_exposer.def(
+                    "setParent"
+                    , setParent_function_type(&Element_wrapper::default_setParent)
+                    , (bp::arg("parent"))
+                    , "*!\n\
                 \n\
                     Set the parent element for this element object.\n\
             \n\
@@ -1516,18 +1516,18 @@ void register_Element_class(){
             \n\
                 @return\n\
                     Nothing\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setPixelAligned
-        
-            typedef void ( ::CEGUI::Element::*setPixelAligned_function_type )( bool const ) ;
-            
-            Element_exposer.def( 
-                "setPixelAligned"
-                , setPixelAligned_function_type( &::CEGUI::Element::setPixelAligned )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setPixelAligned_function_type)(bool const);
+
+            Element_exposer.def(
+                    "setPixelAligned"
+                    , setPixelAligned_function_type(&::CEGUI::Element::setPixelAligned)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                 \n\
                     Sets whether this Element is pixel aligned (both position and size, basically the 4\
                     corners).\n\
@@ -1548,18 +1548,18 @@ void register_Element_class(){
                     a lot of sense and just looks better. Especially with text. However for\n\
                     HUD or decorative elements pixel aligning might make transitions less\n\
                     fluid. Feel free to experiment with the setting.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setPosition
-        
-            typedef void ( ::CEGUI::Element::*setPosition_function_type )( ::CEGUI::UVector2 const & ) ;
-            
-            Element_exposer.def( 
-                "setPosition"
-                , setPosition_function_type( &::CEGUI::Element::setPosition )
-                , ( bp::arg("pos") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setPosition_function_type)(::CEGUI::UVector2 const &);
+
+            Element_exposer.def(
+                    "setPosition"
+                    , setPosition_function_type(&::CEGUI::Element::setPosition)
+                    , (bp::arg("pos"))
+                    , "*!\n\
                 \n\
                     Set the element's position.\n\
             \n\
@@ -1573,18 +1573,18 @@ void register_Element_class(){
             \n\
                 @see UDim\n\
                 @see Element.setArea(const UVector2& pos, const USize& size)\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setRotation
-        
-            typedef void ( ::CEGUI::Element::*setRotation_function_type )( ::CEGUI::Quaternion const & ) ;
-            
-            Element_exposer.def( 
-                "setRotation"
-                , setRotation_function_type( &::CEGUI::Element::setRotation )
-                , ( bp::arg("rotation") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setRotation_function_type)(::CEGUI::Quaternion const &);
+
+            Element_exposer.def(
+                    "setRotation"
+                    , setRotation_function_type(&::CEGUI::Element::setRotation)
+                    , (bp::arg("rotation"))
+                    , "*!\n\
                  sets rotation of this widget\n\
             \n\
                 @param rotation\n\
@@ -1595,18 +1595,18 @@ void register_Element_class(){
                     intuitive they cause Gimbal locks when animating and are overall the worse\n\
                     solution than using Quaternions. You can still use Euler angles, see\n\
                     the CEGUI.Quaternion class for more info about that.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setSize
-        
-            typedef void ( ::CEGUI::Element::*setSize_function_type )( ::CEGUI::USize const & ) ;
-            
-            Element_exposer.def( 
-                "setSize"
-                , setSize_function_type( &::CEGUI::Element::setSize )
-                , ( bp::arg("size") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Element::*setSize_function_type)(::CEGUI::USize const &);
+
+            Element_exposer.def(
+                    "setSize"
+                    , setSize_function_type(&::CEGUI::Element::setSize)
+                    , (bp::arg("size"))
+                    , "*!\n\
                 \n\
                     Set the element's size.\n\
             \n\
@@ -1616,142 +1616,142 @@ void register_Element_class(){
                     USize describing the new size of the element's area.\n\
             \n\
                 @see UDim\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setVerticalAlignment
-        
-            typedef void ( ::CEGUI::Element::*setVerticalAlignment_function_type )( ::CEGUI::VerticalAlignment const ) ;
-            typedef void ( Element_wrapper::*default_setVerticalAlignment_function_type )( ::CEGUI::VerticalAlignment const ) ;
-            
-            Element_exposer.def( 
-                "setVerticalAlignment"
-                , setVerticalAlignment_function_type(&::CEGUI::Element::setVerticalAlignment)
-                , default_setVerticalAlignment_function_type(&Element_wrapper::default_setVerticalAlignment)
-                , ( bp::arg("alignment") ) );
-        
+
+            typedef void ( ::CEGUI::Element::*setVerticalAlignment_function_type)(::CEGUI::VerticalAlignment const);
+            typedef void ( Element_wrapper::*default_setVerticalAlignment_function_type)(::CEGUI::VerticalAlignment const);
+
+            Element_exposer.def(
+                    "setVerticalAlignment"
+                    , setVerticalAlignment_function_type(&::CEGUI::Element::setVerticalAlignment)
+                    , default_setVerticalAlignment_function_type(&Element_wrapper::default_setVerticalAlignment)
+                    , (bp::arg("alignment")));
+
         }
         { //::CEGUI::Element::setWidth
-        
-            typedef void ( ::CEGUI::Element::*setWidth_function_type )( ::CEGUI::UDim const & ) ;
-            
-            Element_exposer.def( 
-                "setWidth"
-                , setWidth_function_type( &::CEGUI::Element::setWidth )
-                , ( bp::arg("width") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setWidth_function_type)(::CEGUI::UDim const &);
+
+            Element_exposer.def(
+                    "setWidth"
+                    , setWidth_function_type(&::CEGUI::Element::setWidth)
+                    , (bp::arg("width"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::setXPosition
-        
-            typedef void ( ::CEGUI::Element::*setXPosition_function_type )( ::CEGUI::UDim const & ) ;
-            
-            Element_exposer.def( 
-                "setXPosition"
-                , setXPosition_function_type( &::CEGUI::Element::setXPosition )
-                , ( bp::arg("pos") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setXPosition_function_type)(::CEGUI::UDim const &);
+
+            Element_exposer.def(
+                    "setXPosition"
+                    , setXPosition_function_type(&::CEGUI::Element::setXPosition)
+                    , (bp::arg("pos"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::setYPosition
-        
-            typedef void ( ::CEGUI::Element::*setYPosition_function_type )( ::CEGUI::UDim const & ) ;
-            
-            Element_exposer.def( 
-                "setYPosition"
-                , setYPosition_function_type( &::CEGUI::Element::setYPosition )
-                , ( bp::arg("pos") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setYPosition_function_type)(::CEGUI::UDim const &);
+
+            Element_exposer.def(
+                    "setYPosition"
+                    , setYPosition_function_type(&::CEGUI::Element::setYPosition)
+                    , (bp::arg("pos"))
+                    , "!  overload\n");
+
         }
-        Element_exposer.add_static_property( "EventChildAdded"
-                        , bp::make_getter( &CEGUI::Element::EventChildAdded
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventChildRemoved"
-                        , bp::make_getter( &CEGUI::Element::EventChildRemoved
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventHorizontalAlignmentChanged"
-                        , bp::make_getter( &CEGUI::Element::EventHorizontalAlignmentChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventMoved"
-                        , bp::make_getter( &CEGUI::Element::EventMoved
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventNonClientChanged"
-                        , bp::make_getter( &CEGUI::Element::EventNonClientChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventParentSized"
-                        , bp::make_getter( &CEGUI::Element::EventParentSized
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventRotated"
-                        , bp::make_getter( &CEGUI::Element::EventRotated
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventSized"
-                        , bp::make_getter( &CEGUI::Element::EventSized
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventVerticalAlignmentChanged"
-                        , bp::make_getter( &CEGUI::Element::EventVerticalAlignmentChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        Element_exposer.add_static_property( "EventZOrderChanged"
-                        , bp::make_getter( &CEGUI::Element::EventZOrderChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
+        Element_exposer.add_static_property("EventChildAdded"
+                , bp::make_getter(&CEGUI::Element::EventChildAdded
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventChildRemoved"
+                , bp::make_getter(&CEGUI::Element::EventChildRemoved
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventHorizontalAlignmentChanged"
+                , bp::make_getter(&CEGUI::Element::EventHorizontalAlignmentChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventMoved"
+                , bp::make_getter(&CEGUI::Element::EventMoved
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventNonClientChanged"
+                , bp::make_getter(&CEGUI::Element::EventNonClientChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventParentSized"
+                , bp::make_getter(&CEGUI::Element::EventParentSized
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventRotated"
+                , bp::make_getter(&CEGUI::Element::EventRotated
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventSized"
+                , bp::make_getter(&CEGUI::Element::EventSized
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventVerticalAlignmentChanged"
+                , bp::make_getter(&CEGUI::Element::EventVerticalAlignmentChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        Element_exposer.add_static_property("EventZOrderChanged"
+                , bp::make_getter(&CEGUI::Element::EventZOrderChanged
+                , bp::return_value_policy< bp::return_by_value >()));
         { //::CEGUI::EventSet::fireEvent
-        
-            typedef void ( ::CEGUI::EventSet::*fireEvent_function_type )( ::CEGUI::String const &,::CEGUI::EventArgs &,::CEGUI::String const & ) ;
-            typedef void ( Element_wrapper::*default_fireEvent_function_type )( ::CEGUI::String const &,::CEGUI::EventArgs &,::CEGUI::String const & ) ;
-            
-            Element_exposer.def( 
-                "fireEvent"
-                , fireEvent_function_type(&::CEGUI::EventSet::fireEvent)
-                , default_fireEvent_function_type(&Element_wrapper::default_fireEvent)
-                , ( bp::arg("name"), bp::arg("args"), bp::arg("eventNamespace")="" ) );
-        
+
+            typedef void ( ::CEGUI::EventSet::*fireEvent_function_type)(::CEGUI::String const &, ::CEGUI::EventArgs &, ::CEGUI::String const &);
+            typedef void ( Element_wrapper::*default_fireEvent_function_type)(::CEGUI::String const &, ::CEGUI::EventArgs &, ::CEGUI::String const &);
+
+            Element_exposer.def(
+                    "fireEvent"
+                    , fireEvent_function_type(&::CEGUI::EventSet::fireEvent)
+                    , default_fireEvent_function_type(&Element_wrapper::default_fireEvent)
+                    , (bp::arg("name"), bp::arg("args"), bp::arg("eventNamespace") = ""));
+
         }
         { //::CEGUI::EventSet::fireEvent_impl
-        
-            typedef void ( Element_wrapper::*fireEvent_impl_function_type )( ::CEGUI::String const &,::CEGUI::EventArgs & ) ;
-            
-            Element_exposer.def( 
-                "fireEvent_impl"
-                , fireEvent_impl_function_type( &Element_wrapper::fireEvent_impl )
-                , ( bp::arg("name"), bp::arg("args") )
-                , "! Implementation event firing member\n" );
-        
+
+            typedef void ( Element_wrapper::*fireEvent_impl_function_type)(::CEGUI::String const &, ::CEGUI::EventArgs &);
+
+            Element_exposer.def(
+                    "fireEvent_impl"
+                    , fireEvent_impl_function_type(&Element_wrapper::fireEvent_impl)
+                    , (bp::arg("name"), bp::arg("args"))
+                    , "! Implementation event firing member\n");
+
         }
         { //::CEGUI::EventSet::getScriptModule
-        
-            typedef ::CEGUI::ScriptModule * ( Element_wrapper::*getScriptModule_function_type )(  ) const;
-            
-            Element_exposer.def( 
-                "getScriptModule"
-                , getScriptModule_function_type( &Element_wrapper::getScriptModule )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "! Implementation event firing member\n\
-            ! Helper to return the script module pointer or throw.\n" );
-        
+
+            typedef ::CEGUI::ScriptModule * (Element_wrapper::*getScriptModule_function_type)() const;
+
+            Element_exposer.def(
+                    "getScriptModule"
+                    , getScriptModule_function_type(&Element_wrapper::getScriptModule)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "! Implementation event firing member\n\
+            ! Helper to return the script module pointer or throw.\n");
+
         }
         { //::CEGUI::EventSet::subscribeScriptedEvent
-        
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( ::CEGUI::EventSet::*subscribeScriptedEvent_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( Element_wrapper::*default_subscribeScriptedEvent_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            Element_exposer.def( 
-                "subscribeScriptedEvent"
-                , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
-                , default_subscribeScriptedEvent_function_type(&Element_wrapper::default_subscribeScriptedEvent)
-                , ( bp::arg("name"), bp::arg("subscriber_name") ) );
-        
+
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (::CEGUI::EventSet::*subscribeScriptedEvent_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (Element_wrapper::*default_subscribeScriptedEvent_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            Element_exposer.def(
+                    "subscribeScriptedEvent"
+                    , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
+                    , default_subscribeScriptedEvent_function_type(&Element_wrapper::default_subscribeScriptedEvent)
+                    , (bp::arg("name"), bp::arg("subscriber_name")));
+
         }
         { //::CEGUI::EventSet::subscribeScriptedEvent
-        
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( ::CEGUI::EventSet::*subscribeScriptedEvent_function_type )( ::CEGUI::String const &,unsigned int,::CEGUI::String const & ) ;
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( Element_wrapper::*default_subscribeScriptedEvent_function_type )( ::CEGUI::String const &,unsigned int,::CEGUI::String const & ) ;
-            
-            Element_exposer.def( 
-                "subscribeScriptedEvent"
-                , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
-                , default_subscribeScriptedEvent_function_type(&Element_wrapper::default_subscribeScriptedEvent)
-                , ( bp::arg("name"), bp::arg("group"), bp::arg("subscriber_name") ) );
-        
+
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (::CEGUI::EventSet::*subscribeScriptedEvent_function_type)(::CEGUI::String const &, unsigned int, ::CEGUI::String const &);
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (Element_wrapper::*default_subscribeScriptedEvent_function_type)(::CEGUI::String const &, unsigned int, ::CEGUI::String const &);
+
+            Element_exposer.def(
+                    "subscribeScriptedEvent"
+                    , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
+                    , default_subscribeScriptedEvent_function_type(&Element_wrapper::default_subscribeScriptedEvent)
+                    , (bp::arg("name"), bp::arg("group"), bp::arg("subscriber_name")));
+
         }
     }
 

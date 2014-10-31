@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 6 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -29,82 +29,78 @@
 #include "CEGUI/Vector.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-JustifiedRenderedString::JustifiedRenderedString(const RenderedString& string) :
-    FormattedRenderedString(string)
-{
-}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void JustifiedRenderedString::format(const Window* ref_wnd,
-                                     const Sizef& area_size)
-{
-    d_spaceExtras.clear();
-
-    for (size_t i = 0; i < d_renderedString->getLineCount(); ++i)
-    {
-        const size_t space_count = d_renderedString->getSpaceCount(i);
-        const float string_width = d_renderedString->getPixelSize(
-                                                        ref_wnd, i).d_width;
-
-        if ((space_count == 0) || (string_width >= area_size.d_width))
-            d_spaceExtras.push_back(0.0f);
-        else
-            d_spaceExtras.push_back(
-                (area_size.d_width - string_width) / space_count);
-    }
-}
-
-//----------------------------------------------------------------------------//
-void JustifiedRenderedString::draw(const Window* ref_wnd, GeometryBuffer& buffer,
-                                   const Vector2f& position,
-                                   const ColourRect* mod_colours,
-                                   const Rectf* clip_rect) const
-{
-    Vector2f draw_pos(position);
-
-    for (size_t i = 0; i < d_renderedString->getLineCount(); ++i)
-    {
-        d_renderedString->draw(ref_wnd, i, buffer, draw_pos, mod_colours,
-                               clip_rect, d_spaceExtras[i]);
-        draw_pos.d_y += d_renderedString->getPixelSize(ref_wnd, i).d_height;
-    }
-}
-
-//----------------------------------------------------------------------------//
-size_t JustifiedRenderedString::getFormattedLineCount() const
-{
-    return d_renderedString->getLineCount();
-}
-
-//----------------------------------------------------------------------------//
-float JustifiedRenderedString::getHorizontalExtent(const Window* ref_wnd) const
-{
-    float w = 0.0f;
-    for (size_t i = 0; i < d_renderedString->getLineCount(); ++i)
-    {
-        const float this_width = d_renderedString->getPixelSize(ref_wnd, i).d_width +
-            d_renderedString->getSpaceCount(i) * d_spaceExtras[i];
-
-        if (this_width > w)
-            w = this_width;
+    JustifiedRenderedString::JustifiedRenderedString(const RenderedString& string) :
+    FormattedRenderedString(string) {
     }
 
-    return w;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-float JustifiedRenderedString::getVerticalExtent(const Window* ref_wnd) const
-{
-    float h = 0.0f;
-    for (size_t i = 0; i < d_renderedString->getLineCount(); ++i)
-        h += d_renderedString->getPixelSize(ref_wnd, i).d_height;
+    void JustifiedRenderedString::format(const Window* ref_wnd,
+            const Sizef& area_size) {
+        d_spaceExtras.clear();
 
-    return h;
-}
+        for (size_t i = 0; i < d_renderedString->getLineCount(); ++i) {
+            const size_t space_count = d_renderedString->getSpaceCount(i);
+            const float string_width = d_renderedString->getPixelSize(
+                    ref_wnd, i).d_width;
 
-//----------------------------------------------------------------------------//
+            if ((space_count == 0) || (string_width >= area_size.d_width))
+                d_spaceExtras.push_back(0.0f);
+            else
+                d_spaceExtras.push_back(
+                    (area_size.d_width - string_width) / space_count);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void JustifiedRenderedString::draw(const Window* ref_wnd, GeometryBuffer& buffer,
+            const Vector2f& position,
+            const ColourRect* mod_colours,
+            const Rectf* clip_rect) const {
+        Vector2f draw_pos(position);
+
+        for (size_t i = 0; i < d_renderedString->getLineCount(); ++i) {
+            d_renderedString->draw(ref_wnd, i, buffer, draw_pos, mod_colours,
+                    clip_rect, d_spaceExtras[i]);
+            draw_pos.d_y += d_renderedString->getPixelSize(ref_wnd, i).d_height;
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    size_t JustifiedRenderedString::getFormattedLineCount() const {
+        return d_renderedString->getLineCount();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float JustifiedRenderedString::getHorizontalExtent(const Window* ref_wnd) const {
+        float w = 0.0f;
+        for (size_t i = 0; i < d_renderedString->getLineCount(); ++i) {
+            const float this_width = d_renderedString->getPixelSize(ref_wnd, i).d_width +
+                    d_renderedString->getSpaceCount(i) * d_spaceExtras[i];
+
+            if (this_width > w)
+                w = this_width;
+        }
+
+        return w;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float JustifiedRenderedString::getVerticalExtent(const Window* ref_wnd) const {
+        float h = 0.0f;
+        for (size_t i = 0; i < d_renderedString->getLineCount(); ++i)
+            h += d_renderedString->getPixelSize(ref_wnd, i).d_height;
+
+        return h;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

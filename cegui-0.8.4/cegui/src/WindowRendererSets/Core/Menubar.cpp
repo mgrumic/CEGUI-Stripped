@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jul 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,17 +30,14 @@
 #include "CEGUI/widgets/Menubar.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardMenubar::TypeName("Core/Menubar");
 
     FalagardMenubar::FalagardMenubar(const String& type) :
-        ItemListBaseWindowRenderer(type)
-    {
+    ItemListBaseWindowRenderer(type) {
     }
 
-    void FalagardMenubar::render()
-    {
+    void FalagardMenubar::render() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.
@@ -51,8 +48,7 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    Rectf FalagardMenubar::getItemRenderArea(void) const
-    {
+    Rectf FalagardMenubar::getItemRenderArea(void) const {
         const WidgetLookFeel& wlf = getLookNFeel();
         return wlf.getNamedArea("ItemRenderArea").getArea().getPixelRect(*d_window);
     }

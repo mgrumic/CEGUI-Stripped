@@ -6,24 +6,24 @@
 
 namespace bp = boost::python;
 
-void register_SingletonImageManager_class(){
+void register_SingletonImageManager_class() {
 
     { //::CEGUI::Singleton< CEGUI::ImageManager >
         typedef bp::class_< CEGUI::Singleton< CEGUI::ImageManager >, boost::noncopyable > SingletonImageManager_exposer_t;
-        SingletonImageManager_exposer_t SingletonImageManager_exposer = SingletonImageManager_exposer_t( "SingletonImageManager", bp::init< >() );
-        bp::scope SingletonImageManager_scope( SingletonImageManager_exposer );
+        SingletonImageManager_exposer_t SingletonImageManager_exposer = SingletonImageManager_exposer_t("SingletonImageManager", bp::init< >());
+        bp::scope SingletonImageManager_scope(SingletonImageManager_exposer);
         { //::CEGUI::Singleton< CEGUI::ImageManager >::getSingleton
-        
+
             typedef CEGUI::Singleton< CEGUI::ImageManager > exported_class_t;
-            typedef ::CEGUI::ImageManager & ( *getSingleton_function_type )(  );
-            
-            SingletonImageManager_exposer.def( 
-                "getSingleton"
-                , getSingleton_function_type( &::CEGUI::Singleton< CEGUI::ImageManager >::getSingleton )
-                , bp::return_value_policy< bp::reference_existing_object >() );
-        
+            typedef ::CEGUI::ImageManager & (*getSingleton_function_type)();
+
+            SingletonImageManager_exposer.def(
+                    "getSingleton"
+                    , getSingleton_function_type(&::CEGUI::Singleton< CEGUI::ImageManager >::getSingleton)
+                    , bp::return_value_policy< bp::reference_existing_object >());
+
         }
-        SingletonImageManager_exposer.staticmethod( "getSingleton" );
+        SingletonImageManager_exposer.staticmethod("getSingleton");
     }
 
 }

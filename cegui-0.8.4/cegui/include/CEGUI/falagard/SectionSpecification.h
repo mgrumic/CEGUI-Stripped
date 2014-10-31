@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,8 +32,7 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     // forward refs
     class WidgetLookFeel;
 
@@ -43,10 +42,9 @@ namespace CEGUI
 
         This class enables sections to be easily re-used, by different states and/or layers, by allowing
         sections to be specified by name rather than having mutiple copies of the same thing all over the place.
-    */
+     */
     class CEGUIEXPORT SectionSpecification :
-        public AllocatedObject<SectionSpecification>
-    {
+    public AllocatedObject<SectionSpecification> {
     public:
         SectionSpecification();
 
@@ -77,11 +75,11 @@ namespace CEGUI
             in controlPropertySource should be accessed.  If this is empty then
             the window itself is used as the source, rather than a child or the
             parent.
-        */
+         */
         SectionSpecification(const String& owner, const String& sectionName,
-                             const String& controlPropertySource,
-                             const String& controlPropertyValue,
-                             const String& controlPropertyWidget);
+                const String& controlPropertySource,
+                const String& controlPropertyValue,
+                const String& controlPropertyWidget);
 
         /*!
         \brief
@@ -113,12 +111,12 @@ namespace CEGUI
 
         \param cols
             Override colours to be used (modulates sections master colours).
-        */
+         */
         SectionSpecification(const String& owner, const String& sectionName,
-                             const String& controlPropertySource,
-                             const String& controlPropertyValue,
-                             const String& controlPropertyWidget,
-                             const ColourRect& cols);
+                const String& controlPropertySource,
+                const String& controlPropertyValue,
+                const String& controlPropertyWidget,
+                const ColourRect& cols);
 
         /*!
         \brief
@@ -129,7 +127,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const ColourRect* modcols = 0, const Rectf* clipper = 0, bool clipToDisplay = false) const;
 
         /*!
@@ -144,7 +142,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const Rectf& baseRect, const ColourRect* modcols = 0, const Rectf* clipper = 0, bool clipToDisplay = false) const;
 
         /*!
@@ -153,7 +151,7 @@ namespace CEGUI
 
         \return
             String object holding the name of the WidgetLookFeel that contains the target ImagerySection.
-        */
+         */
         const String& getOwnerWidgetLookFeel() const;
 
         /*!
@@ -165,7 +163,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setOwnerWidgetLookFeel(const String& owner);
 
         /*!
@@ -174,7 +172,7 @@ namespace CEGUI
 
         \return
             String object holding the name of the target ImagerySection.
-        */
+         */
         const String& getSectionName() const;
         /*!
         \brief
@@ -185,7 +183,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setSectionName(const String& name);
 
         /*!
@@ -195,7 +193,7 @@ namespace CEGUI
         \return
             ColourRect holding the colours that will be modulated with the sections master colours if
             colour override is enabled on this SectionSpecification.
-        */
+         */
         const ColourRect& getOverrideColours() const;
 
         /*!
@@ -207,7 +205,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setOverrideColours(const ColourRect& cols);
 
         /*!
@@ -217,7 +215,7 @@ namespace CEGUI
         \return
             - true if override colours will be used for this SectionSpecification.
             - false if override colours will not be used for this SectionSpecification.
-        */
+         */
         bool isUsingOverrideColours() const;
 
         /*!
@@ -230,7 +228,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setUsingOverrideColours(bool setting = true);
         /*!
         \brief
@@ -238,7 +236,7 @@ namespace CEGUI
 
         \return
             String containing the name of the property.
-        */
+         */
         const String& getOverrideColoursPropertySource() const;
 
         /*!
@@ -250,7 +248,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setOverrideColoursPropertySource(const String& property);
 
         /*!
@@ -260,7 +258,7 @@ namespace CEGUI
 
         \return
             String containing the name of the property.
-        */
+         */
         const String& getRenderControlPropertySource() const;
 
         /*!
@@ -273,7 +271,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setRenderControlPropertySource(const String& property);
 
         /*!
@@ -286,7 +284,7 @@ namespace CEGUI
             secion will be drawn, otherwise the section will not be drawn.  If
             this value is set to the empty string, the control property will
             instead be treated as a boolean property.
-        */
+         */
         const String& getRenderControlValue() const;
 
         /*!
@@ -299,7 +297,7 @@ namespace CEGUI
             secion will be drawn, otherwise the section will not be drawn.  If
             this value is set to the empty string, the control property will
             instead be treated as a boolean property.
-        */
+         */
         void setRenderControlValue(const String& value);
 
         /*!
@@ -315,7 +313,7 @@ namespace CEGUI
             - any other value: The value will be taken as a name and
               a child window with the specified name will be the source of the
               property value.
-        */
+         */
         const String& getRenderControlWidget() const;
 
         /*!
@@ -331,7 +329,7 @@ namespace CEGUI
             - any other value: The value will be taken as a name and
               a child window with the specified name will be the source of the
               property value.
-        */
+         */
         void setRenderControlWidget(const String& widget);
 
         /*!
@@ -344,7 +342,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
     protected:
@@ -357,7 +355,7 @@ namespace CEGUI
                 - a property attached to \a wnd
                 - the integral d_coloursOverride values.
                 - or default to colour(1,1,1,1);
-        */
+         */
         void initColourRectForOverride(const Window& wnd, ColourRect& cr) const;
 
         /** return whether the section should be drawn, based upon the
@@ -366,11 +364,11 @@ namespace CEGUI
         bool shouldBeDrawn(const Window& wnd) const;
 
     private:
-        String          d_owner;                //!< Name of the WidgetLookFeel containing the required section.
-        String          d_sectionName;          //!< Name of the required section within the specified WidgetLookFeel.
-        ColourRect      d_coloursOverride;      //!< Colours to use when override is enabled.
-        bool            d_usingColourOverride;  //!< true if colour override is enabled.
-        String          d_colourPropertyName;   //!< name of property to fetch colours from.
+        String d_owner; //!< Name of the WidgetLookFeel containing the required section.
+        String d_sectionName; //!< Name of the required section within the specified WidgetLookFeel.
+        ColourRect d_coloursOverride; //!< Colours to use when override is enabled.
+        bool d_usingColourOverride; //!< true if colour override is enabled.
+        String d_colourPropertyName; //!< name of property to fetch colours from.
         //! Name of a property to control whether to draw this section.
         String d_renderControlProperty;
         //! Comparison value to test against d_renderControlProperty.

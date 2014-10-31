@@ -8,61 +8,61 @@ namespace bp = boost::python;
 
 struct SectionSpecification_wrapper : CEGUI::SectionSpecification, bp::wrapper< CEGUI::SectionSpecification > {
 
-    SectionSpecification_wrapper(CEGUI::SectionSpecification const & arg )
-    : CEGUI::SectionSpecification( arg )
-      , bp::wrapper< CEGUI::SectionSpecification >(){
+    SectionSpecification_wrapper(CEGUI::SectionSpecification const & arg)
+    : CEGUI::SectionSpecification(arg)
+    , bp::wrapper< CEGUI::SectionSpecification >() {
         // copy constructor
-        
+
     }
 
-    SectionSpecification_wrapper( )
-    : CEGUI::SectionSpecification( )
-      , bp::wrapper< CEGUI::SectionSpecification >(){
+    SectionSpecification_wrapper()
+    : CEGUI::SectionSpecification()
+    , bp::wrapper< CEGUI::SectionSpecification >() {
         // null constructor
-    
+
     }
 
-    SectionSpecification_wrapper(::CEGUI::String const & owner, ::CEGUI::String const & sectionName, ::CEGUI::String const & controlPropertySource, ::CEGUI::String const & controlPropertyValue, ::CEGUI::String const & controlPropertyWidget )
-    : CEGUI::SectionSpecification( boost::ref(owner), boost::ref(sectionName), boost::ref(controlPropertySource), boost::ref(controlPropertyValue), boost::ref(controlPropertyWidget) )
-      , bp::wrapper< CEGUI::SectionSpecification >(){
+    SectionSpecification_wrapper(::CEGUI::String const & owner, ::CEGUI::String const & sectionName, ::CEGUI::String const & controlPropertySource, ::CEGUI::String const & controlPropertyValue, ::CEGUI::String const & controlPropertyWidget)
+    : CEGUI::SectionSpecification(boost::ref(owner), boost::ref(sectionName), boost::ref(controlPropertySource), boost::ref(controlPropertyValue), boost::ref(controlPropertyWidget))
+    , bp::wrapper< CEGUI::SectionSpecification >() {
         // constructor
-    
+
     }
 
-    SectionSpecification_wrapper(::CEGUI::String const & owner, ::CEGUI::String const & sectionName, ::CEGUI::String const & controlPropertySource, ::CEGUI::String const & controlPropertyValue, ::CEGUI::String const & controlPropertyWidget, ::CEGUI::ColourRect const & cols )
-    : CEGUI::SectionSpecification( boost::ref(owner), boost::ref(sectionName), boost::ref(controlPropertySource), boost::ref(controlPropertyValue), boost::ref(controlPropertyWidget), boost::ref(cols) )
-      , bp::wrapper< CEGUI::SectionSpecification >(){
+    SectionSpecification_wrapper(::CEGUI::String const & owner, ::CEGUI::String const & sectionName, ::CEGUI::String const & controlPropertySource, ::CEGUI::String const & controlPropertyValue, ::CEGUI::String const & controlPropertyWidget, ::CEGUI::ColourRect const & cols)
+    : CEGUI::SectionSpecification(boost::ref(owner), boost::ref(sectionName), boost::ref(controlPropertySource), boost::ref(controlPropertyValue), boost::ref(controlPropertyWidget), boost::ref(cols))
+    , bp::wrapper< CEGUI::SectionSpecification >() {
         // constructor
-    
+
     }
 
-    void initColourRectForOverride( ::CEGUI::Window const & wnd, ::CEGUI::ColourRect & cr ) const {
-        CEGUI::SectionSpecification::initColourRectForOverride( boost::ref(wnd), boost::ref(cr) );
+    void initColourRectForOverride(::CEGUI::Window const & wnd, ::CEGUI::ColourRect & cr) const {
+        CEGUI::SectionSpecification::initColourRectForOverride(boost::ref(wnd), boost::ref(cr));
     }
 
-    bool shouldBeDrawn( ::CEGUI::Window const & wnd ) const {
-        return CEGUI::SectionSpecification::shouldBeDrawn( boost::ref(wnd) );
+    bool shouldBeDrawn(::CEGUI::Window const & wnd) const {
+        return CEGUI::SectionSpecification::shouldBeDrawn(boost::ref(wnd));
     }
 
 };
 
-void register_SectionSpecification_class(){
+void register_SectionSpecification_class() {
 
     { //::CEGUI::SectionSpecification
         typedef bp::class_< SectionSpecification_wrapper > SectionSpecification_exposer_t;
-        SectionSpecification_exposer_t SectionSpecification_exposer = SectionSpecification_exposer_t( "SectionSpecification", bp::init< >() );
-        bp::scope SectionSpecification_scope( SectionSpecification_exposer );
-        SectionSpecification_exposer.def( bp::init< CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const & >(( bp::arg("owner"), bp::arg("sectionName"), bp::arg("controlPropertySource"), bp::arg("controlPropertyValue"), bp::arg("controlPropertyWidget") )) );
-        SectionSpecification_exposer.def( bp::init< CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::ColourRect const & >(( bp::arg("owner"), bp::arg("sectionName"), bp::arg("controlPropertySource"), bp::arg("controlPropertyValue"), bp::arg("controlPropertyWidget"), bp::arg("cols") )) );
+        SectionSpecification_exposer_t SectionSpecification_exposer = SectionSpecification_exposer_t("SectionSpecification", bp::init< >());
+        bp::scope SectionSpecification_scope(SectionSpecification_exposer);
+        SectionSpecification_exposer.def(bp::init< CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const & >((bp::arg("owner"), bp::arg("sectionName"), bp::arg("controlPropertySource"), bp::arg("controlPropertyValue"), bp::arg("controlPropertyWidget"))));
+        SectionSpecification_exposer.def(bp::init< CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::String const &, CEGUI::ColourRect const & >((bp::arg("owner"), bp::arg("sectionName"), bp::arg("controlPropertySource"), bp::arg("controlPropertyValue"), bp::arg("controlPropertyWidget"), bp::arg("cols"))));
         { //::CEGUI::SectionSpecification::getOverrideColours
-        
-            typedef ::CEGUI::ColourRect const & ( ::CEGUI::SectionSpecification::*getOverrideColours_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getOverrideColours"
-                , getOverrideColours_function_type( &::CEGUI::SectionSpecification::getOverrideColours )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::ColourRect const & (::CEGUI::SectionSpecification::*getOverrideColours_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getOverrideColours"
+                    , getOverrideColours_function_type(&::CEGUI::SectionSpecification::getOverrideColours)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the current override colours.\n\
             \n\
@@ -70,18 +70,18 @@ void register_SectionSpecification_class(){
                         ColourRect holding the colours that will be modulated with the sections master colours\
                         if\n\
                         colour override is enabled on this SectionSpecification.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::getOverrideColoursPropertySource
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::SectionSpecification::*getOverrideColoursPropertySource_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getOverrideColoursPropertySource"
-                , getOverrideColoursPropertySource_function_type( &::CEGUI::SectionSpecification::getOverrideColoursPropertySource )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::SectionSpecification::*getOverrideColoursPropertySource_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getOverrideColoursPropertySource"
+                    , getOverrideColoursPropertySource_function_type(&::CEGUI::SectionSpecification::getOverrideColoursPropertySource)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Enable or disable the use of override colours for this section.\n\
             \n\
@@ -98,54 +98,54 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         String containing the name of the property.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::getOwnerWidgetLookFeel
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::SectionSpecification::*getOwnerWidgetLookFeel_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getOwnerWidgetLookFeel"
-                , getOwnerWidgetLookFeel_function_type( &::CEGUI::SectionSpecification::getOwnerWidgetLookFeel )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::SectionSpecification::*getOwnerWidgetLookFeel_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getOwnerWidgetLookFeel"
+                    , getOwnerWidgetLookFeel_function_type(&::CEGUI::SectionSpecification::getOwnerWidgetLookFeel)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the name of the WidgetLookFeel object containing the target section.\n\
             \n\
                     @return\n\
                         String object holding the name of the WidgetLookFeel that contains the target\
                         ImagerySection.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::getRenderControlPropertySource
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::SectionSpecification::*getRenderControlPropertySource_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getRenderControlPropertySource"
-                , getRenderControlPropertySource_function_type( &::CEGUI::SectionSpecification::getRenderControlPropertySource )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::SectionSpecification::*getRenderControlPropertySource_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getRenderControlPropertySource"
+                    , getRenderControlPropertySource_function_type(&::CEGUI::SectionSpecification::getRenderControlPropertySource)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Get the name of the property that controls whether to actually\n\
                         render this section.\n\
             \n\
                     @return\n\
                         String containing the name of the property.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::getRenderControlValue
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::SectionSpecification::*getRenderControlValue_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getRenderControlValue"
-                , getRenderControlValue_function_type( &::CEGUI::SectionSpecification::getRenderControlValue )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::SectionSpecification::*getRenderControlValue_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getRenderControlValue"
+                    , getRenderControlValue_function_type(&::CEGUI::SectionSpecification::getRenderControlValue)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Get the test value used when determining whether to render this\n\
                         section.\n\
@@ -155,18 +155,18 @@ void register_SectionSpecification_class(){
                         secion will be drawn, otherwise the section will not be drawn.  If\n\
                         this value is set to the empty string, the control property will\n\
                         instead be treated as a boolean property.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::getRenderControlWidget
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::SectionSpecification::*getRenderControlWidget_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getRenderControlWidget"
-                , getRenderControlWidget_function_type( &::CEGUI::SectionSpecification::getRenderControlWidget )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::SectionSpecification::*getRenderControlWidget_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getRenderControlWidget"
+                    , getRenderControlWidget_function_type(&::CEGUI::SectionSpecification::getRenderControlWidget)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Get the widget what will be used as the source of the property\n\
                         named as the control property.\n\
@@ -179,35 +179,35 @@ void register_SectionSpecification_class(){
                         - any other value: The value will be taken as a name and\n\
                           a child window with the specified name will be the source of the\n\
                           property value.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::getSectionName
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::SectionSpecification::*getSectionName_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "getSectionName"
-                , getSectionName_function_type( &::CEGUI::SectionSpecification::getSectionName )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::SectionSpecification::*getSectionName_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "getSectionName"
+                    , getSectionName_function_type(&::CEGUI::SectionSpecification::getSectionName)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                     \n\
                         Return the name of the target ImagerySection.\n\
             \n\
                     @return\n\
                         String object holding the name of the target ImagerySection.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::initColourRectForOverride
-        
-            typedef void ( SectionSpecification_wrapper::*initColourRectForOverride_function_type )( ::CEGUI::Window const &,::CEGUI::ColourRect & ) const;
-            
-            SectionSpecification_exposer.def( 
-                "initColourRectForOverride"
-                , initColourRectForOverride_function_type( &SectionSpecification_wrapper::initColourRectForOverride )
-                , ( bp::arg("wnd"), bp::arg("cr") )
-                , "*!\n\
+
+            typedef void ( SectionSpecification_wrapper::*initColourRectForOverride_function_type)(::CEGUI::Window const &, ::CEGUI::ColourRect &) const;
+
+            SectionSpecification_exposer.def(
+                    "initColourRectForOverride"
+                    , initColourRectForOverride_function_type(&SectionSpecification_wrapper::initColourRectForOverride)
+                    , (bp::arg("wnd"), bp::arg("cr"))
+                    , "*!\n\
                     \n\
                         Helper method to initialise a ColourRect with appropriate values according to the way\
                         the\n\
@@ -217,35 +217,35 @@ void register_SectionSpecification_class(){
                             - a property attached to  wnd\n\
                             - the integral d_coloursOverride values.\n\
                             - or default to colour(1,1,1,1);\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::isUsingOverrideColours
-        
-            typedef bool ( ::CEGUI::SectionSpecification::*isUsingOverrideColours_function_type )(  ) const;
-            
-            SectionSpecification_exposer.def( 
-                "isUsingOverrideColours"
-                , isUsingOverrideColours_function_type( &::CEGUI::SectionSpecification::isUsingOverrideColours )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::SectionSpecification::*isUsingOverrideColours_function_type)() const;
+
+            SectionSpecification_exposer.def(
+                    "isUsingOverrideColours"
+                    , isUsingOverrideColours_function_type(&::CEGUI::SectionSpecification::isUsingOverrideColours)
+                    , "*!\n\
                     \n\
                         return whether the use of override colours is enabled on this SectionSpecification.\n\
             \n\
                     @return\n\
                         - true if override colours will be used for this SectionSpecification.\n\
                         - false if override colours will not be used for this SectionSpecification.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::render
-        
-            typedef void ( ::CEGUI::SectionSpecification::*render_function_type )( ::CEGUI::Window &,::CEGUI::ColourRect const *,::CEGUI::Rectf const *,bool ) const;
-            
-            SectionSpecification_exposer.def( 
-                "render"
-                , render_function_type( &::CEGUI::SectionSpecification::render )
-                , ( bp::arg("srcWindow"), bp::arg("modcols")=bp::object(), bp::arg("clipper")=bp::object(), bp::arg("clipToDisplay")=(bool)(false) )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*render_function_type)(::CEGUI::Window &, ::CEGUI::ColourRect const *, ::CEGUI::Rectf const *, bool) const;
+
+            SectionSpecification_exposer.def(
+                    "render"
+                    , render_function_type(&::CEGUI::SectionSpecification::render)
+                    , (bp::arg("srcWindow"), bp::arg("modcols") = bp::object(), bp::arg("clipper") = bp::object(), bp::arg("clipToDisplay") = (bool)(false))
+                    , "*!\n\
                     \n\
                         Render the section specified by this SectionSpecification.\n\
             \n\
@@ -254,18 +254,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::render
-        
-            typedef void ( ::CEGUI::SectionSpecification::*render_function_type )( ::CEGUI::Window &,::CEGUI::Rectf const &,::CEGUI::ColourRect const *,::CEGUI::Rectf const *,bool ) const;
-            
-            SectionSpecification_exposer.def( 
-                "render"
-                , render_function_type( &::CEGUI::SectionSpecification::render )
-                , ( bp::arg("srcWindow"), bp::arg("baseRect"), bp::arg("modcols")=bp::object(), bp::arg("clipper")=bp::object(), bp::arg("clipToDisplay")=(bool)(false) )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*render_function_type)(::CEGUI::Window &, ::CEGUI::Rectf const &, ::CEGUI::ColourRect const *, ::CEGUI::Rectf const *, bool) const;
+
+            SectionSpecification_exposer.def(
+                    "render"
+                    , render_function_type(&::CEGUI::SectionSpecification::render)
+                    , (bp::arg("srcWindow"), bp::arg("baseRect"), bp::arg("modcols") = bp::object(), bp::arg("clipper") = bp::object(), bp::arg("clipToDisplay") = (bool)(false))
+                    , "*!\n\
                     \n\
                         Render the section specified by this SectionSpecification.\n\
             \n\
@@ -277,18 +277,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setOverrideColours
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setOverrideColours_function_type )( ::CEGUI::ColourRect const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setOverrideColours"
-                , setOverrideColours_function_type( &::CEGUI::SectionSpecification::setOverrideColours )
-                , ( bp::arg("cols") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setOverrideColours_function_type)(::CEGUI::ColourRect const &);
+
+            SectionSpecification_exposer.def(
+                    "setOverrideColours"
+                    , setOverrideColours_function_type(&::CEGUI::SectionSpecification::setOverrideColours)
+                    , (bp::arg("cols"))
+                    , "*!\n\
                     \n\
                         Set the override colours to be used by this SectionSpecification.\n\
             \n\
@@ -297,18 +297,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setOverrideColoursPropertySource
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setOverrideColoursPropertySource_function_type )( ::CEGUI::String const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setOverrideColoursPropertySource"
-                , setOverrideColoursPropertySource_function_type( &::CEGUI::SectionSpecification::setOverrideColoursPropertySource )
-                , ( bp::arg("property") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setOverrideColoursPropertySource_function_type)(::CEGUI::String const &);
+
+            SectionSpecification_exposer.def(
+                    "setOverrideColoursPropertySource"
+                    , setOverrideColoursPropertySource_function_type(&::CEGUI::SectionSpecification::setOverrideColoursPropertySource)
+                    , (bp::arg("property"))
+                    , "*!\n\
                     \n\
                         Set the name of the property where override colour values can be obtained.\n\
             \n\
@@ -317,18 +317,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setOwnerWidgetLookFeel
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setOwnerWidgetLookFeel_function_type )( ::CEGUI::String const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setOwnerWidgetLookFeel"
-                , setOwnerWidgetLookFeel_function_type( &::CEGUI::SectionSpecification::setOwnerWidgetLookFeel )
-                , ( bp::arg("owner") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setOwnerWidgetLookFeel_function_type)(::CEGUI::String const &);
+
+            SectionSpecification_exposer.def(
+                    "setOwnerWidgetLookFeel"
+                    , setOwnerWidgetLookFeel_function_type(&::CEGUI::SectionSpecification::setOwnerWidgetLookFeel)
+                    , (bp::arg("owner"))
+                    , "*!\n\
                     \n\
                         Return the name of the WidgetLookFeel object containing the target section.\n\
             \n\
@@ -338,18 +338,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setRenderControlPropertySource
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setRenderControlPropertySource_function_type )( ::CEGUI::String const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setRenderControlPropertySource"
-                , setRenderControlPropertySource_function_type( &::CEGUI::SectionSpecification::setRenderControlPropertySource )
-                , ( bp::arg("property") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setRenderControlPropertySource_function_type)(::CEGUI::String const &);
+
+            SectionSpecification_exposer.def(
+                    "setRenderControlPropertySource"
+                    , setRenderControlPropertySource_function_type(&::CEGUI::SectionSpecification::setRenderControlPropertySource)
+                    , (bp::arg("property"))
+                    , "*!\n\
                     \n\
                         Set the name of the property that controls whether to actually\n\
                         render this section.\n\
@@ -359,18 +359,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setRenderControlValue
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setRenderControlValue_function_type )( ::CEGUI::String const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setRenderControlValue"
-                , setRenderControlValue_function_type( &::CEGUI::SectionSpecification::setRenderControlValue )
-                , ( bp::arg("value") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setRenderControlValue_function_type)(::CEGUI::String const &);
+
+            SectionSpecification_exposer.def(
+                    "setRenderControlValue"
+                    , setRenderControlValue_function_type(&::CEGUI::SectionSpecification::setRenderControlValue)
+                    , (bp::arg("value"))
+                    , "*!\n\
             \n\
                 Set the test value used when determining whether to render this\n\
                 section.\n\
@@ -380,18 +380,18 @@ void register_SectionSpecification_class(){
                 secion will be drawn, otherwise the section will not be drawn.  If\n\
                 this value is set to the empty string, the control property will\n\
                 instead be treated as a boolean property.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::SectionSpecification::setRenderControlWidget
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setRenderControlWidget_function_type )( ::CEGUI::String const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setRenderControlWidget"
-                , setRenderControlWidget_function_type( &::CEGUI::SectionSpecification::setRenderControlWidget )
-                , ( bp::arg("widget") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setRenderControlWidget_function_type)(::CEGUI::String const &);
+
+            SectionSpecification_exposer.def(
+                    "setRenderControlWidget"
+                    , setRenderControlWidget_function_type(&::CEGUI::SectionSpecification::setRenderControlWidget)
+                    , (bp::arg("widget"))
+                    , "*!\n\
                     \n\
                         Set the widget what will be used as the source of the property\n\
                         named as the control property.\n\
@@ -404,18 +404,18 @@ void register_SectionSpecification_class(){
                         - any other value: The value will be taken as a name and\n\
                           a child window with the specified name will be the source of the\n\
                           property value.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setSectionName
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setSectionName_function_type )( ::CEGUI::String const & ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setSectionName"
-                , setSectionName_function_type( &::CEGUI::SectionSpecification::setSectionName )
-                , ( bp::arg("name") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setSectionName_function_type)(::CEGUI::String const &);
+
+            SectionSpecification_exposer.def(
+                    "setSectionName"
+                    , setSectionName_function_type(&::CEGUI::SectionSpecification::setSectionName)
+                    , (bp::arg("name"))
+                    , "*!\n\
                     \n\
                         Return the name of the target ImagerySection.\n\
             \n\
@@ -431,18 +431,18 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::setUsingOverrideColours
-        
-            typedef void ( ::CEGUI::SectionSpecification::*setUsingOverrideColours_function_type )( bool ) ;
-            
-            SectionSpecification_exposer.def( 
-                "setUsingOverrideColours"
-                , setUsingOverrideColours_function_type( &::CEGUI::SectionSpecification::setUsingOverrideColours )
-                , ( bp::arg("setting")=(bool)(true) )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*setUsingOverrideColours_function_type)(bool);
+
+            SectionSpecification_exposer.def(
+                    "setUsingOverrideColours"
+                    , setUsingOverrideColours_function_type(&::CEGUI::SectionSpecification::setUsingOverrideColours)
+                    , (bp::arg("setting") = (bool)(true))
+                    , "*!\n\
                     \n\
                         Enable or disable the use of override colours for this section.\n\
             \n\
@@ -452,31 +452,31 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::SectionSpecification::shouldBeDrawn
-        
-            typedef bool ( SectionSpecification_wrapper::*shouldBeDrawn_function_type )( ::CEGUI::Window const & ) const;
-            
-            SectionSpecification_exposer.def( 
-                "shouldBeDrawn"
-                , shouldBeDrawn_function_type( &SectionSpecification_wrapper::shouldBeDrawn )
-                , ( bp::arg("wnd") )
-                , "** return whether the section should be drawn, based upon the\n\
+
+            typedef bool ( SectionSpecification_wrapper::*shouldBeDrawn_function_type)(::CEGUI::Window const &) const;
+
+            SectionSpecification_exposer.def(
+                    "shouldBeDrawn"
+                    , shouldBeDrawn_function_type(&SectionSpecification_wrapper::shouldBeDrawn)
+                    , (bp::arg("wnd"))
+                    , "** return whether the section should be drawn, based upon the\n\
              * render control property and associated items.\n\
-             *\n" );
-        
+             *\n");
+
         }
         { //::CEGUI::SectionSpecification::writeXMLToStream
-        
-            typedef void ( ::CEGUI::SectionSpecification::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            SectionSpecification_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type( &::CEGUI::SectionSpecification::writeXMLToStream )
-                , ( bp::arg("xml_stream") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::SectionSpecification::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+
+            SectionSpecification_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::SectionSpecification::writeXMLToStream)
+                    , (bp::arg("xml_stream"))
+                    , "*!\n\
                     \n\
                         Writes an xml representation of this SectionSpecification to  out_stream.\n\
             \n\
@@ -486,8 +486,8 @@ void register_SectionSpecification_class(){
             \n\
                     @return\n\
                         Nothing.\n\
-                    *\n" );
-        
+                    *\n");
+
         }
     }
 

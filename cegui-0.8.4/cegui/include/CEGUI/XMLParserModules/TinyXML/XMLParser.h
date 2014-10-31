@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Mar 13 2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,24 +30,23 @@
 #include "../../XMLParser.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUITINYXMLPARSER_EXPORTS
-#       define CEGUITINYXMLPARSER_API __declspec(dllexport)
-#   else
-#       define CEGUITINYXMLPARSER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUITINYXMLPARSER_EXPORTS
+#define CEGUITINYXMLPARSER_API __declspec(dllexport)
 #else
-#   define CEGUITINYXMLPARSER_API
+#define CEGUITINYXMLPARSER_API __declspec(dllimport)
+#endif
+#else
+#define CEGUITINYXMLPARSER_API
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
     Implementation of XMLParser using TinyXML
      */
-    class CEGUITINYXMLPARSER_API TinyXMLParser : public XMLParser
-    {
+    class CEGUITINYXMLPARSER_API TinyXMLParser : public XMLParser {
     public:
         TinyXMLParser(void);
         ~TinyXMLParser(void);

@@ -31,33 +31,32 @@
 #include "CEGUI/String.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Specifies interface for classes that parse text into RenderedString objects.
-class CEGUIEXPORT RenderedStringParser :
-    public AllocatedObject<RenderedStringParser>
-{
-public:
-    /*!
-    \brief
-        parse a text string and return a RenderedString representation.
+namespace CEGUI {
+    //! Specifies interface for classes that parse text into RenderedString objects.
 
-    \param input_string
-        String object holding the text that is to be parsed.
+    class CEGUIEXPORT RenderedStringParser :
+    public AllocatedObject<RenderedStringParser> {
+    public:
+        /*!
+        \brief
+            parse a text string and return a RenderedString representation.
 
-    \param initial_font
-        Pointer to the initial font to be used for text (0 for system default).
+        \param input_string
+            String object holding the text that is to be parsed.
 
-    \param initial_colours
-        Pointer to the initial colours to be used (0 for default).
+        \param initial_font
+            Pointer to the initial font to be used for text (0 for system default).
 
-    \return
-        RenderedString object holding the result of the parse operation.
-    */
-    virtual RenderedString parse(const String& input_string,
-                                 const Font* initial_font,
-                                 const ColourRect* initial_colours) = 0;
-};
+        \param initial_colours
+            Pointer to the initial colours to be used (0 for default).
+
+        \return
+            RenderedString object holding the result of the parse operation.
+         */
+        virtual RenderedString parse(const String& input_string,
+                const Font* initial_font,
+                const ColourRect* initial_colours) = 0;
+    };
 
 } // End of  CEGUI namespace section
 

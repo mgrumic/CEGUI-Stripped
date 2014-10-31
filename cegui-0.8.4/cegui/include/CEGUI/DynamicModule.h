@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 7 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2013 Paul D Turner & The CEGUI Development Team
  *
@@ -30,60 +30,58 @@
 #include "CEGUI/Base.h"
 #include "CEGUI/String.h"
 
-namespace CEGUI
-{
-
-/*!
-\brief
-    Class that wraps and gives access to a dynamically linked module
-    (.dll, .so, etc...)
-*/
-class CEGUIEXPORT DynamicModule :
-    public AllocatedObject<DynamicModule>
-{
-public:
-    /*!
-    \brief
-        Construct the DynamicModule object by loading the dynamic loadable
-        module specified.
-
-    \param name
-        String object holding the name of a loadable module.
-    */
-    DynamicModule(const String& name);
+namespace CEGUI {
 
     /*!
     \brief
-        Destroys the DynamicModule object and unloads the associated loadable
-        module.
-    */
-    ~DynamicModule();
+        Class that wraps and gives access to a dynamically linked module
+        (.dll, .so, etc...)
+     */
+    class CEGUIEXPORT DynamicModule :
+    public AllocatedObject<DynamicModule> {
+    public:
+        /*!
+        \brief
+            Construct the DynamicModule object by loading the dynamic loadable
+            module specified.
 
-    /*!
-    \brief
-        Return a String containing the name of the dynamic module.
-    */
-    const String& getModuleName() const;
+        \param name
+            String object holding the name of a loadable module.
+         */
+        DynamicModule(const String& name);
 
-    /*!
-    \brief
-        Return the address of the specified symbol.
+        /*!
+        \brief
+            Destroys the DynamicModule object and unloads the associated loadable
+            module.
+         */
+        ~DynamicModule();
 
-    \param symbol
-        String holding the symbol to look up in the module.
+        /*!
+        \brief
+            Return a String containing the name of the dynamic module.
+         */
+        const String& getModuleName() const;
 
-    \return
-        Pointer to the requested symbol.
+        /*!
+        \brief
+            Return the address of the specified symbol.
 
-    \exception
-        InvalidRequestException thrown if the symbol does not exist.
-    */
-    void* getSymbolAddress(const String& symbol) const;
+        \param symbol
+            String holding the symbol to look up in the module.
 
-private:
-    struct Impl;
-    Impl* d_pimpl;
-};
+        \return
+            Pointer to the requested symbol.
+
+        \exception
+            InvalidRequestException thrown if the symbol does not exist.
+         */
+        void* getSymbolAddress(const String& symbol) const;
+
+    private:
+        struct Impl;
+        Impl* d_pimpl;
+    };
 
 }
 

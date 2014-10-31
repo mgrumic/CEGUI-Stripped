@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Defines abstract base class for layout containers
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -34,173 +34,171 @@
 #include <map>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-
-/*!
-\brief
-    An abstract base class providing common functionality and specifying the
-    required interface for derived classes.
-
-    Layout Container provide means for automatic positioning based on sizes of
-    it's child Windows. This is useful for dynamic UIs.
-*/
-class CEGUIEXPORT LayoutContainer : public Window
-{
-public:
-    /*************************************************************************
-        Event name constants
-    *************************************************************************/
-    //! Namespace for global events
-    static const String EventNamespace;
+namespace CEGUI {
 
     /*!
     \brief
-        Constructor for Window base class
+        An abstract base class providing common functionality and specifying the
+        required interface for derived classes.
 
-    \param type
-        String object holding Window type (usually provided by WindowFactory).
+        Layout Container provide means for automatic positioning based on sizes of
+        it's child Windows. This is useful for dynamic UIs.
+     */
+    class CEGUIEXPORT LayoutContainer : public Window {
+    public:
+        /*************************************************************************
+            Event name constants
+         *************************************************************************/
+        //! Namespace for global events
+        static const String EventNamespace;
 
-    \param name
-        String object holding unique name for the Window.
-    */
-    LayoutContainer(const String& type, const String& name);
+        /*!
+        \brief
+            Constructor for Window base class
 
-    /*!
-    \brief
-        Destructor for Window base class
-    */
-    virtual ~LayoutContainer(void);
+        \param type
+            String object holding Window type (usually provided by WindowFactory).
 
-    /*!
-    \brief
-        marks this layout container for relayouting before drawing
-    */
-    void markNeedsLayouting();
+        \param name
+            String object holding unique name for the Window.
+         */
+        LayoutContainer(const String& type, const String& name);
 
-    /*!
-    \brief
-        returns true if this layout container will be relayouted before drawing
-    */
-    bool needsLayouting() const;
+        /*!
+        \brief
+            Destructor for Window base class
+         */
+        virtual ~LayoutContainer(void);
 
-    /*!
-    \brief
-        (re)layouts all windows inside this layout container immediately
-    */
-    virtual void layout() = 0;
+        /*!
+        \brief
+            marks this layout container for relayouting before drawing
+         */
+        void markNeedsLayouting();
 
-    /*!
-    \brief
-        (re)layouts all windows inside this layout container if it was marked
-        necessary
-    */
-    virtual void layoutIfNecessary();
+        /*!
+        \brief
+            returns true if this layout container will be relayouted before drawing
+         */
+        bool needsLayouting() const;
 
-    /// @copydoc Window::update
-    virtual void update(float elapsed);
-    
-    virtual const CachedRectf& getClientChildContentArea() const;
+        /*!
+        \brief
+            (re)layouts all windows inside this layout container immediately
+         */
+        virtual void layout() = 0;
 
-    virtual void notifyScreenAreaChanged(bool recursive);
+        /*!
+        \brief
+            (re)layouts all windows inside this layout container if it was marked
+            necessary
+         */
+        virtual void layoutIfNecessary();
 
-protected:
-    /// @copydoc Window::getUnclippedInnerRect_impl
-    virtual Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const;
-    
-    Rectf getClientChildContentArea_impl(bool skipAllPixelAlignment) const;
+        /// @copydoc Window::update
+        virtual void update(float elapsed);
 
-    size_t getIdxOfChild(Window* wnd) const;
+        virtual const CachedRectf& getClientChildContentArea() const;
 
-    /// @copydoc Window::addChild_impl
-    virtual void addChild_impl(Element* element);
-    /// @copydoc Window::removeChild_impl
-    virtual void removeChild_impl(Element* element);
+        virtual void notifyScreenAreaChanged(bool recursive);
 
-    /*************************************************************************
-        Event trigger methods
-    *************************************************************************/
-    /*!
-    \brief
-        Handler called when child window gets sized
+    protected:
+        /// @copydoc Window::getUnclippedInnerRect_impl
+        virtual Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const;
 
-    \param e
-        WindowEventArgs object whose 'window' pointer field is set to the
-        window that triggered the event.  For this event the trigger window is
-        the one that was sized.
-    */
-    virtual bool handleChildSized(const EventArgs& e);
+        Rectf getClientChildContentArea_impl(bool skipAllPixelAlignment) const;
 
-    /*!
-    \brief
-        Handler called when child window changes margin(s)
+        size_t getIdxOfChild(Window* wnd) const;
 
-    \param e
-        WindowEventArgs object whose 'window' pointer field is set to the
-        window that triggered the event.  For this event the trigger window is
-        the one that has had it's margin(s) changed.
-    */
-    virtual bool handleChildMarginChanged(const EventArgs& e);
+        /// @copydoc Window::addChild_impl
+        virtual void addChild_impl(Element* element);
+        /// @copydoc Window::removeChild_impl
+        virtual void removeChild_impl(Element* element);
 
-    /*!
-    \brief
-        Handler called when child window gets added
+        /*************************************************************************
+            Event trigger methods
+         *************************************************************************/
+        /*!
+        \brief
+            Handler called when child window gets sized
 
-    \param e
-        WindowEventArgs object whose 'window' pointer field is set to the
-        window that triggered the event.  For this event the trigger window is
-        the one that was added.
-    */
-    virtual bool handleChildAdded(const EventArgs& e);
+        \param e
+            WindowEventArgs object whose 'window' pointer field is set to the
+            window that triggered the event.  For this event the trigger window is
+            the one that was sized.
+         */
+        virtual bool handleChildSized(const EventArgs& e);
 
-    /*!
-    \brief
-        Handler called when child window gets removed
+        /*!
+        \brief
+            Handler called when child window changes margin(s)
 
-    \param e
-        WindowEventArgs object whose 'window' pointer field is set to the
-        window that triggered the event.  For this event the trigger window is
-        the one that was removed.
-    */
-    virtual bool handleChildRemoved(const EventArgs& e);
+        \param e
+            WindowEventArgs object whose 'window' pointer field is set to the
+            window that triggered the event.  For this event the trigger window is
+            the one that has had it's margin(s) changed.
+         */
+        virtual bool handleChildMarginChanged(const EventArgs& e);
 
-    /*!
-    \brief
-        returns margin offset for given window
-    */
-    virtual UVector2 getOffsetForWindow(Window* window) const;
+        /*!
+        \brief
+            Handler called when child window gets added
 
-    /*!
-    \brief
-        returns bounding size for window, including margins
-    */
-    virtual UVector2 getBoundingSizeForWindow(Window* window) const;
+        \param e
+            WindowEventArgs object whose 'window' pointer field is set to the
+            window that triggered the event.  For this event the trigger window is
+            the one that was added.
+         */
+        virtual bool handleChildAdded(const EventArgs& e);
 
-    // overridden from parent class
-    void onParentSized(ElementEventArgs& e);
+        /*!
+        \brief
+            Handler called when child window gets removed
 
-    /*************************************************************************
-        Implementation Data
-    *************************************************************************/
-    // if true, we will relayout before rendering of this window starts
-    bool d_needsLayouting;
+        \param e
+            WindowEventArgs object whose 'window' pointer field is set to the
+            window that triggered the event.  For this event the trigger window is
+            the one that was removed.
+         */
+        virtual bool handleChildRemoved(const EventArgs& e);
 
-    typedef std::multimap<Window*, Event::Connection>  ConnectionTracker;
-    //! Tracks event connections we make.
-    ConnectionTracker d_eventConnections;
-    
-    CachedRectf d_clientChildContentArea;
-};
+        /*!
+        \brief
+            returns margin offset for given window
+         */
+        virtual UVector2 getOffsetForWindow(Window* window) const;
+
+        /*!
+        \brief
+            returns bounding size for window, including margins
+         */
+        virtual UVector2 getBoundingSizeForWindow(Window* window) const;
+
+        // overridden from parent class
+        void onParentSized(ElementEventArgs& e);
+
+        /*************************************************************************
+            Implementation Data
+         *************************************************************************/
+        // if true, we will relayout before rendering of this window starts
+        bool d_needsLayouting;
+
+        typedef std::multimap<Window*, Event::Connection> ConnectionTracker;
+        //! Tracks event connections we make.
+        ConnectionTracker d_eventConnections;
+
+        CachedRectf d_clientChildContentArea;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUILayoutContainer_h_

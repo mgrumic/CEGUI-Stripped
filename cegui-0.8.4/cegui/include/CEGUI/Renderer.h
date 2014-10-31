@@ -3,7 +3,7 @@
     author:   Paul D Turner
 
     purpose: Defines interface for abstract Renderer class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -35,318 +35,317 @@
 #include "CEGUI/Vector.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-/*!
-\brief
-    Enumerated type that contains the valid diagonal-mode that specify how a
-    quad is split into triangles when rendered with by a 3D API.
-*/
-enum QuadSplitMode
-{
-    //! Diagonal split goes from top-left to bottom-right
-    TopLeftToBottomRight,
-    //! Diagonal split goes from bottom-left to top-right
-    BottomLeftToTopRight
-};
-
-//----------------------------------------------------------------------------//
-
-/*!
-\brief
-    Enumerated type that contains the valid options that specify the type of
-    blending that is to be performed for subsequent rendering operations.
-*/
-enum BlendMode
-{
-    //! Invalid mode indicator.
-    BM_INVALID,
-    //! Use normal blending mode.
-    BM_NORMAL,
-    //! Use blending mode suitable for textures with premultiplied colours.
-    BM_RTT_PREMULTIPLIED
-};
-
-//----------------------------------------------------------------------------//
-
-/*!
-\brief
-    Abstract class defining the basic required interface for Renderer objects.
-
-    Objects derived from Renderer are the means by which the GUI system
-    interfaces with specific rendering technologies.  To use a rendering system
-    or API to draw CEGUI imagery requires that an appropriate Renderer object be
-    available.
-*/
-class CEGUIEXPORT Renderer :
-    public AllocatedObject<Renderer>
-{
-public:
-    /*!
-    \brief
-        Returns the default RenderTarget object.  The default render target is
-        is typically one that targets the entire screen (or rendering window).
-
-    \return
-        Reference to a RenderTarget object.
-    */
-    virtual RenderTarget& getDefaultRenderTarget() = 0;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
     /*!
     \brief
-        Create a new GeometryBuffer and return a reference to it.  You should
-        remove the GeometryBuffer from any RenderQueues and call
-        destroyGeometryBuffer when you want to destroy the GeometryBuffer.
+        Enumerated type that contains the valid diagonal-mode that specify how a
+        quad is split into triangles when rendered with by a 3D API.
+     */
+    enum QuadSplitMode {
+        //! Diagonal split goes from top-left to bottom-right
+        TopLeftToBottomRight,
+        //! Diagonal split goes from bottom-left to top-right
+        BottomLeftToTopRight
+    };
 
-    \return
-        GeometryBuffer object.
-    */
-    virtual GeometryBuffer& createGeometryBuffer() = 0;
-
-    /*!
-    \brief
-        Destroy a GeometryBuffer that was returned when calling the
-        createGeometryBuffer function.  Before destroying any GeometryBuffer
-        you should ensure that it has been removed from any RenderQueue that
-        was using it.
-
-    \param buffer
-        The GeometryBuffer object to be destroyed.
-    */
-    virtual void destroyGeometryBuffer(const GeometryBuffer& buffer) = 0;
+    //----------------------------------------------------------------------------//
 
     /*!
     \brief
-        Destroy all GeometryBuffer objects created by this Renderer.
-    */
-    virtual void destroyAllGeometryBuffers() = 0;
+        Enumerated type that contains the valid options that specify the type of
+        blending that is to be performed for subsequent rendering operations.
+     */
+    enum BlendMode {
+        //! Invalid mode indicator.
+        BM_INVALID,
+        //! Use normal blending mode.
+        BM_NORMAL,
+        //! Use blending mode suitable for textures with premultiplied colours.
+        BM_RTT_PREMULTIPLIED
+    };
+
+    //----------------------------------------------------------------------------//
 
     /*!
     \brief
-        Create a TextureTarget that can be used to cache imagery; this is a
-        RenderTarget that does not lose it's content from one frame to another.
+        Abstract class defining the basic required interface for Renderer objects.
 
-        If the renderer is unable to offer such a thing, 0 should be returned.
+        Objects derived from Renderer are the means by which the GUI system
+        interfaces with specific rendering technologies.  To use a rendering system
+        or API to draw CEGUI imagery requires that an appropriate Renderer object be
+        available.
+     */
+    class CEGUIEXPORT Renderer :
+    public AllocatedObject<Renderer> {
+    public:
+        /*!
+        \brief
+            Returns the default RenderTarget object.  The default render target is
+            is typically one that targets the entire screen (or rendering window).
 
-    \return
-        Pointer to a TextureTarget object that is suitable for caching imagery,
-        or 0 if the renderer is unable to offer such a thing.
-    */
-    virtual TextureTarget* createTextureTarget() = 0;
+        \return
+            Reference to a RenderTarget object.
+         */
+        virtual RenderTarget& getDefaultRenderTarget() = 0;
 
-    /*!
-    \brief
-        Function that cleans up TextureTarget objects created with the
-        createTextureTarget function.
+        /*!
+        \brief
+            Create a new GeometryBuffer and return a reference to it.  You should
+            remove the GeometryBuffer from any RenderQueues and call
+            destroyGeometryBuffer when you want to destroy the GeometryBuffer.
 
-    \param target
-        A pointer to a TextureTarget object that was previously returned from a
-        call to createTextureTarget.
-    */
-    virtual void destroyTextureTarget(TextureTarget* target) = 0;
+        \return
+            GeometryBuffer object.
+         */
+        virtual GeometryBuffer& createGeometryBuffer() = 0;
 
-    /*!
-    \brief
-        Destory all TextureTarget objects created by this Renderer.
-    */
-    virtual void destroyAllTextureTargets() = 0;
+        /*!
+        \brief
+            Destroy a GeometryBuffer that was returned when calling the
+            createGeometryBuffer function.  Before destroying any GeometryBuffer
+            you should ensure that it has been removed from any RenderQueue that
+            was using it.
 
-    /*!
-    \brief
-        Create a 'null' Texture object.
+        \param buffer
+            The GeometryBuffer object to be destroyed.
+         */
+        virtual void destroyGeometryBuffer(const GeometryBuffer& buffer) = 0;
 
-    \param name
-        String holding the name for the new texture.  Texture names must be
-        unique within the Renderer.
+        /*!
+        \brief
+            Destroy all GeometryBuffer objects created by this Renderer.
+         */
+        virtual void destroyAllGeometryBuffers() = 0;
 
-    \return
-        A newly created Texture object.  The returned Texture object has no size
-        or imagery associated with it.
+        /*!
+        \brief
+            Create a TextureTarget that can be used to cache imagery; this is a
+            RenderTarget that does not lose it's content from one frame to another.
 
-    \exceptions
-        - AlreadyExistsException - thrown if a Texture object named \a name
-          already exists within the system.
-    */
-    virtual Texture& createTexture(const String& name) = 0;
+            If the renderer is unable to offer such a thing, 0 should be returned.
 
-    /*!
-    \brief
-        Create a Texture object using the given image file.
+        \return
+            Pointer to a TextureTarget object that is suitable for caching imagery,
+            or 0 if the renderer is unable to offer such a thing.
+         */
+        virtual TextureTarget* createTextureTarget() = 0;
 
-    \param name
-        String holding the name for the new texture.  Texture names must be
-        unique within the Renderer.
+        /*!
+        \brief
+            Function that cleans up TextureTarget objects created with the
+            createTextureTarget function.
 
-    \param filename
-        String object that specifies the path and filename of the image file to
-        use when creating the texture.
+        \param target
+            A pointer to a TextureTarget object that was previously returned from a
+            call to createTextureTarget.
+         */
+        virtual void destroyTextureTarget(TextureTarget* target) = 0;
 
-    \param resourceGroup
-        String objet that specifies the resource group identifier to be passed
-        to the resource provider when loading the texture file \a filename.
+        /*!
+        \brief
+            Destory all TextureTarget objects created by this Renderer.
+         */
+        virtual void destroyAllTextureTargets() = 0;
 
-    \return
-        A newly created Texture object.  The initial content of the texture
-        memory is the requested image file.
+        /*!
+        \brief
+            Create a 'null' Texture object.
 
-    \note
-        Due to possible limitations of the underlying hardware, API or engine,
-        the final size of the texture may not match the size of the loaded file.
-        You can check the ultimate sizes by querying the Texture object
-        after creation.
+        \param name
+            String holding the name for the new texture.  Texture names must be
+            unique within the Renderer.
 
-    \exceptions
-        - AlreadyExistsException - thrown if a Texture object named \a name
-          already exists within the system.
-    */
-    virtual Texture& createTexture(const String& name,
-                                   const String& filename,
-                                   const String& resourceGroup) = 0;
+        \return
+            A newly created Texture object.  The returned Texture object has no size
+            or imagery associated with it.
 
-    /*!
-    \brief
-        Create a Texture object with the given pixel dimensions as specified by
-        \a size.
+        \exceptions
+            - AlreadyExistsException - thrown if a Texture object named \a name
+              already exists within the system.
+         */
+        virtual Texture& createTexture(const String& name) = 0;
 
-    \param name
-        String holding the name for the new texture.  Texture names must be
-        unique within the Renderer.
+        /*!
+        \brief
+            Create a Texture object using the given image file.
 
-    \param size
-        Size object that describes the desired texture size.
+        \param name
+            String holding the name for the new texture.  Texture names must be
+            unique within the Renderer.
 
-    \return
-        A newly created Texture object.  The initial contents of the texture
-        memory is undefined.
+        \param filename
+            String object that specifies the path and filename of the image file to
+            use when creating the texture.
 
-    \note
-        Due to possible limitations of the underlying hardware, API or engine,
-        the final size of the texture may not match the requested size.  You can
-        check the ultimate sizes by querying the Texture object after creation.
+        \param resourceGroup
+            String objet that specifies the resource group identifier to be passed
+            to the resource provider when loading the texture file \a filename.
 
-    \exceptions
-        - AlreadyExistsException - thrown if a Texture object named \a name
-          already exists within the system.
-    */
-    virtual Texture& createTexture(const String& name, const Sizef& size) = 0;
+        \return
+            A newly created Texture object.  The initial content of the texture
+            memory is the requested image file.
 
-    /*!
-    \brief
-        Destroy a Texture object that was previously created by calling the
-        createTexture functions.
+        \note
+            Due to possible limitations of the underlying hardware, API or engine,
+            the final size of the texture may not match the size of the loaded file.
+            You can check the ultimate sizes by querying the Texture object
+            after creation.
 
-    \param texture
-        Texture object to be destroyed.
-    */
-    virtual void destroyTexture(Texture& texture) = 0;
+        \exceptions
+            - AlreadyExistsException - thrown if a Texture object named \a name
+              already exists within the system.
+         */
+        virtual Texture& createTexture(const String& name,
+                const String& filename,
+                const String& resourceGroup) = 0;
 
-    /*!
-    \brief
-        Destroy a Texture object that was previously created by calling the
-        createTexture functions.
+        /*!
+        \brief
+            Create a Texture object with the given pixel dimensions as specified by
+            \a size.
 
-    \param name
-        String holding the name of the texture to destroy.
-    */
-    virtual void destroyTexture(const String& name) = 0;
+        \param name
+            String holding the name for the new texture.  Texture names must be
+            unique within the Renderer.
 
-    /*!
-    \brief
-        Destroy all Texture objects created by this Renderer.
-    */
-    virtual void destroyAllTextures() = 0;
+        \param size
+            Size object that describes the desired texture size.
 
-    /*!
-    \brief
-        Return a Texture object that was previously created by calling the
-        createTexture functions.
+        \return
+            A newly created Texture object.  The initial contents of the texture
+            memory is undefined.
 
-    \param name
-        String holding the name of the Texture object to be returned.
+        \note
+            Due to possible limitations of the underlying hardware, API or engine,
+            the final size of the texture may not match the requested size.  You can
+            check the ultimate sizes by querying the Texture object after creation.
 
-    \exceptions
-        - UnknownObjectException - thrown if no Texture object named \a name
-          exists within the system.
-    */
-    virtual Texture& getTexture(const String& name) const = 0;
+        \exceptions
+            - AlreadyExistsException - thrown if a Texture object named \a name
+              already exists within the system.
+         */
+        virtual Texture& createTexture(const String& name, const Sizef& size) = 0;
 
-    //! Return whether a texture with the given name exists.
-    virtual bool isTextureDefined(const String& name) const = 0;
+        /*!
+        \brief
+            Destroy a Texture object that was previously created by calling the
+            createTexture functions.
 
-    /*!
-    \brief
-        Perform any operations required to put the system into a state ready
-        for rendering operations to begin.
-    */
-    virtual void beginRendering() = 0;
+        \param texture
+            Texture object to be destroyed.
+         */
+        virtual void destroyTexture(Texture& texture) = 0;
 
-    /*!
-    \brief
-        Perform any operations required to finalise rendering.
-    */
-    virtual void endRendering() = 0;
+        /*!
+        \brief
+            Destroy a Texture object that was previously created by calling the
+            createTexture functions.
 
-    /*!
-    \brief
-        Set the size of the display or host window in pixels for this Renderer
-        object.
+        \param name
+            String holding the name of the texture to destroy.
+         */
+        virtual void destroyTexture(const String& name) = 0;
 
-        This is intended to be called by the System as part of the notification
-        process when display size changes are notified to it via the
-        System::notifyDisplaySizeChanged function.
+        /*!
+        \brief
+            Destroy all Texture objects created by this Renderer.
+         */
+        virtual void destroyAllTextures() = 0;
 
-    \note
-        The Renderer implementation should not use this function other than to
-        perform internal state updates on the Renderer and related objects.
+        /*!
+        \brief
+            Return a Texture object that was previously created by calling the
+            createTexture functions.
 
-    \param size
-        Size object describing the dimesions of the current or host window in
-        pixels.
-    */
-    virtual void setDisplaySize(const Sizef& size) = 0;
+        \param name
+            String holding the name of the Texture object to be returned.
 
-    /*!
-    \brief
-        Return the size of the display or host window in pixels.
+        \exceptions
+            - UnknownObjectException - thrown if no Texture object named \a name
+              exists within the system.
+         */
+        virtual Texture& getTexture(const String& name) const = 0;
 
-    \return
-        Size object describing the pixel dimesntions of the current display or
-        host window.
-    */
-    virtual const Sizef& getDisplaySize() const = 0;
+        //! Return whether a texture with the given name exists.
+        virtual bool isTextureDefined(const String& name) const = 0;
 
-    /*!
-    \brief
-        Return the resolution of the display or host window in dots per inch.
+        /*!
+        \brief
+            Perform any operations required to put the system into a state ready
+            for rendering operations to begin.
+         */
+        virtual void beginRendering() = 0;
 
-    \return
-        Vector2 object that describes the resolution of the display or host
-        window in DPI.
-    */
-    virtual const Vector2f& getDisplayDPI() const = 0;
+        /*!
+        \brief
+            Perform any operations required to finalise rendering.
+         */
+        virtual void endRendering() = 0;
 
-    /*!
-    \brief
-        Return the pixel size of the maximum supported texture.
+        /*!
+        \brief
+            Set the size of the display or host window in pixels for this Renderer
+            object.
 
-    \return
-        Size of the maximum supported texture in pixels.
-    */
-    virtual uint getMaxTextureSize() const = 0;
+            This is intended to be called by the System as part of the notification
+            process when display size changes are notified to it via the
+            System::notifyDisplaySizeChanged function.
 
-    /*!
-    \brief
-        Return identification string for the renderer module.
+        \note
+            The Renderer implementation should not use this function other than to
+            perform internal state updates on the Renderer and related objects.
 
-    \return
-        String object holding text that identifies the Renderer in use.
-    */
-    virtual const String& getIdentifierString() const = 0;
+        \param size
+            Size object describing the dimesions of the current or host window in
+            pixels.
+         */
+        virtual void setDisplaySize(const Sizef& size) = 0;
 
-    //! Destructor.
-    virtual ~Renderer() {}
-};
+        /*!
+        \brief
+            Return the size of the display or host window in pixels.
+
+        \return
+            Size object describing the pixel dimesntions of the current display or
+            host window.
+         */
+        virtual const Sizef& getDisplaySize() const = 0;
+
+        /*!
+        \brief
+            Return the resolution of the display or host window in dots per inch.
+
+        \return
+            Vector2 object that describes the resolution of the display or host
+            window in DPI.
+         */
+        virtual const Vector2f& getDisplayDPI() const = 0;
+
+        /*!
+        \brief
+            Return the pixel size of the maximum supported texture.
+
+        \return
+            Size of the maximum supported texture in pixels.
+         */
+        virtual uint getMaxTextureSize() const = 0;
+
+        /*!
+        \brief
+            Return identification string for the renderer module.
+
+        \return
+            String object holding text that identifies the Renderer in use.
+         */
+        virtual const String& getIdentifierString() const = 0;
+
+        //! Destructor.
+
+        virtual ~Renderer() {
+        }
+    };
 
 } // End of  CEGUI namespace section
 

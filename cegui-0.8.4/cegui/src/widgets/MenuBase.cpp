@@ -3,7 +3,7 @@
     author:     Tomas Lindquist Olsen (based on code by Paul D Turner)
 
     purpose:    Implementation of MenuBase widget base class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,181 +33,166 @@
 #include "CEGUI/widgets/MenuItem.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
+    /*************************************************************************
+        Constants
+     *************************************************************************/
+    // event strings
+    const String MenuBase::EventNamespace("MenuBase");
+#ifdef PE_NO_POPUP_MENU_H
+    const String MenuBase::EventPopupOpened("PopupOpened");
+    const String MenuBase::EventPopupClosed("PopupClosed");
+#endif
 
 /*************************************************************************
-    Constants
-*************************************************************************/
-// event strings
-const String MenuBase::EventNamespace("MenuBase");
-#ifdef PE_NO_POPUP_MENU_H
-const String MenuBase::EventPopupOpened("PopupOpened");
-const String MenuBase::EventPopupClosed("PopupClosed");
-#endif
-/*************************************************************************
-    Constructor for MenuBase base class.
-*************************************************************************/
-MenuBase::MenuBase(const String& type, const String& name)
+        Constructor for MenuBase base class.
+     *************************************************************************/
+    MenuBase::MenuBase(const String& type, const String& name)
     : ItemListBase(type, name),
-      d_itemSpacing(0.0f)
+    d_itemSpacing(0.0f)
 #ifdef PE_NO_POPUP_MENU_H
-	  ,
-      d_popupItem(0),
-      d_allowMultiplePopups(false),
-      d_autoCloseNestedPopups(false)
+    ,
+    d_popupItem(0),
+    d_allowMultiplePopups(false),
+    d_autoCloseNestedPopups(false)
 #endif
-{
-    // add properties for MenuBase class
-    addMenuBaseProperties();
-}
-
-/*************************************************************************
-    Destructor for MenuBase base class.
-*************************************************************************/
-MenuBase::~MenuBase(void)
-{
-}
-
-#ifdef PE_NO_POPUP_MENU_H
-
-/*************************************************************************
-    Change the currently open MenuItem PopupMenu
-*************************************************************************/
-void MenuBase::changePopupMenuItem(MenuItem* item)
-{
-    if (!d_allowMultiplePopups && d_popupItem == item)
-        return;
-
-    if (!d_allowMultiplePopups && d_popupItem != 0)
     {
-        WindowEventArgs we(d_popupItem->getPopupMenu());
-        d_popupItem->closePopupMenu(false);
-        d_popupItem = 0;
-        onPopupClosed(we);
+        // add properties for MenuBase class
+        addMenuBaseProperties();
     }
 
-    if (item)
-    {
-        d_popupItem = item;
-        d_popupItem->openPopupMenu(false);
-        WindowEventArgs we(d_popupItem->getPopupMenu());
-        onPopupOpened(we);
+    /*************************************************************************
+        Destructor for MenuBase base class.
+     *************************************************************************/
+    MenuBase::~MenuBase(void) {
     }
 
-}
-
-
-/*************************************************************************
-    handler invoked internally when the a MenuItem attached to this
-    MenuBase opens its popup.
-*************************************************************************/
-void MenuBase::onPopupOpened(WindowEventArgs& e)
-{
-    fireEvent(EventPopupOpened, e, EventNamespace);
-}
-
-
-/*************************************************************************
-    handler invoked internally when the a MenuItem attached to this
-    MenuBase closes its popup.
-*************************************************************************/
-void MenuBase::onPopupClosed(WindowEventArgs& e)
-{
-    fireEvent(EventPopupClosed, e, EventNamespace);
-}
-
-#endif
-/************************************************************************
-    Add properties for this widget
-*************************************************************************/
-void MenuBase::addMenuBaseProperties(void)
-{
-    const String propertyOrigin = "CEGUI/MenuBase";
-
-    CEGUI_DEFINE_PROPERTY(MenuBase, float,
-        "ItemSpacing", "Property to get/set the item spacing of the menu.  Value is a float.",
-        &MenuBase::setItemSpacing, &MenuBase::getItemSpacing, 10.0f
-    );
 #ifdef PE_NO_POPUP_MENU_H
 
-    CEGUI_DEFINE_PROPERTY(MenuBase, bool,
-        "AllowMultiplePopups", "Property to get/set the state of the allow multiple popups setting for the menu.  Value is either \"true\" or \"false\".",
-        &MenuBase::setAllowMultiplePopups, &MenuBase::isMultiplePopupsAllowed, false /* TODO: Inconsistency and awful English */
-    );
-    
-    CEGUI_DEFINE_PROPERTY(MenuBase, bool,
-        "AutoCloseNestedPopups", "Property to set if the menu should close all its open child popups, when it gets hidden. Value is either \"true\" or \"false\".",
-        &MenuBase::setAutoCloseNestedPopups, &MenuBase::getAutoCloseNestedPopups, false
-    );
-#endif
-}
+    /*************************************************************************
+        Change the currently open MenuItem PopupMenu
+     *************************************************************************/
+    void MenuBase::changePopupMenuItem(MenuItem* item) {
+        if (!d_allowMultiplePopups && d_popupItem == item)
+            return;
 
-
-/************************************************************************
-    Set if multiple child popup menus are allowed simultaneously
-*************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
-
-void MenuBase::setAllowMultiplePopups(bool setting)
-{
-    if (d_allowMultiplePopups != setting)
-    {
-        // TODO :
-        // close all popups except perhaps the last one opened!
-        d_allowMultiplePopups = setting;
-    }
-}
-
-void MenuBase::setPopupMenuItemClosing()
-{
-    if (d_popupItem)
-    {
-        d_popupItem->startPopupClosing();
-    }
-}
-#endif
-//----------------------------------------------------------------------------//
-void MenuBase::onChildRemoved(ElementEventArgs& e)
-{
-    // if the removed window was our tracked popup item, zero ptr to it.
-    if (static_cast<Window*>(e.element) == d_popupItem)
-        d_popupItem = 0;
-
-    // base class version
-    ItemListBase::onChildRemoved(e);
-}
-
-void MenuBase::onHidden(WindowEventArgs&)
-{
-    if (!getAutoCloseNestedPopups())
-        return;
-#ifdef PE_NO_POPUP_MENU_H
-
-    changePopupMenuItem(0);
-#endif
-    if (d_allowMultiplePopups)
-    {
-        for (size_t i = 0; i < d_listItems.size(); ++i)
-        {
-            if (!d_listItems[i])
-                continue;
-
-            MenuItem* menuItem = dynamic_cast<MenuItem*>(d_listItems[i]);
-            if (!menuItem)
-                continue;
-#ifdef PE_NO_POPUP_MENU_H
-
-            if (!menuItem->getPopupMenu())
-                continue;
-
-            WindowEventArgs we(menuItem->getPopupMenu());
-            menuItem->closePopupMenu(false);
+        if (!d_allowMultiplePopups && d_popupItem != 0) {
+            WindowEventArgs we(d_popupItem->getPopupMenu());
+            d_popupItem->closePopupMenu(false);
+            d_popupItem = 0;
             onPopupClosed(we);
-#endif
-		}
+        }
+
+        if (item) {
+            d_popupItem = item;
+            d_popupItem->openPopupMenu(false);
+            WindowEventArgs we(d_popupItem->getPopupMenu());
+            onPopupOpened(we);
+        }
+
     }
-}
-//----------------------------------------------------------------------------//
+
+    /*************************************************************************
+        handler invoked internally when the a MenuItem attached to this
+        MenuBase opens its popup.
+     *************************************************************************/
+    void MenuBase::onPopupOpened(WindowEventArgs& e) {
+        fireEvent(EventPopupOpened, e, EventNamespace);
+    }
+
+    /*************************************************************************
+        handler invoked internally when the a MenuItem attached to this
+        MenuBase closes its popup.
+     *************************************************************************/
+    void MenuBase::onPopupClosed(WindowEventArgs& e) {
+        fireEvent(EventPopupClosed, e, EventNamespace);
+    }
+
+#endif
+
+/************************************************************************
+        Add properties for this widget
+     *************************************************************************/
+    void MenuBase::addMenuBaseProperties(void) {
+        const String propertyOrigin = "CEGUI/MenuBase";
+
+        CEGUI_DEFINE_PROPERTY(MenuBase, float,
+                "ItemSpacing", "Property to get/set the item spacing of the menu.  Value is a float.",
+                &MenuBase::setItemSpacing, &MenuBase::getItemSpacing, 10.0f
+                );
+#ifdef PE_NO_POPUP_MENU_H
+
+        CEGUI_DEFINE_PROPERTY(MenuBase, bool,
+                "AllowMultiplePopups", "Property to get/set the state of the allow multiple popups setting for the menu.  Value is either \"true\" or \"false\".",
+                &MenuBase::setAllowMultiplePopups, &MenuBase::isMultiplePopupsAllowed, false /* TODO: Inconsistency and awful English */
+                );
+
+        CEGUI_DEFINE_PROPERTY(MenuBase, bool,
+                "AutoCloseNestedPopups", "Property to set if the menu should close all its open child popups, when it gets hidden. Value is either \"true\" or \"false\".",
+                &MenuBase::setAutoCloseNestedPopups, &MenuBase::getAutoCloseNestedPopups, false
+                );
+#endif
+    }
+
+
+    /************************************************************************
+        Set if multiple child popup menus are allowed simultaneously
+     *************************************************************************/
+#ifdef PE_NO_POPUP_MENU_H
+
+    void MenuBase::setAllowMultiplePopups(bool setting) {
+        if (d_allowMultiplePopups != setting) {
+            // TODO :
+            // close all popups except perhaps the last one opened!
+            d_allowMultiplePopups = setting;
+        }
+    }
+
+    void MenuBase::setPopupMenuItemClosing() {
+        if (d_popupItem) {
+            d_popupItem->startPopupClosing();
+        }
+    }
+#endif
+    //----------------------------------------------------------------------------//
+
+    void MenuBase::onChildRemoved(ElementEventArgs& e) {
+        // if the removed window was our tracked popup item, zero ptr to it.
+        if (static_cast<Window*> (e.element) == d_popupItem)
+            d_popupItem = 0;
+
+        // base class version
+        ItemListBase::onChildRemoved(e);
+    }
+
+    void MenuBase::onHidden(WindowEventArgs&) {
+        if (!getAutoCloseNestedPopups())
+            return;
+#ifdef PE_NO_POPUP_MENU_H
+
+        changePopupMenuItem(0);
+#endif
+        if (d_allowMultiplePopups) {
+            for (size_t i = 0; i < d_listItems.size(); ++i) {
+                if (!d_listItems[i])
+                    continue;
+
+                MenuItem* menuItem = dynamic_cast<MenuItem*> (d_listItems[i]);
+                if (!menuItem)
+                    continue;
+#ifdef PE_NO_POPUP_MENU_H
+
+                if (!menuItem->getPopupMenu())
+                    continue;
+
+                WindowEventArgs we(menuItem->getPopupMenu());
+                menuItem->closePopupMenu(false);
+                onPopupClosed(we);
+#endif
+            }
+        }
+    }
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

@@ -1,10 +1,10 @@
 /***********************************************************************
-	created:	28/07/2006
-	author:		Olivier Delannoy 
+        created:	28/07/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide Corona based image loading.
+        purpose:	This codec provide Corona based image loading.
                 
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -36,14 +36,14 @@
   \brief 
   exported function that creates the ImageCodec based object and 
   returns a pointer to that object.
-*/
+ */
 extern "C" CEGUICORONAIMAGECODEC_API CEGUI::ImageCodec* createImageCodec(void);
 
 /*!
   \brief
   exported function that deletes an ImageCodec based object previously 
   created by this module.
-*/
+ */
 extern "C" CEGUICORONAIMAGECODEC_API void destroyImageCodec(CEGUI::ImageCodec* imageCodec);
 
 

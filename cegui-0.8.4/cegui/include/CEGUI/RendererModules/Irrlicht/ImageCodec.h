@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Aug 18 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,30 +31,27 @@
 #include "CEGUI/RendererModules/Irrlicht/RendererDef.h"
 
 // forward declararions of irrlicht bits.
-namespace irr
-{
-namespace video
-{
-    class IVideoDriver;
-}
+namespace irr {
+    namespace video {
+        class IVideoDriver;
+    }
 }
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! ImageCodec object that loads data via image loading facilities in Irrlicht.
-class IRR_GUIRENDERER_API IrrlichtImageCodec : public ImageCodec
-{
-public:
-    //! Constructor.
-    IrrlichtImageCodec(irr::video::IVideoDriver& driver);
+namespace CEGUI {
+    //! ImageCodec object that loads data via image loading facilities in Irrlicht.
 
-    // implement required function from ImageCodec.
-    Texture* load(const RawDataContainer& data, Texture* result);
+    class IRR_GUIRENDERER_API IrrlichtImageCodec : public ImageCodec {
+    public:
+        //! Constructor.
+        IrrlichtImageCodec(irr::video::IVideoDriver& driver);
 
-protected:
-    irr::video::IVideoDriver& d_driver;
-};
+        // implement required function from ImageCodec.
+        Texture* load(const RawDataContainer& data, Texture* result);
+
+    protected:
+        irr::video::IVideoDriver& d_driver;
+    };
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jun 11 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,68 +30,69 @@
 #include "CEGUI/Image.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Interface for factory objects that create instances of classes
-    derived from the Image class.
+namespace CEGUI {
 
-\note
-    This interface is intended for internal use only.
-*/
-class ImageFactory : public
-    AllocatedObject<ImageFactory>
-{
-public:
-    //! base class virtual destructor.
-    virtual ~ImageFactory() {}
+    /*!
+    \brief
+        Interface for factory objects that create instances of classes
+        derived from the Image class.
 
-    //! Create an instance of the Image subclass that this factory creates.
-    virtual Image& create(const String& name) = 0;
-
-    /** Create an instance of the Image subclass that this factory creates
-     * using the given XMLAttributes object.
+    \note
+        This interface is intended for internal use only.
      */
-    virtual Image& create(const XMLAttributes& attributes) = 0;
+    class ImageFactory : public
+    AllocatedObject<ImageFactory> {
+    public:
+        //! base class virtual destructor.
 
-    //! Destroy an instance of the Image subclass that this factory creates.
-    virtual void destroy(Image& image) = 0;
-};
+        virtual ~ImageFactory() {
+        }
 
-//! Templatised ImageFactory subclass used internally by the system.
-template <typename T>
-class TplImageFactory : public ImageFactory
-{
-public:
-    // Implement ImageFactory interface
-    Image& create(const String& name);
-    Image& create(const XMLAttributes& attributes);
-    void destroy(Image& image);
-};
+        //! Create an instance of the Image subclass that this factory creates.
+        virtual Image& create(const String& name) = 0;
 
-//---------------------------------------------------------------------------//
-template <typename T>
-Image& TplImageFactory<T>::create(const String& name)
-{
-    return *CEGUI_NEW_AO T(name);
-}
+        /** Create an instance of the Image subclass that this factory creates
+         * using the given XMLAttributes object.
+         */
+        virtual Image& create(const XMLAttributes& attributes) = 0;
 
-//---------------------------------------------------------------------------//
-template <typename T>
-Image& TplImageFactory<T>::create(const XMLAttributes& attributes)
-{
-    return *CEGUI_NEW_AO T(attributes);
-}
+        //! Destroy an instance of the Image subclass that this factory creates.
+        virtual void destroy(Image& image) = 0;
+    };
 
-//---------------------------------------------------------------------------//
-template <typename T>
-void TplImageFactory<T>::destroy(Image& image)
-{
-    CEGUI_DELETE_AO &image;
-}
+    //! Templatised ImageFactory subclass used internally by the system.
 
-//---------------------------------------------------------------------------//
+    template <typename T>
+    class TplImageFactory : public ImageFactory {
+    public:
+        // Implement ImageFactory interface
+        Image& create(const String& name);
+        Image& create(const XMLAttributes& attributes);
+        void destroy(Image& image);
+    };
+
+    //---------------------------------------------------------------------------//
+
+    template <typename T>
+    Image& TplImageFactory<T>::create(const String& name) {
+        return *CEGUI_NEW_AO T(name);
+    }
+
+    //---------------------------------------------------------------------------//
+
+    template <typename T>
+    Image& TplImageFactory<T>::create(const XMLAttributes& attributes) {
+        return *CEGUI_NEW_AO T(attributes);
+    }
+
+    //---------------------------------------------------------------------------//
+
+    template <typename T>
+    void TplImageFactory<T>::destroy(Image& image) {
+        CEGUI_DELETE_AO &image;
+    }
+
+    //---------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

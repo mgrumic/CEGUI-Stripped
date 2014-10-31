@@ -6,24 +6,24 @@
 
 namespace bp = boost::python;
 
-void register_SingletonSchemeManager_class(){
+void register_SingletonSchemeManager_class() {
 
     { //::CEGUI::Singleton< CEGUI::SchemeManager >
         typedef bp::class_< CEGUI::Singleton< CEGUI::SchemeManager >, boost::noncopyable > SingletonSchemeManager_exposer_t;
-        SingletonSchemeManager_exposer_t SingletonSchemeManager_exposer = SingletonSchemeManager_exposer_t( "SingletonSchemeManager", bp::init< >() );
-        bp::scope SingletonSchemeManager_scope( SingletonSchemeManager_exposer );
+        SingletonSchemeManager_exposer_t SingletonSchemeManager_exposer = SingletonSchemeManager_exposer_t("SingletonSchemeManager", bp::init< >());
+        bp::scope SingletonSchemeManager_scope(SingletonSchemeManager_exposer);
         { //::CEGUI::Singleton< CEGUI::SchemeManager >::getSingleton
-        
+
             typedef CEGUI::Singleton< CEGUI::SchemeManager > exported_class_t;
-            typedef ::CEGUI::SchemeManager & ( *getSingleton_function_type )(  );
-            
-            SingletonSchemeManager_exposer.def( 
-                "getSingleton"
-                , getSingleton_function_type( &::CEGUI::Singleton< CEGUI::SchemeManager >::getSingleton )
-                , bp::return_value_policy< bp::reference_existing_object >() );
-        
+            typedef ::CEGUI::SchemeManager & (*getSingleton_function_type)();
+
+            SingletonSchemeManager_exposer.def(
+                    "getSingleton"
+                    , getSingleton_function_type(&::CEGUI::Singleton< CEGUI::SchemeManager >::getSingleton)
+                    , bp::return_value_policy< bp::reference_existing_object >());
+
         }
-        SingletonSchemeManager_exposer.staticmethod( "getSingleton" );
+        SingletonSchemeManager_exposer.staticmethod("getSingleton");
     }
 
 }

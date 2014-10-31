@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Mar 19 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,58 +30,57 @@
 #include "CEGUI/WindowRenderer.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Template based WindowRendererFactory that can be used to automatically
-    generate a WindowRendererFactory given a WindowRenderer based class.
+namespace CEGUI {
 
-    The advantage of this over the previous macro based methods is that there is
-    no longer any need to have any supporting code or structure in order to add
-    new WindowRenderer types to the system, rather you can just do:
-    \code
-    CEGUI::WindowRendererManager::addFactory<TplWindowRendererFactory<MyWindowRenderer> >();
-    \endcode
+    /*!
+    \brief
+        Template based WindowRendererFactory that can be used to automatically
+        generate a WindowRendererFactory given a WindowRenderer based class.
 
-\tparam T
-    Specifies the WindowRenderer based class that the factory will create and
-    destroy instances of.
-*/
-template <typename T>
-class TplWindowRendererFactory : public WindowRendererFactory
-{
-public:
-    //! Default constructor.
-    TplWindowRendererFactory();
+        The advantage of this over the previous macro based methods is that there is
+        no longer any need to have any supporting code or structure in order to add
+        new WindowRenderer types to the system, rather you can just do:
+        \code
+        CEGUI::WindowRendererManager::addFactory<TplWindowRendererFactory<MyWindowRenderer> >();
+        \endcode
 
-    // Implement WindowRendererFactory interface
-    WindowRenderer* create();
-    void destroy(WindowRenderer* wr);
-};
+    \tparam T
+        Specifies the WindowRenderer based class that the factory will create and
+        destroy instances of.
+     */
+    template <typename T>
+    class TplWindowRendererFactory : public WindowRendererFactory {
+    public:
+        //! Default constructor.
+        TplWindowRendererFactory();
 
-//----------------------------------------------------------------------------//
-template <typename T>
-TplWindowRendererFactory<T>::TplWindowRendererFactory() :
-    WindowRendererFactory(T::TypeName)
-{
-}
+        // Implement WindowRendererFactory interface
+        WindowRenderer* create();
+        void destroy(WindowRenderer* wr);
+    };
 
-//----------------------------------------------------------------------------//
-template <typename T>
-WindowRenderer* TplWindowRendererFactory<T>::create()
-{
-    return CEGUI_NEW_AO T(T::TypeName);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-template <typename T>
-void TplWindowRendererFactory<T>::destroy(WindowRenderer* wr)
-{
-    CEGUI_DELETE_AO wr;
-}
+    template <typename T>
+    TplWindowRendererFactory<T>::TplWindowRendererFactory() :
+    WindowRendererFactory(T::TypeName) {
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    template <typename T>
+    WindowRenderer* TplWindowRendererFactory<T>::create() {
+        return CEGUI_NEW_AO T(T::TypeName);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    template <typename T>
+    void TplWindowRendererFactory<T>::destroy(WindowRenderer* wr) {
+        CEGUI_DELETE_AO wr;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

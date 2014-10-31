@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	31/3/2005
-	author:		Tomas Lindquist Olsen (based on code by Paul D Turner)
+        created:	31/3/2005
+        author:		Tomas Lindquist Olsen (based on code by Paul D Turner)
 	
-	purpose:	Implementation of ItemEntry widget base class
-*************************************************************************/
+        purpose:	Implementation of ItemEntry widget base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,139 +30,123 @@
 #include "CEGUI/Exceptions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*************************************************************************
-    ItemEntryWindowRenderer constructor
-*************************************************************************/
-ItemEntryWindowRenderer::ItemEntryWindowRenderer(const String& name) :
-    WindowRenderer(name, "ItemEntry")
-{
-}
+    /*************************************************************************
+        ItemEntryWindowRenderer constructor
+     *************************************************************************/
+    ItemEntryWindowRenderer::ItemEntryWindowRenderer(const String& name) :
+    WindowRenderer(name, "ItemEntry") {
+    }
 
-/*************************************************************************
-    Constants
-*************************************************************************/
-const String ItemEntry::WidgetTypeName("CEGUI/ItemEntry");
-const String ItemEntry::EventSelectionChanged("SelectionChanged");
+    /*************************************************************************
+        Constants
+     *************************************************************************/
+    const String ItemEntry::WidgetTypeName("CEGUI/ItemEntry");
+    const String ItemEntry::EventSelectionChanged("SelectionChanged");
 
-/*************************************************************************
-	Constructor for ItemEntry base class.
-*************************************************************************/
-ItemEntry::ItemEntry(const String& type, const String& name)
-	: Window(type, name),
-	d_ownerList(0),
+    /*************************************************************************
+            Constructor for ItemEntry base class.
+     *************************************************************************/
+    ItemEntry::ItemEntry(const String& type, const String& name)
+    : Window(type, name),
+    d_ownerList(0),
     d_selected(false),
-    d_selectable(false)
-{
-    // add the new properties
-    addItemEntryProperties();
-}
-
-/*************************************************************************
-    Get item pixel size
-*************************************************************************/
-Sizef ItemEntry::getItemPixelSize(void) const
-{
-    if (d_windowRenderer != 0)
-    {
-        return static_cast<ItemEntryWindowRenderer*>(d_windowRenderer)->getItemPixelSize();
+    d_selectable(false) {
+        // add the new properties
+        addItemEntryProperties();
     }
-    else
-    {
-        //return getItemPixelSize_impl();
-        CEGUI_THROW(InvalidRequestException(
+
+    /*************************************************************************
+        Get item pixel size
+     *************************************************************************/
+    Sizef ItemEntry::getItemPixelSize(void) const {
+        if (d_windowRenderer != 0) {
+            return static_cast<ItemEntryWindowRenderer*> (d_windowRenderer)->getItemPixelSize();
+        } else {
+            //return getItemPixelSize_impl();
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-            "This function must be implemented by the window renderer module"));
+                    "This function must be implemented by the window renderer module"));
 #endif //PE_NO_THROW_MSGS
-    }
-}
-
-/*************************************************************************
-    Set selection state. Internal
-*************************************************************************/
-void ItemEntry::setSelected_impl(bool setting, bool notify)
-{
-    if (d_selectable && setting != d_selected)
-    {
-        d_selected = setting;
-
-        // notify the ItemListbox if there is one that we just got selected
-        // to ensure selection scheme is not broken when setting selection from code
-        if (d_ownerList && notify)
-        {
-            d_ownerList->notifyItemSelectState(this, setting);
         }
-
-        WindowEventArgs args(this);
-        onSelectionChanged(args);
     }
-}
 
-/*************************************************************************
-    Set selectable "mode"
-*************************************************************************/
-void ItemEntry::setSelectable(bool setting)
-{
-    if (d_selectable != setting)
-    {
-        setSelected(false);
-        d_selectable = setting;
+    /*************************************************************************
+        Set selection state. Internal
+     *************************************************************************/
+    void ItemEntry::setSelected_impl(bool setting, bool notify) {
+        if (d_selectable && setting != d_selected) {
+            d_selected = setting;
+
+            // notify the ItemListbox if there is one that we just got selected
+            // to ensure selection scheme is not broken when setting selection from code
+            if (d_ownerList && notify) {
+                d_ownerList->notifyItemSelectState(this, setting);
+            }
+
+            WindowEventArgs args(this);
+            onSelectionChanged(args);
+        }
     }
-}
 
-/*************************************************************************
-    Handle selection state change
-*************************************************************************/
-void ItemEntry::onSelectionChanged(WindowEventArgs& e)
-{
-    invalidate();
-    fireEvent(EventSelectionChanged, e, EventNamespace);
-}
+    /*************************************************************************
+        Set selectable "mode"
+     *************************************************************************/
+    void ItemEntry::setSelectable(bool setting) {
+        if (d_selectable != setting) {
+            setSelected(false);
+            d_selectable = setting;
+        }
+    }
 
-bool ItemEntry::validateWindowRenderer(const WindowRenderer* renderer) const
-{
-	return dynamic_cast<const ItemEntryWindowRenderer*>(renderer) != 0;
-}
+    /*************************************************************************
+        Handle selection state change
+     *************************************************************************/
+    void ItemEntry::onSelectionChanged(WindowEventArgs& e) {
+        invalidate();
+        fireEvent(EventSelectionChanged, e, EventNamespace);
+    }
+
+    bool ItemEntry::validateWindowRenderer(const WindowRenderer* renderer) const {
+        return dynamic_cast<const ItemEntryWindowRenderer*> (renderer) != 0;
+    }
 
 #ifndef PE_NO_MOUSE
-/*************************************************************************
-    Handle 'MouseClicked' event
-*************************************************************************/
-void ItemEntry::onMouseClicked(MouseEventArgs& e)
-{
-    Window::onMouseClicked(e);
 
-    if (d_selectable && e.button == LeftButton)
-    {
-        if (d_ownerList)
-            d_ownerList->notifyItemClicked(this);
-        else
-            setSelected(!isSelected());
-        ++e.handled;
+/*************************************************************************
+        Handle 'MouseClicked' event
+     *************************************************************************/
+    void ItemEntry::onMouseClicked(MouseEventArgs& e) {
+        Window::onMouseClicked(e);
+
+        if (d_selectable && e.button == LeftButton) {
+            if (d_ownerList)
+                d_ownerList->notifyItemClicked(this);
+            else
+                setSelected(!isSelected());
+            ++e.handled;
+        }
     }
-}
 #endif //PE_NO_MOUSE
 
-/*************************************************************************
-    Add ItemEntry specific properties
-*************************************************************************/
-void ItemEntry::addItemEntryProperties(void)
-{
-    const String& propertyOrigin = WidgetTypeName;
-    
-    CEGUI_DEFINE_PROPERTY(ItemEntry, bool,
-            "Selectable","Property to get/set the state of the selectable setting for the ItemEntry.  Value is either \"true\" or \"false\".",
-            &ItemEntry::setSelectable, &ItemEntry::isSelectable, false
-    );
-    
-    CEGUI_DEFINE_PROPERTY(ItemEntry, bool,
-            "Selected","Property to get/set the state of the selected setting for the ItemEntry.  Value is either \"true\" or \"false\".",
-            &ItemEntry::setSelected, &ItemEntry::isSelected, false
-    );
-}
+    /*************************************************************************
+        Add ItemEntry specific properties
+     *************************************************************************/
+    void ItemEntry::addItemEntryProperties(void) {
+        const String& propertyOrigin = WidgetTypeName;
+
+        CEGUI_DEFINE_PROPERTY(ItemEntry, bool,
+                "Selectable", "Property to get/set the state of the selectable setting for the ItemEntry.  Value is either \"true\" or \"false\".",
+                &ItemEntry::setSelectable, &ItemEntry::isSelectable, false
+                );
+
+        CEGUI_DEFINE_PROPERTY(ItemEntry, bool,
+                "Selected", "Property to get/set the state of the selected setting for the ItemEntry.  Value is either \"true\" or \"false\".",
+                &ItemEntry::setSelected, &ItemEntry::isSelected, false
+                );
+    }
 
 } // End of  CEGUI namespace section

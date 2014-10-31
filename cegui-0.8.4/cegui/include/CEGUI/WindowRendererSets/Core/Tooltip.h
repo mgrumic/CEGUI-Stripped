@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Jul 7 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/Tooltip.h"
 #ifndef PE_NO_MOUSE
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Tooltip class for the FalagardBase module.
@@ -46,16 +46,15 @@ namespace CEGUI
         Named Areas:
             TextArea    - Typically this would be the same area as the TextComponent you define to receive the tooltip text.  This
                             named area is used when deciding how to dynamically size the Tooltip so that text is not clipped.
-    */
-    class COREWRSET_API FalagardTooltip : public TooltipWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardTooltip : public TooltipWindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardTooltip(const String& type);
 
         void render();

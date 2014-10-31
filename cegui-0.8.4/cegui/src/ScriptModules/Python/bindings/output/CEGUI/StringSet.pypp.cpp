@@ -8,13 +8,13 @@
 
 namespace bp = boost::python;
 
-void register_StringSet_class(){
+void register_StringSet_class() {
 
     { //::std::set<CEGUI::String, CEGUI::StringFastLessCompare, std::allocator<CEGUI::String> >
         typedef bp::class_< std::set<CEGUI::String, CEGUI::StringFastLessCompare, std::allocator<CEGUI::String> > > StringSet_exposer_t;
-        StringSet_exposer_t StringSet_exposer = StringSet_exposer_t( "StringSet" );
-        bp::scope StringSet_scope( StringSet_exposer );
-        StringSet_exposer.def( bp::indexing::set_suite< std::set<CEGUI::String, CEGUI::StringFastLessCompare, std::allocator<CEGUI::String> > >() );
+        StringSet_exposer_t StringSet_exposer = StringSet_exposer_t("StringSet");
+        bp::scope StringSet_scope(StringSet_exposer);
+        StringSet_exposer.def(bp::indexing::set_suite< std::set<CEGUI::String, CEGUI::StringFastLessCompare, std::allocator<CEGUI::String> > >());
     }
 
 }

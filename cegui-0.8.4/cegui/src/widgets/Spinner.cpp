@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	3/2/2005
-	author:		Paul D Turner
-*************************************************************************/
+        created:	3/2/2005
+        author:		Paul D Turner
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,8 +34,7 @@
 #include <iomanip>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String Spinner::WidgetTypeName("CEGUI/Spinner");
 
     //////////////////////////////////////////////////////////////////////////
@@ -54,30 +53,26 @@ namespace CEGUI
     const String Spinner::OctalValidator("[0-7]*");
 #endif //PE_NO_REGEX_MATCHER
     // component widget name strings
-    const String Spinner::EditboxName( "__auto_editbox__" );
-    const String Spinner::IncreaseButtonName( "__auto_incbtn__" );
-    const String Spinner::DecreaseButtonName( "__auto_decbtn__" );
+    const String Spinner::EditboxName("__auto_editbox__");
+    const String Spinner::IncreaseButtonName("__auto_incbtn__");
+    const String Spinner::DecreaseButtonName("__auto_decbtn__");
     //////////////////////////////////////////////////////////////////////////
 
-
     Spinner::Spinner(const String& type, const String& name) :
-        Window(type, name),
-        d_stepSize(1.0f),
-        d_currentValue(1.0f),
-        d_maxValue(32767.0f),
-        d_minValue(-32768.0f),
-        d_inputMode((TextInputMode)-1)
-    {
+    Window(type, name),
+    d_stepSize(1.0f),
+    d_currentValue(1.0f),
+    d_maxValue(32767.0f),
+    d_minValue(-32768.0f),
+    d_inputMode((TextInputMode) - 1) {
         addSpinnerProperties();
     }
 
-    Spinner::~Spinner(void)
-    {
+    Spinner::~Spinner(void) {
         // Nothing to do here.
     }
 
-    void Spinner::initialiseComponents(void)
-    {
+    void Spinner::initialiseComponents(void) {
         // get all the component widgets
         PushButton* increaseButton = getIncreaseButton();
         PushButton* decreaseButton = getDecreaseButton();
@@ -103,35 +98,28 @@ namespace CEGUI
         performChildWindowLayout();
     }
 
-    double Spinner::getCurrentValue(void) const
-    {
+    double Spinner::getCurrentValue(void) const {
         return d_currentValue;
     }
 
-    double Spinner::getStepSize(void) const
-    {
+    double Spinner::getStepSize(void) const {
         return d_stepSize;
     }
 
-    double Spinner::getMaximumValue(void) const
-    {
+    double Spinner::getMaximumValue(void) const {
         return d_maxValue;
     }
 
-    double Spinner::getMinimumValue(void) const
-    {
+    double Spinner::getMinimumValue(void) const {
         return d_minValue;
     }
 
-    Spinner::TextInputMode Spinner::getTextInputMode(void) const
-    {
+    Spinner::TextInputMode Spinner::getTextInputMode(void) const {
         return d_inputMode;
     }
 
-    void Spinner::setCurrentValue(double value)
-    {
-        if (value != d_currentValue)
-        {
+    void Spinner::setCurrentValue(double value) {
+        if (value != d_currentValue) {
             // limit input value to within valid range for spinner
             value = ceguimax(ceguimin(value, d_maxValue), d_minValue);
 
@@ -142,10 +130,8 @@ namespace CEGUI
         }
     }
 
-    void Spinner::setStepSize(double step)
-    {
-        if (step != d_stepSize)
-        {
+    void Spinner::setStepSize(double step) {
+        if (step != d_stepSize) {
             d_stepSize = step;
 
             WindowEventArgs args(this);
@@ -153,10 +139,8 @@ namespace CEGUI
         }
     }
 
-    void Spinner::setMaximumValue(double maxValue)
-    {
-        if (maxValue != d_maxValue)
-        {
+    void Spinner::setMaximumValue(double maxValue) {
+        if (maxValue != d_maxValue) {
             d_maxValue = maxValue;
 
             WindowEventArgs args(this);
@@ -164,10 +148,8 @@ namespace CEGUI
         }
     }
 
-    void Spinner::setMinimumValue(double minVaue)
-    {
-        if (minVaue != d_minValue)
-        {
+    void Spinner::setMinimumValue(double minVaue) {
+        if (minVaue != d_minValue) {
             d_minValue = minVaue;
 
             WindowEventArgs args(this);
@@ -175,31 +157,28 @@ namespace CEGUI
         }
     }
 
-    void Spinner::setTextInputMode(TextInputMode mode)
-    {
-        if (mode != d_inputMode)
-        {
+    void Spinner::setTextInputMode(TextInputMode mode) {
+        if (mode != d_inputMode) {
 #ifndef PE_NO_REGEX_MATCHER
-            switch (mode)
-            {
-            case FloatingPoint:
-                getEditbox()->setValidationString(FloatValidator);
-                break;
-            case Integer:
-                getEditbox()->setValidationString(IntegerValidator);
-                break;
-            case Hexadecimal:
-                getEditbox()->setValidationString(HexValidator);
-                break;
-            case Octal:
-                getEditbox()->setValidationString(OctalValidator);
-                break;
-            default:
-                CEGUI_THROW(InvalidRequestException(
+            switch (mode) {
+                case FloatingPoint:
+                    getEditbox()->setValidationString(FloatValidator);
+                    break;
+                case Integer:
+                    getEditbox()->setValidationString(IntegerValidator);
+                    break;
+                case Hexadecimal:
+                    getEditbox()->setValidationString(HexValidator);
+                    break;
+                case Octal:
+                    getEditbox()->setValidationString(OctalValidator);
+                    break;
+                default:
+                    CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                            ""));
 #else
-                    "An unknown TextInputMode was specified."));
+                            "An unknown TextInputMode was specified."));
 #endif //PE_NO_THROW_MSGS
             }
 #endif //PE_NO_REGEX_MATCHER
@@ -211,43 +190,40 @@ namespace CEGUI
         }
     }
 
-    void Spinner::addSpinnerProperties(void)
-    {
+    void Spinner::addSpinnerProperties(void) {
         const String& propertyOrigin = WidgetTypeName;
 
         CEGUI_DEFINE_PROPERTY(Spinner, double,
-            "CurrentValue", "Property to get/set the current value of the spinner.  Value is a float.",
-            &Spinner::setCurrentValue, &Spinner::getCurrentValue, 0.0f
-        );
-        
+                "CurrentValue", "Property to get/set the current value of the spinner.  Value is a float.",
+                &Spinner::setCurrentValue, &Spinner::getCurrentValue, 0.0f
+                );
+
         CEGUI_DEFINE_PROPERTY(Spinner, double,
-            "StepSize", "Property to get/set the step size of the spinner.  Value is a float.",
-            &Spinner::setStepSize, &Spinner::getStepSize, 1.0f
-        );
-        
+                "StepSize", "Property to get/set the step size of the spinner.  Value is a float.",
+                &Spinner::setStepSize, &Spinner::getStepSize, 1.0f
+                );
+
         CEGUI_DEFINE_PROPERTY(Spinner, double,
-            "MinimumValue", "Property to get/set the minimum value setting of the spinner.  Value is a float.",
-            &Spinner::setMinimumValue, &Spinner::getMinimumValue, -32768.000000f
-        );
-        
+                "MinimumValue", "Property to get/set the minimum value setting of the spinner.  Value is a float.",
+                &Spinner::setMinimumValue, &Spinner::getMinimumValue, -32768.000000f
+                );
+
         CEGUI_DEFINE_PROPERTY(Spinner, double,
-            "MaximumValue", "Property to get/set the maximum value setting of the spinner.  Value is a float.",
-            &Spinner::setMaximumValue, &Spinner::getMaximumValue, 32767.000000f
-        );
-        
+                "MaximumValue", "Property to get/set the maximum value setting of the spinner.  Value is a float.",
+                &Spinner::setMaximumValue, &Spinner::getMaximumValue, 32767.000000f
+                );
+
         CEGUI_DEFINE_PROPERTY(Spinner, Spinner::TextInputMode,
-            "TextInputMode", "Property to get/set the TextInputMode setting for the spinner.  Value is \"FloatingPoint\", \"Integer\", \"Hexadecimal\", or \"Octal\".",
-            &Spinner::setTextInputMode, &Spinner::getTextInputMode, Spinner::Integer
-        );
+                "TextInputMode", "Property to get/set the TextInputMode setting for the spinner.  Value is \"FloatingPoint\", \"Integer\", \"Hexadecimal\", or \"Octal\".",
+                &Spinner::setTextInputMode, &Spinner::getTextInputMode, Spinner::Integer
+                );
     }
 
-    double Spinner::getValueFromText(void) const
-    {
+    double Spinner::getValueFromText(void) const {
         String tmpTxt(getEditbox()->getText());
 
         // handle empty and lone '-' or '.' cases
-        if (tmpTxt.empty() || (tmpTxt == "-") || (tmpTxt == "."))
-        {
+        if (tmpTxt.empty() || (tmpTxt == "-") || (tmpTxt == ".")) {
             return 0.0f;
         }
 
@@ -255,91 +231,84 @@ namespace CEGUI
         uint utmp;
         double val;
 
-        switch (d_inputMode)
-        {
-        case FloatingPoint:
-            res = sscanf(tmpTxt.c_str(), "%lf", &val);
-            break;
-        case Integer:
-            res = sscanf(tmpTxt.c_str(), "%d", &tmp);
-            val = static_cast<double>(tmp);
-            break;
-        case Hexadecimal:
-            res = sscanf(tmpTxt.c_str(), "%x", &utmp);
-            val = static_cast<double>(utmp);
-            break;
-        case Octal:
-            res = sscanf(tmpTxt.c_str(), "%o", &utmp);
-            val = static_cast<double>(utmp);
-            break;
-        default:
-            CEGUI_THROW(InvalidRequestException(
+        switch (d_inputMode) {
+            case FloatingPoint:
+                res = sscanf(tmpTxt.c_str(), "%lf", &val);
+                break;
+            case Integer:
+                res = sscanf(tmpTxt.c_str(), "%d", &tmp);
+                val = static_cast<double> (tmp);
+                break;
+            case Hexadecimal:
+                res = sscanf(tmpTxt.c_str(), "%x", &utmp);
+                val = static_cast<double> (utmp);
+                break;
+            case Octal:
+                res = sscanf(tmpTxt.c_str(), "%o", &utmp);
+                val = static_cast<double> (utmp);
+                break;
+            default:
+                CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                        ""));
 #else
-                "An unknown TextInputMode was encountered."));
+                        "An unknown TextInputMode was encountered."));
 #endif //PE_NO_THROW_MSGS
         }
 
-        if (res)
-        {
+        if (res) {
             return val;
         }
 
         CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "The string '" + getEditbox()->getText() +
-            "' can not be converted to numerical representation."));
+                "The string '" + getEditbox()->getText() +
+                "' can not be converted to numerical representation."));
 #endif //PE_NO_THROW_MSGS
     }
 
-    String Spinner::getTextFromValue(void) const
-    {
+    String Spinner::getTextFromValue(void) const {
         std::stringstream tmp;
 
-        switch (d_inputMode)
-        {
-        case FloatingPoint:
-            return CEGUI::PropertyHelper<float>::toString( static_cast<float>(d_currentValue) );
-            break;
-        case Integer:
-            tmp << static_cast<int>(d_currentValue);
-            break;
-        case Hexadecimal:
-            tmp << std::hex << std::uppercase << static_cast<int>(d_currentValue);
-            break;
-        case Octal:
-            tmp << std::oct << static_cast<int>(d_currentValue);
-            break;
-        default:
-            CEGUI_THROW(InvalidRequestException(
+        switch (d_inputMode) {
+            case FloatingPoint:
+                return CEGUI::PropertyHelper<float>::toString(static_cast<float> (d_currentValue));
+                break;
+            case Integer:
+                tmp << static_cast<int> (d_currentValue);
+                break;
+            case Hexadecimal:
+                tmp << std::hex << std::uppercase << static_cast<int> (d_currentValue);
+                break;
+            case Octal:
+                tmp << std::oct << static_cast<int> (d_currentValue);
+                break;
+            default:
+                CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                        ""));
 #else
-                "An unknown TextInputMode was encountered."));
+                        "An unknown TextInputMode was encountered."));
 #endif //PE_NO_THROW_MSGS
         }
 
         return String(tmp.str().c_str());
     }
 
-    void Spinner::onFontChanged(WindowEventArgs& e)
-    {
+    void Spinner::onFontChanged(WindowEventArgs& e) {
         // Propagate to children
         getEditbox()->setFont(getFont());
         // Call base class handler
         Window::onFontChanged(e);
     }
 
-    void Spinner::onTextChanged(WindowEventArgs& e)
-    {
+    void Spinner::onTextChanged(WindowEventArgs& e) {
         Editbox* editbox = getEditbox();
 
         // update only if needed
-        if (editbox->getText() != getText())
-        {
+        if (editbox->getText() != getText()) {
             // done before doing base class processing so event subscribers see
             // 'updated' version.
             editbox->setText(getText());
@@ -349,23 +318,19 @@ namespace CEGUI
         }
     }
 
-    void Spinner::onActivated(ActivationEventArgs& e)
-    {
-        if (!isActive())
-        {
+    void Spinner::onActivated(ActivationEventArgs& e) {
+        if (!isActive()) {
             Window::onActivated(e);
 
             Editbox* editbox = getEditbox();
 
-            if (!editbox->isActive())
-            {
+            if (!editbox->isActive()) {
                 editbox->activate();
             }
         }
     }
 
-    void Spinner::onValueChanged(WindowEventArgs& e)
-    {
+    void Spinner::onValueChanged(WindowEventArgs& e) {
         Editbox* editbox = getEditbox();
 
         // mute to save doing unnecessary events work.
@@ -375,8 +340,7 @@ namespace CEGUI
         // Update editbox and spinner text with new value.
         // (allow empty and '-' cases to equal 0 with no text change required)
         if (!(d_currentValue == 0 &&
-              (editbox->getText().empty() || editbox->getText() == "-")))
-        {
+                (editbox->getText().empty() || editbox->getText() == "-"))) {
             const CEGUI::String& valueString = getTextFromValue();
             editbox->setText(valueString);
             setText(valueString);
@@ -387,33 +351,27 @@ namespace CEGUI
         fireEvent(EventValueChanged, e, EventNamespace);
     }
 
-    void Spinner::onStepChanged(WindowEventArgs& e)
-    {
+    void Spinner::onStepChanged(WindowEventArgs& e) {
         fireEvent(EventStepChanged, e, EventNamespace);
     }
 
-    void Spinner::onMaximumValueChanged(WindowEventArgs& e)
-    {
+    void Spinner::onMaximumValueChanged(WindowEventArgs& e) {
         fireEvent(EventMaximumValueChanged, e, EventNamespace);
 
-        if (d_currentValue > d_maxValue)
-        {
+        if (d_currentValue > d_maxValue) {
             setCurrentValue(d_maxValue);
         }
     }
 
-    void Spinner::onMinimumValueChanged(WindowEventArgs& e)
-    {
+    void Spinner::onMinimumValueChanged(WindowEventArgs& e) {
         fireEvent(EventMinimumValueChanged, e, EventNamespace);
 
-        if (d_currentValue < d_minValue)
-        {
+        if (d_currentValue < d_minValue) {
             setCurrentValue(d_minValue);
         }
     }
 
-    void Spinner::onTextInputModeChanged(WindowEventArgs& e)
-    {
+    void Spinner::onTextInputModeChanged(WindowEventArgs& e) {
         Editbox* editbox = getEditbox();
         // update edit box text to reflect new mode.
         // mute to save doing unnecessary events work.
@@ -428,10 +386,9 @@ namespace CEGUI
     }
 
 #ifndef PE_NO_MOUSE
-    bool Spinner::handleIncreaseButton(const EventArgs& e)
-    {
-        if (((const MouseEventArgs&)e).button == LeftButton)
-        {
+
+    bool Spinner::handleIncreaseButton(const EventArgs& e) {
+        if (((const MouseEventArgs&) e).button == LeftButton) {
             setCurrentValue(d_currentValue + d_stepSize);
             return true;
         }
@@ -439,10 +396,8 @@ namespace CEGUI
         return false;
     }
 
-    bool Spinner::handleDecreaseButton(const EventArgs& e)
-    {
-        if (((const MouseEventArgs&)e).button == LeftButton)
-        {
+    bool Spinner::handleDecreaseButton(const EventArgs& e) {
+        if (((const MouseEventArgs&) e).button == LeftButton) {
             setCurrentValue(d_currentValue - d_stepSize);
             return true;
         }
@@ -450,9 +405,8 @@ namespace CEGUI
         return false;
     }
 #endif //PE_NO_MOUSE
-    
-    bool Spinner::handleEditTextChange(const EventArgs&)
-    {
+
+    bool Spinner::handleEditTextChange(const EventArgs&) {
         // set this windows text to match
         setText(getEditbox()->getText());
         // update value
@@ -460,21 +414,18 @@ namespace CEGUI
         return true;
     }
 
-    PushButton* Spinner::getIncreaseButton() const
-    {
-        return static_cast<PushButton*>(getChild(IncreaseButtonName));
+    PushButton* Spinner::getIncreaseButton() const {
+        return static_cast<PushButton*> (getChild(IncreaseButtonName));
     }
 
-    PushButton* Spinner::getDecreaseButton() const
-    {
-        return static_cast<PushButton*>(getChild(DecreaseButtonName));
+    PushButton* Spinner::getDecreaseButton() const {
+        return static_cast<PushButton*> (getChild(DecreaseButtonName));
     }
 
-    Editbox* Spinner::getEditbox() const
-    {
-        return static_cast<Editbox*>(getChild(EditboxName));
+    Editbox* Spinner::getEditbox() const {
+        return static_cast<Editbox*> (getChild(EditboxName));
     }
 
-//////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 
 } // End of  CEGUI namespace section

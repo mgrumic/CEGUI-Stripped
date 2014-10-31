@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jan 12 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,24 +30,23 @@
 #include "CEGUI/RenderingSurface.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    struct that holds some context relating to a RenderingSurface object.
-*/
-struct RenderingContext :
-    public AllocatedObject<RenderingContext>
-{
-    //! RenderingSurface to be used for drawing
-    RenderingSurface* surface;
-    //! The Window object that owns the RenederingSurface (0 for default root)
-    const Window* owner;
-    //! The offset of the owning window on the root RenderingSurface.
-    Vector2f offset;
-    //! The queue that rendering should be added to.
-    RenderQueueID queue;
-};
+namespace CEGUI {
+
+    /*!
+    \brief
+        struct that holds some context relating to a RenderingSurface object.
+     */
+    struct RenderingContext :
+    public AllocatedObject<RenderingContext> {
+        //! RenderingSurface to be used for drawing
+        RenderingSurface* surface;
+        //! The Window object that owns the RenederingSurface (0 for default root)
+        const Window* owner;
+        //! The offset of the owning window on the root RenderingSurface.
+        Vector2f offset;
+        //! The queue that rendering should be added to.
+        RenderQueueID queue;
+    };
 
 } // End of  CEGUI namespace section
 

@@ -31,51 +31,50 @@
 #include "CEGUI/String.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! String component that moves a widget to appear as part of the string.
-class CEGUIEXPORT RenderedStringWidgetComponent : public RenderedStringComponent
-{
-public:
-    //! Constructor
-    RenderedStringWidgetComponent();
-    RenderedStringWidgetComponent(const String& widget_name);
-    RenderedStringWidgetComponent(Window* widget);
+namespace CEGUI {
+    //! String component that moves a widget to appear as part of the string.
 
-    //! Set the window to be controlled by this component.
-    void setWindow(const String& widget_name);
-    //! Set the window to be controlled by this component.
-    void setWindow(Window* widget);
-    //! return the window currently controlled by this component
-    const Window* getWindow() const;
+    class CEGUIEXPORT RenderedStringWidgetComponent : public RenderedStringComponent {
+    public:
+        //! Constructor
+        RenderedStringWidgetComponent();
+        RenderedStringWidgetComponent(const String& widget_name);
+        RenderedStringWidgetComponent(Window* widget);
 
-    // implementation of abstract base interface
-    void draw(const Window* ref_wnd, GeometryBuffer& buffer,
-              const Vector2f& position, const ColourRect* mod_colours,
-              const Rectf* clip_rect, const float vertical_space,
-              const float space_extra) const;
-    Sizef getPixelSize(const Window* ref_wnd) const;
-    bool canSplit() const;
-    RenderedStringWidgetComponent* split(const Window* ref_wnd,
-                                         float split_point,
-                                         bool first_component);
-    RenderedStringWidgetComponent* clone() const;
-    size_t getSpaceCount() const;
-    void setSelection(const Window* ref_wnd,
-                      const float start, const float end);
+        //! Set the window to be controlled by this component.
+        void setWindow(const String& widget_name);
+        //! Set the window to be controlled by this component.
+        void setWindow(Window* widget);
+        //! return the window currently controlled by this component
+        const Window* getWindow() const;
 
-protected:
-    Window* getEffectiveWindow(const Window* ref_wnd) const;
+        // implementation of abstract base interface
+        void draw(const Window* ref_wnd, GeometryBuffer& buffer,
+                const Vector2f& position, const ColourRect* mod_colours,
+                const Rectf* clip_rect, const float vertical_space,
+                const float space_extra) const;
+        Sizef getPixelSize(const Window* ref_wnd) const;
+        bool canSplit() const;
+        RenderedStringWidgetComponent* split(const Window* ref_wnd,
+                float split_point,
+                bool first_component);
+        RenderedStringWidgetComponent* clone() const;
+        size_t getSpaceCount() const;
+        void setSelection(const Window* ref_wnd,
+                const float start, const float end);
 
-    //! Name of window to manipulate
-    String d_windowName;
-    //! whether d_window is synched.
-    mutable bool d_windowPtrSynched;
-    //! pointer to the window controlled by this component.
-    mutable Window* d_window;
-    // whether the image is marked as selected.
-    bool d_selected;
-};
+    protected:
+        Window* getEffectiveWindow(const Window* ref_wnd) const;
+
+        //! Name of window to manipulate
+        String d_windowName;
+        //! whether d_window is synched.
+        mutable bool d_windowPtrSynched;
+        //! pointer to the window controlled by this component.
+        mutable Window* d_window;
+        // whether the image is marked as selected.
+        bool d_selected;
+    };
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,28 +32,28 @@
 #include <set>
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class the encapsulates imagery for a given widget state.
-    */
+     */
     class CEGUIEXPORT StateImagery :
-        public AllocatedObject<StateImagery>
-    {
+    public AllocatedObject<StateImagery> {
     public:
+
         /*!
         \brief
             Constructor
-        */
-        StateImagery():
-        	d_clipToDisplay(false)
-        {}
+         */
+        StateImagery() :
+        d_clipToDisplay(false) {
+        }
 
         /*!
         \brief
@@ -61,7 +61,7 @@ namespace CEGUI
 
         \param name
             Name of the state
-        */
+         */
         StateImagery(const String& name);
 
         /*!
@@ -73,7 +73,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const ColourRect* modcols = 0, const Rectf* clipper = 0) const;
 
         /*!
@@ -88,7 +88,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void render(Window& srcWindow, const Rectf& baseRect, const ColourRect* modcols = 0, const Rectf* clipper = 0) const;
 
         /*!
@@ -100,7 +100,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void addLayer(const LayerSpecification& layer);
 
         /*!
@@ -109,7 +109,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void clearLayers();
 
         /*!
@@ -118,7 +118,7 @@ namespace CEGUI
 
         \return
             String object holding the name of the StateImagery object.
-        */
+         */
         const String& getName() const;
 
         /*!
@@ -127,7 +127,7 @@ namespace CEGUI
 
         \return
             String object holding the name of the StateImagery object.
-        */
+         */
         void setName(const String& name);
 
         /*!
@@ -139,7 +139,7 @@ namespace CEGUI
         /return
             - true if the imagery will be clipped to the display area.
             - false if the imagery will be clipped to the target window area.
-        */
+         */
         bool isClippedToDisplay() const;
 
         /*!
@@ -154,7 +154,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setClippedToDisplay(bool setting);
 
         /*!
@@ -167,15 +167,15 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
     private:
         typedef std::multiset<LayerSpecification> LayersList;
 
-        CEGUI::String   d_stateName;    //!< Name of this state.
-        LayersList      d_layers;       //!< Collection of LayerSpecification objects to be drawn for this state.
-        bool            d_clipToDisplay; //!< true if Imagery for this state should be clipped to the display instead of winodw (effectively, not clipped).
+        CEGUI::String d_stateName; //!< Name of this state.
+        LayersList d_layers; //!< Collection of LayerSpecification objects to be drawn for this state.
+        bool d_clipToDisplay; //!< true if Imagery for this state should be clipped to the display instead of winodw (effectively, not clipped).
     public:
         typedef ConstVectorIterator<LayersList> LayerIterator;
 
@@ -187,7 +187,7 @@ namespace CEGUI
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalStateImagery_h_

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 16 2010
     author:     Eugene Marcotte
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -31,45 +31,44 @@
 #include "CEGUI/RendererModules/Null/RenderTarget.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4250)
+#pragma warning(push)
+#pragma warning(disable : 4250)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! CEGUI::TextureTarget implementation for the Null engine.
-class NULL_GUIRENDERER_API NullTextureTarget : public NullRenderTarget<TextureTarget>
-{
-public:
-    //! Constructor.
-    NullTextureTarget(NullRenderer& owner);
-    //! Destructor.
-    virtual ~NullTextureTarget();
+namespace CEGUI {
+    //! CEGUI::TextureTarget implementation for the Null engine.
 
-    // implementation of RenderTarget interface
-    bool isImageryCache() const;
-    // implement CEGUI::TextureTarget interface.
-    void clear();
-    Texture& getTexture() const;
-    void declareRenderSize(const Sizef& sz);
-    bool isRenderingInverted() const;
+    class NULL_GUIRENDERER_API NullTextureTarget : public NullRenderTarget<TextureTarget> {
+    public:
+        //! Constructor.
+        NullTextureTarget(NullRenderer& owner);
+        //! Destructor.
+        virtual ~NullTextureTarget();
 
-protected:
-    //! helper to generate unique texture names
-    static String generateTextureName();
-    //! static data used for creating texture names
-    static uint s_textureNumber;
-    //! default / initial size for the underlying texture.
-    static const float DEFAULT_SIZE;
-    //! This wraps d_texture so it can be used by the core CEGUI lib.
-    NullTexture* d_CEGUITexture;
-};
+        // implementation of RenderTarget interface
+        bool isImageryCache() const;
+        // implement CEGUI::TextureTarget interface.
+        void clear();
+        Texture& getTexture() const;
+        void declareRenderSize(const Sizef& sz);
+        bool isRenderingInverted() const;
+
+    protected:
+        //! helper to generate unique texture names
+        static String generateTextureName();
+        //! static data used for creating texture names
+        static uint s_textureNumber;
+        //! default / initial size for the underlying texture.
+        static const float DEFAULT_SIZE;
+        //! This wraps d_texture so it can be used by the core CEGUI lib.
+        NullTexture* d_CEGUITexture;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUINullTextureTarget_h_

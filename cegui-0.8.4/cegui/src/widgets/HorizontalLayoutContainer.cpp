@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    29/7/2010
     author:     Martin Preisler
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -29,61 +29,59 @@
 #include <algorithm>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*************************************************************************
-    Constants
-*************************************************************************/
-// type name for this widget
-const String HorizontalLayoutContainer::WidgetTypeName("HorizontalLayoutContainer");
+namespace CEGUI {
+    /*************************************************************************
+        Constants
+     *************************************************************************/
+    // type name for this widget
+    const String HorizontalLayoutContainer::WidgetTypeName("HorizontalLayoutContainer");
 
-/*************************************************************************
-    Constructor
-*************************************************************************/
-HorizontalLayoutContainer::HorizontalLayoutContainer(const String& type,
-                                                     const String& name) :
-        SequentialLayoutContainer(type, name)
-{}
-
-//----------------------------------------------------------------------------//
-HorizontalLayoutContainer::~HorizontalLayoutContainer(void)
-{}
-
-//----------------------------------------------------------------------------//
-void HorizontalLayoutContainer::layout()
-{
-    // used to compare UDims
-    const float absHeight = getChildContentArea().get().getHeight();
-
-    // this is where we store the left offset
-    // we continually increase this number as we go through the windows
-    UDim leftOffset(0, 0);
-    UDim layoutHeight(0, 0);
-
-    for (ChildList::iterator it = d_children.begin(); it != d_children.end(); ++it)
-    {
-        Window* window = static_cast<Window*>(*it);
-
-        const UVector2 offset = getOffsetForWindow(window);
-        const UVector2 boundingSize = getBoundingSizeForWindow(window);
-
-        // full child window width, including margins
-        const UDim& childHeight = boundingSize.d_y;
-
-        if (CoordConverter::asAbsolute(layoutHeight, absHeight) <
-            CoordConverter::asAbsolute(childHeight, absHeight))
-        {
-            layoutHeight = childHeight;
-        }
-
-        window->setPosition(offset + UVector2(leftOffset, UDim(0, 0)));
-        leftOffset += boundingSize.d_x;
+    /*************************************************************************
+        Constructor
+     *************************************************************************/
+    HorizontalLayoutContainer::HorizontalLayoutContainer(const String& type,
+            const String& name) :
+    SequentialLayoutContainer(type, name) {
     }
 
-    setSize(USize(leftOffset, layoutHeight));
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    HorizontalLayoutContainer::~HorizontalLayoutContainer(void) {
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void HorizontalLayoutContainer::layout() {
+        // used to compare UDims
+        const float absHeight = getChildContentArea().get().getHeight();
+
+        // this is where we store the left offset
+        // we continually increase this number as we go through the windows
+        UDim leftOffset(0, 0);
+        UDim layoutHeight(0, 0);
+
+        for (ChildList::iterator it = d_children.begin(); it != d_children.end(); ++it) {
+            Window* window = static_cast<Window*> (*it);
+
+            const UVector2 offset = getOffsetForWindow(window);
+            const UVector2 boundingSize = getBoundingSizeForWindow(window);
+
+            // full child window width, including margins
+            const UDim& childHeight = boundingSize.d_y;
+
+            if (CoordConverter::asAbsolute(layoutHeight, absHeight) <
+                    CoordConverter::asAbsolute(childHeight, absHeight)) {
+                layoutHeight = childHeight;
+            }
+
+            window->setPosition(offset + UVector2(leftOffset, UDim(0, 0)));
+            leftOffset += boundingSize.d_x;
+        }
+
+        setSize(USize(leftOffset, layoutHeight));
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jan 15 2010
     author:     Eugene Marcotte
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -38,82 +38,81 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Implementation of CEGUI::GeometryBuffer for the Null engine
-class NULL_GUIRENDERER_API NullGeometryBuffer : public GeometryBuffer
-{
-public:
-    //! Constructor
-    NullGeometryBuffer();
-    //! Destructor
-    virtual ~NullGeometryBuffer();
+namespace CEGUI {
+    //! Implementation of CEGUI::GeometryBuffer for the Null engine
 
-    // implement CEGUI::GeometryBuffer interface.
-    void draw() const;
+    class NULL_GUIRENDERER_API NullGeometryBuffer : public GeometryBuffer {
+    public:
+        //! Constructor
+        NullGeometryBuffer();
+        //! Destructor
+        virtual ~NullGeometryBuffer();
+
+        // implement CEGUI::GeometryBuffer interface.
+        void draw() const;
 #ifndef PE_NO_VECTOR3D
-    void setTranslation(const Vector3f& v);
+        void setTranslation(const Vector3f& v);
 #endif  // PE_NO_VECTOR3D
 #ifndef PE_NO_QUATERNION
-    void setRotation(const Quaternion& r);
+        void setRotation(const Quaternion& r);
 #endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
-    void setPivot(const Vector3f& p);
+        void setPivot(const Vector3f& p);
 #endif  // PE_NO_VECTOR3D
-    void setClippingRegion(const Rectf& region);
-    void appendGeometry(const Vertex* const vbuff, uint vertex_count);
-    void appendVertex(const Vertex& vertex);
-    void setActiveTexture(Texture* texture);
-    void reset();
-    Texture* getActiveTexture() const;
-    uint getVertexCount() const;
-    uint getBatchCount() const;
+        void setClippingRegion(const Rectf& region);
+        void appendGeometry(const Vertex * const vbuff, uint vertex_count);
+        void appendVertex(const Vertex& vertex);
+        void setActiveTexture(Texture* texture);
+        void reset();
+        Texture* getActiveTexture() const;
+        uint getVertexCount() const;
+        uint getBatchCount() const;
 #ifndef PE_NO_RENDEREFFECT
-    void setRenderEffect(RenderEffect* effect);
-    RenderEffect* getRenderEffect();
+        void setRenderEffect(RenderEffect* effect);
+        RenderEffect* getRenderEffect();
 #endif //PE_NO_RENDEREFFECT
-    void setClippingActive(const bool active);
-    bool isClippingActive() const;
+        void setClippingActive(const bool active);
+        bool isClippingActive() const;
 
-protected:
-    //! Texture that is set as active
-    NullTexture* d_activeTexture;
-    //! rectangular clip region
-    Rectf d_clipRect;
-    //! whether clipping will be active for the current batch
-    bool d_clippingActive;
-    //! translation vector
+    protected:
+        //! Texture that is set as active
+        NullTexture* d_activeTexture;
+        //! rectangular clip region
+        Rectf d_clipRect;
+        //! whether clipping will be active for the current batch
+        bool d_clippingActive;
+        //! translation vector
 #ifndef PE_NO_VECTOR3D
-    Vector3f d_translation;
+        Vector3f d_translation;
 #endif  // PE_NO_VECTOR3D
 #ifndef PE_NO_QUATERNION
-    //! rotation quaternion
-    Quaternion d_rotation;
+        //! rotation quaternion
+        Quaternion d_rotation;
 #endif //PE_NO_QUATERNION
-    //! pivot point for rotation
+        //! pivot point for rotation
 #ifndef PE_NO_VECTOR3D
-    Vector3f d_pivot;
+        Vector3f d_pivot;
 #endif  // PE_NO_VECTOR3D
 #ifndef PE_NO_RENDEREFFECT
-    //! RenderEffect that will be used by the GeometryBuffer
-    RenderEffect* d_effect;
+        //! RenderEffect that will be used by the GeometryBuffer
+        RenderEffect* d_effect;
 #endif //PE_NO_RENDEREFFECT
-    //! type of container used to queue the geometry
-    typedef std::vector<Vertex> VertexList;
-    //! container where added geometry is stored.
-    VertexList d_vertices;
-};
+        //! type of container used to queue the geometry
+        typedef std::vector<Vertex> VertexList;
+        //! container where added geometry is stored.
+        VertexList d_vertices;
+    };
 
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUINullGeometryBuffer_h_

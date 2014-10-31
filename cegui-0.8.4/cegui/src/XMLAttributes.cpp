@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Mar 12 2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,46 +30,40 @@
 #include <iterator>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-    XMLAttributes::XMLAttributes(void)
-    {}
+namespace CEGUI {
 
-    XMLAttributes::~XMLAttributes(void)
-    {}
+    XMLAttributes::XMLAttributes(void) {
+    }
 
-    void XMLAttributes::add(const String& attrName, const String& attrValue)
-    {
+    XMLAttributes::~XMLAttributes(void) {
+    }
+
+    void XMLAttributes::add(const String& attrName, const String& attrValue) {
         d_attrs[attrName] = attrValue;
     }
 
-    void XMLAttributes::remove(const String& attrName)
-    {
+    void XMLAttributes::remove(const String& attrName) {
         AttributeMap::iterator pos = d_attrs.find(attrName);
 
         if (pos != d_attrs.end())
             d_attrs.erase(pos);
     }
 
-    bool XMLAttributes::exists(const String& attrName) const
-    {
+    bool XMLAttributes::exists(const String& attrName) const {
         return d_attrs.find(attrName) != d_attrs.end();
     }
 
-    size_t XMLAttributes::getCount(void) const
-    {
+    size_t XMLAttributes::getCount(void) const {
         return d_attrs.size();
     }
 
-    const String& XMLAttributes::getName(size_t index) const
-    {
-        if (index >= d_attrs.size())
-        {
+    const String& XMLAttributes::getName(size_t index) const {
+        if (index >= d_attrs.size()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "The specified index is out of range for this XMLAttributes block."));
+                    "The specified index is out of range for this XMLAttributes block."));
 #endif //PE_NO_THROW_MSGS
         }
 
@@ -79,15 +73,13 @@ namespace CEGUI
         return (*iter).first;
     }
 
-    const String& XMLAttributes::getValue(size_t index) const
-    {
-        if (index >= d_attrs.size())
-        {
+    const String& XMLAttributes::getValue(size_t index) const {
+        if (index >= d_attrs.size()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "The specified index is out of range for this XMLAttributes block."));
+                    "The specified index is out of range for this XMLAttributes block."));
 #endif //PE_NO_THROW_MSGS
         }
 
@@ -97,63 +89,48 @@ namespace CEGUI
         return (*iter).second;
     }
 
-    const String& XMLAttributes::getValue(const String& attrName) const
-    {
+    const String& XMLAttributes::getValue(const String& attrName) const {
         AttributeMap::const_iterator pos = d_attrs.find(attrName);
 
-        if (pos != d_attrs.end())
-        {
+        if (pos != d_attrs.end()) {
             return (*pos).second;
-        }
-        else
-        {
+        } else {
             CEGUI_THROW(UnknownObjectException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "no value exists for an attribute named '" + attrName + "'."));
+                    "no value exists for an attribute named '" + attrName + "'."));
 #endif //PE_NO_THROW_MSGS
         }
     }
 
-    const String& XMLAttributes::getValueAsString(const String& attrName, const String& def) const
-    {
+    const String& XMLAttributes::getValueAsString(const String& attrName, const String& def) const {
         return (exists(attrName)) ? getValue(attrName) : def;
     }
 
-
-    bool XMLAttributes::getValueAsBool(const String& attrName, bool def) const
-    {
-        if (!exists(attrName))
-        {
+    bool XMLAttributes::getValueAsBool(const String& attrName, bool def) const {
+        if (!exists(attrName)) {
             return def;
         }
 
         const String& val = getValue(attrName);
 
-        if (val == "false" || val == "False" || val == "0")
-        {
+        if (val == "false" || val == "False" || val == "0") {
             return false;
-        }
-        else if (val == "true" || val == "True" || val == "1")
-        {
+        } else if (val == "true" || val == "True" || val == "1") {
             return true;
-        }
-        else
-        {
+        } else {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to bool."));
+                    "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to bool."));
 #endif //PE_NO_THROW_MSGS
         }
     }
 
-    int XMLAttributes::getValueAsInteger(const String& attrName, int def) const
-    {
-        if (!exists(attrName))
-        {
+    int XMLAttributes::getValueAsInteger(const String& attrName, int def) const {
+        if (!exists(attrName)) {
             return def;
         }
 
@@ -163,23 +140,20 @@ namespace CEGUI
         strm >> val;
 
         // Check for success and end-of-file
-        if(strm.fail() || !strm.eof())
-        {
+        if (strm.fail() || !strm.eof()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to integer."));
+                    "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to integer."));
 #endif //PE_NO_THROW_MSGS
         }
 
         return val;
     }
 
-    float XMLAttributes::getValueAsFloat(const String& attrName, float def) const
-    {
-        if (!exists(attrName))
-        {
+    float XMLAttributes::getValueAsFloat(const String& attrName, float def) const {
+        if (!exists(attrName)) {
             return def;
         }
 
@@ -189,13 +163,12 @@ namespace CEGUI
         strm >> val;
 
         // Check for success and end-of-file
-        if(strm.fail() || !strm.eof())
-        {
+        if (strm.fail() || !strm.eof()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to float."));
+                    "failed to convert attribute '" + attrName + "' with value '" + getValue(attrName) + "' to float."));
 #endif //PE_NO_THROW_MSGS
         }
 

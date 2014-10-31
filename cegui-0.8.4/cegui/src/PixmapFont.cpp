@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    14/6/2006
     author:     Andrew Zabolotny
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -37,198 +37,191 @@
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-static const String BuiltInResourceGroup ("*");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    static const String BuiltInResourceGroup("*");
 
-//----------------------------------------------------------------------------//
-PixmapFont::PixmapFont(const String& font_name, const String& imageset_filename,
-                       const String& resource_group,
-                       const AutoScaledMode auto_scaled,
-                       const Sizef& native_res):
+    //----------------------------------------------------------------------------//
+
+    PixmapFont::PixmapFont(const String& font_name, const String& imageset_filename,
+            const String& resource_group,
+            const AutoScaledMode auto_scaled,
+            const Sizef& native_res) :
     Font(font_name, Font_xmlHandler::FontTypePixmap, imageset_filename,
-         resource_group, auto_scaled, native_res),
+    resource_group, auto_scaled, native_res),
     d_origHorzScaling(1.0f),
-    d_imagesetOwner(false)
-{
-    addPixmapFontProperties();
+    d_imagesetOwner(false) {
+        addPixmapFontProperties();
 
-    reinit();
-    updateFont();
-}
-
-//----------------------------------------------------------------------------//
-PixmapFont::~PixmapFont()
-{
-    if (d_imagesetOwner)
-        ImageManager::getSingleton().destroyImageCollection(d_imageNamePrefix);
-}
-
-//----------------------------------------------------------------------------//
-void PixmapFont::addPixmapFontProperties ()
-{
-    const String propertyOrigin("PixmapFont");
-
-    CEGUI_DEFINE_PROPERTY(PixmapFont, String,
-        "ImageNamePrefix",
-        "This is the name prefix used by the images that contain the glyph "
-        "imagery for this font.",
-        &PixmapFont::setImageNamePrefix, &PixmapFont::getImageNamePrefix, ""
-    );
-
-    CEGUI_DEFINE_PROPERTY(PixmapFont, String,
-        "Mapping",
-        "This is the glyph-to-image mapping font property. It cannot be read. "
-        "Format is: codepoint,advance,imagename",
-        &PixmapFont::defineMapping, 0, ""
-    );
-}
-
-//----------------------------------------------------------------------------//
-void PixmapFont::reinit()
-{
-    if (d_imagesetOwner)
-        ImageManager::getSingleton().destroyImageCollection(d_imageNamePrefix);
-
-    if (d_resourceGroup == BuiltInResourceGroup)
-    {
-        d_imageNamePrefix = d_filename;
-        d_imagesetOwner = false;
+        reinit();
+        updateFont();
     }
-    else
-    {
-        ImageManager::getSingleton().loadImageset(d_filename, d_resourceGroup);
-        // here we assume the imageset name will match the font name
-        d_imageNamePrefix = d_name; 
-        d_imagesetOwner = true;
+
+    //----------------------------------------------------------------------------//
+
+    PixmapFont::~PixmapFont() {
+        if (d_imagesetOwner)
+            ImageManager::getSingleton().destroyImageCollection(d_imageNamePrefix);
     }
-}
 
-//----------------------------------------------------------------------------//
-void PixmapFont::updateFont()
-{
-    const float factor = (d_autoScaled != ASM_Disabled ? d_horzScaling : 1.0f) / d_origHorzScaling;
+    //----------------------------------------------------------------------------//
 
-    d_ascender = 0;
-    d_descender = 0;
-    d_height = 0;
-    d_maxCodepoint = 0;
-#ifndef PE_NO_FONT_GLYPH
-    for (CodepointMap::iterator i = d_cp_map.begin(); i != d_cp_map.end(); ++i)
-    {
-        if (i->first > d_maxCodepoint)
-            d_maxCodepoint = i->first;
+    void PixmapFont::addPixmapFontProperties() {
+        const String propertyOrigin("PixmapFont");
 
-        i->second.setAdvance(i->second.getAdvance() * factor);
+        CEGUI_DEFINE_PROPERTY(PixmapFont, String,
+                "ImageNamePrefix",
+                "This is the name prefix used by the images that contain the glyph "
+                "imagery for this font.",
+                &PixmapFont::setImageNamePrefix, &PixmapFont::getImageNamePrefix, ""
+                );
 
-        Image* img = i->second.getImage();
+        CEGUI_DEFINE_PROPERTY(PixmapFont, String,
+                "Mapping",
+                "This is the glyph-to-image mapping font property. It cannot be read. "
+                "Format is: codepoint,advance,imagename",
+                &PixmapFont::defineMapping, 0, ""
+                );
+    }
 
-        BasicImage* bi = dynamic_cast<BasicImage*>(img);
-        if (bi)
-        {
-            bi->setAutoScaled(d_autoScaled);
-            bi->setNativeResolution(d_nativeResolution);
+    //----------------------------------------------------------------------------//
+
+    void PixmapFont::reinit() {
+        if (d_imagesetOwner)
+            ImageManager::getSingleton().destroyImageCollection(d_imageNamePrefix);
+
+        if (d_resourceGroup == BuiltInResourceGroup) {
+            d_imageNamePrefix = d_filename;
+            d_imagesetOwner = false;
+        } else {
+            ImageManager::getSingleton().loadImageset(d_filename, d_resourceGroup);
+            // here we assume the imageset name will match the font name
+            d_imageNamePrefix = d_name;
+            d_imagesetOwner = true;
         }
-
-        if (img->getRenderedOffset().d_y < d_ascender)
-            d_ascender = img->getRenderedOffset().d_y;
-        if (img->getRenderedSize().d_height + img->getRenderedOffset().d_y > d_descender)
-            d_descender = img->getRenderedSize().d_height + img->getRenderedOffset().d_y;
     }
+
+    //----------------------------------------------------------------------------//
+
+    void PixmapFont::updateFont() {
+        const float factor = (d_autoScaled != ASM_Disabled ? d_horzScaling : 1.0f) / d_origHorzScaling;
+
+        d_ascender = 0;
+        d_descender = 0;
+        d_height = 0;
+        d_maxCodepoint = 0;
+#ifndef PE_NO_FONT_GLYPH
+        for (CodepointMap::iterator i = d_cp_map.begin(); i != d_cp_map.end(); ++i) {
+            if (i->first > d_maxCodepoint)
+                d_maxCodepoint = i->first;
+
+            i->second.setAdvance(i->second.getAdvance() * factor);
+
+            Image* img = i->second.getImage();
+
+            BasicImage* bi = dynamic_cast<BasicImage*> (img);
+            if (bi) {
+                bi->setAutoScaled(d_autoScaled);
+                bi->setNativeResolution(d_nativeResolution);
+            }
+
+            if (img->getRenderedOffset().d_y < d_ascender)
+                d_ascender = img->getRenderedOffset().d_y;
+            if (img->getRenderedSize().d_height + img->getRenderedOffset().d_y > d_descender)
+                d_descender = img->getRenderedSize().d_height + img->getRenderedOffset().d_y;
+        }
 #endif //PE_NO_FONT_GLYPH
 
-    d_ascender = -d_ascender;
-    d_descender = -d_descender;
-    d_height = d_ascender - d_descender;
+        d_ascender = -d_ascender;
+        d_descender = -d_descender;
+        d_height = d_ascender - d_descender;
 
-    d_origHorzScaling = d_autoScaled != ASM_Disabled ? d_horzScaling : 1.0f;
-}
-
-//----------------------------------------------------------------------------//
-void PixmapFont::writeXMLToStream_impl (XMLSerializer& xml_stream) const
-{
-    float advscale = 1.0f / d_origHorzScaling;
-#ifndef PE_NO_FONT_GLYPH
-    for (CodepointMap::const_iterator i = d_cp_map.begin(); i != d_cp_map.end(); ++i)
-    {
-        xml_stream.openTag("Mapping")
-            .attribute(Font_xmlHandler::MappingCodepointAttribute,
-                       PropertyHelper<uint>::toString(i->first))
-            .attribute(Font_xmlHandler::MappingHorzAdvanceAttribute,
-                       PropertyHelper<float>::toString(i->second.getAdvance() * advscale))
-            .attribute(Font_xmlHandler::MappingImageAttribute,
-                       i->second.getImage()->getName());
-
-        xml_stream.closeTag();
+        d_origHorzScaling = d_autoScaled != ASM_Disabled ? d_horzScaling : 1.0f;
     }
-#endif //PE_NO_FONT_GLYPH
-}
 
-//----------------------------------------------------------------------------//
-void PixmapFont::defineMapping(const utf32 codepoint, const String& image_name,
-                               const float horz_advance)
-{
-     Image& image(
-        ImageManager::getSingleton().get(d_imageNamePrefix + '/' + image_name));
+    //----------------------------------------------------------------------------//
 
-    float adv = (horz_advance == -1.0f) ?
-        (float)(int)(image.getRenderedSize().d_width + image.getRenderedOffset().d_x) :
-        horz_advance;
-
-    if (d_autoScaled != ASM_Disabled)
-        adv *= d_origHorzScaling;
-
-    if (codepoint > d_maxCodepoint)
-        d_maxCodepoint = codepoint;
+    void PixmapFont::writeXMLToStream_impl(XMLSerializer& xml_stream) const {
+        float advscale = 1.0f / d_origHorzScaling;
 #ifndef PE_NO_FONT_GLYPH
-    // create a new FontGlyph with given character code
-    const FontGlyph glyph(adv, &image, true);
+        for (CodepointMap::const_iterator i = d_cp_map.begin(); i != d_cp_map.end(); ++i) {
+            xml_stream.openTag("Mapping")
+                    .attribute(Font_xmlHandler::MappingCodepointAttribute,
+                    PropertyHelper<uint>::toString(i->first))
+                    .attribute(Font_xmlHandler::MappingHorzAdvanceAttribute,
+                    PropertyHelper<float>::toString(i->second.getAdvance() * advscale))
+                    .attribute(Font_xmlHandler::MappingImageAttribute,
+                    i->second.getImage()->getName());
+
+            xml_stream.closeTag();
+        }
 #endif //PE_NO_FONT_GLYPH
+    }
 
-    if (image.getRenderedOffset().d_y < -d_ascender)
-        d_ascender = -image.getRenderedOffset().d_y;
-    if (image.getRenderedSize().d_height + image.getRenderedOffset().d_y > -d_descender)
-        d_descender = -(image.getRenderedSize().d_height + image.getRenderedOffset().d_y);
+    //----------------------------------------------------------------------------//
 
-    d_height = d_ascender - d_descender;
+    void PixmapFont::defineMapping(const utf32 codepoint, const String& image_name,
+            const float horz_advance) {
+        Image & image(
+                ImageManager::getSingleton().get(d_imageNamePrefix + '/' + image_name));
+
+        float adv = (horz_advance == -1.0f) ?
+                (float) (int) (image.getRenderedSize().d_width + image.getRenderedOffset().d_x) :
+                horz_advance;
+
+        if (d_autoScaled != ASM_Disabled)
+            adv *= d_origHorzScaling;
+
+        if (codepoint > d_maxCodepoint)
+            d_maxCodepoint = codepoint;
 #ifndef PE_NO_FONT_GLYPH
-    // add glyph to the map
-    d_cp_map[codepoint] = glyph;
+        // create a new FontGlyph with given character code
+        const FontGlyph glyph(adv, &image, true);
 #endif //PE_NO_FONT_GLYPH
-}
 
-//----------------------------------------------------------------------------//
-void PixmapFont::defineMapping(const String& value)
-{
-    char img[33];
-    utf32 codepoint;
-    float adv;
-    if (sscanf (value.c_str(), " %u , %g , %32s", &codepoint, &adv, img) != 3)
-        CEGUI_THROW(InvalidRequestException(
+        if (image.getRenderedOffset().d_y < -d_ascender)
+            d_ascender = -image.getRenderedOffset().d_y;
+        if (image.getRenderedSize().d_height + image.getRenderedOffset().d_y > -d_descender)
+            d_descender = -(image.getRenderedSize().d_height + image.getRenderedOffset().d_y);
+
+        d_height = d_ascender - d_descender;
+#ifndef PE_NO_FONT_GLYPH
+        // add glyph to the map
+        d_cp_map[codepoint] = glyph;
+#endif //PE_NO_FONT_GLYPH
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void PixmapFont::defineMapping(const String& value) {
+        char img[33];
+        utf32 codepoint;
+        float adv;
+        if (sscanf(value.c_str(), " %u , %g , %32s", &codepoint, &adv, img) != 3)
+            CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "Bad glyph Mapping specified: " + value));
+                "Bad glyph Mapping specified: " + value));
 #endif //PE_NO_THROW_MSGS
-    
-    defineMapping(codepoint, img, adv);
-}
 
-//----------------------------------------------------------------------------//
-const String& PixmapFont::getImageNamePrefix() const
-{
-    return d_imageNamePrefix;
-}
+        defineMapping(codepoint, img, adv);
+    }
 
-//----------------------------------------------------------------------------//
-void PixmapFont::setImageNamePrefix(const String& name_prefix)
-{
-    d_resourceGroup = "*";
-    d_imageNamePrefix = name_prefix;
-    reinit();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    const String& PixmapFont::getImageNamePrefix() const {
+        return d_imageNamePrefix;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void PixmapFont::setImageNamePrefix(const String& name_prefix) {
+        d_resourceGroup = "*";
+        d_imageNamePrefix = name_prefix;
+        reinit();
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

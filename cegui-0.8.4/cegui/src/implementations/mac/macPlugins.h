@@ -26,8 +26,7 @@
  ***************************************************************************/
 #include <CoreFoundation/CoreFoundation.h>
 
-namespace CEGUI 
-{
+namespace CEGUI {
     CFBundleRef mac_loadExeBundle(const char *path);
     void * mac_getBundleSym(CFBundleRef bundle, const char *name);
     bool mac_unloadExeBundle(CFBundleRef bundle);

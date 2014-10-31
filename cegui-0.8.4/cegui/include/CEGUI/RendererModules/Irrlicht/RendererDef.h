@@ -5,7 +5,7 @@
     changes:
         - Irrlicht patching not needed anymore
         - using the irrlicht filesystem to load config files etc.
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -32,19 +32,19 @@
 /*
  Beginning from version 0.7 Irrlicht does NOT need any changes for the GUI-renderer.
  Thanks to Nikolaus Gebhardt for including the missing methods in the renderer.
-*/
+ */
 
 #ifndef IRRLICHTRENDERERDEF_H_INCLUDED
 #define IRRLICHTRENDERERDEF_H_INCLUDED
 
 #if (defined( __WIN32__ ) || defined( _WIN32 ) || defined (WIN32)) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIIRRLICHTRENDERER_EXPORTS
-#       define IRR_GUIRENDERER_API __declspec(dllexport)
-#   else
-#       define IRR_GUIRENDERER_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIIRRLICHTRENDERER_EXPORTS
+#define IRR_GUIRENDERER_API __declspec(dllexport)
 #else
-#   define IRR_GUIRENDERER_API
+#define IRR_GUIRENDERER_API __declspec(dllimport)
+#endif
+#else
+#define IRR_GUIRENDERER_API
 #endif
 
 #endif

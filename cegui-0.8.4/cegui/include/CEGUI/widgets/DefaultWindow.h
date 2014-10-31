@@ -3,7 +3,7 @@
     author:     Paul D Turner
 
     purpose:    Interface to a default window
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,65 +34,64 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Window class intended to be used as a simple, generic Window.
-
-    This class does no rendering and so appears totally transparent.  This window defaults
-    to position 0.0f, 0.0f with a size of 1.0f x 1.0f.
-
-    /par
-    This Window has been used as the root GUI-sheet (root window) but it's usage has been extended
-    beyond that. That's why it's name has been changed to "DefaultWindow" for 0.8.
-*/
-class CEGUIEXPORT DefaultWindow : public Window
-{
-public:
-    /*************************************************************************
-        Constants
-    *************************************************************************/
-    // type name for this widget
-    static const String WidgetTypeName;             //!< The unique typename of this widget
-
-
-    /*************************************************************************
-        Construction and Destruction
-    *************************************************************************/
-    /*!
-    \brief
-        Constructor for DefaultWindows.
-    */
-    DefaultWindow(const String& type, const String& name);
-
+namespace CEGUI {
 
     /*!
     \brief
-        Destructor for DefaultWindows.
-    */
-    virtual ~DefaultWindow(void) {}
+        Window class intended to be used as a simple, generic Window.
+
+        This class does no rendering and so appears totally transparent.  This window defaults
+        to position 0.0f, 0.0f with a size of 1.0f x 1.0f.
+
+        /par
+        This Window has been used as the root GUI-sheet (root window) but it's usage has been extended
+        beyond that. That's why it's name has been changed to "DefaultWindow" for 0.8.
+     */
+    class CEGUIEXPORT DefaultWindow : public Window {
+    public:
+        /*************************************************************************
+            Constants
+         *************************************************************************/
+        // type name for this widget
+        static const String WidgetTypeName; //!< The unique typename of this widget
 
 
-protected:
-    // overridden functions from Window base class
-    bool moveToFront_impl(bool wasClicked);
+        /*************************************************************************
+            Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+            Constructor for DefaultWindows.
+         */
+        DefaultWindow(const String& type, const String& name);
+
+        /*!
+        \brief
+            Destructor for DefaultWindows.
+         */
+        virtual ~DefaultWindow(void) {
+        }
+
+
+    protected:
+        // overridden functions from Window base class
+        bool moveToFront_impl(bool wasClicked);
 #ifndef PE_NO_MOUSE
-    //! helper to update mouse input handled state
-    void updateMouseEventHandled(MouseEventArgs& e) const;
+        //! helper to update mouse input handled state
+        void updateMouseEventHandled(MouseEventArgs& e) const;
 
-  
 
-    // override the mouse event handlers
-    void onMouseMove(MouseEventArgs& e);
-    void onMouseWheel(MouseEventArgs& e);
-    void onMouseButtonDown(MouseEventArgs& e);
-    void onMouseButtonUp(MouseEventArgs& e);
-    void onMouseClicked(MouseEventArgs& e);
-    void onMouseDoubleClicked(MouseEventArgs& e);
-    void onMouseTripleClicked(MouseEventArgs& e);
+
+        // override the mouse event handlers
+        void onMouseMove(MouseEventArgs& e);
+        void onMouseWheel(MouseEventArgs& e);
+        void onMouseButtonDown(MouseEventArgs& e);
+        void onMouseButtonUp(MouseEventArgs& e);
+        void onMouseClicked(MouseEventArgs& e);
+        void onMouseDoubleClicked(MouseEventArgs& e);
+        void onMouseTripleClicked(MouseEventArgs& e);
 #endif //PE_NO_MOUSE
-};
+    };
 
 } // End of  CEGUI namespace section
 

@@ -538,56 +538,50 @@
 
 namespace bp = boost::python;
 
-struct CEGUI_String_to_python : public boost::python::converter::expected_from_python_type<CEGUI::String>
-{
-    static PyObject* convert(const CEGUI::String& s)
-    {
+struct CEGUI_String_to_python : public boost::python::converter::expected_from_python_type<CEGUI::String> {
+
+    static PyObject* convert(const CEGUI::String& s) {
         // use native byteorder
         int byteorder = 0;
 
         // "replace" replaces invalid utf32 chars with "?"
-        
+
         // python wants the size of the buffer, not length of the string,
         // this is the reason for the sizeof
         return boost::python::incref(
-            PyUnicode_DecodeUTF32((const char*)(s.ptr()), s.length() * sizeof(CEGUI::utf32), "replace", &byteorder)
-        );
+                PyUnicode_DecodeUTF32((const char*) (s.ptr()), s.length() * sizeof (CEGUI::utf32), "replace", &byteorder)
+                );
     }
 };
 
-struct CEGUI_String_from_python
-{
-    CEGUI_String_from_python()
-    {
-      boost::python::converter::registry::push_back(
-        &convertible,
-        &construct,
-        boost::python::type_id<CEGUI::String>(),
-        &boost::python::converter::expected_from_python_type<CEGUI::String>::get_pytype);
+struct CEGUI_String_from_python {
+
+    CEGUI_String_from_python() {
+        boost::python::converter::registry::push_back(
+                &convertible,
+                &construct,
+                boost::python::type_id<CEGUI::String>(),
+                &boost::python::converter::expected_from_python_type<CEGUI::String>::get_pytype);
     }
-    
-    static void* convertible(PyObject* obj_ptr)
-    {
+
+    static void* convertible(PyObject* obj_ptr) {
         // we allow str() and unicode() objects to be converted to CEGUI::String
         // NOTE: Python3 only has unicode strings
         if (PyUnicode_Check(obj_ptr)
 #if PY_MAJOR_VERSION < 3
-            || PyString_Check(obj_ptr)
+                || PyString_Check(obj_ptr)
 #endif
-        )
-        {
+                ) {
             return obj_ptr;
         }
         return 0;
     }
-    
+
     static void construct(
-      PyObject* obj_ptr,
-      boost::python::converter::rvalue_from_python_stage1_data* data)
-    {
+            PyObject* obj_ptr,
+            boost::python::converter::rvalue_from_python_stage1_data* data) {
 #if PY_MAJOR_VERSION < 3
-        if (!PyUnicode_Check(obj_ptr))
-        {
+        if (!PyUnicode_Check(obj_ptr)) {
             // no need for unicode, this is just plain str()
             const char* value = PyString_AsString(obj_ptr);
             if (value == 0)
@@ -596,8 +590,7 @@ struct CEGUI_String_from_python
             void* storage = ((boost::python::converter::rvalue_from_python_storage<CEGUI::String>*)data)->storage.bytes;
             new (storage) CEGUI::String(value);
             data->convertible = storage;
-        }
-        else
+        } else
 #endif
         {
             // we have to employ a bit more machinery since this is utf16 coded string
@@ -622,14 +615,14 @@ struct CEGUI_String_from_python
     }
 };
 
-BOOST_PYTHON_MODULE(PyCEGUI){
+BOOST_PYTHON_MODULE(PyCEGUI) {
     register_enumerations();
 
     boost::python::to_python_converter<
-        CEGUI::String,
-        CEGUI_String_to_python,
-        true>();
-    
+            CEGUI::String,
+            CEGUI_String_to_python,
+            true>();
+
     CEGUI_String_from_python();
 
     register_vector_less__CEGUI_scope_UDim__greater__class();
@@ -1150,7 +1143,7 @@ BOOST_PYTHON_MODULE(PyCEGUI){
 
     register_XMLSerializer_class();
 
-    bp::implicitly_convertible< CEGUI::XMLSerializer, bool >();
+    bp::implicitly_convertible < CEGUI::XMLSerializer, bool >();
 
     register_StdPairCEGUIImageImageFactory_class();
 

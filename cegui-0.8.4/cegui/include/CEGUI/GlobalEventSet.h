@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	16/1/2005
-	author:		Paul D Turner
-*************************************************************************/
+        created:	16/1/2005
+        author:		Paul D Turner
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,75 +32,74 @@
 
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4275)
+#pragma warning(push)
+#pragma warning(disable : 4275)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    The GlobalEventSet singleton allows you to subscribe to an event for all
-    instances of a class.  The GlobalEventSet effectively supports "late binding"
-    to events; which means you can subscribe to some event that does not actually
-    exist (yet).
-*/
-class CEGUIEXPORT GlobalEventSet :
+namespace CEGUI {
+
+    /*!
+    \brief
+        The GlobalEventSet singleton allows you to subscribe to an event for all
+        instances of a class.  The GlobalEventSet effectively supports "late binding"
+        to events; which means you can subscribe to some event that does not actually
+        exist (yet).
+     */
+    class CEGUIEXPORT GlobalEventSet :
     public EventSet,
     public Singleton<GlobalEventSet>,
-    public AllocatedObject<GlobalEventSet>
-{
-public:
-	GlobalEventSet();
-	~GlobalEventSet();
+    public AllocatedObject<GlobalEventSet> {
+    public:
+        GlobalEventSet();
+        ~GlobalEventSet();
 
 
-	/*!
-	\brief
-		Return singleton System object
+        /*!
+        \brief
+                Return singleton System object
 
-	\return
-		Singleton System object
-	*/
-	static	GlobalEventSet&	getSingleton(void);
-
-
-	/*!
-	\brief
-		Return pointer to singleton System object
-
-	\return
-		Pointer to singleton System object
-	*/
-	static	GlobalEventSet*	getSingletonPtr(void);
+        \return
+                Singleton System object
+         */
+        static GlobalEventSet& getSingleton(void);
 
 
-	/*!
-	\brief
-		Fires the named event passing the given EventArgs object.
+        /*!
+        \brief
+                Return pointer to singleton System object
 
-	\param name
-		String object holding the name of the Event that is to be fired (triggered)
+        \return
+                Pointer to singleton System object
+         */
+        static GlobalEventSet* getSingletonPtr(void);
 
-	\param args
-		The EventArgs (or derived) object that is to be bassed to each subscriber of the Event.  Once all subscribers
-		have been called the 'handled' field of the event is updated appropriately.
+
+        /*!
+        \brief
+                Fires the named event passing the given EventArgs object.
+
+        \param name
+                String object holding the name of the Event that is to be fired (triggered)
+
+        \param args
+                The EventArgs (or derived) object that is to be bassed to each subscriber of the Event.  Once all subscribers
+                have been called the 'handled' field of the event is updated appropriately.
 		
-	\param eventNamespace
-		String object describing the namespace prefix to use when firing the global event.
+        \param eventNamespace
+                String object describing the namespace prefix to use when firing the global event.
 
-	\return
-		Nothing.
-	*/
-	virtual void	fireEvent(const String& name, EventArgs& args, const String& eventNamespace = "");
-};
+        \return
+                Nothing.
+         */
+        virtual void fireEvent(const String& name, EventArgs& args, const String& eventNamespace = "");
+    };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIGlobalEventSet_h_

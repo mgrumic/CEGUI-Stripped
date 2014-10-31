@@ -8,59 +8,59 @@ namespace bp = boost::python;
 
 struct Logger_wrapper : CEGUI::Logger, bp::wrapper< CEGUI::Logger > {
 
-    Logger_wrapper( )
-    : CEGUI::Logger( )
-      , bp::wrapper< CEGUI::Logger >(){
+    Logger_wrapper()
+    : CEGUI::Logger()
+    , bp::wrapper< CEGUI::Logger >() {
         // null constructor
-    
+
     }
 
-    virtual void logEvent( ::CEGUI::String const & message, ::CEGUI::LoggingLevel level=::CEGUI::Standard ){
-        bp::override func_logEvent = this->get_override( "logEvent" );
-        func_logEvent( boost::ref(message), level );
+    virtual void logEvent(::CEGUI::String const & message, ::CEGUI::LoggingLevel level = ::CEGUI::Standard) {
+        bp::override func_logEvent = this->get_override("logEvent");
+        func_logEvent(boost::ref(message), level);
     }
 
-    virtual void setLogFilename( ::CEGUI::String const & filename, bool append=false ){
-        bp::override func_setLogFilename = this->get_override( "setLogFilename" );
-        func_setLogFilename( boost::ref(filename), append );
+    virtual void setLogFilename(::CEGUI::String const & filename, bool append = false) {
+        bp::override func_setLogFilename = this->get_override("setLogFilename");
+        func_setLogFilename(boost::ref(filename), append);
     }
 
 };
 
-void register_Logger_class(){
+void register_Logger_class() {
 
     { //::CEGUI::Logger
         typedef bp::class_< Logger_wrapper, bp::bases< CEGUI::Singleton< CEGUI::Logger > >, boost::noncopyable > Logger_exposer_t;
-        Logger_exposer_t Logger_exposer = Logger_exposer_t( "Logger", bp::init< >("*!\n\
+        Logger_exposer_t Logger_exposer = Logger_exposer_t("Logger", bp::init< >("*!\n\
         \n\
            Constructor for Logger object.\n\
-        *\n") );
-        bp::scope Logger_scope( Logger_exposer );
+        *\n"));
+        bp::scope Logger_scope(Logger_exposer);
         { //::CEGUI::Logger::getLoggingLevel
-        
-            typedef ::CEGUI::LoggingLevel ( ::CEGUI::Logger::*getLoggingLevel_function_type )(  ) const;
-            
-            Logger_exposer.def( 
-                "getLoggingLevel"
-                , getLoggingLevel_function_type( &::CEGUI::Logger::getLoggingLevel )
-                , "*!\n\
+
+            typedef ::CEGUI::LoggingLevel(::CEGUI::Logger::*getLoggingLevel_function_type)() const;
+
+            Logger_exposer.def(
+                    "getLoggingLevel"
+                    , getLoggingLevel_function_type(&::CEGUI::Logger::getLoggingLevel)
+                    , "*!\n\
                \n\
                   return the current logging level setting\n\
             \n\
                @return\n\
                   One of the LoggingLevel enumerated values specifying the current level of logging\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::Logger::logEvent
-        
-            typedef void ( ::CEGUI::Logger::*logEvent_function_type )( ::CEGUI::String const &,::CEGUI::LoggingLevel ) ;
-            
-            Logger_exposer.def( 
-                "logEvent"
-                , bp::pure_virtual( logEvent_function_type(&::CEGUI::Logger::logEvent) )
-                , ( bp::arg("message"), bp::arg("level")=::CEGUI::Standard )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Logger::*logEvent_function_type)(::CEGUI::String const &, ::CEGUI::LoggingLevel);
+
+            Logger_exposer.def(
+                    "logEvent"
+                    , bp::pure_virtual(logEvent_function_type(&::CEGUI::Logger::logEvent))
+                    , (bp::arg("message"), bp::arg("level") = ::CEGUI::Standard)
+                    , "*!\n\
                \n\
                   Add an event to the log.\n\
             \n\
@@ -73,18 +73,18 @@ void register_Logger_class(){
             \n\
                @return\n\
                   Nothing\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::Logger::setLogFilename
-        
-            typedef void ( ::CEGUI::Logger::*setLogFilename_function_type )( ::CEGUI::String const &,bool ) ;
-            
-            Logger_exposer.def( 
-                "setLogFilename"
-                , bp::pure_virtual( setLogFilename_function_type(&::CEGUI::Logger::setLogFilename) )
-                , ( bp::arg("filename"), bp::arg("append")=(bool)(false) )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Logger::*setLogFilename_function_type)(::CEGUI::String const &, bool);
+
+            Logger_exposer.def(
+                    "setLogFilename"
+                    , bp::pure_virtual(setLogFilename_function_type(&::CEGUI::Logger::setLogFilename))
+                    , (bp::arg("filename"), bp::arg("append") = (bool)(false))
+                    , "*!\n\
                 \n\
                     Set the name of the log file where all subsequent log entries should be written.\n\
                     The interpretation of file name may differ depending on the concrete logger\n\
@@ -100,18 +100,18 @@ void register_Logger_class(){
                 @param append\n\
                     - true if events should be added to the end of the current file.\n\
                     - false if the current contents of the file should be discarded.\n\
-                 *\n" );
-        
+                 *\n");
+
         }
         { //::CEGUI::Logger::setLoggingLevel
-        
-            typedef void ( ::CEGUI::Logger::*setLoggingLevel_function_type )( ::CEGUI::LoggingLevel ) ;
-            
-            Logger_exposer.def( 
-                "setLoggingLevel"
-                , setLoggingLevel_function_type( &::CEGUI::Logger::setLoggingLevel )
-                , ( bp::arg("level") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Logger::*setLoggingLevel_function_type)(::CEGUI::LoggingLevel);
+
+            Logger_exposer.def(
+                    "setLoggingLevel"
+                    , setLoggingLevel_function_type(&::CEGUI::Logger::setLoggingLevel)
+                    , (bp::arg("level"))
+                    , "*!\n\
                \n\
                   Set the level of logging information that will get out to the log file\n\
             \n\
@@ -121,8 +121,8 @@ void register_Logger_class(){
             \n\
                @return\n\
                   Nothing\n\
-               *\n" );
-        
+               *\n");
+
         }
     }
 

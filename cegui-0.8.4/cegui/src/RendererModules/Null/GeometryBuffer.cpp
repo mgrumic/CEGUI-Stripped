@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jan 15 20109
     author:     Eugene Marcotte
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -30,10 +30,10 @@
 #include "CEGUI/RenderEffect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-NullGeometryBuffer::NullGeometryBuffer() :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    NullGeometryBuffer::NullGeometryBuffer() :
     d_activeTexture(0),
     d_clipRect(0, 0, 0, 0),
     d_clippingActive(true),
@@ -47,133 +47,131 @@ NullGeometryBuffer::NullGeometryBuffer() :
     d_pivot(0, 0, 0)
 #endif //PE_NO_VECTOR3D
 #ifndef PE_NO_RENDEREFFECT
-    ,d_effect(0)
+    , d_effect(0)
 #endif //PE_NO_RENDEREFFECT
-{
-}
-
-//----------------------------------------------------------------------------//
-NullGeometryBuffer::~NullGeometryBuffer()
-{
-}
-
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::draw() const
-{
- #ifndef PE_NO_RENDEREFFECT
-    const int pass_count = d_effect ? d_effect->getPassCount() : 1;
-    for (int pass = 0; pass < pass_count; ++pass)
     {
-        // set up RenderEffect
-        if (d_effect)
-            d_effect->performPreRenderFunctions(pass);
     }
-    // clean up RenderEffect
-    if (d_effect)
-        d_effect->performPostRenderFunctions();
+
+    //----------------------------------------------------------------------------//
+
+    NullGeometryBuffer::~NullGeometryBuffer() {
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullGeometryBuffer::draw() const {
+#ifndef PE_NO_RENDEREFFECT
+        const int pass_count = d_effect ? d_effect->getPassCount() : 1;
+        for (int pass = 0; pass < pass_count; ++pass) {
+            // set up RenderEffect
+            if (d_effect)
+                d_effect->performPreRenderFunctions(pass);
+        }
+        // clean up RenderEffect
+        if (d_effect)
+            d_effect->performPostRenderFunctions();
 #endif //PE_NO_RENDEREFFECT
-}
+    }
 #ifndef PE_NO_VECTOR3D
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setTranslation(const Vector3f& v)
-{
-    d_translation = v;
-}
+    //----------------------------------------------------------------------------//
+
+    void NullGeometryBuffer::setTranslation(const Vector3f& v) {
+        d_translation = v;
+    }
 #endif  // PE_NO_VECTOR3D
 #ifndef PE_NO_QUATERNION
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setRotation(const Quaternion& r)
-{
-    d_rotation = r;
-}
+    //----------------------------------------------------------------------------//
+
+    void NullGeometryBuffer::setRotation(const Quaternion& r) {
+        d_rotation = r;
+    }
 #endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setPivot(const Vector3f& p)
-{
-    d_pivot = p;
-}
-#endif  // PE_NO_VECTOR3D
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setClippingRegion(const Rectf& region)
-{
-    d_clipRect.top(ceguimax(0.0f, region.top()));
-    d_clipRect.bottom(ceguimax(0.0f, region.bottom()));
-    d_clipRect.left(ceguimax(0.0f, region.left()));
-    d_clipRect.right(ceguimax(0.0f, region.right()));
-}
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::appendVertex(const Vertex& vertex)
-{
-    appendGeometry(&vertex, 1);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::appendGeometry(const Vertex* const vbuff,
-                                        uint vertex_count)
-{
-    // buffer these vertices
-    for (uint i = 0; i < vertex_count; ++i)
-    {
-        d_vertices.push_back(vbuff[i]);
+    void NullGeometryBuffer::setPivot(const Vector3f& p) {
+        d_pivot = p;
     }
-}
+#endif  // PE_NO_VECTOR3D
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setActiveTexture(Texture* texture)
-{
-    d_activeTexture = static_cast<NullTexture*>(texture);
-}
+    void NullGeometryBuffer::setClippingRegion(const Rectf& region) {
+        d_clipRect.top(ceguimax(0.0f, region.top()));
+        d_clipRect.bottom(ceguimax(0.0f, region.bottom()));
+        d_clipRect.left(ceguimax(0.0f, region.left()));
+        d_clipRect.right(ceguimax(0.0f, region.right()));
+    }
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::reset()
-{
-    d_vertices.clear();
-}
-//----------------------------------------------------------------------------//
-Texture* NullGeometryBuffer::getActiveTexture() const
-{
-    return d_activeTexture;
-}
+    void NullGeometryBuffer::appendVertex(const Vertex& vertex) {
+        appendGeometry(&vertex, 1);
+    }
 
-//----------------------------------------------------------------------------//
-uint NullGeometryBuffer::getVertexCount() const
-{
-    return d_vertices.size();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-uint NullGeometryBuffer::getBatchCount() const
-{
-    return 1;
-}
+    void NullGeometryBuffer::appendGeometry(const Vertex * const vbuff,
+            uint vertex_count) {
+        // buffer these vertices
+        for (uint i = 0; i < vertex_count; ++i) {
+            d_vertices.push_back(vbuff[i]);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullGeometryBuffer::setActiveTexture(Texture* texture) {
+        d_activeTexture = static_cast<NullTexture*> (texture);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullGeometryBuffer::reset() {
+        d_vertices.clear();
+    }
+    //----------------------------------------------------------------------------//
+
+    Texture* NullGeometryBuffer::getActiveTexture() const {
+        return d_activeTexture;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    uint NullGeometryBuffer::getVertexCount() const {
+        return d_vertices.size();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    uint NullGeometryBuffer::getBatchCount() const {
+        return 1;
+    }
 #ifndef PE_NO_RENDEREFFECT
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setRenderEffect(RenderEffect* effect)
-{
-    d_effect = effect;
-}
+    //----------------------------------------------------------------------------//
+
+    void NullGeometryBuffer::setRenderEffect(RenderEffect* effect) {
+        d_effect = effect;
+    }
 #endif //PE_NO_RENDEREFFECT
 #ifndef PE_NO_RENDEREFFECT
-//----------------------------------------------------------------------------//
-RenderEffect* NullGeometryBuffer::getRenderEffect()
-{
-    return d_effect;
-}
+    //----------------------------------------------------------------------------//
+
+    RenderEffect* NullGeometryBuffer::getRenderEffect() {
+        return d_effect;
+    }
 #endif //PE_NO_RENDEREFFECT
 
-//----------------------------------------------------------------------------//
-void NullGeometryBuffer::setClippingActive(const bool active)
-{
-    d_clippingActive = active;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool NullGeometryBuffer::isClippingActive() const
-{
-    return d_clippingActive;
-}
+    void NullGeometryBuffer::setClippingActive(const bool active) {
+        d_clippingActive = active;
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    bool NullGeometryBuffer::isClippingActive() const {
+        return d_clippingActive;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

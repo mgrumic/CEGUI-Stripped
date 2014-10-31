@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Sun May 21 2006
-	author:		Tomas Lindquist Olsen <tomas@famolsen.dk>
+        created:	Sun May 21 2006
+        author:		Tomas Lindquist Olsen <tomas@famolsen.dk>
 
     purpose:	Defines the RawDataContainer
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -29,18 +29,15 @@
 #include "CEGUI/DataContainer.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-void RawDataContainer::release(void)
-{
-    if (mData)
-    {
-        CEGUI_DELETE_ARRAY_PT(mData, uint8, mSize, RawDataContainer);
+    void RawDataContainer::release(void) {
+        if (mData) {
+            CEGUI_DELETE_ARRAY_PT(mData, uint8, mSize, RawDataContainer);
 
-        mData = 0;
-        mSize = 0;
+            mData = 0;
+            mSize = 0;
+        }
     }
-}
 
 } // End of  CEGUI namespace section

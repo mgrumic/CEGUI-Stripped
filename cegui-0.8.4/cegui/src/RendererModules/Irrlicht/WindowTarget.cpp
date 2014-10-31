@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 3 2009
     author:     Paul D Turner (parts based on original code by Thomas Suter)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -27,34 +27,33 @@
 #include "CEGUI/RendererModules/Irrlicht/WindowTarget.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-IrrlichtWindowTarget::IrrlichtWindowTarget(IrrlichtRenderer& owner,
-                                           irr::video::IVideoDriver& driver) :
-    IrrlichtRenderTarget<>(owner, driver)
-{
-    irr::core::dimension2d<irr::s32> sz(d_driver.getScreenSize());
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    const Rectf init_area(0, 0,
-                         static_cast<float>(sz.Width),
-                         static_cast<float>(sz.Height));
-    setArea(init_area);
-}
+    IrrlichtWindowTarget::IrrlichtWindowTarget(IrrlichtRenderer& owner,
+            irr::video::IVideoDriver& driver) :
+    IrrlichtRenderTarget<>(owner, driver) {
+        irr::core::dimension2d<irr::s32> sz(d_driver.getScreenSize());
 
-//----------------------------------------------------------------------------//
-IrrlichtWindowTarget::~IrrlichtWindowTarget()
-{
-}
+        const Rectf init_area(0, 0,
+                static_cast<float> (sz.Width),
+                static_cast<float> (sz.Height));
+        setArea(init_area);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    IrrlichtWindowTarget::~IrrlichtWindowTarget() {
+    }
 
 
-//----------------------------------------------------------------------------//
-bool IrrlichtWindowTarget::isImageryCache() const
-{
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool IrrlichtWindowTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jul 2 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,8 +30,8 @@
 #include "CEGUI/WindowRendererSets/Core/Module.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Titlebar class for the FalagardBase module.
@@ -42,16 +42,15 @@ namespace CEGUI
             - Active
             - Inactive
             - Disabled
-    */
-    class COREWRSET_API FalagardTitlebar : public WindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardTitlebar : public WindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardTitlebar(const String& type);
 
         void render();

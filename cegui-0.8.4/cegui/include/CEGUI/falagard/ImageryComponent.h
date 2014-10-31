@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jun 13 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,24 +32,23 @@
 #include "CEGUI/falagard/FormattingSetting.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class that encapsulates information for a single image component.
-    */
-    class CEGUIEXPORT ImageryComponent : public FalagardComponentBase
-    {
+     */
+    class CEGUIEXPORT ImageryComponent : public FalagardComponentBase {
     public:
         /*!
         \brief
             Constructor
-        */
+         */
         ImageryComponent();
 
         /*!
@@ -58,7 +57,7 @@ namespace CEGUI
 
         \return
             Image object.
-        */
+         */
         const Image* getImage() const;
 
         /*!
@@ -70,7 +69,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setImage(const Image* image);
 
         /*!
@@ -82,7 +81,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setImage(const String& name);
 
         /*!
@@ -91,7 +90,7 @@ namespace CEGUI
 
         \return
             One of the VerticalFormatting enumerated values.
-        */
+         */
         VerticalFormatting getVerticalFormatting(const Window& wnd) const;
 
         /*!
@@ -103,7 +102,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setVerticalFormatting(VerticalFormatting fmt);
 
         /*!
@@ -112,7 +111,7 @@ namespace CEGUI
 
         \return
             One of the HorizontalFormatting enumerated values.
-        */
+         */
         HorizontalFormatting getHorizontalFormatting(const Window& wnd) const;
 
         /*!
@@ -124,21 +123,21 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setHorizontalFormatting(HorizontalFormatting fmt);
 
         /*!
         \brief
             Set the name of a property that will be used to obtain the horizontal
             formatting to use for this ImageryComponent.
-        */
+         */
         void setHorizontalFormattingPropertySource(const String& property_name);
 
         /*!
         \brief
             Set the name of a property that will be used to obtain the vertical
             formatting to use for this ImageryComponent.
-        */
+         */
         void setVerticalFormattingPropertySource(const String& property_name);
 
         /*!
@@ -151,7 +150,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
         /*!
@@ -161,7 +160,7 @@ namespace CEGUI
         \return
             - true if the image comes via a Propery.
             - false if the image is defined explicitly.
-        */
+         */
         bool isImageFetchedFromProperty() const;
 
         /*!
@@ -170,7 +169,7 @@ namespace CEGUI
 
         \return
             String object holding the name of a Propery.
-        */
+         */
         const String& getImagePropertySource() const;
 
         /*!
@@ -182,25 +181,25 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setImagePropertySource(const String& property);
 
     protected:
         // implemets abstract from base
         void render_impl(Window& srcWindow, Rectf& destRect, const CEGUI::ColourRect* modColours, const Rectf* clipper, bool clipToDisplay) const;
 
-        const Image*         d_image;           //!< CEGUI::Image to be drawn by this image component.
+        const Image* d_image; //!< CEGUI::Image to be drawn by this image component.
         //! Vertical formatting to be applied when rendering the image component.
         FormattingSetting<VerticalFormatting> d_vertFormatting;
         //! Horizontal formatting to be applied when rendering the image component.
         FormattingSetting<HorizontalFormatting> d_horzFormatting;
-        String  d_imagePropertyName;            //!< Name of the property to access to obtain the image to be used.
+        String d_imagePropertyName; //!< Name of the property to access to obtain the image to be used.
     };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalImageryComponent_h_

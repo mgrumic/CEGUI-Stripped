@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    12/3/2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,16 +32,15 @@
 #include "CEGUI/PropertySet.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         This is an abstract class that is used by CEGUI to interface with XML parser libraries.
      */
     class CEGUIEXPORT XMLParser :
-        public PropertySet,
-        public AllocatedObject<XMLParser>
-    {
+    public PropertySet,
+    public AllocatedObject<XMLParser> {
     public:
         /*!
         \brief
@@ -148,7 +147,7 @@ namespace CEGUI
 
         \return
             String object holding a string that identifies the XML parser in use.
-        */
+         */
         const String& getIdentifierString() const;
 
     protected:
@@ -173,10 +172,10 @@ namespace CEGUI
         virtual void cleanupImpl(void) = 0;
 
         // data fields
-        String d_identifierString;                 //!< String that holds some id information about the module.
+        String d_identifierString; //!< String that holds some id information about the module.
 
     private:
-        bool d_initialised;     //!< true if the parser module has been initialised,
+        bool d_initialised; //!< true if the parser module has been initialised,
     };
 
 } // End of  CEGUI namespace section

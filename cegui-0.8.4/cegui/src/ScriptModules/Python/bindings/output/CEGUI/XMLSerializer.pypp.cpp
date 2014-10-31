@@ -6,30 +6,30 @@
 
 namespace bp = boost::python;
 
-void register_XMLSerializer_class(){
+void register_XMLSerializer_class() {
 
     { //::CEGUI::XMLSerializer
         typedef bp::class_< CEGUI::XMLSerializer, boost::noncopyable > XMLSerializer_exposer_t;
-        XMLSerializer_exposer_t XMLSerializer_exposer = XMLSerializer_exposer_t( "XMLSerializer", bp::init< CEGUI::OutStream &, bp::optional< size_t > >(( bp::arg("out"), bp::arg("indentSpace")=(::size_t)(4) ), "*!\n\
+        XMLSerializer_exposer_t XMLSerializer_exposer = XMLSerializer_exposer_t("XMLSerializer", bp::init< CEGUI::OutStream &, bp::optional< size_t > >((bp::arg("out"), bp::arg("indentSpace") = (::size_t)(4)), "*!\n\
          XMLSerializer constructor \n\
          \n\
         @param out The stream to use to export the result \n\
          \n\
          \n\
         @param indentSpace The indentation level (0 to disable indentation)\n\
-        *\n") );
-        bp::scope XMLSerializer_scope( XMLSerializer_exposer );
+        *\n"));
+        bp::scope XMLSerializer_scope(XMLSerializer_exposer);
         bp::implicitly_convertible< CEGUI::OutStream &, CEGUI::XMLSerializer >();
         { //::CEGUI::XMLSerializer::attribute
-        
-            typedef ::CEGUI::XMLSerializer & ( ::CEGUI::XMLSerializer::*attribute_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            XMLSerializer_exposer.def( 
-                "attribute"
-                , attribute_function_type( &::CEGUI::XMLSerializer::attribute )
-                , ( bp::arg("name"), bp::arg("value") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::XMLSerializer & (::CEGUI::XMLSerializer::*attribute_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            XMLSerializer_exposer.def(
+                    "attribute"
+                    , attribute_function_type(&::CEGUI::XMLSerializer::attribute)
+                    , (bp::arg("name"), bp::arg("value"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
              Close the current tag. \n\
             \n\
             @return \n\
@@ -44,18 +44,18 @@ void register_XMLSerializer_class(){
             \n\
             @return \n\
                 A reference to the current object for chaining operation \n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::XMLSerializer::closeTag
-        
-            typedef ::CEGUI::XMLSerializer & ( ::CEGUI::XMLSerializer::*closeTag_function_type )(  ) ;
-            
-            XMLSerializer_exposer.def( 
-                "closeTag"
-                , closeTag_function_type( &::CEGUI::XMLSerializer::closeTag )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::XMLSerializer & (::CEGUI::XMLSerializer::*closeTag_function_type)();
+
+            XMLSerializer_exposer.def(
+                    "closeTag"
+                    , closeTag_function_type(&::CEGUI::XMLSerializer::closeTag)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
              Start a new tag in the xml document.  \n\
             \n\
             @param name The name of the tag \n\
@@ -68,45 +68,45 @@ void register_XMLSerializer_class(){
             \n\
             @return \n\
                 A reference to the current object for chaining operation \n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::XMLSerializer::getTagCount
-        
-            typedef unsigned int ( ::CEGUI::XMLSerializer::*getTagCount_function_type )(  ) const;
-            
-            XMLSerializer_exposer.def( 
-                "getTagCount"
-                , getTagCount_function_type( &::CEGUI::XMLSerializer::getTagCount )
-                , "*! \n\
+
+            typedef unsigned int ( ::CEGUI::XMLSerializer::*getTagCount_function_type)() const;
+
+            XMLSerializer_exposer.def(
+                    "getTagCount"
+                    , getTagCount_function_type(&::CEGUI::XMLSerializer::getTagCount)
+                    , "*! \n\
                      \n\
                     report the nimber of tags created in the document \n\
             \n\
                     @return \n\
                         return the number of tag created in the document \n\
-                    *\n" );
-        
+                    *\n");
+
         }
         { //::CEGUI::XMLSerializer::openTag
-        
-            typedef ::CEGUI::XMLSerializer & ( ::CEGUI::XMLSerializer::*openTag_function_type )( ::CEGUI::String const & ) ;
-            
-            XMLSerializer_exposer.def( 
-                "openTag"
-                , openTag_function_type( &::CEGUI::XMLSerializer::openTag )
-                , ( bp::arg("name") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::XMLSerializer & (::CEGUI::XMLSerializer::*openTag_function_type)(::CEGUI::String const &);
+
+            XMLSerializer_exposer.def(
+                    "openTag"
+                    , openTag_function_type(&::CEGUI::XMLSerializer::openTag)
+                    , (bp::arg("name"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
              Start a new tag in the xml document.  \n\
             \n\
             @param name The name of the tag \n\
             \n\
             @return \n\
                 A reference to the current object for chaining operation \n\
-            *\n" );
-        
+            *\n");
+
         }
-        XMLSerializer_exposer.def( "__int__", &CEGUI::XMLSerializer::operator bool , "*! \n\
+        XMLSerializer_exposer.def("__int__", &CEGUI::XMLSerializer::operator bool, "*! \n\
                  \n\
                 report the nimber of tags created in the document \n\
         \n\
@@ -118,18 +118,18 @@ void register_XMLSerializer_class(){
                 \n\
                 @return \n\
                     True if all previous operations where successfull \n\
-                *\n" );
-        XMLSerializer_exposer.def( !bp::self );
+                *\n");
+        XMLSerializer_exposer.def(!bp::self);
         { //::CEGUI::XMLSerializer::text
-        
-            typedef ::CEGUI::XMLSerializer & ( ::CEGUI::XMLSerializer::*text_function_type )( ::CEGUI::String const & ) ;
-            
-            XMLSerializer_exposer.def( 
-                "text"
-                , text_function_type( &::CEGUI::XMLSerializer::text )
-                , ( bp::arg("text") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::XMLSerializer & (::CEGUI::XMLSerializer::*text_function_type)(::CEGUI::String const &);
+
+            XMLSerializer_exposer.def(
+                    "text"
+                    , text_function_type(&::CEGUI::XMLSerializer::text)
+                    , (bp::arg("text"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
              After an opening tag you can populate attribute list with this function \n\
             \n\
             @param name The name of the attribute \n\
@@ -146,8 +146,8 @@ void register_XMLSerializer_class(){
             \n\
             @return \n\
                 A reference to the current object for chaining operation \n\
-            *\n" );
-        
+            *\n");
+
         }
     }
 

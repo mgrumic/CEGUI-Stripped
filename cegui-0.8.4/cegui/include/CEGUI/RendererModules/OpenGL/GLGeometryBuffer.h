@@ -2,7 +2,7 @@
     created:    Thu Jan 8 2009
     authors:    Paul D Turner <paul@cegui.org.uk>
                 Lukas E Meindl
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2013 Paul D Turner & The CEGUI Development Team
  *
@@ -31,34 +31,32 @@
 #include "CEGUI/RendererModules/OpenGL/GeometryBufferBase.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OpenGLTexture;
-class OpenGLRenderer;
+namespace CEGUI {
+    class OpenGLTexture;
+    class OpenGLRenderer;
 
-/*!
-\brief
-    OpenGL based implementation of the GeometryBuffer interface.
-*/
-class OPENGL_GUIRENDERER_API OpenGLGeometryBuffer : public OpenGLGeometryBufferBase
-{
-public:
-    //! Constructor
-    OpenGLGeometryBuffer(OpenGLRenderer& owner);
+    /*!
+    \brief
+        OpenGL based implementation of the GeometryBuffer interface.
+     */
+    class OPENGL_GUIRENDERER_API OpenGLGeometryBuffer : public OpenGLGeometryBufferBase {
+    public:
+        //! Constructor
+        OpenGLGeometryBuffer(OpenGLRenderer& owner);
 
-    // implementation/overrides of members from GeometryBuffer
-    void draw() const;
-};
+        // implementation/overrides of members from GeometryBuffer
+        void draw() const;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIOpenGLGeometryBuffer_h_

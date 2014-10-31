@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jul 2 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -35,29 +35,26 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardProgressBar::TypeName("Core/ProgressBar");
 
     FalagardProgressBar::FalagardProgressBar(const String& type) :
-        WindowRenderer(type, "ProgressBar"),
-        d_vertical(false),
-        d_reversed(false)
-    {
-        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardProgressBar,bool,
-        "VerticalProgress", "Property to get/set whether the ProgressBar operates in the vertical direction."
-        "  Value is either \"true\" or \"false\".",
-        &FalagardProgressBar::setVertical,&FalagardProgressBar::isVertical,
-        false);
-        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardProgressBar,bool,
-        "ReversedProgress", "Property to get/set whether the ProgressBar operates in reversed direction."
-        "  Value is either \"true\" or \"false\".",
-        &FalagardProgressBar::setReversed,&FalagardProgressBar::isReversed,
-        false);
+    WindowRenderer(type, "ProgressBar"),
+    d_vertical(false),
+    d_reversed(false) {
+        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardProgressBar, bool,
+                "VerticalProgress", "Property to get/set whether the ProgressBar operates in the vertical direction."
+                "  Value is either \"true\" or \"false\".",
+                &FalagardProgressBar::setVertical, &FalagardProgressBar::isVertical,
+                false);
+        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(FalagardProgressBar, bool,
+                "ReversedProgress", "Property to get/set whether the ProgressBar operates in reversed direction."
+                "  Value is either \"true\" or \"false\".",
+                &FalagardProgressBar::setReversed, &FalagardProgressBar::isReversed,
+                false);
     }
 
-    void FalagardProgressBar::render()
-    {
+    void FalagardProgressBar::render() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.
@@ -76,30 +73,21 @@ namespace CEGUI
         // calculate a clipper according to the current progress.
         Rectf progressClipper(progressRect);
 
-        ProgressBar* w = (ProgressBar*)d_window;
-        if (d_vertical)
-        {
+        ProgressBar* w = (ProgressBar*) d_window;
+        if (d_vertical) {
             float height = CoordConverter::alignToPixels(progressClipper.getHeight() * w->getProgress());
 
-            if (d_reversed)
-            {
+            if (d_reversed) {
                 progressClipper.setHeight(height);
-            }
-            else
-            {
+            } else {
                 progressClipper.top(progressClipper.bottom() - height);
             }
-        }
-        else
-        {
+        } else {
             float width = CoordConverter::alignToPixels(progressClipper.getWidth() * w->getProgress());
 
-            if (d_reversed)
-            {
+            if (d_reversed) {
                 progressClipper.left(progressClipper.right() - width);
-            }
-            else
-            {
+            } else {
                 progressClipper.setWidth(width);
             }
         }
@@ -108,23 +96,19 @@ namespace CEGUI
         imagery->render(*d_window, progressRect, 0, &progressClipper);
     }
 
-    bool FalagardProgressBar::isVertical() const
-    {
+    bool FalagardProgressBar::isVertical() const {
         return d_vertical;
     }
 
-    bool FalagardProgressBar::isReversed() const
-    {
+    bool FalagardProgressBar::isReversed() const {
         return d_reversed;
     }
 
-    void FalagardProgressBar::setVertical(bool setting)
-    {
+    void FalagardProgressBar::setVertical(bool setting) {
         d_vertical = setting;
     }
 
-    void FalagardProgressBar::setReversed(bool setting)
-    {
+    void FalagardProgressBar::setReversed(bool setting) {
         d_reversed = setting;
     }
 

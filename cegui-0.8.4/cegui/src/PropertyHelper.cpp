@@ -3,7 +3,7 @@
     author:     Paul D Turner
 
     purpose:    Implementation of PropertyHelper methods
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -40,79 +40,76 @@
 #define snprintf _snprintf
 #endif
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-//! Definitions of static constants
-const CEGUI::String PropertyHelper<bool>::True("true");
-const CEGUI::String PropertyHelper<bool>::False("false");
+    //! Definitions of static constants
+    const CEGUI::String PropertyHelper<bool>::True("true");
+    const CEGUI::String PropertyHelper<bool>::False("false");
 
-const CEGUI::String PropertyHelper<AspectMode>::Shrink("Shrink");
-const CEGUI::String PropertyHelper<AspectMode>::Expand("Expand");
-const CEGUI::String PropertyHelper<AspectMode>::Ignore("Ignore");
+    const CEGUI::String PropertyHelper<AspectMode>::Shrink("Shrink");
+    const CEGUI::String PropertyHelper<AspectMode>::Expand("Expand");
+    const CEGUI::String PropertyHelper<AspectMode>::Ignore("Ignore");
 
-//----------------------------------------------------------------------------//
-PropertyHelper<Image*>::return_type
-PropertyHelper<Image*>::fromString(const String& str)
-{
-    using namespace std;
+    //----------------------------------------------------------------------------//
 
-    // handle empty string case
-    if (str.empty())
-        return 0;
+    PropertyHelper<Image*>::return_type
+    PropertyHelper<Image*>::fromString(const String& str) {
+        using namespace std;
 
-    PropertyHelper<Image*>::return_type image;
+        // handle empty string case
+        if (str.empty())
+            return 0;
 
-    CEGUI_TRY
-    {
-        image = &ImageManager::getSingleton().get(str);
-    }
-    CEGUI_CATCH(UnknownObjectException&)
-    {
-        image = 0;
-    }
+        PropertyHelper<Image*>::return_type image;
 
-    return image;
-}
+        CEGUI_TRY{
+            image = &ImageManager::getSingleton().get(str);
+        }
 
-//----------------------------------------------------------------------------//
-PropertyHelper<Image*>::string_return_type PropertyHelper<Image*>::toString(
-    PropertyHelper<Image*>::pass_type val)
-{
-    return val ? val->getName() : String("");
-}
+        CEGUI_CATCH(UnknownObjectException&) {
+            image = 0;
+        }
 
-//----------------------------------------------------------------------------//
-PropertyHelper<Font*>::return_type
-PropertyHelper<Font*>::fromString(const String& str)
-{
-    using namespace std;
-
-    // handle empty string case
-    if (str.empty())
-        return 0;
-
-    PropertyHelper<Font*>::return_type image;
-
-    CEGUI_TRY
-    {
-        image = &FontManager::getSingleton().get(str);
-    }
-    CEGUI_CATCH(UnknownObjectException&)
-    {
-        image = 0;
+        return image;
     }
 
-    return image;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-PropertyHelper<Font*>::string_return_type PropertyHelper<Font*>::toString(
-    PropertyHelper<Font*>::pass_type val)
-{
-    return val ? val->getName() : String("");
-}
+    PropertyHelper<Image*>::string_return_type PropertyHelper<Image*>::toString(
+            PropertyHelper<Image*>::pass_type val) {
+        return val ? val->getName() : String("");
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    PropertyHelper<Font*>::return_type
+    PropertyHelper<Font*>::fromString(const String& str) {
+        using namespace std;
+
+        // handle empty string case
+        if (str.empty())
+            return 0;
+
+        PropertyHelper<Font*>::return_type image;
+
+        CEGUI_TRY{
+            image = &FontManager::getSingleton().get(str);
+        }
+
+        CEGUI_CATCH(UnknownObjectException&) {
+            image = 0;
+        }
+
+        return image;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    PropertyHelper<Font*>::string_return_type PropertyHelper<Font*>::toString(
+            PropertyHelper<Font*>::pass_type val) {
+        return val ? val->getName() : String("");
+    }
+
+    //----------------------------------------------------------------------------//
 
 }

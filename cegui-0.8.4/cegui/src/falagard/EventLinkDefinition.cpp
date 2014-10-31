@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Nov 21 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -31,87 +31,85 @@
 #include "CEGUI/LinkedEvent.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
 
-//----------------------------------------------------------------------------//
-EventLinkDefinition::EventLinkDefinition(const String& event_name) :
-    d_eventName(event_name)
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-EventLinkDefinition::~EventLinkDefinition()
-{
-}
-
-//----------------------------------------------------------------------------//
-void EventLinkDefinition::addLinkTarget(const String& widget,
-                                        const String& event)
-{
-    d_targets.push_back(std::make_pair(widget, event));
-}
-
-//----------------------------------------------------------------------------//
-void EventLinkDefinition::clearLinkTargets()
-{
-    d_targets.clear();
-}
-
-//----------------------------------------------------------------------------//
-void EventLinkDefinition::initialiseWidget(Window& window) const
-{
-    LinkedEvent* e = CEGUI_NEW_AO LinkedEvent(d_eventName, &window);
-
-    LinkTargetCollection::const_iterator i = d_targets.begin();
-    for ( ; i != d_targets.end(); ++i)
-    {
-        Window* target = getTargetWindow(window, i->first);
-
-        if (target)
-            e->addLinkedTarget(*target->getEventObject(i->second, true));
+    EventLinkDefinition::EventLinkDefinition(const String& event_name) :
+    d_eventName(event_name) {
     }
-}
 
-//----------------------------------------------------------------------------//
-void EventLinkDefinition::cleanUpWidget(Window& window) const
-{
-    window.removeEvent(d_eventName);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void EventLinkDefinition::setName(const String& name)
-{
-    d_eventName = name;
-}
+    EventLinkDefinition::~EventLinkDefinition() {
+    }
 
-//----------------------------------------------------------------------------//
-const String& EventLinkDefinition::getName() const
-{
-    return d_eventName;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Window* EventLinkDefinition::getTargetWindow(Window& start_wnd,
-                                             const String& name) const
-{
-    if (name.empty())
-        return &start_wnd;
+    void EventLinkDefinition::addLinkTarget(const String& widget,
+            const String& event) {
+        d_targets.push_back(std::make_pair(widget, event));
+    }
 
-    if (name == Falagard_xmlHandler::ParentIdentifier)
-        return start_wnd.getParent();
+    //----------------------------------------------------------------------------//
 
-    return start_wnd.getChild(name);
-}
+    void EventLinkDefinition::clearLinkTargets() {
+        d_targets.clear();
+    }
 
-//----------------------------------------------------------------------------//
-EventLinkDefinition::LinkTargetIterator EventLinkDefinition::getLinkTargetIterator() const
-{
-    return LinkTargetIterator(d_targets.begin(),d_targets.end());
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    void EventLinkDefinition::initialiseWidget(Window& window) const {
+        LinkedEvent* e = CEGUI_NEW_AO LinkedEvent(d_eventName, &window);
+
+        LinkTargetCollection::const_iterator i = d_targets.begin();
+        for (; i != d_targets.end(); ++i) {
+            Window* target = getTargetWindow(window, i->first);
+
+            if (target)
+                e->addLinkedTarget(*target->getEventObject(i->second, true));
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void EventLinkDefinition::cleanUpWidget(Window& window) const {
+        window.removeEvent(d_eventName);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void EventLinkDefinition::setName(const String& name) {
+        d_eventName = name;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const String& EventLinkDefinition::getName() const {
+        return d_eventName;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Window* EventLinkDefinition::getTargetWindow(Window& start_wnd,
+            const String& name) const {
+        if (name.empty())
+            return &start_wnd;
+
+        if (name == Falagard_xmlHandler::ParentIdentifier)
+            return start_wnd.getParent();
+
+        return start_wnd.getChild(name);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    EventLinkDefinition::LinkTargetIterator EventLinkDefinition::getLinkTargetIterator() const {
+        return LinkTargetIterator(d_targets.begin(), d_targets.end());
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

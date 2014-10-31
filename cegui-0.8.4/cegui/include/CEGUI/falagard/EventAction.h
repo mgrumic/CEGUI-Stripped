@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Mar 02 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -34,46 +34,44 @@
 #include <map>
 
 #if defined (_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
-class Window;
+namespace CEGUI {
+    class Window;
 
-class CEGUIEXPORT EventAction :
-    public AllocatedObject<EventAction>
-{
-public:
-    EventAction(const String& event_name, ChildEventAction action);
-    ~EventAction();
+    class CEGUIEXPORT EventAction :
+    public AllocatedObject<EventAction> {
+    public:
+        EventAction(const String& event_name, ChildEventAction action);
+        ~EventAction();
 
-    void setEventName(const String& event_name);
-    const String& getEventName() const;
+        void setEventName(const String& event_name);
+        const String& getEventName() const;
 
-    void setAction(ChildEventAction action);
-    ChildEventAction getAction() const;
+        void setAction(ChildEventAction action);
+        ChildEventAction getAction() const;
 
-    void initialiseWidget(Window& widget) const;
-    void cleanupWidget(Window& widget) const;
+        void initialiseWidget(Window& widget) const;
+        void cleanupWidget(Window& widget) const;
 
-    void writeXMLToStream(XMLSerializer& xml_stream) const;
+        void writeXMLToStream(XMLSerializer& xml_stream) const;
 
-protected:
-    String d_eventName;
-    ChildEventAction d_action;
+    protected:
+        String d_eventName;
+        ChildEventAction d_action;
 
-    String makeConnectionKeyName(const Window& widget) const;
+        String makeConnectionKeyName(const Window& widget) const;
 
-    typedef std::multimap<String, Event::ScopedConnection> ConnectionMap;
-    mutable ConnectionMap d_connections;
-};
+        typedef std::multimap<String, Event::ScopedConnection> ConnectionMap;
+        mutable ConnectionMap d_connections;
+    };
 
 }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif

@@ -3,7 +3,7 @@
     author:     Lukas E Meindl
 
     purpose:    Implementation of PropertyHelper methods and variables
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2014 Paul D Turner & The CEGUI Development Team
  *
@@ -29,8 +29,7 @@
 
 #include "CEGUI/falagard/XMLEnumHelper.h"
 
-namespace CEGUI
-{
+namespace CEGUI {
 
     //! Definitions of static constants
     const CEGUI::String FalagardXMLHelper<VerticalFormatting>::Stretched("Stretched");
@@ -100,5 +99,5 @@ namespace CEGUI
 
     const CEGUI::String FalagardXMLHelper<ChildEventAction>::Redraw("Redraw");
     const CEGUI::String FalagardXMLHelper<ChildEventAction>::Layout("Layout");
-    
+
 }

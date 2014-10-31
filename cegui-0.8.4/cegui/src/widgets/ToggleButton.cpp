@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 28 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -26,84 +26,80 @@
  ***************************************************************************/
 #include "CEGUI/widgets/ToggleButton.h"
 
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-const String ToggleButton::WidgetTypeName("CEGUI/ToggleButton");
-const String ToggleButton::EventNamespace("ToggleButton");
-const String ToggleButton::EventSelectStateChanged("SelectStateChanged");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    const String ToggleButton::WidgetTypeName("CEGUI/ToggleButton");
+    const String ToggleButton::EventNamespace("ToggleButton");
+    const String ToggleButton::EventSelectStateChanged("SelectStateChanged");
 
-//----------------------------------------------------------------------------//
-ToggleButton::ToggleButton(const String& type, const String& name) :
+    //----------------------------------------------------------------------------//
+
+    ToggleButton::ToggleButton(const String& type, const String& name) :
     ButtonBase(type, name),
-    d_selected(false)
-{
-    addToggleButtonProperties();
-}
-
-//----------------------------------------------------------------------------//
-void ToggleButton::addToggleButtonProperties()
-{
-    const String& propertyOrigin(WidgetTypeName);
-    
-    CEGUI_DEFINE_PROPERTY(ToggleButton, bool,
-        "Selected",
-        "Property to access the selected state of the ToggleButton. "
-        "Value is either \"true\" or \"false\".",
-        &ToggleButton::setSelected, &ToggleButton::isSelected, false
-    );
-}
-
-//----------------------------------------------------------------------------//
-void ToggleButton::setSelected(bool select)
-{
-    if (d_selected == select)
-        return;
-
-    d_selected = select;
-    invalidate();
-
-    WindowEventArgs args(this);
-    onSelectStateChange(args);
-}
-
-//----------------------------------------------------------------------------//
-void ToggleButton::onSelectStateChange(WindowEventArgs& e)
-{
-    fireEvent(EventSelectStateChanged, e, EventNamespace);
-}
-
-#ifndef PE_NO_MOUSE
-//----------------------------------------------------------------------------//
-void ToggleButton::onMouseButtonUp(MouseEventArgs& e)
-{
-    if (e.button == LeftButton && isPushed())
-    {
-        if (const Window* const sheet = getGUIContext().getRootWindow())
-        {
-            // was mouse released over this widget
-            // (use mouse position, as e.position is already unprojected)
-            if (this == sheet->getTargetChildAtPosition(
-                    getGUIContext().getMouseCursor().getPosition()))
-            {
-                setSelected(getPostClickSelectState());
-            }
-        }
-
-        ++e.handled;
+    d_selected(false) {
+        addToggleButtonProperties();
     }
 
-    ButtonBase::onMouseButtonUp(e);
-}
+    //----------------------------------------------------------------------------//
+
+    void ToggleButton::addToggleButtonProperties() {
+        const String & propertyOrigin(WidgetTypeName);
+
+        CEGUI_DEFINE_PROPERTY(ToggleButton, bool,
+                "Selected",
+                "Property to access the selected state of the ToggleButton. "
+                "Value is either \"true\" or \"false\".",
+                &ToggleButton::setSelected, &ToggleButton::isSelected, false
+                );
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void ToggleButton::setSelected(bool select) {
+        if (d_selected == select)
+            return;
+
+        d_selected = select;
+        invalidate();
+
+        WindowEventArgs args(this);
+        onSelectStateChange(args);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void ToggleButton::onSelectStateChange(WindowEventArgs& e) {
+        fireEvent(EventSelectStateChanged, e, EventNamespace);
+    }
+
+#ifndef PE_NO_MOUSE
+    //----------------------------------------------------------------------------//
+
+    void ToggleButton::onMouseButtonUp(MouseEventArgs& e) {
+        if (e.button == LeftButton && isPushed()) {
+            if (const Window * const sheet = getGUIContext().getRootWindow()) {
+                // was mouse released over this widget
+                // (use mouse position, as e.position is already unprojected)
+                if (this == sheet->getTargetChildAtPosition(
+                        getGUIContext().getMouseCursor().getPosition())) {
+                    setSelected(getPostClickSelectState());
+                }
+            }
+
+            ++e.handled;
+        }
+
+        ButtonBase::onMouseButtonUp(e);
+    }
 #endif //PE_NO_MOUSE
 
-//----------------------------------------------------------------------------//
-bool ToggleButton::getPostClickSelectState() const
-{
-    return d_selected ^ true;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool ToggleButton::getPostClickSelectState() const {
+        return d_selected ^ true;
+    }
+
+    //----------------------------------------------------------------------------//
 
 }
 

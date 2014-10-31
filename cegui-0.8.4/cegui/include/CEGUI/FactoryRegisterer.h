@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Oct 07 2011
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,48 +30,46 @@
 #include "CEGUI/String.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-
-/*!
-\brief
-    Base class encapsulating a type name and common parts of factory
-    registration.
-*/
-class CEGUIEXPORT FactoryRegisterer :
-    public AllocatedObject<FactoryRegisterer>
-{
-public:
-    //! Destructor.
-    virtual ~FactoryRegisterer();
+namespace CEGUI {
 
     /*!
     \brief
-        Perform registration (addition) of the factory for whichever
-        type this class registers a factory for.
-    */
-    void registerFactory() const;
+        Base class encapsulating a type name and common parts of factory
+        registration.
+     */
+    class CEGUIEXPORT FactoryRegisterer :
+    public AllocatedObject<FactoryRegisterer> {
+    public:
+        //! Destructor.
+        virtual ~FactoryRegisterer();
 
-    /*!
-    \brief
-        Perform unregistration (removal) of the factory for whichever
-        type this class registers a factory for.
-    */
-    virtual void unregisterFactory() const = 0;
+        /*!
+        \brief
+            Perform registration (addition) of the factory for whichever
+            type this class registers a factory for.
+         */
+        void registerFactory() const;
 
-    //! describes the type this class registers a factory for.
-    const String d_type;
+        /*!
+        \brief
+            Perform unregistration (removal) of the factory for whichever
+            type this class registers a factory for.
+         */
+        virtual void unregisterFactory() const = 0;
 
-protected:
-    //! Constructor.
-    FactoryRegisterer(const String& type);
+        //! describes the type this class registers a factory for.
+        const String d_type;
 
-    //! Function to do the actual addition of a factory to the CEGUI system.
-    virtual void doFactoryAdd() const = 0;
+    protected:
+        //! Constructor.
+        FactoryRegisterer(const String& type);
 
-    //! Function to check if factory for our type is already registered.
-    virtual bool isAlreadyRegistered() const = 0;
-};
+        //! Function to do the actual addition of a factory to the CEGUI system.
+        virtual void doFactoryAdd() const = 0;
+
+        //! Function to check if factory for our type is already registered.
+        virtual bool isAlreadyRegistered() const = 0;
+    };
 
 } // End of  CEGUI namespace section
 

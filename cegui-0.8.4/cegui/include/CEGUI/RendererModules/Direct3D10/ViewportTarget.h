@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Mar 7 2009
     author:     Paul D Turner (parts based on code by Rajko Stojadinovic)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,33 +30,32 @@
 #include "CEGUI/RendererModules/Direct3D10/RenderTarget.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Direct3D10 based RenderTarget that represents the screen or a portion of it.
-class D3D10_GUIRENDERER_API Direct3D10ViewportTarget : public Direct3D10RenderTarget<>
-{
-public:
-    /*!
-    \brief
-        Construct a default Direct3D10ViewportTarget that uses the current
-        Direct3D10 viewport as it's initial area.
-    */
-    Direct3D10ViewportTarget(Direct3D10Renderer& owner);
+namespace CEGUI {
+    //! Direct3D10 based RenderTarget that represents the screen or a portion of it.
 
-    /*!
-    \brief
-        Construct a Direct3D10ViewportTarget that uses the specified Rect as
-        it's initial area.
+    class D3D10_GUIRENDERER_API Direct3D10ViewportTarget : public Direct3D10RenderTarget<> {
+    public:
+        /*!
+        \brief
+            Construct a default Direct3D10ViewportTarget that uses the current
+            Direct3D10 viewport as it's initial area.
+         */
+        Direct3D10ViewportTarget(Direct3D10Renderer& owner);
 
-    \param area
-        Rect object describing the initial viewport area that should be used for
-        the RenderTarget.
-    */
-    Direct3D10ViewportTarget(Direct3D10Renderer& owner, const Rectf& area);
+        /*!
+        \brief
+            Construct a Direct3D10ViewportTarget that uses the specified Rect as
+            it's initial area.
 
-    // implementations of RenderTarget interface
-    bool isImageryCache() const;
-};
+        \param area
+            Rect object describing the initial viewport area that should be used for
+            the RenderTarget.
+         */
+        Direct3D10ViewportTarget(Direct3D10Renderer& owner, const Rectf& area);
+
+        // implementations of RenderTarget interface
+        bool isImageryCache() const;
+    };
 
 
 } // End of  CEGUI namespace section

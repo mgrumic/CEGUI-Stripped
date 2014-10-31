@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jun 19 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -34,19 +34,18 @@
 #include "CEGUI/falagard/FormattingSetting.h"
 
 #if defined(_MSC_VER)
-#  pragma warning(push)
-#  pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Class that encapsulates information for a text component.
-    */
-    class CEGUIEXPORT TextComponent : public FalagardComponentBase
-    {
+     */
+    class CEGUIEXPORT TextComponent : public FalagardComponentBase {
     public:
         TextComponent();
         ~TextComponent();
@@ -64,14 +63,14 @@ namespace CEGUI
             text string from a window that the TextComponent is rendered to.
             To get the actual string, call the getEffectiveText function
             instead.
-        */
+         */
         const String& getText() const;
 
         /*
         \brief
             Return a copy of the actual text string that will be used when
             rendering this TextComponent.
-        */
+         */
         String getEffectiveText(const Window& wnd) const;
 
         /*!
@@ -85,14 +84,14 @@ namespace CEGUI
             property or the main text string from a window that the
             TextComponent is rendered to. To get the actual visual string, call
             the getEffectiveVisualText function instead.
-        */
+         */
         const String& getTextVisual() const;
 
         /*
         \brief
             Return a copy of the actual text - with visual ordering - that
             will be used when rendering this TextComponent.
-        */
+         */
         String getEffectiveVisualText(const Window& wnd) const;
 
         /*!
@@ -107,7 +106,7 @@ namespace CEGUI
 
         \param text
             String containing text to set on the TextComponent.
-        */
+         */
         void setText(const String& text);
 
         /*!
@@ -125,14 +124,14 @@ namespace CEGUI
 
         \return
             String object containing the name of a font
-        */
+         */
         const String& getFont() const;
 
         /*
         \brief
             Return a copy of the name of the font that will actually be used
             when rendering this TextComponent.
-        */
+         */
         String getEffectiveFont(const Window& wnd) const;
 
         /*!
@@ -147,7 +146,7 @@ namespace CEGUI
 
         \param font
             String containing name of a font
-        */
+         */
         void setFont(const String& font);
 
         /*!
@@ -156,7 +155,7 @@ namespace CEGUI
 
         \return
             One of the VerticalTextFormatting enumerated values.
-        */
+         */
         VerticalTextFormatting getVerticalFormatting(const Window& wnd) const;
 
         /*!
@@ -168,7 +167,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setVerticalFormatting(VerticalTextFormatting fmt);
 
         /*!
@@ -177,7 +176,7 @@ namespace CEGUI
 
         \return
             One of the HorizontalTextFormatting enumerated values.
-        */
+         */
         HorizontalTextFormatting getHorizontalFormatting(const Window& wnd) const;
 
         /*!
@@ -189,21 +188,21 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setHorizontalFormatting(HorizontalTextFormatting fmt);
 
         /*!
         \brief
             Set the name of a property that will be used to obtain the horizontal
             formatting to use for this ImageryComponent.
-        */
+         */
         void setHorizontalFormattingPropertySource(const String& property_name);
 
         /*!
         \brief
             Set the name of a property that will be used to obtain the vertical
             formatting to use for this ImageryComponent.
-        */
+         */
         void setVerticalFormattingPropertySource(const String& property_name);
 
         /*!
@@ -216,7 +215,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void writeXMLToStream(XMLSerializer& xml_stream) const;
 
         /*!
@@ -226,7 +225,7 @@ namespace CEGUI
         \return
             - true if the text string comes via a Propery.
             - false if the text string is defined explicitly, or will come from the target window.
-        */
+         */
         bool isTextFetchedFromProperty() const;
 
         /*!
@@ -236,7 +235,7 @@ namespace CEGUI
 
         \return
             String object holding the name of a Propery.
-        */
+         */
         const String& getTextPropertySource() const;
 
         /*!
@@ -249,9 +248,9 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setTextPropertySource(const String& property);
-        
+
         /*!
         \brief
             Return whether this TextComponent fetches it's font via a property on the target window.
@@ -259,7 +258,7 @@ namespace CEGUI
         \return
             - true if the font comes via a Propery.
             - false if the font is defined explicitly, or will come from the target window.
-        */
+         */
         bool isFontFetchedFromProperty() const;
 
         /*!
@@ -269,7 +268,7 @@ namespace CEGUI
 
         \return
             String object holding the name of a Propery.
-        */
+         */
         const String& getFontPropertySource() const;
 
         /*!
@@ -282,7 +281,7 @@ namespace CEGUI
 
         \return
             Nothing.
-        */
+         */
         void setFontPropertySource(const String& property);
 
         //! return the horizontal pixel extent of the formatted rendered string.
@@ -290,7 +289,7 @@ namespace CEGUI
 
         //! return the vertical pixel extent of the formatted rendered string.
         float getVerticalTextExtent(const Window& window) const;
-    
+
         // overridden from ComponentBase.
         bool handleFontRenderSizeChange(Window& window, const Font* font) const;
 
@@ -299,7 +298,7 @@ namespace CEGUI
         void render_impl(Window& srcWindow, Rectf& destRect, const CEGUI::ColourRect* modColours, const Rectf* clipper, bool clipToDisplay) const;
         //! helper to set up an appropriate FormattedRenderedString
         void setupStringFormatter(const Window& window,
-                                  const RenderedString& rendered_string) const;
+                const RenderedString& rendered_string) const;
         //! helper to get the font object to use
         const Font* getFontObject(const Window& window) const;
 
@@ -317,19 +316,19 @@ namespace CEGUI
         //! Tracks last used horizontal formatting (in order to detect changes)
         mutable HorizontalTextFormatting d_lastHorzFormatting;
 
-        String               d_font;            //!< name of font to use.
+        String d_font; //!< name of font to use.
         //! Vertical formatting to be applied when rendering the image component.
         FormattingSetting<VerticalTextFormatting> d_vertFormatting;
         //! Horizontal formatting to be applied when rendering the image component.
         FormattingSetting<HorizontalTextFormatting> d_horzFormatting;
-        String  d_textPropertyName;             //!< Name of the property to access to obtain the text string to render.
-        String  d_fontPropertyName;             //!< Name of the property to access to obtain the font to use for rendering.
+        String d_textPropertyName; //!< Name of the property to access to obtain the text string to render.
+        String d_fontPropertyName; //!< Name of the property to access to obtain the font to use for rendering.
     };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#  pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIFalTextComponent_h_

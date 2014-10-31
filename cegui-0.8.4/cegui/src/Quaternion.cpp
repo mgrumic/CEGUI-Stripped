@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Implements the Quaternion class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -35,165 +35,158 @@
 #include <limits>
 #ifndef PE_NO_QUATERNION
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-const Quaternion Quaternion::ZERO(0, 0, 0, 0);
-const Quaternion Quaternion::IDENTITY(1, 0, 0, 0);
+    const Quaternion Quaternion::ZERO(0, 0, 0, 0);
+    const Quaternion Quaternion::IDENTITY(1, 0, 0, 0);
 
-//----------------------------------------------------------------------------//
-Quaternion Quaternion::eulerAnglesRadians(const float x, const float y, const float z)
-{
-    // the order of rotation:
-    // 1) around Z
-    // 2) around Y
-    // 3) around X
-    // even though it's passed in reverse...
+    //----------------------------------------------------------------------------//
 
-    const float sin_z_2 = sinf(0.5f * z);
-	const float sin_y_2 = sinf(0.5f * y);
-	const float sin_x_2 = sinf(0.5f * x);
+    Quaternion Quaternion::eulerAnglesRadians(const float x, const float y, const float z) {
+        // the order of rotation:
+        // 1) around Z
+        // 2) around Y
+        // 3) around X
+        // even though it's passed in reverse...
 
-	const float cos_z_2 = cosf(0.5f * z);
-	const float cos_y_2 = cosf(0.5f * y);
-	const float cos_x_2 = cosf(0.5f * x);
+        const float sin_z_2 = sinf(0.5f * z);
+        const float sin_y_2 = sinf(0.5f * y);
+        const float sin_x_2 = sinf(0.5f * x);
 
-    return Quaternion(
-        cos_z_2 * cos_y_2 * cos_x_2 + sin_z_2 * sin_y_2 * sin_x_2,
-	    cos_z_2 * cos_y_2 * sin_x_2 - sin_z_2 * sin_y_2 * cos_x_2,
-	    cos_z_2 * sin_y_2 * cos_x_2 + sin_z_2 * cos_y_2 * sin_x_2,
-	    sin_z_2 * cos_y_2 * cos_x_2 - cos_z_2 * sin_y_2 * sin_x_2
-    );
-}
+        const float cos_z_2 = cosf(0.5f * z);
+        const float cos_y_2 = cosf(0.5f * y);
+        const float cos_x_2 = cosf(0.5f * x);
 
-//----------------------------------------------------------------------------//
-Quaternion Quaternion::eulerAnglesDegrees(const float x, const float y, const float z)
-{
-    static const float d2r = (4.0f * std::atan2(1.0f, 1.0f)) / 180.0f;
+        return Quaternion(
+                cos_z_2 * cos_y_2 * cos_x_2 + sin_z_2 * sin_y_2 * sin_x_2,
+                cos_z_2 * cos_y_2 * sin_x_2 - sin_z_2 * sin_y_2 * cos_x_2,
+                cos_z_2 * sin_y_2 * cos_x_2 + sin_z_2 * cos_y_2 * sin_x_2,
+                sin_z_2 * cos_y_2 * cos_x_2 - cos_z_2 * sin_y_2 * sin_x_2
+                );
+    }
 
-    return eulerAnglesRadians(x * d2r, y * d2r, z * d2r);
-}
+    //----------------------------------------------------------------------------//
+
+    Quaternion Quaternion::eulerAnglesDegrees(const float x, const float y, const float z) {
+        static const float d2r = (4.0f * std::atan2(1.0f, 1.0f)) / 180.0f;
+
+        return eulerAnglesRadians(x * d2r, y * d2r, z * d2r);
+    }
 #ifndef PE_NO_VECTOR3D
-//----------------------------------------------------------------------------//
-Quaternion Quaternion::axisAngleRadians(const Vector3f& axis, const float rotation)
-{
-    const float halfRotation = 0.5f * rotation;
-    const float halfSin = sinf(halfRotation);
+    //----------------------------------------------------------------------------//
 
-    return Quaternion(cosf(halfRotation),
-        halfSin * axis.d_x, halfSin * axis.d_y, halfSin * axis.d_z);
-}
+    Quaternion Quaternion::axisAngleRadians(const Vector3f& axis, const float rotation) {
+        const float halfRotation = 0.5f * rotation;
+        const float halfSin = sinf(halfRotation);
 
-//----------------------------------------------------------------------------//
-Quaternion Quaternion::axisAngleDegrees(const Vector3f& axis, const float rotation)
-{
-    static const float d2r = (4.0f * std::atan2(1.0f, 1.0f)) / 180.0f;
+        return Quaternion(cosf(halfRotation),
+                halfSin * axis.d_x, halfSin * axis.d_y, halfSin * axis.d_z);
+    }
 
-    return axisAngleRadians(axis, rotation * d2r);
-}
+    //----------------------------------------------------------------------------//
+
+    Quaternion Quaternion::axisAngleDegrees(const Vector3f& axis, const float rotation) {
+        static const float d2r = (4.0f * std::atan2(1.0f, 1.0f)) / 180.0f;
+
+        return axisAngleRadians(axis, rotation * d2r);
+    }
 #endif  // PE_NO_VECTOR3D
-//----------------------------------------------------------------------------//
-Quaternion Quaternion::slerp(const Quaternion& left, const Quaternion& right,
-    float position, const bool shortestPath)
-{
-    // Geometric Tools, LLC
-    // Copyright (c) 1998-2010
-    // Distributed under the Boost Software License, Version 1.0.
-    // http://www.boost.org/LICENSE_1_0.txt
-    // http://www.geometrictools.com/License/Boost/LICENSE_1_0.txt
+    //----------------------------------------------------------------------------//
 
-    float vcos = left.dot(right);
-    Quaternion _right;
+    Quaternion Quaternion::slerp(const Quaternion& left, const Quaternion& right,
+            float position, const bool shortestPath) {
+        // Geometric Tools, LLC
+        // Copyright (c) 1998-2010
+        // Distributed under the Boost Software License, Version 1.0.
+        // http://www.boost.org/LICENSE_1_0.txt
+        // http://www.geometrictools.com/License/Boost/LICENSE_1_0.txt
 
-    // Do we need to invert rotation?
-    if (vcos < 0.0f && shortestPath)
-    {
-        vcos = -vcos;
-        _right = -right;
+        float vcos = left.dot(right);
+        Quaternion _right;
+
+        // Do we need to invert rotation?
+        if (vcos < 0.0f && shortestPath) {
+            vcos = -vcos;
+            _right = -right;
+        } else {
+            _right = right;
+        }
+
+        if (fabs(vcos) < 1 - std::numeric_limits<float>::epsilon()) {
+            // Standard case (slerp)
+            const float vsin = sqrtf(1.0f - vcos * vcos);
+            const float angle = atan2(vsin, vcos);
+            const float invSin = 1.0f / vsin;
+            const float coeff0 = sin((1.0f - position) * angle) * invSin;
+            const float coeff1 = sin((position) * angle) * invSin;
+
+            return coeff0 * left + coeff1 * _right;
+        } else {
+            // There are two situations:
+            // 1. "left" and "right" are very close (cos ~= +1), so we can do a linear
+            //    interpolation safely.
+            // 2. "left" and "right" are almost inverse of each other (cos ~= -1), there
+            //    are an infinite number of possibilities interpolation. but we haven't
+            //    have method to fix this case, so just use linear interpolation here.
+
+            Quaternion ret = (1.0f - position) * left + position * _right;
+            // taking the complement requires renormalisation
+            ret.normalise();
+            return ret;
+        }
     }
-    else
-    {
-        _right = right;
+
+    //----------------------------------------------------------------------------//
+
+    const String& QuaternionSlerpInterpolator::getType() const {
+        static String type("QuaternionSlerp");
+
+        return type;
     }
 
-    if (fabs(vcos) < 1 - std::numeric_limits<float>::epsilon())
-    {
-        // Standard case (slerp)
-        const float vsin = sqrtf(1.0f - vcos * vcos);
-        const float angle = atan2(vsin, vcos);
-        const float invSin = 1.0f / vsin;
-        const float coeff0 = sin((1.0f - position) * angle) * invSin;
-        const float coeff1 = sin((position) * angle) * invSin;
+    //----------------------------------------------------------------------------//
 
-        return coeff0 * left + coeff1 * _right;
+    String QuaternionSlerpInterpolator::interpolateAbsolute(const String& value1,
+            const String& value2,
+            float position) {
+        Helper::return_type val1 = Helper::fromString(value1);
+        Helper::return_type val2 = Helper::fromString(value2);
+
+        return Helper::toString(Quaternion::slerp(val1, val2, position));
     }
-    else
-    {
-        // There are two situations:
-        // 1. "left" and "right" are very close (cos ~= +1), so we can do a linear
-        //    interpolation safely.
-        // 2. "left" and "right" are almost inverse of each other (cos ~= -1), there
-        //    are an infinite number of possibilities interpolation. but we haven't
-        //    have method to fix this case, so just use linear interpolation here.
 
-        Quaternion ret = (1.0f - position) * left + position * _right;
-        // taking the complement requires renormalisation
-        ret.normalise();
-        return ret;
+    //----------------------------------------------------------------------------//
+
+    String QuaternionSlerpInterpolator::interpolateRelative(const String& base,
+            const String& value1,
+            const String& value2,
+            float position) {
+        Helper::return_type bas = Helper::fromString(base);
+        Helper::return_type val1 = Helper::fromString(value1);
+        Helper::return_type val2 = Helper::fromString(value2);
+
+        return Helper::toString(bas * Quaternion::slerp(val1, val2, position));
     }
-}
 
-//----------------------------------------------------------------------------//
-const String& QuaternionSlerpInterpolator::getType() const
-{
-    static String type("QuaternionSlerp");
+    //----------------------------------------------------------------------------//
 
-    return type;
-}
-
-//----------------------------------------------------------------------------//
-String QuaternionSlerpInterpolator::interpolateAbsolute(const String& value1,
-                                    const String& value2,
-                                    float position)
-{
-    Helper::return_type val1 = Helper::fromString(value1);
-    Helper::return_type val2 = Helper::fromString(value2);
-
-    return Helper::toString(Quaternion::slerp(val1, val2, position));
-}
-
-//----------------------------------------------------------------------------//
-String QuaternionSlerpInterpolator::interpolateRelative(const String& base,
-                                    const String& value1,
-                                    const String& value2,
-                                    float position)
-{
-    Helper::return_type bas = Helper::fromString(base);
-    Helper::return_type val1 = Helper::fromString(value1);
-    Helper::return_type val2 = Helper::fromString(value2);
-
-    return Helper::toString(bas * Quaternion::slerp(val1, val2, position));
-}
-
-//----------------------------------------------------------------------------//
-String QuaternionSlerpInterpolator::interpolateRelativeMultiply(
-                                            const String& /*base*/,
-                                            const String& /*value1*/,
-                                            const String& /*value2*/,
-                                            float /*position*/)
-{
-    CEGUI_THROW(InvalidRequestException(
+    String QuaternionSlerpInterpolator::interpolateRelativeMultiply(
+            const String& /*base*/,
+            const String& /*value1*/,
+            const String& /*value2*/,
+            float /*position*/) {
+        CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "AM_RelativeMultiply doesn't make sense "
-        "with Quaternions! Please use absolute or relative application method."));
+                "AM_RelativeMultiply doesn't make sense "
+                "with Quaternions! Please use absolute or relative application method."));
 #endif //PE_NO_THROW_MSGS
 
-    return Helper::toString(Quaternion::IDENTITY);
-}
+        return Helper::toString(Quaternion::IDENTITY);
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 #endif //PE_NO_QUATERNION

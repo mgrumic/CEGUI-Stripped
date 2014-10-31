@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jul 2 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,21 +30,17 @@
 #include "CEGUI/widgets/Titlebar.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardTitlebar::TypeName("Core/Titlebar");
 
     FalagardTitlebar::FalagardTitlebar(const String& type) :
-        WindowRenderer(type, "Titlebar")
-    {
+    WindowRenderer(type, "Titlebar") {
     }
 
-    void FalagardTitlebar::render()
-    {
+    void FalagardTitlebar::render() {
         const StateImagery* imagery;
 
-        CEGUI_TRY
-        {
+        CEGUI_TRY{
             // get WidgetLookFeel for the assigned look.
             const WidgetLookFeel& wlf = getLookNFeel();
             // try and get imagery for our current state
@@ -53,8 +49,8 @@ namespace CEGUI
             else
                 imagery = &wlf.getStateImagery("Disabled");
         }
-        CEGUI_CATCH (UnknownObjectException&)
-        {
+
+        CEGUI_CATCH(UnknownObjectException&) {
             // log error so we know imagery is missing, and then quit.
             return;
         }

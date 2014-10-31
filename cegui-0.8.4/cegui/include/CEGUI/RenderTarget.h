@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jan 11 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -34,137 +34,136 @@
 #include "CEGUI/Rect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! EventArgs class passed to subscribers of RenderTarget events.
-class CEGUIEXPORT RenderTargetEventArgs : public EventArgs
-{
-public:
-    RenderTargetEventArgs(RenderTarget* target):
-        target(target)
-    {}
+namespace CEGUI {
+    //! EventArgs class passed to subscribers of RenderTarget events.
 
-    //! pointer to the RenderTarget that triggered the event.
-    RenderTarget* target;
-};
+    class CEGUIEXPORT RenderTargetEventArgs : public EventArgs {
+    public:
 
-/*!
-\brief
-    Defines interface to some surface that can be rendered to.  Concrete
-    instances of objects that implement the RenderTarget interface are
-    normally created via the Renderer object.
-*/
-class CEGUIEXPORT RenderTarget :
-    public EventSet,
-    public AllocatedObject<RenderTarget>
-{
-public:
-    //! Namespace for global events
-    static const String EventNamespace;
+        RenderTargetEventArgs(RenderTarget* target) :
+        target(target) {
+        }
 
-    /** Event to be fired when the RenderTarget object's area has changed.
-     * Handlers are passed a const RenderTargetEventArgs reference with
-     * RenderTargetEventArgs::target set to the RenderTarget whose area changed.
+        //! pointer to the RenderTarget that triggered the event.
+        RenderTarget* target;
+    };
+
+    /*!
+    \brief
+        Defines interface to some surface that can be rendered to.  Concrete
+        instances of objects that implement the RenderTarget interface are
+        normally created via the Renderer object.
      */
-    static const String EventAreaChanged;
+    class CEGUIEXPORT RenderTarget :
+    public EventSet,
+    public AllocatedObject<RenderTarget> {
+    public:
+        //! Namespace for global events
+        static const String EventNamespace;
 
-    /*!
-    \brief
-        Draw geometry from the given GeometryBuffer onto the surface that
-        this RenderTarget represents.
+        /** Event to be fired when the RenderTarget object's area has changed.
+         * Handlers are passed a const RenderTargetEventArgs reference with
+         * RenderTargetEventArgs::target set to the RenderTarget whose area changed.
+         */
+        static const String EventAreaChanged;
 
-    \param buffer
-        GeometryBuffer object holding the geometry that should be drawn to the
-        RenderTarget.
-    */
-    virtual void draw(const GeometryBuffer& buffer) = 0;
+        /*!
+        \brief
+            Draw geometry from the given GeometryBuffer onto the surface that
+            this RenderTarget represents.
 
-    /*!
-    \brief
-        Draw geometry from the given RenderQueue onto the surface that
-        this RenderTarget represents.
+        \param buffer
+            GeometryBuffer object holding the geometry that should be drawn to the
+            RenderTarget.
+         */
+        virtual void draw(const GeometryBuffer& buffer) = 0;
 
-    \param queue
-        RenderQueue object holding the geometry that should be drawn to the
-        RenderTarget.
-    */
-    virtual void draw(const RenderQueue& queue) = 0;
+        /*!
+        \brief
+            Draw geometry from the given RenderQueue onto the surface that
+            this RenderTarget represents.
 
-    /*!
-    \brief
-        Set the area for this RenderTarget.  The exact action this function
-        will take depends upon what the concrete class is representing.  For
-        example, with a 'view port' style RenderTarget, this should set the area
-        that the view port occupies on the display (or rendering window).
+        \param queue
+            RenderQueue object holding the geometry that should be drawn to the
+            RenderTarget.
+         */
+        virtual void draw(const RenderQueue& queue) = 0;
 
-    \param area
-        Rect object describing the new area to be assigned to the RenderTarget.
+        /*!
+        \brief
+            Set the area for this RenderTarget.  The exact action this function
+            will take depends upon what the concrete class is representing.  For
+            example, with a 'view port' style RenderTarget, this should set the area
+            that the view port occupies on the display (or rendering window).
 
-    \note
-        When implementing this function, you should be sure to fire the event
-        RenderTarget::EventAreaChanged so that interested parties can know that
-        the change has occurred.
+        \param area
+            Rect object describing the new area to be assigned to the RenderTarget.
 
-    \exception InvalidRequestException
-        May be thrown if the RenderTarget does not support setting or changing
-        its area, or if the area change can not be satisfied for some reason.
-    */
-    virtual void setArea(const Rectf& area) = 0;
+        \note
+            When implementing this function, you should be sure to fire the event
+            RenderTarget::EventAreaChanged so that interested parties can know that
+            the change has occurred.
 
-    /*!
-    \brief
-        Return the area defined for this RenderTarget.
+        \exception InvalidRequestException
+            May be thrown if the RenderTarget does not support setting or changing
+            its area, or if the area change can not be satisfied for some reason.
+         */
+        virtual void setArea(const Rectf& area) = 0;
 
-    \return
-        Rect object describing the currently defined area for this RenderTarget.
-    */
-    virtual const Rectf& getArea() const = 0;
+        /*!
+        \brief
+            Return the area defined for this RenderTarget.
 
-    /*!
-    \brief
-        Return whether the RenderTarget is an implementation that caches
-        actual rendered imagery.
+        \return
+            Rect object describing the currently defined area for this RenderTarget.
+         */
+        virtual const Rectf& getArea() const = 0;
 
-        Typically it is expected that texture based RenderTargets would return
-        true in response to this call.  Other types of RenderTarget, like
-        view port based targets, will more likely return false.
+        /*!
+        \brief
+            Return whether the RenderTarget is an implementation that caches
+            actual rendered imagery.
 
-    \return
-        - true if the RenderTarget does cache rendered imagery.
-        - false if the RenderTarget does not cache rendered imagery.
-    */
-    virtual bool isImageryCache() const = 0;
+            Typically it is expected that texture based RenderTargets would return
+            true in response to this call.  Other types of RenderTarget, like
+            view port based targets, will more likely return false.
 
-    /*!
-    \brief
-        Activate the render target and put it in a state ready to be drawn to.
+        \return
+            - true if the RenderTarget does cache rendered imagery.
+            - false if the RenderTarget does not cache rendered imagery.
+         */
+        virtual bool isImageryCache() const = 0;
 
-    \note
-        You MUST call this before doing any rendering - if you do not call this,
-        in the unlikely event that your application actually works, it will
-        likely stop working in some future version.
-    */
-    virtual void activate() = 0;
+        /*!
+        \brief
+            Activate the render target and put it in a state ready to be drawn to.
 
-    /*!
-    \brief
-        Deactivate the render target after having completed rendering.
+        \note
+            You MUST call this before doing any rendering - if you do not call this,
+            in the unlikely event that your application actually works, it will
+            likely stop working in some future version.
+         */
+        virtual void activate() = 0;
 
-    \note
-        You MUST call this after you finish rendering to the target - if you do
-        not call this, in the unlikely event that your application actually
-        works, it will likely stop working in some future version.
-    */
-    virtual void deactivate() = 0;
+        /*!
+        \brief
+            Deactivate the render target after having completed rendering.
 
-    /*!
-    \brief
-        Take point \a p_in unproject it and put the result in \a p_out.
-        Resulting point is local to GeometryBuffer \a buff.
-    */
-    virtual void unprojectPoint(const GeometryBuffer& buff,
-                                const Vector2f& p_in, Vector2f& p_out) const = 0;
-};
+        \note
+            You MUST call this after you finish rendering to the target - if you do
+            not call this, in the unlikely event that your application actually
+            works, it will likely stop working in some future version.
+         */
+        virtual void deactivate() = 0;
+
+        /*!
+        \brief
+            Take point \a p_in unproject it and put the result in \a p_out.
+            Resulting point is local to GeometryBuffer \a buff.
+         */
+        virtual void unprojectPoint(const GeometryBuffer& buff,
+                const Vector2f& p_in, Vector2f& p_out) const = 0;
+    };
 
 } // End of  CEGUI namespace section
 

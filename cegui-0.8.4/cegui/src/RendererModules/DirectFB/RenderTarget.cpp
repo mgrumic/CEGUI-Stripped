@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 10 2009
     author:     Paul D Turner (parts based on code by Keith Mok)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,73 +30,72 @@
 #include "CEGUI/RenderQueue.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-DirectFBRenderTarget::DirectFBRenderTarget(DirectFBRenderer& owner,
-                                           IDirectFBSurface& target) :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    DirectFBRenderTarget::DirectFBRenderTarget(DirectFBRenderer& owner,
+            IDirectFBSurface& target) :
     d_owner(owner),
     d_target(target),
-    d_area(0, 0, 0, 0)
-{
-    int w, h;
-    d_target.GetSize(&d_target, &w, &h);
-    setArea(Rectf(d_area.getPosition(),
-                 Sizef(static_cast<float>(w), static_cast<float>(h))));
-}
+    d_area(0, 0, 0, 0) {
+        int w, h;
+        d_target.GetSize(&d_target, &w, &h);
+        setArea(Rectf(d_area.getPosition(),
+                Sizef(static_cast<float> (w), static_cast<float> (h))));
+    }
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderTarget::draw(const GeometryBuffer& buffer)
-{
-    buffer.draw();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderTarget::draw(const RenderQueue& queue)
-{
-    queue.draw();
-}
+    void DirectFBRenderTarget::draw(const GeometryBuffer& buffer) {
+        buffer.draw();
+    }
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderTarget::setArea(const Rectf& area)
-{
-    d_area = area;
+    //----------------------------------------------------------------------------//
 
-    RenderTargetEventArgs args(this);
-    fireEvent(EventAreaChanged, args);
-}
+    void DirectFBRenderTarget::draw(const RenderQueue& queue) {
+        queue.draw();
+    }
 
-//----------------------------------------------------------------------------//
-const Rectf& DirectFBRenderTarget::getArea() const
-{
-    return d_area;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool DirectFBRenderTarget::isImageryCache() const
-{
-    return false;
-}
+    void DirectFBRenderTarget::setArea(const Rectf& area) {
+        d_area = area;
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderTarget::activate()
-{
-    d_owner.setTargetSurface(d_target);
-}
+        RenderTargetEventArgs args(this);
+        fireEvent(EventAreaChanged, args);
+    }
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderTarget::deactivate()
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderTarget::unprojectPoint(const GeometryBuffer& buff,
-    const Vector2f& p_in, Vector2f& p_out) const
-{
-    // TODO:
-    p_out = p_in;
-}
+    const Rectf& DirectFBRenderTarget::getArea() const {
+        return d_area;
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    bool DirectFBRenderTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderTarget::activate() {
+        d_owner.setTargetSurface(d_target);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderTarget::deactivate() {
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderTarget::unprojectPoint(const GeometryBuffer& buff,
+            const Vector2f& p_in, Vector2f& p_out) const {
+        // TODO:
+        p_out = p_in;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

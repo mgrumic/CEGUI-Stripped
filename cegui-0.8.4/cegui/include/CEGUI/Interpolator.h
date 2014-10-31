@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Defines the interface for the abstract Interpolator class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -33,60 +33,60 @@
 #include "CEGUI/String.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-    Defines a 'interpolator' class
+    /*!
+    \brief
+        Defines a 'interpolator' class
 
-    Interpolator allows you to interpolate between 2 properties.
-    You can jut pass them as strings and Interpolator does everything for you.
+        Interpolator allows you to interpolate between 2 properties.
+        You can jut pass them as strings and Interpolator does everything for you.
 
-    If you want to define your own interpolator, inherit this class and add it
-    to AnimationManager via AnimationManager::addInterpolator to make it
-    available for animations.
+        If you want to define your own interpolator, inherit this class and add it
+        to AnimationManager via AnimationManager::addInterpolator to make it
+        available for animations.
 
-\see
-    AnimationManager
-*/
-class CEGUIEXPORT Interpolator :
-    public AllocatedObject<Interpolator>
-{
-public:
-    //! destructor
-    virtual ~Interpolator() {};
-
-    //! returns type string of this interpolator
-    virtual const String& getType() const = 0;
-
-    // interpolate methods aren't const, because the interpolator could provide
-    // some sort of caching mechanism if converting properties is too expensive
-    // that it is worth it
-
-    /** this is used when Affector is set to apply values in absolute mode
-     * (application method == AM_Absolute)
+    \see
+        AnimationManager
      */
-    virtual String interpolateAbsolute(const String& value1,
-                                       const String& value2,
-                                       float position) = 0;
+    class CEGUIEXPORT Interpolator :
+    public AllocatedObject<Interpolator> {
+    public:
+        //! destructor
 
-    /** this is used when Affector is set to apply values in relative mode
-     * (application method == AM_Relative)
-     */
-    virtual String interpolateRelative(const String& base,
-                                       const String& value1,
-                                       const String& value2,
-                                       float position) = 0;
+        virtual ~Interpolator() {
+        };
 
-    /** this is used when Affector is set to apply values in relative multiply
-     * mode (application method == AM_RelativeMultiply)
-     */
-    virtual String interpolateRelativeMultiply(const String& base,
-            const String& value1,
-            const String& value2,
-            float position) = 0;
-};
+        //! returns type string of this interpolator
+        virtual const String& getType() const = 0;
+
+        // interpolate methods aren't const, because the interpolator could provide
+        // some sort of caching mechanism if converting properties is too expensive
+        // that it is worth it
+
+        /** this is used when Affector is set to apply values in absolute mode
+         * (application method == AM_Absolute)
+         */
+        virtual String interpolateAbsolute(const String& value1,
+                const String& value2,
+                float position) = 0;
+
+        /** this is used when Affector is set to apply values in relative mode
+         * (application method == AM_Relative)
+         */
+        virtual String interpolateRelative(const String& base,
+                const String& value1,
+                const String& value2,
+                float position) = 0;
+
+        /** this is used when Affector is set to apply values in relative multiply
+         * mode (application method == AM_RelativeMultiply)
+         */
+        virtual String interpolateRelativeMultiply(const String& base,
+                const String& value1,
+                const String& value2,
+                float position) = 0;
+    };
 
 } // End of  CEGUI namespace section
 

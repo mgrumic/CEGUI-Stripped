@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Feb 18 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -28,15 +28,15 @@
 
 #if (defined(__WIN32__) || defined(_WIN32) ) && (!defined __MINGW32__)
 #include <windows.h>
-double CEGUI::SimpleTimer::currentTime()
-{
+
+double CEGUI::SimpleTimer::currentTime() {
     return timeGetTime() / 1000.0;
 }
 
 #elif defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__HAIKU__) || defined(__CYGWIN__) || defined(__MINGW32__)
 #include <sys/time.h>
-double CEGUI::SimpleTimer::currentTime()
-{
+
+double CEGUI::SimpleTimer::currentTime() {
     timeval timeStructure;
     gettimeofday(&timeStructure, 0);
     return timeStructure.tv_sec + timeStructure.tv_usec / 1000000.0;

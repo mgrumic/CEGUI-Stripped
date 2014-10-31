@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Jul 5 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,13 +34,13 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         StaticText class for the FalagardBase module.
@@ -66,25 +66,24 @@ namespace CEGUI
             NoFrameTextRenderAreaHScroll
             NoFrameTextRenderAreaVScroll
             NoFrameTextRenderAreaHVScroll
-    */
-    class COREWRSET_API FalagardStaticText : public FalagardStatic
-    {
+     */
+    class COREWRSET_API FalagardStaticText : public FalagardStatic {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*************************************************************************
             Child Widget name constants
-        *************************************************************************/
-        static const String VertScrollbarName;   //!< Widget name for the vertical scrollbar component.
-        static const String HorzScrollbarName;   //!< Widget name for the horizontal scrollbar component.
+         *************************************************************************/
+        static const String VertScrollbarName; //!< Widget name for the vertical scrollbar component.
+        static const String HorzScrollbarName; //!< Widget name for the horizontal scrollbar component.
 
         /************************************************************************
             Constructor / Destructor
-        *************************************************************************/
+         *************************************************************************/
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardStaticText(const String& type);
 
         //! Destructor.
@@ -92,66 +91,77 @@ namespace CEGUI
 
         /************************************************************************
             Scrolled text implementation
-        *************************************************************************/
+         *************************************************************************/
+
         /*!
         \brief
             Return a ColourRect object containing the colours used when rendering this widget.
-        */
-        ColourRect    getTextColours(void) const                {return d_textCols;}
+         */
+        ColourRect getTextColours(void) const {
+            return d_textCols;
+        }
 
         /*!
         \brief
             Return the current horizontal formatting option set for this widget.
-        */
-        HorizontalTextFormatting getHorizontalFormatting(void) const   {return    d_horzFormatting;}
+         */
+        HorizontalTextFormatting getHorizontalFormatting(void) const {
+            return d_horzFormatting;
+        }
 
         /*!
         \brief
             Return the current vertical formatting option set for this widget.
-        */
-        VerticalTextFormatting getVerticalFormatting(void) const     {return d_vertFormatting;}
+         */
+        VerticalTextFormatting getVerticalFormatting(void) const {
+            return d_vertFormatting;
+        }
 
         /*!
         \brief
             Sets the colours to be applied when rendering the text.
-        */
-        void    setTextColours(const ColourRect& colours);
+         */
+        void setTextColours(const ColourRect& colours);
 
         /*!
         \brief
             Set the vertical formatting required for the text.
-        */
-        void    setVerticalFormatting(VerticalTextFormatting v_fmt);
+         */
+        void setVerticalFormatting(VerticalTextFormatting v_fmt);
 
         /*!
         \brief
             Set the horizontal formatting required for the text.
-        */
-        void    setHorizontalFormatting(HorizontalTextFormatting h_fmt);
+         */
+        void setHorizontalFormatting(HorizontalTextFormatting h_fmt);
 
         /*!
         \brief
             Return whether the vertical scroll bar is set to be shown if needed.
-        */
-        bool    isVerticalScrollbarEnabled(void) const  {return d_enableVertScrollbar;}
+         */
+        bool isVerticalScrollbarEnabled(void) const {
+            return d_enableVertScrollbar;
+        }
 
         /*!
         \brief
             Return whether the horizontal scroll bar is set to be shown if needed.
-        */
-        bool    isHorizontalScrollbarEnabled(void) const    {return d_enableHorzScrollbar;}
+         */
+        bool isHorizontalScrollbarEnabled(void) const {
+            return d_enableHorzScrollbar;
+        }
 
         /*!
-	    \brief
+            \brief
             Set whether the vertical scroll bar will be shown if needed.
-        */
-        void    setVerticalScrollbarEnabled(bool setting);
+         */
+        void setVerticalScrollbarEnabled(bool setting);
 
         /*!
         \brief
             Set whether the horizontal scroll bar will be shown if needed.
-        */
-        void    setHorizontalScrollbarEnabled(bool setting);
+         */
+        void setHorizontalScrollbarEnabled(bool setting);
 
         //! return the current horizontal formatted text extent in pixels.
         float getHorizontalTextExtent() const;
@@ -160,7 +170,7 @@ namespace CEGUI
         float getVerticalTextExtent() const;
 
         // overridden from base class
-        bool handleFontRenderSizeChange(const Font* const font);
+        bool handleFontRenderSizeChange(const Font * const font);
         void render(void);
 
     protected:
@@ -196,15 +206,15 @@ namespace CEGUI
         HorizontalTextFormatting d_horzFormatting;
         //! Vertical formatting to be applied to the text.
         VerticalTextFormatting d_vertFormatting;
-        ColourRect      d_textCols;             //!< Colours used when rendering the text.
-        bool            d_enableVertScrollbar;  //!< true if vertical scroll bar is enabled.
-        bool            d_enableHorzScrollbar;  //!< true if horizontal scroll bar is enabled.
+        ColourRect d_textCols; //!< Colours used when rendering the text.
+        bool d_enableVertScrollbar; //!< true if vertical scroll bar is enabled.
+        bool d_enableHorzScrollbar; //!< true if horizontal scroll bar is enabled.
 
         //! Class that renders RenderedString with some formatting.
         mutable FormattedRenderedString* d_formattedRenderedString;
 
         typedef std::vector<Event::Connection> ConnectionList;
-        ConnectionList  d_connections;
+        ConnectionList d_connections;
 
         //! true when string formatting is up to date.
         mutable bool d_formatValid;
@@ -213,7 +223,7 @@ namespace CEGUI
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalStaticText_h_

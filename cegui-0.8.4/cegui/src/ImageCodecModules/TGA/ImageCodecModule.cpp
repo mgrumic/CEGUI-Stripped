@@ -1,10 +1,10 @@
 /***********************************************************************
-	created:	28/07/2006
-	author:		Olivier Delannoy 
+        created:	28/07/2006
+        author:		Olivier Delannoy 
 	
-	purpose:	This codec provide TGA image loading, it's the default 
+        purpose:	This codec provide TGA image loading, it's the default 
                 codec 
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,13 +29,10 @@
  ***************************************************************************/
 #include "CEGUI/ImageCodecModules/TGA/ImageCodecModule.h"
 
-
-CEGUI::ImageCodec* createImageCodec(void)
-{
+CEGUI::ImageCodec* createImageCodec(void) {
     return CEGUI_NEW_AO CEGUI::TGAImageCodec();
 }
 
-void destroyImageCodec(CEGUI::ImageCodec* imageCodec)
-{
+void destroyImageCodec(CEGUI::ImageCodec* imageCodec) {
     CEGUI_DELETE_AO imageCodec;
 }

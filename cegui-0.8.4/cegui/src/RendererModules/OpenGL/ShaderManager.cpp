@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -37,45 +37,37 @@
 
 #include <iostream>
 
-namespace CEGUI
-{
-    OpenGL3ShaderManager::OpenGL3ShaderManager()
-    {
+namespace CEGUI {
+
+    OpenGL3ShaderManager::OpenGL3ShaderManager() {
         d_shadersInitialised = false;
     }
 
-    OpenGL3ShaderManager::~OpenGL3ShaderManager()
-    {
+    OpenGL3ShaderManager::~OpenGL3ShaderManager() {
         deinitialiseShaders();
         d_shadersInitialised = false;
     }
 
-    OpenGL3Shader* OpenGL3ShaderManager::getShader(GLuint id)
-    {
-        if(d_shaders.find(id) != d_shaders.end())
+    OpenGL3Shader* OpenGL3ShaderManager::getShader(GLuint id) {
+        if (d_shaders.find(id) != d_shaders.end())
             return d_shaders[id];
         else
             return 0;
     }
 
-    void OpenGL3ShaderManager::loadShader(GLuint id, std::string vertexShader, std::string fragmentShader)
-    {
-        if(d_shaders.find(id) == d_shaders.end())
-        {
+    void OpenGL3ShaderManager::loadShader(GLuint id, std::string vertexShader, std::string fragmentShader) {
+        if (d_shaders.find(id) == d_shaders.end()) {
             d_shaders[id] = CEGUI_NEW_AO OpenGL3Shader(vertexShader, fragmentShader);
             d_shaders[id]->link();
         }
     }
 
-    void OpenGL3ShaderManager::initialiseShaders()
-    {
-        if(!d_shadersInitialised)
-        {
+    void OpenGL3ShaderManager::initialiseShaders() {
+        if (!d_shadersInitialised) {
             loadShader(SHADER_ID_STANDARDSHADER, StandardShaderVert, StandardShaderFrag);
 
 
-            if(!getShader(SHADER_ID_STANDARDSHADER)->isCreatedSuccessfully())
-            {
+            if (!getShader(SHADER_ID_STANDARDSHADER)->isCreatedSuccessfully()) {
                 const CEGUI::String errorString("Critical Error - One or multiple shader programs weren't created successfully");
                 CEGUI_THROW(RendererException(errorString));
 
@@ -84,7 +76,7 @@ namespace CEGUI
 
             const CEGUI::String notify("OpenGL3Renderer: Notification - Successfully initialised OpenGL3Renderer shader programs.");
 #ifndef PE_NO_LOGGER
-            if (CEGUI::Logger* logger = CEGUI::Logger::getSingletonPtr())
+            if (CEGUI::Logger * logger = CEGUI::Logger::getSingletonPtr())
                 logger->logEvent(notify);
 #endif //PE_NO_LOGGER
 
@@ -92,10 +84,8 @@ namespace CEGUI
         }
     }
 
-    void OpenGL3ShaderManager::deinitialiseShaders()
-    {
-        for(shaderContainerType::iterator iter = d_shaders.begin(); iter != d_shaders.end(); ++iter)
-        {
+    void OpenGL3ShaderManager::deinitialiseShaders() {
+        for (shaderContainerType::iterator iter = d_shaders.begin(); iter != d_shaders.end(); ++iter) {
             CEGUI_DELETE_AO iter->second;
         }
         d_shaders.clear();

@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Thu Jun 15 2006
-	author:		Tomas Lindquist Olsen
+        created:	Thu Jun 15 2006
+        author:		Tomas Lindquist Olsen
 
-	purpose:	This codec provides SILLY based image loading
-*************************************************************************/
+        purpose:	This codec provides SILLY based image loading
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,70 +33,64 @@
 #include "CEGUI/Size.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-SILLYImageCodec::SILLYImageCodec()
-    : ImageCodec("SILLYImageCodec - Official SILLY based image codec")
-{
-    d_supportedFormat = "tga jpg png";
-    if (! SILLY::SILLYInit())
-        CEGUI_THROW(GenericException(
+namespace CEGUI {
+
+    SILLYImageCodec::SILLYImageCodec()
+    : ImageCodec("SILLYImageCodec - Official SILLY based image codec") {
+        d_supportedFormat = "tga jpg png";
+        if (!SILLY::SILLYInit())
+            CEGUI_THROW(GenericException(
 #ifdef PE_NO_THROW_MSGS
                 ""));
 #else
-        "Unable to initialize SILLY library"));
+                "Unable to initialize SILLY library"));
 #endif //PE_NO_THROW_MSGS
 
-}
-
-SILLYImageCodec::~SILLYImageCodec()
-{
-    SILLY::SILLYCleanup();
-}
-
-Texture* SILLYImageCodec::load(const RawDataContainer& data, Texture* result)
-{
-    SILLY::MemoryDataSource md(static_cast<const SILLY::byte*>(data.getDataPtr()), data.getSize());
-    SILLY::Image img(md);
-    if (!img.loadImageHeader())
-    {
-#ifndef PE_NO_LOGGER
-        Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Invalid image header", Errors);
-        return 0;
-#endif //PE_NO_LOGGER
     }
 
-    SILLY::PixelFormat dstfmt;
-    Texture::PixelFormat cefmt;
-    switch (img.getSourcePixelFormat())
-    {
-    case SILLY::PF_RGB:
-        dstfmt = SILLY::PF_RGB;
-        cefmt = Texture::PF_RGB;
-        break;
-    case SILLY::PF_RGBA:
-    case SILLY::PF_A1B5G5R5:
-        dstfmt = SILLY::PF_RGBA;
-        cefmt = Texture::PF_RGBA;
-        break;
-    default:
-#ifndef PE_NO_LOGGER
-        Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Unsupported pixel format", Errors);
-#endif //PE_NO_LOGGER
-        return 0;
+    SILLYImageCodec::~SILLYImageCodec() {
+        SILLY::SILLYCleanup();
     }
 
-    if (!img.loadImageData(dstfmt, SILLY::PO_TOP_LEFT))
-    { 
+    Texture* SILLYImageCodec::load(const RawDataContainer& data, Texture* result) {
+        SILLY::MemoryDataSource md(static_cast<const SILLY::byte*> (data.getDataPtr()), data.getSize());
+        SILLY::Image img(md);
+        if (!img.loadImageHeader()) {
 #ifndef PE_NO_LOGGER
-        Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Invalid image data", Errors);
+            Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Invalid image header", Errors);
+            return 0;
 #endif //PE_NO_LOGGER
-        return 0;
-    }
+        }
 
-    result->loadFromMemory(img.getPixelsDataPtr(),
-                           Sizef(static_cast<float>(img.getWidth()), static_cast<float>(img.getHeight())), cefmt);
-    return result;
-}
+        SILLY::PixelFormat dstfmt;
+        Texture::PixelFormat cefmt;
+        switch (img.getSourcePixelFormat()) {
+            case SILLY::PF_RGB:
+                dstfmt = SILLY::PF_RGB;
+                cefmt = Texture::PF_RGB;
+                break;
+            case SILLY::PF_RGBA:
+            case SILLY::PF_A1B5G5R5:
+                dstfmt = SILLY::PF_RGBA;
+                cefmt = Texture::PF_RGBA;
+                break;
+            default:
+#ifndef PE_NO_LOGGER
+                Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Unsupported pixel format", Errors);
+#endif //PE_NO_LOGGER
+                return 0;
+        }
+
+        if (!img.loadImageData(dstfmt, SILLY::PO_TOP_LEFT)) {
+#ifndef PE_NO_LOGGER
+            Logger::getSingletonPtr()->logEvent("SILLYImageCodec::load - Invalid image data", Errors);
+#endif //PE_NO_LOGGER
+            return 0;
+        }
+
+        result->loadFromMemory(img.getPixelsDataPtr(),
+                Sizef(static_cast<float> (img.getWidth()), static_cast<float> (img.getHeight())), cefmt);
+        return result;
+    }
 
 } // End of CEGUI namespace section 

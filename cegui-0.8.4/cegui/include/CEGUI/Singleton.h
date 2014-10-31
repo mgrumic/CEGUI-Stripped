@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	22/2/2004
-	author:		Paul D Turner
+        created:	22/2/2004
+        author:		Paul D Turner
 
-	purpose:	Singleton Base Class
-*************************************************************************/
+        purpose:	Singleton Base Class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -28,10 +28,10 @@
  ***************************************************************************/
 /*************************************************************************
 
-	The code in this file is taken from article 1.3 in the the book:
-	Game Programming Gems from Charles River Media
+        The code in this file is taken from article 1.3 in the the book:
+        Game Programming Gems from Charles River Media
 
-*************************************************************************/
+ *************************************************************************/
 #ifndef _CEGUISingleton_h_
 #define _CEGUISingleton_h_
 
@@ -39,50 +39,62 @@
 #include <cassert>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/* Copyright (C) Scott Bilas, 2000.
- * All rights reserved worldwide.
- *
- * This software is provided "as is" without express or implied
- * warranties. You may freely copy and compile this source into
- * applications you distribute provided that the copyright text
- * below is included in the resulting source code, for example:
- * "Portions Copyright (C) Scott Bilas, 2000"
- */
+namespace CEGUI {
+
+    /* Copyright (C) Scott Bilas, 2000.
+     * All rights reserved worldwide.
+     *
+     * This software is provided "as is" without express or implied
+     * warranties. You may freely copy and compile this source into
+     * applications you distribute provided that the copyright text
+     * below is included in the resulting source code, for example:
+     * "Portions Copyright (C) Scott Bilas, 2000"
+     */
 
 
-template <typename T> class CEGUIEXPORT Singleton
-{
-protected:
-// TODO: Come up with something better than this!
-// TODO:
-// TODO: This super-nasty piece of nastiness was put in for continued
-// TODO: compatability with MSVC++ and MinGW - the latter apparently
-// TODO: needs this.
-    static
+    template <typename T> class CEGUIEXPORT Singleton {
+    protected:
+        // TODO: Come up with something better than this!
+        // TODO:
+        // TODO: This super-nasty piece of nastiness was put in for continued
+        // TODO: compatability with MSVC++ and MinGW - the latter apparently
+        // TODO: needs this.
+        static
 #ifdef __MINGW32__
-    CEGUIEXPORT
+        CEGUIEXPORT
 #endif
-    T* ms_Singleton;
+        T* ms_Singleton;
 
-public:
-    Singleton( void )
-    {
-        assert( !ms_Singleton );
-        ms_Singleton = static_cast<T*>(this);
-    }
-   ~Singleton( void )
-        {  assert( ms_Singleton );  ms_Singleton = 0;  }
-    static T& getSingleton( void )
-        {  assert( ms_Singleton );  return ( *ms_Singleton );  }
-    static T* getSingletonPtr( void )
-        {  return ( ms_Singleton );  }
+    public:
 
-private:
-    Singleton& operator=(const Singleton&) { return this; }
-    Singleton(const Singleton&) {}
-};
+        Singleton(void) {
+            assert(!ms_Singleton);
+            ms_Singleton = static_cast<T*> (this);
+        }
+
+        ~Singleton(void) {
+            assert(ms_Singleton);
+            ms_Singleton = 0;
+        }
+
+        static T& getSingleton(void) {
+            assert(ms_Singleton);
+            return ( *ms_Singleton);
+        }
+
+        static T* getSingletonPtr(void) {
+            return ( ms_Singleton);
+        }
+
+    private:
+
+        Singleton& operator=(const Singleton&) {
+            return this;
+        }
+
+        Singleton(const Singleton&) {
+        }
+    };
 
 } // End of  CEGUI namespace section
 

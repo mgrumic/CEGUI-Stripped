@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	20/2/2004
-	author:		Paul D Turner
+        created:	20/2/2004
+        author:		Paul D Turner
 	
-	purpose:	Definition of any system-wide data, etc.
-*************************************************************************/
+        purpose:	Definition of any system-wide data, etc.
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,7 +29,6 @@
 #include "CEGUI/Base.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
 } // End of  CEGUI namespace section

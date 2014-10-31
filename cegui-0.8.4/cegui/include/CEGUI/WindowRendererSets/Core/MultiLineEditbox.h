@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Jul 7 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -33,169 +33,168 @@
 
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    MultiLineEditbox class for the FalagardBase module.
-
-    This class requires LookNFeel to be assigned.  The LookNFeel should provide the following:
-
-    States:
-        - Enabled    - Rendering for when the editbox is in enabled and is in read-write mode.
-        - ReadOnly  - Rendering for when the editbox is in enabled and is in read-only mode.
-        - Disabled  - Rendering for when the editbox is disabled.
-
-    NamedAreas:
-        TextArea         - area where text, selection, and caret imagery will appear.
-        TextAreaHScroll  - TextArea when only horizontal scrollbar is visible.
-        TextAreaVScroll  - TextArea when only vertical scrollbar is visible.
-        TextAreaHVScroll - TextArea when both horizontal and vertical scrollbar is visible.
-
-    PropertyDefinitions (optional, defaults will be black):
-        - NormalTextColour        - property that accesses a colour value to be used to render normal unselected text.
-        - SelectedTextColour      - property that accesses a colour value to be used to render selected text.
-        - ActiveSelectionColour   - property that accesses a colour value to be used to render active selection highlight.
-        - InactiveSelectionColour - property that accesses a colour value to be used to render inactive selection highlight.
-
-    Imagery Sections:
-        - Caret
-
-    Child Widgets:
-        Scrollbar based widget with name suffix "__auto_vscrollbar__"
-        Scrollbar based widget with name suffix "__auto_hscrollbar__"
-
-*/
-class COREWRSET_API FalagardMultiLineEditbox : public MultiLineEditboxWindowRenderer
-{
-public:
-    static const String TypeName;     //! type name for this widget.
-
-    //! Name of property to use to obtain unselected text rendering colour.
-    static const String UnselectedTextColourPropertyName;
-    //! Name of property to use to obtain selected text rendering colour.
-    static const String SelectedTextColourPropertyName;
-    //! Name of property to use to obtain active selection rendering colour.
-    static const String ActiveSelectionColourPropertyName;
-    //! Name of property to use to obtain inactive selection rendering colour.
-    static const String InactiveSelectionColourPropertyName;
-    //! The default timeout (in seconds) used when blinking the caret.
-    static const float DefaultCaretBlinkTimeout;
+namespace CEGUI {
 
     /*!
     \brief
-        Constructor
-    */
-    FalagardMultiLineEditbox(const String& type);
+        MultiLineEditbox class for the FalagardBase module.
 
-    // overridden from base classes.
-    Rectf getTextRenderArea(void) const;
-    void render();
-    void update(float elapsed);
+        This class requires LookNFeel to be assigned.  The LookNFeel should provide the following:
 
-    //! return whether the blinking caret is enabled.
-    bool isCaretBlinkEnabled() const;
-    //! return the caret blink timeout period (only used if blink is enabled).
-    float getCaretBlinkTimeout() const;
-    //! set whether the blinking caret is enabled.
-    void setCaretBlinkEnabled(bool enable);
-    //! set the caret blink timeout period (only used if blink is enabled).
-    void setCaretBlinkTimeout(float seconds);
+        States:
+            - Enabled    - Rendering for when the editbox is in enabled and is in read-write mode.
+            - ReadOnly  - Rendering for when the editbox is in enabled and is in read-only mode.
+            - Disabled  - Rendering for when the editbox is disabled.
 
-    // overridden from base class
-    bool handleFontRenderSizeChange(const Font* const font);
+        NamedAreas:
+            TextArea         - area where text, selection, and caret imagery will appear.
+            TextAreaHScroll  - TextArea when only horizontal scrollbar is visible.
+            TextAreaVScroll  - TextArea when only vertical scrollbar is visible.
+            TextAreaHVScroll - TextArea when both horizontal and vertical scrollbar is visible.
 
-protected:
-    /*!
-    \brief
-        Perform rendering of the widget control frame and other 'static' areas.  This
-        method should not render the actual text.  Note that the text will be rendered
-        to layer 4 and the selection brush to layer 3, other layers can be used for
-        rendering imagery behind and infront of the text & selection..
+        PropertyDefinitions (optional, defaults will be black):
+            - NormalTextColour        - property that accesses a colour value to be used to render normal unselected text.
+            - SelectedTextColour      - property that accesses a colour value to be used to render selected text.
+            - ActiveSelectionColour   - property that accesses a colour value to be used to render active selection highlight.
+            - InactiveSelectionColour - property that accesses a colour value to be used to render inactive selection highlight.
 
-    \return
-        Nothing.
-    */
-    void cacheEditboxBaseImagery();
+        Imagery Sections:
+            - Caret
 
-    /*!
-    \brief
-        Render the caret.
+        Child Widgets:
+            Scrollbar based widget with name suffix "__auto_vscrollbar__"
+            Scrollbar based widget with name suffix "__auto_hscrollbar__"
 
-    \return
-        Nothing
-    */
-    void cacheCaretImagery(const Rectf& textArea);
+     */
+    class COREWRSET_API FalagardMultiLineEditbox : public MultiLineEditboxWindowRenderer {
+    public:
+        static const String TypeName; //! type name for this widget.
 
-    /*!
-    \brief
-        Render text lines.
-    */
-    void cacheTextLines(const Rectf& dest_area);
+        //! Name of property to use to obtain unselected text rendering colour.
+        static const String UnselectedTextColourPropertyName;
+        //! Name of property to use to obtain selected text rendering colour.
+        static const String SelectedTextColourPropertyName;
+        //! Name of property to use to obtain active selection rendering colour.
+        static const String ActiveSelectionColourPropertyName;
+        //! Name of property to use to obtain inactive selection rendering colour.
+        static const String InactiveSelectionColourPropertyName;
+        //! The default timeout (in seconds) used when blinking the caret.
+        static const float DefaultCaretBlinkTimeout;
 
-    /*!
-    \brief
-        Set the given ColourRect to the colour to be used for rendering Editbox
-        text oustside of the selected region.
-    */
-    void setColourRectToUnselectedTextColour(ColourRect& colour_rect) const;
+        /*!
+        \brief
+            Constructor
+         */
+        FalagardMultiLineEditbox(const String& type);
 
-    /*!
-    \brief
-        Set the given ColourRect to the colour to be used for rendering Editbox
-        text falling within the selected region.
-    */
-    void setColourRectToSelectedTextColour(ColourRect& colour_rect) const;
+        // overridden from base classes.
+        Rectf getTextRenderArea(void) const;
+        void render();
+        void update(float elapsed);
 
-    /*!
-    \brief
-        Set the given ColouRect to the colours to be used for rendering the
-        selection highlight when the editbox is active.
-    */
-    void setColourRectToActiveSelectionColour(ColourRect& colour_rect) const;
+        //! return whether the blinking caret is enabled.
+        bool isCaretBlinkEnabled() const;
+        //! return the caret blink timeout period (only used if blink is enabled).
+        float getCaretBlinkTimeout() const;
+        //! set whether the blinking caret is enabled.
+        void setCaretBlinkEnabled(bool enable);
+        //! set the caret blink timeout period (only used if blink is enabled).
+        void setCaretBlinkTimeout(float seconds);
 
-    /*!
-    \brief
-        set the given ColourRect to the colours to be used for rendering the
-        selection highlight when the editbox is inactive.
-    */
-    void setColourRectToInactiveSelectionColour(ColourRect& colour_rect) const;
+        // overridden from base class
+        bool handleFontRenderSizeChange(const Font * const font);
 
-    /*!
-    \brief
-        Set the given ColourRect to the colour(s) fetched from the named
-        property if it exists, else the default colour of black.
+    protected:
+        /*!
+        \brief
+            Perform rendering of the widget control frame and other 'static' areas.  This
+            method should not render the actual text.  Note that the text will be rendered
+            to layer 4 and the selection brush to layer 3, other layers can be used for
+            rendering imagery behind and infront of the text & selection..
 
-    \param propertyName
-        String object holding the name of the property to be accessed if it
-        exists.
+        \return
+            Nothing.
+         */
+        void cacheEditboxBaseImagery();
 
-    \param colour_rect
-        Reference to a ColourRect that will be set.
-    */
-    void setColourRectToOptionalPropertyColour(const String& propertyName,
-                                               ColourRect& colour_rect) const;
+        /*!
+        \brief
+            Render the caret.
 
-    //! true if the caret imagery should blink.
-    bool d_blinkCaret;
-    //! time-out in seconds used for blinking the caret.
-    float d_caretBlinkTimeout;
-    //! current time elapsed since last caret blink state change.
-    float d_caretBlinkElapsed;
-    //! true if caret should be shown.
-    bool d_showCaret;
-};
+        \return
+            Nothing
+         */
+        void cacheCaretImagery(const Rectf& textArea);
+
+        /*!
+        \brief
+            Render text lines.
+         */
+        void cacheTextLines(const Rectf& dest_area);
+
+        /*!
+        \brief
+            Set the given ColourRect to the colour to be used for rendering Editbox
+            text oustside of the selected region.
+         */
+        void setColourRectToUnselectedTextColour(ColourRect& colour_rect) const;
+
+        /*!
+        \brief
+            Set the given ColourRect to the colour to be used for rendering Editbox
+            text falling within the selected region.
+         */
+        void setColourRectToSelectedTextColour(ColourRect& colour_rect) const;
+
+        /*!
+        \brief
+            Set the given ColouRect to the colours to be used for rendering the
+            selection highlight when the editbox is active.
+         */
+        void setColourRectToActiveSelectionColour(ColourRect& colour_rect) const;
+
+        /*!
+        \brief
+            set the given ColourRect to the colours to be used for rendering the
+            selection highlight when the editbox is inactive.
+         */
+        void setColourRectToInactiveSelectionColour(ColourRect& colour_rect) const;
+
+        /*!
+        \brief
+            Set the given ColourRect to the colour(s) fetched from the named
+            property if it exists, else the default colour of black.
+
+        \param propertyName
+            String object holding the name of the property to be accessed if it
+            exists.
+
+        \param colour_rect
+            Reference to a ColourRect that will be set.
+         */
+        void setColourRectToOptionalPropertyColour(const String& propertyName,
+                ColourRect& colour_rect) const;
+
+        //! true if the caret imagery should blink.
+        bool d_blinkCaret;
+        //! time-out in seconds used for blinking the caret.
+        float d_caretBlinkTimeout;
+        //! current time elapsed since last caret blink state change.
+        float d_caretBlinkElapsed;
+        //! true if caret should be shown.
+        bool d_showCaret;
+    };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalMultiLineEditbox_h_

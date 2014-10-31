@@ -6,11 +6,11 @@
 
 namespace bp = boost::python;
 
-void register_BoundSlot_class(){
+void register_BoundSlot_class() {
 
     { //::CEGUI::BoundSlot
         typedef bp::class_< CEGUI::BoundSlot > BoundSlot_exposer_t;
-        BoundSlot_exposer_t BoundSlot_exposer = BoundSlot_exposer_t( "BoundSlot", bp::init< unsigned int, CEGUI::SubscriberSlot const &, CEGUI::Event & >(( bp::arg("group"), bp::arg("subscriber"), bp::arg("event") ), "*!\n\
+        BoundSlot_exposer_t BoundSlot_exposer = BoundSlot_exposer_t("BoundSlot", bp::init< unsigned int, CEGUI::SubscriberSlot const &, CEGUI::Event & >((bp::arg("group"), bp::arg("subscriber"), bp::arg("event")), "*!\n\
             \n\
                 Constructor.\n\
         \n\
@@ -22,20 +22,20 @@ void register_BoundSlot_class(){
         \n\
             @param event\n\
                 The Event object to which the subscribed slot is attached.\n\
-            *\n") );
-        bp::scope BoundSlot_scope( BoundSlot_exposer );
-        BoundSlot_exposer.def( bp::init< CEGUI::BoundSlot const & >(( bp::arg("other") ), "*!\n\
+            *\n"));
+        bp::scope BoundSlot_scope(BoundSlot_exposer);
+        BoundSlot_exposer.def(bp::init< CEGUI::BoundSlot const & >((bp::arg("other")), "*!\n\
         \n\
             Copy constructor.\n\
-        *\n") );
+        *\n"));
         { //::CEGUI::BoundSlot::connected
-        
-            typedef bool ( ::CEGUI::BoundSlot::*connected_function_type )(  ) const;
-            
-            BoundSlot_exposer.def( 
-                "connected"
-                , connected_function_type( &::CEGUI::BoundSlot::connected )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::BoundSlot::*connected_function_type)() const;
+
+            BoundSlot_exposer.def(
+                    "connected"
+                    , connected_function_type(&::CEGUI::BoundSlot::connected)
+                    , "*!\n\
                 \n\
                     Returns whether the slot which this object is tracking is still\n\
                     internally connected to the signal  event mechanism.\n\
@@ -43,17 +43,17 @@ void register_BoundSlot_class(){
                 @return\n\
                     - true to indicate that the slot is still connected.\n\
                     - false to indicate that the slot has been disconnected.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::BoundSlot::disconnect
-        
-            typedef void ( ::CEGUI::BoundSlot::*disconnect_function_type )(  ) ;
-            
-            BoundSlot_exposer.def( 
-                "disconnect"
-                , disconnect_function_type( &::CEGUI::BoundSlot::disconnect )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::BoundSlot::*disconnect_function_type)();
+
+            BoundSlot_exposer.def(
+                    "disconnect"
+                    , disconnect_function_type(&::CEGUI::BoundSlot::disconnect)
+                    , "*!\n\
                 \n\
                     Disconnects the slot.  Once disconnected, the slot will no longer be\n\
                     called when the associated signal  event fires.  There is no way to\n\
@@ -62,11 +62,11 @@ void register_BoundSlot_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
-        BoundSlot_exposer.def( bp::self != bp::self );
-        BoundSlot_exposer.def( bp::self == bp::self );
+        BoundSlot_exposer.def(bp::self != bp::self);
+        BoundSlot_exposer.def(bp::self == bp::self);
     }
 
 }

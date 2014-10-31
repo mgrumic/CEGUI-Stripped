@@ -32,62 +32,62 @@
 #include <boost/python/register_ptr_to_python.hpp>
 #include <boost/python/implicit.hpp>
 
-namespace boost { namespace python { namespace indexing {
-  template<typename ContainerProxy>
-  struct element_proxy_traits
-    : public value_traits<
-          BOOST_DEDUCED_TYPENAME ContainerProxy::raw_value_type>
-  {
-    typedef element_proxy<ContainerProxy> element_proxy_type;
-    typedef typename ContainerProxy::raw_value_type raw_value_type;
-    typedef value_traits<raw_value_type> base_type;
+namespace boost {
+    namespace python {
+        namespace indexing {
 
-    // Wrap the base class versions of the comparisons using
-    // indirection
-    struct less
-      : std::binary_function<element_proxy_type, element_proxy_type, bool>
-    {
-      typename base_type::less m_base_compare;
+            template<typename ContainerProxy>
+            struct element_proxy_traits
+            : public value_traits<
+            BOOST_DEDUCED_TYPENAME ContainerProxy::raw_value_type> {
+                typedef element_proxy<ContainerProxy> element_proxy_type;
+                typedef typename ContainerProxy::raw_value_type raw_value_type;
+                typedef value_traits<raw_value_type> base_type;
 
-      bool operator()(
-          element_proxy_type const &p1, element_proxy_type const &p2) const
-      {
-        return m_base_compare (*p1, *p2);
-      }
-    };
+                // Wrap the base class versions of the comparisons using
+                // indirection
 
-    struct equal_to
-      : std::binary_function<raw_value_type, element_proxy_type, bool>
-    {
-      // First param is raw_value_type to interface smoothly with the
-      // bind1st used in default_algorithms::find
+                struct less
+                : std::binary_function<element_proxy_type, element_proxy_type, bool> {
+                    typename base_type::less m_base_compare;
 
-      typename base_type::equal_to m_base_compare;
+                    bool operator()(
+                            element_proxy_type const &p1, element_proxy_type const &p2) const {
+                        return m_base_compare(*p1, *p2);
+                    }
+                };
 
-      bool operator()(
-          raw_value_type const &v, element_proxy_type const &p) const
-      {
-        return m_base_compare (v, *p);
-      }
-    };
+                struct equal_to
+                : std::binary_function<raw_value_type, element_proxy_type, bool> {
+                    // First param is raw_value_type to interface smoothly with the
+                    // bind1st used in default_algorithms::find
 
-    template<typename PythonClass, typename Policy>
-    static void visit_container_class (PythonClass &, Policy const &)
-    {
-      register_ptr_to_python<element_proxy_type>();
-      implicitly_convertible<raw_value_type, element_proxy_type>();
-    }
-  };
+                    typename base_type::equal_to m_base_compare;
+
+                    bool operator()(
+                            raw_value_type const &v, element_proxy_type const &p) const {
+                        return m_base_compare(v, *p);
+                    }
+                };
+
+                template<typename PythonClass, typename Policy>
+                static void visit_container_class(PythonClass &, Policy const &) {
+                    register_ptr_to_python<element_proxy_type>();
+                    implicitly_convertible<raw_value_type, element_proxy_type>();
+                }
+            };
 
 #if !defined (BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-  // value_traits partial specialization for element_proxy instances
-  template<typename ContainerProxy>
-  struct value_traits<element_proxy<ContainerProxy> >
-    : element_proxy_traits<ContainerProxy>
-  {
-  };
+            // value_traits partial specialization for element_proxy instances
+
+            template<typename ContainerProxy>
+            struct value_traits<element_proxy<ContainerProxy> >
+            : element_proxy_traits<ContainerProxy> {
+            };
 #endif
-} } }
+        }
+    }
+}
 
 #endif // BOOST_PYTHON_INDEXING_ELEMENT_PROXY_TRAITS_HPP
 

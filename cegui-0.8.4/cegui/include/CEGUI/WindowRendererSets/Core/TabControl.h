@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jul 8 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,13 +31,13 @@
 #include "CEGUI/widgets/TabControl.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         TabControl class for the FalagardBase module.
@@ -60,16 +60,15 @@ namespace CEGUI
         The current TabControl base class enforces a strict layout, so while
         imagery can be customised as desired, the general layout of the
         component widgets is, at least for the time being, fixed.
-    */
-    class COREWRSET_API FalagardTabControl : public TabControlWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardTabControl : public TabControlWindowRenderer {
     public:
-        static const String TypeName;     //! type name for this widget.
+        static const String TypeName; //! type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardTabControl(const String& type);
 
         const String& getTabButtonType() const;
@@ -82,14 +81,14 @@ namespace CEGUI
         TabButton* createTabButton(const String& name) const;
 
         // data fields
-        String  d_tabButtonType;
+        String d_tabButtonType;
     };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalTabControl_h_

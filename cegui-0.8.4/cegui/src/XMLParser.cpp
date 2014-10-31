@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    12/3/2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,45 +31,38 @@
 #include "CEGUI/Logger.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
     XMLParser::XMLParser(void) :
-            d_identifierString("Unknown XML parser (vendor did not set the ID string!)"),
-            d_initialised(false)
-    {}
+    d_identifierString("Unknown XML parser (vendor did not set the ID string!)"),
+    d_initialised(false) {
+    }
 
-    XMLParser::~XMLParser(void)
-    {}
+    XMLParser::~XMLParser(void) {
+    }
 
-    bool XMLParser::initialise(void)
-    {
+    bool XMLParser::initialise(void) {
         // do this to ensure only one initialise call is made
-        if (!d_initialised)
-        {
+        if (!d_initialised) {
             d_initialised = initialiseImpl();
         }
 
         return d_initialised;
     }
 
-    void XMLParser::parseXMLFile(XMLHandler& handler, const String& filename, const String& schemaName, const String& resourceGroup)
-    {
+    void XMLParser::parseXMLFile(XMLHandler& handler, const String& filename, const String& schemaName, const String& resourceGroup) {
         // Acquire resource using CEGUI ResourceProvider
         RawDataContainer rawXMLData;
         System::getSingleton().getResourceProvider()->loadRawDataContainer(filename, rawXMLData, resourceGroup);
 
-        try
-        {
+        try {
             // The actual parsing action (this is overridden and depends on the specific parser)
             parseXML(handler, rawXMLData, schemaName);
-        }
-        catch (const Exception&)
-        {
+        }        catch (const Exception&) {
 #ifndef PE_NO_LOGGER
             // hint the related file name in the log
             Logger::getSingleton().logEvent("The last thrown exception was related to XML file '" +
-                                            filename + "' from resource group '" + resourceGroup + "'.", Errors);
+                    filename + "' from resource group '" + resourceGroup + "'.", Errors);
 #endif //PE_NO_LOGGER
 
             // exception safety
@@ -82,27 +75,23 @@ namespace CEGUI
         System::getSingleton().getResourceProvider()->unloadRawDataContainer(rawXMLData);
     }
 
-    void XMLParser::parseXMLString(XMLHandler& handler, const String& source, const String& schemaName)
-    {
+    void XMLParser::parseXMLString(XMLHandler& handler, const String& source, const String& schemaName) {
         // Put the source string into a RawDataContainer
         RawDataContainer rawXMLData;
 
         const char* c_str = source.c_str();
-        rawXMLData.setData((uint8*)c_str);
+        rawXMLData.setData((uint8*) c_str);
         rawXMLData.setSize(strlen(c_str));
 
-        try
-        {
-        	// The actual parsing action (this is overridden and depends on the specific parser)
-        	parseXML(handler, rawXMLData, schemaName);
-        }
-        catch(...)
-        {
-        	// make sure we don't allow rawXMLData to release String owned data no matter what!
-        	rawXMLData.setData(0);
-			rawXMLData.setSize(0);
+        try {
+            // The actual parsing action (this is overridden and depends on the specific parser)
+            parseXML(handler, rawXMLData, schemaName);
+        }        catch (...) {
+            // make sure we don't allow rawXMLData to release String owned data no matter what!
+            rawXMLData.setData(0);
+            rawXMLData.setSize(0);
 
-			CEGUI_RETHROW;
+            CEGUI_RETHROW;
         }
 
         // !!! We must not allow DataContainer to delete String owned data,
@@ -111,17 +100,14 @@ namespace CEGUI
         rawXMLData.setSize(0);
     }
 
-    void XMLParser::cleanup(void)
-    {
-        if (d_initialised)
-        {
+    void XMLParser::cleanup(void) {
+        if (d_initialised) {
             cleanupImpl();
             d_initialised = false;
         }
     }
 
-    const String& XMLParser::getIdentifierString() const
-    {
+    const String& XMLParser::getIdentifierString() const {
         return d_identifierString;
     }
 

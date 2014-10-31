@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 20 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -28,70 +28,68 @@
 #include "CEGUI/Logger.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-template<> SchemeManager* Singleton<SchemeManager>::ms_Singleton = 0;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    template<> SchemeManager* Singleton<SchemeManager>::ms_Singleton = 0;
 
-//----------------------------------------------------------------------------//
-SchemeManager::SchemeManager() :
+    //----------------------------------------------------------------------------//
+
+    SchemeManager::SchemeManager() :
     NamedXMLResourceManager<Scheme, Scheme_xmlHandler>("Scheme"),
-    
-    d_autoLoadResources(true)
-{
+
+    d_autoLoadResources(true) {
 #ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-    Logger::getSingleton().logEvent(
-    "CEGUI::SchemeManager singleton created. " + String(addr_buff));
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::SchemeManager singleton created. " + String(addr_buff));
 #endif //PE_NO_LOGGER
-}
-
-//----------------------------------------------------------------------------//
-SchemeManager::~SchemeManager()
-{
-#ifndef PE_NO_LOGGER
-    Logger::getSingleton().logEvent(
-        "---- Begining cleanup of GUI Scheme system ----");
-#endif //PE_NO_LOGGER
-
-    destroyAll();
-
-#ifndef PE_NO_LOGGER
-    char addr_buff[32];
-    sprintf(addr_buff, "(%p)", static_cast<void*>(this));
-    Logger::getSingleton().logEvent(
-        "CEGUI::SchemeManager singleton destroyed. " + String(addr_buff));
-#endif //PE_NO_LOGGER
-}
-
-//----------------------------------------------------------------------------//
-SchemeManager::SchemeIterator SchemeManager::getIterator(void) const
-{
-    return SchemeIterator(d_objects.begin(), d_objects.end());
-}
-
-//----------------------------------------------------------------------------//
-void SchemeManager::setAutoLoadResources(bool enabled)
-{
-    d_autoLoadResources = enabled;
-}
-
-//----------------------------------------------------------------------------//
-bool SchemeManager::getAutoLoadResources() const
-{
-    return d_autoLoadResources;
-}
-
-//----------------------------------------------------------------------------//
-void SchemeManager::doPostObjectAdditionAction(Scheme& object)
-{
-    if (d_autoLoadResources)
-    {
-        object.loadResources();
     }
-}
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    SchemeManager::~SchemeManager() {
+#ifndef PE_NO_LOGGER
+        Logger::getSingleton().logEvent(
+                "---- Begining cleanup of GUI Scheme system ----");
+#endif //PE_NO_LOGGER
+
+        destroyAll();
+
+#ifndef PE_NO_LOGGER
+        char addr_buff[32];
+        sprintf(addr_buff, "(%p)", static_cast<void*> (this));
+        Logger::getSingleton().logEvent(
+                "CEGUI::SchemeManager singleton destroyed. " + String(addr_buff));
+#endif //PE_NO_LOGGER
+    }
+
+    //----------------------------------------------------------------------------//
+
+    SchemeManager::SchemeIterator SchemeManager::getIterator(void) const {
+        return SchemeIterator(d_objects.begin(), d_objects.end());
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SchemeManager::setAutoLoadResources(bool enabled) {
+        d_autoLoadResources = enabled;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool SchemeManager::getAutoLoadResources() const {
+        return d_autoLoadResources;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void SchemeManager::doPostObjectAdditionAction(Scheme& object) {
+        if (d_autoLoadResources) {
+            object.loadResources();
+        }
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

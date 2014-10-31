@@ -1,7 +1,7 @@
 /***********************************************************************
-	created:	28/8/2004
-	author:		Paul D Turner
-*************************************************************************/
+        created:	28/8/2004
+        author:		Paul D Turner
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -28,107 +28,105 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*************************************************************************
-	Constants
-*************************************************************************/
-// type name for this widget
-const String DefaultWindow::WidgetTypeName("DefaultWindow");
+namespace CEGUI {
+    /*************************************************************************
+            Constants
+     *************************************************************************/
+    // type name for this widget
+    const String DefaultWindow::WidgetTypeName("DefaultWindow");
 
-/*************************************************************************
-    Constructor
-*************************************************************************/
-DefaultWindow::DefaultWindow(const String& type, const String& name) :
-    Window(type, name)
-{
-    USize sz(cegui_reldim(1.0f), cegui_reldim(1.0f));
-    setMaxSize(sz);
-    setSize(sz);
-}
+    /*************************************************************************
+        Constructor
+     *************************************************************************/
+    DefaultWindow::DefaultWindow(const String& type, const String& name) :
+    Window(type, name) {
+        USize sz(cegui_reldim(1.0f), cegui_reldim(1.0f));
+        setMaxSize(sz);
+        setSize(sz);
+    }
 #ifndef PE_NO_MOUSE
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseMove(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseMove(e);
-    updateMouseEventHandled(e);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseWheel(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseWheel(e);
-    updateMouseEventHandled(e);
-}
-
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseButtonDown(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseButtonDown(e);
-    updateMouseEventHandled(e);
-}
-
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseButtonUp(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseButtonUp(e);
-    updateMouseEventHandled(e);
-}
-
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseClicked(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseClicked(e);
-    // only adjust the handled state if event was directly injected
-    if (!getGUIContext().isMouseClickEventGenerationEnabled())
+    void DefaultWindow::onMouseMove(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseMove(e);
         updateMouseEventHandled(e);
-}
+    }
 
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseDoubleClicked(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseDoubleClicked(e);
-    updateMouseEventHandled(e);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void DefaultWindow::onMouseTripleClicked(MouseEventArgs& e)
-{
-    // always call the base class handler
-    Window::onMouseTripleClicked(e);
-    updateMouseEventHandled(e);
-}
+    void DefaultWindow::onMouseWheel(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseWheel(e);
+        updateMouseEventHandled(e);
+    }
 
-//----------------------------------------------------------------------------//
-void DefaultWindow::updateMouseEventHandled(MouseEventArgs& e) const
-{
-    // by default, if we are a root window (no parent) with pass-though enabled
-    // we do /not/ mark mouse events as handled.
-    if (!d_parent && e.handled && d_mousePassThroughEnabled)
-        --e.handled;
-}
+    //----------------------------------------------------------------------------//
+
+    void DefaultWindow::onMouseButtonDown(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseButtonDown(e);
+        updateMouseEventHandled(e);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DefaultWindow::onMouseButtonUp(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseButtonUp(e);
+        updateMouseEventHandled(e);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DefaultWindow::onMouseClicked(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseClicked(e);
+        // only adjust the handled state if event was directly injected
+        if (!getGUIContext().isMouseClickEventGenerationEnabled())
+            updateMouseEventHandled(e);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DefaultWindow::onMouseDoubleClicked(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseDoubleClicked(e);
+        updateMouseEventHandled(e);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DefaultWindow::onMouseTripleClicked(MouseEventArgs& e) {
+        // always call the base class handler
+        Window::onMouseTripleClicked(e);
+        updateMouseEventHandled(e);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DefaultWindow::updateMouseEventHandled(MouseEventArgs& e) const {
+        // by default, if we are a root window (no parent) with pass-though enabled
+        // we do /not/ mark mouse events as handled.
+        if (!d_parent && e.handled && d_mousePassThroughEnabled)
+            --e.handled;
+    }
 #endif //PE_NO_MOUSE
-//----------------------------------------------------------------------------//
-bool DefaultWindow::moveToFront_impl(bool wasClicked)
-{
-    const bool took_action = Window::moveToFront_impl(wasClicked);
+    //----------------------------------------------------------------------------//
 
-    if (!d_parent
+    bool DefaultWindow::moveToFront_impl(bool wasClicked) {
+        const bool took_action = Window::moveToFront_impl(wasClicked);
+
+        if (!d_parent
 #ifndef PE_NO_MOUSE
-        && d_mousePassThroughEnabled
+                && d_mousePassThroughEnabled
 #endif //PE_NO_MOUSE
-        )
-        return false;
-    else
-        return took_action;
-}
+                )
+            return false;
+        else
+            return took_action;
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jun 26 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,112 +31,112 @@
 #include "CEGUI/falagard/XMLHandler.h"
 #include "CEGUI/Logger.h"
 
-namespace CEGUI
-{
-template <typename T>
-class PropertyDefinition : public FalagardPropertyBase<T>
-{
-public:
-    typedef typename TypedProperty<T>::Helper Helper;
+namespace CEGUI {
 
-    //------------------------------------------------------------------------//
-    PropertyDefinition(const String& name, const String& initialValue,
-                       const String& help, const String& origin,
-                       bool redrawOnWrite, bool layoutOnWrite,
-                       const String& fireEvent, const String& eventNamespace) :
+    template <typename T>
+    class PropertyDefinition : public FalagardPropertyBase<T> {
+    public:
+        typedef typename TypedProperty<T>::Helper Helper;
+
+        //------------------------------------------------------------------------//
+
+        PropertyDefinition(const String& name, const String& initialValue,
+                const String& help, const String& origin,
+                bool redrawOnWrite, bool layoutOnWrite,
+                const String& fireEvent, const String& eventNamespace) :
         FalagardPropertyBase<T>(name, help, initialValue, origin,
-                                redrawOnWrite, layoutOnWrite,
-                                fireEvent, eventNamespace),
-                                d_userStringName(name + PropertyDefinitionBase::UserStringNameSuffix)
-    {
-    }
-
-    //------------------------------------------------------------------------//
-    ~PropertyDefinition() {}
-
-    //------------------------------------------------------------------------//
-    void initialisePropertyReceiver(PropertyReceiver* receiver) const
-    {
-        setWindowUserString(static_cast<Window*>(receiver), this->d_default);
-    }
-
-    //------------------------------------------------------------------------//
-    Property* clone() const
-    {
-        return CEGUI_NEW_AO PropertyDefinition<T>(*this);
-    }
-
-protected:
-    //------------------------------------------------------------------------//
-    typename Helper::safe_method_return_type
-    getNative_impl(const PropertyReceiver* receiver) const
-    {
-        const Window* const wnd = static_cast<const Window*>(receiver);
-
-        // the try/catch is used instead of querying the existence of the user
-        // string in order that for the 'usual' case - where the user string
-        // exists - there is basically no additional overhead, and that any
-        // overhead is incurred only for the initial creation of the user
-        // string.
-        // Maybe the only negative here is that an error gets logged, though
-        // this can be treated as a 'soft' error.
-        CEGUI_TRY
-        {
-            return Helper::fromString(wnd->getUserString(d_userStringName));
+        redrawOnWrite, layoutOnWrite,
+        fireEvent, eventNamespace),
+        d_userStringName(name + PropertyDefinitionBase::UserStringNameSuffix) {
         }
-        CEGUI_CATCH (UnknownObjectException&)
-        {
+
+        //------------------------------------------------------------------------//
+
+        ~PropertyDefinition() {
+        }
+
+        //------------------------------------------------------------------------//
+
+        void initialisePropertyReceiver(PropertyReceiver* receiver) const {
+            setWindowUserString(static_cast<Window*> (receiver), this->d_default);
+        }
+
+        //------------------------------------------------------------------------//
+
+        Property* clone() const {
+            return CEGUI_NEW_AO PropertyDefinition<T>(*this);
+        }
+
+    protected:
+        //------------------------------------------------------------------------//
+
+        typename Helper::safe_method_return_type
+        getNative_impl(const PropertyReceiver* receiver) const {
+            const Window * const wnd = static_cast<const Window*> (receiver);
+
+            // the try/catch is used instead of querying the existence of the user
+            // string in order that for the 'usual' case - where the user string
+            // exists - there is basically no additional overhead, and that any
+            // overhead is incurred only for the initial creation of the user
+            // string.
+            // Maybe the only negative here is that an error gets logged, though
+            // this can be treated as a 'soft' error.
+            CEGUI_TRY{
+                return Helper::fromString(wnd->getUserString(d_userStringName));
+            }
+
+            CEGUI_CATCH(UnknownObjectException&) {
 #ifndef PE_NO_LOGGER
-            Logger::getSingleton().logEvent(
-                "PropertyDefiniton::get: Defining new user string: " +
-                d_userStringName);
+                Logger::getSingleton().logEvent(
+                        "PropertyDefiniton::get: Defining new user string: " +
+                        d_userStringName);
 #endif //PE_NO_LOGGER
 
-            // HACK: FIXME: TODO: This const_cast is basically to allow the
-            // above mentioned performance measure; the alternative would be
-            // to just return d_default, and while technically correct, it
-            // would be very slow.
-            const_cast<Window*>(wnd)->
-                setUserString(d_userStringName, TypedProperty<T>::d_default);
+                // HACK: FIXME: TODO: This const_cast is basically to allow the
+                // above mentioned performance measure; the alternative would be
+                // to just return d_default, and while technically correct, it
+                // would be very slow.
+                const_cast<Window*> (wnd)->
+                        setUserString(d_userStringName, TypedProperty<T>::d_default);
 
-            return Helper::fromString(TypedProperty<T>::d_default);
+                return Helper::fromString(TypedProperty<T>::d_default);
+            }
         }
-    }
 
-    //------------------------------------------------------------------------//
-    void setNative_impl(PropertyReceiver* receiver,typename Helper::pass_type value)
-    {
-        setWindowUserString(static_cast<Window*>(receiver), Helper::toString(value));
-        FalagardPropertyBase<T>::setNative_impl(receiver, value);
-    }
+        //------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------//
-    void setWindowUserString(Window* window, const String& value) const
-    {
-        window->setUserString(d_userStringName, value);
-    }
+        void setNative_impl(PropertyReceiver* receiver, typename Helper::pass_type value) {
+            setWindowUserString(static_cast<Window*> (receiver), Helper::toString(value));
+            FalagardPropertyBase<T>::setNative_impl(receiver, value);
+        }
 
-    //------------------------------------------------------------------------//
-    void writeDefinitionXMLElementType(XMLSerializer& xml_stream) const
-    {
-        xml_stream.openTag(Falagard_xmlHandler::PropertyDefinitionElement);
-        writeDefinitionXMLAdditionalAttributes(xml_stream);
-    }
-    //------------------------------------------------------------------------//
-    void writeDefinitionXMLAdditionalAttributes(XMLSerializer& xml_stream) const
-    {
-        if(FalagardPropertyBase<T>::d_dataType.compare(Falagard_xmlHandler::GenericDataType) != 0)
-            xml_stream.attribute(Falagard_xmlHandler::TypeAttribute, FalagardPropertyBase<T>::d_dataType);
+        //------------------------------------------------------------------------//
 
-        if (!PropertyDefinitionBase::d_helpString.empty() && PropertyDefinitionBase::d_helpString.compare(CEGUI::Falagard_xmlHandler::PropertyDefinitionHelpDefaultValue) != 0)
-            xml_stream.attribute(Falagard_xmlHandler::HelpStringAttribute, PropertyDefinitionBase::d_helpString);
-    }
+        void setWindowUserString(Window* window, const String& value) const {
+            window->setUserString(d_userStringName, value);
+        }
+
+        //------------------------------------------------------------------------//
+
+        void writeDefinitionXMLElementType(XMLSerializer& xml_stream) const {
+            xml_stream.openTag(Falagard_xmlHandler::PropertyDefinitionElement);
+            writeDefinitionXMLAdditionalAttributes(xml_stream);
+        }
+        //------------------------------------------------------------------------//
+
+        void writeDefinitionXMLAdditionalAttributes(XMLSerializer& xml_stream) const {
+            if (FalagardPropertyBase<T>::d_dataType.compare(Falagard_xmlHandler::GenericDataType) != 0)
+                xml_stream.attribute(Falagard_xmlHandler::TypeAttribute, FalagardPropertyBase<T>::d_dataType);
+
+            if (!PropertyDefinitionBase::d_helpString.empty() && PropertyDefinitionBase::d_helpString.compare(CEGUI::Falagard_xmlHandler::PropertyDefinitionHelpDefaultValue) != 0)
+                xml_stream.attribute(Falagard_xmlHandler::HelpStringAttribute, PropertyDefinitionBase::d_helpString);
+        }
 
 
-    //------------------------------------------------------------------------//
+        //------------------------------------------------------------------------//
 
-    String d_userStringName;
-};
+        String d_userStringName;
+    };
 
 }
 

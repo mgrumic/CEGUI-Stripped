@@ -6,374 +6,374 @@
 
 namespace bp = boost::python;
 
-void register_Scheme_class(){
+void register_Scheme_class() {
 
     { //::CEGUI::Scheme
         typedef bp::class_< CEGUI::Scheme, boost::noncopyable > Scheme_exposer_t;
-        Scheme_exposer_t Scheme_exposer = Scheme_exposer_t( "Scheme", bp::no_init );
-        bp::scope Scheme_scope( Scheme_exposer );
+        Scheme_exposer_t Scheme_exposer = Scheme_exposer_t("Scheme", bp::no_init);
+        bp::scope Scheme_scope(Scheme_exposer);
         { //::CEGUI::Scheme::LoadableUIElement
             typedef bp::class_< CEGUI::Scheme::LoadableUIElement > LoadableUIElement_exposer_t;
-            LoadableUIElement_exposer_t LoadableUIElement_exposer = LoadableUIElement_exposer_t( "LoadableUIElement", "*!\n\
+            LoadableUIElement_exposer_t LoadableUIElement_exposer = LoadableUIElement_exposer_t("LoadableUIElement", "*!\n\
             \n\
                 A single file reference to a font, imageset or so to be loaded as part of this Scheme\n\
                 \n\
             \note\n\
                 This is public because you might want to iterate over these and load them yourself!\n\
-            *\n" );
-            bp::scope LoadableUIElement_scope( LoadableUIElement_exposer );
-            LoadableUIElement_exposer.add_property( "filename"
-                            , bp::make_getter( &CEGUI::Scheme::LoadableUIElement::filename
-                                    , bp::return_value_policy< bp::return_by_value >() )
-                            , bp::make_setter( &CEGUI::Scheme::LoadableUIElement::filename ) );
-            LoadableUIElement_exposer.add_property( "name"
-                            , bp::make_getter( &CEGUI::Scheme::LoadableUIElement::name
-                                    , bp::return_value_policy< bp::return_by_value >() )
-                            , bp::make_setter( &CEGUI::Scheme::LoadableUIElement::name ) );
-            LoadableUIElement_exposer.add_property( "resourceGroup"
-                            , bp::make_getter( &CEGUI::Scheme::LoadableUIElement::resourceGroup
-                                    , bp::return_value_policy< bp::return_by_value >() )
-                            , bp::make_setter( &CEGUI::Scheme::LoadableUIElement::resourceGroup ) );
+            *\n");
+            bp::scope LoadableUIElement_scope(LoadableUIElement_exposer);
+            LoadableUIElement_exposer.add_property("filename"
+                    , bp::make_getter(&CEGUI::Scheme::LoadableUIElement::filename
+                    , bp::return_value_policy< bp::return_by_value >())
+                    , bp::make_setter(&CEGUI::Scheme::LoadableUIElement::filename));
+            LoadableUIElement_exposer.add_property("name"
+                    , bp::make_getter(&CEGUI::Scheme::LoadableUIElement::name
+                    , bp::return_value_policy< bp::return_by_value >())
+                    , bp::make_setter(&CEGUI::Scheme::LoadableUIElement::name));
+            LoadableUIElement_exposer.add_property("resourceGroup"
+                    , bp::make_getter(&CEGUI::Scheme::LoadableUIElement::resourceGroup
+                    , bp::return_value_policy< bp::return_by_value >())
+                    , bp::make_setter(&CEGUI::Scheme::LoadableUIElement::resourceGroup));
         }
         { //::CEGUI::Scheme::areFactoryAliasesLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areFactoryAliasesLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areFactoryAliasesLoaded"
-                , areFactoryAliasesLoaded_function_type( &::CEGUI::Scheme::areFactoryAliasesLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areFactoryAliasesLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areFactoryAliasesLoaded"
+                    , areFactoryAliasesLoaded_function_type(&::CEGUI::Scheme::areFactoryAliasesLoaded)
+                    , "*!\n\
             \n\
                 Check state of all factory aliases created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areFalagardMappingsLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areFalagardMappingsLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areFalagardMappingsLoaded"
-                , areFalagardMappingsLoaded_function_type( &::CEGUI::Scheme::areFalagardMappingsLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areFalagardMappingsLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areFalagardMappingsLoaded"
+                    , areFalagardMappingsLoaded_function_type(&::CEGUI::Scheme::areFalagardMappingsLoaded)
+                    , "*!\n\
             \n\
                 Check state of all falagard mappings created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areFontsLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areFontsLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areFontsLoaded"
-                , areFontsLoaded_function_type( &::CEGUI::Scheme::areFontsLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areFontsLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areFontsLoaded"
+                    , areFontsLoaded_function_type(&::CEGUI::Scheme::areFontsLoaded)
+                    , "*!\n\
             \n\
                 Check state of all xml based fonts created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areImageFileImagesetsLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areImageFileImagesetsLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areImageFileImagesetsLoaded"
-                , areImageFileImagesetsLoaded_function_type( &::CEGUI::Scheme::areImageFileImagesetsLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areImageFileImagesetsLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areImageFileImagesetsLoaded"
+                    , areImageFileImagesetsLoaded_function_type(&::CEGUI::Scheme::areImageFileImagesetsLoaded)
+                    , "*!\n\
             \n\
                 Check state of all image file based imagesets created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areLookNFeelsLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areLookNFeelsLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areLookNFeelsLoaded"
-                , areLookNFeelsLoaded_function_type( &::CEGUI::Scheme::areLookNFeelsLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areLookNFeelsLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areLookNFeelsLoaded"
+                    , areLookNFeelsLoaded_function_type(&::CEGUI::Scheme::areLookNFeelsLoaded)
+                    , "*!\n\
             \n\
                 Check state of all looknfeel files loaded by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areWindowFactoriesLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areWindowFactoriesLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areWindowFactoriesLoaded"
-                , areWindowFactoriesLoaded_function_type( &::CEGUI::Scheme::areWindowFactoriesLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areWindowFactoriesLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areWindowFactoriesLoaded"
+                    , areWindowFactoriesLoaded_function_type(&::CEGUI::Scheme::areWindowFactoriesLoaded)
+                    , "*!\n\
             \n\
                 Check state of all window factories registered by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areWindowRendererFactoriesLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areWindowRendererFactoriesLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areWindowRendererFactoriesLoaded"
-                , areWindowRendererFactoriesLoaded_function_type( &::CEGUI::Scheme::areWindowRendererFactoriesLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areWindowRendererFactoriesLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areWindowRendererFactoriesLoaded"
+                    , areWindowRendererFactoriesLoaded_function_type(&::CEGUI::Scheme::areWindowRendererFactoriesLoaded)
+                    , "*!\n\
             \n\
                 Check state of all window renderer factories registered by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::areXMLImagesetsLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*areXMLImagesetsLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "areXMLImagesetsLoaded"
-                , areXMLImagesetsLoaded_function_type( &::CEGUI::Scheme::areXMLImagesetsLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*areXMLImagesetsLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "areXMLImagesetsLoaded"
+                    , areXMLImagesetsLoaded_function_type(&::CEGUI::Scheme::areXMLImagesetsLoaded)
+                    , "*!\n\
             \n\
                 Check state of all XML based imagesets created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::getDefaultResourceGroup
-        
-            typedef ::CEGUI::String const & ( *getDefaultResourceGroup_function_type )(  );
-            
-            Scheme_exposer.def( 
-                "getDefaultResourceGroup"
-                , getDefaultResourceGroup_function_type( &::CEGUI::Scheme::getDefaultResourceGroup )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (*getDefaultResourceGroup_function_type)();
+
+            Scheme_exposer.def(
+                    "getDefaultResourceGroup"
+                    , getDefaultResourceGroup_function_type(&::CEGUI::Scheme::getDefaultResourceGroup)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                 \n\
                     Returns the default resource group currently set for Schemes.\n\
             \n\
                 @return\n\
                     String describing the default resource group identifier that will be\n\
                     used when loading Scheme xml file data.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Scheme::getFonts
-        
-            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > ( ::CEGUI::Scheme::*getFonts_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "getFonts"
-                , getFonts_function_type( &::CEGUI::Scheme::getFonts )
-                , "*!\n\
+
+            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > (::CEGUI::Scheme::*getFonts_function_type)() const;
+
+            Scheme_exposer.def(
+                    "getFonts"
+                    , getFonts_function_type(&::CEGUI::Scheme::getFonts)
+                    , "*!\n\
             \n\
                 Retrieves iterator for all references to font files that are to be loaded with this Scheme\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::getImageFileImagesets
-        
-            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > ( ::CEGUI::Scheme::*getImageFileImagesets_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "getImageFileImagesets"
-                , getImageFileImagesets_function_type( &::CEGUI::Scheme::getImageFileImagesets )
-                , "*!\n\
+
+            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > (::CEGUI::Scheme::*getImageFileImagesets_function_type)() const;
+
+            Scheme_exposer.def(
+                    "getImageFileImagesets"
+                    , getImageFileImagesets_function_type(&::CEGUI::Scheme::getImageFileImagesets)
+                    , "*!\n\
             \n\
                 Retrieves iterator for all references to image file imagesets that are to be loaded with this\
                 Scheme\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::getLookNFeels
-        
-            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > ( ::CEGUI::Scheme::*getLookNFeels_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "getLookNFeels"
-                , getLookNFeels_function_type( &::CEGUI::Scheme::getLookNFeels )
-                , "*!\n\
+
+            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > (::CEGUI::Scheme::*getLookNFeels_function_type)() const;
+
+            Scheme_exposer.def(
+                    "getLookNFeels"
+                    , getLookNFeels_function_type(&::CEGUI::Scheme::getLookNFeels)
+                    , "*!\n\
             \n\
                 Retrieves iterator for all references to LookNFeels files that are to be loaded with this\
                 Scheme\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::getName
-        
-            typedef ::CEGUI::String const & ( ::CEGUI::Scheme::*getName_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "getName"
-                , getName_function_type( &::CEGUI::Scheme::getName )
-                , bp::return_value_policy< bp::copy_const_reference >()
-                , "*!\n\
+
+            typedef ::CEGUI::String const & (::CEGUI::Scheme::*getName_function_type)() const;
+
+            Scheme_exposer.def(
+                    "getName"
+                    , getName_function_type(&::CEGUI::Scheme::getName)
+                    , bp::return_value_policy< bp::copy_const_reference >()
+                    , "*!\n\
                \n\
                   Return the name of this Scheme.\n\
             \n\
                @return\n\
                   String object containing the name of this Scheme.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::Scheme::getXMLImagesets
-        
-            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > ( ::CEGUI::Scheme::*getXMLImagesets_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "getXMLImagesets"
-                , getXMLImagesets_function_type( &::CEGUI::Scheme::getXMLImagesets )
-                , "*!\n\
+
+            typedef ::CEGUI::ConstVectorIterator< std::vector< CEGUI::Scheme::LoadableUIElement > > (::CEGUI::Scheme::*getXMLImagesets_function_type)() const;
+
+            Scheme_exposer.def(
+                    "getXMLImagesets"
+                    , getXMLImagesets_function_type(&::CEGUI::Scheme::getXMLImagesets)
+                    , "*!\n\
             \n\
                 Retrieves iterator for all references to XML imagesets that are to be loaded with this Scheme\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadFactoryAliases
-        
-            typedef void ( ::CEGUI::Scheme::*loadFactoryAliases_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadFactoryAliases"
-                , loadFactoryAliases_function_type( &::CEGUI::Scheme::loadFactoryAliases )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadFactoryAliases_function_type)();
+
+            Scheme_exposer.def(
+                    "loadFactoryAliases"
+                    , loadFactoryAliases_function_type(&::CEGUI::Scheme::loadFactoryAliases)
+                    , "*!\n\
             \n\
                 Register all factory aliases required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadFalagardMappings
-        
-            typedef void ( ::CEGUI::Scheme::*loadFalagardMappings_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadFalagardMappings"
-                , loadFalagardMappings_function_type( &::CEGUI::Scheme::loadFalagardMappings )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadFalagardMappings_function_type)();
+
+            Scheme_exposer.def(
+                    "loadFalagardMappings"
+                    , loadFalagardMappings_function_type(&::CEGUI::Scheme::loadFalagardMappings)
+                    , "*!\n\
             \n\
                 Create all falagard mappings required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadFonts
-        
-            typedef void ( ::CEGUI::Scheme::*loadFonts_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadFonts"
-                , loadFonts_function_type( &::CEGUI::Scheme::loadFonts )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadFonts_function_type)();
+
+            Scheme_exposer.def(
+                    "loadFonts"
+                    , loadFonts_function_type(&::CEGUI::Scheme::loadFonts)
+                    , "*!\n\
             \n\
                 Load all xml based fonts required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadImageFileImagesets
-        
-            typedef void ( ::CEGUI::Scheme::*loadImageFileImagesets_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadImageFileImagesets"
-                , loadImageFileImagesets_function_type( &::CEGUI::Scheme::loadImageFileImagesets )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadImageFileImagesets_function_type)();
+
+            Scheme_exposer.def(
+                    "loadImageFileImagesets"
+                    , loadImageFileImagesets_function_type(&::CEGUI::Scheme::loadImageFileImagesets)
+                    , "*!\n\
             \n\
                 Load all image file based imagesets required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadLookNFeels
-        
-            typedef void ( ::CEGUI::Scheme::*loadLookNFeels_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadLookNFeels"
-                , loadLookNFeels_function_type( &::CEGUI::Scheme::loadLookNFeels )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadLookNFeels_function_type)();
+
+            Scheme_exposer.def(
+                    "loadLookNFeels"
+                    , loadLookNFeels_function_type(&::CEGUI::Scheme::loadLookNFeels)
+                    , "*!\n\
             \n\
                 Load all xml looknfeel files required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadResources
-        
-            typedef void ( ::CEGUI::Scheme::*loadResources_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadResources"
-                , loadResources_function_type( &::CEGUI::Scheme::loadResources )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadResources_function_type)();
+
+            Scheme_exposer.def(
+                    "loadResources"
+                    , loadResources_function_type(&::CEGUI::Scheme::loadResources)
+                    , "*!\n\
                \n\
                   Loads all resources for this scheme.\n\
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::Scheme::loadWindowFactories
-        
-            typedef void ( ::CEGUI::Scheme::*loadWindowFactories_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadWindowFactories"
-                , loadWindowFactories_function_type( &::CEGUI::Scheme::loadWindowFactories )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadWindowFactories_function_type)();
+
+            Scheme_exposer.def(
+                    "loadWindowFactories"
+                    , loadWindowFactories_function_type(&::CEGUI::Scheme::loadWindowFactories)
+                    , "*!\n\
             \n\
                 Register all window factories required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadWindowRendererFactories
-        
-            typedef void ( ::CEGUI::Scheme::*loadWindowRendererFactories_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadWindowRendererFactories"
-                , loadWindowRendererFactories_function_type( &::CEGUI::Scheme::loadWindowRendererFactories )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadWindowRendererFactories_function_type)();
+
+            Scheme_exposer.def(
+                    "loadWindowRendererFactories"
+                    , loadWindowRendererFactories_function_type(&::CEGUI::Scheme::loadWindowRendererFactories)
+                    , "*!\n\
             \n\
                 Register all window renderer factories required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::loadXMLImagesets
-        
-            typedef void ( ::CEGUI::Scheme::*loadXMLImagesets_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "loadXMLImagesets"
-                , loadXMLImagesets_function_type( &::CEGUI::Scheme::loadXMLImagesets )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*loadXMLImagesets_function_type)();
+
+            Scheme_exposer.def(
+                    "loadXMLImagesets"
+                    , loadXMLImagesets_function_type(&::CEGUI::Scheme::loadXMLImagesets)
+                    , "*!\n\
             \n\
                 Load all XML based imagesets required by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::resourcesLoaded
-        
-            typedef bool ( ::CEGUI::Scheme::*resourcesLoaded_function_type )(  ) const;
-            
-            Scheme_exposer.def( 
-                "resourcesLoaded"
-                , resourcesLoaded_function_type( &::CEGUI::Scheme::resourcesLoaded )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::Scheme::*resourcesLoaded_function_type)() const;
+
+            Scheme_exposer.def(
+                    "resourcesLoaded"
+                    , resourcesLoaded_function_type(&::CEGUI::Scheme::resourcesLoaded)
+                    , "*!\n\
                \n\
                   Return whether the resources for this Scheme are all loaded.\n\
             \n\
                @return\n\
                   true if all resources for the Scheme are loaded and available, or false of one or more\
                   resource is not currently loaded.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::Scheme::setDefaultResourceGroup
-        
-            typedef void ( *setDefaultResourceGroup_function_type )( ::CEGUI::String const & );
-            
-            Scheme_exposer.def( 
-                "setDefaultResourceGroup"
-                , setDefaultResourceGroup_function_type( &::CEGUI::Scheme::setDefaultResourceGroup )
-                , ( bp::arg("resourceGroup") )
-                , "*!\n\
+
+            typedef void ( *setDefaultResourceGroup_function_type)(::CEGUI::String const &);
+
+            Scheme_exposer.def(
+                    "setDefaultResourceGroup"
+                    , setDefaultResourceGroup_function_type(&::CEGUI::Scheme::setDefaultResourceGroup)
+                    , (bp::arg("resourceGroup"))
+                    , "*!\n\
                 \n\
                     Sets the default resource group to be used when loading scheme xml data\n\
             \n\
@@ -382,131 +382,131 @@ void register_Scheme_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Scheme::unloadFactoryAliases
-        
-            typedef void ( ::CEGUI::Scheme::*unloadFactoryAliases_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadFactoryAliases"
-                , unloadFactoryAliases_function_type( &::CEGUI::Scheme::unloadFactoryAliases )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadFactoryAliases_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadFactoryAliases"
+                    , unloadFactoryAliases_function_type(&::CEGUI::Scheme::unloadFactoryAliases)
+                    , "*!\n\
             \n\
                 Unregister all factory aliases created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadFalagardMappings
-        
-            typedef void ( ::CEGUI::Scheme::*unloadFalagardMappings_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadFalagardMappings"
-                , unloadFalagardMappings_function_type( &::CEGUI::Scheme::unloadFalagardMappings )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadFalagardMappings_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadFalagardMappings"
+                    , unloadFalagardMappings_function_type(&::CEGUI::Scheme::unloadFalagardMappings)
+                    , "*!\n\
             \n\
                 Unregister all falagard mappings created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadFonts
-        
-            typedef void ( ::CEGUI::Scheme::*unloadFonts_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadFonts"
-                , unloadFonts_function_type( &::CEGUI::Scheme::unloadFonts )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadFonts_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadFonts"
+                    , unloadFonts_function_type(&::CEGUI::Scheme::unloadFonts)
+                    , "*!\n\
             \n\
                 Unload all xml based fonts created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadImageFileImagesets
-        
-            typedef void ( ::CEGUI::Scheme::*unloadImageFileImagesets_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadImageFileImagesets"
-                , unloadImageFileImagesets_function_type( &::CEGUI::Scheme::unloadImageFileImagesets )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadImageFileImagesets_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadImageFileImagesets"
+                    , unloadImageFileImagesets_function_type(&::CEGUI::Scheme::unloadImageFileImagesets)
+                    , "*!\n\
             \n\
                 Unload all image file based imagesets created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadLookNFeels
-        
-            typedef void ( ::CEGUI::Scheme::*unloadLookNFeels_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadLookNFeels"
-                , unloadLookNFeels_function_type( &::CEGUI::Scheme::unloadLookNFeels )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadLookNFeels_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadLookNFeels"
+                    , unloadLookNFeels_function_type(&::CEGUI::Scheme::unloadLookNFeels)
+                    , "*!\n\
             \n\
                 Unload all xml looknfeel files loaded by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadResources
-        
-            typedef void ( ::CEGUI::Scheme::*unloadResources_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadResources"
-                , unloadResources_function_type( &::CEGUI::Scheme::unloadResources )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadResources_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadResources"
+                    , unloadResources_function_type(&::CEGUI::Scheme::unloadResources)
+                    , "*!\n\
                \n\
                   Unloads all resources for this scheme.  This should be used very carefully.\n\
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::Scheme::unloadWindowFactories
-        
-            typedef void ( ::CEGUI::Scheme::*unloadWindowFactories_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadWindowFactories"
-                , unloadWindowFactories_function_type( &::CEGUI::Scheme::unloadWindowFactories )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadWindowFactories_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadWindowFactories"
+                    , unloadWindowFactories_function_type(&::CEGUI::Scheme::unloadWindowFactories)
+                    , "*!\n\
             \n\
                 Unregister all window factories registered by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadWindowRendererFactories
-        
-            typedef void ( ::CEGUI::Scheme::*unloadWindowRendererFactories_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadWindowRendererFactories"
-                , unloadWindowRendererFactories_function_type( &::CEGUI::Scheme::unloadWindowRendererFactories )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadWindowRendererFactories_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadWindowRendererFactories"
+                    , unloadWindowRendererFactories_function_type(&::CEGUI::Scheme::unloadWindowRendererFactories)
+                    , "*!\n\
             \n\
                 Unregister all window renderer factories registered by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Scheme::unloadXMLImagesets
-        
-            typedef void ( ::CEGUI::Scheme::*unloadXMLImagesets_function_type )(  ) ;
-            
-            Scheme_exposer.def( 
-                "unloadXMLImagesets"
-                , unloadXMLImagesets_function_type( &::CEGUI::Scheme::unloadXMLImagesets )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Scheme::*unloadXMLImagesets_function_type)();
+
+            Scheme_exposer.def(
+                    "unloadXMLImagesets"
+                    , unloadXMLImagesets_function_type(&::CEGUI::Scheme::unloadXMLImagesets)
+                    , "*!\n\
             \n\
                 Unload all XML based imagesets created by the scheme.\n\
-            *\n" );
-        
+            *\n");
+
         }
-        Scheme_exposer.staticmethod( "getDefaultResourceGroup" );
-        Scheme_exposer.staticmethod( "setDefaultResourceGroup" );
+        Scheme_exposer.staticmethod("getDefaultResourceGroup");
+        Scheme_exposer.staticmethod("setDefaultResourceGroup");
     }
 
 }

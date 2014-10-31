@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	21/2/2004
-	author:		Paul D Turner
+        created:	21/2/2004
+        author:		Paul D Turner
 	
-	purpose:	Implementation of EventArgs base class
-*************************************************************************/
+        purpose:	Implementation of EventArgs base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,8 +30,7 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
 
 } // End of  CEGUI namespace section

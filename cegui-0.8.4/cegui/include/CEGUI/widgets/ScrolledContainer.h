@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    1/3/2005
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -32,179 +32,180 @@
 #include <map>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Helper container window class which is used in the implementation of the
-    ScrollablePane widget class.
-*/
-class CEGUIEXPORT ScrolledContainer : public Window
-{
-public:
-    //! Type name for ScrolledContainer.
-    static const String WidgetTypeName;
-    //! Namespace for global events
-    static const String EventNamespace;
-    /** Event fired whenever some child changes.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the ScrolledContainer for which a child
-     * window has changed.
+namespace CEGUI {
+
+    /*!
+    \brief
+        Helper container window class which is used in the implementation of the
+        ScrollablePane widget class.
      */
-    static const String EventContentChanged;
-    /** Event fired when the autosize setting changes.
-     * Handlers are passed a const WindowEventArgs reference with
-     * WindowEventArgs::window set to the ScrolledContainer whose auto size
-     * setting has been changed.
-     */
-    static const String EventAutoSizeSettingChanged;
+    class CEGUIEXPORT ScrolledContainer : public Window {
+    public:
+        //! Type name for ScrolledContainer.
+        static const String WidgetTypeName;
+        //! Namespace for global events
+        static const String EventNamespace;
+        /** Event fired whenever some child changes.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the ScrolledContainer for which a child
+         * window has changed.
+         */
+        static const String EventContentChanged;
+        /** Event fired when the autosize setting changes.
+         * Handlers are passed a const WindowEventArgs reference with
+         * WindowEventArgs::window set to the ScrolledContainer whose auto size
+         * setting has been changed.
+         */
+        static const String EventAutoSizeSettingChanged;
 
-    //! Constructor for ScrolledContainer objects.
-    ScrolledContainer(const String& type, const String& name);
+        //! Constructor for ScrolledContainer objects.
+        ScrolledContainer(const String& type, const String& name);
 
-    //! Destructor for ScrolledContainer objects.
-    ~ScrolledContainer(void);
+        //! Destructor for ScrolledContainer objects.
+        ~ScrolledContainer(void);
 
-    /*!
-    \brief
-        Return whether the content pane is auto sized.
+        /*!
+        \brief
+            Return whether the content pane is auto sized.
 
-    \return
-        - true to indicate the content pane will automatically resize itself.
-        - false to indicate the content pane will not automatically resize
-          itself.
-    */
-    bool isContentPaneAutoSized(void) const;
+        \return
+            - true to indicate the content pane will automatically resize itself.
+            - false to indicate the content pane will not automatically resize
+              itself.
+         */
+        bool isContentPaneAutoSized(void) const;
 
-    /*!
-    \brief
-        Set whether the content pane should be auto-sized.
+        /*!
+        \brief
+            Set whether the content pane should be auto-sized.
 
-    \param setting
-        - true to indicate the content pane should automatically resize itself.
-        - false to indicate the content pane should not automatically resize
-          itself.
+        \param setting
+            - true to indicate the content pane should automatically resize itself.
+            - false to indicate the content pane should not automatically resize
+              itself.
 
-    \return 
-        Nothing.
-    */
-    void setContentPaneAutoSized(bool setting);
+        \return 
+            Nothing.
+         */
+        void setContentPaneAutoSized(bool setting);
 
-    /*!
-    \brief
-        Return the current content pane area for the ScrolledContainer.
+        /*!
+        \brief
+            Return the current content pane area for the ScrolledContainer.
 
-    \return
-        Rect object that details the current pixel extents of the content
-        pane represented by this ScrolledContainer.
-    */
-    const Rectf& getContentArea(void) const;
+        \return
+            Rect object that details the current pixel extents of the content
+            pane represented by this ScrolledContainer.
+         */
+        const Rectf& getContentArea(void) const;
 
-    /*!
-    \brief
-        Set the current content pane area for the ScrolledContainer.
+        /*!
+        \brief
+            Set the current content pane area for the ScrolledContainer.
 
-    \note
-        If the ScrolledContainer is configured to auto-size the content pane
-        this call will have no effect.
+        \note
+            If the ScrolledContainer is configured to auto-size the content pane
+            this call will have no effect.
 
-    \param area
-        Rect object that details the pixel extents to use for the content
-        pane represented by this ScrolledContainer.
+        \param area
+            Rect object that details the pixel extents to use for the content
+            pane represented by this ScrolledContainer.
 
-    \return
-        Nothing.
-    */
-    void setContentArea(const Rectf& area);
+        \return
+            Nothing.
+         */
+        void setContentArea(const Rectf& area);
 
-    /*!
-    \brief
-        Return the current extents of the attached content.
+        /*!
+        \brief
+            Return the current extents of the attached content.
 
-    \return
-        Rect object that describes the pixel extents of the attached
-        child windows.  This is effectively the smallest bounding box
-        that could contain all the attached windows.
-    */
-    Rectf getChildExtentsArea(void) const;
-    
-    virtual const CachedRectf& getClientChildContentArea() const;
-    virtual const CachedRectf& getNonClientChildContentArea() const;
+        \return
+            Rect object that describes the pixel extents of the attached
+            child windows.  This is effectively the smallest bounding box
+            that could contain all the attached windows.
+         */
+        Rectf getChildExtentsArea(void) const;
 
-    virtual void notifyScreenAreaChanged(bool recursive);
-    
-protected:
-    // Overridden from Window.
-    virtual Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const;
-    
-    Rectf getClientChildContentArea_impl(bool skipAllPixelAlignment) const;
-    
-    /*!
-    \brief
-        Notification method called whenever the content size may have changed.
+        virtual const CachedRectf& getClientChildContentArea() const;
+        virtual const CachedRectf& getNonClientChildContentArea() const;
 
-    \param e
-        WindowEventArgs object.
+        virtual void notifyScreenAreaChanged(bool recursive);
 
-    \return
-        Nothing.
-    */
-    virtual void onContentChanged(WindowEventArgs& e);
+    protected:
+        // Overridden from Window.
+        virtual Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const;
 
-    /*!
-    \brief
-        Notification method called whenever the setting that controls whether
-        the content pane is automatically sized is changed.
+        Rectf getClientChildContentArea_impl(bool skipAllPixelAlignment) const;
 
-    \param e
-        WindowEventArgs object.
+        /*!
+        \brief
+            Notification method called whenever the content size may have changed.
 
-    \return
-        Nothing.
-    */
-    virtual void onAutoSizeSettingChanged(WindowEventArgs& e);
+        \param e
+            WindowEventArgs object.
 
-    //! handles notifications about child windows being moved.
-    bool handleChildSized(const EventArgs& e);
-    //! handles notifications about child windows being sized.
-    bool handleChildMoved(const EventArgs& e);
+        \return
+            Nothing.
+         */
+        virtual void onContentChanged(WindowEventArgs& e);
 
-    // overridden from Window.
-    void drawSelf(const RenderingContext&) {};
-    Rectf getInnerRectClipper_impl() const;
+        /*!
+        \brief
+            Notification method called whenever the setting that controls whether
+            the content pane is automatically sized is changed.
 
-    void setArea_impl(const UVector2& pos, const USize& size,
-                      bool topLeftSizing = false, bool fireEvents = true);
-    Rectf getHitTestRect_impl() const;
-    void onChildAdded(ElementEventArgs& e);
-    void onChildRemoved(ElementEventArgs& e);
-    void onParentSized(ElementEventArgs& e);
+        \param e
+            WindowEventArgs object.
 
-    //! type definition for collection used to track event connections.
-    typedef std::multimap<Window*, Event::Connection>  ConnectionTracker;
-    //! Tracks event connections we make.
-    ConnectionTracker d_eventConnections;
-    //! Holds extents of the content pane.
-    Rectf d_contentArea;
-    //! true if the pane auto-sizes itself.
-    bool d_autosizePane;
-    
-    CachedRectf d_clientChildContentArea;
+        \return
+            Nothing.
+         */
+        virtual void onAutoSizeSettingChanged(WindowEventArgs& e);
 
-private:
-    void addScrolledContainerProperties(void);
-};
+        //! handles notifications about child windows being moved.
+        bool handleChildSized(const EventArgs& e);
+        //! handles notifications about child windows being sized.
+        bool handleChildMoved(const EventArgs& e);
+
+        // overridden from Window.
+
+        void drawSelf(const RenderingContext&) {
+        };
+        Rectf getInnerRectClipper_impl() const;
+
+        void setArea_impl(const UVector2& pos, const USize& size,
+                bool topLeftSizing = false, bool fireEvents = true);
+        Rectf getHitTestRect_impl() const;
+        void onChildAdded(ElementEventArgs& e);
+        void onChildRemoved(ElementEventArgs& e);
+        void onParentSized(ElementEventArgs& e);
+
+        //! type definition for collection used to track event connections.
+        typedef std::multimap<Window*, Event::Connection> ConnectionTracker;
+        //! Tracks event connections we make.
+        ConnectionTracker d_eventConnections;
+        //! Holds extents of the content pane.
+        Rectf d_contentArea;
+        //! true if the pane auto-sizes itself.
+        bool d_autosizePane;
+
+        CachedRectf d_clientChildContentArea;
+
+    private:
+        void addScrolledContainerProperties(void);
+    };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIScrolledContainer_h_

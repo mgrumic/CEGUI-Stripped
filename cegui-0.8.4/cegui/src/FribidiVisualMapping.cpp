@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Aug 5 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -25,7 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #ifdef HAVE_CONFIG_H
-#   include "config.h"
+#include "config.h"
 #endif
 
 #include "CEGUI/Config.h"
@@ -37,69 +37,67 @@
 #include <fribidi.h>
 
 #ifdef _MSC_VER
-    #pragma comment(lib,"fribidi_dll")
+#pragma comment(lib,"fribidi_dll")
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-BidiCharType FribidiVisualMapping::getBidiCharType(const utf32 char_to_check) const
-{
-    switch (fribidi_get_type((FriBidiChar)char_to_check))
-    {
-    case FRIBIDI_TYPE_RTL:
-        return BCT_RIGHT_TO_LEFT;
-        break;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-    case FRIBIDI_TYPE_LTR:
-        return BCT_LEFT_TO_RIGHT;
-        break;
+    BidiCharType FribidiVisualMapping::getBidiCharType(const utf32 char_to_check) const {
+        switch (fribidi_get_type((FriBidiChar) char_to_check)) {
+            case FRIBIDI_TYPE_RTL:
+                return BCT_RIGHT_TO_LEFT;
+                break;
 
-    case FRIBIDI_TYPE_ON:
-    default:
-        return BCT_NEUTRAL;
-        break;
+            case FRIBIDI_TYPE_LTR:
+                return BCT_LEFT_TO_RIGHT;
+                break;
+
+            case FRIBIDI_TYPE_ON:
+            default:
+                return BCT_NEUTRAL;
+                break;
+        }
     }
-}
 
-//----------------------------------------------------------------------------//
-bool FribidiVisualMapping::reorderFromLogicalToVisual(const String& logical,
-                                                       String& visual,
-                                                       StrIndexList& l2v,
-                                                       StrIndexList& v2l) const
-{
-    visual = logical;
+    //----------------------------------------------------------------------------//
 
-    if (logical.length() <= 1)
-        return true;
+    bool FribidiVisualMapping::reorderFromLogicalToVisual(const String& logical,
+            String& visual,
+            StrIndexList& l2v,
+            StrIndexList& v2l) const {
+        visual = logical;
 
-    FriBidiCharType input_base_direction = FRIBIDI_TYPE_L;
-    l2v.resize(logical.length());
-    v2l.resize(logical.length());
-    String logicalNotConst(logical);
+        if (logical.length() <= 1)
+            return true;
 
-    fribidi_boolean res =
-        fribidi_log2vis(static_cast<FriBidiChar *>(logicalNotConst.ptr()),
-                        static_cast<FriBidiStrIndex>(logical.length()),
-                        &input_base_direction,
-                        /* output */
-                        static_cast<FriBidiChar *>(visual.ptr()),
-                        &l2v[0], &v2l[0], 0);
+        FriBidiCharType input_base_direction = FRIBIDI_TYPE_L;
+        l2v.resize(logical.length());
+        v2l.resize(logical.length());
+        String logicalNotConst(logical);
 
-    // success?
-    if (res)
-        return true;
+        fribidi_boolean res =
+                fribidi_log2vis(static_cast<FriBidiChar *> (logicalNotConst.ptr()),
+                static_cast<FriBidiStrIndex> (logical.length()),
+                &input_base_direction,
+                /* output */
+                static_cast<FriBidiChar *> (visual.ptr()),
+                &l2v[0], &v2l[0], 0);
 
-    // log failure and continue anyway :-p
-    Logger::getSingleton().logEvent(
-        "FribidiVisualMapping::reorderFromLogicalToVisual: fribidi_log2vis "
-        "call failed on logical string: " + logical, Errors);
+        // success?
+        if (res)
+            return true;
 
-    return false;
-}
+        // log failure and continue anyway :-p
+        Logger::getSingleton().logEvent(
+                "FribidiVisualMapping::reorderFromLogicalToVisual: fribidi_log2vis "
+                "call failed on logical string: " + logical, Errors);
 
-//----------------------------------------------------------------------------//
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

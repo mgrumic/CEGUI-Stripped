@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	27/3/2005
-	author:		Tomas Lindquist Olsen (based on code by Paul D Turner)
+        created:	27/3/2005
+        author:		Tomas Lindquist Olsen (based on code by Paul D Turner)
 	
-	purpose:	Interface to base class for Menubar widget
-*************************************************************************/
+        purpose:	Interface to base class for Menubar widget
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -35,72 +35,70 @@
 
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-/*!
-\brief
-	Base class for menu bars.
-*/
-class CEGUIEXPORT Menubar : public MenuBase
-{
-public:
-	static const String EventNamespace;				//!< Namespace for global events
-    static const String WidgetTypeName;             //!< Window factory name
+    /*!
+    \brief
+            Base class for menu bars.
+     */
+    class CEGUIEXPORT Menubar : public MenuBase {
+    public:
+        static const String EventNamespace; //!< Namespace for global events
+        static const String WidgetTypeName; //!< Window factory name
 
-	/*************************************************************************
-		Construction and Destruction
-	*************************************************************************/
-	/*!
-	\brief
-		Constructor for Menubar objects
-	*/
-	Menubar(const String& type, const String& name);
+        /*************************************************************************
+                Construction and Destruction
+         *************************************************************************/
+        /*!
+        \brief
+                Constructor for Menubar objects
+         */
+        Menubar(const String& type, const String& name);
 
 
-	/*!
-	\brief
-		Destructor for Menubar objects
-	*/
-	virtual ~Menubar(void);
+        /*!
+        \brief
+                Destructor for Menubar objects
+         */
+        virtual ~Menubar(void);
 
 
-protected:
-	/*************************************************************************
-		Implementation Functions
-	*************************************************************************/
-	/*!
-	\brief
-		Setup size and position for the item widgets attached to this Menubar
+    protected:
+        /*************************************************************************
+                Implementation Functions
+         *************************************************************************/
+        /*!
+        \brief
+                Setup size and position for the item widgets attached to this Menubar
 
-	\return
-		Nothing.
-	*/
-	virtual void	layoutItemWidgets();
+        \return
+                Nothing.
+         */
+        virtual void layoutItemWidgets();
 
 
-	/*!
-	\brief
-		Returns the Size in unclipped pixels of the content attached to this ItemListBase that is attached to it.
+        /*!
+        \brief
+                Returns the Size in unclipped pixels of the content attached to this ItemListBase that is attached to it.
 
-	\return
-		Size object describing in unclipped pixels the size of the content ItemEntries attached to this menu.
-	*/
-	virtual Sizef getContentSize() const;
-};
+        \return
+                Size object describing in unclipped pixels the size of the content ItemEntries attached to this menu.
+         */
+        virtual Sizef getContentSize() const;
+    };
 
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIMenubar_h_

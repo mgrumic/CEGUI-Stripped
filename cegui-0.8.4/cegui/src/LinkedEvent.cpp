@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Nov 21 2010
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -29,45 +29,44 @@
 #include "CEGUI/EventSet.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-LinkedEvent::LinkedEvent(const String& event_name, EventSet* target_event_set) :
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    LinkedEvent::LinkedEvent(const String& event_name, EventSet* target_event_set) :
     Event(event_name),
-    d_owner(target_event_set)
-{
-    if (target_event_set)
-        target_event_set->addEvent(*this);
-}
+    d_owner(target_event_set) {
+        if (target_event_set)
+            target_event_set->addEvent(*this);
+    }
 
-//----------------------------------------------------------------------------//
-LinkedEvent::~LinkedEvent()
-{
-    LinkedConnections::iterator i = d_connections.begin();
-    for ( ; i != d_connections.end(); ++i)
-        (*i)->disconnect();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void LinkedEvent::addLinkedTarget(Event& link_target)
-{
-    Connection con(link_target.subscribe(
-        Subscriber(&LinkedEvent::handler, this)));
+    LinkedEvent::~LinkedEvent() {
+        LinkedConnections::iterator i = d_connections.begin();
+        for (; i != d_connections.end(); ++i)
+            (*i)->disconnect();
+    }
 
-    d_connections.push_back(con);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool LinkedEvent::handler(const EventArgs& args)
-{
-    LinkedEventArgs our_args(args, d_owner);
+    void LinkedEvent::addLinkedTarget(Event& link_target) {
+        Connection con(link_target.subscribe(
+                Subscriber(&LinkedEvent::handler, this)));
 
-    (*this)(our_args);
+        d_connections.push_back(con);
+    }
 
-    return our_args.handled != 0;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool LinkedEvent::handler(const EventArgs& args) {
+        LinkedEventArgs our_args(args, d_owner);
+
+        (*this)(our_args);
+
+        return our_args.handled != 0;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

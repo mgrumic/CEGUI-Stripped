@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jan 23 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -28,14 +28,14 @@
 #define _CEGUIOpenGL_h_
 
 #ifndef __APPLE__
-#   if (defined( __WIN32__ ) || defined( _WIN32 ))
-#       include <windows.h>
-#   endif
-#   include <GL/gl.h>
-#   include <GL/glu.h>
+#if (defined( __WIN32__ ) || defined( _WIN32 ))
+#include <windows.h>
+#endif
+#include <GL/gl.h>
+#include <GL/glu.h>
 #else
-#   include <OpenGL/gl.h>
-#   include <OpenGL/glu.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #endif
 
 

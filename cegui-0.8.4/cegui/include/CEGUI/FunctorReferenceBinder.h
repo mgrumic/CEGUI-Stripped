@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -28,24 +28,24 @@
 #define _CEGUIFunctorReferenceBinder_h_
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Class that enables the creation of a reference binding for a functor object
-    to be used as a callback slot.  Wrap your functor with this to enable the
-    use of an object reference when subscribing to an event signal (as opposed
-    to the functor object being copied, or using a pointer).
-*/
-template<typename T>
-struct FunctorReferenceBinder
-{
-    FunctorReferenceBinder(T& functor) :
-        d_functor(functor)
-    {}
+namespace CEGUI {
 
-    T& d_functor;
-};
+    /*!
+    \brief
+        Class that enables the creation of a reference binding for a functor object
+        to be used as a callback slot.  Wrap your functor with this to enable the
+        use of an object reference when subscribing to an event signal (as opposed
+        to the functor object being copied, or using a pointer).
+     */
+    template<typename T>
+    struct FunctorReferenceBinder {
+
+        FunctorReferenceBinder(T& functor) :
+        d_functor(functor) {
+        }
+
+        T& d_functor;
+    };
 
 } // End of  CEGUI namespace section
 

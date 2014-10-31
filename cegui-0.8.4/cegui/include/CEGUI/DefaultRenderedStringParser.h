@@ -30,21 +30,20 @@
 #include "CEGUI/RenderedStringParser.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Effectively a 'null' parser that returns a RenderedString representation
-    that will draw the input text verbatim.
-*/
-class CEGUIEXPORT DefaultRenderedStringParser : public RenderedStringParser
-{
-public:
-    // implement required interface
-    RenderedString parse(const String& input_string,
-                         const Font* initial_font,
-                         const ColourRect* initial_colours);
-};
+namespace CEGUI {
+
+    /*!
+    \brief
+        Effectively a 'null' parser that returns a RenderedString representation
+        that will draw the input text verbatim.
+     */
+    class CEGUIEXPORT DefaultRenderedStringParser : public RenderedStringParser {
+    public:
+        // implement required interface
+        RenderedString parse(const String& input_string,
+                const Font* initial_font,
+                const ColourRect* initial_colours);
+    };
 
 } // End of  CEGUI namespace section
 

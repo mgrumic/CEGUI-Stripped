@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl (based on code by Paul D Turner)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -33,54 +33,53 @@
 
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4250)
+#pragma warning(push)
+#pragma warning(disable : 4250)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OpenGL3Texture;
-class OpenGL3Renderer;
+namespace CEGUI {
+    class OpenGL3Texture;
+    class OpenGL3Renderer;
 
-//! ~OpenGL3FBOTextureTarget - allows rendering to an OpenGL texture via FBO.
-class OPENGL_GUIRENDERER_API OpenGL3FBOTextureTarget : public OpenGLTextureTarget
-{
-public:
-    OpenGL3FBOTextureTarget(OpenGL3Renderer& owner);
-    virtual ~OpenGL3FBOTextureTarget();
+    //! ~OpenGL3FBOTextureTarget - allows rendering to an OpenGL texture via FBO.
 
-    // overrides from OpenGL3RenderTarget
-    void activate();
-    void deactivate();
-    // implementation of TextureTarget interface
-    void clear();
-    void declareRenderSize(const Sizef& sz);
-    // specialise functions from OpenGL3TextureTarget
-    void grabTexture();
-    void restoreTexture();
+    class OPENGL_GUIRENDERER_API OpenGL3FBOTextureTarget : public OpenGLTextureTarget {
+    public:
+        OpenGL3FBOTextureTarget(OpenGL3Renderer& owner);
+        virtual ~OpenGL3FBOTextureTarget();
 
-protected:
-    //! default size of created texture objects
-    static const float DEFAULT_SIZE;
+        // overrides from OpenGL3RenderTarget
+        void activate();
+        void deactivate();
+        // implementation of TextureTarget interface
+        void clear();
+        void declareRenderSize(const Sizef& sz);
+        // specialise functions from OpenGL3TextureTarget
+        void grabTexture();
+        void restoreTexture();
 
-    //! allocate and set up the texture used with the FBO.
-    void initialiseRenderTexture();
-    //! resize the texture
-    void resizeRenderTexture();
-    //! Checks for OpenGL framebuffer completeness
-    void checkFramebufferStatus();
+    protected:
+        //! default size of created texture objects
+        static const float DEFAULT_SIZE;
 
-    //! Frame buffer object.
-    GLuint d_frameBuffer;
-    //! Frame buffer object that was bound before we bound this one
-    GLuint d_previousFrameBuffer;
-};
+        //! allocate and set up the texture used with the FBO.
+        void initialiseRenderTexture();
+        //! resize the texture
+        void resizeRenderTexture();
+        //! Checks for OpenGL framebuffer completeness
+        void checkFramebufferStatus();
+
+        //! Frame buffer object.
+        GLuint d_frameBuffer;
+        //! Frame buffer object that was bound before we bound this one
+        GLuint d_previousFrameBuffer;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIOpenGLFBOTextureTarget_h_

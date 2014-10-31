@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -27,30 +27,23 @@
 #include "CEGUI/SubscriberSlot.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-SubscriberSlot::SubscriberSlot(FreeFunctionSlot::SlotFunction* func) :
-    d_functor_impl(CEGUI_NEW_AO FreeFunctionSlot(func))
-{
-}
+    SubscriberSlot::SubscriberSlot(FreeFunctionSlot::SlotFunction* func) :
+    d_functor_impl(CEGUI_NEW_AO FreeFunctionSlot(func)) {
+    }
 
+    SubscriberSlot::SubscriberSlot() :
+    d_functor_impl(0) {
+    }
 
-SubscriberSlot::SubscriberSlot() :
-    d_functor_impl(0)
-{
-}
+    SubscriberSlot::~SubscriberSlot() {
+    }
 
-
-SubscriberSlot::~SubscriberSlot()
-{
-}
-
-void SubscriberSlot::cleanup()
-{
-    CEGUI_DELETE_AO d_functor_impl;
-    d_functor_impl = 0;
-}
+    void SubscriberSlot::cleanup() {
+        CEGUI_DELETE_AO d_functor_impl;
+        d_functor_impl = 0;
+    }
 
 } // End of  CEGUI namespace section
 

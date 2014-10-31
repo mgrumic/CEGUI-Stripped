@@ -29,29 +29,31 @@
 #include <boost/python/return_by_value.hpp>
 #include <boost/python/return_value_policy.hpp>
 
-namespace boost { namespace python { namespace indexing {
-  typedef boost::python::return_value_policy<boost::python::return_by_value>
-  default_container_policies;
+namespace boost {
+    namespace python {
+        namespace indexing {
+            typedef boost::python::return_value_policy<boost::python::return_by_value>
+            default_container_policies;
 
-  template<
-      class Container,
-      method_set_type MethodMask = all_methods,  // All supported by algorithms
-      class Algorithms
-          = algorithms<Container>
-  >
-  struct container_suite
-    : public visitor<Algorithms, default_container_policies, MethodMask>
-  {
-    typedef Algorithms algorithms;
+            template<
+            class Container,
+            method_set_type MethodMask = all_methods, // All supported by algorithms
+            class Algorithms
+            = algorithms<Container>
+            >
+            struct container_suite
+            : public visitor<Algorithms, default_container_policies, MethodMask> {
+                typedef Algorithms algorithms;
 
-    template<typename Policy>
-    static visitor<Algorithms, Policy, MethodMask>
-    with_policies (Policy const &policy)
-    {
-      return visitor <Algorithms, Policy, MethodMask> (policy);
+                template<typename Policy>
+                static visitor<Algorithms, Policy, MethodMask>
+                with_policies(Policy const &policy) {
+                    return visitor <Algorithms, Policy, MethodMask> (policy);
+                }
+            };
+        }
     }
-  };
-} } }
+}
 
 #endif // BOOST_PYTHON_INDEXING_CONTAINER_SUITE_HPP
 

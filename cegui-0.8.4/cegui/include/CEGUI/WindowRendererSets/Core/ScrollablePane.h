@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Jul 7 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/ScrollablePane.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         ScrollablePane class for the FalagardBase module.
@@ -53,16 +53,15 @@ namespace CEGUI
             Scrollbar based widget with name suffix "__auto_vscrollbar__"
             Scrollbar based widget with name suffix "__auto_hscrollbar__"
 
-    */
-    class COREWRSET_API FalagardScrollablePane : public ScrollablePaneWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardScrollablePane : public ScrollablePaneWindowRenderer {
     public:
-        static const String TypeName;     //! type name for this widget.
+        static const String TypeName; //! type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardScrollablePane(const String& type);
 
         void render();

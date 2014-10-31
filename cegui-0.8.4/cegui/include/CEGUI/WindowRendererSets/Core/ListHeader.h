@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jul 6 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,13 +32,13 @@
 #include "CEGUI/falagard/WidgetLookFeel.h"
 
 #if defined(_MSC_VER)
-#	pragma warning(push)
-#	pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         ListHeader class for the FalagardBase module.
@@ -51,16 +51,15 @@ namespace CEGUI
         Imagery States:
             - Enabled           - basic rendering for enabled state.
             - Disabled          - basic rendering for disabled state.
-    */
-    class COREWRSET_API FalagardListHeader : public ListHeaderWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardListHeader : public ListHeaderWindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardListHeader(const String& type);
 
         const String& getSegmentWidgetType() const;
@@ -71,17 +70,17 @@ namespace CEGUI
         ListHeaderSegment* createNewSegment(const String& name) const;
         void destroyListSegment(ListHeaderSegment* segment) const;
 
-protected:
+    protected:
 
         // data fields
-        String  d_segmentWidgetType;
+        String d_segmentWidgetType;
     };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _FalListHeader_h_

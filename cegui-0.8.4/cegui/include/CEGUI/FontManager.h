@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jul 19 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -34,178 +34,176 @@
 #include "CEGUI/IteratorBase.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4275)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4275)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class FreeTypeFont;
-class PixmapFont;
-
-/*!
-\brief
-    Class providing a shared library of Font objects to the system.
-
-    The FontManager is used to create, access, and destroy Font objects.  The
-    idea is that the FontManager will function as a central repository for Font
-    objects used within the GUI system, and that those Font objects can be
-    accessed, via a unique name, by any interested party within the system.
-*/
-class CEGUIEXPORT FontManager :
-        public Singleton<FontManager>,
-        public NamedXMLResourceManager<Font, Font_xmlHandler>,
-        public AllocatedObject<FontManager>
-{
-public:
-    //! Constructor.
-    FontManager();
-
-    //! Destructor.
-    ~FontManager();
+namespace CEGUI {
+    class FreeTypeFont;
+    class PixmapFont;
 
     /*!
     \brief
-        Creates a FreeType type font.
+        Class providing a shared library of Font objects to the system.
 
-    \param font_name
-        The name that the font will use within the CEGUI system.
+        The FontManager is used to create, access, and destroy Font objects.  The
+        idea is that the FontManager will function as a central repository for Font
+        objects used within the GUI system, and that those Font objects can be
+        accessed, via a unique name, by any interested party within the system.
+     */
+    class CEGUIEXPORT FontManager :
+    public Singleton<FontManager>,
+    public NamedXMLResourceManager<Font, Font_xmlHandler>,
+    public AllocatedObject<FontManager> {
+    public:
+        //! Constructor.
+        FontManager();
 
-    \param point_size
-        Specifies the point size that the font is to be rendered at.
+        //! Destructor.
+        ~FontManager();
 
-    \param anti_aliased
-        Specifies whether the font should be rendered using anti aliasing.
+        /*!
+        \brief
+            Creates a FreeType type font.
 
-    \param font_filename
-        The filename of an font file that will be used as the source for
-        glyph images for this font.
+        \param font_name
+            The name that the font will use within the CEGUI system.
 
-    \param resource_group
-        The resource group identifier to use when loading the font file
-        specified by \a font_filename.
+        \param point_size
+            Specifies the point size that the font is to be rendered at.
 
-    \param auto_scaled
-        Specifies whether the font imagery should be automatically scaled to
-        maintain the same physical size (which is calculated by using the
-        native resolution setting).
+        \param anti_aliased
+            Specifies whether the font should be rendered using anti aliasing.
 
-    \param native_horz_res
-        The horizontal native resolution value.  This is only significant when
-        auto scaling is enabled.
+        \param font_filename
+            The filename of an font file that will be used as the source for
+            glyph images for this font.
 
-    \param native_vert_res
-        The vertical native resolution value.  This is only significant when
-        auto scaling is enabled.
+        \param resource_group
+            The resource group identifier to use when loading the font file
+            specified by \a font_filename.
 
-    \param action
-        One of the XMLResourceExistsAction enumerated values indicating what
-        action should be taken when a Font with the specified name
-        already exists.
+        \param auto_scaled
+            Specifies whether the font imagery should be automatically scaled to
+            maintain the same physical size (which is calculated by using the
+            native resolution setting).
 
-    \return
-        Reference to the newly create Font object.
-    */
-    Font& createFreeTypeFont(const String& font_name, const float point_size,
-                             const bool anti_aliased,
-                             const String& font_filename,
-                             const String& resource_group = "",
-                             const AutoScaledMode auto_scaled = ASM_Disabled,
-                             const Sizef& native_res = Sizef(640.0f, 480.0f),
-                             XMLResourceExistsAction action = XREA_RETURN);
+        \param native_horz_res
+            The horizontal native resolution value.  This is only significant when
+            auto scaling is enabled.
 
-    /*!
-    \brief
-        Creates a Pixmap type font.
+        \param native_vert_res
+            The vertical native resolution value.  This is only significant when
+            auto scaling is enabled.
 
-    \param font_name
-        The name that the font will use within the CEGUI system.
+        \param action
+            One of the XMLResourceExistsAction enumerated values indicating what
+            action should be taken when a Font with the specified name
+            already exists.
 
-    \param imageset_filename
-        The filename of an imageset to load that will be used as the source for
-        glyph images for this font.  If \a resource_group is the special value
-        of "*", this parameter may instead refer to the name of an already
-        loaded Imagset.
+        \return
+            Reference to the newly create Font object.
+         */
+        Font& createFreeTypeFont(const String& font_name, const float point_size,
+                const bool anti_aliased,
+                const String& font_filename,
+                const String& resource_group = "",
+                const AutoScaledMode auto_scaled = ASM_Disabled,
+                const Sizef& native_res = Sizef(640.0f, 480.0f),
+                XMLResourceExistsAction action = XREA_RETURN);
 
-    \param resource_group
-        The resource group identifier to use when loading the imageset file
-        specified by \a imageset_filename.  If this group is set to the special
-        value of "*", then \a imageset_filename instead will refer to the name
-        of an existing Imageset.
+        /*!
+        \brief
+            Creates a Pixmap type font.
 
-    \param auto_scaled
-        Specifies whether the font imagery should be automatically scaled to
-        maintain the same physical size (which is calculated by using the
-        native resolution setting).
+        \param font_name
+            The name that the font will use within the CEGUI system.
 
-    \param native_horz_res
-        The horizontal native resolution value.  This is only significant when
-        auto scaling is enabled.
+        \param imageset_filename
+            The filename of an imageset to load that will be used as the source for
+            glyph images for this font.  If \a resource_group is the special value
+            of "*", this parameter may instead refer to the name of an already
+            loaded Imagset.
 
-    \param native_vert_res
-        The vertical native resolution value.  This is only significant when
-        auto scaling is enabled.
+        \param resource_group
+            The resource group identifier to use when loading the imageset file
+            specified by \a imageset_filename.  If this group is set to the special
+            value of "*", then \a imageset_filename instead will refer to the name
+            of an existing Imageset.
 
-    \param action
-        One of the XMLResourceExistsAction enumerated values indicating what
-        action should be taken when a Font with the specified name
-        already exists.
+        \param auto_scaled
+            Specifies whether the font imagery should be automatically scaled to
+            maintain the same physical size (which is calculated by using the
+            native resolution setting).
 
-    \return
-        Reference to the newly create Font object.
-    */
-    Font& createPixmapFont(const String& font_name,
-                           const String& imageset_filename,
-                           const String& resource_group = "",
-                           const AutoScaledMode auto_scaled = ASM_Disabled,
-                           const Sizef& native_res = Sizef(640.0f, 480.0f),
-                           XMLResourceExistsAction action = XREA_RETURN);
+        \param native_horz_res
+            The horizontal native resolution value.  This is only significant when
+            auto scaling is enabled.
 
-    /*!
-    \brief
-        Notify the FontManager that display size may have changed.
+        \param native_vert_res
+            The vertical native resolution value.  This is only significant when
+            auto scaling is enabled.
 
-    \param size
-        Size object describing the display resolution
-    */
-    void notifyDisplaySizeChanged(const Sizef& size);
+        \param action
+            One of the XMLResourceExistsAction enumerated values indicating what
+            action should be taken when a Font with the specified name
+            already exists.
 
-    /*!
-    \brief
-        Writes a full XML font file for the specified Font to the given
-        OutStream.
+        \return
+            Reference to the newly create Font object.
+         */
+        Font& createPixmapFont(const String& font_name,
+                const String& imageset_filename,
+                const String& resource_group = "",
+                const AutoScaledMode auto_scaled = ASM_Disabled,
+                const Sizef& native_res = Sizef(640.0f, 480.0f),
+                XMLResourceExistsAction action = XREA_RETURN);
 
-    \param name
-        String holding the name of the Font to be written to the stream.
+        /*!
+        \brief
+            Notify the FontManager that display size may have changed.
 
-    \param out_stream
-        OutStream (std::ostream based) object where data is to be sent.
-    */
-    void writeFontToStream(const String& name, OutStream& out_stream) const;
+        \param size
+            Size object describing the display resolution
+         */
+        void notifyDisplaySizeChanged(const Sizef& size);
 
-    //! ConstBaseIterator type definition.
-    typedef ConstMapIterator<ObjectRegistry> FontIterator;
+        /*!
+        \brief
+            Writes a full XML font file for the specified Font to the given
+            OutStream.
 
-    /*!
-    \brief
-        Return a FontManager::FontIterator object to iterate over the available
-        Font objects.
-    */
-    FontIterator getIterator() const;
+        \param name
+            String holding the name of the Font to be written to the stream.
 
-    // ensure we see overloads from template base class
-    using NamedXMLResourceManager<Font, Font_xmlHandler>::createFromContainer;
-    using NamedXMLResourceManager<Font, Font_xmlHandler>::createFromFile;
-    using NamedXMLResourceManager<Font, Font_xmlHandler>::createFromString;
-};
+        \param out_stream
+            OutStream (std::ostream based) object where data is to be sent.
+         */
+        void writeFontToStream(const String& name, OutStream& out_stream) const;
+
+        //! ConstBaseIterator type definition.
+        typedef ConstMapIterator<ObjectRegistry> FontIterator;
+
+        /*!
+        \brief
+            Return a FontManager::FontIterator object to iterate over the available
+            Font objects.
+         */
+        FontIterator getIterator() const;
+
+        // ensure we see overloads from template base class
+        using NamedXMLResourceManager<Font, Font_xmlHandler>::createFromContainer;
+        using NamedXMLResourceManager<Font, Font_xmlHandler>::createFromFile;
+        using NamedXMLResourceManager<Font, Font_xmlHandler>::createFromString;
+    };
 
 } // End of  CEGUI namespace section
 
 
 #if defined(_MSC_VER)
-#	pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif	// end of guard _CEGUIFontManager_h_

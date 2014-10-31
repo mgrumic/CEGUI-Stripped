@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jun 22 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -57,63 +57,62 @@
 #include "CEGUI/WindowRendererSets/Core/Tree.h"
 
 //----------------------------------------------------------------------------//
+
 extern "C"
-CEGUI::FactoryModule& getWindowRendererFactoryModule()
-{
+CEGUI::FactoryModule& getWindowRendererFactoryModule() {
     static CEGUI::CoreWindowRendererModule mod;
     return mod;
 }
 
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-CoreWindowRendererModule::CoreWindowRendererModule()
-{
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardButton>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardDefault>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardEditbox>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardFrameWindow>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemEntry>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardListHeader>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardListHeaderSegment>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardListbox>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMenubar>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMenuItem>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMultiColumnList>());
-    #ifndef PE_NO_WGT_MULTILINE_EDITBOX
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMultiLineEditbox>());
-    #endif //PE_NO_WGT_MULTILINE_EDITBOX
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardPopupMenu>());
-    #ifndef PE_NO_WGT_PROGRESS_BAR
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardProgressBar>());
-    #endif //PE_NO_WGT_PROGRESS_BAR
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollablePane>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollbar>());
-    #ifndef PE_NO_WGT_SLIDER
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardSlider>());
-    #endif // PE_NO_WGT_SLIDER
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStatic>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticImage>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticText>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabButton>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabControl>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTitlebar>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardToggleButton>());
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    CoreWindowRendererModule::CoreWindowRendererModule() {
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardButton>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardDefault>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardEditbox>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardFrameWindow>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemEntry>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardListHeader>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardListHeaderSegment>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardListbox>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMenubar>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMenuItem>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMultiColumnList>());
+#ifndef PE_NO_WGT_MULTILINE_EDITBOX
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardMultiLineEditbox>());
+#endif //PE_NO_WGT_MULTILINE_EDITBOX
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardPopupMenu>());
+#ifndef PE_NO_WGT_PROGRESS_BAR
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardProgressBar>());
+#endif //PE_NO_WGT_PROGRESS_BAR
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollablePane>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardScrollbar>());
+#ifndef PE_NO_WGT_SLIDER
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardSlider>());
+#endif // PE_NO_WGT_SLIDER
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStatic>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticImage>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticText>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabButton>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabControl>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTitlebar>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardToggleButton>());
 #ifndef PE_NO_MOUSE
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTooltip>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTooltip>());
 #endif //PE_NO_MOUSE
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemListbox>());
-    d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTree>());
-}
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemListbox>());
+        d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTree>());
+    }
 
-//----------------------------------------------------------------------------//
-CoreWindowRendererModule::~CoreWindowRendererModule()
-{
-    FactoryRegistry::iterator i = d_registry.begin();
-    for ( ; i != d_registry.end(); ++i)
-        CEGUI_DELETE_AO (*i);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    CoreWindowRendererModule::~CoreWindowRendererModule() {
+        FactoryRegistry::iterator i = d_registry.begin();
+        for (; i != d_registry.end(); ++i)
+            CEGUI_DELETE_AO(*i);
+    }
+
+    //----------------------------------------------------------------------------//
 
 }

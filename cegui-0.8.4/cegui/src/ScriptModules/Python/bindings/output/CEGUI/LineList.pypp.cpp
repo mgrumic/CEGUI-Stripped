@@ -9,13 +9,13 @@
 
 namespace bp = boost::python;
 
-void register_LineList_class(){
+void register_LineList_class() {
 
     { //::std::vector< CEGUI::MultiLineEditbox::LineInfo >
         typedef bp::class_< std::vector< CEGUI::MultiLineEditbox::LineInfo > > LineList_exposer_t;
-        LineList_exposer_t LineList_exposer = LineList_exposer_t( "LineList" );
-        bp::scope LineList_scope( LineList_exposer );
-        LineList_exposer.def( bp::indexing::vector_suite< std::vector< CEGUI::MultiLineEditbox::LineInfo > >() );
+        LineList_exposer_t LineList_exposer = LineList_exposer_t("LineList");
+        bp::scope LineList_scope(LineList_exposer);
+        LineList_exposer.def(bp::indexing::vector_suite< std::vector< CEGUI::MultiLineEditbox::LineInfo > >());
     }
 
 }

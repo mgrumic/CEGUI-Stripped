@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Mon Jul 4 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,39 +32,34 @@
 #include "CEGUI/CoordConverter.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     const String FalagardListbox::TypeName("Core/Listbox");
 
-
     FalagardListbox::FalagardListbox(const String& type) :
-        ListboxWindowRenderer(type)
-    {
+    ListboxWindowRenderer(type) {
     }
 
-    Rectf FalagardListbox::getListRenderArea(void) const
-    {
-    	Listbox* lb = (Listbox*)d_window;
+    Rectf FalagardListbox::getListRenderArea(void) const {
+        Listbox* lb = (Listbox*) d_window;
 
         return getItemRenderingArea(lb->getHorzScrollbar()->isVisible(),
-                                    lb->getVertScrollbar()->isVisible());
+                lb->getVertScrollbar()->isVisible());
     }
 
     Rectf FalagardListbox::getItemRenderingArea(bool hscroll,
-                                                bool vscroll) const
-    {
-    	const Listbox* const lb = static_cast<Listbox*>(d_window);
+            bool vscroll) const {
+        const Listbox * const lb = static_cast<Listbox*> (d_window);
         const WidgetLookFeel& wlf = getLookNFeel();
         const String area_name("ItemRenderingArea");
         const String alternate_name("ItemRenderArea");
         const String scroll_suffix(
-            vscroll ? hscroll ? "HVScroll" : "VScroll" : hscroll ? "HScroll" : "");
+                vscroll ? hscroll ? "HVScroll" : "VScroll" : hscroll ? "HScroll" : "");
 
         if (wlf.isNamedAreaDefined(area_name + scroll_suffix))
-                return wlf.getNamedArea(area_name + scroll_suffix).getArea().getPixelRect(*lb);
+            return wlf.getNamedArea(area_name + scroll_suffix).getArea().getPixelRect(*lb);
 
         if (wlf.isNamedAreaDefined(alternate_name + scroll_suffix))
-                return wlf.getNamedArea(alternate_name + scroll_suffix).getArea().getPixelRect(*lb);
+            return wlf.getNamedArea(alternate_name + scroll_suffix).getArea().getPixelRect(*lb);
 
         // default to plain ItemRenderingArea
         if (wlf.isNamedAreaDefined(area_name))
@@ -74,51 +69,46 @@ namespace CEGUI
     }
 
     void FalagardListbox::resizeListToContent(bool fit_width,
-                                              bool fit_height) const
-    {
-    	Listbox* const lb = static_cast<Listbox*>(d_window);
+            bool fit_height) const {
+        Listbox * const lb = static_cast<Listbox*> (d_window);
 
         const Rectf totalArea(lb->getUnclippedOuterRect().get());
         const Rectf contentArea(getItemRenderingArea(
-            fit_width ? false : lb->getHorzScrollbar()->isVisible(),
-            fit_height ? false : lb->getVertScrollbar()->isVisible()));
+                fit_width ? false : lb->getHorzScrollbar()->isVisible(),
+                fit_height ? false : lb->getVertScrollbar()->isVisible()));
         const Rectf withScrollContentArea(getItemRenderingArea(true, true));
 
         const Sizef frameSize(totalArea.getSize() - contentArea.getSize());
         const Sizef withScrollFrameSize(totalArea.getSize() -
-                                        withScrollContentArea.getSize());
+                withScrollContentArea.getSize());
         const Sizef contentSize(lb->getWidestItemWidth(),
-                                lb->getTotalItemsHeight());
+                lb->getTotalItemsHeight());
 
         const Sizef parentSize(lb->getParentPixelSize());
         const Sizef maxSize(parentSize.d_width -
-                            CoordConverter::asAbsolute(lb->getXPosition(),
-                                                       parentSize.d_width),
-                            parentSize.d_height -
-                            CoordConverter::asAbsolute(lb->getYPosition(),
-                                                       parentSize.d_height));
+                CoordConverter::asAbsolute(lb->getXPosition(),
+                parentSize.d_width),
+                parentSize.d_height -
+                CoordConverter::asAbsolute(lb->getYPosition(),
+                parentSize.d_height));
 
         Sizef requiredSize(frameSize + contentSize + Sizef(1, 1));
 
-        if (fit_height)
-        {
-            if (requiredSize.d_height > maxSize.d_height)
-            {
+        if (fit_height) {
+            if (requiredSize.d_height > maxSize.d_height) {
                 requiredSize.d_height = maxSize.d_height;
                 requiredSize.d_width = ceguimin(
-                    maxSize.d_width,
-                    requiredSize.d_width - frameSize.d_width + withScrollFrameSize.d_width);
+                        maxSize.d_width,
+                        requiredSize.d_width - frameSize.d_width + withScrollFrameSize.d_width);
             }
         }
 
-        if (fit_width)
-        {
-            if (requiredSize.d_width > maxSize.d_width)
-            {
+        if (fit_width) {
+            if (requiredSize.d_width > maxSize.d_width) {
                 requiredSize.d_width = maxSize.d_width;
                 requiredSize.d_height = ceguimin(
-                    maxSize.d_height,
-                    requiredSize.d_height - frameSize.d_height + withScrollFrameSize.d_height);
+                        maxSize.d_height,
+                        requiredSize.d_height - frameSize.d_height + withScrollFrameSize.d_height);
             }
         }
 
@@ -129,9 +119,8 @@ namespace CEGUI
             lb->setWidth(UDim(0, requiredSize.d_width));
     }
 
-    void FalagardListbox::render()
-    {
-    	Listbox* lb = (Listbox*)d_window;
+    void FalagardListbox::render() {
+        Listbox* lb = (Listbox*) d_window;
         // render frame and stuff before we handle the items
         cacheListboxBaseImagery();
 
@@ -162,8 +151,7 @@ namespace CEGUI
         // loop through the items
         size_t itemCount = lb->getItemCount();
 
-        for (size_t i = 0; i < itemCount; ++i)
-        {
+        for (size_t i = 0; i < itemCount; ++i) {
             ListboxItem* listItem = lb->getListboxItemFromIndex(i);
             itemSize.d_height = listItem->getPixelSize().d_height;
 
@@ -177,8 +165,7 @@ namespace CEGUI
             itemClipper = itemRect.getIntersection(itemsArea);
 
             // skip this item if totally clipped
-            if (itemClipper.getWidth() == 0)
-            {
+            if (itemClipper.getWidth() == 0) {
                 itemPos.d_y += itemSize.d_height;
                 continue;
             }
@@ -192,8 +179,7 @@ namespace CEGUI
 
     }
 
-    void FalagardListbox::cacheListboxBaseImagery()
-    {
+    void FalagardListbox::cacheListboxBaseImagery() {
         const StateImagery* imagery;
 
         // get WidgetLookFeel for the assigned look.
@@ -204,13 +190,11 @@ namespace CEGUI
         imagery->render(*d_window);
     }
 
-    bool FalagardListbox::handleFontRenderSizeChange(const Font* const font)
-    {
+    bool FalagardListbox::handleFontRenderSizeChange(const Font * const font) {
         bool res = ListboxWindowRenderer::handleFontRenderSizeChange(font);
 
-        if (!res)
-        {
-            Listbox* const listbox = static_cast<Listbox*>(d_window);
+        if (!res) {
+            Listbox * const listbox = static_cast<Listbox*> (d_window);
 
             for (size_t i = 0; i < listbox->getItemCount(); ++i)
                 res |= listbox->getListboxItemFromIndex(i)->handleFontRenderSizeChange(font);

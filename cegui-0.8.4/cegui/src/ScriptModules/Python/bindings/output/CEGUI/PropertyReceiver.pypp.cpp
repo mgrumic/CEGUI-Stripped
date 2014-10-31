@@ -6,15 +6,15 @@
 
 namespace bp = boost::python;
 
-void register_PropertyReceiver_class(){
+void register_PropertyReceiver_class() {
 
     { //::CEGUI::PropertyReceiver
         typedef bp::class_< CEGUI::PropertyReceiver > PropertyReceiver_exposer_t;
-        PropertyReceiver_exposer_t PropertyReceiver_exposer = PropertyReceiver_exposer_t( "PropertyReceiver", "*!\n\
+        PropertyReceiver_exposer_t PropertyReceiver_exposer = PropertyReceiver_exposer_t("PropertyReceiver", "*!\n\
         \n\
            Dummy base class to ensure correct casting of receivers.\n\
-        *\n", bp::init< >() );
-        bp::scope PropertyReceiver_scope( PropertyReceiver_exposer );
+        *\n", bp::init< >());
+        bp::scope PropertyReceiver_scope(PropertyReceiver_exposer);
     }
 
 }

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Feb 13 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -31,37 +31,36 @@
 #include "../../Rect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Direct3D9 RenderTarget that represents a screen viewport.
-*/
-class DIRECT3D9_GUIRENDERER_API Direct3D9ViewportTarget : 
-    public Direct3D9RenderTarget<>
-{
-public:
-    /*!
-    \brief
-        Construct a default Direct3D9ViewportTarget that uses the current
-        Direct3D9 viewport as it's initial area.
-    */
-    Direct3D9ViewportTarget(Direct3D9Renderer& owner);
+namespace CEGUI {
 
     /*!
     \brief
-        Construct a Direct3D9ViewportTarget that uses the specified Rect as it's
-        initial area.
+        Direct3D9 RenderTarget that represents a screen viewport.
+     */
+    class DIRECT3D9_GUIRENDERER_API Direct3D9ViewportTarget :
+    public Direct3D9RenderTarget<> {
+    public:
+        /*!
+        \brief
+            Construct a default Direct3D9ViewportTarget that uses the current
+            Direct3D9 viewport as it's initial area.
+         */
+        Direct3D9ViewportTarget(Direct3D9Renderer& owner);
 
-    \param area
-        Rect object describing the initial viewport area that should be used for
-        the RenderTarget.
-    */
-    Direct3D9ViewportTarget(Direct3D9Renderer& owner, const Rectf& area);
+        /*!
+        \brief
+            Construct a Direct3D9ViewportTarget that uses the specified Rect as it's
+            initial area.
 
-    // implementations of RenderTarget interface
-    bool isImageryCache() const;
-};
+        \param area
+            Rect object describing the initial viewport area that should be used for
+            the RenderTarget.
+         */
+        Direct3D9ViewportTarget(Direct3D9Renderer& owner, const Rectf& area);
+
+        // implementations of RenderTarget interface
+        bool isImageryCache() const;
+    };
 
 } // End of  CEGUI namespace section
 

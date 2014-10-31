@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Oct 20 2009
     author:     Andrew Shevchenko
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -29,28 +29,27 @@
 #include "../../ImageCodec.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIPVRIMAGECODEC_EXPORTS
-#       define CEGUIPVRIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUIPVRIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIPVRIMAGECODEC_EXPORTS
+#define CEGUIPVRIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUIPVRIMAGECODEC_API
+#define CEGUIPVRIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUIPVRIMAGECODEC_API
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! Implementation of ImageCodec interface for loading PVR files.
-class CEGUIPVRIMAGECODEC_API PVRImageCodec : public ImageCodec 
-{
-public:
-    PVRImageCodec();
-    ~PVRImageCodec();
+namespace CEGUI {
+    //! Implementation of ImageCodec interface for loading PVR files.
 
-    Texture* load(const RawDataContainer& data, Texture* result);
-};    
+    class CEGUIPVRIMAGECODEC_API PVRImageCodec : public ImageCodec {
+    public:
+        PVRImageCodec();
+        ~PVRImageCodec();
+
+        Texture* load(const RawDataContainer& data, Texture* result);
+    };
 
 } // End of CEGUI namespace section 
 

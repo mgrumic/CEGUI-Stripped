@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Mar 10 2009
     author:     Paul D Turner (parts based on code by Keith Mok)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -36,298 +36,291 @@
 #include <algorithm>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-String DirectFBRenderer::d_rendererID(
-"CEGUI::DirectFBRenderer - Official DirectFB based 2nd generation renderer "
-"module.");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    String DirectFBRenderer::d_rendererID(
+            "CEGUI::DirectFBRenderer - Official DirectFB based 2nd generation renderer "
+            "module.");
 
-//----------------------------------------------------------------------------//
-DirectFBRenderer& DirectFBRenderer::create(IDirectFB& directfb,
-                                           IDirectFBSurface& surface,
-                                           const int abi)
-{
-    System::performVersionTest(CEGUI_VERSION_ABI, abi, CEGUI_FUNCTION_NAME);
+    //----------------------------------------------------------------------------//
 
-    return *new DirectFBRenderer(directfb, surface);
-}
+    DirectFBRenderer& DirectFBRenderer::create(IDirectFB& directfb,
+            IDirectFBSurface& surface,
+            const int abi) {
+        System::performVersionTest(CEGUI_VERSION_ABI, abi, CEGUI_FUNCTION_NAME);
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroy(DirectFBRenderer& renderer)
-{
-    delete &renderer;
-}
-
-//----------------------------------------------------------------------------//
-IDirectFBSurface& DirectFBRenderer::getTargetSurface() const
-{
-    return *d_targetSurface;
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::setTargetSurface(IDirectFBSurface& surface)
-{
-    d_targetSurface = &surface;
-}
-
-//----------------------------------------------------------------------------//
-RenderTarget& DirectFBRenderer::getDefaultRenderTarget()
-{
-    return *d_defaultTarget;
-}
-
-//----------------------------------------------------------------------------//
-GeometryBuffer& DirectFBRenderer::createGeometryBuffer()
-{
-    DirectFBGeometryBuffer* b = new DirectFBGeometryBuffer(*this);
-    d_geometryBuffers.push_back(b);
-    return *b;
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyGeometryBuffer(const GeometryBuffer& buffer)
-{
-    GeometryBufferList::iterator i = std::find(d_geometryBuffers.begin(),
-                                               d_geometryBuffers.end(),
-                                               &buffer);
-
-    if (d_geometryBuffers.end() != i)
-    {
-        d_geometryBuffers.erase(i);
-        delete &buffer;
+        return *new DirectFBRenderer(directfb, surface);
     }
-}
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyAllGeometryBuffers()
-{
-    while (!d_geometryBuffers.empty())
-        destroyGeometryBuffer(**d_geometryBuffers.begin());
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-TextureTarget* DirectFBRenderer::createTextureTarget()
-{
-    // TODO:
-    return 0;
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyTextureTarget(TextureTarget* target)
-{
-    TextureTargetList::iterator i = std::find(d_textureTargets.begin(),
-                                              d_textureTargets.end(),
-                                              target);
-
-    if (d_textureTargets.end() != i)
-    {
-        d_textureTargets.erase(i);
-        delete target;
+    void DirectFBRenderer::destroy(DirectFBRenderer& renderer) {
+        delete &renderer;
     }
-}
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyAllTextureTargets()
-{
-    while (!d_textureTargets.empty())
-        destroyTextureTarget(*d_textureTargets.begin());
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Texture& DirectFBRenderer::createTexture(const CEGUI::String& name)
-{
-    if (d_textures.find(name) != d_textures.end())
-        CEGUI_THROW(AlreadyExistsException(
-            "A texture named '" + name + "' already exists."));
-
-    DirectFBTexture* tex = new DirectFBTexture(d_directfb, name);
-    d_textures[name] = tex;
-
-    logTextureCreation(tex);
-
-    return *tex;
-}
-
-//----------------------------------------------------------------------------//
-Texture& DirectFBRenderer::createTexture(const CEGUI::String& name,
-                                         const String& filename,
-                                         const String& resourceGroup)
-{
-    if (d_textures.find(name) != d_textures.end())
-        CEGUI_THROW(AlreadyExistsException(
-            "A texture named '" + name + "' already exists."));
-
-    DirectFBTexture* tex = new DirectFBTexture(d_directfb, name,
-                                               filename, resourceGroup);
-    d_textures[name] = tex;
-
-    logTextureCreation(tex);
-
-    return *tex;
-}
-
-//----------------------------------------------------------------------------//
-Texture& DirectFBRenderer::createTexture(const CEGUI::String& name,
-                                         const Sizef& size)
-{
-    if (d_textures.find(name) != d_textures.end())
-        CEGUI_THROW(AlreadyExistsException(
-            "A texture named '" + name + "' already exists."));
-
-    DirectFBTexture* tex = new DirectFBTexture(d_directfb, name, size);
-    d_textures[name] = tex;
-
-    logTextureCreation(tex);
-
-    return *tex;
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::logTextureCreation(DirectFBTexture* texture)
-{
-    if (Logger* logger = Logger::getSingletonPtr())
-    {
-        char addr_buff[32];
-        sprintf(addr_buff, " (%p)", static_cast<void*>(texture));
-
-        logger->logEvent("[DirectFBRenderer] Created texture: " +
-                         texture->getName() + addr_buff);
+    IDirectFBSurface& DirectFBRenderer::getTargetSurface() const {
+        return *d_targetSurface;
     }
-}
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyTexture(Texture& texture)
-{
-    destroyTexture(texture.getName());
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyTexture(const CEGUI::String& name)
-{
-    TextureMap::iterator i = d_textures.find(name);
-
-    if (d_textures.end() != i)
-    {
-        logTextureDestruction(i->second);
-        delete i->second;
-        d_textures.erase(i);
+    void DirectFBRenderer::setTargetSurface(IDirectFBSurface& surface) {
+        d_targetSurface = &surface;
     }
-}
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::logTextureDestruction(DirectFBTexture* texture)
-{
-    if (Logger* logger = Logger::getSingletonPtr())
-    {
-        char addr_buff[32];
-        sprintf(addr_buff, " (%p)", static_cast<void*>(texture));
+    //----------------------------------------------------------------------------//
 
-        logger->logEvent("[DirectFBRenderer] Destroyed texture: " +
-                         texture->getName() + addr_buff);
+    RenderTarget& DirectFBRenderer::getDefaultRenderTarget() {
+        return *d_defaultTarget;
     }
-}
 
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::destroyAllTextures()
-{
-    while (!d_textures.empty())
-        destroyTexture(d_textures.begin()->first);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Texture& DirectFBRenderer::getTexture(const String& name) const
-{
-    TextureMap::const_iterator i = d_textures.find(name);
-    
-    if (i == d_textures.end())
-        CEGUI_THROW(UnknownObjectException(
-            "No texture named '" + name + "' is available."));
-
-    return *i->second;
-}
-
-//----------------------------------------------------------------------------//
-bool DirectFBRenderer::isTextureDefined(const String& name) const
-{
-    return d_textures.find(name) != d_textures.end();
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::beginRendering()
-{
-    // TODO:
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::endRendering()
-{
-    // TODO:
-}
-
-//----------------------------------------------------------------------------//
-void DirectFBRenderer::setDisplaySize(const Sizef& sz)
-{
-    if (sz != d_displaySize)
-    {
-        d_displaySize = sz;
-
-        // update the default target's area
-        Rectf area(d_defaultTarget->getArea());
-        area.setSize(sz);
-        d_defaultTarget->setArea(area);
+    GeometryBuffer& DirectFBRenderer::createGeometryBuffer() {
+        DirectFBGeometryBuffer* b = new DirectFBGeometryBuffer(*this);
+        d_geometryBuffers.push_back(b);
+        return *b;
     }
-}
 
-//----------------------------------------------------------------------------//
-const Sizef& DirectFBRenderer::getDisplaySize() const
-{
-    return d_displaySize;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-const Vector2f& DirectFBRenderer::getDisplayDPI() const
-{
-    return d_displayDPI;
-}
+    void DirectFBRenderer::destroyGeometryBuffer(const GeometryBuffer& buffer) {
+        GeometryBufferList::iterator i = std::find(d_geometryBuffers.begin(),
+                d_geometryBuffers.end(),
+                &buffer);
 
-//----------------------------------------------------------------------------//
-uint DirectFBRenderer::getMaxTextureSize() const
-{
-    return 2048;
-}
+        if (d_geometryBuffers.end() != i) {
+            d_geometryBuffers.erase(i);
+            delete &buffer;
+        }
+    }
 
-//----------------------------------------------------------------------------//
-const String& DirectFBRenderer::getIdentifierString() const
-{
-    return d_rendererID;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-DirectFBRenderer::DirectFBRenderer(IDirectFB& directfb,
-                                   IDirectFBSurface& surface) :
+    void DirectFBRenderer::destroyAllGeometryBuffers() {
+        while (!d_geometryBuffers.empty())
+            destroyGeometryBuffer(**d_geometryBuffers.begin());
+    }
+
+    //----------------------------------------------------------------------------//
+
+    TextureTarget* DirectFBRenderer::createTextureTarget() {
+        // TODO:
+        return 0;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::destroyTextureTarget(TextureTarget* target) {
+        TextureTargetList::iterator i = std::find(d_textureTargets.begin(),
+                d_textureTargets.end(),
+                target);
+
+        if (d_textureTargets.end() != i) {
+            d_textureTargets.erase(i);
+            delete target;
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::destroyAllTextureTargets() {
+        while (!d_textureTargets.empty())
+            destroyTextureTarget(*d_textureTargets.begin());
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Texture& DirectFBRenderer::createTexture(const CEGUI::String& name) {
+        if (d_textures.find(name) != d_textures.end())
+            CEGUI_THROW(AlreadyExistsException(
+                "A texture named '" + name + "' already exists."));
+
+        DirectFBTexture* tex = new DirectFBTexture(d_directfb, name);
+        d_textures[name] = tex;
+
+        logTextureCreation(tex);
+
+        return *tex;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Texture& DirectFBRenderer::createTexture(const CEGUI::String& name,
+            const String& filename,
+            const String& resourceGroup) {
+        if (d_textures.find(name) != d_textures.end())
+            CEGUI_THROW(AlreadyExistsException(
+                "A texture named '" + name + "' already exists."));
+
+        DirectFBTexture* tex = new DirectFBTexture(d_directfb, name,
+                filename, resourceGroup);
+        d_textures[name] = tex;
+
+        logTextureCreation(tex);
+
+        return *tex;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Texture& DirectFBRenderer::createTexture(const CEGUI::String& name,
+            const Sizef& size) {
+        if (d_textures.find(name) != d_textures.end())
+            CEGUI_THROW(AlreadyExistsException(
+                "A texture named '" + name + "' already exists."));
+
+        DirectFBTexture* tex = new DirectFBTexture(d_directfb, name, size);
+        d_textures[name] = tex;
+
+        logTextureCreation(tex);
+
+        return *tex;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::logTextureCreation(DirectFBTexture* texture) {
+        if (Logger * logger = Logger::getSingletonPtr()) {
+            char addr_buff[32];
+            sprintf(addr_buff, " (%p)", static_cast<void*> (texture));
+
+            logger->logEvent("[DirectFBRenderer] Created texture: " +
+                    texture->getName() + addr_buff);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::destroyTexture(Texture& texture) {
+        destroyTexture(texture.getName());
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::destroyTexture(const CEGUI::String& name) {
+        TextureMap::iterator i = d_textures.find(name);
+
+        if (d_textures.end() != i) {
+            logTextureDestruction(i->second);
+            delete i->second;
+            d_textures.erase(i);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::logTextureDestruction(DirectFBTexture* texture) {
+        if (Logger * logger = Logger::getSingletonPtr()) {
+            char addr_buff[32];
+            sprintf(addr_buff, " (%p)", static_cast<void*> (texture));
+
+            logger->logEvent("[DirectFBRenderer] Destroyed texture: " +
+                    texture->getName() + addr_buff);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::destroyAllTextures() {
+        while (!d_textures.empty())
+            destroyTexture(d_textures.begin()->first);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Texture& DirectFBRenderer::getTexture(const String& name) const {
+        TextureMap::const_iterator i = d_textures.find(name);
+
+        if (i == d_textures.end())
+            CEGUI_THROW(UnknownObjectException(
+                "No texture named '" + name + "' is available."));
+
+        return *i->second;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool DirectFBRenderer::isTextureDefined(const String& name) const {
+        return d_textures.find(name) != d_textures.end();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::beginRendering() {
+        // TODO:
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::endRendering() {
+        // TODO:
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void DirectFBRenderer::setDisplaySize(const Sizef& sz) {
+        if (sz != d_displaySize) {
+            d_displaySize = sz;
+
+            // update the default target's area
+            Rectf area(d_defaultTarget->getArea());
+            area.setSize(sz);
+            d_defaultTarget->setArea(area);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const Sizef& DirectFBRenderer::getDisplaySize() const {
+        return d_displaySize;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const Vector2f& DirectFBRenderer::getDisplayDPI() const {
+        return d_displayDPI;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    uint DirectFBRenderer::getMaxTextureSize() const {
+        return 2048;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    const String& DirectFBRenderer::getIdentifierString() const {
+        return d_rendererID;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    DirectFBRenderer::DirectFBRenderer(IDirectFB& directfb,
+            IDirectFBSurface& surface) :
     d_directfb(directfb),
     d_rootSurface(surface),
     d_targetSurface(&d_rootSurface),
     d_displayDPI(96, 96),
-    d_defaultTarget(new DirectFBRenderTarget(*this, d_rootSurface))
-{
-    int w, h;
-    d_rootSurface.GetSize(&d_rootSurface, &w, &h);
-    d_displaySize.d_width = static_cast<float>(w);
-    d_displaySize.d_height = static_cast<float>(h);
-}
+    d_defaultTarget(new DirectFBRenderTarget(*this, d_rootSurface)) {
+        int w, h;
+        d_rootSurface.GetSize(&d_rootSurface, &w, &h);
+        d_displaySize.d_width = static_cast<float> (w);
+        d_displaySize.d_height = static_cast<float> (h);
+    }
 
-//----------------------------------------------------------------------------//
-DirectFBRenderer::~DirectFBRenderer()
-{
-    destroyAllTextureTargets();
-    destroyAllTextures();
-    destroyAllGeometryBuffers();
+    //----------------------------------------------------------------------------//
 
-    delete d_defaultTarget;
-}
+    DirectFBRenderer::~DirectFBRenderer() {
+        destroyAllTextureTargets();
+        destroyAllTextures();
+        destroyAllGeometryBuffers();
 
-//----------------------------------------------------------------------------//
+        delete d_defaultTarget;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

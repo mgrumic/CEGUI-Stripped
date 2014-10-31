@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sun Jan 11 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -33,64 +33,63 @@
 #include "CEGUI/RendererModules/OpenGLES/GLES.h"
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4250)
+#pragma warning(push)
+#pragma warning(disable : 4250)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OpenGLESTexture;
+namespace CEGUI {
+    class OpenGLESTexture;
 
-//! OpenGLESFBOTextureTarget - allows rendering to an OpenGLES texture via FBO.
-class OPENGLES_GUIRENDERER_API OpenGLESFBOTextureTarget :
-    public OpenGLESRenderTarget<TextureTarget>
-{
-public:
-    OpenGLESFBOTextureTarget(OpenGLESRenderer& owner);
-    virtual ~OpenGLESFBOTextureTarget();
+    //! OpenGLESFBOTextureTarget - allows rendering to an OpenGLES texture via FBO.
 
-    // overrides from OpenGLESRenderTarget
-    void activate();
-    void deactivate();
-    // implementation of RenderTarget interface
-    bool isImageryCache() const;
-    // implementation of TextureTarget interface
-    void clear();
-    Texture& getTexture() const;
-    void declareRenderSize(const Sizef& sz);
-    bool isRenderingInverted() const;
+    class OPENGLES_GUIRENDERER_API OpenGLESFBOTextureTarget :
+    public OpenGLESRenderTarget<TextureTarget> {
+    public:
+        OpenGLESFBOTextureTarget(OpenGLESRenderer& owner);
+        virtual ~OpenGLESFBOTextureTarget();
 
-	//! initialize FBO extension functions pointers
-	static void initializedFBOExtension();
+        // overrides from OpenGLESRenderTarget
+        void activate();
+        void deactivate();
+        // implementation of RenderTarget interface
+        bool isImageryCache() const;
+        // implementation of TextureTarget interface
+        void clear();
+        Texture& getTexture() const;
+        void declareRenderSize(const Sizef& sz);
+        bool isRenderingInverted() const;
 
-protected:
-    //! default size of created texture objects
-    static const float DEFAULT_SIZE;
+        //! initialize FBO extension functions pointers
+        static void initializedFBOExtension();
 
-    //! allocate and set up the texture used with the FBO.
-    void initialiseRenderTexture();
-    //! resize the texture
-    void resizeRenderTexture();
-    //! generate a texture name
-    String generateTextureName();
-	
-	//! Saving fbo before activation
-	GLint d_oldFbo;
-    //! Frame buffer object.
-    GLuint d_frameBuffer;
-    //! Associated OpenGLES texture ID
-    GLuint d_texture;
-    //! we use this to wrap d_texture so it can be used by the core CEGUI lib.
-    OpenGLESTexture* d_CEGUITexture;
-    //! static member var used to generate unique texture names.
-    static uint s_textureNumber;
-};
+    protected:
+        //! default size of created texture objects
+        static const float DEFAULT_SIZE;
+
+        //! allocate and set up the texture used with the FBO.
+        void initialiseRenderTexture();
+        //! resize the texture
+        void resizeRenderTexture();
+        //! generate a texture name
+        String generateTextureName();
+
+        //! Saving fbo before activation
+        GLint d_oldFbo;
+        //! Frame buffer object.
+        GLuint d_frameBuffer;
+        //! Associated OpenGLES texture ID
+        GLuint d_texture;
+        //! we use this to wrap d_texture so it can be used by the core CEGUI lib.
+        OpenGLESTexture* d_CEGUITexture;
+        //! static member var used to generate unique texture names.
+        static uint s_textureNumber;
+    };
 
 } // End of  CEGUI namespace section
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif  // end of guard _CEGUIOpenGLESFBOTextureTarget_h_

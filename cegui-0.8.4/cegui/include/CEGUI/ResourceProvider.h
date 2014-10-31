@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	8/7/2004
-	author:		James '_mental_' O'Sullivan
+        created:	8/7/2004
+        author:		James '_mental_' O'Sullivan
 	
-	purpose:	Defines abstract base class for loading DataContainer objects
-*************************************************************************/
+        purpose:	Defines abstract base class for loading DataContainer objects
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -36,107 +36,114 @@
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-	Abstract class that defines the required interface for all resource provider sub-classes.
-
-	A ResourceProvider is used to load both XML and binary data from an external source.  This could be from a filesystem or the resource manager of a specific renderer.
-*/
-class CEGUIEXPORT ResourceProvider :
-    public AllocatedObject<ResourceProvider>
-{
-public:
-	/*************************************************************************
-		Construction and Destruction
-	*************************************************************************/
-    /*!
-    \brief
-        Constructor for the ResourceProvider class
-    */
-	ResourceProvider() { }
+namespace CEGUI {
 
     /*!
     \brief
-        Destructor for the ResourceProvider class
-    */
-	virtual ~ResourceProvider(void) { }
+            Abstract class that defines the required interface for all resource provider sub-classes.
 
-    /*************************************************************************
-        Accessor functions
-    *************************************************************************/
+            A ResourceProvider is used to load both XML and binary data from an external source.  This could be from a filesystem or the resource manager of a specific renderer.
+     */
+    class CEGUIEXPORT ResourceProvider :
+    public AllocatedObject<ResourceProvider> {
+    public:
+        /*************************************************************************
+                Construction and Destruction
+         *************************************************************************/
 
-//    /*!
-//    \brief
-//        Load XML data using InputSource objects.
-//
-//    \param filename
-//        String containing a filename of the resource to be loaded.
-//
-//	\param output
-//		Reference to a InputSourceContainer object to load the data into.
-//   */
-//    virtual void loadInputSourceContainer(const String& filename, InputSourceContainer& output) = 0;
+        /*!
+        \brief
+            Constructor for the ResourceProvider class
+         */
+        ResourceProvider() {
+        }
 
-    /*!
-    \brief
-        Load raw binary data.
+        /*!
+        \brief
+            Destructor for the ResourceProvider class
+         */
+        virtual ~ResourceProvider(void) {
+        }
 
-    \param filename
-        String containing a filename of the resource to be loaded.
+        /*************************************************************************
+            Accessor functions
+         *************************************************************************/
 
-	\param output
-        Reference to a RawDataContainer object to load the data into.
+        //    /*!
+        //    \brief
+        //        Load XML data using InputSource objects.
+        //
+        //    \param filename
+        //        String containing a filename of the resource to be loaded.
+        //
+        //	\param output
+        //		Reference to a InputSourceContainer object to load the data into.
+        //   */
+        //    virtual void loadInputSourceContainer(const String& filename, InputSourceContainer& output) = 0;
 
-    \param resourceGroup
-        Optional String that may be used by implementations to identify the group from
-        which the resource should be loaded.
-    */
-    virtual void loadRawDataContainer(const String& filename, RawDataContainer& output, const String& resourceGroup) = 0;
+        /*!
+        \brief
+            Load raw binary data.
 
-    /*!
-    \brief
-        Unload raw binary data. This gives the resource provider a change to unload the data
-        in its own way before the data container object is destroyed.  If it does nothing,
-        then the object will release its memory.
+        \param filename
+            String containing a filename of the resource to be loaded.
 
-	\param data
-        Reference to a RawDataContainer object that is about to be destroyed.
+            \param output
+            Reference to a RawDataContainer object to load the data into.
 
-    */
-    virtual void unloadRawDataContainer(RawDataContainer&)  { }
+        \param resourceGroup
+            Optional String that may be used by implementations to identify the group from
+            which the resource should be loaded.
+         */
+        virtual void loadRawDataContainer(const String& filename, RawDataContainer& output, const String& resourceGroup) = 0;
 
-    /*!
-    \brief
-        Return the current default resource group identifier.
+        /*!
+        \brief
+            Unload raw binary data. This gives the resource provider a change to unload the data
+            in its own way before the data container object is destroyed.  If it does nothing,
+            then the object will release its memory.
 
-    \return
-        String object containing the currently set default resource group identifier.
-    */
-    const String&   getDefaultResourceGroup(void) const     { return d_defaultResourceGroup; }
-    
-    /*!
-    \brief
-        Set the default resource group identifier.
+            \param data
+            Reference to a RawDataContainer object that is about to be destroyed.
 
-    \param resourceGroup
-        String object containing the default resource group identifier to be used.
+         */
+        virtual void unloadRawDataContainer(RawDataContainer&) {
+        }
 
-    \return
-        Nothing.
-    */
-    void    setDefaultResourceGroup(const String& resourceGroup)    { d_defaultResourceGroup = resourceGroup; }
+        /*!
+        \brief
+            Return the current default resource group identifier.
 
-    /** enumerate the files in \a resource_group that match \a file_pattern and
-    append thier names to \a out_vec
-    */
-    virtual size_t getResourceGroupFileNames(std::vector<String>& out_vec,
-                                             const String& file_pattern,
-                                             const String& resource_group) = 0;
-protected:
-    String  d_defaultResourceGroup;     //!< Default resource group identifier.
-};
+        \return
+            String object containing the currently set default resource group identifier.
+         */
+        const String& getDefaultResourceGroup(void) const {
+            return d_defaultResourceGroup;
+        }
+
+        /*!
+        \brief
+            Set the default resource group identifier.
+
+        \param resourceGroup
+            String object containing the default resource group identifier to be used.
+
+        \return
+            Nothing.
+         */
+        void setDefaultResourceGroup(const String& resourceGroup) {
+            d_defaultResourceGroup = resourceGroup;
+        }
+
+        /** enumerate the files in \a resource_group that match \a file_pattern and
+        append thier names to \a out_vec
+         */
+        virtual size_t getResourceGroupFileNames(std::vector<String>& out_vec,
+                const String& file_pattern,
+                const String& resource_group) = 0;
+    protected:
+        String d_defaultResourceGroup; //!< Default resource group identifier.
+    };
 
 } // End of  CEGUI namespace section
 

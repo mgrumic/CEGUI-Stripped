@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Mar 7 2009
     author:     Paul D Turner (parts based on code by Rajko Stojadinovic)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -28,48 +28,47 @@
 #include "CEGUI/Exceptions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-Direct3D10ViewportTarget::Direct3D10ViewportTarget(Direct3D10Renderer& owner) :
-    Direct3D10RenderTarget<>(owner)
-{
-    // initialise renderer size
-    D3D10_VIEWPORT vp;
-    UINT vp_count = 1;
-    d_device.RSGetViewports(&vp_count, &vp);
-    if (vp_count != 1)
-        CEGUI_THROW(RendererException(
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    Direct3D10ViewportTarget::Direct3D10ViewportTarget(Direct3D10Renderer& owner) :
+    Direct3D10RenderTarget<>(owner) {
+        // initialise renderer size
+        D3D10_VIEWPORT vp;
+        UINT vp_count = 1;
+        d_device.RSGetViewports(&vp_count, &vp);
+        if (vp_count != 1)
+            CEGUI_THROW(RendererException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                ""));
 #else
-            "Unable to access required view port information from "
-            "ID3D10Device."));
+                "Unable to access required view port information from "
+                "ID3D10Device."));
 #endif //PE_NO_THROW_MSGS
 
-    Rectf area(
-        Vector2f(static_cast<float>(vp.TopLeftX), static_cast<float>(vp.TopLeftY)),
-        Sizef(static_cast<float>(vp.Width), static_cast<float>(vp.Height))
-    );
+        Rectf area(
+                Vector2f(static_cast<float> (vp.TopLeftX), static_cast<float> (vp.TopLeftY)),
+                Sizef(static_cast<float> (vp.Width), static_cast<float> (vp.Height))
+                );
 
-    setArea(area);
-}
+        setArea(area);
+    }
 
-//----------------------------------------------------------------------------//
-Direct3D10ViewportTarget::Direct3D10ViewportTarget(Direct3D10Renderer& owner,
-                                                   const Rectf& area) :
-    Direct3D10RenderTarget<>(owner)
-{
-    setArea(area);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool Direct3D10ViewportTarget::isImageryCache() const
-{
-    return false;
-}
+    Direct3D10ViewportTarget::Direct3D10ViewportTarget(Direct3D10Renderer& owner,
+            const Rectf& area) :
+    Direct3D10RenderTarget<>(owner) {
+        setArea(area);
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    bool Direct3D10ViewportTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Mon Mar 20 2006
     author:     Tomas Lindquist Olsen
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/ItemListBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         ItemListbox class for the FalagardBase module.
@@ -53,16 +53,15 @@ namespace CEGUI
             - ItemRenderingAreaHScroll
             - ItemRenderingAreaVScroll
             - ItemRenderingAreaHVScroll
-    */
-    class COREWRSET_API FalagardItemListbox : public ItemListBaseWindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardItemListbox : public ItemListBaseWindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardItemListbox(const String& type);
 
         // overridden from ItemListBaseWindowRenderer base class.

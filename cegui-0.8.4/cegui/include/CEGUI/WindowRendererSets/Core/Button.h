@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed Jun 22 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,8 +31,8 @@
 #include "CEGUI/widgets/ButtonBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
+
     /*!
     \brief
         Button class for the FalagardBase module.
@@ -45,20 +45,22 @@ namespace CEGUI
             - Pushed    - Rendering for when the button is pushed and mouse is over it.
             - PushedOff - Rendering for when the button is pushed and mouse is not over it.
             - Disabled  - Rendering for when the button is disabled.
-    */
-    class COREWRSET_API FalagardButton : public WindowRenderer
-    {
+     */
+    class COREWRSET_API FalagardButton : public WindowRenderer {
     public:
-        static const String TypeName;       //!< type name for this widget.
+        static const String TypeName; //!< type name for this widget.
 
         /*!
         \brief
             Constructor
-        */
+         */
         FalagardButton(const String& type);
 
         void render();
-        virtual String actualStateName(const String& name) const   {return name;}
+
+        virtual String actualStateName(const String& name) const {
+            return name;
+        }
     };
 
 } // End of  CEGUI namespace section

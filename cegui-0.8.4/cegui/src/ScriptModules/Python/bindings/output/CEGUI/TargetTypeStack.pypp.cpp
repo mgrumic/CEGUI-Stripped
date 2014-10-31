@@ -8,13 +8,13 @@
 
 namespace bp = boost::python;
 
-void register_TargetTypeStack_class(){
+void register_TargetTypeStack_class() {
 
     { //::std::vector< CEGUI::String >
         typedef bp::class_< std::vector< CEGUI::String > > TargetTypeStack_exposer_t;
-        TargetTypeStack_exposer_t TargetTypeStack_exposer = TargetTypeStack_exposer_t( "TargetTypeStack" );
-        bp::scope TargetTypeStack_scope( TargetTypeStack_exposer );
-        TargetTypeStack_exposer.def( bp::indexing::vector_suite< std::vector< CEGUI::String > >() );
+        TargetTypeStack_exposer_t TargetTypeStack_exposer = TargetTypeStack_exposer_t("TargetTypeStack");
+        bp::scope TargetTypeStack_scope(TargetTypeStack_exposer);
+        TargetTypeStack_exposer.def(bp::indexing::vector_suite< std::vector< CEGUI::String > >());
     }
 
 }

@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	13/6/2004
-	author:		Paul D Turner
+        created:	13/6/2004
+        author:		Paul D Turner
 
-	purpose:	Implements the Combobox Drop-List widget base class
-*************************************************************************/
+        purpose:	Implements the Combobox Drop-List widget base class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,248 +32,212 @@
 #include "CEGUI/CoordConverter.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-const String ComboDropList::EventNamespace("ComboDropList");
-const String ComboDropList::WidgetTypeName("CEGUI/ComboDropList");
+namespace CEGUI {
+    const String ComboDropList::EventNamespace("ComboDropList");
+    const String ComboDropList::WidgetTypeName("CEGUI/ComboDropList");
 
 
-/*************************************************************************
-	Constants
-*************************************************************************/
-// Event names
+    /*************************************************************************
+            Constants
+     *************************************************************************/
+    // Event names
 #ifndef PE_NO_MOUSE
-const String ComboDropList::EventListSelectionAccepted( "ListSelectionAccepted" );
+    const String ComboDropList::EventListSelectionAccepted("ListSelectionAccepted");
 #endif //PE_NO_MOUSE
 
-/*************************************************************************
-	Constructor for ComboDropList base class
-*************************************************************************/
-ComboDropList::ComboDropList(const String& type, const String& name) :
-	Listbox(type, name)
-{
+    /*************************************************************************
+            Constructor for ComboDropList base class
+     *************************************************************************/
+    ComboDropList::ComboDropList(const String& type, const String& name) :
+    Listbox(type, name) {
 #ifndef PE_NO_MOUSE
-	d_autoArm = false;
+        d_autoArm = false;
 #endif //PE_NO_MOUSE
-	d_armed = false;
-    d_lastClickSelected = 0;
-
-	hide();
-
-    // pass captured inputs to children to enable scrollbars
-    setDistributesCapturedInputs(true);
-    banPropertyFromXML("DistributeCapturedInputs");
-}
-
-
-/*************************************************************************
-	Destructor for ComboDropList base class
-*************************************************************************/
-ComboDropList::~ComboDropList(void)
-{
-}
-
-
-/*************************************************************************
-	Initialise the Window based object ready for use.
-*************************************************************************/
-void ComboDropList::initialiseComponents(void)
-{
-	Listbox::initialiseComponents();
-
-	// set-up scroll bars so they return capture to us.
-	getVertScrollbar()->setRestoreOldCapture(true);
-	getHorzScrollbar()->setRestoreOldCapture(true);
-
-    // ban these properties from being written
-    getVertScrollbar()->banPropertyFromXML("RestoreOldCapture");
-    getHorzScrollbar()->banPropertyFromXML("RestoreOldCapture");
-}
-
-//----------------------------------------------------------------------------//
-void ComboDropList::resizeToContent(bool fit_width, bool fit_height)
-{
-    if (!d_windowRenderer)
-        CEGUI_THROW(InvalidRequestException(
-            "Function requires a valid WindowRenderer object to be set."));
-
-    static_cast<ListboxWindowRenderer*>(d_windowRenderer)->
-        resizeListToContent(fit_width, fit_height);
-
-}
-
-/*************************************************************************
-	Handler for when list selection is confirmed.
-*************************************************************************/
-void ComboDropList::onListSelectionAccepted(WindowEventArgs& e)
-{
-    d_lastClickSelected = getFirstSelectedItem();
-#ifndef PE_NO_MOUSE
-	fireEvent(EventListSelectionAccepted, e, EventNamespace);
-#endif //PE_NO_MOUSE
-}
-
-/*************************************************************************
-    Handler for when list content has changed
-*************************************************************************/
-void ComboDropList::onListContentsChanged(WindowEventArgs& e)
-{
-    // basically see if our 'sticky' selection was removed
-    if ((d_lastClickSelected) && !isListboxItemInList(d_lastClickSelected))
+        d_armed = false;
         d_lastClickSelected = 0;
 
-    // base class processing
-    Listbox::onListContentsChanged(e);
-}
+        hide();
 
-/*************************************************************************
-    Handler for when list selection has changed
-*************************************************************************/
-void ComboDropList::onSelectionChanged(WindowEventArgs& e)
-{
-    if (!isActive())
-        d_lastClickSelected = getFirstSelectedItem();
-
-    Listbox::onSelectionChanged(e);
-}
-
-#ifndef PE_NO_MOUSE
-/*************************************************************************
-	Handler for mouse movement events
-*************************************************************************/
-void ComboDropList::onMouseMove(MouseEventArgs& e)
-{
-	Listbox::onMouseMove(e);
-
-	// if mouse is within our area (but not our children)
-	if (isHit(e.position))
-	{
-		if (!getChildAtPosition(e.position))
-		{
-			// handle auto-arm
-			if (d_autoArm)
-			{
-				d_armed = true;
-			}
-
-			if (d_armed)
-			{
-				// check for an item under the mouse
-				ListboxItem* selItem = getItemAtPoint(e.position);
-
-				// if an item is under mouse, select it
-				if (selItem)
-				{
-					setItemSelectState(selItem, true);
-				}
-				else
-				{
-					clearAllSelections();
-				}
-
-			}
-		}
-
-		++e.handled;
-	}
-	// not within the list area
-	else
-	{
-		// if left mouse button is down, clear any selection
-		if (e.sysKeys & LeftMouse)
-		{
-			clearAllSelections();
-		}
-
-	}
-
-}
-
-
-/*************************************************************************
-	Handler for mouse button pressed events
-*************************************************************************/
-void ComboDropList::onMouseButtonDown(MouseEventArgs& e)
-{
-	Listbox::onMouseButtonDown(e);
-
-	if (e.button == LeftButton)
-	{
-		if (!isHit(e.position))
-		{
-			clearAllSelections();
-			releaseInput();
-		}
-		else
-		{
-			d_armed = true;
-		}
-
-		++e.handled;
-	}
-
-}
-
-
-/*************************************************************************
-	Handler for mouse button release events
-*************************************************************************/
-void ComboDropList::onMouseButtonUp(MouseEventArgs& e)
-{
-	Listbox::onMouseButtonUp(e);
-
-	if (e.button == LeftButton)
-	{
-		if (d_armed && (getChildAtPosition(e.position) == 0))
-		{
-			// if something was selected, confirm that selection.
-			if (getSelectedCount() > 0)
-			{
-				WindowEventArgs args(this);
-				onListSelectionAccepted(args);
-			}
-
-            releaseInput();
-		}
-		// if we are not already armed, in response to a left button up event, we auto-arm.
-		else
-		{
-			d_armed = true;
-		}
-
-		++e.handled;
-	}
-
-}
-#endif //PE_NO_MOUSE
-
-/*************************************************************************
-	Handler for when input capture is lost
-*************************************************************************/
-void ComboDropList::onCaptureLost(WindowEventArgs& e)
-{
-#ifndef PE_NO_MOUSE
-	Listbox::onCaptureLost(e);
-#endif //PE_NO_MOUSE
-    d_armed = false;
-	hide();
-	++e.handled;
-
-    // ensure 'sticky' selection remains.
-    if ((d_lastClickSelected) && !d_lastClickSelected->isSelected())
-    {
-        clearAllSelections_impl();
-        setItemSelectState(d_lastClickSelected, true);
+        // pass captured inputs to children to enable scrollbars
+        setDistributesCapturedInputs(true);
+        banPropertyFromXML("DistributeCapturedInputs");
     }
-}
 
+    /*************************************************************************
+            Destructor for ComboDropList base class
+     *************************************************************************/
+    ComboDropList::~ComboDropList(void) {
+    }
+
+    /*************************************************************************
+            Initialise the Window based object ready for use.
+     *************************************************************************/
+    void ComboDropList::initialiseComponents(void) {
+        Listbox::initialiseComponents();
+
+        // set-up scroll bars so they return capture to us.
+        getVertScrollbar()->setRestoreOldCapture(true);
+        getHorzScrollbar()->setRestoreOldCapture(true);
+
+        // ban these properties from being written
+        getVertScrollbar()->banPropertyFromXML("RestoreOldCapture");
+        getHorzScrollbar()->banPropertyFromXML("RestoreOldCapture");
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void ComboDropList::resizeToContent(bool fit_width, bool fit_height) {
+        if (!d_windowRenderer)
+            CEGUI_THROW(InvalidRequestException(
+                "Function requires a valid WindowRenderer object to be set."));
+
+        static_cast<ListboxWindowRenderer*> (d_windowRenderer)->
+                resizeListToContent(fit_width, fit_height);
+
+    }
+
+    /*************************************************************************
+            Handler for when list selection is confirmed.
+     *************************************************************************/
+    void ComboDropList::onListSelectionAccepted(WindowEventArgs& e) {
+        d_lastClickSelected = getFirstSelectedItem();
+#ifndef PE_NO_MOUSE
+        fireEvent(EventListSelectionAccepted, e, EventNamespace);
+#endif //PE_NO_MOUSE
+    }
+
+    /*************************************************************************
+        Handler for when list content has changed
+     *************************************************************************/
+    void ComboDropList::onListContentsChanged(WindowEventArgs& e) {
+        // basically see if our 'sticky' selection was removed
+        if ((d_lastClickSelected) && !isListboxItemInList(d_lastClickSelected))
+            d_lastClickSelected = 0;
+
+        // base class processing
+        Listbox::onListContentsChanged(e);
+    }
+
+    /*************************************************************************
+        Handler for when list selection has changed
+     *************************************************************************/
+    void ComboDropList::onSelectionChanged(WindowEventArgs& e) {
+        if (!isActive())
+            d_lastClickSelected = getFirstSelectedItem();
+
+        Listbox::onSelectionChanged(e);
+    }
+
+#ifndef PE_NO_MOUSE
 
 /*************************************************************************
-	Handler for when window is activated
-*************************************************************************/
-void ComboDropList::onActivated(ActivationEventArgs& e)
-{
-	Listbox::onActivated(e);
-}
+            Handler for mouse movement events
+     *************************************************************************/
+    void ComboDropList::onMouseMove(MouseEventArgs& e) {
+        Listbox::onMouseMove(e);
+
+        // if mouse is within our area (but not our children)
+        if (isHit(e.position)) {
+            if (!getChildAtPosition(e.position)) {
+                // handle auto-arm
+                if (d_autoArm) {
+                    d_armed = true;
+                }
+
+                if (d_armed) {
+                    // check for an item under the mouse
+                    ListboxItem* selItem = getItemAtPoint(e.position);
+
+                    // if an item is under mouse, select it
+                    if (selItem) {
+                        setItemSelectState(selItem, true);
+                    } else {
+                        clearAllSelections();
+                    }
+
+                }
+            }
+
+            ++e.handled;
+        }            // not within the list area
+        else {
+            // if left mouse button is down, clear any selection
+            if (e.sysKeys & LeftMouse) {
+                clearAllSelections();
+            }
+
+        }
+
+    }
+
+    /*************************************************************************
+            Handler for mouse button pressed events
+     *************************************************************************/
+    void ComboDropList::onMouseButtonDown(MouseEventArgs& e) {
+        Listbox::onMouseButtonDown(e);
+
+        if (e.button == LeftButton) {
+            if (!isHit(e.position)) {
+                clearAllSelections();
+                releaseInput();
+            } else {
+                d_armed = true;
+            }
+
+            ++e.handled;
+        }
+
+    }
+
+    /*************************************************************************
+            Handler for mouse button release events
+     *************************************************************************/
+    void ComboDropList::onMouseButtonUp(MouseEventArgs& e) {
+        Listbox::onMouseButtonUp(e);
+
+        if (e.button == LeftButton) {
+            if (d_armed && (getChildAtPosition(e.position) == 0)) {
+                // if something was selected, confirm that selection.
+                if (getSelectedCount() > 0) {
+                    WindowEventArgs args(this);
+                    onListSelectionAccepted(args);
+                }
+
+                releaseInput();
+            }                // if we are not already armed, in response to a left button up event, we auto-arm.
+            else {
+                d_armed = true;
+            }
+
+            ++e.handled;
+        }
+
+    }
+#endif //PE_NO_MOUSE
+
+    /*************************************************************************
+            Handler for when input capture is lost
+     *************************************************************************/
+    void ComboDropList::onCaptureLost(WindowEventArgs& e) {
+#ifndef PE_NO_MOUSE
+        Listbox::onCaptureLost(e);
+#endif //PE_NO_MOUSE
+        d_armed = false;
+        hide();
+        ++e.handled;
+
+        // ensure 'sticky' selection remains.
+        if ((d_lastClickSelected) && !d_lastClickSelected->isSelected()) {
+            clearAllSelections_impl();
+            setItemSelectState(d_lastClickSelected, true);
+        }
+    }
+
+    /*************************************************************************
+            Handler for when window is activated
+     *************************************************************************/
+    void ComboDropList::onActivated(ActivationEventArgs& e) {
+        Listbox::onActivated(e);
+    }
 
 } // End of  CEGUI namespace section

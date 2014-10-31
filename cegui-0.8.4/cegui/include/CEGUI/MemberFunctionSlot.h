@@ -1,7 +1,7 @@
 /************************************************************************
     created:    Tue Feb 28 2006
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -30,34 +30,32 @@
 #include "CEGUI/SlotFunctorBase.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Slot template class that creates a functor that calls back via a class
-    member function.
-*/
-template<typename T>
-class MemberFunctionSlot : public SlotFunctorBase
-{
-public:
-    //! Member function slot type.
-    typedef bool(T::*MemberFunctionType)(const EventArgs&);
+namespace CEGUI {
 
-    MemberFunctionSlot(MemberFunctionType func, T* obj) :
+    /*!
+    \brief
+        Slot template class that creates a functor that calls back via a class
+        member function.
+     */
+    template<typename T>
+    class MemberFunctionSlot : public SlotFunctorBase {
+    public:
+        //! Member function slot type.
+        typedef bool(T::*MemberFunctionType)(const EventArgs&);
+
+        MemberFunctionSlot(MemberFunctionType func, T* obj) :
         d_function(func),
-        d_object(obj)
-    {}
+        d_object(obj) {
+        }
 
-    virtual bool operator()(const EventArgs& args)
-    {
-        return (d_object->*d_function)(args);
-    }
+        virtual bool operator()(const EventArgs& args) {
+            return (d_object->*d_function)(args);
+        }
 
-private:
-    MemberFunctionType d_function;
-    T* d_object;
-};
+    private:
+        MemberFunctionType d_function;
+        T* d_object;
+    };
 
 } // End of  CEGUI namespace section
 

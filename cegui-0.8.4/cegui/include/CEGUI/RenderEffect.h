@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 17 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,103 +30,104 @@
 #include "CEGUI/Base.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Interface for objects that hook into RenderingWindow to affect the rendering
-    process, thus allowing various effects to be achieved.
-*/
-class CEGUIEXPORT RenderEffect :
-    public AllocatedObject<RenderEffect>
-{
-public:
-    virtual ~RenderEffect() {};
-    /*!
-    \brief
-        Return the number of passes required by this effect.
-
-    \return
-        integer value indicating the number of rendering passes required to
-        fully render this effect.
-    */
-    virtual int getPassCount() const = 0;
+namespace CEGUI {
 
     /*!
     \brief
-        Function called prior to RenderingWindow::draw being called.  This is
-        intended to be used for any required setup / state initialisation and is
-        called once for each pass in the effect.
+        Interface for objects that hook into RenderingWindow to affect the rendering
+        process, thus allowing various effects to be achieved.
+     */
+    class CEGUIEXPORT RenderEffect :
+    public AllocatedObject<RenderEffect> {
+    public:
 
-    \param pass
-        Indicates the pass number to be initialised (starting at pass 0).
+        virtual ~RenderEffect() {
+        };
+        /*!
+        \brief
+            Return the number of passes required by this effect.
 
-    \note
-        Note that this function is called \e after any standard state
-        initialisation that might be peformed by the Renderer module.
-    */
-    virtual void performPreRenderFunctions(const int pass) = 0;
+        \return
+            integer value indicating the number of rendering passes required to
+            fully render this effect.
+         */
+        virtual int getPassCount() const = 0;
 
-    /*!
-    \brief
-        Function called after RenderingWindow::draw is called.  This is intended
-        to be used for any required cleanup / state restoration.  This function
-        is called <em>once only</em>, unlike performPreRenderFunctions which may
-        be called multiple times; once for each pass in the effect.
-    \note
-        Note that this function is called \e before any standard state
-        cleanup that might be peformed by the Renderer module.
-    */
-    virtual void performPostRenderFunctions() = 0;
+        /*!
+        \brief
+            Function called prior to RenderingWindow::draw being called.  This is
+            intended to be used for any required setup / state initialisation and is
+            called once for each pass in the effect.
 
-    /*!
-    \brief
-        Function called to generate geometry for the RenderingWindow.
+        \param pass
+            Indicates the pass number to be initialised (starting at pass 0).
 
-        The geometry generated should be fully unclipped and window local.  The
-        origin for the geometry is located at the top-left corner.
+        \note
+            Note that this function is called \e after any standard state
+            initialisation that might be peformed by the Renderer module.
+         */
+        virtual void performPreRenderFunctions(const int pass) = 0;
 
-    \param window
-        The RenderingWindow object that is being processed.
+        /*!
+        \brief
+            Function called after RenderingWindow::draw is called.  This is intended
+            to be used for any required cleanup / state restoration.  This function
+            is called <em>once only</em>, unlike performPreRenderFunctions which may
+            be called multiple times; once for each pass in the effect.
+        \note
+            Note that this function is called \e before any standard state
+            cleanup that might be peformed by the Renderer module.
+         */
+        virtual void performPostRenderFunctions() = 0;
 
-    \param geometry
-        GeometryBuffer object where the generated geometry should be added.
-        This object will be cleared before this function is invoked.
+        /*!
+        \brief
+            Function called to generate geometry for the RenderingWindow.
 
-    \return
-        boolean value indicating whether the RenderingWindow should generate
-        it's own geometry.
-        - true if the RenderingWindow should generate it's own geometry.  You
-        will usually only return true if you do not need to use custom geometry.
-        - false if you have added any required geometry needed to represent the
-        RenderingWindow.
-    */
-    virtual bool realiseGeometry(RenderingWindow& window,
-                                 GeometryBuffer& geometry) = 0;
+            The geometry generated should be fully unclipped and window local.  The
+            origin for the geometry is located at the top-left corner.
 
-    /*!
-    \brief
-        Function called to perform any time based updates on the RenderEffect
-        state.
+        \param window
+            The RenderingWindow object that is being processed.
 
-    \note
-        This function should only affect the internal state of the RenderEffect
-        object.  This function should definitely \e not be used to directly
-        affect any render states of the underlying rendering API or engine.
+        \param geometry
+            GeometryBuffer object where the generated geometry should be added.
+            This object will be cleared before this function is invoked.
 
-    \param elapsed
-        The number of seconds that have elapsed since the last time this
-        function was called.
+        \return
+            boolean value indicating whether the RenderingWindow should generate
+            it's own geometry.
+            - true if the RenderingWindow should generate it's own geometry.  You
+            will usually only return true if you do not need to use custom geometry.
+            - false if you have added any required geometry needed to represent the
+            RenderingWindow.
+         */
+        virtual bool realiseGeometry(RenderingWindow& window,
+                GeometryBuffer& geometry) = 0;
 
-    \param window
-        RenderingWindow object that the RenderEffect is being applied to.
+        /*!
+        \brief
+            Function called to perform any time based updates on the RenderEffect
+            state.
 
-    \return
-        boolean that indicates whether the window geometry will still be valid
-        after the update.
-    */
-    virtual bool update(const float elapsed, RenderingWindow& window) = 0;
-};
+        \note
+            This function should only affect the internal state of the RenderEffect
+            object.  This function should definitely \e not be used to directly
+            affect any render states of the underlying rendering API or engine.
+
+        \param elapsed
+            The number of seconds that have elapsed since the last time this
+            function was called.
+
+        \param window
+            RenderingWindow object that the RenderEffect is being applied to.
+
+        \return
+            boolean that indicates whether the window geometry will still be valid
+            after the update.
+         */
+        virtual bool update(const float elapsed, RenderingWindow& window) = 0;
+    };
 
 } // End of  CEGUI namespace section
 #endif //PE_NO_RENDEREFFECT

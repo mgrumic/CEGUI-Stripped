@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Fri Jun 17 2005
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -51,8 +51,7 @@
 #include <sstream>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     // note: The assets' versions aren't usually the same as CEGUI version, they are versioned from version 1 onwards!
     const String Falagard_xmlHandler::NativeVersion("7");
 
@@ -145,11 +144,11 @@ namespace CEGUI
 
     // Default values
     const String Falagard_xmlHandler::PropertyDefinitionHelpDefaultValue("Falagard custom property definition - "
-                                                                         "gets/sets a named user string.");
+            "gets/sets a named user string.");
     const String Falagard_xmlHandler::PropertyLinkDefinitionHelpDefaultValue("Falagard property link definition - links a "
-                                                                             "property on this window to properties "
-                                                                             "defined on one or more child windows, or "
-                                                                             "the parent window.");
+            "property on this window to properties "
+            "defined on one or more child windows, or "
+            "the parent window.");
 
     // Specific attribute values
     const String Falagard_xmlHandler::GenericDataType("Generic");
@@ -157,23 +156,21 @@ namespace CEGUI
 
     ////////////////////////////////////////////////////////////////////////////////
 
-
     Falagard_xmlHandler::Falagard_xmlHandler(WidgetLookManager* mgr) :
-        d_manager(mgr),
-        d_widgetlook(0),
-        d_childcomponent(0),
-        d_imagerysection(0),
-        d_stateimagery(0),
-        d_layer(0),
-        d_section(0),
-        d_imagerycomponent(0),
-        d_area(0),
-        d_textcomponent(0),
-        d_namedArea(0),
-        d_framecomponent(0),
-        d_propertyLink(0),
-        d_eventLink(0)
-    {
+    d_manager(mgr),
+    d_widgetlook(0),
+    d_childcomponent(0),
+    d_imagerysection(0),
+    d_stateimagery(0),
+    d_layer(0),
+    d_section(0),
+    d_imagerycomponent(0),
+    d_area(0),
+    d_textcomponent(0),
+    d_namedArea(0),
+    d_framecomponent(0),
+    d_propertyLink(0),
+    d_eventLink(0) {
         // register element start handlers
         registerElementStartHandler(FalagardElement, &Falagard_xmlHandler::elementFalagardStart);
         registerElementStartHandler(WidgetLookElement, &Falagard_xmlHandler::elementWidgetLookStart);
@@ -216,9 +213,9 @@ namespace CEGUI
         registerElementStartHandler(FontPropertyElement, &Falagard_xmlHandler::elementFontPropertyStart);
         registerElementStartHandler(ColourElement, &Falagard_xmlHandler::elementColourStart);
         registerElementStartHandler(PropertyLinkTargetElement, &Falagard_xmlHandler::elementPropertyLinkTargetStart);
-        #ifndef PE_NO_ANIMATION
+#ifndef PE_NO_ANIMATION
         registerElementStartHandler(AnimationDefinitionHandler::ElementName, &Falagard_xmlHandler::elementAnimationDefinitionStart);
-        #endif //PE_NO_ANIMATION
+#endif //PE_NO_ANIMATION
         registerElementStartHandler(EventLinkDefinitionElement, &Falagard_xmlHandler::elementEventLinkDefinitionStart);
         registerElementStartHandler(EventLinkTargetElement, &Falagard_xmlHandler::elementEventLinkTargetStart);
         registerElementStartHandler(NamedAreaSourceElement, &Falagard_xmlHandler::elementNamedAreaSourceStart);
@@ -249,26 +246,22 @@ namespace CEGUI
         registerElementEndHandler(EventLinkDefinitionElement, &Falagard_xmlHandler::elementEventLinkDefinitionEnd);
     }
 
-    Falagard_xmlHandler::~Falagard_xmlHandler()
-    {}
+    Falagard_xmlHandler::~Falagard_xmlHandler() {
+    }
 
     /*************************************************************************
         Handle an opening XML element tag.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementStartLocal(const String& element, const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementStartLocal(const String& element, const XMLAttributes& attributes) {
         // find registered handler for this element.
         ElementStartHandlerMap::const_iterator iter = d_startHandlersMap.find(element);
 
         // if a handler existed
-        if (iter != d_startHandlersMap.end())
-        {
+        if (iter != d_startHandlersMap.end()) {
             // call the handler for this element
             (this->*(iter->second))(attributes);
-        }
-        // no handler existed
-        else
-        {
+        }            // no handler existed
+        else {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("Falagard::xmlHandler::elementStart - The unknown XML element '" + element + "' was encountered while processing the look and feel file.", Errors);
 #endif //PE_NO_LOGGER
@@ -277,9 +270,8 @@ namespace CEGUI
 
     /*************************************************************************
         Handle a closing XML element tag
-    *************************************************************************/
-    void Falagard_xmlHandler::elementEndLocal(const String& element)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementEndLocal(const String& element) {
         // find registered handler for this element.
         ElementEndHandlerMap::const_iterator iter = d_endHandlersMap.find(element);
 
@@ -291,9 +283,8 @@ namespace CEGUI
 
     /*************************************************************************
         Convert a hex string "AARRGGBB" to type argb_t
-    *************************************************************************/
-    argb_t Falagard_xmlHandler::hexStringToARGB(const String& str)
-    {
+     *************************************************************************/
+    argb_t Falagard_xmlHandler::hexStringToARGB(const String& str) {
         argb_t val;
         std::istringstream s(str.c_str());
         s >> std::hex >> val;
@@ -304,35 +295,32 @@ namespace CEGUI
     /*************************************************************************
         Assign a dimension to a ComponentArea depending upon the dimension's
         type.
-    *************************************************************************/
-    void Falagard_xmlHandler::assignAreaDimension(Dimension& dim)
-    {
-        if (d_area)
-        {
-            switch (dim.getDimensionType())
-            {
-            case DT_LEFT_EDGE:
-            case DT_X_POSITION:
-                d_area->d_left = dim;
-                break;
-            case DT_TOP_EDGE:
-            case DT_Y_POSITION:
-                d_area->d_top = dim;
-                break;
-            case DT_RIGHT_EDGE:
-            case DT_WIDTH:
-                d_area->d_right_or_width = dim;
-                break;
-            case DT_BOTTOM_EDGE:
-            case DT_HEIGHT:
-                d_area->d_bottom_or_height = dim;
-                break;
-            default:
-                CEGUI_THROW(InvalidRequestException(
+     *************************************************************************/
+    void Falagard_xmlHandler::assignAreaDimension(Dimension& dim) {
+        if (d_area) {
+            switch (dim.getDimensionType()) {
+                case DT_LEFT_EDGE:
+                case DT_X_POSITION:
+                    d_area->d_left = dim;
+                    break;
+                case DT_TOP_EDGE:
+                case DT_Y_POSITION:
+                    d_area->d_top = dim;
+                    break;
+                case DT_RIGHT_EDGE:
+                case DT_WIDTH:
+                    d_area->d_right_or_width = dim;
+                    break;
+                case DT_BOTTOM_EDGE:
+                case DT_HEIGHT:
+                    d_area->d_bottom_or_height = dim;
+                    break;
+                default:
+                    CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                            ""));
 #else
-                    "Invalid DimensionType specified for area component."));
+                            "Invalid DimensionType specified for area component."));
 #endif //PE_NO_THROW_MSGS
             }
         }
@@ -340,28 +328,18 @@ namespace CEGUI
 
     /*************************************************************************
         Assign a ColourRect to the current element supporting such a thing
-    *************************************************************************/
-    void Falagard_xmlHandler::assignColours(const ColourRect& cols)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::assignColours(const ColourRect& cols) {
         // need to decide what to apply colours to
-        if (d_framecomponent)
-        {
+        if (d_framecomponent) {
             d_framecomponent->setColours(cols);
-        }
-        else if (d_imagerycomponent)
-        {
+        } else if (d_imagerycomponent) {
             d_imagerycomponent->setColours(cols);
-        }
-        else if (d_textcomponent)
-        {
+        } else if (d_textcomponent) {
             d_textcomponent->setColours(cols);
-        }
-        else if (d_imagerysection)
-        {
+        } else if (d_imagerysection) {
             d_imagerysection->setMasterColours(cols);
-        }
-        else if (d_section)
-        {
+        } else if (d_section) {
             d_section->setOverrideColours(cols);
             d_section->setUsingOverrideColours(true);
         }
@@ -369,46 +347,42 @@ namespace CEGUI
 
     /*************************************************************************
         Method that performs common handling for all *Dim elements.
-    *************************************************************************/
-    void Falagard_xmlHandler::doBaseDimStart(const BaseDim* dim)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::doBaseDimStart(const BaseDim* dim) {
         BaseDim* cloned = dim->clone();
         d_dimStack.push_back(cloned);
     }
 
     /*************************************************************************
         Method that handles the opening Falagard XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementFalagardStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementFalagardStart(const XMLAttributes& attributes) {
 #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("===== Falagard 'root' element: look and feel parsing begins =====");
 #endif //PE_NO_LOGGER
 
         const String version = attributes.getValueAsString(VersionAttribute, "unknown");
 
-        if (version != NativeVersion)
-        {
+        if (version != NativeVersion) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                "You are attempting to load a looknfeel of version '" + version +
-                "' but this CEGUI version is only meant to load looknfeels of "
-                "version '" + NativeVersion + "'. Consider using the migrate.py "
-                "script bundled with CEGUI Unified Editor to migrate your data."));
+                    "You are attempting to load a looknfeel of version '" + version +
+                    "' but this CEGUI version is only meant to load looknfeels of "
+                    "version '" + NativeVersion + "'. Consider using the migrate.py "
+                    "script bundled with CEGUI Unified Editor to migrate your data."));
 #endif //PE_NO_THROW_MSGS
         }
     }
 
     /*************************************************************************
         Method that handles the opening WidgetLook XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementWidgetLookStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementWidgetLookStart(const XMLAttributes& attributes) {
         assert(d_widgetlook == 0);
         d_widgetlook = CEGUI_NEW_AO WidgetLookFeel(attributes.getValueAsString(NameAttribute),
-                                                   attributes.getValueAsString(InheritsAttribute));
+                attributes.getValueAsString(InheritsAttribute));
 #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("---> Start of definition for widget look '" + d_widgetlook->getName() + "'.", Informative);
 #endif //PE_NO_LOGGER
@@ -416,30 +390,28 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening Child XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementChildStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementChildStart(const XMLAttributes& attributes) {
         assert(d_childcomponent == 0);
         d_childcomponent = CEGUI_NEW_AO WidgetComponent(
-            attributes.getValueAsString(TypeAttribute),
-            attributes.getValueAsString(LookAttribute),
-            attributes.getValueAsString(NameSuffixAttribute),
-            attributes.getValueAsString(RendererAttribute),
-            attributes.getValueAsBool(AutoWindowAttribute, true));
+                attributes.getValueAsString(TypeAttribute),
+                attributes.getValueAsString(LookAttribute),
+                attributes.getValueAsString(NameSuffixAttribute),
+                attributes.getValueAsString(RendererAttribute),
+                attributes.getValueAsBool(AutoWindowAttribute, true));
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Start of definition for child widget."
-            " Type: " + d_childcomponent->getBaseWidgetType() +
-            " Name: " + d_childcomponent->getWidgetName() +
-            " Look: " + d_childcomponent->getWidgetLookName() +
-            " Auto: " + (d_childcomponent->isAutoWindow() ? "Yes" : "No"));
+                " Type: " + d_childcomponent->getBaseWidgetType() +
+                " Name: " + d_childcomponent->getWidgetName() +
+                " Look: " + d_childcomponent->getWidgetLookName() +
+                " Auto: " + (d_childcomponent->isAutoWindow() ? "Yes" : "No"));
 #endif //PE_NO_LOGGER
     }
 
     /*************************************************************************
         Method that handles the opening ImagerySection XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImagerySectionStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImagerySectionStart(const XMLAttributes& attributes) {
         assert(d_imagerysection == 0);
         d_imagerysection = CEGUI_NEW_AO ImagerySection(attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
@@ -449,9 +421,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening StateImagery XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementStateImageryStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementStateImageryStart(const XMLAttributes& attributes) {
         assert(d_stateimagery == 0);
         d_stateimagery = CEGUI_NEW_AO StateImagery(attributes.getValueAsString(NameAttribute));
         d_stateimagery->setClippedToDisplay(!attributes.getValueAsBool(ClippedAttribute, true));
@@ -462,9 +433,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening Layer XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementLayerStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementLayerStart(const XMLAttributes& attributes) {
         assert(d_layer == 0);
         d_layer = CEGUI_NEW_AO LayerSpecification(attributes.getValueAsInteger(PriorityAttribute, 0));
 #ifndef PE_NO_LOGGER
@@ -474,18 +444,17 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening Section XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementSectionStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementSectionStart(const XMLAttributes& attributes) {
         assert(d_section == 0);
         assert(d_widgetlook != 0);
         String owner(attributes.getValueAsString(LookAttribute));
         d_section =
-            CEGUI_NEW_AO SectionSpecification(owner.empty() ? d_widgetlook->getName() : owner,
-                                     attributes.getValueAsString(SectionNameAttribute),
-                                     attributes.getValueAsString(ControlPropertyAttribute),
-                                     attributes.getValueAsString(ControlValueAttribute),
-                                     attributes.getValueAsString(ControlWidgetAttribute));
+                CEGUI_NEW_AO SectionSpecification(owner.empty() ? d_widgetlook->getName() : owner,
+                attributes.getValueAsString(SectionNameAttribute),
+                attributes.getValueAsString(ControlPropertyAttribute),
+                attributes.getValueAsString(ControlValueAttribute),
+                attributes.getValueAsString(ControlWidgetAttribute));
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("---------> Layer references imagery section '" + d_section->getSectionName() + "'.");
 #endif //PE_NO_LOGGER
@@ -493,9 +462,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening ImageryComponent XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImageryComponentStart(const XMLAttributes&)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImageryComponentStart(const XMLAttributes&) {
         assert(d_imagerycomponent == 0);
         d_imagerycomponent = CEGUI_NEW_AO ImageryComponent();
 #ifndef PE_NO_LOGGER
@@ -505,9 +473,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening TextComponent XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementTextComponentStart(const XMLAttributes&)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementTextComponentStart(const XMLAttributes&) {
         assert(d_textcomponent == 0);
         d_textcomponent = CEGUI_NEW_AO TextComponent();
 #ifndef PE_NO_LOGGER
@@ -517,9 +484,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening FrameComponent XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementFrameComponentStart(const XMLAttributes&)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementFrameComponentStart(const XMLAttributes&) {
         assert(d_framecomponent == 0);
         d_framecomponent = CEGUI_NEW_AO FrameComponent();
 #ifndef PE_NO_LOGGER
@@ -529,69 +495,60 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening Area XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementAreaStart(const XMLAttributes&)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementAreaStart(const XMLAttributes&) {
         assert(d_area == 0);
         d_area = CEGUI_NEW_AO ComponentArea();
     }
 
     /*************************************************************************
         Method that handles the opening Image XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImageStart(const XMLAttributes& attributes)
-    {
-        if (d_imagerycomponent)
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImageStart(const XMLAttributes& attributes) {
+        if (d_imagerycomponent) {
             d_imagerycomponent->setImage(attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image: " + attributes.getValueAsString(NameAttribute));
 #endif //PE_NO_LOGGER            
-        }
-        else if (d_framecomponent)
-        {
+        } else if (d_framecomponent) {
             d_framecomponent->setImage(
-                FalagardXMLHelper<FrameImageComponent>::fromString(
+                    FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute)),
-                attributes.getValueAsString(NameAttribute));
+                    attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image: " +
-                attributes.getValueAsString(NameAttribute) + " for: " +
-                attributes.getValueAsString(ComponentAttribute));
+                    attributes.getValueAsString(NameAttribute) + " for: " +
+                    attributes.getValueAsString(ComponentAttribute));
 #endif //PE_NO_LOGGER
         }
     }
 
     /*************************************************************************
         Method that handles the opening Colours XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementColoursStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementColoursStart(const XMLAttributes& attributes) {
         ColourRect cols(
-            hexStringToARGB(attributes.getValueAsString(TopLeftAttribute)),
-            hexStringToARGB(attributes.getValueAsString(TopRightAttribute)),
-            hexStringToARGB(attributes.getValueAsString(BottomLeftAttribute)),
-            hexStringToARGB(attributes.getValueAsString(BottomRightAttribute)));
+                hexStringToARGB(attributes.getValueAsString(TopLeftAttribute)),
+                hexStringToARGB(attributes.getValueAsString(TopRightAttribute)),
+                hexStringToARGB(attributes.getValueAsString(BottomLeftAttribute)),
+                hexStringToARGB(attributes.getValueAsString(BottomRightAttribute)));
 
         assignColours(cols);
     }
 
     /*************************************************************************
         Method that handles the opening VertFormat XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementVertFormatStart(const XMLAttributes& attributes)
-    {
-        if (d_framecomponent)
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementVertFormatStart(const XMLAttributes& attributes) {
+        if (d_framecomponent) {
             const FrameImageComponent what =
-                FalagardXMLHelper<FrameImageComponent>::fromString(
+                    FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute, FalagardXMLHelper<FrameImageComponent>::Background));
             const VerticalFormatting fmt =
-                FalagardXMLHelper<VerticalFormatting>::fromString(
+                    FalagardXMLHelper<VerticalFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute));
 
-            switch(what)
-            {
+            switch (what) {
                 case FIC_LEFT_EDGE:
                     d_framecomponent->setLeftEdgeFormatting(fmt);
                     break;
@@ -604,46 +561,39 @@ namespace CEGUI
                 default:
                     CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                            ""));
 #else
-                        VertFormatElement + " within " +
-                        FrameComponentElement + " may only be used for "
-                        "LeftEdge, RightEdge or Background components. "
-                        "Received: " +
-                        attributes.getValueAsString(ComponentAttribute)));
+                            VertFormatElement + " within " +
+                            FrameComponentElement + " may only be used for "
+                            "LeftEdge, RightEdge or Background components. "
+                            "Received: " +
+                            attributes.getValueAsString(ComponentAttribute)));
 #endif //PE_NO_THROW_MSGS
             }
-        }
-        else if (d_imagerycomponent)
-        {
+        } else if (d_imagerycomponent) {
             d_imagerycomponent->setVerticalFormatting(
-                FalagardXMLHelper<VerticalFormatting>::fromString(
+                    FalagardXMLHelper<VerticalFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute)));
-        }
-        else if (d_textcomponent)
-        {
+        } else if (d_textcomponent) {
             d_textcomponent->setVerticalFormatting(
-                FalagardXMLHelper<VerticalTextFormatting>::fromString(
+                    FalagardXMLHelper<VerticalTextFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute)));
         }
     }
 
     /*************************************************************************
         Method that handles the opening HorzFormat XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementHorzFormatStart(const XMLAttributes& attributes)
-    {
-        if (d_framecomponent)
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementHorzFormatStart(const XMLAttributes& attributes) {
+        if (d_framecomponent) {
             const FrameImageComponent what =
-                FalagardXMLHelper<FrameImageComponent>::fromString(
+                    FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute, FalagardXMLHelper<FrameImageComponent>::Background));
             const HorizontalFormatting fmt =
-                FalagardXMLHelper<HorizontalFormatting>::fromString(
+                    FalagardXMLHelper<HorizontalFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute));
 
-            switch(what)
-            {
+            switch (what) {
                 case FIC_TOP_EDGE:
                     d_framecomponent->setTopEdgeFormatting(fmt);
                     break;
@@ -656,69 +606,59 @@ namespace CEGUI
                 default:
                     CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                            ""));
 #else
-                        HorzFormatElement + " within " +
-                        FrameComponentElement + " may only be used for "
-                        "TopEdge, BottomEdge or Background components. "
-                        "Received: " +
-                        attributes.getValueAsString(ComponentAttribute)));
+                            HorzFormatElement + " within " +
+                            FrameComponentElement + " may only be used for "
+                            "TopEdge, BottomEdge or Background components. "
+                            "Received: " +
+                            attributes.getValueAsString(ComponentAttribute)));
 #endif //PE_NO_THROW_MSGS
             }
-        }
-        else if (d_imagerycomponent)
-        {
+        } else if (d_imagerycomponent) {
             d_imagerycomponent->setHorizontalFormatting(
-                FalagardXMLHelper<HorizontalFormatting>::fromString(
+                    FalagardXMLHelper<HorizontalFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute)));
-        }
-        else if (d_textcomponent)
-        {
+        } else if (d_textcomponent) {
             d_textcomponent->setHorizontalFormatting(
-                FalagardXMLHelper<HorizontalTextFormatting>::fromString(
+                    FalagardXMLHelper<HorizontalTextFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute)));
         }
     }
 
     /*************************************************************************
         Method that handles the opening VertAlignment XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementVertAlignmentStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementVertAlignmentStart(const XMLAttributes& attributes) {
         assert(d_childcomponent != 0);
         d_childcomponent->setVerticalWidgetAlignment(
-            FalagardXMLHelper<VerticalAlignment>::fromString(
+                FalagardXMLHelper<VerticalAlignment>::fromString(
                 attributes.getValueAsString(TypeAttribute)));
     }
 
     /*************************************************************************
         Method that handles the opening HorzAlignment XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementHorzAlignmentStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementHorzAlignmentStart(const XMLAttributes& attributes) {
         assert(d_childcomponent != 0);
         d_childcomponent->setHorizontalWidgetAlignment(
-            FalagardXMLHelper<HorizontalAlignment>::fromString(
+                FalagardXMLHelper<HorizontalAlignment>::fromString(
                 attributes.getValueAsString(TypeAttribute)));
     }
 
     /*************************************************************************
         Method that handles the opening Property XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementPropertyStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementPropertyStart(const XMLAttributes& attributes) {
         assert(d_widgetlook != 0);
         PropertyInitialiser prop(attributes.getValueAsString(NameAttribute), attributes.getValueAsString(ValueAttribute));
 
-        if (d_childcomponent)
-        {
+        if (d_childcomponent) {
             d_childcomponent->addPropertyInitialiser(prop);
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Added property initialiser for property: " + prop.getTargetPropertyName() + " with value: " + prop.getInitialiserValue());
 #endif //PE_NO_LOGGER            
-        }
-        else
-        {
+        } else {
             d_widgetlook->addPropertyInitialiser(prop);
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---> Added property initialiser for property: " + prop.getTargetPropertyName() + " with value: " + prop.getInitialiserValue());
@@ -728,23 +668,21 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening Dim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementDimStart(const XMLAttributes& attributes) {
         d_dimension.setDimensionType(
-            FalagardXMLHelper<DimensionType>::fromString(
+                FalagardXMLHelper<DimensionType>::fromString(
                 attributes.getValueAsString(TypeAttribute)));
     }
 
     /*************************************************************************
         Method that handles the opening UnifiedDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementUnifiedDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementUnifiedDimStart(const XMLAttributes& attributes) {
         UnifiedDim base(
-            UDim(attributes.getValueAsFloat(ScaleAttribute, 0.0f),
-                 attributes.getValueAsFloat(OffsetAttribute, 0.0f)),
-            FalagardXMLHelper<DimensionType>::fromString(
+                UDim(attributes.getValueAsFloat(ScaleAttribute, 0.0f),
+                attributes.getValueAsFloat(OffsetAttribute, 0.0f)),
+                FalagardXMLHelper<DimensionType>::fromString(
                 attributes.getValueAsString(TypeAttribute)));
 
         doBaseDimStart(&base);
@@ -752,33 +690,30 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening AbsoluteDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementAbsoluteDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementAbsoluteDimStart(const XMLAttributes& attributes) {
         AbsoluteDim base(attributes.getValueAsFloat(ValueAttribute, 0.0f));
         doBaseDimStart(&base);
     }
 
     /*************************************************************************
         Method that handles the opening ImageDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImageDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImageDimStart(const XMLAttributes& attributes) {
         ImageDim base(attributes.getValueAsString(NameAttribute),
-                      FalagardXMLHelper<DimensionType>::fromString(
-                          attributes.getValueAsString(DimensionAttribute)));
+                FalagardXMLHelper<DimensionType>::fromString(
+                attributes.getValueAsString(DimensionAttribute)));
 
         doBaseDimStart(&base);
     }
 
     /*************************************************************************
         Method that handles the opening ImageDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImagePropertyDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImagePropertyDimStart(const XMLAttributes& attributes) {
         ImagePropertyDim base(
-            attributes.getValueAsString(NameAttribute),
-            FalagardXMLHelper<DimensionType>::fromString(
+                attributes.getValueAsString(NameAttribute),
+                FalagardXMLHelper<DimensionType>::fromString(
                 attributes.getValueAsString(DimensionAttribute)));
 
         doBaseDimStart(&base);
@@ -786,83 +721,69 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening WidgetDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementWidgetDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementWidgetDimStart(const XMLAttributes& attributes) {
         WidgetDim base(attributes.getValueAsString(WidgetAttribute),
-                       FalagardXMLHelper<DimensionType>::fromString(
-                           attributes.getValueAsString(DimensionAttribute)));
+                FalagardXMLHelper<DimensionType>::fromString(
+                attributes.getValueAsString(DimensionAttribute)));
 
         doBaseDimStart(&base);
     }
 
     /*************************************************************************
         Method that handles the opening FontDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementFontDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementFontDimStart(const XMLAttributes& attributes) {
         FontDim base(
-            attributes.getValueAsString(WidgetAttribute),
-            attributes.getValueAsString(FontAttribute),
-            attributes.getValueAsString(StringAttribute),
-            FalagardXMLHelper<FontMetricType>::fromString(
+                attributes.getValueAsString(WidgetAttribute),
+                attributes.getValueAsString(FontAttribute),
+                attributes.getValueAsString(StringAttribute),
+                FalagardXMLHelper<FontMetricType>::fromString(
                 attributes.getValueAsString(TypeAttribute)),
-            attributes.getValueAsFloat(PaddingAttribute, 0.0f));
+                attributes.getValueAsFloat(PaddingAttribute, 0.0f));
 
         doBaseDimStart(&base);
     }
 
     /*************************************************************************
         Method that handles the opening PropertyDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementPropertyDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementPropertyDimStart(const XMLAttributes& attributes) {
         String str_type = attributes.getValueAsString(TypeAttribute);
         DimensionType type = DT_INVALID;
         if (!str_type.empty())
             type = FalagardXMLHelper<DimensionType>::fromString(str_type);
 
         PropertyDim base(attributes.getValueAsString(WidgetAttribute),
-                         attributes.getValueAsString(NameAttribute),
-                         type);
+                attributes.getValueAsString(NameAttribute),
+                type);
 
         doBaseDimStart(&base);
     }
 
     /*************************************************************************
         Method that handles the opening Text XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementTextStart(const XMLAttributes& attributes)
-    {
-        assert (d_textcomponent != 0);
+     *************************************************************************/
+    void Falagard_xmlHandler::elementTextStart(const XMLAttributes& attributes) {
+        assert(d_textcomponent != 0);
         d_textcomponent->setText(attributes.getValueAsString(StringAttribute));
         d_textcomponent->setFont(attributes.getValueAsString(FontAttribute));
     }
 
     /*************************************************************************
         Method that handles the opening ColourRectProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementColourRectPropertyStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementColourRectPropertyStart(const XMLAttributes& attributes) {
         // need to decide what to apply colours to
-        if (d_framecomponent)
-        {
+        if (d_framecomponent) {
             d_framecomponent->setColoursPropertySource(attributes.getValueAsString(NameAttribute));
-        }
-        else if (d_imagerycomponent)
-        {
+        } else if (d_imagerycomponent) {
             d_imagerycomponent->setColoursPropertySource(attributes.getValueAsString(NameAttribute));
-        }
-        else if (d_textcomponent)
-        {
+        } else if (d_textcomponent) {
             d_textcomponent->setColoursPropertySource(attributes.getValueAsString(NameAttribute));
-        }
-        else if (d_imagerysection)
-        {
+        } else if (d_imagerysection) {
             d_imagerysection->setMasterColoursPropertySource(attributes.getValueAsString(NameAttribute));
-        }
-        else if (d_section)
-        {
+        } else if (d_section) {
             d_section->setOverrideColoursPropertySource(attributes.getValueAsString(NameAttribute));
             d_section->setUsingOverrideColours(true);
         }
@@ -870,9 +791,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening NamedArea XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementNamedAreaStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementNamedAreaStart(const XMLAttributes& attributes) {
         assert(d_namedArea == 0);
         d_namedArea = CEGUI_NEW_AO NamedArea(attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
@@ -882,100 +802,97 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening PropertyDefinition XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementPropertyDefinitionStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementPropertyDefinitionStart(const XMLAttributes& attributes) {
         assert(d_widgetlook);
         PropertyDefinitionBase* prop;
 
         const String name(attributes.getValueAsString(NameAttribute));
         const String init(attributes.getValueAsString(InitialValueAttribute));
         const String help(attributes.getValueAsString(HelpStringAttribute,
-                                                      PropertyDefinitionHelpDefaultValue));
+                PropertyDefinitionHelpDefaultValue));
         const String type(attributes.getValueAsString(TypeAttribute, GenericDataType));
         bool redraw(attributes.getValueAsBool(RedrawOnWriteAttribute, false));
         bool layout(attributes.getValueAsBool(LayoutOnWriteAttribute, false));
         const String eventName(attributes.getValueAsString(FireEventAttribute));
         typedef std::pair<float, float> Range;
 
-        if(type == PropertyHelper<Colour>::getDataTypeName())
-            prop = CEGUI_NEW_AO PropertyDefinition<Colour>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName() );
-        else if(type == PropertyHelper<ColourRect>::getDataTypeName())
+        if (type == PropertyHelper<Colour>::getDataTypeName())
+            prop = CEGUI_NEW_AO PropertyDefinition<Colour>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+        else if (type == PropertyHelper<ColourRect>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<ColourRect>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<UBox>::getDataTypeName())
+        else if (type == PropertyHelper<UBox>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<UBox>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<URect>::getDataTypeName())
+        else if (type == PropertyHelper<URect>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<URect>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<USize>::getDataTypeName())
+        else if (type == PropertyHelper<USize>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<USize>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<UDim>::getDataTypeName())
+        else if (type == PropertyHelper<UDim>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<UDim>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<UVector2>::getDataTypeName())
+        else if (type == PropertyHelper<UVector2>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<UVector2>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<Sizef>::getDataTypeName())
+        else if (type == PropertyHelper<Sizef>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Sizef>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<Vector2f>::getDataTypeName())
+        else if (type == PropertyHelper<Vector2f>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Vector2f>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #ifndef PE_NO_VECTOR3D
-        else if(type == PropertyHelper<Vector3f>::getDataTypeName())
+        else if (type == PropertyHelper<Vector3f>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Vector3f>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #endif  // PE_NO_VECTOR3D
-        else if(type == PropertyHelper<Rectf>::getDataTypeName())
+        else if (type == PropertyHelper<Rectf>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Rectf>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<Font*>::getDataTypeName())
+        else if (type == PropertyHelper<Font*>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Font*>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<Image*>::getDataTypeName())
+        else if (type == PropertyHelper<Image*>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Image*>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #ifndef PE_NO_QUATERNION
-        else if(type == PropertyHelper<Quaternion>::getDataTypeName())
+        else if (type == PropertyHelper<Quaternion>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Quaternion>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #endif //PE_NO_QUATERNION        
-        else if(type == PropertyHelper<AspectMode>::getDataTypeName())
+        else if (type == PropertyHelper<AspectMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<AspectMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<HorizontalAlignment>::getDataTypeName())
+        else if (type == PropertyHelper<HorizontalAlignment>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<HorizontalAlignment>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<VerticalAlignment>::getDataTypeName())
+        else if (type == PropertyHelper<VerticalAlignment>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<VerticalAlignment>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<HorizontalTextFormatting>::getDataTypeName())
+        else if (type == PropertyHelper<HorizontalTextFormatting>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<HorizontalTextFormatting>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<VerticalTextFormatting>::getDataTypeName())
+        else if (type == PropertyHelper<VerticalTextFormatting>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<VerticalTextFormatting>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<WindowUpdateMode>::getDataTypeName())
+        else if (type == PropertyHelper<WindowUpdateMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<WindowUpdateMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<bool>::getDataTypeName())
+        else if (type == PropertyHelper<bool>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<bool>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<uint>::getDataTypeName())
+        else if (type == PropertyHelper<uint>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<uint>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<unsigned long>::getDataTypeName())
+        else if (type == PropertyHelper<unsigned long>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<unsigned long>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<int>::getDataTypeName())
+        else if (type == PropertyHelper<int>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<int>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<float>::getDataTypeName())
+        else if (type == PropertyHelper<float>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<float>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<double>::getDataTypeName())
+        else if (type == PropertyHelper<double>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<double>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
+        else if (type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<TabControl::TabPanePosition>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        #ifndef PE_NO_WGT_SPINNER
-        else if(type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
+#ifndef PE_NO_WGT_SPINNER
+        else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Spinner::TextInputMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        #endif  //PE_NO_WGT_SPINNER
-        else if(type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
+#endif  //PE_NO_WGT_SPINNER
+        else if (type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<ItemListBase::SortMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())
+        else if (type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<ListHeaderSegment::SortDirection>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<MultiColumnList::SelectionMode>::getDataTypeName())
+        else if (type == PropertyHelper<MultiColumnList::SelectionMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<MultiColumnList::SelectionMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<VerticalFormatting>::getDataTypeName())
+        else if (type == PropertyHelper<VerticalFormatting>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<VerticalFormatting>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<HorizontalFormatting>::getDataTypeName())
+        else if (type == PropertyHelper<HorizontalFormatting>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<HorizontalFormatting>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else if(type == PropertyHelper<Range>::getDataTypeName())
+        else if (type == PropertyHelper<Range>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Range>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else
-        {
-            if (type != GenericDataType && type != "String")
-            {
+        else {
+            if (type != GenericDataType && type != "String") {
 #ifndef PE_NO_LOGGER
                 // type was specified but wasn't recognised
                 Logger::getSingleton().logEvent("Type '" + type + "' wasn't recognized in property definition (name: '" + name + "').", Warnings);
@@ -993,9 +910,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening PropertyLinkDefinition XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementPropertyLinkDefinitionStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementPropertyLinkDefinitionStart(const XMLAttributes& attributes) {
         assert(d_widgetlook);
         assert(d_propertyLink == 0);
 
@@ -1011,128 +927,126 @@ namespace CEGUI
 
         if (type == PropertyHelper<Colour>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Colour>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<ColourRect>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<ColourRect>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<UBox>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<UBox>(name, widget,
-                    target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<URect>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<URect>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<USize>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<USize>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<UDim>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<UDim>(name, widget,
-                    target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<UVector2>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<UVector2>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<Sizef>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Sizef>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<Vector2f>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Vector2f>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #ifndef PE_NO_VECTOR3D
         else if (type == PropertyHelper<Vector3f>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Vector3f>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #endif  // PE_NO_VECTOR3D
         else if (type == PropertyHelper<Rectf>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Rectf>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<Font*>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Font*>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<Image*>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Image*>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #ifndef PE_NO_QUATERNION
         else if (type == PropertyHelper<Quaternion>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Quaternion>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
 #endif //PE_NO_QUATERNION
         else if (type == PropertyHelper<AspectMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<AspectMode>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<HorizontalAlignment>::getDataTypeName())
-            d_propertyLink =CEGUI_NEW_AO PropertyLinkDefinition<HorizontalAlignment>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+            d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<HorizontalAlignment>(name,
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<VerticalAlignment>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<VerticalAlignment>(
-                    name, widget, target, init, d_widgetlook->getName(), redraw,
-                    layout, eventName, d_widgetlook->getName());
+                name, widget, target, init, d_widgetlook->getName(), redraw,
+                layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<HorizontalTextFormatting>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    HorizontalTextFormatting>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                HorizontalTextFormatting>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<VerticalTextFormatting>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    VerticalTextFormatting>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                VerticalTextFormatting>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<WindowUpdateMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<WindowUpdateMode>(
-                    name, widget, target, init, d_widgetlook->getName(), redraw,
-                    layout, eventName, d_widgetlook->getName());
+                name, widget, target, init, d_widgetlook->getName(), redraw,
+                layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<bool>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<bool>(name, widget,
-                    target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<uint>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<uint>(name, widget,
-                    target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<unsigned long>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<unsigned long>(
-                    name, widget, target, init, d_widgetlook->getName(), redraw,
-                    layout, eventName, d_widgetlook->getName());
+                name, widget, target, init, d_widgetlook->getName(), redraw,
+                layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<int>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<int>(name, widget,
-                    target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<float>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<float>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<double>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<double>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    TabControl::TabPanePosition>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        #ifndef PE_NO_WGT_SPINNER
+                TabControl::TabPanePosition>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#ifndef PE_NO_WGT_SPINNER
         else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    Spinner::TextInputMode>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        #endif  //PE_NO_WGT_SPINNER
+                Spinner::TextInputMode>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#endif  //PE_NO_WGT_SPINNER
         else if (type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    ItemListBase::SortMode>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                ItemListBase::SortMode>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    ListHeaderSegment::SortDirection>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                ListHeaderSegment::SortDirection>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<MultiColumnList::SelectionMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
-                    MultiColumnList::SelectionMode>(name, widget, target, init,
-                    d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+                MultiColumnList::SelectionMode>(name, widget, target, init,
+                d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<VerticalFormatting>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<VerticalFormatting>(
-                    name, widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName()
-            );
+                name, widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName()
+                );
         else if (type == PropertyHelper<HorizontalFormatting>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<HorizontalFormatting>(
-                    name, widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName()
-            );
+                name, widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName()
+                );
         else if (type == PropertyHelper<Range>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Range>(name,
-                    widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
-        else
-        {
-            if (type != GenericDataType && type != PropertyHelper<String>::getDataTypeName())
-            {
+                widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+        else {
+            if (type != GenericDataType && type != PropertyHelper<String>::getDataTypeName()) {
 #ifndef PE_NO_LOGGER
                 // type was specified but wasn't recognised
                 Logger::getSingleton().logEvent("Type '" + type + "' wasn't recognized in property link definition (name: '" + name + "').", Warnings);
@@ -1144,45 +1058,40 @@ namespace CEGUI
         }
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Adding PropertyLinkDefiniton. Name: " +
-                        name);
+                name);
 #endif //PE_NO_LOGGER        
 
-        if (!widget.empty() || !target.empty())
-        {
+        if (!widget.empty() || !target.empty()) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Adding link target to property: " + target +
-                        " on widget: " + widget);
+                    " on widget: " + widget);
 #endif //PE_NO_LOGGER            
         }
     }
 
     /*************************************************************************
         Method that handles the opening OperatorDim XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementOperatorDimStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementOperatorDimStart(const XMLAttributes& attributes) {
         OperatorDim base(FalagardXMLHelper<DimensionOperator>::fromString(
-            attributes.getValueAsString(OperatorAttribute)));
+                attributes.getValueAsString(OperatorAttribute)));
 
         doBaseDimStart(&base);
     }
 
     /*************************************************************************
         Method that handles the opening VertFormatProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementVertFormatPropertyStart(const XMLAttributes& attributes)
-    {
-        if (d_framecomponent)
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementVertFormatPropertyStart(const XMLAttributes& attributes) {
+        if (d_framecomponent) {
             const FrameImageComponent what =
-                FalagardXMLHelper<FrameImageComponent>::fromString(
+                    FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute, FalagardXMLHelper<FrameImageComponent>::Background));
             const VerticalFormatting fmt =
-                FalagardXMLHelper<VerticalFormatting>::fromString(
+                    FalagardXMLHelper<VerticalFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute));
 
-            switch(what)
-            {
+            switch (what) {
                 case FIC_LEFT_EDGE:
                     d_framecomponent->setLeftEdgeFormatting(fmt);
                     break;
@@ -1195,17 +1104,16 @@ namespace CEGUI
                 default:
                     CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                            ""));
 #else
-                        VertFormatPropertyElement + " within " +
-                        FrameComponentElement + " may only be used for "
-                        "LeftEdge, RightEdge or Background components. "
-                        "Received: " +
-                        attributes.getValueAsString(ComponentAttribute)));
+                            VertFormatPropertyElement + " within " +
+                            FrameComponentElement + " may only be used for "
+                            "LeftEdge, RightEdge or Background components. "
+                            "Received: " +
+                            attributes.getValueAsString(ComponentAttribute)));
 #endif //PE_NO_THROW_MSGS
             }
-        }
-        else if (d_imagerycomponent)
+        } else if (d_imagerycomponent)
             d_imagerycomponent->setVerticalFormattingPropertySource(attributes.getValueAsString(NameAttribute));
         else if (d_textcomponent)
             d_textcomponent->setVerticalFormattingPropertySource(attributes.getValueAsString(NameAttribute));
@@ -1213,20 +1121,17 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening HorzFormatProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementHorzFormatPropertyStart(const XMLAttributes& attributes)
-    {
-        if (d_framecomponent)
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementHorzFormatPropertyStart(const XMLAttributes& attributes) {
+        if (d_framecomponent) {
             const FrameImageComponent what =
-                FalagardXMLHelper<FrameImageComponent>::fromString(
+                    FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute, FalagardXMLHelper<FrameImageComponent>::Background));
             const HorizontalFormatting fmt =
-                FalagardXMLHelper<HorizontalFormatting>::fromString(
+                    FalagardXMLHelper<HorizontalFormatting>::fromString(
                     attributes.getValueAsString(TypeAttribute));
 
-            switch(what)
-            {
+            switch (what) {
                 case FIC_TOP_EDGE:
                     d_framecomponent->setTopEdgeFormatting(fmt);
                     break;
@@ -1239,17 +1144,16 @@ namespace CEGUI
                 default:
                     CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                            ""));
 #else
-                        HorzFormatPropertyElement + " within " +
-                        FrameComponentElement + " may only be used for "
-                        "TopEdge, BottomEdge or Background components. "
-                        "Received: " +
-                        attributes.getValueAsString(ComponentAttribute)));
+                            HorzFormatPropertyElement + " within " +
+                            FrameComponentElement + " may only be used for "
+                            "TopEdge, BottomEdge or Background components. "
+                            "Received: " +
+                            attributes.getValueAsString(ComponentAttribute)));
 #endif //PE_NO_THROW_MSGS
             }
-        }
-        else if (d_imagerycomponent)
+        } else if (d_imagerycomponent)
             d_imagerycomponent->setHorizontalFormattingPropertySource(attributes.getValueAsString(NameAttribute));
         else if (d_textcomponent)
             d_textcomponent->setHorizontalFormattingPropertySource(attributes.getValueAsString(NameAttribute));
@@ -1257,49 +1161,43 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening AreaProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementAreaPropertyStart(const XMLAttributes& attributes)
-    {
-        assert (d_area != 0);
+     *************************************************************************/
+    void Falagard_xmlHandler::elementAreaPropertyStart(const XMLAttributes& attributes) {
+        assert(d_area != 0);
 
         d_area->setAreaPropertySource(attributes.getValueAsString(NameAttribute));
     }
 
     /*************************************************************************
         Method that handles the opening ImageProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImagePropertyStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImagePropertyStart(const XMLAttributes& attributes) {
         assert(d_imagerycomponent != 0 || d_framecomponent != 0);
 
-        if (d_imagerycomponent)
-        {
+        if (d_imagerycomponent) {
             d_imagerycomponent->setImagePropertySource(
-                attributes.getValueAsString(NameAttribute));
+                    attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image via property: " +
-                attributes.getValueAsString(NameAttribute));
+                    attributes.getValueAsString(NameAttribute));
 #endif //PE_NO_LOGGER
-        }
-        else if (d_framecomponent)
-        {
+        } else if (d_framecomponent) {
             d_framecomponent->setImagePropertySource(
-                FalagardXMLHelper<FrameImageComponent>::fromString(
+                    FalagardXMLHelper<FrameImageComponent>::fromString(
                     attributes.getValueAsString(ComponentAttribute)),
-                attributes.getValueAsString(NameAttribute));
+                    attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---------> Using image via property: " +
-                attributes.getValueAsString(NameAttribute) + " for: " +
-                attributes.getValueAsString(ComponentAttribute));
+                    attributes.getValueAsString(NameAttribute) + " for: " +
+                    attributes.getValueAsString(ComponentAttribute));
 #endif //PE_NO_LOGGER
         }
     }
 
     /*************************************************************************
         Method that handles the opening TextProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementTextPropertyStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementTextPropertyStart(const XMLAttributes& attributes) {
         assert(d_textcomponent != 0);
 
         d_textcomponent->setTextPropertySource(attributes.getValueAsString(NameAttribute));
@@ -1307,9 +1205,8 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening FontProperty XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementFontPropertyStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementFontPropertyStart(const XMLAttributes& attributes) {
         assert(d_textcomponent != 0);
 
         d_textcomponent->setFontPropertySource(attributes.getValueAsString(NameAttribute));
@@ -1317,18 +1214,16 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the opening Colours XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementColourStart(const XMLAttributes& attributes)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementColourStart(const XMLAttributes& attributes) {
         ColourRect cols(hexStringToARGB(attributes.getValueAsString(ColourAttribute)));
         assignColours(cols);
     }
 
     /*************************************************************************
         Method that handles the closing Falagard XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementFalagardEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementFalagardEnd() {
 #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("===== Look and feel parsing completed =====");
 #endif //PE_NO_LOGGER
@@ -1336,11 +1231,9 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing WidgetLook XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementWidgetLookEnd()
-    {
-        if (d_widgetlook)
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementWidgetLookEnd() {
+        if (d_widgetlook) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("---< End of definition for widget look '" + d_widgetlook->getName() + "'.", Informative);
 #endif //PE_NO_LOGGER            
@@ -1352,13 +1245,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing Child XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementChildEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementChildEnd() {
         assert(d_widgetlook != 0);
 
-        if (d_childcomponent)
-        {
+        if (d_childcomponent) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for child widget. Type: " + d_childcomponent->getBaseWidgetType() + ".");
 #endif //PE_NO_LOGGER
@@ -1370,13 +1261,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing ImagerySection XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImagerySectionEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImagerySectionEnd() {
         assert(d_widgetlook != 0);
 
-        if (d_imagerysection)
-        {
+        if (d_imagerysection) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for imagery section '" + d_imagerysection->getName() + "'.");
 #endif //PE_NO_LOGGER            
@@ -1388,13 +1277,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing StateImagery XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementStateImageryEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementStateImageryEnd() {
         assert(d_widgetlook != 0);
 
-        if (d_stateimagery)
-        {
+        if (d_stateimagery) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for imagery for state '" + d_stateimagery->getName() + "'.");
 #endif //PE_NO_LOGGER            
@@ -1406,13 +1293,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing Layer XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementLayerEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementLayerEnd() {
         assert(d_stateimagery != 0);
 
-        if (d_layer)
-        {
+        if (d_layer) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------< End of definition of imagery layer.");
 #endif //PE_NO_LOGGER            
@@ -1424,13 +1309,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing Section XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementSectionEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementSectionEnd() {
         assert(d_layer != 0);
 
-        if (d_section)
-        {
+        if (d_section) {
             d_layer->addSectionSpecification(*d_section);
             CEGUI_DELETE_AO d_section;
             d_section = 0;
@@ -1439,13 +1322,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing ImageryComponent XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementImageryComponentEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementImageryComponentEnd() {
         assert(d_imagerysection != 0);
 
-        if (d_imagerycomponent)
-        {
+        if (d_imagerycomponent) {
             d_imagerysection->addImageryComponent(*d_imagerycomponent);
             CEGUI_DELETE_AO d_imagerycomponent;
             d_imagerycomponent = 0;
@@ -1454,13 +1335,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing TextComponent XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementTextComponentEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementTextComponentEnd() {
         assert(d_imagerysection != 0);
 
-        if (d_textcomponent)
-        {
+        if (d_textcomponent) {
             d_imagerysection->addTextComponent(*d_textcomponent);
             CEGUI_DELETE_AO d_textcomponent;
             d_textcomponent = 0;
@@ -1469,13 +1348,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing FrameComponent XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementFrameComponentEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementFrameComponentEnd() {
         assert(d_imagerysection != 0);
 
-        if (d_framecomponent)
-        {
+        if (d_framecomponent) {
             d_imagerysection->addFrameComponent(*d_framecomponent);
             CEGUI_DELETE_AO d_framecomponent;
             d_framecomponent = 0;
@@ -1484,30 +1361,20 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing Area XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementAreaEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementAreaEnd() {
         assert((d_childcomponent != 0) || (d_imagerycomponent != 0) || (d_textcomponent != 0) || d_namedArea != 0 || d_framecomponent != 0);
         assert(d_area != 0);
 
-        if (d_childcomponent)
-        {
+        if (d_childcomponent) {
             d_childcomponent->setComponentArea(*d_area);
-        }
-        else if (d_framecomponent)
-        {
+        } else if (d_framecomponent) {
             d_framecomponent->setComponentArea(*d_area);
-        }
-        else if (d_imagerycomponent)
-        {
+        } else if (d_imagerycomponent) {
             d_imagerycomponent->setComponentArea(*d_area);
-        }
-        else if (d_textcomponent)
-        {
+        } else if (d_textcomponent) {
             d_textcomponent->setComponentArea(*d_area);
-        }
-        else if (d_namedArea)
-        {
+        } else if (d_namedArea) {
             d_namedArea->setArea(*d_area);
         }
 
@@ -1517,13 +1384,11 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing NamedArea XML element.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementNamedAreaEnd()
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementNamedAreaEnd() {
         assert(d_widgetlook != 0);
 
-        if (d_namedArea)
-        {
+        if (d_namedArea) {
             d_widgetlook->addNamedArea(*d_namedArea);
             CEGUI_DELETE_AO d_namedArea;
             d_namedArea = 0;
@@ -1532,21 +1397,16 @@ namespace CEGUI
 
     /*************************************************************************
         Method that handles the closing of all *Dim XML elements.
-    *************************************************************************/
-    void Falagard_xmlHandler::elementAnyDimEnd()
-    {
-        if (!d_dimStack.empty())
-        {
+     *************************************************************************/
+    void Falagard_xmlHandler::elementAnyDimEnd() {
+        if (!d_dimStack.empty()) {
             BaseDim* currDim = d_dimStack.back();
             d_dimStack.pop_back();
 
-            if (!d_dimStack.empty())
-            {
-                if (OperatorDim* op = dynamic_cast<OperatorDim*>(d_dimStack.back()))
-                   op->setNextOperand(currDim);
-            }
-            else
-            {
+            if (!d_dimStack.empty()) {
+                if (OperatorDim * op = dynamic_cast<OperatorDim*> (d_dimStack.back()))
+                    op->setNextOperand(currDim);
+            } else {
                 d_dimension.setBaseDimension(*currDim);
                 assignAreaDimension(d_dimension);
             }
@@ -1556,152 +1416,143 @@ namespace CEGUI
         }
     }
 
-    void Falagard_xmlHandler::elementPropertyLinkDefinitionEnd()
-    {
+    void Falagard_xmlHandler::elementPropertyLinkDefinitionEnd() {
         assert(d_propertyLink);
         d_widgetlook->addPropertyLinkDefinition(d_propertyLink);
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("<----- End of PropertyLinkDefiniton. Name: " +
-                        d_propertyLink->getPropertyName());
+                d_propertyLink->getPropertyName());
 #endif //PE_NO_LOGGER
         d_propertyLink = 0;
     }
 
-    void Falagard_xmlHandler::elementPropertyLinkTargetStart(const XMLAttributes& attributes)
-    {
+    void Falagard_xmlHandler::elementPropertyLinkTargetStart(const XMLAttributes& attributes) {
         assert(d_propertyLink);
 
         const String w(attributes.getValueAsString(WidgetAttribute));
         const String p(attributes.getValueAsString(PropertyAttribute));
 
-        if (!w.empty() || !p.empty())
-        {
-            const String type(dynamic_cast<Property*>(d_propertyLink)->getDataType());
+        if (!w.empty() || !p.empty()) {
+            const String type(dynamic_cast<Property*> (d_propertyLink)->getDataType());
 
-            typedef std::pair<float,float> Range;
+            typedef std::pair<float, float> Range;
 
-            if(type == PropertyHelper<Colour>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Colour>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<ColourRect>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<ColourRect>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<UBox>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<UBox>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<URect>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<URect>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<USize>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<USize>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<UDim>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<UDim>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<UVector2>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<UVector2>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<Sizef>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Sizef>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<Vector2f>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Vector2f>* >(d_propertyLink)->addLinkTarget(w, p);
+            if (type == PropertyHelper<Colour>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Colour>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<ColourRect>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<ColourRect>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<UBox>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<UBox>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<URect>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<URect>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<USize>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<USize>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<UDim>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<UDim>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<UVector2>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<UVector2>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Sizef>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Sizef>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Vector2f>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Vector2f>*> (d_propertyLink)->addLinkTarget(w, p);
 #ifndef PE_NO_VECTOR3D
-            else if(type == PropertyHelper<Vector3f>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Vector3f>* >(d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Vector3f>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Vector3f>*> (d_propertyLink)->addLinkTarget(w, p);
 #endif  // PE_NO_VECTOR3D
-            else if(type == PropertyHelper<Rectf>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Rectf>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<Font*>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Font*>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<Image*>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Image*>* >(d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Rectf>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Rectf>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Font*>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Font*>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Image*>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Image*>*> (d_propertyLink)->addLinkTarget(w, p);
 #ifndef PE_NO_QUATERNION
-            else if(type == PropertyHelper<Quaternion>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Quaternion>* >(d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<Quaternion>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Quaternion>*> (d_propertyLink)->addLinkTarget(w, p);
 #endif //PE_NO_QUATERNION
-            else if(type == PropertyHelper<AspectMode>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<AspectMode>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<HorizontalAlignment>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<HorizontalAlignment>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<VerticalAlignment>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<VerticalAlignment>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<HorizontalTextFormatting>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<HorizontalTextFormatting>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<VerticalTextFormatting>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<VerticalTextFormatting>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<WindowUpdateMode>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<WindowUpdateMode>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<bool>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<bool>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<uint>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<uint>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<unsigned long>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<unsigned long>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<uint>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<uint>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<int>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<int>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<float>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<float>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<double>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<double>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<TabControl::TabPanePosition>* >(d_propertyLink)->addLinkTarget(w, p);
-            #ifndef PE_NO_WGT_SPINNER
-            else if(type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Spinner::TextInputMode>* >(d_propertyLink)->addLinkTarget(w, p);
-            #endif  //PE_NO_WGT_SPINNER
-            else if(type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<ItemListBase::SortMode>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<ListHeaderSegment::SortDirection>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<MultiColumnList::SelectionMode>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<MultiColumnList::SelectionMode>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<VerticalFormatting>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<VerticalFormatting>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<HorizontalFormatting>::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<HorizontalFormatting>* >(d_propertyLink)->addLinkTarget(w, p);
-            else if(type == PropertyHelper<std::pair<float,float> >::getDataTypeName())
-                dynamic_cast<PropertyLinkDefinition<Range>* >(d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<AspectMode>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<AspectMode>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<HorizontalAlignment>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<HorizontalAlignment>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<VerticalAlignment>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<VerticalAlignment>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<HorizontalTextFormatting>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<HorizontalTextFormatting>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<VerticalTextFormatting>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<VerticalTextFormatting>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<WindowUpdateMode>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<WindowUpdateMode>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<bool>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<bool>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<uint>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<uint>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<unsigned long>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<unsigned long>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<uint>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<uint>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<int>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<int>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<float>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<float>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<double>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<double>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<TabControl::TabPanePosition>*> (d_propertyLink)->addLinkTarget(w, p);
+#ifndef PE_NO_WGT_SPINNER
+            else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Spinner::TextInputMode>*> (d_propertyLink)->addLinkTarget(w, p);
+#endif  //PE_NO_WGT_SPINNER
+            else if (type == PropertyHelper<ItemListBase::SortMode>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<ItemListBase::SortMode>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<ListHeaderSegment::SortDirection>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<ListHeaderSegment::SortDirection>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<MultiColumnList::SelectionMode>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<MultiColumnList::SelectionMode>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<VerticalFormatting>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<VerticalFormatting>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<HorizontalFormatting>::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<HorizontalFormatting>*> (d_propertyLink)->addLinkTarget(w, p);
+            else if (type == PropertyHelper<std::pair<float, float> >::getDataTypeName())
+                dynamic_cast<PropertyLinkDefinition<Range>*> (d_propertyLink)->addLinkTarget(w, p);
             else
-                dynamic_cast<PropertyLinkDefinition<String>* >(d_propertyLink)->addLinkTarget(w, p);
+                dynamic_cast<PropertyLinkDefinition<String>*> (d_propertyLink)->addLinkTarget(w, p);
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Adding link target to property: " + p +
-                        " on widget: " + w);
+                    " on widget: " + w);
 #endif //PE_NO_LOGGER
         }
     }
 
     void Falagard_xmlHandler::elementAnimationDefinitionStart(
-                                            const XMLAttributes& attributes)
-    {
+            const XMLAttributes& attributes) {
         assert(d_widgetlook != 0);
 
         String anim_name_prefix(d_widgetlook->getName());
         anim_name_prefix.append("/");
 
         const String anim_name(anim_name_prefix +
-                        attributes.getValueAsString(NameAttribute));
+                attributes.getValueAsString(NameAttribute));
 
 #ifndef PE_NO_ANIMATION
-        if (AnimationManager::getSingleton().isAnimationPresent(anim_name))
-        {
+        if (AnimationManager::getSingleton().isAnimationPresent(anim_name)) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent(
-                "[XMLHandler] WARNING: Using existing Animation :" + anim_name);
+                    "[XMLHandler] WARNING: Using existing Animation :" + anim_name);
 #endif //PE_NO_LOGGER            
-        }
-        else
-        {
+        } else {
             d_chainedHandler = CEGUI_NEW_AO AnimationDefinitionHandler(
-                attributes, anim_name_prefix);
+                    attributes, anim_name_prefix);
         }
 #endif //PE_NO_ANIMATION
 
         // This is a little bit of abuse here, ideally we would get the name
         // somewhere else.
         d_widgetlook->addAnimationName(
-            anim_name_prefix +
-            attributes.getValueAsString("name"));
+                anim_name_prefix +
+                attributes.getValueAsString("name"));
     }
 
-
     void Falagard_xmlHandler::elementEventLinkDefinitionStart(
-                                                const XMLAttributes& attributes)
-    {
+            const XMLAttributes& attributes) {
         assert(d_widgetlook);
         assert(d_eventLink == 0);
 
@@ -1709,68 +1560,62 @@ namespace CEGUI
         const String event(attributes.getValueAsString(EventAttribute));
 
         d_eventLink = CEGUI_NEW_AO EventLinkDefinition(
-            attributes.getValueAsString(NameAttribute));
+                attributes.getValueAsString(NameAttribute));
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Adding EventLinkDefiniton. Name: " +
-                        d_eventLink->getName());
+                d_eventLink->getName());
 #endif //PE_NO_LOGGER
 
         processEventLinkTarget(widget, event);
     }
 
-    void Falagard_xmlHandler::processEventLinkTarget(const String& widget, const String& event)
-    {
+    void Falagard_xmlHandler::processEventLinkTarget(const String& widget, const String& event) {
         assert(d_eventLink);
 
-        if (!widget.empty() || !event.empty())
-        {
+        if (!widget.empty() || !event.empty()) {
             d_eventLink->addLinkTarget(widget, event);
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-------> Adding link target to event: " + event +
-                        " on widget: " + widget);
+                    " on widget: " + widget);
 #endif //PE_NO_LOGGER            
         }
     }
 
     void Falagard_xmlHandler::elementEventLinkTargetStart(
-                                                const XMLAttributes& attributes)
-    {
+            const XMLAttributes& attributes) {
         const String widget(attributes.getValueAsString(WidgetAttribute));
         const String event(attributes.getValueAsString(EventAttribute));
 
         processEventLinkTarget(widget, event);
     }
 
-    void Falagard_xmlHandler::elementEventLinkDefinitionEnd()
-    {
+    void Falagard_xmlHandler::elementEventLinkDefinitionEnd() {
         assert(d_eventLink);
         d_widgetlook->addEventLinkDefinition(*d_eventLink);
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("<----- End of EventLinkDefiniton. Name: " +
-                        d_eventLink->getName());
+                d_eventLink->getName());
 #endif //PE_NO_LOGGER
 
         CEGUI_DELETE_AO d_eventLink;
         d_eventLink = 0;
     }
 
-    void Falagard_xmlHandler::elementNamedAreaSourceStart(const XMLAttributes& attributes)
-    {
-        assert (d_area != 0);
+    void Falagard_xmlHandler::elementNamedAreaSourceStart(const XMLAttributes& attributes) {
+        assert(d_area != 0);
 
         const String look(attributes.getValueAsString(LookAttribute));
 
         d_area->setNamedAreaSouce(look.empty() ? d_widgetlook->getName() : look,
-                                  attributes.getValueAsString(NameAttribute));
+                attributes.getValueAsString(NameAttribute));
     }
 
-    void Falagard_xmlHandler::elementEventActionStart(const XMLAttributes& attributes)
-    {
+    void Falagard_xmlHandler::elementEventActionStart(const XMLAttributes& attributes) {
         assert(d_childcomponent != 0);
 
         const EventAction action(
-            attributes.getValueAsString(EventAttribute),
-            FalagardXMLHelper<ChildEventAction>::fromString(
+                attributes.getValueAsString(EventAttribute),
+                FalagardXMLHelper<ChildEventAction>::fromString(
                 attributes.getValueAsString(ActionAttribute)));
 
         d_childcomponent->addEventAction(action);
@@ -1778,17 +1623,15 @@ namespace CEGUI
 
     /*************************************************************************
         register a handler for the opening tag of an XML element
-    *************************************************************************/
-    void Falagard_xmlHandler::registerElementStartHandler(const String& element, ElementStartHandler handler)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::registerElementStartHandler(const String& element, ElementStartHandler handler) {
         d_startHandlersMap[element] = handler;
     }
 
     /*************************************************************************
         register a handler for the closing tag of an XML element
-    *************************************************************************/
-    void Falagard_xmlHandler::registerElementEndHandler(const String& element, ElementEndHandler handler)
-    {
+     *************************************************************************/
+    void Falagard_xmlHandler::registerElementEndHandler(const String& element, ElementEndHandler handler) {
         d_endHandlersMap[element] = handler;
     }
 

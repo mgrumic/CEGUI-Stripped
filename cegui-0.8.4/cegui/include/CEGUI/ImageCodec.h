@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	03/06/2006
-	author:	    Olivier Delannoy
+        created:	03/06/2006
+        author:	    Olivier Delannoy
 	
-	purpose:	Define the abstract interface for all common ImageCodec
-*************************************************************************/
+        purpose:	Define the abstract interface for all common ImageCodec
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -34,78 +34,77 @@
 #include "CEGUI/Texture.h" 
 
 // Start of CEGUI namespace section 
-namespace CEGUI 
-{
-/*!
-  \brief 
-  Abstract ImageLoader class. An image loader encapsulate the loading of a texture.
+namespace CEGUI {
+
+    /*!
+      \brief 
+      Abstract ImageLoader class. An image loader encapsulate the loading of a texture.
   
-  This class define the loading of an abstract 
-*/
-class CEGUIEXPORT ImageCodec :
-    public AllocatedObject<ImageCodec>
-{
-public:
-    /*!
-      \brief 
-      Destructor 
-    */ 
-    virtual ~ImageCodec();
-    
-protected:
-    /*
-      \brief 
-      Constructor 
+      This class define the loading of an abstract 
+     */
+    class CEGUIEXPORT ImageCodec :
+    public AllocatedObject<ImageCodec> {
+    public:
+        /*!
+          \brief 
+          Destructor 
+         */
+        virtual ~ImageCodec();
+
+    protected:
+        /*
+          \brief 
+          Constructor 
       
-      \param name of the codec 
-    */
-    ImageCodec(const String& name);
+          \param name of the codec 
+         */
+        ImageCodec(const String& name);
 
-public: 
-    /*!
-      \brief 
-      Return the name of the image codec object 
+    public:
+        /*!
+          \brief 
+          Return the name of the image codec object 
       
-      Return the name of the image codec 
+          Return the name of the image codec 
 
-      \return a string containing image codec name 
-    */
-    const String& getIdentifierString() const;
+          \return a string containing image codec name 
+         */
+        const String& getIdentifierString() const;
 
-    /*! 
-      \brief
-      Return the list of image file format supported 
+        /*! 
+          \brief
+          Return the list of image file format supported 
 
-      Return a list of space separated image format supported by this
-      codec
+          Return a list of space separated image format supported by this
+          codec
 
-      \return 
-      list of supported image file format separated with space 
-    */
-    const String& getSupportedFormat() const;
-    
-    /*!
-      \brief 
-      Load an image from a memory buffer 
+          \return 
+          list of supported image file format separated with space 
+         */
+        const String& getSupportedFormat() const;
 
-      \param data the image data 
+        /*!
+          \brief 
+          Load an image from a memory buffer 
 
-      \param result the texture to use for storing the image data 
+          \param data the image data 
+
+          \param result the texture to use for storing the image data 
      
-      \return result on success or 0 if the load failed 
-    */
-    virtual Texture* load(const RawDataContainer& data, Texture* result) = 0;
+          \return result on success or 0 if the load failed 
+         */
+        virtual Texture* load(const RawDataContainer& data, Texture* result) = 0;
 
-private:
-    String d_identifierString;   //!< display the name of the codec 
+    private:
+        String d_identifierString; //!< display the name of the codec 
 
-protected:
-    String d_supportedFormat;   //!< list all image file format supported 
+    protected:
+        String d_supportedFormat; //!< list all image file format supported 
 
-private:
-    ImageCodec(const ImageCodec& obj);
-    ImageCodec& operator=(ImageCodec& obj);
-}; 
+    private:
+        ImageCodec(const ImageCodec& obj);
+        ImageCodec& operator=(ImageCodec& obj);
+    };
 
 } // End of CEGUI namespace section 
 

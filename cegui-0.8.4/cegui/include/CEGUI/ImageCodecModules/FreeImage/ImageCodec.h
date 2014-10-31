@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Sun Jun 18th 2006
-	author:		Andrzej Krzysztof Haczewski (aka guyver6)
+        created:	Sun Jun 18th 2006
+        author:		Andrzej Krzysztof Haczewski (aka guyver6)
 	
-	purpose:	This codec provide FreeImage based image loading 
-*************************************************************************/
+        purpose:	This codec provide FreeImage based image loading 
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -31,34 +31,33 @@
 #include "../../ImageCodec.h"
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUIFREEIMAGEIMAGECODEC_EXPORTS
-#       define CEGUIFREEIMAGEIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUIFREEIMAGEIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUIFREEIMAGEIMAGECODEC_EXPORTS
+#define CEGUIFREEIMAGEIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUIFREEIMAGEIMAGECODEC_API
+#define CEGUIFREEIMAGEIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUIFREEIMAGEIMAGECODEC_API
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-  \brief 
-  Image codec based on the FreeImage library 
-*/
-class CEGUIFREEIMAGEIMAGECODEC_API FreeImageImageCodec : public ImageCodec 
-{
-public:
-    FreeImageImageCodec();
-    ~FreeImageImageCodec();
-    
-    Texture* load(const RawDataContainer& data, Texture* result);
-protected:
+namespace CEGUI {
 
-private:
+    /*!
+      \brief 
+      Image codec based on the FreeImage library 
+     */
+    class CEGUIFREEIMAGEIMAGECODEC_API FreeImageImageCodec : public ImageCodec {
+    public:
+        FreeImageImageCodec();
+        ~FreeImageImageCodec();
 
-};    
+        Texture* load(const RawDataContainer& data, Texture* result);
+    protected:
+
+    private:
+
+    };
 
 } // End of CEGUI namespace section 
 

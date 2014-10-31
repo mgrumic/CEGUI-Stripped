@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Fri Apr 30 2010
-	author:		Tobias Schlegel
+        created:	Fri Apr 30 2010
+        author:		Tobias Schlegel
 
-	purpose:	This codec provides stb_image.c based image loading
-*************************************************************************/
+        purpose:	This codec provides stb_image.c based image loading
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -32,31 +32,30 @@
 
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUISTBIMAGECODEC_EXPORTS
-#       define CEGUISTBIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUISTBIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUISTBIMAGECODEC_EXPORTS
+#define CEGUISTBIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUISTBIMAGECODEC_API
+#define CEGUISTBIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUISTBIMAGECODEC_API
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Image codec based on stb_image.c.
-*/
-class CEGUISTBIMAGECODEC_API STBImageCodec : public ImageCodec 
-{
-public:
-    STBImageCodec();
-    ~STBImageCodec();
+namespace CEGUI {
 
-    Texture* load(const RawDataContainer& data, Texture* result);
-};    
+    /*!
+    \brief
+        Image codec based on stb_image.c.
+     */
+    class CEGUISTBIMAGECODEC_API STBImageCodec : public ImageCodec {
+    public:
+        STBImageCodec();
+        ~STBImageCodec();
+
+        Texture* load(const RawDataContainer& data, Texture* result);
+    };
 
 } // End of CEGUI namespace section 
 

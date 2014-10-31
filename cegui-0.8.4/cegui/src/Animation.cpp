@@ -3,7 +3,7 @@
     author:     Martin Preisler
 
     purpose:    Implements the Animation class
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -38,326 +38,301 @@
 
 #ifndef PE_NO_ANIMATION
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-Animation::Animation(const String& name):
-        d_name(name),
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-        d_replayMode(RM_Loop), // the right default value that confirms things are working
-        d_duration(0.0f),
-        d_autoStart(false)
-{}
+    Animation::Animation(const String& name) :
+    d_name(name),
 
-//----------------------------------------------------------------------------//
-Animation::~Animation(void)
-{
-    while (d_affectors.size() > 0)
-    {
-        destroyAffector(getAffectorAtIdx(0));
-    }
-}
-
-//----------------------------------------------------------------------------//
-const String& Animation::getName() const
-{
-    return d_name;
-}
-
-//----------------------------------------------------------------------------//
-void Animation::setReplayMode(ReplayMode mode)
-{
-    d_replayMode = mode;
-}
-
-//----------------------------------------------------------------------------//
-Animation::ReplayMode Animation::getReplayMode() const
-{
-    return d_replayMode;
-}
-
-//----------------------------------------------------------------------------//
-void Animation::setDuration(float duration)
-{
-    d_duration = duration;
-    // todo: iterate through existing key frames if any and if we
-    //       find a keyframe that is now outside of the [0, duration] interval,
-    //       rant about it in the log
-}
-
-//----------------------------------------------------------------------------//
-float Animation::getDuration() const
-{
-    return d_duration;
-}
-
-//----------------------------------------------------------------------------//
-void Animation::setAutoStart(bool autoStart)
-{
-    d_autoStart = autoStart;
-}
-
-//----------------------------------------------------------------------------//
-bool Animation::getAutoStart() const
-{
-    return d_autoStart;
-}
-
-//----------------------------------------------------------------------------//
-Affector* Animation::createAffector(void)
-{
-    // no checking needed!
-
-    Affector* ret = CEGUI_NEW_AO Affector(this);
-    d_affectors.push_back(ret);
-
-    return ret;
-}
-
-//----------------------------------------------------------------------------//
-Affector* Animation::createAffector(const String& targetProperty,
-                                    const String& interpolator)
-{
-    Affector* ret = createAffector();
-    ret->setTargetProperty(targetProperty);
-    ret->setInterpolator(interpolator);
-
-    return ret;
-}
-
-//----------------------------------------------------------------------------//
-void Animation::destroyAffector(Affector* affector)
-{
-    AffectorList::iterator it =
-        std::find(d_affectors.begin(), d_affectors.end(), affector);
-
-    if (it == d_affectors.end())
-    {
-        CEGUI_THROW(InvalidRequestException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "Given affector not found!"));
-#endif //PE_NO_THROW_MSGS
+    d_replayMode(RM_Loop), // the right default value that confirms things are working
+    d_duration(0.0f),
+    d_autoStart(false) {
     }
 
-    d_affectors.erase(it);
-    CEGUI_DELETE_AO affector;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-Affector* Animation::getAffectorAtIdx(size_t index) const
-{
-    if (index >= d_affectors.size())
-    {
-        CEGUI_THROW(InvalidRequestException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "Out of bounds."));
-#endif //PE_NO_THROW_MSGS
+    Animation::~Animation(void) {
+        while (d_affectors.size() > 0) {
+            destroyAffector(getAffectorAtIdx(0));
+        }
     }
 
-    AffectorList::const_iterator it = d_affectors.begin();
-    std::advance(it, index);
+    //----------------------------------------------------------------------------//
 
-    return *it;
-}
+    const String& Animation::getName() const {
+        return d_name;
+    }
 
-//----------------------------------------------------------------------------//
-size_t Animation::getNumAffectors(void) const
-{
-    return d_affectors.size();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void Animation::defineAutoSubscription(const String& eventName,
-                                       const String& action)
-{
-    SubscriptionMap::iterator it = d_autoSubscriptions.find(eventName);
+    void Animation::setReplayMode(ReplayMode mode) {
+        d_replayMode = mode;
+    }
 
-    while (it != d_autoSubscriptions.end() && it->first == eventName)
-    {
-        if (it->second == action)
-        {
+    //----------------------------------------------------------------------------//
+
+    Animation::ReplayMode Animation::getReplayMode() const {
+        return d_replayMode;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::setDuration(float duration) {
+        d_duration = duration;
+        // todo: iterate through existing key frames if any and if we
+        //       find a keyframe that is now outside of the [0, duration] interval,
+        //       rant about it in the log
+    }
+
+    //----------------------------------------------------------------------------//
+
+    float Animation::getDuration() const {
+        return d_duration;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::setAutoStart(bool autoStart) {
+        d_autoStart = autoStart;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    bool Animation::getAutoStart() const {
+        return d_autoStart;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Affector* Animation::createAffector(void) {
+        // no checking needed!
+
+        Affector* ret = CEGUI_NEW_AO Affector(this);
+        d_affectors.push_back(ret);
+
+        return ret;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    Affector* Animation::createAffector(const String& targetProperty,
+            const String& interpolator) {
+        Affector* ret = createAffector();
+        ret->setTargetProperty(targetProperty);
+        ret->setInterpolator(interpolator);
+
+        return ret;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::destroyAffector(Affector* affector) {
+        AffectorList::iterator it =
+                std::find(d_affectors.begin(), d_affectors.end(), affector);
+
+        if (it == d_affectors.end()) {
             CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                    ""));
 #else
-                            "Unable to define given Auto Subscription - exactly "
-                            "the same auto subscription is already there!"));
+                    "Given affector not found!"));
 #endif //PE_NO_THROW_MSGS
         }
 
-        ++it;
+        d_affectors.erase(it);
+        CEGUI_DELETE_AO affector;
     }
 
-    d_autoSubscriptions.insert(std::make_pair(eventName, action));
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void Animation::undefineAutoSubscription(const String& eventName,
-        const String& action)
-{
-    SubscriptionMap::iterator it = d_autoSubscriptions.find(eventName);
+    Affector* Animation::getAffectorAtIdx(size_t index) const {
+        if (index >= d_affectors.size()) {
+            CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "Out of bounds."));
+#endif //PE_NO_THROW_MSGS
+        }
 
-    while (it != d_autoSubscriptions.end() && it->first == eventName)
-    {
-        if (it->second == action)
-        {
-            d_autoSubscriptions.erase(it);
+        AffectorList::const_iterator it = d_affectors.begin();
+        std::advance(it, index);
+
+        return *it;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    size_t Animation::getNumAffectors(void) const {
+        return d_affectors.size();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::defineAutoSubscription(const String& eventName,
+            const String& action) {
+        SubscriptionMap::iterator it = d_autoSubscriptions.find(eventName);
+
+        while (it != d_autoSubscriptions.end() && it->first == eventName) {
+            if (it->second == action) {
+                CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                        ""));
+#else
+                        "Unable to define given Auto Subscription - exactly "
+                        "the same auto subscription is already there!"));
+#endif //PE_NO_THROW_MSGS
+            }
+
+            ++it;
+        }
+
+        d_autoSubscriptions.insert(std::make_pair(eventName, action));
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::undefineAutoSubscription(const String& eventName,
+            const String& action) {
+        SubscriptionMap::iterator it = d_autoSubscriptions.find(eventName);
+
+        while (it != d_autoSubscriptions.end() && it->first == eventName) {
+            if (it->second == action) {
+                d_autoSubscriptions.erase(it);
+                return;
+            }
+
+            ++it;
+        }
+
+        CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+                ""));
+#else
+                "Unable to undefine given Auto Subscription - not found!"));
+#endif //PE_NO_THROW_MSGS
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::undefineAllAutoSubscriptions() {
+        d_autoSubscriptions.clear();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::autoSubscribe(AnimationInstance* instance) {
+        EventSet* eventSender = instance->getEventSender();
+
+        if (!eventSender) {
             return;
         }
 
-        ++it;
-    }
+        for (SubscriptionMap::const_iterator it = d_autoSubscriptions.begin();
+                it != d_autoSubscriptions.end(); ++it) {
+            const String& e = it->first;
+            const String& a = it->second;
 
-    CEGUI_THROW(InvalidRequestException(
+            Event::Connection connection;
+
+            if (a == "Start") {
+                connection = eventSender->subscribeEvent(e,
+                        CEGUI::Event::Subscriber(&AnimationInstance::handleStart, instance));
+            } else if (a == "Stop") {
+                connection = eventSender->subscribeEvent(e,
+                        CEGUI::Event::Subscriber(&AnimationInstance::handleStop, instance));
+            } else if (a == "Pause") {
+                connection = eventSender->subscribeEvent(e,
+                        CEGUI::Event::Subscriber(&AnimationInstance::handlePause, instance));
+            } else if (a == "Unpause") {
+                connection = eventSender->subscribeEvent(e,
+                        CEGUI::Event::Subscriber(&AnimationInstance::handleUnpause, instance));
+            } else if (a == "TogglePause") {
+                connection = eventSender->subscribeEvent(e,
+                        CEGUI::Event::Subscriber(&AnimationInstance::handleTogglePause, instance));
+            } else {
+                CEGUI_THROW(InvalidRequestException(
 #ifdef PE_NO_THROW_MSGS
-            ""));
+                        ""));
 #else
-        "Unable to undefine given Auto Subscription - not found!"));
+                        "Unable to auto subscribe! "
+                        "'" + a + "' is not a valid action."));
 #endif //PE_NO_THROW_MSGS
-}
+            }
 
-//----------------------------------------------------------------------------//
-void Animation::undefineAllAutoSubscriptions()
-{
-    d_autoSubscriptions.clear();
-}
-
-//----------------------------------------------------------------------------//
-void Animation::autoSubscribe(AnimationInstance* instance)
-{
-    EventSet* eventSender = instance->getEventSender();
-
-    if (!eventSender)
-    {
-        return;
+            instance->addAutoConnection(connection);
+        }
     }
 
-    for (SubscriptionMap::const_iterator it = d_autoSubscriptions.begin();
-            it != d_autoSubscriptions.end(); ++it)
-    {
-        const String& e = it->first;
-        const String& a = it->second;
+    //----------------------------------------------------------------------------//
 
-        Event::Connection connection;
-
-        if (a == "Start")
-        {
-            connection = eventSender->subscribeEvent(e,
-                         CEGUI::Event::Subscriber(&AnimationInstance::handleStart, instance));
-        }
-        else if (a == "Stop")
-        {
-            connection = eventSender->subscribeEvent(e,
-                         CEGUI::Event::Subscriber(&AnimationInstance::handleStop, instance));
-        }
-        else if (a == "Pause")
-        {
-            connection = eventSender->subscribeEvent(e,
-                         CEGUI::Event::Subscriber(&AnimationInstance::handlePause, instance));
-        }
-        else if (a == "Unpause")
-        {
-            connection = eventSender->subscribeEvent(e,
-                         CEGUI::Event::Subscriber(&AnimationInstance::handleUnpause, instance));
-        }
-        else if (a == "TogglePause")
-        {
-            connection = eventSender->subscribeEvent(e,
-                         CEGUI::Event::Subscriber(&AnimationInstance::handleTogglePause, instance));
-        }
-        else
-        {
-            CEGUI_THROW(InvalidRequestException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                            "Unable to auto subscribe! "
-                            "'" + a + "' is not a valid action."));
-#endif //PE_NO_THROW_MSGS
-        }
-
-        instance->addAutoConnection(connection);
-    }
-}
-
-//----------------------------------------------------------------------------//
-void Animation::autoUnsubscribe(AnimationInstance* instance)
-{
-    // just a delegate to make things clean
-    instance->unsubscribeAutoConnections();
-}
-
-//----------------------------------------------------------------------------//
-void Animation::savePropertyValues(AnimationInstance* instance)
-{
-    for (AffectorList::const_iterator it = d_affectors.begin();
-            it != d_affectors.end(); ++it)
-    {
-        (*it)->savePropertyValues(instance);
-    }
-}
-
-//----------------------------------------------------------------------------//
-void Animation::apply(AnimationInstance* instance)
-{
-    for (AffectorList::const_iterator it = d_affectors.begin();
-            it != d_affectors.end(); ++it)
-    {
-        (*it)->apply(instance);
-    }
-}
-
-//----------------------------------------------------------------------------//
-void Animation::writeXMLToStream(XMLSerializer& xml_stream, const String& name_override) const
-{
-    xml_stream.openTag(AnimationDefinitionHandler::ElementName);
-
-    xml_stream.attribute(AnimationDefinitionHandler::NameAttribute, name_override.empty() ? getName() : name_override);
-    xml_stream.attribute(AnimationDefinitionHandler::DurationAttribute, PropertyHelper<float>::toString(getDuration()));
-
-    String replayMode;
-    switch(getReplayMode())
-    {
-        case RM_Once:
-            replayMode = AnimationDefinitionHandler::ReplayModeOnce;
-            break;
-        case RM_Loop:
-            replayMode = AnimationDefinitionHandler::ReplayModeLoop;
-            break;
-        case RM_Bounce:
-            replayMode = AnimationDefinitionHandler::ReplayModeBounce;
-            break;
-        default:
-            assert(0 && "How did we get here?");
-            break;
+    void Animation::autoUnsubscribe(AnimationInstance* instance) {
+        // just a delegate to make things clean
+        instance->unsubscribeAutoConnections();
     }
 
-    xml_stream.attribute(AnimationDefinitionHandler::ReplayModeAttribute, replayMode);
-    xml_stream.attribute(AnimationDefinitionHandler::AutoStartAttribute, PropertyHelper<bool>::toString(getAutoStart()));
+    //----------------------------------------------------------------------------//
 
-    for (AffectorList::const_iterator it = d_affectors.begin(); it != d_affectors.end(); ++it)
-    {
-        (*it)->writeXMLToStream(xml_stream);
+    void Animation::savePropertyValues(AnimationInstance* instance) {
+        for (AffectorList::const_iterator it = d_affectors.begin();
+                it != d_affectors.end(); ++it) {
+            (*it)->savePropertyValues(instance);
+        }
     }
 
-    for (SubscriptionMap::const_iterator it = d_autoSubscriptions.begin(); it != d_autoSubscriptions.end(); ++it)
-    {
-        xml_stream.openTag(AnimationSubscriptionHandler::ElementName);
+    //----------------------------------------------------------------------------//
 
-        xml_stream.attribute(AnimationSubscriptionHandler::EventAttribute, it->first);
-        xml_stream.attribute(AnimationSubscriptionHandler::ActionAttribute, it->second);
+    void Animation::apply(AnimationInstance* instance) {
+        for (AffectorList::const_iterator it = d_affectors.begin();
+                it != d_affectors.end(); ++it) {
+            (*it)->apply(instance);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void Animation::writeXMLToStream(XMLSerializer& xml_stream, const String& name_override) const {
+        xml_stream.openTag(AnimationDefinitionHandler::ElementName);
+
+        xml_stream.attribute(AnimationDefinitionHandler::NameAttribute, name_override.empty() ? getName() : name_override);
+        xml_stream.attribute(AnimationDefinitionHandler::DurationAttribute, PropertyHelper<float>::toString(getDuration()));
+
+        String replayMode;
+        switch (getReplayMode()) {
+            case RM_Once:
+                replayMode = AnimationDefinitionHandler::ReplayModeOnce;
+                break;
+            case RM_Loop:
+                replayMode = AnimationDefinitionHandler::ReplayModeLoop;
+                break;
+            case RM_Bounce:
+                replayMode = AnimationDefinitionHandler::ReplayModeBounce;
+                break;
+            default:
+                assert(0 && "How did we get here?");
+                break;
+        }
+
+        xml_stream.attribute(AnimationDefinitionHandler::ReplayModeAttribute, replayMode);
+        xml_stream.attribute(AnimationDefinitionHandler::AutoStartAttribute, PropertyHelper<bool>::toString(getAutoStart()));
+
+        for (AffectorList::const_iterator it = d_affectors.begin(); it != d_affectors.end(); ++it) {
+            (*it)->writeXMLToStream(xml_stream);
+        }
+
+        for (SubscriptionMap::const_iterator it = d_autoSubscriptions.begin(); it != d_autoSubscriptions.end(); ++it) {
+            xml_stream.openTag(AnimationSubscriptionHandler::ElementName);
+
+            xml_stream.attribute(AnimationSubscriptionHandler::EventAttribute, it->first);
+            xml_stream.attribute(AnimationSubscriptionHandler::ActionAttribute, it->second);
+
+            xml_stream.closeTag();
+        }
 
         xml_stream.closeTag();
     }
 
-    xml_stream.closeTag();
-}
-
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
 } // End of  CEGUI namespace section
 
 #endif //PE_NO_ANIMATION

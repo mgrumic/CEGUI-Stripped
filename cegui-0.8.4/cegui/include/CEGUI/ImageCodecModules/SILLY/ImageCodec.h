@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	Thu Jun 15 2006
-	author:		Tomas Lindquist Olsen
+        created:	Thu Jun 15 2006
+        author:		Tomas Lindquist Olsen
 
-	purpose:	This codec provides SILLY based image loading
-*************************************************************************/
+        purpose:	This codec provides SILLY based image loading
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -32,31 +32,30 @@
 
 
 #if (defined( __WIN32__ ) || defined( _WIN32 )) && !defined(CEGUI_STATIC)
-#   ifdef CEGUISILLYIMAGECODEC_EXPORTS
-#       define CEGUISILLYIMAGECODEC_API __declspec(dllexport)
-#   else
-#       define CEGUISILLYIMAGECODEC_API __declspec(dllimport)
-#   endif
+#ifdef CEGUISILLYIMAGECODEC_EXPORTS
+#define CEGUISILLYIMAGECODEC_API __declspec(dllexport)
 #else
-#   define CEGUISILLYIMAGECODEC_API
+#define CEGUISILLYIMAGECODEC_API __declspec(dllimport)
+#endif
+#else
+#define CEGUISILLYIMAGECODEC_API
 #endif
 
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Image codec based on the SILLY library.
-*/
-class CEGUISILLYIMAGECODEC_API SILLYImageCodec : public ImageCodec 
-{
-public:
-    SILLYImageCodec();
-    ~SILLYImageCodec();
+namespace CEGUI {
 
-    Texture* load(const RawDataContainer& data, Texture* result);
-};    
+    /*!
+    \brief
+        Image codec based on the SILLY library.
+     */
+    class CEGUISILLYIMAGECODEC_API SILLYImageCodec : public ImageCodec {
+    public:
+        SILLYImageCodec();
+        ~SILLYImageCodec();
+
+        Texture* load(const RawDataContainer& data, Texture* result);
+    };
 
 } // End of CEGUI namespace section 
 

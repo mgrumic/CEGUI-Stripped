@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl (based on code by Paul D Turner)
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -29,254 +29,252 @@
 
 #include "RendererBase.h"
 
-namespace CEGUI
-{
+namespace CEGUI {
     class OpenGL3Shader;
     class OpenGL3ShaderManager;
     class OpenGL3StateChangeWrapper;
 
-/*!
-\brief
-    Renderer class to interface with OpenGL
-*/
-class OPENGL_GUIRENDERER_API OpenGL3Renderer : public OpenGLRendererBase
-{
-public:
     /*!
     \brief
-        Convenience function that creates the required objects to initialise the
-        CEGUI system.
+        Renderer class to interface with OpenGL
+     */
+    class OPENGL_GUIRENDERER_API OpenGL3Renderer : public OpenGLRendererBase {
+    public:
+        /*!
+        \brief
+            Convenience function that creates the required objects to initialise the
+            CEGUI system.
 
-        The created Renderer will use the current OpenGL viewport as it's
-        default surface size.
+            The created Renderer will use the current OpenGL viewport as it's
+            default surface size.
 
-        This will create and initialise the following objects for you:
-        - CEGUI::OpenGL3Renderer
-        - CEGUI::DefaultResourceProvider
-        - CEGUI::System
+            This will create and initialise the following objects for you:
+            - CEGUI::OpenGL3Renderer
+            - CEGUI::DefaultResourceProvider
+            - CEGUI::System
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
 
-    \return
-        Reference to the CEGUI::OpenGL3Renderer object that was created.
-    */
-    static OpenGL3Renderer& bootstrapSystem(const int abi = CEGUI_VERSION_ABI);
+        \return
+            Reference to the CEGUI::OpenGL3Renderer object that was created.
+         */
+        static OpenGL3Renderer& bootstrapSystem(const int abi = CEGUI_VERSION_ABI);
 
-    /*!
-    \brief
-        Convenience function that creates the required objects to initialise the
-        CEGUI system.
+        /*!
+        \brief
+            Convenience function that creates the required objects to initialise the
+            CEGUI system.
 
-        The created Renderer will use the current OpenGL viewport as it's
-        default surface size.
+            The created Renderer will use the current OpenGL viewport as it's
+            default surface size.
 
-        This will create and initialise the following objects for you:
-        - CEGUI::OpenGL3Renderer
-        - CEGUI::DefaultResourceProvider
-        - CEGUI::System
+            This will create and initialise the following objects for you:
+            - CEGUI::OpenGL3Renderer
+            - CEGUI::DefaultResourceProvider
+            - CEGUI::System
 
-    \param display_size
-        Size object describing the initial display resolution.
+        \param display_size
+            Size object describing the initial display resolution.
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
 
-    \return
-        Reference to the CEGUI::OpenGL3Renderer object that was created.
-    */
-    static OpenGL3Renderer& bootstrapSystem(const Sizef& display_size,
-                                            const int abi = CEGUI_VERSION_ABI);
+        \return
+            Reference to the CEGUI::OpenGL3Renderer object that was created.
+         */
+        static OpenGL3Renderer& bootstrapSystem(const Sizef& display_size,
+                const int abi = CEGUI_VERSION_ABI);
 
-    /*!
-    \brief
-        Convenience function to cleanup the CEGUI system and related objects
-        that were created by calling the bootstrapSystem function.
+        /*!
+        \brief
+            Convenience function to cleanup the CEGUI system and related objects
+            that were created by calling the bootstrapSystem function.
 
-        This function will destroy the following objects for you:
-        - CEGUI::System
-        - CEGUI::DefaultResourceProvider
-        - CEGUI::OpenGL3Renderer
+            This function will destroy the following objects for you:
+            - CEGUI::System
+            - CEGUI::DefaultResourceProvider
+            - CEGUI::OpenGL3Renderer
 
-    \note
-        If you did not initialise CEGUI by calling the bootstrapSystem function,
-        you should \e not call this, but rather delete any objects you created
-        manually.
-    */
-    static void destroySystem();
+        \note
+            If you did not initialise CEGUI by calling the bootstrapSystem function,
+            you should \e not call this, but rather delete any objects you created
+            manually.
+         */
+        static void destroySystem();
 
-    /*!
-    \brief
-        Create an OpenGL3Renderer object.
+        /*!
+        \brief
+            Create an OpenGL3Renderer object.
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
-    */
-    static OpenGL3Renderer& create(const int abi = CEGUI_VERSION_ABI);
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
+         */
+        static OpenGL3Renderer& create(const int abi = CEGUI_VERSION_ABI);
 
-    /*!
-    \brief
-        Create an OpenGL3Renderer object.
+        /*!
+        \brief
+            Create an OpenGL3Renderer object.
 
-    \param display_size
-        Size object describing the initial display resolution.
+        \param display_size
+            Size object describing the initial display resolution.
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
 
-    \param abi
-        This must be set to CEGUI_VERSION_ABI
-    */
-    static OpenGL3Renderer& create(const Sizef& display_size,
-                                   const int abi = CEGUI_VERSION_ABI);
+        \param abi
+            This must be set to CEGUI_VERSION_ABI
+         */
+        static OpenGL3Renderer& create(const Sizef& display_size,
+                const int abi = CEGUI_VERSION_ABI);
 
-    /*!
-    \brief
-        Destroy an OpenGL3Renderer object.
+        /*!
+        \brief
+            Destroy an OpenGL3Renderer object.
 
-    \param renderer
-        The OpenGL3Renderer object to be destroyed.
-    */
-    static void destroy(OpenGL3Renderer& renderer);
+        \param renderer
+            The OpenGL3Renderer object to be destroyed.
+         */
+        static void destroy(OpenGL3Renderer& renderer);
 
-    /*!
-    \brief
-        Helper to return the reference to the pointer to the standard shader of
-        the Renderer
+        /*!
+        \brief
+            Helper to return the reference to the pointer to the standard shader of
+            the Renderer
 
-    \return
-        Reference to the pointer to the standard shader of the Renderer
-    */
-    OpenGL3Shader*& getShaderStandard();
+        \return
+            Reference to the pointer to the standard shader of the Renderer
+         */
+        OpenGL3Shader*& getShaderStandard();
 
-    /*!
-    \brief
-        Helper to return the attribute location of the position variable in the
-        standard shader
+        /*!
+        \brief
+            Helper to return the attribute location of the position variable in the
+            standard shader
 
-    \return
-        Attribute location of the position variable in the standard shader
-    */
-    GLint getShaderStandardPositionLoc();
-
-
-    /*!
-    \brief
-        Helper to return the attribute location of the texture coordinate
-        variable in the standard shader
-
-    \return
-        Attribute location of the texture coordinate variable in the standard
-        shader
-    */
-    GLint getShaderStandardTexCoordLoc();
+        \return
+            Attribute location of the position variable in the standard shader
+         */
+        GLint getShaderStandardPositionLoc();
 
 
-    /*!
-    \brief
-        Helper to return the attribute location of the colour variable in the
-        standard shader
+        /*!
+        \brief
+            Helper to return the attribute location of the texture coordinate
+            variable in the standard shader
 
-    \return
-        Attribute location of the colour variable in the standard shader
-    */
-    GLint getShaderStandardColourLoc();
+        \return
+            Attribute location of the texture coordinate variable in the standard
+            shader
+         */
+        GLint getShaderStandardTexCoordLoc();
 
-    /*!
-    \brief
-        Helper to return the uniform location of the matrix variable in the
-        standard shader
 
-    \return
-        Uniform location of the matrix variable in the standard shader
-    */
-    GLint getShaderStandardMatrixUniformLoc();
+        /*!
+        \brief
+            Helper to return the attribute location of the colour variable in the
+            standard shader
 
-    /*!
-    \brief
-        Helper to get the wrapper used to check for redundant OpenGL state
-        changes.
+        \return
+            Attribute location of the colour variable in the standard shader
+         */
+        GLint getShaderStandardColourLoc();
 
-    \return
-        The active OpenGL state change wrapper object.
-    */
-    OpenGL3StateChangeWrapper* getOpenGLStateChanger();
+        /*!
+        \brief
+            Helper to return the uniform location of the matrix variable in the
+            standard shader
 
-    // base class overrides / abstract function implementations
-    void beginRendering();
-    void endRendering();
-    Sizef getAdjustedTextureSize(const Sizef& sz) const;
-    bool isS3TCSupported() const;
-    void setupRenderingBlendMode(const BlendMode mode,
-                                 const bool force = false);
+        \return
+            Uniform location of the matrix variable in the standard shader
+         */
+        GLint getShaderStandardMatrixUniformLoc();
 
-private:
-    OpenGLGeometryBufferBase* createGeometryBuffer_impl();
-    TextureTarget* createTextureTarget_impl();
+        /*!
+        \brief
+            Helper to get the wrapper used to check for redundant OpenGL state
+            changes.
 
-    void initialiseRendererIDString();
+        \return
+            The active OpenGL state change wrapper object.
+         */
+        OpenGL3StateChangeWrapper* getOpenGLStateChanger();
 
-    /*!
-    \brief
-        Constructor for OpenGL Renderer objects
+        // base class overrides / abstract function implementations
+        void beginRendering();
+        void endRendering();
+        Sizef getAdjustedTextureSize(const Sizef& sz) const;
+        bool isS3TCSupported() const;
+        void setupRenderingBlendMode(const BlendMode mode,
+                const bool force = false);
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
-    */
-    OpenGL3Renderer();
+    private:
+        OpenGLGeometryBufferBase* createGeometryBuffer_impl();
+        TextureTarget* createTextureTarget_impl();
 
-    /*!
-    \brief
-        Constructor for OpenGL Renderer objects.
+        void initialiseRendererIDString();
 
-    \param display_size
-        Size object describing the initial display resolution.
+        /*!
+        \brief
+            Constructor for OpenGL Renderer objects
 
-    \param tt_type
-        Specifies one of the TextureTargetType enumerated values indicating the
-        desired TextureTarget type to be used.
-    */
-    OpenGL3Renderer(const Sizef& display_size);
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
+         */
+        OpenGL3Renderer();
 
-    void initialiseOpenGLShaders();
-    void initialiseGLExtensions();
+        /*!
+        \brief
+            Constructor for OpenGL Renderer objects.
 
-    /*!
-    \brief
-        Destructor for OpenGL3Renderer objects
-    */
-    virtual ~OpenGL3Renderer();
+        \param display_size
+            Size object describing the initial display resolution.
 
-    //! initialise OGL3TextureTargetFactory that will generate TextureTargets
-    void initialiseTextureTargetFactory();
+        \param tt_type
+            Specifies one of the TextureTargetType enumerated values indicating the
+            desired TextureTarget type to be used.
+         */
+        OpenGL3Renderer(const Sizef& display_size);
 
-    //! init the extra GL states enabled via enableExtraStateSettings
-    void setupExtraStates();
+        void initialiseOpenGLShaders();
+        void initialiseGLExtensions();
 
-    //! The OpenGL shader we will use usually
-    OpenGL3Shader* d_shaderStandard;
-    //! Position variable location inside the shader, for OpenGL
-    GLint d_shaderStandardPosLoc;
-    //! TexCoord variable location inside the shader, for OpenGL
-    GLint d_shaderStandardTexCoordLoc;
-    //! Color variable location inside the shader, for OpenGL
-    GLint d_shaderStandardColourLoc;
-    //! Matrix uniform location inside the shader, for OpenGL
-    GLint d_shaderStandardMatrixLoc;
-    //! The wrapper we use for OpenGL calls, to detect redundant state changes and prevent them
-    OpenGL3StateChangeWrapper* d_openGLStateChanger;
-    OpenGL3ShaderManager* d_shaderManager;
-    //! whether S3TC texture compression is supported by the context
-    bool d_s3tcSupported;
-    //! pointer to a helper that creates TextureTargets supported by the system.
-    OGLTextureTargetFactory* d_textureTargetFactory;
-};
+        /*!
+        \brief
+            Destructor for OpenGL3Renderer objects
+         */
+        virtual ~OpenGL3Renderer();
+
+        //! initialise OGL3TextureTargetFactory that will generate TextureTargets
+        void initialiseTextureTargetFactory();
+
+        //! init the extra GL states enabled via enableExtraStateSettings
+        void setupExtraStates();
+
+        //! The OpenGL shader we will use usually
+        OpenGL3Shader* d_shaderStandard;
+        //! Position variable location inside the shader, for OpenGL
+        GLint d_shaderStandardPosLoc;
+        //! TexCoord variable location inside the shader, for OpenGL
+        GLint d_shaderStandardTexCoordLoc;
+        //! Color variable location inside the shader, for OpenGL
+        GLint d_shaderStandardColourLoc;
+        //! Matrix uniform location inside the shader, for OpenGL
+        GLint d_shaderStandardMatrixLoc;
+        //! The wrapper we use for OpenGL calls, to detect redundant state changes and prevent them
+        OpenGL3StateChangeWrapper* d_openGLStateChanger;
+        OpenGL3ShaderManager* d_shaderManager;
+        //! whether S3TC texture compression is supported by the context
+        bool d_s3tcSupported;
+        //! pointer to a helper that creates TextureTargets supported by the system.
+        OGLTextureTargetFactory* d_textureTargetFactory;
+    };
 
 }
 

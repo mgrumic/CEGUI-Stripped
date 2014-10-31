@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	8/3/2004
-	author:		Paul D Turner
+        created:	8/3/2004
+        author:		Paul D Turner
 	
-	purpose:	Implements 'Rect' class
-*************************************************************************/
+        purpose:	Implements 'Rect' class
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,7 +29,6 @@
 #include "CEGUI/Rect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
 } // End of  CEGUI namespace section

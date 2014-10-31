@@ -3,7 +3,7 @@
     author:     Thomas Suter
 
     purpose: Implements Irrlicht specific ResourceProvider
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,60 +31,57 @@
 #include <IReadFile.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-IrrlichtResourceProvider::IrrlichtResourceProvider(irr::io::IFileSystem& fs):
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+
+    IrrlichtResourceProvider::IrrlichtResourceProvider(irr::io::IFileSystem& fs) :
     DefaultResourceProvider(),
-    d_fsys(fs)
-{
-    d_fsys.grab();
-}
-
-//----------------------------------------------------------------------------//
-IrrlichtResourceProvider::~IrrlichtResourceProvider()
-{
-    d_fsys.drop();
-}
-
-//----------------------------------------------------------------------------//
-void IrrlichtResourceProvider::loadRawDataContainer(const String& filename,
-                                                    RawDataContainer& output,
-                                                    const String& resourceGroup)
-{
-    String final_filename(getFinalFilename(filename, resourceGroup));
-
-    irr::u8* input;
-    irr::u32 input_size;
-    irr::io::IReadFile* f = d_fsys.createAndOpenFile(final_filename.c_str());
-
-    if (!f)
-    {
-        String sMsg("Filename supplied for loading must be valid");
-        sMsg += " [" + final_filename + "]";
-        CEGUI_THROW(InvalidRequestException(sMsg));
+    d_fsys(fs) {
+        d_fsys.grab();
     }
 
-    input_size = f->getSize();
-    input = new irr::u8[input_size];
-    f->read(input, input_size);
-    f->drop();
+    //----------------------------------------------------------------------------//
 
-    output.setData(input);
-    output.setSize(input_size);
-}
-
-//----------------------------------------------------------------------------//
-void IrrlichtResourceProvider::unloadRawDataContainer(RawDataContainer& data)
-{
-    if (data.getDataPtr())
-    {
-        delete[] data.getDataPtr();
-        data.setData(0);
-        data.setSize(0);
+    IrrlichtResourceProvider::~IrrlichtResourceProvider() {
+        d_fsys.drop();
     }
-}
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    void IrrlichtResourceProvider::loadRawDataContainer(const String& filename,
+            RawDataContainer& output,
+            const String& resourceGroup) {
+        String final_filename(getFinalFilename(filename, resourceGroup));
+
+        irr::u8* input;
+        irr::u32 input_size;
+        irr::io::IReadFile* f = d_fsys.createAndOpenFile(final_filename.c_str());
+
+        if (!f) {
+            String sMsg("Filename supplied for loading must be valid");
+            sMsg += " [" + final_filename + "]";
+            CEGUI_THROW(InvalidRequestException(sMsg));
+        }
+
+        input_size = f->getSize();
+        input = new irr::u8[input_size];
+        f->read(input, input_size);
+        f->drop();
+
+        output.setData(input);
+        output.setSize(input_size);
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void IrrlichtResourceProvider::unloadRawDataContainer(RawDataContainer& data) {
+        if (data.getDataPtr()) {
+            delete[] data.getDataPtr();
+            data.setData(0);
+            data.setSize(0);
+        }
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

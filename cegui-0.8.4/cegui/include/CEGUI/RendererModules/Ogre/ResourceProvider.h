@@ -3,7 +3,7 @@
     author:     James '_mental_' O'Sullivan
 
     purpose: Interface for Ogre specific ResourceProvider
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -33,20 +33,19 @@
 #include "CEGUI/RendererModules/Ogre/Renderer.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-class OGRE_GUIRENDERER_API OgreResourceProvider : public ResourceProvider
-{
-public:
-    OgreResourceProvider();
+namespace CEGUI {
 
-    void loadRawDataContainer(const String& filename, RawDataContainer& output,
-                              const String& resourceGroup);
-    void unloadRawDataContainer(RawDataContainer& output);
-    size_t getResourceGroupFileNames(std::vector<String>& out_vec,
-                                     const String& file_pattern,
-                                     const String& resource_group);
-};
+    class OGRE_GUIRENDERER_API OgreResourceProvider : public ResourceProvider {
+    public:
+        OgreResourceProvider();
+
+        void loadRawDataContainer(const String& filename, RawDataContainer& output,
+                const String& resourceGroup);
+        void unloadRawDataContainer(RawDataContainer& output);
+        size_t getResourceGroupFileNames(std::vector<String>& out_vec,
+                const String& file_pattern,
+                const String& resource_group);
+    };
 
 } // End of  CEGUI namespace section
 

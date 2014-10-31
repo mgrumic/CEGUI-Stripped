@@ -8,1552 +8,1552 @@ namespace bp = boost::python;
 
 struct MultiColumnList_wrapper : CEGUI::MultiColumnList, bp::wrapper< CEGUI::MultiColumnList > {
 
-    MultiColumnList_wrapper(::CEGUI::String const & type, ::CEGUI::String const & name )
-    : CEGUI::MultiColumnList( boost::ref(type), boost::ref(name) )
-      , bp::wrapper< CEGUI::MultiColumnList >(){
+    MultiColumnList_wrapper(::CEGUI::String const & type, ::CEGUI::String const & name)
+    : CEGUI::MultiColumnList(boost::ref(type), boost::ref(name))
+    , bp::wrapper< CEGUI::MultiColumnList >() {
         // constructor
-    
+
     }
 
-    bool clearAllSelections_impl(  ){
-        return CEGUI::MultiColumnList::clearAllSelections_impl(  );
+    bool clearAllSelections_impl() {
+        return CEGUI::MultiColumnList::clearAllSelections_impl();
     }
 
-    void configureScrollbars(  ){
-        CEGUI::MultiColumnList::configureScrollbars(  );
+    void configureScrollbars() {
+        CEGUI::MultiColumnList::configureScrollbars();
     }
 
-    ::CEGUI::ListboxItem * getItemAtPoint( ::CEGUI::Vector2f const & pt ) const {
-        return CEGUI::MultiColumnList::getItemAtPoint( boost::ref(pt) );
+    ::CEGUI::ListboxItem * getItemAtPoint(::CEGUI::Vector2f const & pt) const {
+        return CEGUI::MultiColumnList::getItemAtPoint(boost::ref(pt));
     }
 
-    bool handleColumnSizeChange( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleColumnSizeChange( boost::ref(e) );
+    bool handleColumnSizeChange(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleColumnSizeChange(boost::ref(e));
     }
 
-    bool handleHeaderScroll( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleHeaderScroll( boost::ref(e) );
+    bool handleHeaderScroll(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleHeaderScroll(boost::ref(e));
     }
 
-    bool handleHeaderSegDblClick( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleHeaderSegDblClick( boost::ref(e) );
+    bool handleHeaderSegDblClick(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleHeaderSegDblClick(boost::ref(e));
     }
 
-    bool handleHeaderSegMove( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleHeaderSegMove( boost::ref(e) );
+    bool handleHeaderSegMove(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleHeaderSegMove(boost::ref(e));
     }
 
-    bool handleHorzScrollbar( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleHorzScrollbar( boost::ref(e) );
+    bool handleHorzScrollbar(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleHorzScrollbar(boost::ref(e));
     }
 
-    bool handleSortColumnChange( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleSortColumnChange( boost::ref(e) );
+    bool handleSortColumnChange(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleSortColumnChange(boost::ref(e));
     }
 
-    bool handleSortDirectionChange( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleSortDirectionChange( boost::ref(e) );
+    bool handleSortDirectionChange(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleSortDirectionChange(boost::ref(e));
     }
 
-    bool handleVertScrollbar( ::CEGUI::EventArgs const & e ){
-        return CEGUI::MultiColumnList::handleVertScrollbar( boost::ref(e) );
+    bool handleVertScrollbar(::CEGUI::EventArgs const & e) {
+        return CEGUI::MultiColumnList::handleVertScrollbar(boost::ref(e));
     }
 
-    virtual void initialiseComponents(  ) {
-        if( bp::override func_initialiseComponents = this->get_override( "initialiseComponents" ) )
-            func_initialiseComponents(  );
-        else{
-            this->CEGUI::MultiColumnList::initialiseComponents(  );
+    virtual void initialiseComponents() {
+        if (bp::override func_initialiseComponents = this->get_override("initialiseComponents"))
+            func_initialiseComponents();
+        else {
+            this->CEGUI::MultiColumnList::initialiseComponents();
         }
     }
-    
-    void default_initialiseComponents(  ) {
-        CEGUI::MultiColumnList::initialiseComponents( );
+
+    void default_initialiseComponents() {
+        CEGUI::MultiColumnList::initialiseComponents();
     }
 
-    void moveColumn_impl( ::CEGUI::uint col_idx, ::CEGUI::uint position ){
-        CEGUI::MultiColumnList::moveColumn_impl( col_idx, position );
+    void moveColumn_impl(::CEGUI::uint col_idx, ::CEGUI::uint position) {
+        CEGUI::MultiColumnList::moveColumn_impl(col_idx, position);
     }
 
-    virtual void onFontChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onFontChanged = this->get_override( "onFontChanged" ) )
-            func_onFontChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onFontChanged( boost::ref(e) );
+    virtual void onFontChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onFontChanged = this->get_override("onFontChanged"))
+            func_onFontChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onFontChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onFontChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onFontChanged( boost::ref(e) );
+
+    virtual void default_onFontChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onFontChanged(boost::ref(e));
     }
 
-    virtual void onHorzScrollbarModeChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onHorzScrollbarModeChanged = this->get_override( "onHorzScrollbarModeChanged" ) )
-            func_onHorzScrollbarModeChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onHorzScrollbarModeChanged( boost::ref(e) );
+    virtual void onHorzScrollbarModeChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onHorzScrollbarModeChanged = this->get_override("onHorzScrollbarModeChanged"))
+            func_onHorzScrollbarModeChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onHorzScrollbarModeChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onHorzScrollbarModeChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onHorzScrollbarModeChanged( boost::ref(e) );
+
+    virtual void default_onHorzScrollbarModeChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onHorzScrollbarModeChanged(boost::ref(e));
     }
 
-    virtual void onListColumnMoved( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onListColumnMoved = this->get_override( "onListColumnMoved" ) )
-            func_onListColumnMoved( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onListColumnMoved( boost::ref(e) );
+    virtual void onListColumnMoved(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onListColumnMoved = this->get_override("onListColumnMoved"))
+            func_onListColumnMoved(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onListColumnMoved(boost::ref(e));
         }
     }
-    
-    virtual void default_onListColumnMoved( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onListColumnMoved( boost::ref(e) );
+
+    virtual void default_onListColumnMoved(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onListColumnMoved(boost::ref(e));
     }
 
-    virtual void onListColumnSized( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onListColumnSized = this->get_override( "onListColumnSized" ) )
-            func_onListColumnSized( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onListColumnSized( boost::ref(e) );
+    virtual void onListColumnSized(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onListColumnSized = this->get_override("onListColumnSized"))
+            func_onListColumnSized(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onListColumnSized(boost::ref(e));
         }
     }
-    
-    virtual void default_onListColumnSized( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onListColumnSized( boost::ref(e) );
+
+    virtual void default_onListColumnSized(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onListColumnSized(boost::ref(e));
     }
 
-    virtual void onListContentsChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onListContentsChanged = this->get_override( "onListContentsChanged" ) )
-            func_onListContentsChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onListContentsChanged( boost::ref(e) );
+    virtual void onListContentsChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onListContentsChanged = this->get_override("onListContentsChanged"))
+            func_onListContentsChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onListContentsChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onListContentsChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onListContentsChanged( boost::ref(e) );
+
+    virtual void default_onListContentsChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onListContentsChanged(boost::ref(e));
     }
 
-    virtual void onMouseButtonDown( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseButtonDown = this->get_override( "onMouseButtonDown" ) )
-            func_onMouseButtonDown( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onMouseButtonDown( boost::ref(e) );
+    virtual void onMouseButtonDown(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseButtonDown = this->get_override("onMouseButtonDown"))
+            func_onMouseButtonDown(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onMouseButtonDown(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseButtonDown( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::MultiColumnList::onMouseButtonDown( boost::ref(e) );
+
+    virtual void default_onMouseButtonDown(::CEGUI::MouseEventArgs & e) {
+        CEGUI::MultiColumnList::onMouseButtonDown(boost::ref(e));
     }
 
-    virtual void onMouseWheel( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseWheel = this->get_override( "onMouseWheel" ) )
-            func_onMouseWheel( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onMouseWheel( boost::ref(e) );
+    virtual void onMouseWheel(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseWheel = this->get_override("onMouseWheel"))
+            func_onMouseWheel(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onMouseWheel(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseWheel( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::MultiColumnList::onMouseWheel( boost::ref(e) );
+
+    virtual void default_onMouseWheel(::CEGUI::MouseEventArgs & e) {
+        CEGUI::MultiColumnList::onMouseWheel(boost::ref(e));
     }
 
-    virtual void onNominatedSelectColumnChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onNominatedSelectColumnChanged = this->get_override( "onNominatedSelectColumnChanged" ) )
-            func_onNominatedSelectColumnChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onNominatedSelectColumnChanged( boost::ref(e) );
+    virtual void onNominatedSelectColumnChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onNominatedSelectColumnChanged = this->get_override("onNominatedSelectColumnChanged"))
+            func_onNominatedSelectColumnChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onNominatedSelectColumnChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onNominatedSelectColumnChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onNominatedSelectColumnChanged( boost::ref(e) );
+
+    virtual void default_onNominatedSelectColumnChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onNominatedSelectColumnChanged(boost::ref(e));
     }
 
-    virtual void onNominatedSelectRowChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onNominatedSelectRowChanged = this->get_override( "onNominatedSelectRowChanged" ) )
-            func_onNominatedSelectRowChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onNominatedSelectRowChanged( boost::ref(e) );
+    virtual void onNominatedSelectRowChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onNominatedSelectRowChanged = this->get_override("onNominatedSelectRowChanged"))
+            func_onNominatedSelectRowChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onNominatedSelectRowChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onNominatedSelectRowChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onNominatedSelectRowChanged( boost::ref(e) );
+
+    virtual void default_onNominatedSelectRowChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onNominatedSelectRowChanged(boost::ref(e));
     }
 
-    virtual void onSelectionChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onSelectionChanged = this->get_override( "onSelectionChanged" ) )
-            func_onSelectionChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onSelectionChanged( boost::ref(e) );
+    virtual void onSelectionChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onSelectionChanged = this->get_override("onSelectionChanged"))
+            func_onSelectionChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onSelectionChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onSelectionChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onSelectionChanged( boost::ref(e) );
+
+    virtual void default_onSelectionChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onSelectionChanged(boost::ref(e));
     }
 
-    virtual void onSelectionModeChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onSelectionModeChanged = this->get_override( "onSelectionModeChanged" ) )
-            func_onSelectionModeChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onSelectionModeChanged( boost::ref(e) );
+    virtual void onSelectionModeChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onSelectionModeChanged = this->get_override("onSelectionModeChanged"))
+            func_onSelectionModeChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onSelectionModeChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onSelectionModeChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onSelectionModeChanged( boost::ref(e) );
+
+    virtual void default_onSelectionModeChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onSelectionModeChanged(boost::ref(e));
     }
 
-    virtual void onSized( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onSized = this->get_override( "onSized" ) )
-            func_onSized( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onSized( boost::ref(e) );
+    virtual void onSized(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onSized = this->get_override("onSized"))
+            func_onSized(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onSized(boost::ref(e));
         }
     }
-    
-    virtual void default_onSized( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::MultiColumnList::onSized( boost::ref(e) );
+
+    virtual void default_onSized(::CEGUI::ElementEventArgs & e) {
+        CEGUI::MultiColumnList::onSized(boost::ref(e));
     }
 
-    virtual void onSortColumnChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onSortColumnChanged = this->get_override( "onSortColumnChanged" ) )
-            func_onSortColumnChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onSortColumnChanged( boost::ref(e) );
+    virtual void onSortColumnChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onSortColumnChanged = this->get_override("onSortColumnChanged"))
+            func_onSortColumnChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onSortColumnChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onSortColumnChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onSortColumnChanged( boost::ref(e) );
+
+    virtual void default_onSortColumnChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onSortColumnChanged(boost::ref(e));
     }
 
-    virtual void onSortDirectionChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onSortDirectionChanged = this->get_override( "onSortDirectionChanged" ) )
-            func_onSortDirectionChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onSortDirectionChanged( boost::ref(e) );
+    virtual void onSortDirectionChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onSortDirectionChanged = this->get_override("onSortDirectionChanged"))
+            func_onSortDirectionChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onSortDirectionChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onSortDirectionChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onSortDirectionChanged( boost::ref(e) );
+
+    virtual void default_onSortDirectionChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onSortDirectionChanged(boost::ref(e));
     }
 
-    virtual void onVertScrollbarModeChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onVertScrollbarModeChanged = this->get_override( "onVertScrollbarModeChanged" ) )
-            func_onVertScrollbarModeChanged( boost::ref(e) );
-        else{
-            this->CEGUI::MultiColumnList::onVertScrollbarModeChanged( boost::ref(e) );
+    virtual void onVertScrollbarModeChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onVertScrollbarModeChanged = this->get_override("onVertScrollbarModeChanged"))
+            func_onVertScrollbarModeChanged(boost::ref(e));
+        else {
+            this->CEGUI::MultiColumnList::onVertScrollbarModeChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onVertScrollbarModeChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::MultiColumnList::onVertScrollbarModeChanged( boost::ref(e) );
+
+    virtual void default_onVertScrollbarModeChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::MultiColumnList::onVertScrollbarModeChanged(boost::ref(e));
     }
 
-    bool resetList_impl(  ){
-        return CEGUI::MultiColumnList::resetList_impl(  );
+    bool resetList_impl() {
+        return CEGUI::MultiColumnList::resetList_impl();
     }
 
-    void resortList(  ){
-        CEGUI::MultiColumnList::resortList(  );
+    void resortList() {
+        CEGUI::MultiColumnList::resortList();
     }
 
-    bool selectRange( ::CEGUI::MCLGridRef const & start, ::CEGUI::MCLGridRef const & end ){
-        return CEGUI::MultiColumnList::selectRange( boost::ref(start), boost::ref(end) );
+    bool selectRange(::CEGUI::MCLGridRef const & start, ::CEGUI::MCLGridRef const & end) {
+        return CEGUI::MultiColumnList::selectRange(boost::ref(start), boost::ref(end));
     }
 
-    bool setItemSelectState_impl( ::CEGUI::MCLGridRef const grid_ref, bool state ){
-        return CEGUI::MultiColumnList::setItemSelectState_impl( grid_ref, state );
+    bool setItemSelectState_impl(::CEGUI::MCLGridRef const grid_ref, bool state) {
+        return CEGUI::MultiColumnList::setItemSelectState_impl(grid_ref, state);
     }
 
-    void setSelectForItemsInColumn( ::CEGUI::uint col_idx, bool state ){
-        CEGUI::MultiColumnList::setSelectForItemsInColumn( col_idx, state );
+    void setSelectForItemsInColumn(::CEGUI::uint col_idx, bool state) {
+        CEGUI::MultiColumnList::setSelectForItemsInColumn(col_idx, state);
     }
 
-    void setSelectForItemsInRow( ::CEGUI::uint row_idx, bool state ){
-        CEGUI::MultiColumnList::setSelectForItemsInRow( row_idx, state );
+    void setSelectForItemsInRow(::CEGUI::uint row_idx, bool state) {
+        CEGUI::MultiColumnList::setSelectForItemsInRow(row_idx, state);
     }
 
-    virtual bool validateWindowRenderer( ::CEGUI::WindowRenderer const * renderer ) const {
-        if( bp::override func_validateWindowRenderer = this->get_override( "validateWindowRenderer" ) )
-            return func_validateWindowRenderer( boost::python::ptr(renderer) );
-        else{
-            return this->CEGUI::MultiColumnList::validateWindowRenderer( boost::python::ptr(renderer) );
+    virtual bool validateWindowRenderer(::CEGUI::WindowRenderer const * renderer) const {
+        if (bp::override func_validateWindowRenderer = this->get_override("validateWindowRenderer"))
+            return func_validateWindowRenderer(boost::python::ptr(renderer));
+        else {
+            return this->CEGUI::MultiColumnList::validateWindowRenderer(boost::python::ptr(renderer));
         }
     }
-    
-    virtual bool default_validateWindowRenderer( ::CEGUI::WindowRenderer const * renderer ) const {
-        return CEGUI::MultiColumnList::validateWindowRenderer( boost::python::ptr(renderer) );
+
+    virtual bool default_validateWindowRenderer(::CEGUI::WindowRenderer const * renderer) const {
+        return CEGUI::MultiColumnList::validateWindowRenderer(boost::python::ptr(renderer));
     }
 
-    virtual int writePropertiesXML( ::CEGUI::XMLSerializer & xml_stream ) const {
-        if( bp::override func_writePropertiesXML = this->get_override( "writePropertiesXML" ) )
-            return func_writePropertiesXML( boost::ref(xml_stream) );
-        else{
-            return this->CEGUI::MultiColumnList::writePropertiesXML( boost::ref(xml_stream) );
+    virtual int writePropertiesXML(::CEGUI::XMLSerializer & xml_stream) const {
+        if (bp::override func_writePropertiesXML = this->get_override("writePropertiesXML"))
+            return func_writePropertiesXML(boost::ref(xml_stream));
+        else {
+            return this->CEGUI::MultiColumnList::writePropertiesXML(boost::ref(xml_stream));
         }
     }
-    
-    virtual int default_writePropertiesXML( ::CEGUI::XMLSerializer & xml_stream ) const {
-        return CEGUI::MultiColumnList::writePropertiesXML( boost::ref(xml_stream) );
+
+    virtual int default_writePropertiesXML(::CEGUI::XMLSerializer & xml_stream) const {
+        return CEGUI::MultiColumnList::writePropertiesXML(boost::ref(xml_stream));
     }
 
-    virtual void addChild_impl( ::CEGUI::Element * element ){
-        if( bp::override func_addChild_impl = this->get_override( "addChild_impl" ) )
-            func_addChild_impl( boost::python::ptr(element) );
-        else{
-            this->CEGUI::Window::addChild_impl( boost::python::ptr(element) );
+    virtual void addChild_impl(::CEGUI::Element * element) {
+        if (bp::override func_addChild_impl = this->get_override("addChild_impl"))
+            func_addChild_impl(boost::python::ptr(element));
+        else {
+            this->CEGUI::Window::addChild_impl(boost::python::ptr(element));
         }
     }
-    
-    virtual void default_addChild_impl( ::CEGUI::Element * element ){
-        CEGUI::Window::addChild_impl( boost::python::ptr(element) );
+
+    virtual void default_addChild_impl(::CEGUI::Element * element) {
+        CEGUI::Window::addChild_impl(boost::python::ptr(element));
     }
 
-    void addElementProperties(  ){
-        CEGUI::Element::addElementProperties(  );
+    void addElementProperties() {
+        CEGUI::Element::addElementProperties();
     }
 
-    void addNamedElementProperties(  ){
-        CEGUI::NamedElement::addNamedElementProperties(  );
+    void addNamedElementProperties() {
+        CEGUI::NamedElement::addNamedElementProperties();
     }
 
-    void addWindowProperties(  ){
-        CEGUI::Window::addWindowProperties(  );
+    void addWindowProperties() {
+        CEGUI::Window::addWindowProperties();
     }
 
-    void addWindowToDrawList( ::CEGUI::Window & wnd, bool at_back=false ){
-        CEGUI::Window::addWindowToDrawList( boost::ref(wnd), at_back );
+    void addWindowToDrawList(::CEGUI::Window & wnd, bool at_back = false) {
+        CEGUI::Window::addWindowToDrawList(boost::ref(wnd), at_back);
     }
 
-    void allocateRenderingWindow(  ){
-        CEGUI::Window::allocateRenderingWindow(  );
+    void allocateRenderingWindow() {
+        CEGUI::Window::allocateRenderingWindow();
     }
 
-    virtual void banPropertiesForAutoWindow(  ){
-        if( bp::override func_banPropertiesForAutoWindow = this->get_override( "banPropertiesForAutoWindow" ) )
-            func_banPropertiesForAutoWindow(  );
-        else{
-            this->CEGUI::Window::banPropertiesForAutoWindow(  );
+    virtual void banPropertiesForAutoWindow() {
+        if (bp::override func_banPropertiesForAutoWindow = this->get_override("banPropertiesForAutoWindow"))
+            func_banPropertiesForAutoWindow();
+        else {
+            this->CEGUI::Window::banPropertiesForAutoWindow();
         }
     }
-    
-    virtual void default_banPropertiesForAutoWindow(  ){
-        CEGUI::Window::banPropertiesForAutoWindow( );
+
+    virtual void default_banPropertiesForAutoWindow() {
+        CEGUI::Window::banPropertiesForAutoWindow();
     }
 
-    virtual void beginInitialisation(  ) {
-        if( bp::override func_beginInitialisation = this->get_override( "beginInitialisation" ) )
-            func_beginInitialisation(  );
-        else{
-            this->CEGUI::Window::beginInitialisation(  );
+    virtual void beginInitialisation() {
+        if (bp::override func_beginInitialisation = this->get_override("beginInitialisation"))
+            func_beginInitialisation();
+        else {
+            this->CEGUI::Window::beginInitialisation();
         }
     }
-    
-    void default_beginInitialisation(  ) {
-        CEGUI::Window::beginInitialisation( );
+
+    void default_beginInitialisation() {
+        CEGUI::Window::beginInitialisation();
     }
 
-    void bufferGeometry( ::CEGUI::RenderingContext const & ctx ){
-        CEGUI::Window::bufferGeometry( boost::ref(ctx) );
+    void bufferGeometry(::CEGUI::RenderingContext const & ctx) {
+        CEGUI::Window::bufferGeometry(boost::ref(ctx));
     }
 
-    virtual void cleanupChildren(  ){
-        if( bp::override func_cleanupChildren = this->get_override( "cleanupChildren" ) )
-            func_cleanupChildren(  );
-        else{
-            this->CEGUI::Window::cleanupChildren(  );
+    virtual void cleanupChildren() {
+        if (bp::override func_cleanupChildren = this->get_override("cleanupChildren"))
+            func_cleanupChildren();
+        else {
+            this->CEGUI::Window::cleanupChildren();
         }
     }
-    
-    virtual void default_cleanupChildren(  ){
-        CEGUI::Window::cleanupChildren( );
+
+    virtual void default_cleanupChildren() {
+        CEGUI::Window::cleanupChildren();
     }
 
-    virtual void cloneChildWidgetsTo( ::CEGUI::Window & target ) const  {
-        if( bp::override func_cloneChildWidgetsTo = this->get_override( "cloneChildWidgetsTo" ) )
-            func_cloneChildWidgetsTo( boost::ref(target) );
-        else{
-            this->CEGUI::Window::cloneChildWidgetsTo( boost::ref(target) );
+    virtual void cloneChildWidgetsTo(::CEGUI::Window & target) const {
+        if (bp::override func_cloneChildWidgetsTo = this->get_override("cloneChildWidgetsTo"))
+            func_cloneChildWidgetsTo(boost::ref(target));
+        else {
+            this->CEGUI::Window::cloneChildWidgetsTo(boost::ref(target));
         }
     }
-    
-    void default_cloneChildWidgetsTo( ::CEGUI::Window & target ) const  {
-        CEGUI::Window::cloneChildWidgetsTo( boost::ref(target) );
+
+    void default_cloneChildWidgetsTo(::CEGUI::Window & target) const {
+        CEGUI::Window::cloneChildWidgetsTo(boost::ref(target));
     }
 
-    virtual void clonePropertiesTo( ::CEGUI::Window & target ) const  {
-        if( bp::override func_clonePropertiesTo = this->get_override( "clonePropertiesTo" ) )
-            func_clonePropertiesTo( boost::ref(target) );
-        else{
-            this->CEGUI::Window::clonePropertiesTo( boost::ref(target) );
+    virtual void clonePropertiesTo(::CEGUI::Window & target) const {
+        if (bp::override func_clonePropertiesTo = this->get_override("clonePropertiesTo"))
+            func_clonePropertiesTo(boost::ref(target));
+        else {
+            this->CEGUI::Window::clonePropertiesTo(boost::ref(target));
         }
     }
-    
-    void default_clonePropertiesTo( ::CEGUI::Window & target ) const  {
-        CEGUI::Window::clonePropertiesTo( boost::ref(target) );
+
+    void default_clonePropertiesTo(::CEGUI::Window & target) const {
+        CEGUI::Window::clonePropertiesTo(boost::ref(target));
     }
 
-    virtual void destroy(  ) {
-        if( bp::override func_destroy = this->get_override( "destroy" ) )
-            func_destroy(  );
-        else{
-            this->CEGUI::Window::destroy(  );
+    virtual void destroy() {
+        if (bp::override func_destroy = this->get_override("destroy"))
+            func_destroy();
+        else {
+            this->CEGUI::Window::destroy();
         }
     }
-    
-    void default_destroy(  ) {
-        CEGUI::Window::destroy( );
+
+    void default_destroy() {
+        CEGUI::Window::destroy();
     }
 
-    virtual void drawSelf( ::CEGUI::RenderingContext const & ctx ){
-        if( bp::override func_drawSelf = this->get_override( "drawSelf" ) )
-            func_drawSelf( boost::ref(ctx) );
-        else{
-            this->CEGUI::Window::drawSelf( boost::ref(ctx) );
+    virtual void drawSelf(::CEGUI::RenderingContext const & ctx) {
+        if (bp::override func_drawSelf = this->get_override("drawSelf"))
+            func_drawSelf(boost::ref(ctx));
+        else {
+            this->CEGUI::Window::drawSelf(boost::ref(ctx));
         }
     }
-    
-    virtual void default_drawSelf( ::CEGUI::RenderingContext const & ctx ){
-        CEGUI::Window::drawSelf( boost::ref(ctx) );
+
+    virtual void default_drawSelf(::CEGUI::RenderingContext const & ctx) {
+        CEGUI::Window::drawSelf(boost::ref(ctx));
     }
 
-    virtual void endInitialisation(  ) {
-        if( bp::override func_endInitialisation = this->get_override( "endInitialisation" ) )
-            func_endInitialisation(  );
-        else{
-            this->CEGUI::Window::endInitialisation(  );
+    virtual void endInitialisation() {
+        if (bp::override func_endInitialisation = this->get_override("endInitialisation"))
+            func_endInitialisation();
+        else {
+            this->CEGUI::Window::endInitialisation();
         }
     }
-    
-    void default_endInitialisation(  ) {
-        CEGUI::Window::endInitialisation( );
+
+    void default_endInitialisation() {
+        CEGUI::Window::endInitialisation();
     }
 
-    void fireAreaChangeEvents( bool const moved, bool const sized ){
-        CEGUI::Element::fireAreaChangeEvents( moved, sized );
+    void fireAreaChangeEvents(bool const moved, bool const sized) {
+        CEGUI::Element::fireAreaChangeEvents(moved, sized);
     }
 
-    virtual void fireEvent( ::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace="" ) {
-        if( bp::override func_fireEvent = this->get_override( "fireEvent" ) )
-            func_fireEvent( boost::ref(name), boost::ref(args), boost::ref(eventNamespace) );
-        else{
-            this->CEGUI::EventSet::fireEvent( boost::ref(name), boost::ref(args), boost::ref(eventNamespace) );
+    virtual void fireEvent(::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace = "") {
+        if (bp::override func_fireEvent = this->get_override("fireEvent"))
+            func_fireEvent(boost::ref(name), boost::ref(args), boost::ref(eventNamespace));
+        else {
+            this->CEGUI::EventSet::fireEvent(boost::ref(name), boost::ref(args), boost::ref(eventNamespace));
         }
     }
-    
-    void default_fireEvent( ::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace="" ) {
-        CEGUI::EventSet::fireEvent( boost::ref(name), boost::ref(args), boost::ref(eventNamespace) );
+
+    void default_fireEvent(::CEGUI::String const & name, ::CEGUI::EventArgs & args, ::CEGUI::String const & eventNamespace = "") {
+        CEGUI::EventSet::fireEvent(boost::ref(name), boost::ref(args), boost::ref(eventNamespace));
     }
 
-    void fireEvent_impl( ::CEGUI::String const & name, ::CEGUI::EventArgs & args ){
-        CEGUI::EventSet::fireEvent_impl( boost::ref(name), boost::ref(args) );
+    void fireEvent_impl(::CEGUI::String const & name, ::CEGUI::EventArgs & args) {
+        CEGUI::EventSet::fireEvent_impl(boost::ref(name), boost::ref(args));
     }
 
-    void generateAutoRepeatEvent( ::CEGUI::MouseButton button ){
-        CEGUI::Window::generateAutoRepeatEvent( button );
+    void generateAutoRepeatEvent(::CEGUI::MouseButton button) {
+        CEGUI::Window::generateAutoRepeatEvent(button);
     }
 
-    virtual ::CEGUI::NamedElement * getChildByNamePath_impl( ::CEGUI::String const & name_path ) const {
-        if( bp::override func_getChildByNamePath_impl = this->get_override( "getChildByNamePath_impl" ) )
-            return func_getChildByNamePath_impl( boost::ref(name_path) );
-        else{
-            return this->CEGUI::NamedElement::getChildByNamePath_impl( boost::ref(name_path) );
+    virtual ::CEGUI::NamedElement * getChildByNamePath_impl(::CEGUI::String const & name_path) const {
+        if (bp::override func_getChildByNamePath_impl = this->get_override("getChildByNamePath_impl"))
+            return func_getChildByNamePath_impl(boost::ref(name_path));
+        else {
+            return this->CEGUI::NamedElement::getChildByNamePath_impl(boost::ref(name_path));
         }
     }
-    
-    virtual ::CEGUI::NamedElement * default_getChildByNamePath_impl( ::CEGUI::String const & name_path ) const {
-        return CEGUI::NamedElement::getChildByNamePath_impl( boost::ref(name_path) );
+
+    virtual ::CEGUI::NamedElement * default_getChildByNamePath_impl(::CEGUI::String const & name_path) const {
+        return CEGUI::NamedElement::getChildByNamePath_impl(boost::ref(name_path));
     }
 
-    virtual ::CEGUI::NamedElement * getChildByNameRecursive_impl( ::CEGUI::String const & name ) const {
-        if( bp::override func_getChildByNameRecursive_impl = this->get_override( "getChildByNameRecursive_impl" ) )
-            return func_getChildByNameRecursive_impl( boost::ref(name) );
-        else{
-            return this->CEGUI::NamedElement::getChildByNameRecursive_impl( boost::ref(name) );
+    virtual ::CEGUI::NamedElement * getChildByNameRecursive_impl(::CEGUI::String const & name) const {
+        if (bp::override func_getChildByNameRecursive_impl = this->get_override("getChildByNameRecursive_impl"))
+            return func_getChildByNameRecursive_impl(boost::ref(name));
+        else {
+            return this->CEGUI::NamedElement::getChildByNameRecursive_impl(boost::ref(name));
         }
     }
-    
-    virtual ::CEGUI::NamedElement * default_getChildByNameRecursive_impl( ::CEGUI::String const & name ) const {
-        return CEGUI::NamedElement::getChildByNameRecursive_impl( boost::ref(name) );
+
+    virtual ::CEGUI::NamedElement * default_getChildByNameRecursive_impl(::CEGUI::String const & name) const {
+        return CEGUI::NamedElement::getChildByNameRecursive_impl(boost::ref(name));
     }
 
-    virtual ::CEGUI::Rectf getHitTestRect_impl(  ) const {
-        if( bp::override func_getHitTestRect_impl = this->get_override( "getHitTestRect_impl" ) )
-            return func_getHitTestRect_impl(  );
-        else{
-            return this->CEGUI::Window::getHitTestRect_impl(  );
+    virtual ::CEGUI::Rectf getHitTestRect_impl() const {
+        if (bp::override func_getHitTestRect_impl = this->get_override("getHitTestRect_impl"))
+            return func_getHitTestRect_impl();
+        else {
+            return this->CEGUI::Window::getHitTestRect_impl();
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getHitTestRect_impl(  ) const {
-        return CEGUI::Window::getHitTestRect_impl( );
+
+    virtual ::CEGUI::Rectf default_getHitTestRect_impl() const {
+        return CEGUI::Window::getHitTestRect_impl();
     }
 
-    virtual ::CEGUI::Rectf getInnerRectClipper_impl(  ) const {
-        if( bp::override func_getInnerRectClipper_impl = this->get_override( "getInnerRectClipper_impl" ) )
-            return func_getInnerRectClipper_impl(  );
-        else{
-            return this->CEGUI::Window::getInnerRectClipper_impl(  );
+    virtual ::CEGUI::Rectf getInnerRectClipper_impl() const {
+        if (bp::override func_getInnerRectClipper_impl = this->get_override("getInnerRectClipper_impl"))
+            return func_getInnerRectClipper_impl();
+        else {
+            return this->CEGUI::Window::getInnerRectClipper_impl();
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getInnerRectClipper_impl(  ) const {
-        return CEGUI::Window::getInnerRectClipper_impl( );
+
+    virtual ::CEGUI::Rectf default_getInnerRectClipper_impl() const {
+        return CEGUI::Window::getInnerRectClipper_impl();
     }
 
-    virtual ::CEGUI::Rectf getOuterRectClipper_impl(  ) const {
-        if( bp::override func_getOuterRectClipper_impl = this->get_override( "getOuterRectClipper_impl" ) )
-            return func_getOuterRectClipper_impl(  );
-        else{
-            return this->CEGUI::Window::getOuterRectClipper_impl(  );
+    virtual ::CEGUI::Rectf getOuterRectClipper_impl() const {
+        if (bp::override func_getOuterRectClipper_impl = this->get_override("getOuterRectClipper_impl"))
+            return func_getOuterRectClipper_impl();
+        else {
+            return this->CEGUI::Window::getOuterRectClipper_impl();
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getOuterRectClipper_impl(  ) const {
-        return CEGUI::Window::getOuterRectClipper_impl( );
+
+    virtual ::CEGUI::Rectf default_getOuterRectClipper_impl() const {
+        return CEGUI::Window::getOuterRectClipper_impl();
     }
 
-    ::CEGUI::Rectf getParentElementClipIntersection( ::CEGUI::Rectf const & unclipped_area ) const {
-        return CEGUI::Window::getParentElementClipIntersection( boost::ref(unclipped_area) );
+    ::CEGUI::Rectf getParentElementClipIntersection(::CEGUI::Rectf const & unclipped_area) const {
+        return CEGUI::Window::getParentElementClipIntersection(boost::ref(unclipped_area));
     }
 
-    virtual void getRenderingContext_impl( ::CEGUI::RenderingContext & ctx ) const  {
-        if( bp::override func_getRenderingContext_impl = this->get_override( "getRenderingContext_impl" ) )
-            func_getRenderingContext_impl( boost::ref(ctx) );
-        else{
-            this->CEGUI::Window::getRenderingContext_impl( boost::ref(ctx) );
+    virtual void getRenderingContext_impl(::CEGUI::RenderingContext & ctx) const {
+        if (bp::override func_getRenderingContext_impl = this->get_override("getRenderingContext_impl"))
+            func_getRenderingContext_impl(boost::ref(ctx));
+        else {
+            this->CEGUI::Window::getRenderingContext_impl(boost::ref(ctx));
         }
     }
-    
-    void default_getRenderingContext_impl( ::CEGUI::RenderingContext & ctx ) const  {
-        CEGUI::Window::getRenderingContext_impl( boost::ref(ctx) );
+
+    void default_getRenderingContext_impl(::CEGUI::RenderingContext & ctx) const {
+        CEGUI::Window::getRenderingContext_impl(boost::ref(ctx));
     }
 
-    ::CEGUI::ScriptModule * getScriptModule(  ) const {
-        return CEGUI::EventSet::getScriptModule(  );
+    ::CEGUI::ScriptModule * getScriptModule() const {
+        return CEGUI::EventSet::getScriptModule();
     }
 
-    virtual ::CEGUI::Rectf getUnclippedInnerRect_impl( bool skipAllPixelAlignment ) const {
-        if( bp::override func_getUnclippedInnerRect_impl = this->get_override( "getUnclippedInnerRect_impl" ) )
-            return func_getUnclippedInnerRect_impl( skipAllPixelAlignment );
-        else{
-            return this->CEGUI::Window::getUnclippedInnerRect_impl( skipAllPixelAlignment );
+    virtual ::CEGUI::Rectf getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+        if (bp::override func_getUnclippedInnerRect_impl = this->get_override("getUnclippedInnerRect_impl"))
+            return func_getUnclippedInnerRect_impl(skipAllPixelAlignment);
+        else {
+            return this->CEGUI::Window::getUnclippedInnerRect_impl(skipAllPixelAlignment);
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getUnclippedInnerRect_impl( bool skipAllPixelAlignment ) const {
-        return CEGUI::Window::getUnclippedInnerRect_impl( skipAllPixelAlignment );
+
+    virtual ::CEGUI::Rectf default_getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+        return CEGUI::Window::getUnclippedInnerRect_impl(skipAllPixelAlignment);
     }
 
-    virtual ::CEGUI::Rectf getUnclippedOuterRect_impl( bool skipAllPixelAlignment ) const {
-        if( bp::override func_getUnclippedOuterRect_impl = this->get_override( "getUnclippedOuterRect_impl" ) )
-            return func_getUnclippedOuterRect_impl( skipAllPixelAlignment );
-        else{
-            return this->CEGUI::Element::getUnclippedOuterRect_impl( skipAllPixelAlignment );
+    virtual ::CEGUI::Rectf getUnclippedOuterRect_impl(bool skipAllPixelAlignment) const {
+        if (bp::override func_getUnclippedOuterRect_impl = this->get_override("getUnclippedOuterRect_impl"))
+            return func_getUnclippedOuterRect_impl(skipAllPixelAlignment);
+        else {
+            return this->CEGUI::Element::getUnclippedOuterRect_impl(skipAllPixelAlignment);
         }
     }
-    
-    virtual ::CEGUI::Rectf default_getUnclippedOuterRect_impl( bool skipAllPixelAlignment ) const {
-        return CEGUI::Element::getUnclippedOuterRect_impl( skipAllPixelAlignment );
+
+    virtual ::CEGUI::Rectf default_getUnclippedOuterRect_impl(bool skipAllPixelAlignment) const {
+        return CEGUI::Element::getUnclippedOuterRect_impl(skipAllPixelAlignment);
     }
 
-    ::CEGUI::Window const * getWindowAttachedToCommonAncestor( ::CEGUI::Window const & wnd ) const {
-        return CEGUI::Window::getWindowAttachedToCommonAncestor( boost::ref(wnd) );
+    ::CEGUI::Window const * getWindowAttachedToCommonAncestor(::CEGUI::Window const & wnd) const {
+        return CEGUI::Window::getWindowAttachedToCommonAncestor(boost::ref(wnd));
     }
 
-    virtual bool handleFontRenderSizeChange( ::CEGUI::EventArgs const & args ){
-        if( bp::override func_handleFontRenderSizeChange = this->get_override( "handleFontRenderSizeChange" ) )
-            return func_handleFontRenderSizeChange( boost::ref(args) );
-        else{
-            return this->CEGUI::Window::handleFontRenderSizeChange( boost::ref(args) );
+    virtual bool handleFontRenderSizeChange(::CEGUI::EventArgs const & args) {
+        if (bp::override func_handleFontRenderSizeChange = this->get_override("handleFontRenderSizeChange"))
+            return func_handleFontRenderSizeChange(boost::ref(args));
+        else {
+            return this->CEGUI::Window::handleFontRenderSizeChange(boost::ref(args));
         }
     }
-    
-    virtual bool default_handleFontRenderSizeChange( ::CEGUI::EventArgs const & args ){
-        return CEGUI::Window::handleFontRenderSizeChange( boost::ref(args) );
+
+    virtual bool default_handleFontRenderSizeChange(::CEGUI::EventArgs const & args) {
+        return CEGUI::Window::handleFontRenderSizeChange(boost::ref(args));
     }
 
-    void initialiseClippers( ::CEGUI::RenderingContext const & ctx ){
-        CEGUI::Window::initialiseClippers( boost::ref(ctx) );
+    void initialiseClippers(::CEGUI::RenderingContext const & ctx) {
+        CEGUI::Window::initialiseClippers(boost::ref(ctx));
     }
 
-    void invalidate_impl( bool const recursive ){
-        CEGUI::Window::invalidate_impl( recursive );
+    void invalidate_impl(bool const recursive) {
+        CEGUI::Window::invalidate_impl(recursive);
     }
 
-    virtual bool isHit( ::CEGUI::Vector2f const & position, bool const allow_disabled=false ) const  {
-        if( bp::override func_isHit = this->get_override( "isHit" ) )
-            return func_isHit( boost::ref(position), allow_disabled );
-        else{
-            return this->CEGUI::Window::isHit( boost::ref(position), allow_disabled );
+    virtual bool isHit(::CEGUI::Vector2f const & position, bool const allow_disabled = false) const {
+        if (bp::override func_isHit = this->get_override("isHit"))
+            return func_isHit(boost::ref(position), allow_disabled);
+        else {
+            return this->CEGUI::Window::isHit(boost::ref(position), allow_disabled);
         }
     }
-    
-    bool default_isHit( ::CEGUI::Vector2f const & position, bool const allow_disabled=false ) const  {
-        return CEGUI::Window::isHit( boost::ref(position), allow_disabled );
+
+    bool default_isHit(::CEGUI::Vector2f const & position, bool const allow_disabled = false) const {
+        return CEGUI::Window::isHit(boost::ref(position), allow_disabled);
     }
 
-    bool isHitTargetWindow( ::CEGUI::Vector2f const & position, bool allow_disabled ) const {
-        return CEGUI::Window::isHitTargetWindow( boost::ref(position), allow_disabled );
+    bool isHitTargetWindow(::CEGUI::Vector2f const & position, bool allow_disabled) const {
+        return CEGUI::Window::isHitTargetWindow(boost::ref(position), allow_disabled);
     }
 
-    bool isInnerRectSizeChanged(  ) const {
-        return CEGUI::Element::isInnerRectSizeChanged(  );
+    bool isInnerRectSizeChanged() const {
+        return CEGUI::Element::isInnerRectSizeChanged();
     }
 
-    bool isPropertyAtDefault( ::CEGUI::Property const * property ) const {
-        return CEGUI::Window::isPropertyAtDefault( boost::python::ptr(property) );
+    bool isPropertyAtDefault(::CEGUI::Property const * property) const {
+        return CEGUI::Window::isPropertyAtDefault(boost::python::ptr(property));
     }
 
-    bool isTopOfZOrder(  ) const {
-        return CEGUI::Window::isTopOfZOrder(  );
+    bool isTopOfZOrder() const {
+        return CEGUI::Window::isTopOfZOrder();
     }
 
-    void layoutLookNFeelChildWidgets(  ){
-        CEGUI::Window::layoutLookNFeelChildWidgets(  );
+    void layoutLookNFeelChildWidgets() {
+        CEGUI::Window::layoutLookNFeelChildWidgets();
     }
 
-    void markCachedWindowRectsInvalid(  ){
-        CEGUI::Window::markCachedWindowRectsInvalid(  );
+    void markCachedWindowRectsInvalid() {
+        CEGUI::Window::markCachedWindowRectsInvalid();
     }
 
-    virtual bool moveToFront_impl( bool wasClicked ){
-        if( bp::override func_moveToFront_impl = this->get_override( "moveToFront_impl" ) )
-            return func_moveToFront_impl( wasClicked );
-        else{
-            return this->CEGUI::Window::moveToFront_impl( wasClicked );
+    virtual bool moveToFront_impl(bool wasClicked) {
+        if (bp::override func_moveToFront_impl = this->get_override("moveToFront_impl"))
+            return func_moveToFront_impl(wasClicked);
+        else {
+            return this->CEGUI::Window::moveToFront_impl(wasClicked);
         }
     }
-    
-    virtual bool default_moveToFront_impl( bool wasClicked ){
-        return CEGUI::Window::moveToFront_impl( wasClicked );
+
+    virtual bool default_moveToFront_impl(bool wasClicked) {
+        return CEGUI::Window::moveToFront_impl(wasClicked);
     }
 
-    void notifyChildrenOfSizeChange( bool const non_client, bool const client ){
-        CEGUI::Element::notifyChildrenOfSizeChange( non_client, client );
+    void notifyChildrenOfSizeChange(bool const non_client, bool const client) {
+        CEGUI::Element::notifyChildrenOfSizeChange(non_client, client);
     }
 
-    void notifyClippingChanged(  ){
-        CEGUI::Window::notifyClippingChanged(  );
+    void notifyClippingChanged() {
+        CEGUI::Window::notifyClippingChanged();
     }
 
-    virtual void notifyScreenAreaChanged( bool recursive=true ) {
-        if( bp::override func_notifyScreenAreaChanged = this->get_override( "notifyScreenAreaChanged" ) )
-            func_notifyScreenAreaChanged( recursive );
-        else{
-            this->CEGUI::Window::notifyScreenAreaChanged( recursive );
+    virtual void notifyScreenAreaChanged(bool recursive = true) {
+        if (bp::override func_notifyScreenAreaChanged = this->get_override("notifyScreenAreaChanged"))
+            func_notifyScreenAreaChanged(recursive);
+        else {
+            this->CEGUI::Window::notifyScreenAreaChanged(recursive);
         }
     }
-    
-    void default_notifyScreenAreaChanged( bool recursive=true ) {
-        CEGUI::Window::notifyScreenAreaChanged( recursive );
+
+    void default_notifyScreenAreaChanged(bool recursive = true) {
+        CEGUI::Window::notifyScreenAreaChanged(recursive);
     }
 
-    virtual void onActivated( ::CEGUI::ActivationEventArgs & e ){
-        if( bp::override func_onActivated = this->get_override( "onActivated" ) )
-            func_onActivated( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onActivated( boost::ref(e) );
+    virtual void onActivated(::CEGUI::ActivationEventArgs & e) {
+        if (bp::override func_onActivated = this->get_override("onActivated"))
+            func_onActivated(boost::ref(e));
+        else {
+            this->CEGUI::Window::onActivated(boost::ref(e));
         }
     }
-    
-    virtual void default_onActivated( ::CEGUI::ActivationEventArgs & e ){
-        CEGUI::Window::onActivated( boost::ref(e) );
+
+    virtual void default_onActivated(::CEGUI::ActivationEventArgs & e) {
+        CEGUI::Window::onActivated(boost::ref(e));
     }
 
-    virtual void onAlphaChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onAlphaChanged = this->get_override( "onAlphaChanged" ) )
-            func_onAlphaChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onAlphaChanged( boost::ref(e) );
+    virtual void onAlphaChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onAlphaChanged = this->get_override("onAlphaChanged"))
+            func_onAlphaChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onAlphaChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onAlphaChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onAlphaChanged( boost::ref(e) );
+
+    virtual void default_onAlphaChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onAlphaChanged(boost::ref(e));
     }
 
-    virtual void onAlwaysOnTopChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onAlwaysOnTopChanged = this->get_override( "onAlwaysOnTopChanged" ) )
-            func_onAlwaysOnTopChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onAlwaysOnTopChanged( boost::ref(e) );
+    virtual void onAlwaysOnTopChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onAlwaysOnTopChanged = this->get_override("onAlwaysOnTopChanged"))
+            func_onAlwaysOnTopChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onAlwaysOnTopChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onAlwaysOnTopChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onAlwaysOnTopChanged( boost::ref(e) );
+
+    virtual void default_onAlwaysOnTopChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onAlwaysOnTopChanged(boost::ref(e));
     }
 
-    virtual void onCaptureGained( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onCaptureGained = this->get_override( "onCaptureGained" ) )
-            func_onCaptureGained( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onCaptureGained( boost::ref(e) );
+    virtual void onCaptureGained(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onCaptureGained = this->get_override("onCaptureGained"))
+            func_onCaptureGained(boost::ref(e));
+        else {
+            this->CEGUI::Window::onCaptureGained(boost::ref(e));
         }
     }
-    
-    virtual void default_onCaptureGained( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onCaptureGained( boost::ref(e) );
+
+    virtual void default_onCaptureGained(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onCaptureGained(boost::ref(e));
     }
 
-    virtual void onCaptureLost( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onCaptureLost = this->get_override( "onCaptureLost" ) )
-            func_onCaptureLost( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onCaptureLost( boost::ref(e) );
+    virtual void onCaptureLost(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onCaptureLost = this->get_override("onCaptureLost"))
+            func_onCaptureLost(boost::ref(e));
+        else {
+            this->CEGUI::Window::onCaptureLost(boost::ref(e));
         }
     }
-    
-    virtual void default_onCaptureLost( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onCaptureLost( boost::ref(e) );
+
+    virtual void default_onCaptureLost(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onCaptureLost(boost::ref(e));
     }
 
-    virtual void onCharacter( ::CEGUI::KeyEventArgs & e ){
-        if( bp::override func_onCharacter = this->get_override( "onCharacter" ) )
-            func_onCharacter( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onCharacter( boost::ref(e) );
+    virtual void onCharacter(::CEGUI::KeyEventArgs & e) {
+        if (bp::override func_onCharacter = this->get_override("onCharacter"))
+            func_onCharacter(boost::ref(e));
+        else {
+            this->CEGUI::Window::onCharacter(boost::ref(e));
         }
     }
-    
-    virtual void default_onCharacter( ::CEGUI::KeyEventArgs & e ){
-        CEGUI::Window::onCharacter( boost::ref(e) );
+
+    virtual void default_onCharacter(::CEGUI::KeyEventArgs & e) {
+        CEGUI::Window::onCharacter(boost::ref(e));
     }
 
-    virtual void onChildAdded( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onChildAdded = this->get_override( "onChildAdded" ) )
-            func_onChildAdded( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onChildAdded( boost::ref(e) );
+    virtual void onChildAdded(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onChildAdded = this->get_override("onChildAdded"))
+            func_onChildAdded(boost::ref(e));
+        else {
+            this->CEGUI::Window::onChildAdded(boost::ref(e));
         }
     }
-    
-    virtual void default_onChildAdded( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Window::onChildAdded( boost::ref(e) );
+
+    virtual void default_onChildAdded(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Window::onChildAdded(boost::ref(e));
     }
 
-    virtual void onChildRemoved( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onChildRemoved = this->get_override( "onChildRemoved" ) )
-            func_onChildRemoved( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onChildRemoved( boost::ref(e) );
+    virtual void onChildRemoved(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onChildRemoved = this->get_override("onChildRemoved"))
+            func_onChildRemoved(boost::ref(e));
+        else {
+            this->CEGUI::Window::onChildRemoved(boost::ref(e));
         }
     }
-    
-    virtual void default_onChildRemoved( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Window::onChildRemoved( boost::ref(e) );
+
+    virtual void default_onChildRemoved(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Window::onChildRemoved(boost::ref(e));
     }
 
-    virtual void onClippingChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onClippingChanged = this->get_override( "onClippingChanged" ) )
-            func_onClippingChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onClippingChanged( boost::ref(e) );
+    virtual void onClippingChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onClippingChanged = this->get_override("onClippingChanged"))
+            func_onClippingChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onClippingChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onClippingChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onClippingChanged( boost::ref(e) );
+
+    virtual void default_onClippingChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onClippingChanged(boost::ref(e));
     }
 
-    virtual void onDeactivated( ::CEGUI::ActivationEventArgs & e ){
-        if( bp::override func_onDeactivated = this->get_override( "onDeactivated" ) )
-            func_onDeactivated( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onDeactivated( boost::ref(e) );
+    virtual void onDeactivated(::CEGUI::ActivationEventArgs & e) {
+        if (bp::override func_onDeactivated = this->get_override("onDeactivated"))
+            func_onDeactivated(boost::ref(e));
+        else {
+            this->CEGUI::Window::onDeactivated(boost::ref(e));
         }
     }
-    
-    virtual void default_onDeactivated( ::CEGUI::ActivationEventArgs & e ){
-        CEGUI::Window::onDeactivated( boost::ref(e) );
+
+    virtual void default_onDeactivated(::CEGUI::ActivationEventArgs & e) {
+        CEGUI::Window::onDeactivated(boost::ref(e));
     }
 
-    virtual void onDestructionStarted( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onDestructionStarted = this->get_override( "onDestructionStarted" ) )
-            func_onDestructionStarted( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onDestructionStarted( boost::ref(e) );
+    virtual void onDestructionStarted(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onDestructionStarted = this->get_override("onDestructionStarted"))
+            func_onDestructionStarted(boost::ref(e));
+        else {
+            this->CEGUI::Window::onDestructionStarted(boost::ref(e));
         }
     }
-    
-    virtual void default_onDestructionStarted( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onDestructionStarted( boost::ref(e) );
+
+    virtual void default_onDestructionStarted(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onDestructionStarted(boost::ref(e));
     }
 
-    virtual void onDisabled( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onDisabled = this->get_override( "onDisabled" ) )
-            func_onDisabled( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onDisabled( boost::ref(e) );
+    virtual void onDisabled(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onDisabled = this->get_override("onDisabled"))
+            func_onDisabled(boost::ref(e));
+        else {
+            this->CEGUI::Window::onDisabled(boost::ref(e));
         }
     }
-    
-    virtual void default_onDisabled( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onDisabled( boost::ref(e) );
+
+    virtual void default_onDisabled(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onDisabled(boost::ref(e));
     }
 
-    virtual void onDragDropItemDropped( ::CEGUI::DragDropEventArgs & e ){
-        if( bp::override func_onDragDropItemDropped = this->get_override( "onDragDropItemDropped" ) )
-            func_onDragDropItemDropped( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onDragDropItemDropped( boost::ref(e) );
+    virtual void onDragDropItemDropped(::CEGUI::DragDropEventArgs & e) {
+        if (bp::override func_onDragDropItemDropped = this->get_override("onDragDropItemDropped"))
+            func_onDragDropItemDropped(boost::ref(e));
+        else {
+            this->CEGUI::Window::onDragDropItemDropped(boost::ref(e));
         }
     }
-    
-    virtual void default_onDragDropItemDropped( ::CEGUI::DragDropEventArgs & e ){
-        CEGUI::Window::onDragDropItemDropped( boost::ref(e) );
+
+    virtual void default_onDragDropItemDropped(::CEGUI::DragDropEventArgs & e) {
+        CEGUI::Window::onDragDropItemDropped(boost::ref(e));
     }
 
-    virtual void onDragDropItemEnters( ::CEGUI::DragDropEventArgs & e ){
-        if( bp::override func_onDragDropItemEnters = this->get_override( "onDragDropItemEnters" ) )
-            func_onDragDropItemEnters( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onDragDropItemEnters( boost::ref(e) );
+    virtual void onDragDropItemEnters(::CEGUI::DragDropEventArgs & e) {
+        if (bp::override func_onDragDropItemEnters = this->get_override("onDragDropItemEnters"))
+            func_onDragDropItemEnters(boost::ref(e));
+        else {
+            this->CEGUI::Window::onDragDropItemEnters(boost::ref(e));
         }
     }
-    
-    virtual void default_onDragDropItemEnters( ::CEGUI::DragDropEventArgs & e ){
-        CEGUI::Window::onDragDropItemEnters( boost::ref(e) );
+
+    virtual void default_onDragDropItemEnters(::CEGUI::DragDropEventArgs & e) {
+        CEGUI::Window::onDragDropItemEnters(boost::ref(e));
     }
 
-    virtual void onDragDropItemLeaves( ::CEGUI::DragDropEventArgs & e ){
-        if( bp::override func_onDragDropItemLeaves = this->get_override( "onDragDropItemLeaves" ) )
-            func_onDragDropItemLeaves( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onDragDropItemLeaves( boost::ref(e) );
+    virtual void onDragDropItemLeaves(::CEGUI::DragDropEventArgs & e) {
+        if (bp::override func_onDragDropItemLeaves = this->get_override("onDragDropItemLeaves"))
+            func_onDragDropItemLeaves(boost::ref(e));
+        else {
+            this->CEGUI::Window::onDragDropItemLeaves(boost::ref(e));
         }
     }
-    
-    virtual void default_onDragDropItemLeaves( ::CEGUI::DragDropEventArgs & e ){
-        CEGUI::Window::onDragDropItemLeaves( boost::ref(e) );
+
+    virtual void default_onDragDropItemLeaves(::CEGUI::DragDropEventArgs & e) {
+        CEGUI::Window::onDragDropItemLeaves(boost::ref(e));
     }
 
-    virtual void onEnabled( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onEnabled = this->get_override( "onEnabled" ) )
-            func_onEnabled( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onEnabled( boost::ref(e) );
+    virtual void onEnabled(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onEnabled = this->get_override("onEnabled"))
+            func_onEnabled(boost::ref(e));
+        else {
+            this->CEGUI::Window::onEnabled(boost::ref(e));
         }
     }
-    
-    virtual void default_onEnabled( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onEnabled( boost::ref(e) );
+
+    virtual void default_onEnabled(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onEnabled(boost::ref(e));
     }
 
-    virtual void onHidden( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onHidden = this->get_override( "onHidden" ) )
-            func_onHidden( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onHidden( boost::ref(e) );
+    virtual void onHidden(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onHidden = this->get_override("onHidden"))
+            func_onHidden(boost::ref(e));
+        else {
+            this->CEGUI::Window::onHidden(boost::ref(e));
         }
     }
-    
-    virtual void default_onHidden( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onHidden( boost::ref(e) );
+
+    virtual void default_onHidden(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onHidden(boost::ref(e));
     }
 
-    virtual void onHorizontalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onHorizontalAlignmentChanged = this->get_override( "onHorizontalAlignmentChanged" ) )
-            func_onHorizontalAlignmentChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onHorizontalAlignmentChanged( boost::ref(e) );
+    virtual void onHorizontalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onHorizontalAlignmentChanged = this->get_override("onHorizontalAlignmentChanged"))
+            func_onHorizontalAlignmentChanged(boost::ref(e));
+        else {
+            this->CEGUI::Element::onHorizontalAlignmentChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onHorizontalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onHorizontalAlignmentChanged( boost::ref(e) );
+
+    virtual void default_onHorizontalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onHorizontalAlignmentChanged(boost::ref(e));
     }
 
-    virtual void onIDChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onIDChanged = this->get_override( "onIDChanged" ) )
-            func_onIDChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onIDChanged( boost::ref(e) );
+    virtual void onIDChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onIDChanged = this->get_override("onIDChanged"))
+            func_onIDChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onIDChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onIDChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onIDChanged( boost::ref(e) );
+
+    virtual void default_onIDChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onIDChanged(boost::ref(e));
     }
 
-    virtual void onInheritsAlphaChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onInheritsAlphaChanged = this->get_override( "onInheritsAlphaChanged" ) )
-            func_onInheritsAlphaChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onInheritsAlphaChanged( boost::ref(e) );
+    virtual void onInheritsAlphaChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onInheritsAlphaChanged = this->get_override("onInheritsAlphaChanged"))
+            func_onInheritsAlphaChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onInheritsAlphaChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onInheritsAlphaChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onInheritsAlphaChanged( boost::ref(e) );
+
+    virtual void default_onInheritsAlphaChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onInheritsAlphaChanged(boost::ref(e));
     }
 
-    virtual void onInvalidated( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onInvalidated = this->get_override( "onInvalidated" ) )
-            func_onInvalidated( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onInvalidated( boost::ref(e) );
+    virtual void onInvalidated(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onInvalidated = this->get_override("onInvalidated"))
+            func_onInvalidated(boost::ref(e));
+        else {
+            this->CEGUI::Window::onInvalidated(boost::ref(e));
         }
     }
-    
-    virtual void default_onInvalidated( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onInvalidated( boost::ref(e) );
+
+    virtual void default_onInvalidated(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onInvalidated(boost::ref(e));
     }
 
-    virtual void onKeyDown( ::CEGUI::KeyEventArgs & e ){
-        if( bp::override func_onKeyDown = this->get_override( "onKeyDown" ) )
-            func_onKeyDown( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onKeyDown( boost::ref(e) );
+    virtual void onKeyDown(::CEGUI::KeyEventArgs & e) {
+        if (bp::override func_onKeyDown = this->get_override("onKeyDown"))
+            func_onKeyDown(boost::ref(e));
+        else {
+            this->CEGUI::Window::onKeyDown(boost::ref(e));
         }
     }
-    
-    virtual void default_onKeyDown( ::CEGUI::KeyEventArgs & e ){
-        CEGUI::Window::onKeyDown( boost::ref(e) );
+
+    virtual void default_onKeyDown(::CEGUI::KeyEventArgs & e) {
+        CEGUI::Window::onKeyDown(boost::ref(e));
     }
 
-    virtual void onKeyUp( ::CEGUI::KeyEventArgs & e ){
-        if( bp::override func_onKeyUp = this->get_override( "onKeyUp" ) )
-            func_onKeyUp( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onKeyUp( boost::ref(e) );
+    virtual void onKeyUp(::CEGUI::KeyEventArgs & e) {
+        if (bp::override func_onKeyUp = this->get_override("onKeyUp"))
+            func_onKeyUp(boost::ref(e));
+        else {
+            this->CEGUI::Window::onKeyUp(boost::ref(e));
         }
     }
-    
-    virtual void default_onKeyUp( ::CEGUI::KeyEventArgs & e ){
-        CEGUI::Window::onKeyUp( boost::ref(e) );
+
+    virtual void default_onKeyUp(::CEGUI::KeyEventArgs & e) {
+        CEGUI::Window::onKeyUp(boost::ref(e));
     }
 
-    virtual void onMarginChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onMarginChanged = this->get_override( "onMarginChanged" ) )
-            func_onMarginChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMarginChanged( boost::ref(e) );
+    virtual void onMarginChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onMarginChanged = this->get_override("onMarginChanged"))
+            func_onMarginChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMarginChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onMarginChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onMarginChanged( boost::ref(e) );
+
+    virtual void default_onMarginChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onMarginChanged(boost::ref(e));
     }
 
-    virtual void onMouseButtonUp( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseButtonUp = this->get_override( "onMouseButtonUp" ) )
-            func_onMouseButtonUp( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseButtonUp( boost::ref(e) );
+    virtual void onMouseButtonUp(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseButtonUp = this->get_override("onMouseButtonUp"))
+            func_onMouseButtonUp(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseButtonUp(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseButtonUp( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseButtonUp( boost::ref(e) );
+
+    virtual void default_onMouseButtonUp(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseButtonUp(boost::ref(e));
     }
 
-    virtual void onMouseClicked( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseClicked = this->get_override( "onMouseClicked" ) )
-            func_onMouseClicked( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseClicked( boost::ref(e) );
+    virtual void onMouseClicked(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseClicked = this->get_override("onMouseClicked"))
+            func_onMouseClicked(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseClicked(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseClicked( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseClicked( boost::ref(e) );
+
+    virtual void default_onMouseClicked(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseClicked(boost::ref(e));
     }
 
-    virtual void onMouseDoubleClicked( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseDoubleClicked = this->get_override( "onMouseDoubleClicked" ) )
-            func_onMouseDoubleClicked( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseDoubleClicked( boost::ref(e) );
+    virtual void onMouseDoubleClicked(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseDoubleClicked = this->get_override("onMouseDoubleClicked"))
+            func_onMouseDoubleClicked(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseDoubleClicked(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseDoubleClicked( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseDoubleClicked( boost::ref(e) );
+
+    virtual void default_onMouseDoubleClicked(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseDoubleClicked(boost::ref(e));
     }
 
-    virtual void onMouseEnters( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseEnters = this->get_override( "onMouseEnters" ) )
-            func_onMouseEnters( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseEnters( boost::ref(e) );
+    virtual void onMouseEnters(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseEnters = this->get_override("onMouseEnters"))
+            func_onMouseEnters(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseEnters(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseEnters( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseEnters( boost::ref(e) );
+
+    virtual void default_onMouseEnters(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseEnters(boost::ref(e));
     }
 
-    virtual void onMouseEntersArea( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseEntersArea = this->get_override( "onMouseEntersArea" ) )
-            func_onMouseEntersArea( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseEntersArea( boost::ref(e) );
+    virtual void onMouseEntersArea(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseEntersArea = this->get_override("onMouseEntersArea"))
+            func_onMouseEntersArea(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseEntersArea(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseEntersArea( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseEntersArea( boost::ref(e) );
+
+    virtual void default_onMouseEntersArea(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseEntersArea(boost::ref(e));
     }
 
-    virtual void onMouseLeaves( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseLeaves = this->get_override( "onMouseLeaves" ) )
-            func_onMouseLeaves( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseLeaves( boost::ref(e) );
+    virtual void onMouseLeaves(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseLeaves = this->get_override("onMouseLeaves"))
+            func_onMouseLeaves(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseLeaves(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseLeaves( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseLeaves( boost::ref(e) );
+
+    virtual void default_onMouseLeaves(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseLeaves(boost::ref(e));
     }
 
-    virtual void onMouseLeavesArea( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseLeavesArea = this->get_override( "onMouseLeavesArea" ) )
-            func_onMouseLeavesArea( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseLeavesArea( boost::ref(e) );
+    virtual void onMouseLeavesArea(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseLeavesArea = this->get_override("onMouseLeavesArea"))
+            func_onMouseLeavesArea(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseLeavesArea(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseLeavesArea( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseLeavesArea( boost::ref(e) );
+
+    virtual void default_onMouseLeavesArea(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseLeavesArea(boost::ref(e));
     }
 
-    virtual void onMouseMove( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseMove = this->get_override( "onMouseMove" ) )
-            func_onMouseMove( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseMove( boost::ref(e) );
+    virtual void onMouseMove(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseMove = this->get_override("onMouseMove"))
+            func_onMouseMove(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseMove(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseMove( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseMove( boost::ref(e) );
+
+    virtual void default_onMouseMove(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseMove(boost::ref(e));
     }
 
-    virtual void onMouseTripleClicked( ::CEGUI::MouseEventArgs & e ){
-        if( bp::override func_onMouseTripleClicked = this->get_override( "onMouseTripleClicked" ) )
-            func_onMouseTripleClicked( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMouseTripleClicked( boost::ref(e) );
+    virtual void onMouseTripleClicked(::CEGUI::MouseEventArgs & e) {
+        if (bp::override func_onMouseTripleClicked = this->get_override("onMouseTripleClicked"))
+            func_onMouseTripleClicked(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMouseTripleClicked(boost::ref(e));
         }
     }
-    
-    virtual void default_onMouseTripleClicked( ::CEGUI::MouseEventArgs & e ){
-        CEGUI::Window::onMouseTripleClicked( boost::ref(e) );
+
+    virtual void default_onMouseTripleClicked(::CEGUI::MouseEventArgs & e) {
+        CEGUI::Window::onMouseTripleClicked(boost::ref(e));
     }
 
-    virtual void onMoved( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onMoved = this->get_override( "onMoved" ) )
-            func_onMoved( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onMoved( boost::ref(e) );
+    virtual void onMoved(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onMoved = this->get_override("onMoved"))
+            func_onMoved(boost::ref(e));
+        else {
+            this->CEGUI::Window::onMoved(boost::ref(e));
         }
     }
-    
-    virtual void default_onMoved( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Window::onMoved( boost::ref(e) );
+
+    virtual void default_onMoved(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Window::onMoved(boost::ref(e));
     }
 
-    virtual void onNameChanged( ::CEGUI::NamedElementEventArgs & e ){
-        if( bp::override func_onNameChanged = this->get_override( "onNameChanged" ) )
-            func_onNameChanged( boost::ref(e) );
-        else{
-            this->CEGUI::NamedElement::onNameChanged( boost::ref(e) );
+    virtual void onNameChanged(::CEGUI::NamedElementEventArgs & e) {
+        if (bp::override func_onNameChanged = this->get_override("onNameChanged"))
+            func_onNameChanged(boost::ref(e));
+        else {
+            this->CEGUI::NamedElement::onNameChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onNameChanged( ::CEGUI::NamedElementEventArgs & e ){
-        CEGUI::NamedElement::onNameChanged( boost::ref(e) );
+
+    virtual void default_onNameChanged(::CEGUI::NamedElementEventArgs & e) {
+        CEGUI::NamedElement::onNameChanged(boost::ref(e));
     }
 
-    virtual void onNonClientChanged( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onNonClientChanged = this->get_override( "onNonClientChanged" ) )
-            func_onNonClientChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onNonClientChanged( boost::ref(e) );
+    virtual void onNonClientChanged(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onNonClientChanged = this->get_override("onNonClientChanged"))
+            func_onNonClientChanged(boost::ref(e));
+        else {
+            this->CEGUI::Element::onNonClientChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onNonClientChanged( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onNonClientChanged( boost::ref(e) );
+
+    virtual void default_onNonClientChanged(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onNonClientChanged(boost::ref(e));
     }
 
-    virtual void onParentDestroyChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onParentDestroyChanged = this->get_override( "onParentDestroyChanged" ) )
-            func_onParentDestroyChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onParentDestroyChanged( boost::ref(e) );
+    virtual void onParentDestroyChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onParentDestroyChanged = this->get_override("onParentDestroyChanged"))
+            func_onParentDestroyChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onParentDestroyChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onParentDestroyChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onParentDestroyChanged( boost::ref(e) );
+
+    virtual void default_onParentDestroyChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onParentDestroyChanged(boost::ref(e));
     }
 
-    virtual void onParentSized( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onParentSized = this->get_override( "onParentSized" ) )
-            func_onParentSized( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onParentSized( boost::ref(e) );
+    virtual void onParentSized(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onParentSized = this->get_override("onParentSized"))
+            func_onParentSized(boost::ref(e));
+        else {
+            this->CEGUI::Window::onParentSized(boost::ref(e));
         }
     }
-    
-    virtual void default_onParentSized( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Window::onParentSized( boost::ref(e) );
+
+    virtual void default_onParentSized(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Window::onParentSized(boost::ref(e));
     }
 
-    virtual void onRenderingEnded( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onRenderingEnded = this->get_override( "onRenderingEnded" ) )
-            func_onRenderingEnded( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onRenderingEnded( boost::ref(e) );
+    virtual void onRenderingEnded(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onRenderingEnded = this->get_override("onRenderingEnded"))
+            func_onRenderingEnded(boost::ref(e));
+        else {
+            this->CEGUI::Window::onRenderingEnded(boost::ref(e));
         }
     }
-    
-    virtual void default_onRenderingEnded( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onRenderingEnded( boost::ref(e) );
+
+    virtual void default_onRenderingEnded(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onRenderingEnded(boost::ref(e));
     }
 
-    virtual void onRenderingStarted( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onRenderingStarted = this->get_override( "onRenderingStarted" ) )
-            func_onRenderingStarted( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onRenderingStarted( boost::ref(e) );
+    virtual void onRenderingStarted(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onRenderingStarted = this->get_override("onRenderingStarted"))
+            func_onRenderingStarted(boost::ref(e));
+        else {
+            this->CEGUI::Window::onRenderingStarted(boost::ref(e));
         }
     }
-    
-    virtual void default_onRenderingStarted( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onRenderingStarted( boost::ref(e) );
+
+    virtual void default_onRenderingStarted(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onRenderingStarted(boost::ref(e));
     }
 
-    virtual void onRotated( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onRotated = this->get_override( "onRotated" ) )
-            func_onRotated( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onRotated( boost::ref(e) );
+    virtual void onRotated(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onRotated = this->get_override("onRotated"))
+            func_onRotated(boost::ref(e));
+        else {
+            this->CEGUI::Window::onRotated(boost::ref(e));
         }
     }
-    
-    virtual void default_onRotated( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Window::onRotated( boost::ref(e) );
+
+    virtual void default_onRotated(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Window::onRotated(boost::ref(e));
     }
 
-    virtual void onShown( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onShown = this->get_override( "onShown" ) )
-            func_onShown( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onShown( boost::ref(e) );
+    virtual void onShown(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onShown = this->get_override("onShown"))
+            func_onShown(boost::ref(e));
+        else {
+            this->CEGUI::Window::onShown(boost::ref(e));
         }
     }
-    
-    virtual void default_onShown( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onShown( boost::ref(e) );
+
+    virtual void default_onShown(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onShown(boost::ref(e));
     }
 
-    virtual void onTextChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onTextChanged = this->get_override( "onTextChanged" ) )
-            func_onTextChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onTextChanged( boost::ref(e) );
+    virtual void onTextChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onTextChanged = this->get_override("onTextChanged"))
+            func_onTextChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onTextChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onTextChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onTextChanged( boost::ref(e) );
+
+    virtual void default_onTextChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onTextChanged(boost::ref(e));
     }
 
-    virtual void onTextParsingChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onTextParsingChanged = this->get_override( "onTextParsingChanged" ) )
-            func_onTextParsingChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onTextParsingChanged( boost::ref(e) );
+    virtual void onTextParsingChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onTextParsingChanged = this->get_override("onTextParsingChanged"))
+            func_onTextParsingChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onTextParsingChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onTextParsingChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onTextParsingChanged( boost::ref(e) );
+
+    virtual void default_onTextParsingChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onTextParsingChanged(boost::ref(e));
     }
 
-    virtual void onVerticalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        if( bp::override func_onVerticalAlignmentChanged = this->get_override( "onVerticalAlignmentChanged" ) )
-            func_onVerticalAlignmentChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Element::onVerticalAlignmentChanged( boost::ref(e) );
+    virtual void onVerticalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        if (bp::override func_onVerticalAlignmentChanged = this->get_override("onVerticalAlignmentChanged"))
+            func_onVerticalAlignmentChanged(boost::ref(e));
+        else {
+            this->CEGUI::Element::onVerticalAlignmentChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onVerticalAlignmentChanged( ::CEGUI::ElementEventArgs & e ){
-        CEGUI::Element::onVerticalAlignmentChanged( boost::ref(e) );
+
+    virtual void default_onVerticalAlignmentChanged(::CEGUI::ElementEventArgs & e) {
+        CEGUI::Element::onVerticalAlignmentChanged(boost::ref(e));
     }
 
-    virtual void onWindowRendererAttached( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onWindowRendererAttached = this->get_override( "onWindowRendererAttached" ) )
-            func_onWindowRendererAttached( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onWindowRendererAttached( boost::ref(e) );
+    virtual void onWindowRendererAttached(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onWindowRendererAttached = this->get_override("onWindowRendererAttached"))
+            func_onWindowRendererAttached(boost::ref(e));
+        else {
+            this->CEGUI::Window::onWindowRendererAttached(boost::ref(e));
         }
     }
-    
-    virtual void default_onWindowRendererAttached( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onWindowRendererAttached( boost::ref(e) );
+
+    virtual void default_onWindowRendererAttached(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onWindowRendererAttached(boost::ref(e));
     }
 
-    virtual void onWindowRendererDetached( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onWindowRendererDetached = this->get_override( "onWindowRendererDetached" ) )
-            func_onWindowRendererDetached( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onWindowRendererDetached( boost::ref(e) );
+    virtual void onWindowRendererDetached(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onWindowRendererDetached = this->get_override("onWindowRendererDetached"))
+            func_onWindowRendererDetached(boost::ref(e));
+        else {
+            this->CEGUI::Window::onWindowRendererDetached(boost::ref(e));
         }
     }
-    
-    virtual void default_onWindowRendererDetached( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onWindowRendererDetached( boost::ref(e) );
+
+    virtual void default_onWindowRendererDetached(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onWindowRendererDetached(boost::ref(e));
     }
 
-    virtual void onZChange_impl(  ){
-        if( bp::override func_onZChange_impl = this->get_override( "onZChange_impl" ) )
-            func_onZChange_impl(  );
-        else{
-            this->CEGUI::Window::onZChange_impl(  );
+    virtual void onZChange_impl() {
+        if (bp::override func_onZChange_impl = this->get_override("onZChange_impl"))
+            func_onZChange_impl();
+        else {
+            this->CEGUI::Window::onZChange_impl();
         }
     }
-    
-    virtual void default_onZChange_impl(  ){
-        CEGUI::Window::onZChange_impl( );
+
+    virtual void default_onZChange_impl() {
+        CEGUI::Window::onZChange_impl();
     }
 
-    virtual void onZChanged( ::CEGUI::WindowEventArgs & e ){
-        if( bp::override func_onZChanged = this->get_override( "onZChanged" ) )
-            func_onZChanged( boost::ref(e) );
-        else{
-            this->CEGUI::Window::onZChanged( boost::ref(e) );
+    virtual void onZChanged(::CEGUI::WindowEventArgs & e) {
+        if (bp::override func_onZChanged = this->get_override("onZChanged"))
+            func_onZChanged(boost::ref(e));
+        else {
+            this->CEGUI::Window::onZChanged(boost::ref(e));
         }
     }
-    
-    virtual void default_onZChanged( ::CEGUI::WindowEventArgs & e ){
-        CEGUI::Window::onZChanged( boost::ref(e) );
+
+    virtual void default_onZChanged(::CEGUI::WindowEventArgs & e) {
+        CEGUI::Window::onZChanged(boost::ref(e));
     }
 
-    virtual void performChildWindowLayout( bool nonclient_sized_hint=false, bool client_sized_hint=false ) {
-        if( bp::override func_performChildWindowLayout = this->get_override( "performChildWindowLayout" ) )
-            func_performChildWindowLayout( nonclient_sized_hint, client_sized_hint );
-        else{
-            this->CEGUI::Window::performChildWindowLayout( nonclient_sized_hint, client_sized_hint );
+    virtual void performChildWindowLayout(bool nonclient_sized_hint = false, bool client_sized_hint = false) {
+        if (bp::override func_performChildWindowLayout = this->get_override("performChildWindowLayout"))
+            func_performChildWindowLayout(nonclient_sized_hint, client_sized_hint);
+        else {
+            this->CEGUI::Window::performChildWindowLayout(nonclient_sized_hint, client_sized_hint);
         }
     }
-    
-    void default_performChildWindowLayout( bool nonclient_sized_hint=false, bool client_sized_hint=false ) {
-        CEGUI::Window::performChildWindowLayout( nonclient_sized_hint, client_sized_hint );
+
+    void default_performChildWindowLayout(bool nonclient_sized_hint = false, bool client_sized_hint = false) {
+        CEGUI::Window::performChildWindowLayout(nonclient_sized_hint, client_sized_hint);
     }
 
-    virtual bool performCopy( ::CEGUI::Clipboard & clipboard ) {
-        if( bp::override func_performCopy = this->get_override( "performCopy" ) )
-            return func_performCopy( boost::ref(clipboard) );
-        else{
-            return this->CEGUI::Window::performCopy( boost::ref(clipboard) );
+    virtual bool performCopy(::CEGUI::Clipboard & clipboard) {
+        if (bp::override func_performCopy = this->get_override("performCopy"))
+            return func_performCopy(boost::ref(clipboard));
+        else {
+            return this->CEGUI::Window::performCopy(boost::ref(clipboard));
         }
     }
-    
-    bool default_performCopy( ::CEGUI::Clipboard & clipboard ) {
-        return CEGUI::Window::performCopy( boost::ref(clipboard) );
+
+    bool default_performCopy(::CEGUI::Clipboard & clipboard) {
+        return CEGUI::Window::performCopy(boost::ref(clipboard));
     }
 
-    virtual bool performCut( ::CEGUI::Clipboard & clipboard ) {
-        if( bp::override func_performCut = this->get_override( "performCut" ) )
-            return func_performCut( boost::ref(clipboard) );
-        else{
-            return this->CEGUI::Window::performCut( boost::ref(clipboard) );
+    virtual bool performCut(::CEGUI::Clipboard & clipboard) {
+        if (bp::override func_performCut = this->get_override("performCut"))
+            return func_performCut(boost::ref(clipboard));
+        else {
+            return this->CEGUI::Window::performCut(boost::ref(clipboard));
         }
     }
-    
-    bool default_performCut( ::CEGUI::Clipboard & clipboard ) {
-        return CEGUI::Window::performCut( boost::ref(clipboard) );
+
+    bool default_performCut(::CEGUI::Clipboard & clipboard) {
+        return CEGUI::Window::performCut(boost::ref(clipboard));
     }
 
-    virtual bool performPaste( ::CEGUI::Clipboard & clipboard ) {
-        if( bp::override func_performPaste = this->get_override( "performPaste" ) )
-            return func_performPaste( boost::ref(clipboard) );
-        else{
-            return this->CEGUI::Window::performPaste( boost::ref(clipboard) );
+    virtual bool performPaste(::CEGUI::Clipboard & clipboard) {
+        if (bp::override func_performPaste = this->get_override("performPaste"))
+            return func_performPaste(boost::ref(clipboard));
+        else {
+            return this->CEGUI::Window::performPaste(boost::ref(clipboard));
         }
     }
-    
-    bool default_performPaste( ::CEGUI::Clipboard & clipboard ) {
-        return CEGUI::Window::performPaste( boost::ref(clipboard) );
+
+    bool default_performPaste(::CEGUI::Clipboard & clipboard) {
+        return CEGUI::Window::performPaste(boost::ref(clipboard));
     }
 
-    virtual void populateGeometryBuffer(  ){
-        if( bp::override func_populateGeometryBuffer = this->get_override( "populateGeometryBuffer" ) )
-            func_populateGeometryBuffer(  );
-        else{
-            this->CEGUI::Window::populateGeometryBuffer(  );
+    virtual void populateGeometryBuffer() {
+        if (bp::override func_populateGeometryBuffer = this->get_override("populateGeometryBuffer"))
+            func_populateGeometryBuffer();
+        else {
+            this->CEGUI::Window::populateGeometryBuffer();
         }
     }
-    
-    virtual void default_populateGeometryBuffer(  ){
-        CEGUI::Window::populateGeometryBuffer( );
+
+    virtual void default_populateGeometryBuffer() {
+        CEGUI::Window::populateGeometryBuffer();
     }
 
-    void queueGeometry( ::CEGUI::RenderingContext const & ctx ){
-        CEGUI::Window::queueGeometry( boost::ref(ctx) );
+    void queueGeometry(::CEGUI::RenderingContext const & ctx) {
+        CEGUI::Window::queueGeometry(boost::ref(ctx));
     }
 
-    void releaseRenderingWindow(  ){
-        CEGUI::Window::releaseRenderingWindow(  );
+    void releaseRenderingWindow() {
+        CEGUI::Window::releaseRenderingWindow();
     }
 
-    virtual void removeChild_impl( ::CEGUI::Element * element ){
-        if( bp::override func_removeChild_impl = this->get_override( "removeChild_impl" ) )
-            func_removeChild_impl( boost::python::ptr(element) );
-        else{
-            this->CEGUI::Window::removeChild_impl( boost::python::ptr(element) );
+    virtual void removeChild_impl(::CEGUI::Element * element) {
+        if (bp::override func_removeChild_impl = this->get_override("removeChild_impl"))
+            func_removeChild_impl(boost::python::ptr(element));
+        else {
+            this->CEGUI::Window::removeChild_impl(boost::python::ptr(element));
         }
     }
-    
-    virtual void default_removeChild_impl( ::CEGUI::Element * element ){
-        CEGUI::Window::removeChild_impl( boost::python::ptr(element) );
+
+    virtual void default_removeChild_impl(::CEGUI::Element * element) {
+        CEGUI::Window::removeChild_impl(boost::python::ptr(element));
     }
 
-    void removeWindowFromDrawList( ::CEGUI::Window const & wnd ){
-        CEGUI::Window::removeWindowFromDrawList( boost::ref(wnd) );
+    void removeWindowFromDrawList(::CEGUI::Window const & wnd) {
+        CEGUI::Window::removeWindowFromDrawList(boost::ref(wnd));
     }
 
-    virtual void setArea( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size ) {
-        if( bp::override func_setArea = this->get_override( "setArea" ) )
-            func_setArea( boost::ref(pos), boost::ref(size) );
-        else{
-            this->CEGUI::Element::setArea( boost::ref(pos), boost::ref(size) );
+    virtual void setArea(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size) {
+        if (bp::override func_setArea = this->get_override("setArea"))
+            func_setArea(boost::ref(pos), boost::ref(size));
+        else {
+            this->CEGUI::Element::setArea(boost::ref(pos), boost::ref(size));
         }
     }
-    
-    void default_setArea( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size ) {
-        CEGUI::Element::setArea( boost::ref(pos), boost::ref(size) );
+
+    void default_setArea(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size) {
+        CEGUI::Element::setArea(boost::ref(pos), boost::ref(size));
     }
 
-    virtual void setArea_impl( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing=false, bool fireEvents=true ){
-        if( bp::override func_setArea_impl = this->get_override( "setArea_impl" ) )
-            func_setArea_impl( boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents );
-        else{
-            this->CEGUI::Window::setArea_impl( boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents );
+    virtual void setArea_impl(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing = false, bool fireEvents = true) {
+        if (bp::override func_setArea_impl = this->get_override("setArea_impl"))
+            func_setArea_impl(boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents);
+        else {
+            this->CEGUI::Window::setArea_impl(boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents);
         }
     }
-    
-    virtual void default_setArea_impl( ::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing=false, bool fireEvents=true ){
-        CEGUI::Window::setArea_impl( boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents );
+
+    virtual void default_setArea_impl(::CEGUI::UVector2 const & pos, ::CEGUI::USize const & size, bool topLeftSizing = false, bool fireEvents = true) {
+        CEGUI::Window::setArea_impl(boost::ref(pos), boost::ref(size), topLeftSizing, fireEvents);
     }
 
-    virtual void setHorizontalAlignment( ::CEGUI::HorizontalAlignment const alignment ) {
-        if( bp::override func_setHorizontalAlignment = this->get_override( "setHorizontalAlignment" ) )
-            func_setHorizontalAlignment( alignment );
-        else{
-            this->CEGUI::Element::setHorizontalAlignment( alignment );
+    virtual void setHorizontalAlignment(::CEGUI::HorizontalAlignment const alignment) {
+        if (bp::override func_setHorizontalAlignment = this->get_override("setHorizontalAlignment"))
+            func_setHorizontalAlignment(alignment);
+        else {
+            this->CEGUI::Element::setHorizontalAlignment(alignment);
         }
     }
-    
-    void default_setHorizontalAlignment( ::CEGUI::HorizontalAlignment const alignment ) {
-        CEGUI::Element::setHorizontalAlignment( alignment );
+
+    void default_setHorizontalAlignment(::CEGUI::HorizontalAlignment const alignment) {
+        CEGUI::Element::setHorizontalAlignment(alignment);
     }
 
-    virtual void setLookNFeel( ::CEGUI::String const & look ) {
-        if( bp::override func_setLookNFeel = this->get_override( "setLookNFeel" ) )
-            func_setLookNFeel( boost::ref(look) );
-        else{
-            this->CEGUI::Window::setLookNFeel( boost::ref(look) );
+    virtual void setLookNFeel(::CEGUI::String const & look) {
+        if (bp::override func_setLookNFeel = this->get_override("setLookNFeel"))
+            func_setLookNFeel(boost::ref(look));
+        else {
+            this->CEGUI::Window::setLookNFeel(boost::ref(look));
         }
     }
-    
-    void default_setLookNFeel( ::CEGUI::String const & look ) {
-        CEGUI::Window::setLookNFeel( boost::ref(look) );
+
+    void default_setLookNFeel(::CEGUI::String const & look) {
+        CEGUI::Window::setLookNFeel(boost::ref(look));
     }
 
-    virtual void setMargin( ::CEGUI::UBox const & margin ) {
-        if( bp::override func_setMargin = this->get_override( "setMargin" ) )
-            func_setMargin( boost::ref(margin) );
-        else{
-            this->CEGUI::Window::setMargin( boost::ref(margin) );
+    virtual void setMargin(::CEGUI::UBox const & margin) {
+        if (bp::override func_setMargin = this->get_override("setMargin"))
+            func_setMargin(boost::ref(margin));
+        else {
+            this->CEGUI::Window::setMargin(boost::ref(margin));
         }
     }
-    
-    void default_setMargin( ::CEGUI::UBox const & margin ) {
-        CEGUI::Window::setMargin( boost::ref(margin) );
+
+    void default_setMargin(::CEGUI::UBox const & margin) {
+        CEGUI::Window::setMargin(boost::ref(margin));
     }
 
-    virtual void setName( ::CEGUI::String const & name ) {
-        if( bp::override func_setName = this->get_override( "setName" ) )
-            func_setName( boost::ref(name) );
-        else{
-            this->CEGUI::NamedElement::setName( boost::ref(name) );
+    virtual void setName(::CEGUI::String const & name) {
+        if (bp::override func_setName = this->get_override("setName"))
+            func_setName(boost::ref(name));
+        else {
+            this->CEGUI::NamedElement::setName(boost::ref(name));
         }
     }
-    
-    void default_setName( ::CEGUI::String const & name ) {
-        CEGUI::NamedElement::setName( boost::ref(name) );
+
+    void default_setName(::CEGUI::String const & name) {
+        CEGUI::NamedElement::setName(boost::ref(name));
     }
 
-    virtual void setParent( ::CEGUI::Element * parent ){
-        if( bp::override func_setParent = this->get_override( "setParent" ) )
-            func_setParent( boost::python::ptr(parent) );
-        else{
-            this->CEGUI::Window::setParent( boost::python::ptr(parent) );
+    virtual void setParent(::CEGUI::Element * parent) {
+        if (bp::override func_setParent = this->get_override("setParent"))
+            func_setParent(boost::python::ptr(parent));
+        else {
+            this->CEGUI::Window::setParent(boost::python::ptr(parent));
         }
     }
-    
-    virtual void default_setParent( ::CEGUI::Element * parent ){
-        CEGUI::Window::setParent( boost::python::ptr(parent) );
+
+    virtual void default_setParent(::CEGUI::Element * parent) {
+        CEGUI::Window::setParent(boost::python::ptr(parent));
     }
 
-    virtual void setVerticalAlignment( ::CEGUI::VerticalAlignment const alignment ) {
-        if( bp::override func_setVerticalAlignment = this->get_override( "setVerticalAlignment" ) )
-            func_setVerticalAlignment( alignment );
-        else{
-            this->CEGUI::Element::setVerticalAlignment( alignment );
+    virtual void setVerticalAlignment(::CEGUI::VerticalAlignment const alignment) {
+        if (bp::override func_setVerticalAlignment = this->get_override("setVerticalAlignment"))
+            func_setVerticalAlignment(alignment);
+        else {
+            this->CEGUI::Element::setVerticalAlignment(alignment);
         }
     }
-    
-    void default_setVerticalAlignment( ::CEGUI::VerticalAlignment const alignment ) {
-        CEGUI::Element::setVerticalAlignment( alignment );
+
+    void default_setVerticalAlignment(::CEGUI::VerticalAlignment const alignment) {
+        CEGUI::Element::setVerticalAlignment(alignment);
     }
 
-    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent( ::CEGUI::String const & name, ::CEGUI::String const & subscriber_name ) {
-        if( bp::override func_subscribeScriptedEvent = this->get_override( "subscribeScriptedEvent" ) )
-            return func_subscribeScriptedEvent( boost::ref(name), boost::ref(subscriber_name) );
-        else{
-            return this->CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), boost::ref(subscriber_name) );
+    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent(::CEGUI::String const & name, ::CEGUI::String const & subscriber_name) {
+        if (bp::override func_subscribeScriptedEvent = this->get_override("subscribeScriptedEvent"))
+            return func_subscribeScriptedEvent(boost::ref(name), boost::ref(subscriber_name));
+        else {
+            return this->CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), boost::ref(subscriber_name));
         }
     }
-    
-    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent( ::CEGUI::String const & name, ::CEGUI::String const & subscriber_name ) {
-        return CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), boost::ref(subscriber_name) );
+
+    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent(::CEGUI::String const & name, ::CEGUI::String const & subscriber_name) {
+        return CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), boost::ref(subscriber_name));
     }
 
-    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent( ::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name ) {
-        if( bp::override func_subscribeScriptedEvent = this->get_override( "subscribeScriptedEvent" ) )
-            return func_subscribeScriptedEvent( boost::ref(name), group, boost::ref(subscriber_name) );
-        else{
-            return this->CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), group, boost::ref(subscriber_name) );
+    virtual ::CEGUI::RefCounted< CEGUI::BoundSlot > subscribeScriptedEvent(::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name) {
+        if (bp::override func_subscribeScriptedEvent = this->get_override("subscribeScriptedEvent"))
+            return func_subscribeScriptedEvent(boost::ref(name), group, boost::ref(subscriber_name));
+        else {
+            return this->CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), group, boost::ref(subscriber_name));
         }
     }
-    
-    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent( ::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name ) {
-        return CEGUI::EventSet::subscribeScriptedEvent( boost::ref(name), group, boost::ref(subscriber_name) );
+
+    ::CEGUI::RefCounted< CEGUI::BoundSlot > default_subscribeScriptedEvent(::CEGUI::String const & name, unsigned int group, ::CEGUI::String const & subscriber_name) {
+        return CEGUI::EventSet::subscribeScriptedEvent(boost::ref(name), group, boost::ref(subscriber_name));
     }
 
-    void transferChildSurfaces(  ){
-        CEGUI::Window::transferChildSurfaces(  );
+    void transferChildSurfaces() {
+        CEGUI::Window::transferChildSurfaces();
     }
 
-    virtual void update( float elapsed ) {
-        if( bp::override func_update = this->get_override( "update" ) )
-            func_update( elapsed );
-        else{
-            this->CEGUI::Window::update( elapsed );
+    virtual void update(float elapsed) {
+        if (bp::override func_update = this->get_override("update"))
+            func_update(elapsed);
+        else {
+            this->CEGUI::Window::update(elapsed);
         }
     }
-    
-    void default_update( float elapsed ) {
-        CEGUI::Window::update( elapsed );
+
+    void default_update(float elapsed) {
+        CEGUI::Window::update(elapsed);
     }
 
-    void updateGeometryRenderSettings(  ){
-        CEGUI::Window::updateGeometryRenderSettings(  );
+    void updateGeometryRenderSettings() {
+        CEGUI::Window::updateGeometryRenderSettings();
     }
 
-    virtual void updateSelf( float elapsed ){
-        if( bp::override func_updateSelf = this->get_override( "updateSelf" ) )
-            func_updateSelf( elapsed );
-        else{
-            this->CEGUI::Window::updateSelf( elapsed );
+    virtual void updateSelf(float elapsed) {
+        if (bp::override func_updateSelf = this->get_override("updateSelf"))
+            func_updateSelf(elapsed);
+        else {
+            this->CEGUI::Window::updateSelf(elapsed);
         }
     }
-    
-    virtual void default_updateSelf( float elapsed ){
-        CEGUI::Window::updateSelf( elapsed );
+
+    virtual void default_updateSelf(float elapsed) {
+        CEGUI::Window::updateSelf(elapsed);
     }
 
-    virtual bool writeAutoChildWindowXML( ::CEGUI::XMLSerializer & xml_stream ) const {
-        if( bp::override func_writeAutoChildWindowXML = this->get_override( "writeAutoChildWindowXML" ) )
-            return func_writeAutoChildWindowXML( boost::ref(xml_stream) );
-        else{
-            return this->CEGUI::Window::writeAutoChildWindowXML( boost::ref(xml_stream) );
+    virtual bool writeAutoChildWindowXML(::CEGUI::XMLSerializer & xml_stream) const {
+        if (bp::override func_writeAutoChildWindowXML = this->get_override("writeAutoChildWindowXML"))
+            return func_writeAutoChildWindowXML(boost::ref(xml_stream));
+        else {
+            return this->CEGUI::Window::writeAutoChildWindowXML(boost::ref(xml_stream));
         }
     }
-    
-    virtual bool default_writeAutoChildWindowXML( ::CEGUI::XMLSerializer & xml_stream ) const {
-        return CEGUI::Window::writeAutoChildWindowXML( boost::ref(xml_stream) );
+
+    virtual bool default_writeAutoChildWindowXML(::CEGUI::XMLSerializer & xml_stream) const {
+        return CEGUI::Window::writeAutoChildWindowXML(boost::ref(xml_stream));
     }
 
-    virtual int writeChildWindowsXML( ::CEGUI::XMLSerializer & xml_stream ) const {
-        if( bp::override func_writeChildWindowsXML = this->get_override( "writeChildWindowsXML" ) )
-            return func_writeChildWindowsXML( boost::ref(xml_stream) );
-        else{
-            return this->CEGUI::Window::writeChildWindowsXML( boost::ref(xml_stream) );
+    virtual int writeChildWindowsXML(::CEGUI::XMLSerializer & xml_stream) const {
+        if (bp::override func_writeChildWindowsXML = this->get_override("writeChildWindowsXML"))
+            return func_writeChildWindowsXML(boost::ref(xml_stream));
+        else {
+            return this->CEGUI::Window::writeChildWindowsXML(boost::ref(xml_stream));
         }
     }
-    
-    virtual int default_writeChildWindowsXML( ::CEGUI::XMLSerializer & xml_stream ) const {
-        return CEGUI::Window::writeChildWindowsXML( boost::ref(xml_stream) );
+
+    virtual int default_writeChildWindowsXML(::CEGUI::XMLSerializer & xml_stream) const {
+        return CEGUI::Window::writeChildWindowsXML(boost::ref(xml_stream));
     }
 
-    virtual void writeXMLToStream( ::CEGUI::XMLSerializer & xml_stream ) const  {
-        if( bp::override func_writeXMLToStream = this->get_override( "writeXMLToStream" ) )
-            func_writeXMLToStream( boost::ref(xml_stream) );
-        else{
-            this->CEGUI::Window::writeXMLToStream( boost::ref(xml_stream) );
+    virtual void writeXMLToStream(::CEGUI::XMLSerializer & xml_stream) const {
+        if (bp::override func_writeXMLToStream = this->get_override("writeXMLToStream"))
+            func_writeXMLToStream(boost::ref(xml_stream));
+        else {
+            this->CEGUI::Window::writeXMLToStream(boost::ref(xml_stream));
         }
     }
-    
-    void default_writeXMLToStream( ::CEGUI::XMLSerializer & xml_stream ) const  {
-        CEGUI::Window::writeXMLToStream( boost::ref(xml_stream) );
+
+    void default_writeXMLToStream(::CEGUI::XMLSerializer & xml_stream) const {
+        CEGUI::Window::writeXMLToStream(boost::ref(xml_stream));
     }
 
 };
 
-void register_MultiColumnList_class(){
+void register_MultiColumnList_class() {
 
     { //::CEGUI::MultiColumnList
         typedef bp::class_< MultiColumnList_wrapper, bp::bases< CEGUI::Window >, boost::noncopyable > MultiColumnList_exposer_t;
-        MultiColumnList_exposer_t MultiColumnList_exposer = MultiColumnList_exposer_t( "MultiColumnList", "*!\n\
+        MultiColumnList_exposer_t MultiColumnList_exposer = MultiColumnList_exposer_t("MultiColumnList", "*!\n\
         \n\
            Base class for the multi column list widget.\n\
-        *\n", bp::init< CEGUI::String const &, CEGUI::String const & >(( bp::arg("type"), bp::arg("name") ), "*************************************************************************\n\
+        *\n", bp::init< CEGUI::String const &, CEGUI::String const & >((bp::arg("type"), bp::arg("name")), "*************************************************************************\n\
            Construction and Destruction\n\
         *************************************************************************\n\
         *!\n\
         \n\
            Constructor for the Multi-column list base class\n\
-        *\n") );
-        bp::scope MultiColumnList_scope( MultiColumnList_exposer );
+        *\n"));
+        bp::scope MultiColumnList_scope(MultiColumnList_exposer);
         bp::enum_< CEGUI::MultiColumnList::SelectionMode>("SelectionMode")
-            .value("RowSingle", CEGUI::MultiColumnList::RowSingle)
-            .value("RowMultiple", CEGUI::MultiColumnList::RowMultiple)
-            .value("CellSingle", CEGUI::MultiColumnList::CellSingle)
-            .value("CellMultiple", CEGUI::MultiColumnList::CellMultiple)
-            .value("NominatedColumnSingle", CEGUI::MultiColumnList::NominatedColumnSingle)
-            .value("NominatedColumnMultiple", CEGUI::MultiColumnList::NominatedColumnMultiple)
-            .value("ColumnSingle", CEGUI::MultiColumnList::ColumnSingle)
-            .value("ColumnMultiple", CEGUI::MultiColumnList::ColumnMultiple)
-            .value("NominatedRowSingle", CEGUI::MultiColumnList::NominatedRowSingle)
-            .value("NominatedRowMultiple", CEGUI::MultiColumnList::NominatedRowMultiple)
-            .export_values()
-            ;
+                .value("RowSingle", CEGUI::MultiColumnList::RowSingle)
+                .value("RowMultiple", CEGUI::MultiColumnList::RowMultiple)
+                .value("CellSingle", CEGUI::MultiColumnList::CellSingle)
+                .value("CellMultiple", CEGUI::MultiColumnList::CellMultiple)
+                .value("NominatedColumnSingle", CEGUI::MultiColumnList::NominatedColumnSingle)
+                .value("NominatedColumnMultiple", CEGUI::MultiColumnList::NominatedColumnMultiple)
+                .value("ColumnSingle", CEGUI::MultiColumnList::ColumnSingle)
+                .value("ColumnMultiple", CEGUI::MultiColumnList::ColumnMultiple)
+                .value("NominatedRowSingle", CEGUI::MultiColumnList::NominatedRowSingle)
+                .value("NominatedRowMultiple", CEGUI::MultiColumnList::NominatedRowMultiple)
+                .export_values()
+                ;
         { //::CEGUI::MultiColumnList::addColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*addColumn_function_type )( ::CEGUI::String const &,::CEGUI::uint,::CEGUI::UDim const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addColumn"
-                , addColumn_function_type( &::CEGUI::MultiColumnList::addColumn )
-                , ( bp::arg("text"), bp::arg("col_id"), bp::arg("width") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*addColumn_function_type)(::CEGUI::String const &, ::CEGUI::uint, ::CEGUI::UDim const &);
+
+            MultiColumnList_exposer.def(
+                    "addColumn"
+                    , addColumn_function_type(&::CEGUI::MultiColumnList::addColumn)
+                    , (bp::arg("text"), bp::arg("col_id"), bp::arg("width"))
+                    , "*!\n\
                \n\
                   Add a column to the list box.\n\
             \n\
@@ -1568,18 +1568,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::addColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*addColumn_function_type )( ::CEGUI::String const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addColumn"
-                , addColumn_function_type( &::CEGUI::MultiColumnList::addColumn )
-                , ( bp::arg("value") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*addColumn_function_type)(::CEGUI::String const &);
+
+            MultiColumnList_exposer.def(
+                    "addColumn"
+                    , addColumn_function_type(&::CEGUI::MultiColumnList::addColumn)
+                    , (bp::arg("value"))
+                    , "*!\n\
                \n\
                   Add a column to the list box.\n\
             \n\
@@ -1594,18 +1594,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::addRow
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*addRow_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addRow"
-                , addRow_function_type( &::CEGUI::MultiColumnList::addRow )
-                , ( bp::arg("row_id")=(::CEGUI::uint)(0) )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*addRow_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "addRow"
+                    , addRow_function_type(&::CEGUI::MultiColumnList::addRow)
+                    , (bp::arg("row_id") = (::CEGUI::uint)(0))
+                    , "*!\n\
                \n\
                   Add an empty row to the list box.\n\
             \n\
@@ -1619,18 +1619,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Initial zero based index of the new row.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::addRow
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*addRow_function_type )( ::CEGUI::ListboxItem *,::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addRow"
-                , addRow_function_type( &::CEGUI::MultiColumnList::addRow )
-                , ( bp::arg("item"), bp::arg("col_id"), bp::arg("row_id")=(::CEGUI::uint)(0) )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*addRow_function_type)(::CEGUI::ListboxItem *, ::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "addRow"
+                    , addRow_function_type(&::CEGUI::MultiColumnList::addRow)
+                    , (bp::arg("item"), bp::arg("col_id"), bp::arg("row_id") = (::CEGUI::uint)(0))
+                    , "*!\n\
                \n\
                   Add a row to the list box, and set the item in the column with ID  col_id to  item.\n\
             \n\
@@ -1653,18 +1653,18 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if no column with the specified ID is attached to the\
                list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::autoSizeColumnHeader
-        
-            typedef void ( ::CEGUI::MultiColumnList::*autoSizeColumnHeader_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "autoSizeColumnHeader"
-                , autoSizeColumnHeader_function_type( &::CEGUI::MultiColumnList::autoSizeColumnHeader )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*autoSizeColumnHeader_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "autoSizeColumnHeader"
+                    , autoSizeColumnHeader_function_type(&::CEGUI::MultiColumnList::autoSizeColumnHeader)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   Automatically determines the best fit size for the specified column and sets\n\
                   the column width to the same.\n\
@@ -1676,67 +1676,67 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::clearAllSelections
-        
-            typedef void ( ::CEGUI::MultiColumnList::*clearAllSelections_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "clearAllSelections"
-                , clearAllSelections_function_type( &::CEGUI::MultiColumnList::clearAllSelections )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*clearAllSelections_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "clearAllSelections"
+                    , clearAllSelections_function_type(&::CEGUI::MultiColumnList::clearAllSelections)
+                    , "*!\n\
                \n\
                   Removed the selected state from any currently selected ListboxItem attached to the list.\n\
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::clearAllSelections_impl
-        
-            typedef bool ( MultiColumnList_wrapper::*clearAllSelections_impl_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "clearAllSelections_impl"
-                , clearAllSelections_impl_function_type( &MultiColumnList_wrapper::clearAllSelections_impl )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*clearAllSelections_impl_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "clearAllSelections_impl"
+                    , clearAllSelections_impl_function_type(&MultiColumnList_wrapper::clearAllSelections_impl)
+                    , "*!\n\
                \n\
                   Clear the selected state for all items (implementation)\n\
             \n\
                @return\n\
                   true if some selections were cleared, false nothing was changed.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::configureScrollbars
-        
-            typedef void ( MultiColumnList_wrapper::*configureScrollbars_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "configureScrollbars"
-                , configureScrollbars_function_type( &MultiColumnList_wrapper::configureScrollbars )
-                , "*************************************************************************\n\
+
+            typedef void ( MultiColumnList_wrapper::*configureScrollbars_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "configureScrollbars"
+                    , configureScrollbars_function_type(&MultiColumnList_wrapper::configureScrollbars)
+                    , "*************************************************************************\n\
                Implementation Functions\n\
             *************************************************************************\n\
             *!\n\
             \n\
                display required integrated scroll bars according to current state of the list box and update\
                their values.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::ensureColumnIsVisible
-        
-            typedef void ( ::CEGUI::MultiColumnList::*ensureColumnIsVisible_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "ensureColumnIsVisible"
-                , ensureColumnIsVisible_function_type( &::CEGUI::MultiColumnList::ensureColumnIsVisible )
-                , ( bp::arg("column_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*ensureColumnIsVisible_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "ensureColumnIsVisible"
+                    , ensureColumnIsVisible_function_type(&::CEGUI::MultiColumnList::ensureColumnIsVisible)
+                    , (bp::arg("column_idx"))
+                    , "*!\n\
                 \n\
                     Ensure that the column with ID  column_idx is visible within the\n\
                     multi-column listbox.\n\
@@ -1746,18 +1746,18 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::ensureItemColumnIsVisible
-        
-            typedef void ( ::CEGUI::MultiColumnList::*ensureItemColumnIsVisible_function_type )( ::CEGUI::ListboxItem const * ) ;
-            
-            MultiColumnList_exposer.def( 
-                "ensureItemColumnIsVisible"
-                , ensureItemColumnIsVisible_function_type( &::CEGUI::MultiColumnList::ensureItemColumnIsVisible )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*ensureItemColumnIsVisible_function_type)(::CEGUI::ListboxItem const *);
+
+            MultiColumnList_exposer.def(
+                    "ensureItemColumnIsVisible"
+                    , ensureItemColumnIsVisible_function_type(&::CEGUI::MultiColumnList::ensureItemColumnIsVisible)
+                    , (bp::arg("item"))
+                    , "*!\n\
                 \n\
                     Ensure that the column of  item is visible within the multi-column\n\
                     listbox.\n\
@@ -1771,18 +1771,18 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::ensureItemIsVisible
-        
-            typedef void ( ::CEGUI::MultiColumnList::*ensureItemIsVisible_function_type )( ::CEGUI::ListboxItem const * ) ;
-            
-            MultiColumnList_exposer.def( 
-                "ensureItemIsVisible"
-                , ensureItemIsVisible_function_type( &::CEGUI::MultiColumnList::ensureItemIsVisible )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*ensureItemIsVisible_function_type)(::CEGUI::ListboxItem const *);
+
+            MultiColumnList_exposer.def(
+                    "ensureItemIsVisible"
+                    , ensureItemIsVisible_function_type(&::CEGUI::MultiColumnList::ensureItemIsVisible)
+                    , (bp::arg("item"))
+                    , "*!\n\
                 \n\
                     Ensure the specified item is made visible within the multi-column\n\
                     listbox.\n\
@@ -1796,18 +1796,18 @@ void register_MultiColumnList_class(){
             \n\
                 @exception  InvalidRequestException thrown if  item is not attached to\n\
                             this multicolumnlist.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::ensureItemIsVisible
-        
-            typedef void ( ::CEGUI::MultiColumnList::*ensureItemIsVisible_function_type )( ::CEGUI::MCLGridRef const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "ensureItemIsVisible"
-                , ensureItemIsVisible_function_type( &::CEGUI::MultiColumnList::ensureItemIsVisible )
-                , ( bp::arg("grid_ref") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*ensureItemIsVisible_function_type)(::CEGUI::MCLGridRef const &);
+
+            MultiColumnList_exposer.def(
+                    "ensureItemIsVisible"
+                    , ensureItemIsVisible_function_type(&::CEGUI::MultiColumnList::ensureItemIsVisible)
+                    , (bp::arg("grid_ref"))
+                    , "*!\n\
                 \n\
                     Ensure the item at the specified grid coordinate is visible within the\n\
                     multi-column listbox.\n\
@@ -1818,18 +1818,18 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::ensureItemRowIsVisible
-        
-            typedef void ( ::CEGUI::MultiColumnList::*ensureItemRowIsVisible_function_type )( ::CEGUI::ListboxItem const * ) ;
-            
-            MultiColumnList_exposer.def( 
-                "ensureItemRowIsVisible"
-                , ensureItemRowIsVisible_function_type( &::CEGUI::MultiColumnList::ensureItemRowIsVisible )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*ensureItemRowIsVisible_function_type)(::CEGUI::ListboxItem const *);
+
+            MultiColumnList_exposer.def(
+                    "ensureItemRowIsVisible"
+                    , ensureItemRowIsVisible_function_type(&::CEGUI::MultiColumnList::ensureItemRowIsVisible)
+                    , (bp::arg("item"))
+                    , "*!\n\
                 \n\
                     Ensure that the row of the  item is visible within the multi-column\n\
                     listbox.\n\
@@ -1843,18 +1843,18 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::ensureRowIsVisible
-        
-            typedef void ( ::CEGUI::MultiColumnList::*ensureRowIsVisible_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "ensureRowIsVisible"
-                , ensureRowIsVisible_function_type( &::CEGUI::MultiColumnList::ensureRowIsVisible )
-                , ( bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*ensureRowIsVisible_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "ensureRowIsVisible"
+                    , ensureRowIsVisible_function_type(&::CEGUI::MultiColumnList::ensureRowIsVisible)
+                    , (bp::arg("row_idx"))
+                    , "*!\n\
                 \n\
                     Ensure that the row with index  row_idx is visible within the\n\
                     multi-column listbox.\n\
@@ -1864,19 +1864,19 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::findColumnItemWithText
-        
-            typedef ::CEGUI::ListboxItem * ( ::CEGUI::MultiColumnList::*findColumnItemWithText_function_type )( ::CEGUI::String const &,::CEGUI::uint,::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "findColumnItemWithText"
-                , findColumnItemWithText_function_type( &::CEGUI::MultiColumnList::findColumnItemWithText )
-                , ( bp::arg("text"), bp::arg("col_idx"), bp::arg("start_item") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (::CEGUI::MultiColumnList::*findColumnItemWithText_function_type)(::CEGUI::String const &, ::CEGUI::uint, ::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "findColumnItemWithText"
+                    , findColumnItemWithText_function_type(&::CEGUI::MultiColumnList::findColumnItemWithText)
+                    , (bp::arg("text"), bp::arg("col_idx"), bp::arg("start_item"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return the ListboxItem in column  col_idx that has the text string  text.\n\
             \n\
@@ -1896,19 +1896,19 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if  start_item is not attached to the list box, or if\
                col_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::findListItemWithText
-        
-            typedef ::CEGUI::ListboxItem * ( ::CEGUI::MultiColumnList::*findListItemWithText_function_type )( ::CEGUI::String const &,::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "findListItemWithText"
-                , findListItemWithText_function_type( &::CEGUI::MultiColumnList::findListItemWithText )
-                , ( bp::arg("text"), bp::arg("start_item") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (::CEGUI::MultiColumnList::*findListItemWithText_function_type)(::CEGUI::String const &, ::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "findListItemWithText"
+                    , findListItemWithText_function_type(&::CEGUI::MultiColumnList::findListItemWithText)
+                    , (bp::arg("text"), bp::arg("start_item"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return the ListboxItem that has the text string  text.\n\
             \n\
@@ -1926,19 +1926,19 @@ void register_MultiColumnList_class(){
                   Pointer to the first ListboxItem, after  start_item, that has the string  text.\n\
             \n\
                @exception InvalidRequestException  thrown if  start_item is not attached to the list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::findRowItemWithText
-        
-            typedef ::CEGUI::ListboxItem * ( ::CEGUI::MultiColumnList::*findRowItemWithText_function_type )( ::CEGUI::String const &,::CEGUI::uint,::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "findRowItemWithText"
-                , findRowItemWithText_function_type( &::CEGUI::MultiColumnList::findRowItemWithText )
-                , ( bp::arg("text"), bp::arg("row_idx"), bp::arg("start_item") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (::CEGUI::MultiColumnList::*findRowItemWithText_function_type)(::CEGUI::String const &, ::CEGUI::uint, ::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "findRowItemWithText"
+                    , findRowItemWithText_function_type(&::CEGUI::MultiColumnList::findRowItemWithText)
+                    , (bp::arg("text"), bp::arg("row_idx"), bp::arg("start_item"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return the ListboxItem in row  row_idx that has the text string  text.\n\
             \n\
@@ -1958,17 +1958,17 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if  start_item is not attached to the list box, or if\
                row_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getAutoSizeColumnUsesHeader
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*getAutoSizeColumnUsesHeader_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getAutoSizeColumnUsesHeader"
-                , getAutoSizeColumnUsesHeader_function_type( &::CEGUI::MultiColumnList::getAutoSizeColumnUsesHeader )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*getAutoSizeColumnUsesHeader_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getAutoSizeColumnUsesHeader"
+                    , getAutoSizeColumnUsesHeader_function_type(&::CEGUI::MultiColumnList::getAutoSizeColumnUsesHeader)
+                    , "*!\n\
                 \n\
                     Get whether or not column auto-sizing (autoSizeColumnHeader()) will use\n\
                     the list header segment size.\n\
@@ -1976,34 +1976,34 @@ void register_MultiColumnList_class(){
                 @return\n\
                     Return true if the header segment will be included in the width\n\
                     calculation.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::getColumnCount
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getColumnCount_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getColumnCount"
-                , getColumnCount_function_type( &::CEGUI::MultiColumnList::getColumnCount )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getColumnCount_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getColumnCount"
+                    , getColumnCount_function_type(&::CEGUI::MultiColumnList::getColumnCount)
+                    , "*!\n\
                \n\
                   Return the number of columns in the multi-column list\n\
             \n\
                @return\n\
                   uint value equal to the number of columns in the list.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getColumnHeaderWidth
-        
-            typedef ::CEGUI::UDim ( ::CEGUI::MultiColumnList::*getColumnHeaderWidth_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getColumnHeaderWidth"
-                , getColumnHeaderWidth_function_type( &::CEGUI::MultiColumnList::getColumnHeaderWidth )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef ::CEGUI::UDim(::CEGUI::MultiColumnList::*getColumnHeaderWidth_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getColumnHeaderWidth"
+                    , getColumnHeaderWidth_function_type(&::CEGUI::MultiColumnList::getColumnHeaderWidth)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   Return the width of the specified column header (and therefore the column itself).\n\
             \n\
@@ -2014,18 +2014,18 @@ void register_MultiColumnList_class(){
                   Width of the column header at the zero based column index specified by  col_idx, as a UDim\n\
             \n\
                @exception InvalidRequestException  thrown if  column is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getColumnID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getColumnID_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getColumnID"
-                , getColumnID_function_type( &::CEGUI::MultiColumnList::getColumnID )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getColumnID_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getColumnID"
+                    , getColumnID_function_type(&::CEGUI::MultiColumnList::getColumnID)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   Return the ID code assigned to the requested column.\n\
             \n\
@@ -2036,18 +2036,18 @@ void register_MultiColumnList_class(){
                   Current ID code assigned to the column at the requested index.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is out of range\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getColumnWithHeaderText
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getColumnWithHeaderText_function_type )( ::CEGUI::String const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getColumnWithHeaderText"
-                , getColumnWithHeaderText_function_type( &::CEGUI::MultiColumnList::getColumnWithHeaderText )
-                , ( bp::arg("text") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getColumnWithHeaderText_function_type)(::CEGUI::String const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getColumnWithHeaderText"
+                    , getColumnWithHeaderText_function_type(&::CEGUI::MultiColumnList::getColumnWithHeaderText)
+                    , (bp::arg("text"))
+                    , "*!\n\
                \n\
                   Return the zero based index of the column whos header text matches the specified text.\n\
             \n\
@@ -2058,18 +2058,18 @@ void register_MultiColumnList_class(){
                   Zero based column index of the column whos header has the specified text.\n\
             \n\
                @exception InvalidRequestException  thrown if no columns header has the requested text.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getColumnWithID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getColumnWithID_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getColumnWithID"
-                , getColumnWithID_function_type( &::CEGUI::MultiColumnList::getColumnWithID )
-                , ( bp::arg("col_id") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getColumnWithID_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getColumnWithID"
+                    , getColumnWithID_function_type(&::CEGUI::MultiColumnList::getColumnWithID)
+                    , (bp::arg("col_id"))
+                    , "*!\n\
                \n\
                   Return the zero based column index of the column with the specified ID.\n\
             \n\
@@ -2080,18 +2080,18 @@ void register_MultiColumnList_class(){
                   Zero based column index of the first column whos ID matches  col_id.\n\
             \n\
                @exception  InvalidRequestException    thrown if no attached column has the requested ID.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getFirstSelectedItem
-        
-            typedef ::CEGUI::ListboxItem * ( ::CEGUI::MultiColumnList::*getFirstSelectedItem_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getFirstSelectedItem"
-                , getFirstSelectedItem_function_type( &::CEGUI::MultiColumnList::getFirstSelectedItem )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (::CEGUI::MultiColumnList::*getFirstSelectedItem_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getFirstSelectedItem"
+                    , getFirstSelectedItem_function_type(&::CEGUI::MultiColumnList::getFirstSelectedItem)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return a pointer to the first selected ListboxItem attached to this list box.\n\
             \n\
@@ -2101,19 +2101,19 @@ void register_MultiColumnList_class(){
                @return\n\
                   Pointer to the first ListboxItem attached to this list box that is selected, or NULL if no\
                   item is selected.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getHeaderSegmentForColumn
-        
-            typedef ::CEGUI::ListHeaderSegment & ( ::CEGUI::MultiColumnList::*getHeaderSegmentForColumn_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getHeaderSegmentForColumn"
-                , getHeaderSegmentForColumn_function_type( &::CEGUI::MultiColumnList::getHeaderSegmentForColumn )
-                , ( bp::arg("col_idx") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListHeaderSegment & (::CEGUI::MultiColumnList::*getHeaderSegmentForColumn_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getHeaderSegmentForColumn"
+                    , getHeaderSegmentForColumn_function_type(&::CEGUI::MultiColumnList::getHeaderSegmentForColumn)
+                    , (bp::arg("col_idx"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return the ListHeaderSegment object for the specified column\n\
             \n\
@@ -2124,32 +2124,32 @@ void register_MultiColumnList_class(){
                   ListHeaderSegment object for the column at the requested index.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getHighestRowItemHeight
-        
-            typedef float ( ::CEGUI::MultiColumnList::*getHighestRowItemHeight_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getHighestRowItemHeight"
-                , getHighestRowItemHeight_function_type( &::CEGUI::MultiColumnList::getHighestRowItemHeight )
-                , ( bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::MultiColumnList::*getHighestRowItemHeight_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getHighestRowItemHeight"
+                    , getHighestRowItemHeight_function_type(&::CEGUI::MultiColumnList::getHighestRowItemHeight)
+                    , (bp::arg("row_idx"))
+                    , "*!\n\
             \n\
                 Return, in pixels, the height of the highest item in the given row.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::getHorzScrollbar
-        
-            typedef ::CEGUI::Scrollbar * ( ::CEGUI::MultiColumnList::*getHorzScrollbar_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getHorzScrollbar"
-                , getHorzScrollbar_function_type( &::CEGUI::MultiColumnList::getHorzScrollbar )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Scrollbar * (::CEGUI::MultiColumnList::*getHorzScrollbar_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getHorzScrollbar"
+                    , getHorzScrollbar_function_type(&::CEGUI::MultiColumnList::getHorzScrollbar)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Return a pointer to the horizontal scrollbar component widget for this\n\
                     MultiColumnList.\n\
@@ -2159,19 +2159,19 @@ void register_MultiColumnList_class(){
             \n\
                 @exception UnknownObjectException\n\
                     Thrown if the horizontal Scrollbar component does not exist.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::getItemAtGridReference
-        
-            typedef ::CEGUI::ListboxItem * ( ::CEGUI::MultiColumnList::*getItemAtGridReference_function_type )( ::CEGUI::MCLGridRef const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getItemAtGridReference"
-                , getItemAtGridReference_function_type( &::CEGUI::MultiColumnList::getItemAtGridReference )
-                , ( bp::arg("grid_ref") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (::CEGUI::MultiColumnList::*getItemAtGridReference_function_type)(::CEGUI::MCLGridRef const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getItemAtGridReference"
+                    , getItemAtGridReference_function_type(&::CEGUI::MultiColumnList::getItemAtGridReference)
+                    , (bp::arg("grid_ref"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return a pointer to the ListboxItem at the specified grid reference.\n\
             \n\
@@ -2182,37 +2182,37 @@ void register_MultiColumnList_class(){
                   Pointer to the ListboxItem at grid reference  grid_ref.\n\
             \n\
                @exception InvalidRequestException  thrown if  grid_ref is invalid for this list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getItemAtPoint
-        
-            typedef ::CEGUI::ListboxItem * ( MultiColumnList_wrapper::*getItemAtPoint_function_type )( ::CEGUI::Vector2f const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getItemAtPoint"
-                , getItemAtPoint_function_type( &MultiColumnList_wrapper::getItemAtPoint )
-                , ( bp::arg("pt") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (MultiColumnList_wrapper::*getItemAtPoint_function_type)(::CEGUI::Vector2f const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getItemAtPoint"
+                    , getItemAtPoint_function_type(&MultiColumnList_wrapper::getItemAtPoint)
+                    , (bp::arg("pt"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return the ListboxItem under the given window local pixel co-ordinate.\n\
             \n\
                @return\n\
                   ListboxItem that is under window pixel co-ordinate  pt, or NULL if no\n\
                   item is under that position.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getItemColumnIndex
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getItemColumnIndex_function_type )( ::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getItemColumnIndex"
-                , getItemColumnIndex_function_type( &::CEGUI::MultiColumnList::getItemColumnIndex )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getItemColumnIndex_function_type)(::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "getItemColumnIndex"
+                    , getItemColumnIndex_function_type(&::CEGUI::MultiColumnList::getItemColumnIndex)
+                    , (bp::arg("item"))
+                    , "*!\n\
                \n\
                   Return the current zero based index of the column that contains  item.\n\
             \n\
@@ -2223,18 +2223,18 @@ void register_MultiColumnList_class(){
                   Zero based index of the column that contains ListboxItem  item.\n\
             \n\
                @exception InvalidRequestException  thrown if  item is not attached to the list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getItemGridReference
-        
-            typedef ::CEGUI::MCLGridRef ( ::CEGUI::MultiColumnList::*getItemGridReference_function_type )( ::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getItemGridReference"
-                , getItemGridReference_function_type( &::CEGUI::MultiColumnList::getItemGridReference )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef ::CEGUI::MCLGridRef(::CEGUI::MultiColumnList::*getItemGridReference_function_type)(::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "getItemGridReference"
+                    , getItemGridReference_function_type(&::CEGUI::MultiColumnList::getItemGridReference)
+                    , (bp::arg("item"))
+                    , "*!\n\
                \n\
                   Return the grid reference for  item.\n\
             \n\
@@ -2245,18 +2245,18 @@ void register_MultiColumnList_class(){
                   MCLGridRef object describing the current grid reference of ListboxItem  item.\n\
             \n\
                @exception InvalidRequestException  thrown if  item is not attached to the list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getItemRowIndex
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getItemRowIndex_function_type )( ::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getItemRowIndex"
-                , getItemRowIndex_function_type( &::CEGUI::MultiColumnList::getItemRowIndex )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getItemRowIndex_function_type)(::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "getItemRowIndex"
+                    , getItemRowIndex_function_type(&::CEGUI::MultiColumnList::getItemRowIndex)
+                    , (bp::arg("item"))
+                    , "*!\n\
                \n\
                   Return the zero based index of the Row that contains  item.\n\
             \n\
@@ -2267,18 +2267,18 @@ void register_MultiColumnList_class(){
                   Zero based index of the row that contains ListboxItem  item.\n\
             \n\
                @exception InvalidRequestException  thrown if  item is not attached to the list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getListHeader
-        
-            typedef ::CEGUI::ListHeader * ( ::CEGUI::MultiColumnList::*getListHeader_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getListHeader"
-                , getListHeader_function_type( &::CEGUI::MultiColumnList::getListHeader )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListHeader * (::CEGUI::MultiColumnList::*getListHeader_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getListHeader"
+                    , getListHeader_function_type(&::CEGUI::MultiColumnList::getListHeader)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Return a pointer to the list header component widget for this\n\
                     MultiColumnList.\n\
@@ -2288,17 +2288,17 @@ void register_MultiColumnList_class(){
             \n\
                 @exception UnknownObjectException\n\
                     Thrown if the list header component does not exist.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::getListRenderArea
-        
-            typedef ::CEGUI::Rectf ( ::CEGUI::MultiColumnList::*getListRenderArea_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getListRenderArea"
-                , getListRenderArea_function_type( &::CEGUI::MultiColumnList::getListRenderArea )
-                , "*!\n\
+
+            typedef ::CEGUI::Rectf(::CEGUI::MultiColumnList::*getListRenderArea_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getListRenderArea"
+                    , getListRenderArea_function_type(&::CEGUI::MultiColumnList::getListRenderArea)
+                    , "*!\n\
                 \n\
                     Return a Rect object describing, in un-clipped pixels, the window relative area\n\
                     that is to be used for rendering list items.\n\
@@ -2306,19 +2306,19 @@ void register_MultiColumnList_class(){
                 @return\n\
                     Rect object describing the area of the Window to be used for rendering\n\
                     list box items.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::getNextSelected
-        
-            typedef ::CEGUI::ListboxItem * ( ::CEGUI::MultiColumnList::*getNextSelected_function_type )( ::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getNextSelected"
-                , getNextSelected_function_type( &::CEGUI::MultiColumnList::getNextSelected )
-                , ( bp::arg("start_item") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::ListboxItem * (::CEGUI::MultiColumnList::*getNextSelected_function_type)(::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "getNextSelected"
+                    , getNextSelected_function_type(&::CEGUI::MultiColumnList::getNextSelected)
+                    , (bp::arg("start_item"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                \n\
                   Return a pointer to the next selected ListboxItem after  start_item.\n\
             \n\
@@ -2334,17 +2334,17 @@ void register_MultiColumnList_class(){
                   NULL if no item is selected.\n\
             \n\
                @exception InvalidRequestException  thrown if  start_item is not attached to the list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getNominatedSelectionColumn
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getNominatedSelectionColumn_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getNominatedSelectionColumn"
-                , getNominatedSelectionColumn_function_type( &::CEGUI::MultiColumnList::getNominatedSelectionColumn )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getNominatedSelectionColumn_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getNominatedSelectionColumn"
+                    , getNominatedSelectionColumn_function_type(&::CEGUI::MultiColumnList::getNominatedSelectionColumn)
+                    , "*!\n\
                \n\
                   Return the index of the currently set nominated selection column to be used when in one of the\
                   NominatedColumn*\n\
@@ -2352,17 +2352,17 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Zero based index of the nominated selection column.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getNominatedSelectionColumnID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getNominatedSelectionColumnID_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getNominatedSelectionColumnID"
-                , getNominatedSelectionColumnID_function_type( &::CEGUI::MultiColumnList::getNominatedSelectionColumnID )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getNominatedSelectionColumnID_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getNominatedSelectionColumnID"
+                    , getNominatedSelectionColumnID_function_type(&::CEGUI::MultiColumnList::getNominatedSelectionColumnID)
+                    , "*!\n\
                \n\
                   Return the ID of the currently set nominated selection column to be used when in one of the\
                   NominatedColumn*\n\
@@ -2373,17 +2373,17 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   ID code of the nominated selection column.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getNominatedSelectionRow
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getNominatedSelectionRow_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getNominatedSelectionRow"
-                , getNominatedSelectionRow_function_type( &::CEGUI::MultiColumnList::getNominatedSelectionRow )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getNominatedSelectionRow_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getNominatedSelectionRow"
+                    , getNominatedSelectionRow_function_type(&::CEGUI::MultiColumnList::getNominatedSelectionRow)
+                    , "*!\n\
                \n\
                   Return the index of the currently set nominated selection row to be used when in one of the\
                   NominatedRow*\n\
@@ -2391,34 +2391,34 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Zero based index of the nominated selection column.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getRowCount
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getRowCount_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getRowCount"
-                , getRowCount_function_type( &::CEGUI::MultiColumnList::getRowCount )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getRowCount_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getRowCount"
+                    , getRowCount_function_type(&::CEGUI::MultiColumnList::getRowCount)
+                    , "*!\n\
                \n\
                   Return the number of rows in the multi-column list.\n\
             \n\
                @return\n\
                   uint value equal to the number of rows currently in the list.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getRowID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getRowID_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getRowID"
-                , getRowID_function_type( &::CEGUI::MultiColumnList::getRowID )
-                , ( bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getRowID_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getRowID"
+                    , getRowID_function_type(&::CEGUI::MultiColumnList::getRowID)
+                    , (bp::arg("row_idx"))
+                    , "*!\n\
                \n\
                   Return the ID code assigned to the requested row.\n\
             \n\
@@ -2429,18 +2429,18 @@ void register_MultiColumnList_class(){
                   Current ID code assigned to the row at the requested index.\n\
             \n\
                @exception InvalidRequestException  thrown if  row_idx is out of range\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getRowWithID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getRowWithID_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getRowWithID"
-                , getRowWithID_function_type( &::CEGUI::MultiColumnList::getRowWithID )
-                , ( bp::arg("row_id") )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getRowWithID_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getRowWithID"
+                    , getRowWithID_function_type(&::CEGUI::MultiColumnList::getRowWithID)
+                    , (bp::arg("row_id"))
+                    , "*!\n\
                \n\
                   Return the zero based row index of the row with the specified ID.\n\
             \n\
@@ -2451,51 +2451,51 @@ void register_MultiColumnList_class(){
                   Zero based row index of the first row who's ID matches  row_id.\n\
             \n\
                @exception  InvalidRequestException    thrown if no row has the requested ID.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getSelectedCount
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getSelectedCount_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getSelectedCount"
-                , getSelectedCount_function_type( &::CEGUI::MultiColumnList::getSelectedCount )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getSelectedCount_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getSelectedCount"
+                    , getSelectedCount_function_type(&::CEGUI::MultiColumnList::getSelectedCount)
+                    , "*!\n\
                \n\
                   Return the number of selected ListboxItems attached to this list box.\n\
             \n\
                return\n\
                   uint value equal to the number of ListboxItems attached to this list box that are currently\
                   selected.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getSelectionMode
-        
-            typedef ::CEGUI::MultiColumnList::SelectionMode ( ::CEGUI::MultiColumnList::*getSelectionMode_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getSelectionMode"
-                , getSelectionMode_function_type( &::CEGUI::MultiColumnList::getSelectionMode )
-                , "*!\n\
+
+            typedef ::CEGUI::MultiColumnList::SelectionMode(::CEGUI::MultiColumnList::*getSelectionMode_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getSelectionMode"
+                    , getSelectionMode_function_type(&::CEGUI::MultiColumnList::getSelectionMode)
+                    , "*!\n\
                \n\
                   Return the currently set selection mode.\n\
             \n\
                @return\n\
                   One of the MultiColumnList.SelectionMode enumerated values specifying the current selection\
                   mode.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getSortColumn
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getSortColumn_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getSortColumn"
-                , getSortColumn_function_type( &::CEGUI::MultiColumnList::getSortColumn )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getSortColumn_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getSortColumn"
+                    , getSortColumn_function_type(&::CEGUI::MultiColumnList::getSortColumn)
+                    , "*!\n\
                \n\
                   Return the zero based index of the current sort column.  There must be at least one column to\
                   successfully call this\n\
@@ -2506,17 +2506,17 @@ void register_MultiColumnList_class(){
             \n\
                @exception  InvalidRequestException    thrown if there are no columns in this multi column\
                list.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getSortColumnID
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*getSortColumnID_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getSortColumnID"
-                , getSortColumnID_function_type( &::CEGUI::MultiColumnList::getSortColumnID )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*getSortColumnID_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getSortColumnID"
+                    , getSortColumnID_function_type(&::CEGUI::MultiColumnList::getSortColumnID)
+                    , "*!\n\
                \n\
                   Return the zero based index of the current sort column.  There must be at least one column to\
                   successfully call this\n\
@@ -2527,64 +2527,64 @@ void register_MultiColumnList_class(){
             \n\
                @exception  InvalidRequestException    thrown if there are no columns in this multi column\
                list.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getSortDirection
-        
-            typedef ::CEGUI::ListHeaderSegment::SortDirection ( ::CEGUI::MultiColumnList::*getSortDirection_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getSortDirection"
-                , getSortDirection_function_type( &::CEGUI::MultiColumnList::getSortDirection )
-                , "*!\n\
+
+            typedef ::CEGUI::ListHeaderSegment::SortDirection(::CEGUI::MultiColumnList::*getSortDirection_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getSortDirection"
+                    , getSortDirection_function_type(&::CEGUI::MultiColumnList::getSortDirection)
+                    , "*!\n\
                \n\
                   Return the currently set sort direction.\n\
             \n\
                @return\n\
                   One of the ListHeaderSegment.SortDirection enumerated values specifying the current sort\
                   direction.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getTotalColumnHeadersWidth
-        
-            typedef ::CEGUI::UDim ( ::CEGUI::MultiColumnList::*getTotalColumnHeadersWidth_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getTotalColumnHeadersWidth"
-                , getTotalColumnHeadersWidth_function_type( &::CEGUI::MultiColumnList::getTotalColumnHeadersWidth )
-                , "*!\n\
+
+            typedef ::CEGUI::UDim(::CEGUI::MultiColumnList::*getTotalColumnHeadersWidth_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getTotalColumnHeadersWidth"
+                    , getTotalColumnHeadersWidth_function_type(&::CEGUI::MultiColumnList::getTotalColumnHeadersWidth)
+                    , "*!\n\
                \n\
                   Return the total width of all column headers.\n\
             \n\
                @return\n\
                   Sum total of all the column header widths as a UDim.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::getTotalRowsHeight
-        
-            typedef float ( ::CEGUI::MultiColumnList::*getTotalRowsHeight_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getTotalRowsHeight"
-                , getTotalRowsHeight_function_type( &::CEGUI::MultiColumnList::getTotalRowsHeight )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::MultiColumnList::*getTotalRowsHeight_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getTotalRowsHeight"
+                    , getTotalRowsHeight_function_type(&::CEGUI::MultiColumnList::getTotalRowsHeight)
+                    , "*!\n\
             \n\
                 Return the sum of all row heights in pixels.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::getVertScrollbar
-        
-            typedef ::CEGUI::Scrollbar * ( ::CEGUI::MultiColumnList::*getVertScrollbar_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getVertScrollbar"
-                , getVertScrollbar_function_type( &::CEGUI::MultiColumnList::getVertScrollbar )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Scrollbar * (::CEGUI::MultiColumnList::*getVertScrollbar_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getVertScrollbar"
+                    , getVertScrollbar_function_type(&::CEGUI::MultiColumnList::getVertScrollbar)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
                 \n\
                     Return a pointer to the vertical scrollbar component widget for this\n\
                     MultiColumnList.\n\
@@ -2594,107 +2594,107 @@ void register_MultiColumnList_class(){
             \n\
                 @exception UnknownObjectException\n\
                     Thrown if the vertical Scrollbar component does not exist.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::getWidestColumnItemWidth
-        
-            typedef float ( ::CEGUI::MultiColumnList::*getWidestColumnItemWidth_function_type )( ::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getWidestColumnItemWidth"
-                , getWidestColumnItemWidth_function_type( &::CEGUI::MultiColumnList::getWidestColumnItemWidth )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef float ( ::CEGUI::MultiColumnList::*getWidestColumnItemWidth_function_type)(::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "getWidestColumnItemWidth"
+                    , getWidestColumnItemWidth_function_type(&::CEGUI::MultiColumnList::getWidestColumnItemWidth)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
             \n\
                 Return the pixel width of the widest item in the given column\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::handleColumnSizeChange
-        
-            typedef bool ( MultiColumnList_wrapper::*handleColumnSizeChange_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleColumnSizeChange"
-                , handleColumnSizeChange_function_type( &MultiColumnList_wrapper::handleColumnSizeChange )
-                , ( bp::arg("e") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleColumnSizeChange_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleColumnSizeChange"
+                    , handleColumnSizeChange_function_type(&MultiColumnList_wrapper::handleColumnSizeChange)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::handleHeaderScroll
-        
-            typedef bool ( MultiColumnList_wrapper::*handleHeaderScroll_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleHeaderScroll"
-                , handleHeaderScroll_function_type( &MultiColumnList_wrapper::handleHeaderScroll )
-                , ( bp::arg("e") )
-                , "*************************************************************************\n\
+
+            typedef bool ( MultiColumnList_wrapper::*handleHeaderScroll_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleHeaderScroll"
+                    , handleHeaderScroll_function_type(&MultiColumnList_wrapper::handleHeaderScroll)
+                    , (bp::arg("e"))
+                    , "*************************************************************************\n\
                Handlers for subscribed events\n\
-            *************************************************************************\n" );
-        
+            *************************************************************************\n");
+
         }
         { //::CEGUI::MultiColumnList::handleHeaderSegDblClick
-        
-            typedef bool ( MultiColumnList_wrapper::*handleHeaderSegDblClick_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleHeaderSegDblClick"
-                , handleHeaderSegDblClick_function_type( &MultiColumnList_wrapper::handleHeaderSegDblClick )
-                , ( bp::arg("e") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleHeaderSegDblClick_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleHeaderSegDblClick"
+                    , handleHeaderSegDblClick_function_type(&MultiColumnList_wrapper::handleHeaderSegDblClick)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::handleHeaderSegMove
-        
-            typedef bool ( MultiColumnList_wrapper::*handleHeaderSegMove_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleHeaderSegMove"
-                , handleHeaderSegMove_function_type( &MultiColumnList_wrapper::handleHeaderSegMove )
-                , ( bp::arg("e") )
-                , "*************************************************************************\n\
+
+            typedef bool ( MultiColumnList_wrapper::*handleHeaderSegMove_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleHeaderSegMove"
+                    , handleHeaderSegMove_function_type(&MultiColumnList_wrapper::handleHeaderSegMove)
+                    , (bp::arg("e"))
+                    , "*************************************************************************\n\
                Handlers for subscribed events\n\
-            *************************************************************************\n" );
-        
+            *************************************************************************\n");
+
         }
         { //::CEGUI::MultiColumnList::handleHorzScrollbar
-        
-            typedef bool ( MultiColumnList_wrapper::*handleHorzScrollbar_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleHorzScrollbar"
-                , handleHorzScrollbar_function_type( &MultiColumnList_wrapper::handleHorzScrollbar )
-                , ( bp::arg("e") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleHorzScrollbar_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleHorzScrollbar"
+                    , handleHorzScrollbar_function_type(&MultiColumnList_wrapper::handleHorzScrollbar)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::handleSortColumnChange
-        
-            typedef bool ( MultiColumnList_wrapper::*handleSortColumnChange_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleSortColumnChange"
-                , handleSortColumnChange_function_type( &MultiColumnList_wrapper::handleSortColumnChange )
-                , ( bp::arg("e") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleSortColumnChange_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleSortColumnChange"
+                    , handleSortColumnChange_function_type(&MultiColumnList_wrapper::handleSortColumnChange)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::handleSortDirectionChange
-        
-            typedef bool ( MultiColumnList_wrapper::*handleSortDirectionChange_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleSortDirectionChange"
-                , handleSortDirectionChange_function_type( &MultiColumnList_wrapper::handleSortDirectionChange )
-                , ( bp::arg("e") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleSortDirectionChange_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleSortDirectionChange"
+                    , handleSortDirectionChange_function_type(&MultiColumnList_wrapper::handleSortDirectionChange)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::handleUpdatedItemData
-        
-            typedef void ( ::CEGUI::MultiColumnList::*handleUpdatedItemData_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleUpdatedItemData"
-                , handleUpdatedItemData_function_type( &::CEGUI::MultiColumnList::handleUpdatedItemData )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*handleUpdatedItemData_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "handleUpdatedItemData"
+                    , handleUpdatedItemData_function_type(&::CEGUI::MultiColumnList::handleUpdatedItemData)
+                    , "*!\n\
                \n\
                   Inform the list box that one or more attached ListboxItems have been externally modified,\
                   and\n\
@@ -2702,39 +2702,39 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::handleVertScrollbar
-        
-            typedef bool ( MultiColumnList_wrapper::*handleVertScrollbar_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleVertScrollbar"
-                , handleVertScrollbar_function_type( &MultiColumnList_wrapper::handleVertScrollbar )
-                , ( bp::arg("e") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleVertScrollbar_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleVertScrollbar"
+                    , handleVertScrollbar_function_type(&MultiColumnList_wrapper::handleVertScrollbar)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::initialiseComponents
-        
-            typedef void ( ::CEGUI::MultiColumnList::*initialiseComponents_function_type )(  ) ;
-            typedef void ( MultiColumnList_wrapper::*default_initialiseComponents_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "initialiseComponents"
-                , initialiseComponents_function_type(&::CEGUI::MultiColumnList::initialiseComponents)
-                , default_initialiseComponents_function_type(&MultiColumnList_wrapper::default_initialiseComponents) );
-        
+
+            typedef void ( ::CEGUI::MultiColumnList::*initialiseComponents_function_type)();
+            typedef void ( MultiColumnList_wrapper::*default_initialiseComponents_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "initialiseComponents"
+                    , initialiseComponents_function_type(&::CEGUI::MultiColumnList::initialiseComponents)
+                    , default_initialiseComponents_function_type(&MultiColumnList_wrapper::default_initialiseComponents));
+
         }
         { //::CEGUI::MultiColumnList::insertColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*insertColumn_function_type )( ::CEGUI::String const &,::CEGUI::uint,::CEGUI::UDim const &,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "insertColumn"
-                , insertColumn_function_type( &::CEGUI::MultiColumnList::insertColumn )
-                , ( bp::arg("text"), bp::arg("col_id"), bp::arg("width"), bp::arg("position") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*insertColumn_function_type)(::CEGUI::String const &, ::CEGUI::uint, ::CEGUI::UDim const &, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "insertColumn"
+                    , insertColumn_function_type(&::CEGUI::MultiColumnList::insertColumn)
+                    , (bp::arg("text"), bp::arg("col_id"), bp::arg("width"), bp::arg("position"))
+                    , "*!\n\
                \n\
                   Insert a new column in the list.\n\
             \n\
@@ -2753,18 +2753,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::insertRow
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*insertRow_function_type )( ::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "insertRow"
-                , insertRow_function_type( &::CEGUI::MultiColumnList::insertRow )
-                , ( bp::arg("row_idx"), bp::arg("row_id")=(::CEGUI::uint)(0) )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*insertRow_function_type)(::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "insertRow"
+                    , insertRow_function_type(&::CEGUI::MultiColumnList::insertRow)
+                    , (bp::arg("row_idx"), bp::arg("row_id") = (::CEGUI::uint)(0))
+                    , "*!\n\
                \n\
                   Insert an empty row into the list box.\n\
             \n\
@@ -2783,18 +2783,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Zero based index where the row was actually inserted.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::insertRow
-        
-            typedef ::CEGUI::uint ( ::CEGUI::MultiColumnList::*insertRow_function_type )( ::CEGUI::ListboxItem *,::CEGUI::uint,::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "insertRow"
-                , insertRow_function_type( &::CEGUI::MultiColumnList::insertRow )
-                , ( bp::arg("item"), bp::arg("col_id"), bp::arg("row_idx"), bp::arg("row_id")=(::CEGUI::uint)(0) )
-                , "*!\n\
+
+            typedef ::CEGUI::uint(::CEGUI::MultiColumnList::*insertRow_function_type)(::CEGUI::ListboxItem *, ::CEGUI::uint, ::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "insertRow"
+                    , insertRow_function_type(&::CEGUI::MultiColumnList::insertRow)
+                    , (bp::arg("item"), bp::arg("col_id"), bp::arg("row_idx"), bp::arg("row_id") = (::CEGUI::uint)(0))
+                    , "*!\n\
                \n\
                   Insert a row into the list box, and set the item in the column with ID  col_id to  item.\n\
             \n\
@@ -2822,35 +2822,35 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if no column with the specified ID is attached to the\
                list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isHorzScrollbarAlwaysShown
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isHorzScrollbarAlwaysShown_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isHorzScrollbarAlwaysShown"
-                , isHorzScrollbarAlwaysShown_function_type( &::CEGUI::MultiColumnList::isHorzScrollbarAlwaysShown )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isHorzScrollbarAlwaysShown_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isHorzScrollbarAlwaysShown"
+                    , isHorzScrollbarAlwaysShown_function_type(&::CEGUI::MultiColumnList::isHorzScrollbarAlwaysShown)
+                    , "*!\n\
                \n\
                   Return whether the horizontal scroll bar is always shown.\n\
             \n\
                @return\n\
                   - true if the scroll bar will always be shown even if it is not required.\n\
                   - false if the scroll bar will only be shown when it is required.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isItemSelected
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isItemSelected_function_type )( ::CEGUI::MCLGridRef const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isItemSelected"
-                , isItemSelected_function_type( &::CEGUI::MultiColumnList::isItemSelected )
-                , ( bp::arg("grid_ref") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isItemSelected_function_type)(::CEGUI::MCLGridRef const &) const;
+
+            MultiColumnList_exposer.def(
+                    "isItemSelected"
+                    , isItemSelected_function_type(&::CEGUI::MultiColumnList::isItemSelected)
+                    , (bp::arg("grid_ref"))
+                    , "*!\n\
                \n\
                   Return whether the ListboxItem at  grid_ref is selected.\n\
             \n\
@@ -2862,18 +2862,18 @@ void register_MultiColumnList_class(){
                   - false if there is no ListboxItem at  grid_ref, or if the item is not selected.\n\
             \n\
                @exception InvalidRequestException  thrown if  grid_ref contains an invalid grid position.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isListboxItemInColumn
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isListboxItemInColumn_function_type )( ::CEGUI::ListboxItem const *,::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isListboxItemInColumn"
-                , isListboxItemInColumn_function_type( &::CEGUI::MultiColumnList::isListboxItemInColumn )
-                , ( bp::arg("item"), bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isListboxItemInColumn_function_type)(::CEGUI::ListboxItem const *, ::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "isListboxItemInColumn"
+                    , isListboxItemInColumn_function_type(&::CEGUI::MultiColumnList::isListboxItemInColumn)
+                    , (bp::arg("item"), bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   return whether ListboxItem  item is attached to the column at index  col_idx.\n\
             \n\
@@ -2888,18 +2888,18 @@ void register_MultiColumnList_class(){
                   - false if  item is not attached to list box column  col_idx.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isListboxItemInList
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isListboxItemInList_function_type )( ::CEGUI::ListboxItem const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isListboxItemInList"
-                , isListboxItemInList_function_type( &::CEGUI::MultiColumnList::isListboxItemInList )
-                , ( bp::arg("item") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isListboxItemInList_function_type)(::CEGUI::ListboxItem const *) const;
+
+            MultiColumnList_exposer.def(
+                    "isListboxItemInList"
+                    , isListboxItemInList_function_type(&::CEGUI::MultiColumnList::isListboxItemInList)
+                    , (bp::arg("item"))
+                    , "*!\n\
                \n\
                   return whether ListboxItem  item is attached to the list box.\n\
             \n\
@@ -2909,18 +2909,18 @@ void register_MultiColumnList_class(){
                @return\n\
                   - true if  item is attached to list box.\n\
                   - false if  item is not attached to list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isListboxItemInRow
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isListboxItemInRow_function_type )( ::CEGUI::ListboxItem const *,::CEGUI::uint ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isListboxItemInRow"
-                , isListboxItemInRow_function_type( &::CEGUI::MultiColumnList::isListboxItemInRow )
-                , ( bp::arg("item"), bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isListboxItemInRow_function_type)(::CEGUI::ListboxItem const *, ::CEGUI::uint) const;
+
+            MultiColumnList_exposer.def(
+                    "isListboxItemInRow"
+                    , isListboxItemInRow_function_type(&::CEGUI::MultiColumnList::isListboxItemInRow)
+                    , (bp::arg("item"), bp::arg("row_idx"))
+                    , "*!\n\
                \n\
                   return whether ListboxItem  item is attached to the row at index  row_idx.\n\
             \n\
@@ -2935,49 +2935,49 @@ void register_MultiColumnList_class(){
                   - false if  item is not attached to list box row  row_idx.\n\
             \n\
                @exception InvalidRequestException  thrown if  row_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isUserColumnDraggingEnabled
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isUserColumnDraggingEnabled_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isUserColumnDraggingEnabled"
-                , isUserColumnDraggingEnabled_function_type( &::CEGUI::MultiColumnList::isUserColumnDraggingEnabled )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isUserColumnDraggingEnabled_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isUserColumnDraggingEnabled"
+                    , isUserColumnDraggingEnabled_function_type(&::CEGUI::MultiColumnList::isUserColumnDraggingEnabled)
+                    , "*!\n\
                \n\
                   Return whether the user may modify the order of the columns.\n\
             \n\
                @return\n\
                   true if the user may interactively modify the order of the columns, false if they may not.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isUserColumnSizingEnabled
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isUserColumnSizingEnabled_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isUserColumnSizingEnabled"
-                , isUserColumnSizingEnabled_function_type( &::CEGUI::MultiColumnList::isUserColumnSizingEnabled )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isUserColumnSizingEnabled_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isUserColumnSizingEnabled"
+                    , isUserColumnSizingEnabled_function_type(&::CEGUI::MultiColumnList::isUserColumnSizingEnabled)
+                    , "*!\n\
                \n\
                   Return whether the user may size column segments.\n\
             \n\
                @return\n\
                   true if the user may interactively modify the width of columns, false if they may not.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isUserSortControlEnabled
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isUserSortControlEnabled_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isUserSortControlEnabled"
-                , isUserSortControlEnabled_function_type( &::CEGUI::MultiColumnList::isUserSortControlEnabled )
-                , "*************************************************************************\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isUserSortControlEnabled_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isUserSortControlEnabled"
+                    , isUserSortControlEnabled_function_type(&::CEGUI::MultiColumnList::isUserSortControlEnabled)
+                    , "*************************************************************************\n\
                   Accessor Methods\n\
                *************************************************************************\n\
                *!\n\
@@ -2988,35 +2988,35 @@ void register_MultiColumnList_class(){
                   true if the user may interactively modify the sort column and direction.  false if the user\
                   may not\n\
                   modify the sort column and direction (these can still be set programmatically).\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::isVertScrollbarAlwaysShown
-        
-            typedef bool ( ::CEGUI::MultiColumnList::*isVertScrollbarAlwaysShown_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isVertScrollbarAlwaysShown"
-                , isVertScrollbarAlwaysShown_function_type( &::CEGUI::MultiColumnList::isVertScrollbarAlwaysShown )
-                , "*!\n\
+
+            typedef bool ( ::CEGUI::MultiColumnList::*isVertScrollbarAlwaysShown_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isVertScrollbarAlwaysShown"
+                    , isVertScrollbarAlwaysShown_function_type(&::CEGUI::MultiColumnList::isVertScrollbarAlwaysShown)
+                    , "*!\n\
                \n\
                   Return whether the vertical scroll bar is always shown.\n\
             \n\
                @return\n\
                   - true if the scroll bar will always be shown even if it is not required.\n\
                   - false if the scroll bar will only be shown when it is required.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::moveColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*moveColumn_function_type )( ::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "moveColumn"
-                , moveColumn_function_type( &::CEGUI::MultiColumnList::moveColumn )
-                , ( bp::arg("col_idx"), bp::arg("position") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*moveColumn_function_type)(::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "moveColumn"
+                    , moveColumn_function_type(&::CEGUI::MultiColumnList::moveColumn)
+                    , (bp::arg("col_idx"), bp::arg("position"))
+                    , "*!\n\
                \n\
                   Move the column at index  col_idx so it is at index  position.\n\
             \n\
@@ -3030,18 +3030,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is invalid.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::moveColumnWithID
-        
-            typedef void ( ::CEGUI::MultiColumnList::*moveColumnWithID_function_type )( ::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "moveColumnWithID"
-                , moveColumnWithID_function_type( &::CEGUI::MultiColumnList::moveColumnWithID )
-                , ( bp::arg("col_id"), bp::arg("position") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*moveColumnWithID_function_type)(::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "moveColumnWithID"
+                    , moveColumnWithID_function_type(&::CEGUI::MultiColumnList::moveColumnWithID)
+                    , (bp::arg("col_id"), bp::arg("position"))
+                    , "*!\n\
                \n\
                   Move the column with ID  col_id so it is at index  position.\n\
             \n\
@@ -3056,239 +3056,239 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if no column with  col_id is available on this list\
                box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::moveColumn_impl
-        
-            typedef void ( MultiColumnList_wrapper::*moveColumn_impl_function_type )( ::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "moveColumn_impl"
-                , moveColumn_impl_function_type( &MultiColumnList_wrapper::moveColumn_impl )
-                , ( bp::arg("col_idx"), bp::arg("position") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*moveColumn_impl_function_type)(::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "moveColumn_impl"
+                    , moveColumn_impl_function_type(&MultiColumnList_wrapper::moveColumn_impl)
+                    , (bp::arg("col_idx"), bp::arg("position"))
+                    , "*!\n\
                \n\
                   Move the column at index  col_idx so it is at index  position.  Implementation version which\
                   does not move the\n\
                   header segment (since that may have already happened).\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is invalid.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::onFontChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onFontChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onFontChanged"
-                , onFontChanged_function_type( &MultiColumnList_wrapper::default_onFontChanged )
-                , ( bp::arg("e") )
-                , "*************************************************************************\n\
+
+            typedef void ( MultiColumnList_wrapper::*onFontChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onFontChanged"
+                    , onFontChanged_function_type(&MultiColumnList_wrapper::default_onFontChanged)
+                    , (bp::arg("e"))
+                    , "*************************************************************************\n\
                Overridden Event handlers\n\
-            *************************************************************************\n" );
-        
+            *************************************************************************\n");
+
         }
         { //::CEGUI::MultiColumnList::onHorzScrollbarModeChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onHorzScrollbarModeChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onHorzScrollbarModeChanged"
-                , onHorzScrollbarModeChanged_function_type( &MultiColumnList_wrapper::default_onHorzScrollbarModeChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onHorzScrollbarModeChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onHorzScrollbarModeChanged"
+                    , onHorzScrollbarModeChanged_function_type(&MultiColumnList_wrapper::default_onHorzScrollbarModeChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the horizontal scroll bar 'force' mode is changed.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onListColumnMoved
-        
-            typedef void ( MultiColumnList_wrapper::*onListColumnMoved_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onListColumnMoved"
-                , onListColumnMoved_function_type( &MultiColumnList_wrapper::default_onListColumnMoved )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onListColumnMoved_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onListColumnMoved"
+                    , onListColumnMoved_function_type(&MultiColumnList_wrapper::default_onListColumnMoved)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the column order is changed.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onListColumnSized
-        
-            typedef void ( MultiColumnList_wrapper::*onListColumnSized_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onListColumnSized"
-                , onListColumnSized_function_type( &MultiColumnList_wrapper::default_onListColumnSized )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onListColumnSized_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onListColumnSized"
+                    , onListColumnSized_function_type(&MultiColumnList_wrapper::default_onListColumnSized)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when a column is sized.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onListContentsChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onListContentsChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onListContentsChanged"
-                , onListContentsChanged_function_type( &MultiColumnList_wrapper::default_onListContentsChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onListContentsChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onListContentsChanged"
+                    , onListContentsChanged_function_type(&MultiColumnList_wrapper::default_onListContentsChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the list contents is changed.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onMouseButtonDown
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseButtonDown_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseButtonDown"
-                , onMouseButtonDown_function_type( &MultiColumnList_wrapper::default_onMouseButtonDown )
-                , ( bp::arg("e") ) );
-        
+
+            typedef void ( MultiColumnList_wrapper::*onMouseButtonDown_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseButtonDown"
+                    , onMouseButtonDown_function_type(&MultiColumnList_wrapper::default_onMouseButtonDown)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::onMouseWheel
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseWheel_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseWheel"
-                , onMouseWheel_function_type( &MultiColumnList_wrapper::default_onMouseWheel )
-                , ( bp::arg("e") ) );
-        
+
+            typedef void ( MultiColumnList_wrapper::*onMouseWheel_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseWheel"
+                    , onMouseWheel_function_type(&MultiColumnList_wrapper::default_onMouseWheel)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::MultiColumnList::onNominatedSelectColumnChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onNominatedSelectColumnChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onNominatedSelectColumnChanged"
-                , onNominatedSelectColumnChanged_function_type( &MultiColumnList_wrapper::default_onNominatedSelectColumnChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onNominatedSelectColumnChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onNominatedSelectColumnChanged"
+                    , onNominatedSelectColumnChanged_function_type(&MultiColumnList_wrapper::default_onNominatedSelectColumnChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the nominated selection column changes\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onNominatedSelectRowChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onNominatedSelectRowChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onNominatedSelectRowChanged"
-                , onNominatedSelectRowChanged_function_type( &MultiColumnList_wrapper::default_onNominatedSelectRowChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onNominatedSelectRowChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onNominatedSelectRowChanged"
+                    , onNominatedSelectRowChanged_function_type(&MultiColumnList_wrapper::default_onNominatedSelectRowChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the nominated selection row changes.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onSelectionChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onSelectionChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onSelectionChanged"
-                , onSelectionChanged_function_type( &MultiColumnList_wrapper::default_onSelectionChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onSelectionChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onSelectionChanged"
+                    , onSelectionChanged_function_type(&MultiColumnList_wrapper::default_onSelectionChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the current selection changes.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onSelectionModeChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onSelectionModeChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onSelectionModeChanged"
-                , onSelectionModeChanged_function_type( &MultiColumnList_wrapper::default_onSelectionModeChanged )
-                , ( bp::arg("e") )
-                , "*************************************************************************\n\
+
+            typedef void ( MultiColumnList_wrapper::*onSelectionModeChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onSelectionModeChanged"
+                    , onSelectionModeChanged_function_type(&MultiColumnList_wrapper::default_onSelectionModeChanged)
+                    , (bp::arg("e"))
+                    , "*************************************************************************\n\
                New event handlers for multi column list\n\
             *************************************************************************\n\
             *!\n\
             \n\
                Handler called when the selection mode of the list box changes\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onSized
-        
-            typedef void ( MultiColumnList_wrapper::*onSized_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onSized"
-                , onSized_function_type( &MultiColumnList_wrapper::default_onSized )
-                , ( bp::arg("e") )
-                , "*************************************************************************\n\
+
+            typedef void ( MultiColumnList_wrapper::*onSized_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onSized"
+                    , onSized_function_type(&MultiColumnList_wrapper::default_onSized)
+                    , (bp::arg("e"))
+                    , "*************************************************************************\n\
                Overridden Event handlers\n\
-            *************************************************************************\n" );
-        
+            *************************************************************************\n");
+
         }
         { //::CEGUI::MultiColumnList::onSortColumnChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onSortColumnChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onSortColumnChanged"
-                , onSortColumnChanged_function_type( &MultiColumnList_wrapper::default_onSortColumnChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onSortColumnChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onSortColumnChanged"
+                    , onSortColumnChanged_function_type(&MultiColumnList_wrapper::default_onSortColumnChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the sort column changes.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onSortDirectionChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onSortDirectionChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onSortDirectionChanged"
-                , onSortDirectionChanged_function_type( &MultiColumnList_wrapper::default_onSortDirectionChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onSortDirectionChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onSortDirectionChanged"
+                    , onSortDirectionChanged_function_type(&MultiColumnList_wrapper::default_onSortDirectionChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the sort direction changes.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::onVertScrollbarModeChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onVertScrollbarModeChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onVertScrollbarModeChanged"
-                , onVertScrollbarModeChanged_function_type( &MultiColumnList_wrapper::default_onVertScrollbarModeChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onVertScrollbarModeChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onVertScrollbarModeChanged"
+                    , onVertScrollbarModeChanged_function_type(&MultiColumnList_wrapper::default_onVertScrollbarModeChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
             \n\
                Handler called when the vertical scroll bar 'force' mode is changed.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::removeColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*removeColumn_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "removeColumn"
-                , removeColumn_function_type( &::CEGUI::MultiColumnList::removeColumn )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*removeColumn_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "removeColumn"
+                    , removeColumn_function_type(&::CEGUI::MultiColumnList::removeColumn)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   Removes a column from the list box.  This will cause any ListboxItem using the autoDelete\
                   option in the column to be deleted.\n\
@@ -3300,18 +3300,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is invalid.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::removeColumnWithID
-        
-            typedef void ( ::CEGUI::MultiColumnList::*removeColumnWithID_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "removeColumnWithID"
-                , removeColumnWithID_function_type( &::CEGUI::MultiColumnList::removeColumnWithID )
-                , ( bp::arg("col_id") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*removeColumnWithID_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "removeColumnWithID"
+                    , removeColumnWithID_function_type(&::CEGUI::MultiColumnList::removeColumnWithID)
+                    , (bp::arg("col_id"))
+                    , "*!\n\
                \n\
                   Removes a column from the list box.  This will cause any ListboxItem using the autoDelete\
                   option in the column to be deleted.\n\
@@ -3324,18 +3324,18 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if no column with  col_id is available on this list\
                box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::removeRow
-        
-            typedef void ( ::CEGUI::MultiColumnList::*removeRow_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "removeRow"
-                , removeRow_function_type( &::CEGUI::MultiColumnList::removeRow )
-                , ( bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*removeRow_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "removeRow"
+                    , removeRow_function_type(&::CEGUI::MultiColumnList::removeRow)
+                    , (bp::arg("row_idx"))
+                    , "*!\n\
                \n\
                   Remove the list box row with index  row_idx.  Any ListboxItem in row  row_idx using autoDelete\
                   mode will be deleted.\n\
@@ -3347,32 +3347,32 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  row_idx is invalid.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::resetList
-        
-            typedef void ( ::CEGUI::MultiColumnList::*resetList_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "resetList"
-                , resetList_function_type( &::CEGUI::MultiColumnList::resetList )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*resetList_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "resetList"
+                    , resetList_function_type(&::CEGUI::MultiColumnList::resetList)
+                    , "*!\n\
                \n\
                   Remove all items from the list.\n\
             \n\
                   Note that this will cause 'AutoDelete' items to be deleted.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::resetList_impl
-        
-            typedef bool ( MultiColumnList_wrapper::*resetList_impl_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "resetList_impl"
-                , resetList_impl_function_type( &MultiColumnList_wrapper::resetList_impl )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*resetList_impl_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "resetList_impl"
+                    , resetList_impl_function_type(&MultiColumnList_wrapper::resetList_impl)
+                    , "*!\n\
                \n\
                   Remove all items from the list.\n\
             \n\
@@ -3382,46 +3382,46 @@ void register_MultiColumnList_class(){
                @return\n\
                   - true if the list contents were changed.\n\
                   - false if the list contents were not changed (list already empty).\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::resortList
-        
-            typedef void ( MultiColumnList_wrapper::*resortList_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "resortList"
-                , resortList_function_type( &MultiColumnList_wrapper::resortList )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*resortList_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "resortList"
+                    , resortList_function_type(&MultiColumnList_wrapper::resortList)
+                    , "*!\n\
             \n\
                 Causes the internal list to be (re)sorted.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::selectRange
-        
-            typedef bool ( MultiColumnList_wrapper::*selectRange_function_type )( ::CEGUI::MCLGridRef const &,::CEGUI::MCLGridRef const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "selectRange"
-                , selectRange_function_type( &MultiColumnList_wrapper::selectRange )
-                , ( bp::arg("start"), bp::arg("end") )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*selectRange_function_type)(::CEGUI::MCLGridRef const &, ::CEGUI::MCLGridRef const &);
+
+            MultiColumnList_exposer.def(
+                    "selectRange"
+                    , selectRange_function_type(&MultiColumnList_wrapper::selectRange)
+                    , (bp::arg("start"), bp::arg("end"))
+                    , "*!\n\
             \n\
                select all strings between positions  start and  end.  (inclusive).  Returns true if something\
                was modified.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::setAutoSizeColumnUsesHeader
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setAutoSizeColumnUsesHeader_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setAutoSizeColumnUsesHeader"
-                , setAutoSizeColumnUsesHeader_function_type( &::CEGUI::MultiColumnList::setAutoSizeColumnUsesHeader )
-                , ( bp::arg("include_header") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setAutoSizeColumnUsesHeader_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "setAutoSizeColumnUsesHeader"
+                    , setAutoSizeColumnUsesHeader_function_type(&::CEGUI::MultiColumnList::setAutoSizeColumnUsesHeader)
+                    , (bp::arg("include_header"))
+                    , "*!\n\
                 \n\
                     Instruct column auto-sizing (autoSizeColumnHeader()) to also use the\n\
                     list header segment size.\n\
@@ -3432,18 +3432,18 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::MultiColumnList::setColumnHeaderWidth
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setColumnHeaderWidth_function_type )( ::CEGUI::uint,::CEGUI::UDim const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setColumnHeaderWidth"
-                , setColumnHeaderWidth_function_type( &::CEGUI::MultiColumnList::setColumnHeaderWidth )
-                , ( bp::arg("col_idx"), bp::arg("width") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setColumnHeaderWidth_function_type)(::CEGUI::uint, ::CEGUI::UDim const &);
+
+            MultiColumnList_exposer.def(
+                    "setColumnHeaderWidth"
+                    , setColumnHeaderWidth_function_type(&::CEGUI::MultiColumnList::setColumnHeaderWidth)
+                    , (bp::arg("col_idx"), bp::arg("width"))
+                    , "*!\n\
                \n\
                   Set the width of the specified column header (and therefore the column itself).\n\
             \n\
@@ -3457,18 +3457,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  column is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setItem
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setItem_function_type )( ::CEGUI::ListboxItem *,::CEGUI::MCLGridRef const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setItem"
-                , setItem_function_type( &::CEGUI::MultiColumnList::setItem )
-                , ( bp::arg("item"), bp::arg("position") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setItem_function_type)(::CEGUI::ListboxItem *, ::CEGUI::MCLGridRef const &);
+
+            MultiColumnList_exposer.def(
+                    "setItem"
+                    , setItem_function_type(&::CEGUI::MultiColumnList::setItem)
+                    , (bp::arg("item"), bp::arg("position"))
+                    , "*!\n\
                \n\
                   Set the ListboxItem for grid reference  position.\n\
             \n\
@@ -3482,18 +3482,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  position contains an invalid grid reference.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setItem
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setItem_function_type )( ::CEGUI::ListboxItem *,::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setItem"
-                , setItem_function_type( &::CEGUI::MultiColumnList::setItem )
-                , ( bp::arg("item"), bp::arg("col_id"), bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setItem_function_type)(::CEGUI::ListboxItem *, ::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setItem"
+                    , setItem_function_type(&::CEGUI::MultiColumnList::setItem)
+                    , (bp::arg("item"), bp::arg("col_id"), bp::arg("row_idx"))
+                    , "*!\n\
                \n\
                   Set the ListboxItem for the column with ID  col_id in row  row_idx.\n\
             \n\
@@ -3511,18 +3511,18 @@ void register_MultiColumnList_class(){
             \n\
                @exception InvalidRequestException  thrown if no column with ID  col_id exists, or of  row_idx is\
                out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setItemSelectState
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setItemSelectState_function_type )( ::CEGUI::ListboxItem *,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setItemSelectState"
-                , setItemSelectState_function_type( &::CEGUI::MultiColumnList::setItemSelectState )
-                , ( bp::arg("item"), bp::arg("state") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setItemSelectState_function_type)(::CEGUI::ListboxItem *, bool);
+
+            MultiColumnList_exposer.def(
+                    "setItemSelectState"
+                    , setItemSelectState_function_type(&::CEGUI::MultiColumnList::setItemSelectState)
+                    , (bp::arg("item"), bp::arg("state"))
+                    , "*!\n\
                \n\
                   Sets or clears the selected state of the given ListboxItem which must be attached to the\
                   list.\n\
@@ -3542,18 +3542,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  item is not attached to the list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setItemSelectState
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setItemSelectState_function_type )( ::CEGUI::MCLGridRef const &,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setItemSelectState"
-                , setItemSelectState_function_type( &::CEGUI::MultiColumnList::setItemSelectState )
-                , ( bp::arg("grid_ref"), bp::arg("state") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setItemSelectState_function_type)(::CEGUI::MCLGridRef const &, bool);
+
+            MultiColumnList_exposer.def(
+                    "setItemSelectState"
+                    , setItemSelectState_function_type(&::CEGUI::MultiColumnList::setItemSelectState)
+                    , (bp::arg("grid_ref"), bp::arg("state"))
+                    , "*!\n\
                \n\
                   Sets or clears the selected state of the ListboxItem at the given grid reference.\n\
             \n\
@@ -3572,34 +3572,34 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  grid_ref is invalid for this list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setItemSelectState_impl
-        
-            typedef bool ( MultiColumnList_wrapper::*setItemSelectState_impl_function_type )( ::CEGUI::MCLGridRef const,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setItemSelectState_impl"
-                , setItemSelectState_impl_function_type( &MultiColumnList_wrapper::setItemSelectState_impl )
-                , ( bp::arg("grid_ref"), bp::arg("state") )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*setItemSelectState_impl_function_type)(::CEGUI::MCLGridRef const, bool);
+
+            MultiColumnList_exposer.def(
+                    "setItemSelectState_impl"
+                    , setItemSelectState_impl_function_type(&MultiColumnList_wrapper::setItemSelectState_impl)
+                    , (bp::arg("grid_ref"), bp::arg("state"))
+                    , "*!\n\
             \n\
                Set select state for the given item.  This appropriately selects other\n\
                items depending upon the select mode.  Returns true if something is\n\
                changed, else false.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::setNominatedSelectionColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setNominatedSelectionColumn_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setNominatedSelectionColumn"
-                , setNominatedSelectionColumn_function_type( &::CEGUI::MultiColumnList::setNominatedSelectionColumn )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setNominatedSelectionColumn_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setNominatedSelectionColumn"
+                    , setNominatedSelectionColumn_function_type(&::CEGUI::MultiColumnList::setNominatedSelectionColumn)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   Set the column to be used for the NominatedColumn* selection modes.\n\
             \n\
@@ -3610,18 +3610,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  col_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setNominatedSelectionColumnID
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setNominatedSelectionColumnID_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setNominatedSelectionColumnID"
-                , setNominatedSelectionColumnID_function_type( &::CEGUI::MultiColumnList::setNominatedSelectionColumnID )
-                , ( bp::arg("col_id") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setNominatedSelectionColumnID_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setNominatedSelectionColumnID"
+                    , setNominatedSelectionColumnID_function_type(&::CEGUI::MultiColumnList::setNominatedSelectionColumnID)
+                    , (bp::arg("col_id"))
+                    , "*!\n\
                \n\
                   Set the column to be used for the NominatedColumn* selection modes.\n\
             \n\
@@ -3632,18 +3632,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if no column has ID code  col_id.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setNominatedSelectionRow
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setNominatedSelectionRow_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setNominatedSelectionRow"
-                , setNominatedSelectionRow_function_type( &::CEGUI::MultiColumnList::setNominatedSelectionRow )
-                , ( bp::arg("row_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setNominatedSelectionRow_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setNominatedSelectionRow"
+                    , setNominatedSelectionRow_function_type(&::CEGUI::MultiColumnList::setNominatedSelectionRow)
+                    , (bp::arg("row_idx"))
+                    , "*!\n\
                \n\
                   Set the row to be used for the NominatedRow* selection modes.\n\
             \n\
@@ -3654,18 +3654,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  row_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setRowID
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setRowID_function_type )( ::CEGUI::uint,::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setRowID"
-                , setRowID_function_type( &::CEGUI::MultiColumnList::setRowID )
-                , ( bp::arg("row_idx"), bp::arg("row_id") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setRowID_function_type)(::CEGUI::uint, ::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setRowID"
+                    , setRowID_function_type(&::CEGUI::MultiColumnList::setRowID)
+                    , (bp::arg("row_idx"), bp::arg("row_id"))
+                    , "*!\n\
                \n\
                   Set the ID code assigned to a given row.\n\
             \n\
@@ -3679,46 +3679,46 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if  row_idx is out of range\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setSelectForItemsInColumn
-        
-            typedef void ( MultiColumnList_wrapper::*setSelectForItemsInColumn_function_type )( ::CEGUI::uint,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setSelectForItemsInColumn"
-                , setSelectForItemsInColumn_function_type( &MultiColumnList_wrapper::setSelectForItemsInColumn )
-                , ( bp::arg("col_idx"), bp::arg("state") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*setSelectForItemsInColumn_function_type)(::CEGUI::uint, bool);
+
+            MultiColumnList_exposer.def(
+                    "setSelectForItemsInColumn"
+                    , setSelectForItemsInColumn_function_type(&MultiColumnList_wrapper::setSelectForItemsInColumn)
+                    , (bp::arg("col_idx"), bp::arg("state"))
+                    , "*!\n\
             \n\
                Set select state for all items in the given column\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::setSelectForItemsInRow
-        
-            typedef void ( MultiColumnList_wrapper::*setSelectForItemsInRow_function_type )( ::CEGUI::uint,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setSelectForItemsInRow"
-                , setSelectForItemsInRow_function_type( &MultiColumnList_wrapper::setSelectForItemsInRow )
-                , ( bp::arg("row_idx"), bp::arg("state") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*setSelectForItemsInRow_function_type)(::CEGUI::uint, bool);
+
+            MultiColumnList_exposer.def(
+                    "setSelectForItemsInRow"
+                    , setSelectForItemsInRow_function_type(&MultiColumnList_wrapper::setSelectForItemsInRow)
+                    , (bp::arg("row_idx"), bp::arg("state"))
+                    , "*!\n\
             \n\
                Set select state for all items in the given row\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::MultiColumnList::setSelectionMode
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setSelectionMode_function_type )( ::CEGUI::MultiColumnList::SelectionMode ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setSelectionMode"
-                , setSelectionMode_function_type( &::CEGUI::MultiColumnList::setSelectionMode )
-                , ( bp::arg("sel_mode") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setSelectionMode_function_type)(::CEGUI::MultiColumnList::SelectionMode);
+
+            MultiColumnList_exposer.def(
+                    "setSelectionMode"
+                    , setSelectionMode_function_type(&::CEGUI::MultiColumnList::setSelectionMode)
+                    , (bp::arg("sel_mode"))
+                    , "*!\n\
                \n\
                   Set the selection mode for the list box.\n\
             \n\
@@ -3730,18 +3730,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception  InvalidRequestException thrown if the value specified for  sel_mode is invalid.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setShowHorzScrollbar
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setShowHorzScrollbar_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setShowHorzScrollbar"
-                , setShowHorzScrollbar_function_type( &::CEGUI::MultiColumnList::setShowHorzScrollbar )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setShowHorzScrollbar_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "setShowHorzScrollbar"
+                    , setShowHorzScrollbar_function_type(&::CEGUI::MultiColumnList::setShowHorzScrollbar)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                \n\
                   Set whether the horizontal scroll bar should always be shown, or just when needed.\n\
             \n\
@@ -3751,18 +3751,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setShowVertScrollbar
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setShowVertScrollbar_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setShowVertScrollbar"
-                , setShowVertScrollbar_function_type( &::CEGUI::MultiColumnList::setShowVertScrollbar )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setShowVertScrollbar_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "setShowVertScrollbar"
+                    , setShowVertScrollbar_function_type(&::CEGUI::MultiColumnList::setShowVertScrollbar)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                \n\
                   Set whether the vertical scroll bar should always be shown, or just when needed.\n\
             \n\
@@ -3772,18 +3772,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setSortColumn
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setSortColumn_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setSortColumn"
-                , setSortColumn_function_type( &::CEGUI::MultiColumnList::setSortColumn )
-                , ( bp::arg("col_idx") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setSortColumn_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setSortColumn"
+                    , setSortColumn_function_type(&::CEGUI::MultiColumnList::setSortColumn)
+                    , (bp::arg("col_idx"))
+                    , "*!\n\
                \n\
                   Set the column to be used as the sort key.\n\
             \n\
@@ -3794,18 +3794,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if col_idx is out of range.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setSortColumnByID
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setSortColumnByID_function_type )( ::CEGUI::uint ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setSortColumnByID"
-                , setSortColumnByID_function_type( &::CEGUI::MultiColumnList::setSortColumnByID )
-                , ( bp::arg("col_id") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setSortColumnByID_function_type)(::CEGUI::uint);
+
+            MultiColumnList_exposer.def(
+                    "setSortColumnByID"
+                    , setSortColumnByID_function_type(&::CEGUI::MultiColumnList::setSortColumnByID)
+                    , (bp::arg("col_id"))
+                    , "*!\n\
                \n\
                   Set the column to be used as the sort key.\n\
             \n\
@@ -3816,18 +3816,18 @@ void register_MultiColumnList_class(){
                   Nothing.\n\
             \n\
                @exception InvalidRequestException  thrown if col_id is invalid for this list box.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setSortDirection
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setSortDirection_function_type )( ::CEGUI::ListHeaderSegment::SortDirection ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setSortDirection"
-                , setSortDirection_function_type( &::CEGUI::MultiColumnList::setSortDirection )
-                , ( bp::arg("direction") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setSortDirection_function_type)(::CEGUI::ListHeaderSegment::SortDirection);
+
+            MultiColumnList_exposer.def(
+                    "setSortDirection"
+                    , setSortDirection_function_type(&::CEGUI::MultiColumnList::setSortDirection)
+                    , (bp::arg("direction"))
+                    , "*!\n\
                \n\
                   Set the sort direction to be used.\n\
             \n\
@@ -3837,36 +3837,36 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setUserColumnDraggingEnabled
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setUserColumnDraggingEnabled_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setUserColumnDraggingEnabled"
-                , setUserColumnDraggingEnabled_function_type( &::CEGUI::MultiColumnList::setUserColumnDraggingEnabled )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setUserColumnDraggingEnabled_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "setUserColumnDraggingEnabled"
+                    , setUserColumnDraggingEnabled_function_type(&::CEGUI::MultiColumnList::setUserColumnDraggingEnabled)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                \n\
                   Set whether the user may modify the order of the columns.\n\
             \n\
                @param setting\n\
                   - true if the user may interactively modify the order of the columns.\n\
                   - false if the user may not modify the order of the columns.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setUserColumnSizingEnabled
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setUserColumnSizingEnabled_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setUserColumnSizingEnabled"
-                , setUserColumnSizingEnabled_function_type( &::CEGUI::MultiColumnList::setUserColumnSizingEnabled )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setUserColumnSizingEnabled_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "setUserColumnSizingEnabled"
+                    , setUserColumnSizingEnabled_function_type(&::CEGUI::MultiColumnList::setUserColumnSizingEnabled)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                \n\
                   Set whether the user may size column segments.\n\
             \n\
@@ -3876,18 +3876,18 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::setUserSortControlEnabled
-        
-            typedef void ( ::CEGUI::MultiColumnList::*setUserSortControlEnabled_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setUserSortControlEnabled"
-                , setUserSortControlEnabled_function_type( &::CEGUI::MultiColumnList::setUserSortControlEnabled )
-                , ( bp::arg("setting") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::MultiColumnList::*setUserSortControlEnabled_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "setUserSortControlEnabled"
+                    , setUserSortControlEnabled_function_type(&::CEGUI::MultiColumnList::setUserSortControlEnabled)
+                    , (bp::arg("setting"))
+                    , "*!\n\
                \n\
                   Set whether user manipulation of the sort column and direction are enabled.\n\
             \n\
@@ -3898,133 +3898,133 @@ void register_MultiColumnList_class(){
             \n\
                @return\n\
                   Nothing.\n\
-               *\n" );
-        
+               *\n");
+
         }
         { //::CEGUI::MultiColumnList::validateWindowRenderer
-        
-            typedef bool ( MultiColumnList_wrapper::*validateWindowRenderer_function_type )( ::CEGUI::WindowRenderer const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "validateWindowRenderer"
-                , validateWindowRenderer_function_type( &MultiColumnList_wrapper::default_validateWindowRenderer )
-                , ( bp::arg("renderer") )
-                , "overrides function in base class.\n" );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*validateWindowRenderer_function_type)(::CEGUI::WindowRenderer const *) const;
+
+            MultiColumnList_exposer.def(
+                    "validateWindowRenderer"
+                    , validateWindowRenderer_function_type(&MultiColumnList_wrapper::default_validateWindowRenderer)
+                    , (bp::arg("renderer"))
+                    , "overrides function in base class.\n");
+
         }
         { //::CEGUI::MultiColumnList::writePropertiesXML
-        
-            typedef int ( MultiColumnList_wrapper::*writePropertiesXML_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "writePropertiesXML"
-                , writePropertiesXML_function_type( &MultiColumnList_wrapper::default_writePropertiesXML )
-                , ( bp::arg("xml_stream") )
-                , "overrides function in base class.\n" );
-        
+
+            typedef int ( MultiColumnList_wrapper::*writePropertiesXML_function_type)(::CEGUI::XMLSerializer &) const;
+
+            MultiColumnList_exposer.def(
+                    "writePropertiesXML"
+                    , writePropertiesXML_function_type(&MultiColumnList_wrapper::default_writePropertiesXML)
+                    , (bp::arg("xml_stream"))
+                    , "overrides function in base class.\n");
+
         }
-        MultiColumnList_exposer.add_static_property( "EventHorzScrollbarModeChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventHorzScrollbarModeChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventListColumnMoved"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventListColumnMoved
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventListColumnSized"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventListColumnSized
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventListContentsChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventListContentsChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventNominatedSelectColumnChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventNominatedSelectColumnChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventNominatedSelectRowChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventNominatedSelectRowChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventSelectionChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventSelectionChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventSelectionModeChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventSelectionModeChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventSortColumnChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventSortColumnChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventSortDirectionChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventSortDirectionChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "EventVertScrollbarModeChanged"
-                        , bp::make_getter( &CEGUI::MultiColumnList::EventVertScrollbarModeChanged
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "HorzScrollbarName"
-                        , bp::make_getter( &CEGUI::MultiColumnList::HorzScrollbarName
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "ListHeaderName"
-                        , bp::make_getter( &CEGUI::MultiColumnList::ListHeaderName
-                                , bp::return_value_policy< bp::return_by_value >() ) );
-        MultiColumnList_exposer.add_static_property( "VertScrollbarName"
-                        , bp::make_getter( &CEGUI::MultiColumnList::VertScrollbarName
-                                , bp::return_value_policy< bp::return_by_value >() ) );
+        MultiColumnList_exposer.add_static_property("EventHorzScrollbarModeChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventHorzScrollbarModeChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventListColumnMoved"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventListColumnMoved
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventListColumnSized"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventListColumnSized
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventListContentsChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventListContentsChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventNominatedSelectColumnChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventNominatedSelectColumnChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventNominatedSelectRowChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventNominatedSelectRowChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventSelectionChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventSelectionChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventSelectionModeChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventSelectionModeChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventSortColumnChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventSortColumnChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventSortDirectionChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventSortDirectionChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("EventVertScrollbarModeChanged"
+                , bp::make_getter(&CEGUI::MultiColumnList::EventVertScrollbarModeChanged
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("HorzScrollbarName"
+                , bp::make_getter(&CEGUI::MultiColumnList::HorzScrollbarName
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("ListHeaderName"
+                , bp::make_getter(&CEGUI::MultiColumnList::ListHeaderName
+                , bp::return_value_policy< bp::return_by_value >()));
+        MultiColumnList_exposer.add_static_property("VertScrollbarName"
+                , bp::make_getter(&CEGUI::MultiColumnList::VertScrollbarName
+                , bp::return_value_policy< bp::return_by_value >()));
         { //::CEGUI::Window::addChild_impl
-        
-            typedef void ( MultiColumnList_wrapper::*addChild_impl_function_type )( ::CEGUI::Element * ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addChild_impl"
-                , addChild_impl_function_type( &MultiColumnList_wrapper::default_addChild_impl )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*addChild_impl_function_type)(::CEGUI::Element *);
+
+            MultiColumnList_exposer.def(
+                    "addChild_impl"
+                    , addChild_impl_function_type(&MultiColumnList_wrapper::default_addChild_impl)
+                    , (bp::arg("element"))
+                    , "*!\n\
             opydoc Element.addChild_impl\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::addElementProperties
-        
-            typedef void ( MultiColumnList_wrapper::*addElementProperties_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addElementProperties"
-                , addElementProperties_function_type( &MultiColumnList_wrapper::addElementProperties )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*addElementProperties_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "addElementProperties"
+                    , addElementProperties_function_type(&MultiColumnList_wrapper::addElementProperties)
+                    , "*!\n\
             \n\
                 Add standard CEGUI.Element properties.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::NamedElement::addNamedElementProperties
-        
-            typedef void ( MultiColumnList_wrapper::*addNamedElementProperties_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addNamedElementProperties"
-                , addNamedElementProperties_function_type( &MultiColumnList_wrapper::addNamedElementProperties )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*addNamedElementProperties_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "addNamedElementProperties"
+                    , addNamedElementProperties_function_type(&MultiColumnList_wrapper::addNamedElementProperties)
+                    , "*!\n\
              Add standard CEGUI.NamedElement properties.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::addWindowProperties
-        
-            typedef void ( MultiColumnList_wrapper::*addWindowProperties_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addWindowProperties"
-                , addWindowProperties_function_type( &MultiColumnList_wrapper::addWindowProperties )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*addWindowProperties_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "addWindowProperties"
+                    , addWindowProperties_function_type(&MultiColumnList_wrapper::addWindowProperties)
+                    , "*!\n\
             \n\
                 Add standard CEGUI.Window properties.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::addWindowToDrawList
-        
-            typedef void ( MultiColumnList_wrapper::*addWindowToDrawList_function_type )( ::CEGUI::Window &,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "addWindowToDrawList"
-                , addWindowToDrawList_function_type( &MultiColumnList_wrapper::addWindowToDrawList )
-                , ( bp::arg("wnd"), bp::arg("at_back")=(bool)(false) )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*addWindowToDrawList_function_type)(::CEGUI::Window &, bool);
+
+            MultiColumnList_exposer.def(
+                    "addWindowToDrawList"
+                    , addWindowToDrawList_function_type(&MultiColumnList_wrapper::addWindowToDrawList)
+                    , (bp::arg("wnd"), bp::arg("at_back") = (bool)(false))
+                    , "*!\n\
                 \n\
                     Add the given window to the drawing list at an appropriate position for\n\
                     it's settings and the required direction.  Basically, when  at_back\n\
@@ -4042,48 +4042,48 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::allocateRenderingWindow
-        
-            typedef void ( MultiColumnList_wrapper::*allocateRenderingWindow_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "allocateRenderingWindow"
-                , allocateRenderingWindow_function_type( &MultiColumnList_wrapper::allocateRenderingWindow )
-                , "! helper to create and setup the auto RenderingWindow surface\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*allocateRenderingWindow_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "allocateRenderingWindow"
+                    , allocateRenderingWindow_function_type(&MultiColumnList_wrapper::allocateRenderingWindow)
+                    , "! helper to create and setup the auto RenderingWindow surface\n");
+
         }
         { //::CEGUI::Window::banPropertiesForAutoWindow
-        
-            typedef void ( MultiColumnList_wrapper::*banPropertiesForAutoWindow_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "banPropertiesForAutoWindow"
-                , banPropertiesForAutoWindow_function_type( &MultiColumnList_wrapper::default_banPropertiesForAutoWindow ) );
-        
+
+            typedef void ( MultiColumnList_wrapper::*banPropertiesForAutoWindow_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "banPropertiesForAutoWindow"
+                    , banPropertiesForAutoWindow_function_type(&MultiColumnList_wrapper::default_banPropertiesForAutoWindow));
+
         }
         { //::CEGUI::Window::beginInitialisation
-        
-            typedef void ( ::CEGUI::Window::*beginInitialisation_function_type )(  ) ;
-            typedef void ( MultiColumnList_wrapper::*default_beginInitialisation_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "beginInitialisation"
-                , beginInitialisation_function_type(&::CEGUI::Window::beginInitialisation)
-                , default_beginInitialisation_function_type(&MultiColumnList_wrapper::default_beginInitialisation) );
-        
+
+            typedef void ( ::CEGUI::Window::*beginInitialisation_function_type)();
+            typedef void ( MultiColumnList_wrapper::*default_beginInitialisation_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "beginInitialisation"
+                    , beginInitialisation_function_type(&::CEGUI::Window::beginInitialisation)
+                    , default_beginInitialisation_function_type(&MultiColumnList_wrapper::default_beginInitialisation));
+
         }
         { //::CEGUI::Window::bufferGeometry
-        
-            typedef void ( MultiColumnList_wrapper::*bufferGeometry_function_type )( ::CEGUI::RenderingContext const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "bufferGeometry"
-                , bufferGeometry_function_type( &MultiColumnList_wrapper::bufferGeometry )
-                , ( bp::arg("ctx") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*bufferGeometry_function_type)(::CEGUI::RenderingContext const &);
+
+            MultiColumnList_exposer.def(
+                    "bufferGeometry"
+                    , bufferGeometry_function_type(&MultiColumnList_wrapper::bufferGeometry)
+                    , (bp::arg("ctx"))
+                    , "*!\n\
                 \n\
                     Perform drawing operations concerned with generating and buffering\n\
                     window geometry.\n\
@@ -4092,66 +4092,66 @@ void register_MultiColumnList_class(){
                     This function is a sub-function of drawSelf; it is provided to make it\n\
                     easier to override drawSelf without needing to duplicate large sections\n\
                     of the code from the default implementation.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::cleanupChildren
-        
-            typedef void ( MultiColumnList_wrapper::*cleanupChildren_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "cleanupChildren"
-                , cleanupChildren_function_type( &MultiColumnList_wrapper::default_cleanupChildren )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*cleanupChildren_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "cleanupChildren"
+                    , cleanupChildren_function_type(&MultiColumnList_wrapper::default_cleanupChildren)
+                    , "*!\n\
             \n\
                 Cleanup child windows\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::cloneChildWidgetsTo
-        
-            typedef void ( ::CEGUI::Window::*cloneChildWidgetsTo_function_type )( ::CEGUI::Window & ) const;
-            typedef void ( MultiColumnList_wrapper::*default_cloneChildWidgetsTo_function_type )( ::CEGUI::Window & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "cloneChildWidgetsTo"
-                , cloneChildWidgetsTo_function_type(&::CEGUI::Window::cloneChildWidgetsTo)
-                , default_cloneChildWidgetsTo_function_type(&MultiColumnList_wrapper::default_cloneChildWidgetsTo)
-                , ( bp::arg("target") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*cloneChildWidgetsTo_function_type)(::CEGUI::Window &) const;
+            typedef void ( MultiColumnList_wrapper::*default_cloneChildWidgetsTo_function_type)(::CEGUI::Window &) const;
+
+            MultiColumnList_exposer.def(
+                    "cloneChildWidgetsTo"
+                    , cloneChildWidgetsTo_function_type(&::CEGUI::Window::cloneChildWidgetsTo)
+                    , default_cloneChildWidgetsTo_function_type(&MultiColumnList_wrapper::default_cloneChildWidgetsTo)
+                    , (bp::arg("target")));
+
         }
         { //::CEGUI::Window::clonePropertiesTo
-        
-            typedef void ( ::CEGUI::Window::*clonePropertiesTo_function_type )( ::CEGUI::Window & ) const;
-            typedef void ( MultiColumnList_wrapper::*default_clonePropertiesTo_function_type )( ::CEGUI::Window & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "clonePropertiesTo"
-                , clonePropertiesTo_function_type(&::CEGUI::Window::clonePropertiesTo)
-                , default_clonePropertiesTo_function_type(&MultiColumnList_wrapper::default_clonePropertiesTo)
-                , ( bp::arg("target") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*clonePropertiesTo_function_type)(::CEGUI::Window &) const;
+            typedef void ( MultiColumnList_wrapper::*default_clonePropertiesTo_function_type)(::CEGUI::Window &) const;
+
+            MultiColumnList_exposer.def(
+                    "clonePropertiesTo"
+                    , clonePropertiesTo_function_type(&::CEGUI::Window::clonePropertiesTo)
+                    , default_clonePropertiesTo_function_type(&MultiColumnList_wrapper::default_clonePropertiesTo)
+                    , (bp::arg("target")));
+
         }
         { //::CEGUI::Window::destroy
-        
-            typedef void ( ::CEGUI::Window::*destroy_function_type )(  ) ;
-            typedef void ( MultiColumnList_wrapper::*default_destroy_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "destroy"
-                , destroy_function_type(&::CEGUI::Window::destroy)
-                , default_destroy_function_type(&MultiColumnList_wrapper::default_destroy) );
-        
+
+            typedef void ( ::CEGUI::Window::*destroy_function_type)();
+            typedef void ( MultiColumnList_wrapper::*default_destroy_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "destroy"
+                    , destroy_function_type(&::CEGUI::Window::destroy)
+                    , default_destroy_function_type(&MultiColumnList_wrapper::default_destroy));
+
         }
         { //::CEGUI::Window::drawSelf
-        
-            typedef void ( MultiColumnList_wrapper::*drawSelf_function_type )( ::CEGUI::RenderingContext const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "drawSelf"
-                , drawSelf_function_type( &MultiColumnList_wrapper::default_drawSelf )
-                , ( bp::arg("ctx") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*drawSelf_function_type)(::CEGUI::RenderingContext const &);
+
+            MultiColumnList_exposer.def(
+                    "drawSelf"
+                    , drawSelf_function_type(&MultiColumnList_wrapper::default_drawSelf)
+                    , (bp::arg("ctx"))
+                    , "*!\n\
                 \n\
                     Perform the actual rendering for this Window.\n\
             \n\
@@ -4161,330 +4161,330 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::endInitialisation
-        
-            typedef void ( ::CEGUI::Window::*endInitialisation_function_type )(  ) ;
-            typedef void ( MultiColumnList_wrapper::*default_endInitialisation_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "endInitialisation"
-                , endInitialisation_function_type(&::CEGUI::Window::endInitialisation)
-                , default_endInitialisation_function_type(&MultiColumnList_wrapper::default_endInitialisation) );
-        
+
+            typedef void ( ::CEGUI::Window::*endInitialisation_function_type)();
+            typedef void ( MultiColumnList_wrapper::*default_endInitialisation_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "endInitialisation"
+                    , endInitialisation_function_type(&::CEGUI::Window::endInitialisation)
+                    , default_endInitialisation_function_type(&MultiColumnList_wrapper::default_endInitialisation));
+
         }
         { //::CEGUI::Element::fireAreaChangeEvents
-        
-            typedef void ( MultiColumnList_wrapper::*fireAreaChangeEvents_function_type )( bool const,bool const ) ;
-            
-            MultiColumnList_exposer.def( 
-                "fireAreaChangeEvents"
-                , fireAreaChangeEvents_function_type( &MultiColumnList_wrapper::fireAreaChangeEvents )
-                , ( bp::arg("moved"), bp::arg("sized") )
-                , "! helper to fire events based on changes to area rect\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*fireAreaChangeEvents_function_type)(bool const, bool const);
+
+            MultiColumnList_exposer.def(
+                    "fireAreaChangeEvents"
+                    , fireAreaChangeEvents_function_type(&MultiColumnList_wrapper::fireAreaChangeEvents)
+                    , (bp::arg("moved"), bp::arg("sized"))
+                    , "! helper to fire events based on changes to area rect\n");
+
         }
         { //::CEGUI::EventSet::fireEvent
-        
-            typedef void ( ::CEGUI::EventSet::*fireEvent_function_type )( ::CEGUI::String const &,::CEGUI::EventArgs &,::CEGUI::String const & ) ;
-            typedef void ( MultiColumnList_wrapper::*default_fireEvent_function_type )( ::CEGUI::String const &,::CEGUI::EventArgs &,::CEGUI::String const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "fireEvent"
-                , fireEvent_function_type(&::CEGUI::EventSet::fireEvent)
-                , default_fireEvent_function_type(&MultiColumnList_wrapper::default_fireEvent)
-                , ( bp::arg("name"), bp::arg("args"), bp::arg("eventNamespace")="" ) );
-        
+
+            typedef void ( ::CEGUI::EventSet::*fireEvent_function_type)(::CEGUI::String const &, ::CEGUI::EventArgs &, ::CEGUI::String const &);
+            typedef void ( MultiColumnList_wrapper::*default_fireEvent_function_type)(::CEGUI::String const &, ::CEGUI::EventArgs &, ::CEGUI::String const &);
+
+            MultiColumnList_exposer.def(
+                    "fireEvent"
+                    , fireEvent_function_type(&::CEGUI::EventSet::fireEvent)
+                    , default_fireEvent_function_type(&MultiColumnList_wrapper::default_fireEvent)
+                    , (bp::arg("name"), bp::arg("args"), bp::arg("eventNamespace") = ""));
+
         }
         { //::CEGUI::EventSet::fireEvent_impl
-        
-            typedef void ( MultiColumnList_wrapper::*fireEvent_impl_function_type )( ::CEGUI::String const &,::CEGUI::EventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "fireEvent_impl"
-                , fireEvent_impl_function_type( &MultiColumnList_wrapper::fireEvent_impl )
-                , ( bp::arg("name"), bp::arg("args") )
-                , "! Implementation event firing member\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*fireEvent_impl_function_type)(::CEGUI::String const &, ::CEGUI::EventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "fireEvent_impl"
+                    , fireEvent_impl_function_type(&MultiColumnList_wrapper::fireEvent_impl)
+                    , (bp::arg("name"), bp::arg("args"))
+                    , "! Implementation event firing member\n");
+
         }
         { //::CEGUI::Window::generateAutoRepeatEvent
-        
-            typedef void ( MultiColumnList_wrapper::*generateAutoRepeatEvent_function_type )( ::CEGUI::MouseButton ) ;
-            
-            MultiColumnList_exposer.def( 
-                "generateAutoRepeatEvent"
-                , generateAutoRepeatEvent_function_type( &MultiColumnList_wrapper::generateAutoRepeatEvent )
-                , ( bp::arg("button") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*generateAutoRepeatEvent_function_type)(::CEGUI::MouseButton);
+
+            MultiColumnList_exposer.def(
+                    "generateAutoRepeatEvent"
+                    , generateAutoRepeatEvent_function_type(&MultiColumnList_wrapper::generateAutoRepeatEvent)
+                    , (bp::arg("button"))
+                    , "*!\n\
             \n\
                 Fires off a repeated mouse button down event for this window.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::NamedElement::getChildByNamePath_impl
-        
-            typedef ::CEGUI::NamedElement * ( MultiColumnList_wrapper::*getChildByNamePath_impl_function_type )( ::CEGUI::String const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getChildByNamePath_impl"
-                , getChildByNamePath_impl_function_type( &MultiColumnList_wrapper::default_getChildByNamePath_impl )
-                , ( bp::arg("name_path") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::NamedElement * (MultiColumnList_wrapper::*getChildByNamePath_impl_function_type)(::CEGUI::String const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getChildByNamePath_impl"
+                    , getChildByNamePath_impl_function_type(&MultiColumnList_wrapper::default_getChildByNamePath_impl)
+                    , (bp::arg("name_path"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
              Retrieves a child at  name_path or 0 if none such exists\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::NamedElement::getChildByNameRecursive_impl
-        
-            typedef ::CEGUI::NamedElement * ( MultiColumnList_wrapper::*getChildByNameRecursive_impl_function_type )( ::CEGUI::String const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getChildByNameRecursive_impl"
-                , getChildByNameRecursive_impl_function_type( &MultiColumnList_wrapper::default_getChildByNameRecursive_impl )
-                , ( bp::arg("name") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::NamedElement * (MultiColumnList_wrapper::*getChildByNameRecursive_impl_function_type)(::CEGUI::String const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getChildByNameRecursive_impl"
+                    , getChildByNameRecursive_impl_function_type(&MultiColumnList_wrapper::default_getChildByNameRecursive_impl)
+                    , (bp::arg("name"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
              Finds a child by  name or 0 if none such exists\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Element::getClientChildContentArea
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getClientChildContentArea_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getClientChildContentArea"
-                , getClientChildContentArea_function_type(&::CEGUI::Element::getClientChildContentArea)
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getClientChildContentArea_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getClientChildContentArea"
+                    , getClientChildContentArea_function_type(&::CEGUI::Element::getClientChildContentArea)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::Window::getHitTestRect_impl
-        
-            typedef ::CEGUI::Rectf ( MultiColumnList_wrapper::*getHitTestRect_impl_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getHitTestRect_impl"
-                , getHitTestRect_impl_function_type( &MultiColumnList_wrapper::default_getHitTestRect_impl )
-                , "! Default implementation of function to return Window inner clipper area.\n\
-            ! Default implementation of function to return Window hit-test area.\n" );
-        
+
+            typedef ::CEGUI::Rectf(MultiColumnList_wrapper::*getHitTestRect_impl_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getHitTestRect_impl"
+                    , getHitTestRect_impl_function_type(&MultiColumnList_wrapper::default_getHitTestRect_impl)
+                    , "! Default implementation of function to return Window inner clipper area.\n\
+            ! Default implementation of function to return Window hit-test area.\n");
+
         }
         { //::CEGUI::Window::getInnerRectClipper_impl
-        
-            typedef ::CEGUI::Rectf ( MultiColumnList_wrapper::*getInnerRectClipper_impl_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getInnerRectClipper_impl"
-                , getInnerRectClipper_impl_function_type( &MultiColumnList_wrapper::default_getInnerRectClipper_impl )
-                , "! Default implementation of function to return Window outer clipper area.\n\
-            ! Default implementation of function to return Window inner clipper area.\n" );
-        
+
+            typedef ::CEGUI::Rectf(MultiColumnList_wrapper::*getInnerRectClipper_impl_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getInnerRectClipper_impl"
+                    , getInnerRectClipper_impl_function_type(&MultiColumnList_wrapper::default_getInnerRectClipper_impl)
+                    , "! Default implementation of function to return Window outer clipper area.\n\
+            ! Default implementation of function to return Window inner clipper area.\n");
+
         }
         { //::CEGUI::Element::getNonClientChildContentArea
-        
-            typedef ::CEGUI::Element::CachedRectf const & ( ::CEGUI::Element::*getNonClientChildContentArea_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getNonClientChildContentArea"
-                , getNonClientChildContentArea_function_type(&::CEGUI::Element::getNonClientChildContentArea)
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::Element::CachedRectf const & (::CEGUI::Element::*getNonClientChildContentArea_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getNonClientChildContentArea"
+                    , getNonClientChildContentArea_function_type(&::CEGUI::Element::getNonClientChildContentArea)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::Window::getOuterRectClipper_impl
-        
-            typedef ::CEGUI::Rectf ( MultiColumnList_wrapper::*getOuterRectClipper_impl_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getOuterRectClipper_impl"
-                , getOuterRectClipper_impl_function_type( &MultiColumnList_wrapper::default_getOuterRectClipper_impl )
-                , "! Default implementation of function to return Window outer clipper area.\n" );
-        
+
+            typedef ::CEGUI::Rectf(MultiColumnList_wrapper::*getOuterRectClipper_impl_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getOuterRectClipper_impl"
+                    , getOuterRectClipper_impl_function_type(&MultiColumnList_wrapper::default_getOuterRectClipper_impl)
+                    , "! Default implementation of function to return Window outer clipper area.\n");
+
         }
         { //::CEGUI::Window::getParentElementClipIntersection
-        
-            typedef ::CEGUI::Rectf ( MultiColumnList_wrapper::*getParentElementClipIntersection_function_type )( ::CEGUI::Rectf const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getParentElementClipIntersection"
-                , getParentElementClipIntersection_function_type( &MultiColumnList_wrapper::getParentElementClipIntersection )
-                , ( bp::arg("unclipped_area") )
-                , "! helper function for calculating clipping rectangles.\n" );
-        
+
+            typedef ::CEGUI::Rectf(MultiColumnList_wrapper::*getParentElementClipIntersection_function_type)(::CEGUI::Rectf const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getParentElementClipIntersection"
+                    , getParentElementClipIntersection_function_type(&MultiColumnList_wrapper::getParentElementClipIntersection)
+                    , (bp::arg("unclipped_area"))
+                    , "! helper function for calculating clipping rectangles.\n");
+
         }
         { //::CEGUI::Window::getRenderedStringParser
-        
-            typedef ::CEGUI::RenderedStringParser & ( ::CEGUI::Window::*getRenderedStringParser_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getRenderedStringParser"
-                , getRenderedStringParser_function_type(&::CEGUI::Window::getRenderedStringParser)
-                , bp::return_value_policy< bp::reference_existing_object >() );
-        
+
+            typedef ::CEGUI::RenderedStringParser & (::CEGUI::Window::*getRenderedStringParser_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getRenderedStringParser"
+                    , getRenderedStringParser_function_type(&::CEGUI::Window::getRenderedStringParser)
+                    , bp::return_value_policy< bp::reference_existing_object >());
+
         }
         { //::CEGUI::Window::getRenderingContext_impl
-        
-            typedef void ( ::CEGUI::Window::*getRenderingContext_impl_function_type )( ::CEGUI::RenderingContext & ) const;
-            typedef void ( MultiColumnList_wrapper::*default_getRenderingContext_impl_function_type )( ::CEGUI::RenderingContext & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getRenderingContext_impl"
-                , getRenderingContext_impl_function_type(&::CEGUI::Window::getRenderingContext_impl)
-                , default_getRenderingContext_impl_function_type(&MultiColumnList_wrapper::default_getRenderingContext_impl)
-                , ( bp::arg("ctx") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*getRenderingContext_impl_function_type)(::CEGUI::RenderingContext &) const;
+            typedef void ( MultiColumnList_wrapper::*default_getRenderingContext_impl_function_type)(::CEGUI::RenderingContext &) const;
+
+            MultiColumnList_exposer.def(
+                    "getRenderingContext_impl"
+                    , getRenderingContext_impl_function_type(&::CEGUI::Window::getRenderingContext_impl)
+                    , default_getRenderingContext_impl_function_type(&MultiColumnList_wrapper::default_getRenderingContext_impl)
+                    , (bp::arg("ctx")));
+
         }
         { //::CEGUI::Window::getRootContainerSize
-        
-            typedef ::CEGUI::Sizef const & ( ::CEGUI::Window::*getRootContainerSize_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getRootContainerSize"
-                , getRootContainerSize_function_type(&::CEGUI::Window::getRootContainerSize)
-                , bp::return_value_policy< bp::copy_const_reference >() );
-        
+
+            typedef ::CEGUI::Sizef const & (::CEGUI::Window::*getRootContainerSize_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getRootContainerSize"
+                    , getRootContainerSize_function_type(&::CEGUI::Window::getRootContainerSize)
+                    , bp::return_value_policy< bp::copy_const_reference >());
+
         }
         { //::CEGUI::EventSet::getScriptModule
-        
-            typedef ::CEGUI::ScriptModule * ( MultiColumnList_wrapper::*getScriptModule_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getScriptModule"
-                , getScriptModule_function_type( &MultiColumnList_wrapper::getScriptModule )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "! Implementation event firing member\n\
-            ! Helper to return the script module pointer or throw.\n" );
-        
+
+            typedef ::CEGUI::ScriptModule * (MultiColumnList_wrapper::*getScriptModule_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "getScriptModule"
+                    , getScriptModule_function_type(&MultiColumnList_wrapper::getScriptModule)
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "! Implementation event firing member\n\
+            ! Helper to return the script module pointer or throw.\n");
+
         }
         { //::CEGUI::Window::getUnclippedInnerRect_impl
-        
-            typedef ::CEGUI::Rectf ( MultiColumnList_wrapper::*getUnclippedInnerRect_impl_function_type )( bool ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getUnclippedInnerRect_impl"
-                , getUnclippedInnerRect_impl_function_type( &MultiColumnList_wrapper::default_getUnclippedInnerRect_impl )
-                , ( bp::arg("skipAllPixelAlignment") ) );
-        
+
+            typedef ::CEGUI::Rectf(MultiColumnList_wrapper::*getUnclippedInnerRect_impl_function_type)(bool) const;
+
+            MultiColumnList_exposer.def(
+                    "getUnclippedInnerRect_impl"
+                    , getUnclippedInnerRect_impl_function_type(&MultiColumnList_wrapper::default_getUnclippedInnerRect_impl)
+                    , (bp::arg("skipAllPixelAlignment")));
+
         }
         { //::CEGUI::Element::getUnclippedOuterRect_impl
-        
-            typedef ::CEGUI::Rectf ( MultiColumnList_wrapper::*getUnclippedOuterRect_impl_function_type )( bool ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getUnclippedOuterRect_impl"
-                , getUnclippedOuterRect_impl_function_type( &MultiColumnList_wrapper::default_getUnclippedOuterRect_impl )
-                , ( bp::arg("skipAllPixelAlignment") )
-                , "! Default implementation of function to return Element's outer rect area.\n" );
-        
+
+            typedef ::CEGUI::Rectf(MultiColumnList_wrapper::*getUnclippedOuterRect_impl_function_type)(bool) const;
+
+            MultiColumnList_exposer.def(
+                    "getUnclippedOuterRect_impl"
+                    , getUnclippedOuterRect_impl_function_type(&MultiColumnList_wrapper::default_getUnclippedOuterRect_impl)
+                    , (bp::arg("skipAllPixelAlignment"))
+                    , "! Default implementation of function to return Element's outer rect area.\n");
+
         }
         { //::CEGUI::Window::getWindowAttachedToCommonAncestor
-        
-            typedef ::CEGUI::Window const * ( MultiColumnList_wrapper::*getWindowAttachedToCommonAncestor_function_type )( ::CEGUI::Window const & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "getWindowAttachedToCommonAncestor"
-                , getWindowAttachedToCommonAncestor_function_type( &MultiColumnList_wrapper::getWindowAttachedToCommonAncestor )
-                , ( bp::arg("wnd") )
-                , bp::return_value_policy< bp::reference_existing_object >()
-                , "*!\n\
+
+            typedef ::CEGUI::Window const * (MultiColumnList_wrapper::*getWindowAttachedToCommonAncestor_function_type)(::CEGUI::Window const &) const;
+
+            MultiColumnList_exposer.def(
+                    "getWindowAttachedToCommonAncestor"
+                    , getWindowAttachedToCommonAncestor_function_type(&MultiColumnList_wrapper::getWindowAttachedToCommonAncestor)
+                    , (bp::arg("wnd"))
+                    , bp::return_value_policy< bp::reference_existing_object >()
+                    , "*!\n\
             \n\
                 Helper function to return the ancestor Window of a wnd that is attached\n\
                 as a child to a window that is also an ancestor of a this.  Returns 0\n\
                 if a wnd and a this are not part of the same hierachy.\n\
-             *\n" );
-        
+             *\n");
+
         }
         { //::CEGUI::Window::handleFontRenderSizeChange
-        
-            typedef bool ( MultiColumnList_wrapper::*handleFontRenderSizeChange_function_type )( ::CEGUI::EventArgs const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "handleFontRenderSizeChange"
-                , handleFontRenderSizeChange_function_type( &MultiColumnList_wrapper::default_handleFontRenderSizeChange )
-                , ( bp::arg("args") )
-                , "! handler function for when font render size changes.\n" );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*handleFontRenderSizeChange_function_type)(::CEGUI::EventArgs const &);
+
+            MultiColumnList_exposer.def(
+                    "handleFontRenderSizeChange"
+                    , handleFontRenderSizeChange_function_type(&MultiColumnList_wrapper::default_handleFontRenderSizeChange)
+                    , (bp::arg("args"))
+                    , "! handler function for when font render size changes.\n");
+
         }
         { //::CEGUI::Window::initialiseClippers
-        
-            typedef void ( MultiColumnList_wrapper::*initialiseClippers_function_type )( ::CEGUI::RenderingContext const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "initialiseClippers"
-                , initialiseClippers_function_type( &MultiColumnList_wrapper::initialiseClippers )
-                , ( bp::arg("ctx") )
-                , "! Helper to intialise the needed clipping for geometry and render surface.\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*initialiseClippers_function_type)(::CEGUI::RenderingContext const &);
+
+            MultiColumnList_exposer.def(
+                    "initialiseClippers"
+                    , initialiseClippers_function_type(&MultiColumnList_wrapper::initialiseClippers)
+                    , (bp::arg("ctx"))
+                    , "! Helper to intialise the needed clipping for geometry and render surface.\n");
+
         }
         { //::CEGUI::Window::invalidate_impl
-        
-            typedef void ( MultiColumnList_wrapper::*invalidate_impl_function_type )( bool const ) ;
-            
-            MultiColumnList_exposer.def( 
-                "invalidate_impl"
-                , invalidate_impl_function_type( &MultiColumnList_wrapper::invalidate_impl )
-                , ( bp::arg("recursive") )
-                , "! helper function to invalidate window and optionally child windows.\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*invalidate_impl_function_type)(bool const);
+
+            MultiColumnList_exposer.def(
+                    "invalidate_impl"
+                    , invalidate_impl_function_type(&MultiColumnList_wrapper::invalidate_impl)
+                    , (bp::arg("recursive"))
+                    , "! helper function to invalidate window and optionally child windows.\n");
+
         }
         { //::CEGUI::Window::isHit
-        
-            typedef bool ( ::CEGUI::Window::*isHit_function_type )( ::CEGUI::Vector2f const &,bool const ) const;
-            typedef bool ( MultiColumnList_wrapper::*default_isHit_function_type )( ::CEGUI::Vector2f const &,bool const ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isHit"
-                , isHit_function_type(&::CEGUI::Window::isHit)
-                , default_isHit_function_type(&MultiColumnList_wrapper::default_isHit)
-                , ( bp::arg("position"), bp::arg("allow_disabled")=(bool const)(false) ) );
-        
+
+            typedef bool ( ::CEGUI::Window::*isHit_function_type)(::CEGUI::Vector2f const &, bool const) const;
+            typedef bool ( MultiColumnList_wrapper::*default_isHit_function_type)(::CEGUI::Vector2f const &, bool const) const;
+
+            MultiColumnList_exposer.def(
+                    "isHit"
+                    , isHit_function_type(&::CEGUI::Window::isHit)
+                    , default_isHit_function_type(&MultiColumnList_wrapper::default_isHit)
+                    , (bp::arg("position"), bp::arg("allow_disabled") = (bool const) (false)));
+
         }
         { //::CEGUI::Window::isHitTargetWindow
-        
-            typedef bool ( MultiColumnList_wrapper::*isHitTargetWindow_function_type )( ::CEGUI::Vector2f const &,bool ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isHitTargetWindow"
-                , isHitTargetWindow_function_type( &MultiColumnList_wrapper::isHitTargetWindow )
-                , ( bp::arg("position"), bp::arg("allow_disabled") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*isHitTargetWindow_function_type)(::CEGUI::Vector2f const &, bool) const;
+
+            MultiColumnList_exposer.def(
+                    "isHitTargetWindow"
+                    , isHitTargetWindow_function_type(&MultiColumnList_wrapper::isHitTargetWindow)
+                    , (bp::arg("position"), bp::arg("allow_disabled")));
+
         }
         { //::CEGUI::Element::isInnerRectSizeChanged
-        
-            typedef bool ( MultiColumnList_wrapper::*isInnerRectSizeChanged_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isInnerRectSizeChanged"
-                , isInnerRectSizeChanged_function_type( &MultiColumnList_wrapper::isInnerRectSizeChanged )
-                , "! helper to return whether the inner rect size has changed\n" );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*isInnerRectSizeChanged_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isInnerRectSizeChanged"
+                    , isInnerRectSizeChanged_function_type(&MultiColumnList_wrapper::isInnerRectSizeChanged)
+                    , "! helper to return whether the inner rect size has changed\n");
+
         }
         { //::CEGUI::Window::isPropertyAtDefault
-        
-            typedef bool ( MultiColumnList_wrapper::*isPropertyAtDefault_function_type )( ::CEGUI::Property const * ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isPropertyAtDefault"
-                , isPropertyAtDefault_function_type( &MultiColumnList_wrapper::isPropertyAtDefault )
-                , ( bp::arg("property") )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*isPropertyAtDefault_function_type)(::CEGUI::Property const *) const;
+
+            MultiColumnList_exposer.def(
+                    "isPropertyAtDefault"
+                    , isPropertyAtDefault_function_type(&MultiColumnList_wrapper::isPropertyAtDefault)
+                    , (bp::arg("property"))
+                    , "*!\n\
             \n\
                 Returns whether a property is at it's default value.\n\
                 This function is different from Property.isDefatult as it takes the assigned look'n'feel\n\
                 (if the is one) into account.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::isTopOfZOrder
-        
-            typedef bool ( MultiColumnList_wrapper::*isTopOfZOrder_function_type )(  ) const;
-            
-            MultiColumnList_exposer.def( 
-                "isTopOfZOrder"
-                , isTopOfZOrder_function_type( &MultiColumnList_wrapper::isTopOfZOrder )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*isTopOfZOrder_function_type)() const;
+
+            MultiColumnList_exposer.def(
+                    "isTopOfZOrder"
+                    , isTopOfZOrder_function_type(&MultiColumnList_wrapper::isTopOfZOrder)
+                    , "*!\n\
                 \n\
                     Return whether the window is at the top of the Z-Order.  This will\n\
                     correctly take into account 'Always on top' windows as needed.\n\
@@ -4494,110 +4494,110 @@ void register_MultiColumnList_class(){
                       windows with the same 'always on top' setting.\n\
                     - false if the Window is not at the top of the z-order in relation to\n\
                       sibling windows with the same 'always on top' setting.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::layoutLookNFeelChildWidgets
-        
-            typedef void ( MultiColumnList_wrapper::*layoutLookNFeelChildWidgets_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "layoutLookNFeelChildWidgets"
-                , layoutLookNFeelChildWidgets_function_type( &MultiColumnList_wrapper::layoutLookNFeelChildWidgets )
-                , "mark the rect caches defined on Window invalid (does not affect Element)\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*layoutLookNFeelChildWidgets_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "layoutLookNFeelChildWidgets"
+                    , layoutLookNFeelChildWidgets_function_type(&MultiColumnList_wrapper::layoutLookNFeelChildWidgets)
+                    , "mark the rect caches defined on Window invalid (does not affect Element)\n");
+
         }
         { //::CEGUI::Window::markCachedWindowRectsInvalid
-        
-            typedef void ( MultiColumnList_wrapper::*markCachedWindowRectsInvalid_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "markCachedWindowRectsInvalid"
-                , markCachedWindowRectsInvalid_function_type( &MultiColumnList_wrapper::markCachedWindowRectsInvalid )
-                , "mark the rect caches defined on Window invalid (does not affect Element)\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*markCachedWindowRectsInvalid_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "markCachedWindowRectsInvalid"
+                    , markCachedWindowRectsInvalid_function_type(&MultiColumnList_wrapper::markCachedWindowRectsInvalid)
+                    , "mark the rect caches defined on Window invalid (does not affect Element)\n");
+
         }
         { //::CEGUI::Window::moveToFront_impl
-        
-            typedef bool ( MultiColumnList_wrapper::*moveToFront_impl_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "moveToFront_impl"
-                , moveToFront_impl_function_type( &MultiColumnList_wrapper::default_moveToFront_impl )
-                , ( bp::arg("wasClicked") )
-                , "*!\n\
+
+            typedef bool ( MultiColumnList_wrapper::*moveToFront_impl_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "moveToFront_impl"
+                    , moveToFront_impl_function_type(&MultiColumnList_wrapper::default_moveToFront_impl)
+                    , (bp::arg("wasClicked"))
+                    , "*!\n\
                 \n\
                     Implements move to front behavior.\n\
             \n\
                 @return\n\
                     Should return true if some action was taken, or false if there was\n\
                     nothing to be done.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::notifyChildrenOfSizeChange
-        
-            typedef void ( MultiColumnList_wrapper::*notifyChildrenOfSizeChange_function_type )( bool const,bool const ) ;
-            
-            MultiColumnList_exposer.def( 
-                "notifyChildrenOfSizeChange"
-                , notifyChildrenOfSizeChange_function_type( &MultiColumnList_wrapper::notifyChildrenOfSizeChange )
-                , ( bp::arg("non_client"), bp::arg("client") ) );
-        
+
+            typedef void ( MultiColumnList_wrapper::*notifyChildrenOfSizeChange_function_type)(bool const, bool const);
+
+            MultiColumnList_exposer.def(
+                    "notifyChildrenOfSizeChange"
+                    , notifyChildrenOfSizeChange_function_type(&MultiColumnList_wrapper::notifyChildrenOfSizeChange)
+                    , (bp::arg("non_client"), bp::arg("client")));
+
         }
         { //::CEGUI::Window::notifyClippingChanged
-        
-            typedef void ( MultiColumnList_wrapper::*notifyClippingChanged_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "notifyClippingChanged"
-                , notifyClippingChanged_function_type( &MultiColumnList_wrapper::notifyClippingChanged )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*notifyClippingChanged_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "notifyClippingChanged"
+                    , notifyClippingChanged_function_type(&MultiColumnList_wrapper::notifyClippingChanged)
+                    , "*!\n\
             \n\
                 Recursively inform all children that the clipping has changed and screen rects\n\
                 needs to be recached.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::notifyScreenAreaChanged
-        
-            typedef void ( ::CEGUI::Window::*notifyScreenAreaChanged_function_type )( bool ) ;
-            typedef void ( MultiColumnList_wrapper::*default_notifyScreenAreaChanged_function_type )( bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "notifyScreenAreaChanged"
-                , notifyScreenAreaChanged_function_type(&::CEGUI::Window::notifyScreenAreaChanged)
-                , default_notifyScreenAreaChanged_function_type(&MultiColumnList_wrapper::default_notifyScreenAreaChanged)
-                , ( bp::arg("recursive")=(bool)(true) ) );
-        
+
+            typedef void ( ::CEGUI::Window::*notifyScreenAreaChanged_function_type)(bool);
+            typedef void ( MultiColumnList_wrapper::*default_notifyScreenAreaChanged_function_type)(bool);
+
+            MultiColumnList_exposer.def(
+                    "notifyScreenAreaChanged"
+                    , notifyScreenAreaChanged_function_type(&::CEGUI::Window::notifyScreenAreaChanged)
+                    , default_notifyScreenAreaChanged_function_type(&MultiColumnList_wrapper::default_notifyScreenAreaChanged)
+                    , (bp::arg("recursive") = (bool)(true)));
+
         }
         { //::CEGUI::Window::onActivated
-        
-            typedef void ( MultiColumnList_wrapper::*onActivated_function_type )( ::CEGUI::ActivationEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onActivated"
-                , onActivated_function_type( &MultiColumnList_wrapper::default_onActivated )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onActivated_function_type)(::CEGUI::ActivationEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onActivated"
+                    , onActivated_function_type(&MultiColumnList_wrapper::default_onActivated)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window has become the active window.\n\
             \n\
                 @param e\n\
                     ActivationEventArgs class whose 'otherWindow' field is set to the window\n\
                     that previously was active, or NULL for none.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onAlphaChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onAlphaChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onAlphaChanged"
-                , onAlphaChanged_function_type( &MultiColumnList_wrapper::default_onAlphaChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onAlphaChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onAlphaChanged"
+                    , onAlphaChanged_function_type(&MultiColumnList_wrapper::default_onAlphaChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's alpha blend value is changed.\n\
             \n\
@@ -4605,18 +4605,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onAlwaysOnTopChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onAlwaysOnTopChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onAlwaysOnTopChanged"
-                , onAlwaysOnTopChanged_function_type( &MultiColumnList_wrapper::default_onAlwaysOnTopChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onAlwaysOnTopChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onAlwaysOnTopChanged"
+                    , onAlwaysOnTopChanged_function_type(&MultiColumnList_wrapper::default_onAlwaysOnTopChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's always-on-top setting is changed.\n\
             \n\
@@ -4624,18 +4624,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onCaptureGained
-        
-            typedef void ( MultiColumnList_wrapper::*onCaptureGained_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onCaptureGained"
-                , onCaptureGained_function_type( &MultiColumnList_wrapper::default_onCaptureGained )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onCaptureGained_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onCaptureGained"
+                    , onCaptureGained_function_type(&MultiColumnList_wrapper::default_onCaptureGained)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window gains capture of mouse inputs.\n\
             \n\
@@ -4643,18 +4643,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onCaptureLost
-        
-            typedef void ( MultiColumnList_wrapper::*onCaptureLost_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onCaptureLost"
-                , onCaptureLost_function_type( &MultiColumnList_wrapper::default_onCaptureLost )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onCaptureLost_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onCaptureLost"
+                    , onCaptureLost_function_type(&MultiColumnList_wrapper::default_onCaptureLost)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window loses capture of mouse inputs.\n\
             \n\
@@ -4662,18 +4662,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onCharacter
-        
-            typedef void ( MultiColumnList_wrapper::*onCharacter_function_type )( ::CEGUI::KeyEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onCharacter"
-                , onCharacter_function_type( &MultiColumnList_wrapper::default_onCharacter )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onCharacter_function_type)(::CEGUI::KeyEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onCharacter"
+                    , onCharacter_function_type(&MultiColumnList_wrapper::default_onCharacter)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a character-key has been pressed while this window\n\
                     has input focus.\n\
@@ -4683,54 +4683,54 @@ void register_MultiColumnList_class(){
                     point (encoded as utf32) for the character typed, and whose 'sysKeys'\n\
                     field represents the combination of SystemKey that were active when the\n\
                     event was generated.  All other fields should be considered as 'junk'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onChildAdded
-        
-            typedef void ( MultiColumnList_wrapper::*onChildAdded_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onChildAdded"
-                , onChildAdded_function_type( &MultiColumnList_wrapper::default_onChildAdded )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onChildAdded_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onChildAdded"
+                    , onChildAdded_function_type(&MultiColumnList_wrapper::default_onChildAdded)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a child window is added to this window.\n\
             \n\
                 @param e\n\
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that has been added.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onChildRemoved
-        
-            typedef void ( MultiColumnList_wrapper::*onChildRemoved_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onChildRemoved"
-                , onChildRemoved_function_type( &MultiColumnList_wrapper::default_onChildRemoved )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onChildRemoved_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onChildRemoved"
+                    , onChildRemoved_function_type(&MultiColumnList_wrapper::default_onChildRemoved)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a child window is removed from this window.\n\
             \n\
                 @param e\n\
                     WindowEventArgs object whose 'window' pointer field is set the window\n\
                     that has been removed.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onClippingChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onClippingChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onClippingChanged"
-                , onClippingChanged_function_type( &MultiColumnList_wrapper::default_onClippingChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onClippingChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onClippingChanged"
+                    , onClippingChanged_function_type(&MultiColumnList_wrapper::default_onClippingChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's setting for being clipped by it's\n\
                     parent is changed.\n\
@@ -4739,18 +4739,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onDeactivated
-        
-            typedef void ( MultiColumnList_wrapper::*onDeactivated_function_type )( ::CEGUI::ActivationEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onDeactivated"
-                , onDeactivated_function_type( &MultiColumnList_wrapper::default_onDeactivated )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onDeactivated_function_type)(::CEGUI::ActivationEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onDeactivated"
+                    , onDeactivated_function_type(&MultiColumnList_wrapper::default_onDeactivated)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window has lost input focus and has been\n\
                     deactivated.\n\
@@ -4758,18 +4758,18 @@ void register_MultiColumnList_class(){
                 @param e\n\
                     ActivationEventArgs object whose 'otherWindow' field is set to the\n\
                     window that has now become active, or NULL for none.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onDestructionStarted
-        
-            typedef void ( MultiColumnList_wrapper::*onDestructionStarted_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onDestructionStarted"
-                , onDestructionStarted_function_type( &MultiColumnList_wrapper::default_onDestructionStarted )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onDestructionStarted_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onDestructionStarted"
+                    , onDestructionStarted_function_type(&MultiColumnList_wrapper::default_onDestructionStarted)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window's destruction sequence has begun.\n\
             \n\
@@ -4777,18 +4777,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onDisabled
-        
-            typedef void ( MultiColumnList_wrapper::*onDisabled_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onDisabled"
-                , onDisabled_function_type( &MultiColumnList_wrapper::default_onDisabled )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onDisabled_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onDisabled"
+                    , onDisabled_function_type(&MultiColumnList_wrapper::default_onDisabled)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window is disabled.\n\
             \n\
@@ -4796,18 +4796,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onDragDropItemDropped
-        
-            typedef void ( MultiColumnList_wrapper::*onDragDropItemDropped_function_type )( ::CEGUI::DragDropEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onDragDropItemDropped"
-                , onDragDropItemDropped_function_type( &MultiColumnList_wrapper::default_onDragDropItemDropped )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onDragDropItemDropped_function_type)(::CEGUI::DragDropEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onDragDropItemDropped"
+                    , onDragDropItemDropped_function_type(&MultiColumnList_wrapper::default_onDragDropItemDropped)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a DragContainer is dragged over this window.\n\
             \n\
@@ -4816,18 +4816,18 @@ void register_MultiColumnList_class(){
                     - window field is normaly set to point to 'this' window.\n\
                     - dragDropItem is a pointer to a DragContainer window that triggered\n\
                       the event.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onDragDropItemEnters
-        
-            typedef void ( MultiColumnList_wrapper::*onDragDropItemEnters_function_type )( ::CEGUI::DragDropEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onDragDropItemEnters"
-                , onDragDropItemEnters_function_type( &MultiColumnList_wrapper::default_onDragDropItemEnters )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onDragDropItemEnters_function_type)(::CEGUI::DragDropEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onDragDropItemEnters"
+                    , onDragDropItemEnters_function_type(&MultiColumnList_wrapper::default_onDragDropItemEnters)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a DragContainer is dragged over this window.\n\
             \n\
@@ -4836,18 +4836,18 @@ void register_MultiColumnList_class(){
                     - window field is normaly set to point to 'this' window.\n\
                     - dragDropItem is a pointer to a DragContainer window that triggered\n\
                       the event.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onDragDropItemLeaves
-        
-            typedef void ( MultiColumnList_wrapper::*onDragDropItemLeaves_function_type )( ::CEGUI::DragDropEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onDragDropItemLeaves"
-                , onDragDropItemLeaves_function_type( &MultiColumnList_wrapper::default_onDragDropItemLeaves )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onDragDropItemLeaves_function_type)(::CEGUI::DragDropEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onDragDropItemLeaves"
+                    , onDragDropItemLeaves_function_type(&MultiColumnList_wrapper::default_onDragDropItemLeaves)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a DragContainer is dragged over this window.\n\
             \n\
@@ -4856,18 +4856,18 @@ void register_MultiColumnList_class(){
                     - window field is normaly set to point to 'this' window.\n\
                     - dragDropItem is a pointer to a DragContainer window that triggered\n\
                       the event.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onEnabled
-        
-            typedef void ( MultiColumnList_wrapper::*onEnabled_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onEnabled"
-                , onEnabled_function_type( &MultiColumnList_wrapper::default_onEnabled )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onEnabled_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onEnabled"
+                    , onEnabled_function_type(&MultiColumnList_wrapper::default_onEnabled)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window is enabled.\n\
             \n\
@@ -4875,18 +4875,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onHidden
-        
-            typedef void ( MultiColumnList_wrapper::*onHidden_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onHidden"
-                , onHidden_function_type( &MultiColumnList_wrapper::default_onHidden )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onHidden_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onHidden"
+                    , onHidden_function_type(&MultiColumnList_wrapper::default_onHidden)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window is hidden.\n\
             \n\
@@ -4894,18 +4894,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onHorizontalAlignmentChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onHorizontalAlignmentChanged_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onHorizontalAlignmentChanged"
-                , onHorizontalAlignmentChanged_function_type( &MultiColumnList_wrapper::default_onHorizontalAlignmentChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onHorizontalAlignmentChanged_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onHorizontalAlignmentChanged"
+                    , onHorizontalAlignmentChanged_function_type(&MultiColumnList_wrapper::default_onHorizontalAlignmentChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the horizontal alignment setting for the element is\n\
                     changed.\n\
@@ -4914,18 +4914,18 @@ void register_MultiColumnList_class(){
                     ElementEventArgs object initialised as follows:\n\
                     - element field is set to point to the element object who's alignment has\n\
                       changed (typically 'this').\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onIDChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onIDChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onIDChanged"
-                , onIDChanged_function_type( &MultiColumnList_wrapper::default_onIDChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onIDChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onIDChanged"
+                    , onIDChanged_function_type(&MultiColumnList_wrapper::default_onIDChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's client assigned ID is changed.\n\
             \n\
@@ -4933,18 +4933,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onInheritsAlphaChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onInheritsAlphaChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onInheritsAlphaChanged"
-                , onInheritsAlphaChanged_function_type( &MultiColumnList_wrapper::default_onInheritsAlphaChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onInheritsAlphaChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onInheritsAlphaChanged"
+                    , onInheritsAlphaChanged_function_type(&MultiColumnList_wrapper::default_onInheritsAlphaChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's setting for inheriting alpha-blending\n\
                     is changed.\n\
@@ -4953,18 +4953,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onInvalidated
-        
-            typedef void ( MultiColumnList_wrapper::*onInvalidated_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onInvalidated"
-                , onInvalidated_function_type( &MultiColumnList_wrapper::default_onInvalidated )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onInvalidated_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onInvalidated"
+                    , onInvalidated_function_type(&MultiColumnList_wrapper::default_onInvalidated)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window gets invalidated.\n\
             \n\
@@ -4972,18 +4972,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onKeyDown
-        
-            typedef void ( MultiColumnList_wrapper::*onKeyDown_function_type )( ::CEGUI::KeyEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onKeyDown"
-                , onKeyDown_function_type( &MultiColumnList_wrapper::default_onKeyDown )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onKeyDown_function_type)(::CEGUI::KeyEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onKeyDown"
+                    , onKeyDown_function_type(&MultiColumnList_wrapper::default_onKeyDown)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a key as been depressed while this window has input\n\
                     focus.\n\
@@ -4993,18 +4993,18 @@ void register_MultiColumnList_class(){
                     representing the key that was pressed, and whose 'sysKeys' field\n\
                     represents the combination of SystemKey that were active when the event\n\
                     was generated.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onKeyUp
-        
-            typedef void ( MultiColumnList_wrapper::*onKeyUp_function_type )( ::CEGUI::KeyEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onKeyUp"
-                , onKeyUp_function_type( &MultiColumnList_wrapper::default_onKeyUp )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onKeyUp_function_type)(::CEGUI::KeyEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onKeyUp"
+                    , onKeyUp_function_type(&MultiColumnList_wrapper::default_onKeyUp)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a key as been released while this window has input\n\
                     focus.\n\
@@ -5014,82 +5014,82 @@ void register_MultiColumnList_class(){
                     representing the key that was released, and whose 'sysKeys' field\n\
                     represents the combination of SystemKey that were active when the event\n\
                     was generated.  All other fields should be considered as 'junk'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMarginChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onMarginChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMarginChanged"
-                , onMarginChanged_function_type( &MultiColumnList_wrapper::default_onMarginChanged )
-                , ( bp::arg("e") ) );
-        
+
+            typedef void ( MultiColumnList_wrapper::*onMarginChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMarginChanged"
+                    , onMarginChanged_function_type(&MultiColumnList_wrapper::default_onMarginChanged)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::Window::onMouseButtonUp
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseButtonUp_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseButtonUp"
-                , onMouseButtonUp_function_type( &MultiColumnList_wrapper::default_onMouseButtonUp )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseButtonUp_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseButtonUp"
+                    , onMouseButtonUp_function_type(&MultiColumnList_wrapper::default_onMouseButtonUp)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a mouse button has been released within this\n\
                     window's area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseClicked
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseClicked_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseClicked"
-                , onMouseClicked_function_type( &MultiColumnList_wrapper::default_onMouseClicked )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseClicked_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseClicked"
+                    , onMouseClicked_function_type(&MultiColumnList_wrapper::default_onMouseClicked)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a mouse button has been clicked (that is depressed\n\
                     and then released, within a specified time) within this window's area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseDoubleClicked
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseDoubleClicked_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseDoubleClicked"
-                , onMouseDoubleClicked_function_type( &MultiColumnList_wrapper::default_onMouseDoubleClicked )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseDoubleClicked_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseDoubleClicked"
+                    , onMouseDoubleClicked_function_type(&MultiColumnList_wrapper::default_onMouseDoubleClicked)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a mouse button has been double-clicked within this\n\
                     window's area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseEnters
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseEnters_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseEnters"
-                , onMouseEnters_function_type( &MultiColumnList_wrapper::default_onMouseEnters )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseEnters_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseEnters"
+                    , onMouseEnters_function_type(&MultiColumnList_wrapper::default_onMouseEnters)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the mouse cursor has entered this window's area and\n\
                     is actually over some part of this windows surface and not, for\n\
@@ -5102,35 +5102,35 @@ void register_MultiColumnList_class(){
             \n\
                 @see\n\
                     Window.onMouseEntersArea\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseEntersArea
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseEntersArea_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseEntersArea"
-                , onMouseEntersArea_function_type( &MultiColumnList_wrapper::default_onMouseEntersArea )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseEntersArea_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseEntersArea"
+                    , onMouseEntersArea_function_type(&MultiColumnList_wrapper::default_onMouseEntersArea)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the mouse cursor has entered this window's area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseLeaves
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseLeaves_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseLeaves"
-                , onMouseLeaves_function_type( &MultiColumnList_wrapper::default_onMouseLeaves )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseLeaves_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseLeaves"
+                    , onMouseLeaves_function_type(&MultiColumnList_wrapper::default_onMouseLeaves)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the mouse cursor is no longer over this window's\n\
                     surface area.  This will be called when the mouse is not over a part\n\
@@ -5143,71 +5143,71 @@ void register_MultiColumnList_class(){
             \n\
                 @see\n\
                     Window.onMouseLeavesArea\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseLeavesArea
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseLeavesArea_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseLeavesArea"
-                , onMouseLeavesArea_function_type( &MultiColumnList_wrapper::default_onMouseLeavesArea )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseLeavesArea_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseLeavesArea"
+                    , onMouseLeavesArea_function_type(&MultiColumnList_wrapper::default_onMouseLeavesArea)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the mouse cursor has left this window's area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseMove
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseMove_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseMove"
-                , onMouseMove_function_type( &MultiColumnList_wrapper::default_onMouseMove )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseMove_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseMove"
+                    , onMouseMove_function_type(&MultiColumnList_wrapper::default_onMouseMove)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the mouse cursor has been moved within this window's\n\
                     area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMouseTripleClicked
-        
-            typedef void ( MultiColumnList_wrapper::*onMouseTripleClicked_function_type )( ::CEGUI::MouseEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMouseTripleClicked"
-                , onMouseTripleClicked_function_type( &MultiColumnList_wrapper::default_onMouseTripleClicked )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMouseTripleClicked_function_type)(::CEGUI::MouseEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMouseTripleClicked"
+                    , onMouseTripleClicked_function_type(&MultiColumnList_wrapper::default_onMouseTripleClicked)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a mouse button has been triple-clicked within this\n\
                     window's area.\n\
             \n\
                 @param e\n\
                     MouseEventArgs object.  All fields are valid.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onMoved
-        
-            typedef void ( MultiColumnList_wrapper::*onMoved_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onMoved"
-                , onMoved_function_type( &MultiColumnList_wrapper::default_onMoved )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onMoved_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onMoved"
+                    , onMoved_function_type(&MultiColumnList_wrapper::default_onMoved)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's position changes.\n\
             \n\
@@ -5215,36 +5215,36 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::NamedElement::onNameChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onNameChanged_function_type )( ::CEGUI::NamedElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onNameChanged"
-                , onNameChanged_function_type( &MultiColumnList_wrapper::default_onNameChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onNameChanged_function_type)(::CEGUI::NamedElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onNameChanged"
+                    , onNameChanged_function_type(&MultiColumnList_wrapper::default_onNameChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                  Handler called when the element's name changes.\n\
             \n\
                 @param e\n\
                     NamedElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that triggered the event. For this event the trigger element is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onNonClientChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onNonClientChanged_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onNonClientChanged"
-                , onNonClientChanged_function_type( &MultiColumnList_wrapper::default_onNonClientChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onNonClientChanged_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onNonClientChanged"
+                    , onNonClientChanged_function_type(&MultiColumnList_wrapper::default_onNonClientChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the element's non-client setting, affecting it's\n\
                     position and size relative to it's parent is changed.\n\
@@ -5253,18 +5253,18 @@ void register_MultiColumnList_class(){
                     ElementEventArgs object whose 'element' pointer field is set to the element\n\
                     that triggered the event. For this event the trigger element is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onParentDestroyChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onParentDestroyChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onParentDestroyChanged"
-                , onParentDestroyChanged_function_type( &MultiColumnList_wrapper::default_onParentDestroyChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onParentDestroyChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onParentDestroyChanged"
+                    , onParentDestroyChanged_function_type(&MultiColumnList_wrapper::default_onParentDestroyChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's setting for being destroyed\n\
                     automatically be it's parent is changed.\n\
@@ -5273,18 +5273,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onParentSized
-        
-            typedef void ( MultiColumnList_wrapper::*onParentSized_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onParentSized"
-                , onParentSized_function_type( &MultiColumnList_wrapper::default_onParentSized )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onParentSized_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onParentSized"
+                    , onParentSized_function_type(&MultiColumnList_wrapper::default_onParentSized)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when this window's parent window has been resized.  If\n\
                     this window is the root  GUI Sheet window, this call will be made when\n\
@@ -5294,18 +5294,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set the the\n\
                     window that caused the event; this is typically either this window's\n\
                     parent window, or NULL to indicate the screen size has changed.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onRenderingEnded
-        
-            typedef void ( MultiColumnList_wrapper::*onRenderingEnded_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onRenderingEnded"
-                , onRenderingEnded_function_type( &MultiColumnList_wrapper::default_onRenderingEnded )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onRenderingEnded_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onRenderingEnded"
+                    , onRenderingEnded_function_type(&MultiColumnList_wrapper::default_onRenderingEnded)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when rendering for this window has ended.\n\
             \n\
@@ -5313,18 +5313,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onRenderingStarted
-        
-            typedef void ( MultiColumnList_wrapper::*onRenderingStarted_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onRenderingStarted"
-                , onRenderingStarted_function_type( &MultiColumnList_wrapper::default_onRenderingStarted )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onRenderingStarted_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onRenderingStarted"
+                    , onRenderingStarted_function_type(&MultiColumnList_wrapper::default_onRenderingStarted)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when rendering for this window has started.\n\
             \n\
@@ -5332,28 +5332,28 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onRotated
-        
-            typedef void ( MultiColumnList_wrapper::*onRotated_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onRotated"
-                , onRotated_function_type( &MultiColumnList_wrapper::default_onRotated )
-                , ( bp::arg("e") ) );
-        
+
+            typedef void ( MultiColumnList_wrapper::*onRotated_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onRotated"
+                    , onRotated_function_type(&MultiColumnList_wrapper::default_onRotated)
+                    , (bp::arg("e")));
+
         }
         { //::CEGUI::Window::onShown
-        
-            typedef void ( MultiColumnList_wrapper::*onShown_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onShown"
-                , onShown_function_type( &MultiColumnList_wrapper::default_onShown )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onShown_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onShown"
+                    , onShown_function_type(&MultiColumnList_wrapper::default_onShown)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window is shown (made visible).\n\
             \n\
@@ -5361,18 +5361,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onTextChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onTextChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onTextChanged"
-                , onTextChanged_function_type( &MultiColumnList_wrapper::default_onTextChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onTextChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onTextChanged"
+                    , onTextChanged_function_type(&MultiColumnList_wrapper::default_onTextChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's text is changed.\n\
             \n\
@@ -5380,18 +5380,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onTextParsingChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onTextParsingChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onTextParsingChanged"
-                , onTextParsingChanged_function_type( &MultiColumnList_wrapper::default_onTextParsingChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onTextParsingChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onTextParsingChanged"
+                    , onTextParsingChanged_function_type(&MultiColumnList_wrapper::default_onTextParsingChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the window's setting for whether text parsing is\n\
                     enabled is changed.\n\
@@ -5400,18 +5400,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::onVerticalAlignmentChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onVerticalAlignmentChanged_function_type )( ::CEGUI::ElementEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onVerticalAlignmentChanged"
-                , onVerticalAlignmentChanged_function_type( &MultiColumnList_wrapper::default_onVerticalAlignmentChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onVerticalAlignmentChanged_function_type)(::CEGUI::ElementEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onVerticalAlignmentChanged"
+                    , onVerticalAlignmentChanged_function_type(&MultiColumnList_wrapper::default_onVerticalAlignmentChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the vertical alignment setting for the element is\n\
                     changed.\n\
@@ -5420,18 +5420,18 @@ void register_MultiColumnList_class(){
                     ElementEventArgs object initialised as follows:\n\
                     - element field is set to point to the element object who's alignment has\n\
                       changed (typically 'this').\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onWindowRendererAttached
-        
-            typedef void ( MultiColumnList_wrapper::*onWindowRendererAttached_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onWindowRendererAttached"
-                , onWindowRendererAttached_function_type( &MultiColumnList_wrapper::default_onWindowRendererAttached )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onWindowRendererAttached_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onWindowRendererAttached"
+                    , onWindowRendererAttached_function_type(&MultiColumnList_wrapper::default_onWindowRendererAttached)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when a new window renderer object is attached.\n\
             \n\
@@ -5439,18 +5439,18 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object initialised as follows:\n\
                     - window field is set to point to the Window object that just got a new\n\
                       window renderer attached. (typically 'this').\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onWindowRendererDetached
-        
-            typedef void ( MultiColumnList_wrapper::*onWindowRendererDetached_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onWindowRendererDetached"
-                , onWindowRendererDetached_function_type( &MultiColumnList_wrapper::default_onWindowRendererDetached )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onWindowRendererDetached_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onWindowRendererDetached"
+                    , onWindowRendererDetached_function_type(&MultiColumnList_wrapper::default_onWindowRendererDetached)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the currently attached window renderer object is detached.\n\
             \n\
@@ -5458,31 +5458,31 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object initialised as follows:\n\
                     - window field is set to point to the Window object that just got lost its\n\
                       window renderer. (typically 'this').\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::onZChange_impl
-        
-            typedef void ( MultiColumnList_wrapper::*onZChange_impl_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onZChange_impl"
-                , onZChange_impl_function_type( &MultiColumnList_wrapper::default_onZChange_impl )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onZChange_impl_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "onZChange_impl"
+                    , onZChange_impl_function_type(&MultiColumnList_wrapper::default_onZChange_impl)
+                    , "*!\n\
             \n\
                 Notify 'this' and all siblings of a ZOrder change event\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::onZChanged
-        
-            typedef void ( MultiColumnList_wrapper::*onZChanged_function_type )( ::CEGUI::WindowEventArgs & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "onZChanged"
-                , onZChanged_function_type( &MultiColumnList_wrapper::default_onZChanged )
-                , ( bp::arg("e") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*onZChanged_function_type)(::CEGUI::WindowEventArgs &);
+
+            MultiColumnList_exposer.def(
+                    "onZChanged"
+                    , onZChanged_function_type(&MultiColumnList_wrapper::default_onZChanged)
+                    , (bp::arg("e"))
+                    , "*!\n\
                 \n\
                     Handler called when the z-order position of this window has changed.\n\
             \n\
@@ -5490,81 +5490,81 @@ void register_MultiColumnList_class(){
                     WindowEventArgs object whose 'window' pointer field is set to the window\n\
                     that triggered the event.  For this event the trigger window is always\n\
                     'this'.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::performChildWindowLayout
-        
-            typedef void ( ::CEGUI::Window::*performChildWindowLayout_function_type )( bool,bool ) ;
-            typedef void ( MultiColumnList_wrapper::*default_performChildWindowLayout_function_type )( bool,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "performChildWindowLayout"
-                , performChildWindowLayout_function_type(&::CEGUI::Window::performChildWindowLayout)
-                , default_performChildWindowLayout_function_type(&MultiColumnList_wrapper::default_performChildWindowLayout)
-                , ( bp::arg("nonclient_sized_hint")=(bool)(false), bp::arg("client_sized_hint")=(bool)(false) ) );
-        
+
+            typedef void ( ::CEGUI::Window::*performChildWindowLayout_function_type)(bool, bool);
+            typedef void ( MultiColumnList_wrapper::*default_performChildWindowLayout_function_type)(bool, bool);
+
+            MultiColumnList_exposer.def(
+                    "performChildWindowLayout"
+                    , performChildWindowLayout_function_type(&::CEGUI::Window::performChildWindowLayout)
+                    , default_performChildWindowLayout_function_type(&MultiColumnList_wrapper::default_performChildWindowLayout)
+                    , (bp::arg("nonclient_sized_hint") = (bool)(false), bp::arg("client_sized_hint") = (bool)(false)));
+
         }
         { //::CEGUI::Window::performCopy
-        
-            typedef bool ( ::CEGUI::Window::*performCopy_function_type )( ::CEGUI::Clipboard & ) ;
-            typedef bool ( MultiColumnList_wrapper::*default_performCopy_function_type )( ::CEGUI::Clipboard & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "performCopy"
-                , performCopy_function_type(&::CEGUI::Window::performCopy)
-                , default_performCopy_function_type(&MultiColumnList_wrapper::default_performCopy)
-                , ( bp::arg("clipboard") ) );
-        
+
+            typedef bool ( ::CEGUI::Window::*performCopy_function_type)(::CEGUI::Clipboard &);
+            typedef bool ( MultiColumnList_wrapper::*default_performCopy_function_type)(::CEGUI::Clipboard &);
+
+            MultiColumnList_exposer.def(
+                    "performCopy"
+                    , performCopy_function_type(&::CEGUI::Window::performCopy)
+                    , default_performCopy_function_type(&MultiColumnList_wrapper::default_performCopy)
+                    , (bp::arg("clipboard")));
+
         }
         { //::CEGUI::Window::performCut
-        
-            typedef bool ( ::CEGUI::Window::*performCut_function_type )( ::CEGUI::Clipboard & ) ;
-            typedef bool ( MultiColumnList_wrapper::*default_performCut_function_type )( ::CEGUI::Clipboard & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "performCut"
-                , performCut_function_type(&::CEGUI::Window::performCut)
-                , default_performCut_function_type(&MultiColumnList_wrapper::default_performCut)
-                , ( bp::arg("clipboard") ) );
-        
+
+            typedef bool ( ::CEGUI::Window::*performCut_function_type)(::CEGUI::Clipboard &);
+            typedef bool ( MultiColumnList_wrapper::*default_performCut_function_type)(::CEGUI::Clipboard &);
+
+            MultiColumnList_exposer.def(
+                    "performCut"
+                    , performCut_function_type(&::CEGUI::Window::performCut)
+                    , default_performCut_function_type(&MultiColumnList_wrapper::default_performCut)
+                    , (bp::arg("clipboard")));
+
         }
         { //::CEGUI::Window::performPaste
-        
-            typedef bool ( ::CEGUI::Window::*performPaste_function_type )( ::CEGUI::Clipboard & ) ;
-            typedef bool ( MultiColumnList_wrapper::*default_performPaste_function_type )( ::CEGUI::Clipboard & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "performPaste"
-                , performPaste_function_type(&::CEGUI::Window::performPaste)
-                , default_performPaste_function_type(&MultiColumnList_wrapper::default_performPaste)
-                , ( bp::arg("clipboard") ) );
-        
+
+            typedef bool ( ::CEGUI::Window::*performPaste_function_type)(::CEGUI::Clipboard &);
+            typedef bool ( MultiColumnList_wrapper::*default_performPaste_function_type)(::CEGUI::Clipboard &);
+
+            MultiColumnList_exposer.def(
+                    "performPaste"
+                    , performPaste_function_type(&::CEGUI::Window::performPaste)
+                    , default_performPaste_function_type(&MultiColumnList_wrapper::default_performPaste)
+                    , (bp::arg("clipboard")));
+
         }
         { //::CEGUI::Window::populateGeometryBuffer
-        
-            typedef void ( MultiColumnList_wrapper::*populateGeometryBuffer_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "populateGeometryBuffer"
-                , populateGeometryBuffer_function_type( &MultiColumnList_wrapper::default_populateGeometryBuffer )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*populateGeometryBuffer_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "populateGeometryBuffer"
+                    , populateGeometryBuffer_function_type(&MultiColumnList_wrapper::default_populateGeometryBuffer)
+                    , "*!\n\
                 \n\
                     Update the rendering cache.\n\
             \n\
                     Populates the Window's GeometryBuffer ready for rendering.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::queueGeometry
-        
-            typedef void ( MultiColumnList_wrapper::*queueGeometry_function_type )( ::CEGUI::RenderingContext const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "queueGeometry"
-                , queueGeometry_function_type( &MultiColumnList_wrapper::queueGeometry )
-                , ( bp::arg("ctx") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*queueGeometry_function_type)(::CEGUI::RenderingContext const &);
+
+            MultiColumnList_exposer.def(
+                    "queueGeometry"
+                    , queueGeometry_function_type(&MultiColumnList_wrapper::queueGeometry)
+                    , (bp::arg("ctx"))
+                    , "*!\n\
                 \n\
                     Perform drawing operations concerned with positioning, clipping and\n\
                     queueing of window geometry to RenderingSurfaces.\n\
@@ -5573,41 +5573,41 @@ void register_MultiColumnList_class(){
                     This function is a sub-function of drawSelf and is provided to make it\n\
                     easier to override drawSelf without needing to duplicate large sections\n\
                     of the code from the default implementation.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::releaseRenderingWindow
-        
-            typedef void ( MultiColumnList_wrapper::*releaseRenderingWindow_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "releaseRenderingWindow"
-                , releaseRenderingWindow_function_type( &MultiColumnList_wrapper::releaseRenderingWindow )
-                , "! helper to clean up the auto RenderingWindow surface\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*releaseRenderingWindow_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "releaseRenderingWindow"
+                    , releaseRenderingWindow_function_type(&MultiColumnList_wrapper::releaseRenderingWindow)
+                    , "! helper to clean up the auto RenderingWindow surface\n");
+
         }
         { //::CEGUI::Window::removeChild_impl
-        
-            typedef void ( MultiColumnList_wrapper::*removeChild_impl_function_type )( ::CEGUI::Element * ) ;
-            
-            MultiColumnList_exposer.def( 
-                "removeChild_impl"
-                , removeChild_impl_function_type( &MultiColumnList_wrapper::default_removeChild_impl )
-                , ( bp::arg("element") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*removeChild_impl_function_type)(::CEGUI::Element *);
+
+            MultiColumnList_exposer.def(
+                    "removeChild_impl"
+                    , removeChild_impl_function_type(&MultiColumnList_wrapper::default_removeChild_impl)
+                    , (bp::arg("element"))
+                    , "*!\n\
             opydoc Element.removeChild_impl\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::removeWindowFromDrawList
-        
-            typedef void ( MultiColumnList_wrapper::*removeWindowFromDrawList_function_type )( ::CEGUI::Window const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "removeWindowFromDrawList"
-                , removeWindowFromDrawList_function_type( &MultiColumnList_wrapper::removeWindowFromDrawList )
-                , ( bp::arg("wnd") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*removeWindowFromDrawList_function_type)(::CEGUI::Window const &);
+
+            MultiColumnList_exposer.def(
+                    "removeWindowFromDrawList"
+                    , removeWindowFromDrawList_function_type(&MultiColumnList_wrapper::removeWindowFromDrawList)
+                    , (bp::arg("wnd"))
+                    , "*!\n\
                 \n\
                     Removes the window from the drawing list.  If the window is not attached\n\
                     to the drawing list then nothing happens.\n\
@@ -5617,111 +5617,111 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setArea
-        
-            typedef void ( ::CEGUI::Element::*setArea_function_type )( ::CEGUI::UVector2 const &,::CEGUI::USize const & ) ;
-            typedef void ( MultiColumnList_wrapper::*default_setArea_function_type )( ::CEGUI::UVector2 const &,::CEGUI::USize const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setArea"
-                , setArea_function_type(&::CEGUI::Element::setArea)
-                , default_setArea_function_type(&MultiColumnList_wrapper::default_setArea)
-                , ( bp::arg("pos"), bp::arg("size") ) );
-        
+
+            typedef void ( ::CEGUI::Element::*setArea_function_type)(::CEGUI::UVector2 const &, ::CEGUI::USize const &);
+            typedef void ( MultiColumnList_wrapper::*default_setArea_function_type)(::CEGUI::UVector2 const &, ::CEGUI::USize const &);
+
+            MultiColumnList_exposer.def(
+                    "setArea"
+                    , setArea_function_type(&::CEGUI::Element::setArea)
+                    , default_setArea_function_type(&MultiColumnList_wrapper::default_setArea)
+                    , (bp::arg("pos"), bp::arg("size")));
+
         }
         { //::CEGUI::Element::setArea
-        
-            typedef void ( ::CEGUI::Element::*setArea_function_type )( ::CEGUI::UDim const &,::CEGUI::UDim const &,::CEGUI::UDim const &,::CEGUI::UDim const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setArea"
-                , setArea_function_type( &::CEGUI::Element::setArea )
-                , ( bp::arg("xpos"), bp::arg("ypos"), bp::arg("width"), bp::arg("height") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setArea_function_type)(::CEGUI::UDim const &, ::CEGUI::UDim const &, ::CEGUI::UDim const &, ::CEGUI::UDim const &);
+
+            MultiColumnList_exposer.def(
+                    "setArea"
+                    , setArea_function_type(&::CEGUI::Element::setArea)
+                    , (bp::arg("xpos"), bp::arg("ypos"), bp::arg("width"), bp::arg("height"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Element::setArea
-        
-            typedef void ( ::CEGUI::Element::*setArea_function_type )( ::CEGUI::URect const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setArea"
-                , setArea_function_type( &::CEGUI::Element::setArea )
-                , ( bp::arg("area") )
-                , "!  overload\n" );
-        
+
+            typedef void ( ::CEGUI::Element::*setArea_function_type)(::CEGUI::URect const &);
+
+            MultiColumnList_exposer.def(
+                    "setArea"
+                    , setArea_function_type(&::CEGUI::Element::setArea)
+                    , (bp::arg("area"))
+                    , "!  overload\n");
+
         }
         { //::CEGUI::Window::setArea_impl
-        
-            typedef void ( MultiColumnList_wrapper::*setArea_impl_function_type )( ::CEGUI::UVector2 const &,::CEGUI::USize const &,bool,bool ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setArea_impl"
-                , setArea_impl_function_type( &MultiColumnList_wrapper::default_setArea_impl )
-                , ( bp::arg("pos"), bp::arg("size"), bp::arg("topLeftSizing")=(bool)(false), bp::arg("fireEvents")=(bool)(true) )
-                , "! opydoc Element.setArea_impl\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*setArea_impl_function_type)(::CEGUI::UVector2 const &, ::CEGUI::USize const &, bool, bool);
+
+            MultiColumnList_exposer.def(
+                    "setArea_impl"
+                    , setArea_impl_function_type(&MultiColumnList_wrapper::default_setArea_impl)
+                    , (bp::arg("pos"), bp::arg("size"), bp::arg("topLeftSizing") = (bool)(false), bp::arg("fireEvents") = (bool)(true))
+                    , "! opydoc Element.setArea_impl\n");
+
         }
         { //::CEGUI::Element::setHorizontalAlignment
-        
-            typedef void ( ::CEGUI::Element::*setHorizontalAlignment_function_type )( ::CEGUI::HorizontalAlignment const ) ;
-            typedef void ( MultiColumnList_wrapper::*default_setHorizontalAlignment_function_type )( ::CEGUI::HorizontalAlignment const ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setHorizontalAlignment"
-                , setHorizontalAlignment_function_type(&::CEGUI::Element::setHorizontalAlignment)
-                , default_setHorizontalAlignment_function_type(&MultiColumnList_wrapper::default_setHorizontalAlignment)
-                , ( bp::arg("alignment") ) );
-        
+
+            typedef void ( ::CEGUI::Element::*setHorizontalAlignment_function_type)(::CEGUI::HorizontalAlignment const);
+            typedef void ( MultiColumnList_wrapper::*default_setHorizontalAlignment_function_type)(::CEGUI::HorizontalAlignment const);
+
+            MultiColumnList_exposer.def(
+                    "setHorizontalAlignment"
+                    , setHorizontalAlignment_function_type(&::CEGUI::Element::setHorizontalAlignment)
+                    , default_setHorizontalAlignment_function_type(&MultiColumnList_wrapper::default_setHorizontalAlignment)
+                    , (bp::arg("alignment")));
+
         }
         { //::CEGUI::Window::setLookNFeel
-        
-            typedef void ( ::CEGUI::Window::*setLookNFeel_function_type )( ::CEGUI::String const & ) ;
-            typedef void ( MultiColumnList_wrapper::*default_setLookNFeel_function_type )( ::CEGUI::String const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setLookNFeel"
-                , setLookNFeel_function_type(&::CEGUI::Window::setLookNFeel)
-                , default_setLookNFeel_function_type(&MultiColumnList_wrapper::default_setLookNFeel)
-                , ( bp::arg("look") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*setLookNFeel_function_type)(::CEGUI::String const &);
+            typedef void ( MultiColumnList_wrapper::*default_setLookNFeel_function_type)(::CEGUI::String const &);
+
+            MultiColumnList_exposer.def(
+                    "setLookNFeel"
+                    , setLookNFeel_function_type(&::CEGUI::Window::setLookNFeel)
+                    , default_setLookNFeel_function_type(&MultiColumnList_wrapper::default_setLookNFeel)
+                    , (bp::arg("look")));
+
         }
         { //::CEGUI::Window::setMargin
-        
-            typedef void ( ::CEGUI::Window::*setMargin_function_type )( ::CEGUI::UBox const & ) ;
-            typedef void ( MultiColumnList_wrapper::*default_setMargin_function_type )( ::CEGUI::UBox const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setMargin"
-                , setMargin_function_type(&::CEGUI::Window::setMargin)
-                , default_setMargin_function_type(&MultiColumnList_wrapper::default_setMargin)
-                , ( bp::arg("margin") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*setMargin_function_type)(::CEGUI::UBox const &);
+            typedef void ( MultiColumnList_wrapper::*default_setMargin_function_type)(::CEGUI::UBox const &);
+
+            MultiColumnList_exposer.def(
+                    "setMargin"
+                    , setMargin_function_type(&::CEGUI::Window::setMargin)
+                    , default_setMargin_function_type(&MultiColumnList_wrapper::default_setMargin)
+                    , (bp::arg("margin")));
+
         }
         { //::CEGUI::NamedElement::setName
-        
-            typedef void ( ::CEGUI::NamedElement::*setName_function_type )( ::CEGUI::String const & ) ;
-            typedef void ( MultiColumnList_wrapper::*default_setName_function_type )( ::CEGUI::String const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setName"
-                , setName_function_type(&::CEGUI::NamedElement::setName)
-                , default_setName_function_type(&MultiColumnList_wrapper::default_setName)
-                , ( bp::arg("name") ) );
-        
+
+            typedef void ( ::CEGUI::NamedElement::*setName_function_type)(::CEGUI::String const &);
+            typedef void ( MultiColumnList_wrapper::*default_setName_function_type)(::CEGUI::String const &);
+
+            MultiColumnList_exposer.def(
+                    "setName"
+                    , setName_function_type(&::CEGUI::NamedElement::setName)
+                    , default_setName_function_type(&MultiColumnList_wrapper::default_setName)
+                    , (bp::arg("name")));
+
         }
         { //::CEGUI::Window::setParent
-        
-            typedef void ( MultiColumnList_wrapper::*setParent_function_type )( ::CEGUI::Element * ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setParent"
-                , setParent_function_type( &MultiColumnList_wrapper::default_setParent )
-                , ( bp::arg("parent") )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*setParent_function_type)(::CEGUI::Element *);
+
+            MultiColumnList_exposer.def(
+                    "setParent"
+                    , setParent_function_type(&MultiColumnList_wrapper::default_setParent)
+                    , (bp::arg("parent"))
+                    , "*!\n\
                 \n\
                     Set the parent window for this window object.\n\
             \n\
@@ -5731,90 +5731,90 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Element::setVerticalAlignment
-        
-            typedef void ( ::CEGUI::Element::*setVerticalAlignment_function_type )( ::CEGUI::VerticalAlignment const ) ;
-            typedef void ( MultiColumnList_wrapper::*default_setVerticalAlignment_function_type )( ::CEGUI::VerticalAlignment const ) ;
-            
-            MultiColumnList_exposer.def( 
-                "setVerticalAlignment"
-                , setVerticalAlignment_function_type(&::CEGUI::Element::setVerticalAlignment)
-                , default_setVerticalAlignment_function_type(&MultiColumnList_wrapper::default_setVerticalAlignment)
-                , ( bp::arg("alignment") ) );
-        
+
+            typedef void ( ::CEGUI::Element::*setVerticalAlignment_function_type)(::CEGUI::VerticalAlignment const);
+            typedef void ( MultiColumnList_wrapper::*default_setVerticalAlignment_function_type)(::CEGUI::VerticalAlignment const);
+
+            MultiColumnList_exposer.def(
+                    "setVerticalAlignment"
+                    , setVerticalAlignment_function_type(&::CEGUI::Element::setVerticalAlignment)
+                    , default_setVerticalAlignment_function_type(&MultiColumnList_wrapper::default_setVerticalAlignment)
+                    , (bp::arg("alignment")));
+
         }
         { //::CEGUI::EventSet::subscribeScriptedEvent
-        
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( ::CEGUI::EventSet::*subscribeScriptedEvent_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( MultiColumnList_wrapper::*default_subscribeScriptedEvent_function_type )( ::CEGUI::String const &,::CEGUI::String const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "subscribeScriptedEvent"
-                , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
-                , default_subscribeScriptedEvent_function_type(&MultiColumnList_wrapper::default_subscribeScriptedEvent)
-                , ( bp::arg("name"), bp::arg("subscriber_name") ) );
-        
+
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (::CEGUI::EventSet::*subscribeScriptedEvent_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (MultiColumnList_wrapper::*default_subscribeScriptedEvent_function_type)(::CEGUI::String const &, ::CEGUI::String const &);
+
+            MultiColumnList_exposer.def(
+                    "subscribeScriptedEvent"
+                    , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
+                    , default_subscribeScriptedEvent_function_type(&MultiColumnList_wrapper::default_subscribeScriptedEvent)
+                    , (bp::arg("name"), bp::arg("subscriber_name")));
+
         }
         { //::CEGUI::EventSet::subscribeScriptedEvent
-        
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( ::CEGUI::EventSet::*subscribeScriptedEvent_function_type )( ::CEGUI::String const &,unsigned int,::CEGUI::String const & ) ;
-            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > ( MultiColumnList_wrapper::*default_subscribeScriptedEvent_function_type )( ::CEGUI::String const &,unsigned int,::CEGUI::String const & ) ;
-            
-            MultiColumnList_exposer.def( 
-                "subscribeScriptedEvent"
-                , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
-                , default_subscribeScriptedEvent_function_type(&MultiColumnList_wrapper::default_subscribeScriptedEvent)
-                , ( bp::arg("name"), bp::arg("group"), bp::arg("subscriber_name") ) );
-        
+
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (::CEGUI::EventSet::*subscribeScriptedEvent_function_type)(::CEGUI::String const &, unsigned int, ::CEGUI::String const &);
+            typedef ::CEGUI::RefCounted< CEGUI::BoundSlot > (MultiColumnList_wrapper::*default_subscribeScriptedEvent_function_type)(::CEGUI::String const &, unsigned int, ::CEGUI::String const &);
+
+            MultiColumnList_exposer.def(
+                    "subscribeScriptedEvent"
+                    , subscribeScriptedEvent_function_type(&::CEGUI::EventSet::subscribeScriptedEvent)
+                    , default_subscribeScriptedEvent_function_type(&MultiColumnList_wrapper::default_subscribeScriptedEvent)
+                    , (bp::arg("name"), bp::arg("group"), bp::arg("subscriber_name")));
+
         }
         { //::CEGUI::Window::transferChildSurfaces
-        
-            typedef void ( MultiColumnList_wrapper::*transferChildSurfaces_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "transferChildSurfaces"
-                , transferChildSurfaces_function_type( &MultiColumnList_wrapper::transferChildSurfaces )
-                , "! transfer RenderingSurfaces to be owned by our target RenderingSurface.\n" );
-        
+
+            typedef void ( MultiColumnList_wrapper::*transferChildSurfaces_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "transferChildSurfaces"
+                    , transferChildSurfaces_function_type(&MultiColumnList_wrapper::transferChildSurfaces)
+                    , "! transfer RenderingSurfaces to be owned by our target RenderingSurface.\n");
+
         }
         { //::CEGUI::Window::update
-        
-            typedef void ( ::CEGUI::Window::*update_function_type )( float ) ;
-            typedef void ( MultiColumnList_wrapper::*default_update_function_type )( float ) ;
-            
-            MultiColumnList_exposer.def( 
-                "update"
-                , update_function_type(&::CEGUI::Window::update)
-                , default_update_function_type(&MultiColumnList_wrapper::default_update)
-                , ( bp::arg("elapsed") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*update_function_type)(float);
+            typedef void ( MultiColumnList_wrapper::*default_update_function_type)(float);
+
+            MultiColumnList_exposer.def(
+                    "update"
+                    , update_function_type(&::CEGUI::Window::update)
+                    , default_update_function_type(&MultiColumnList_wrapper::default_update)
+                    , (bp::arg("elapsed")));
+
         }
         { //::CEGUI::Window::updateGeometryRenderSettings
-        
-            typedef void ( MultiColumnList_wrapper::*updateGeometryRenderSettings_function_type )(  ) ;
-            
-            MultiColumnList_exposer.def( 
-                "updateGeometryRenderSettings"
-                , updateGeometryRenderSettings_function_type( &MultiColumnList_wrapper::updateGeometryRenderSettings )
-                , "*!\n\
+
+            typedef void ( MultiColumnList_wrapper::*updateGeometryRenderSettings_function_type)();
+
+            MultiColumnList_exposer.def(
+                    "updateGeometryRenderSettings"
+                    , updateGeometryRenderSettings_function_type(&MultiColumnList_wrapper::updateGeometryRenderSettings)
+                    , "*!\n\
             \n\
                 Update position and clip region on this Windows geometry  rendering\n\
                 surface.\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Window::updateSelf
-        
-            typedef void ( MultiColumnList_wrapper::*updateSelf_function_type )( float ) ;
-            
-            MultiColumnList_exposer.def( 
-                "updateSelf"
-                , updateSelf_function_type( &MultiColumnList_wrapper::default_updateSelf )
-                , ( bp::arg("elapsed") )
-                , "*************************************************************************\n\
+
+            typedef void ( MultiColumnList_wrapper::*updateSelf_function_type)(float);
+
+            MultiColumnList_exposer.def(
+                    "updateSelf"
+                    , updateSelf_function_type(&MultiColumnList_wrapper::default_updateSelf)
+                    , (bp::arg("elapsed"))
+                    , "*************************************************************************\n\
                     Implementation Functions\n\
                 *************************************************************************\n\
                 *!\n\
@@ -5827,40 +5827,40 @@ void register_MultiColumnList_class(){
             \n\
                 @return\n\
                     Nothing.\n\
-                *\n" );
-        
+                *\n");
+
         }
         { //::CEGUI::Window::writeAutoChildWindowXML
-        
-            typedef bool ( MultiColumnList_wrapper::*writeAutoChildWindowXML_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "writeAutoChildWindowXML"
-                , writeAutoChildWindowXML_function_type( &MultiColumnList_wrapper::default_writeAutoChildWindowXML )
-                , ( bp::arg("xml_stream") ) );
-        
+
+            typedef bool ( MultiColumnList_wrapper::*writeAutoChildWindowXML_function_type)(::CEGUI::XMLSerializer &) const;
+
+            MultiColumnList_exposer.def(
+                    "writeAutoChildWindowXML"
+                    , writeAutoChildWindowXML_function_type(&MultiColumnList_wrapper::default_writeAutoChildWindowXML)
+                    , (bp::arg("xml_stream")));
+
         }
         { //::CEGUI::Window::writeChildWindowsXML
-        
-            typedef int ( MultiColumnList_wrapper::*writeChildWindowsXML_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "writeChildWindowsXML"
-                , writeChildWindowsXML_function_type( &MultiColumnList_wrapper::default_writeChildWindowsXML )
-                , ( bp::arg("xml_stream") ) );
-        
+
+            typedef int ( MultiColumnList_wrapper::*writeChildWindowsXML_function_type)(::CEGUI::XMLSerializer &) const;
+
+            MultiColumnList_exposer.def(
+                    "writeChildWindowsXML"
+                    , writeChildWindowsXML_function_type(&MultiColumnList_wrapper::default_writeChildWindowsXML)
+                    , (bp::arg("xml_stream")));
+
         }
         { //::CEGUI::Window::writeXMLToStream
-        
-            typedef void ( ::CEGUI::Window::*writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            typedef void ( MultiColumnList_wrapper::*default_writeXMLToStream_function_type )( ::CEGUI::XMLSerializer & ) const;
-            
-            MultiColumnList_exposer.def( 
-                "writeXMLToStream"
-                , writeXMLToStream_function_type(&::CEGUI::Window::writeXMLToStream)
-                , default_writeXMLToStream_function_type(&MultiColumnList_wrapper::default_writeXMLToStream)
-                , ( bp::arg("xml_stream") ) );
-        
+
+            typedef void ( ::CEGUI::Window::*writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+            typedef void ( MultiColumnList_wrapper::*default_writeXMLToStream_function_type)(::CEGUI::XMLSerializer &) const;
+
+            MultiColumnList_exposer.def(
+                    "writeXMLToStream"
+                    , writeXMLToStream_function_type(&::CEGUI::Window::writeXMLToStream)
+                    , default_writeXMLToStream_function_type(&MultiColumnList_wrapper::default_writeXMLToStream)
+                    , (bp::arg("xml_stream")));
+
         }
     }
 

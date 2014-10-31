@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Thu Jan 8 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -31,26 +31,25 @@
 #include "CEGUI/Colour.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    structure that is used to hold details of a single vertex in 3D space.
-*/
-struct Vertex :
-    public AllocatedObject<Vertex>
-{
-    //! Position of the vertex in 3D space.
+namespace CEGUI {
+
+    /*!
+    \brief
+        structure that is used to hold details of a single vertex in 3D space.
+     */
+    struct Vertex :
+    public AllocatedObject<Vertex> {
+        //! Position of the vertex in 3D space.
 #ifndef PE_NO_VECTOR3D
-    Vector3f position;
+        Vector3f position;
 #else
-    Vector2f position;
+        Vector2f position;
 #endif  // PE_NO_VECTOR3D
-    //! Texture co-ords to be applied to the vertex.
-    Vector2f tex_coords;
-    //! colour to be applied to the vertex.
-    Colour  colour_val;
-};
+        //! Texture co-ords to be applied to the vertex.
+        Vector2f tex_coords;
+        //! colour to be applied to the vertex.
+        Colour colour_val;
+    };
 
 } // End of  CEGUI namespace section
 

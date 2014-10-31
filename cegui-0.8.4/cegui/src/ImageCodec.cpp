@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	03/06/2006
-	author:	    Olivier Delannoy
+        created:	03/06/2006
+        author:	    Olivier Delannoy
 	
-	purpose:	Define the abstract interface for all common ImageCodec
-*************************************************************************/
+        purpose:	Define the abstract interface for all common ImageCodec
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2006 Paul D Turner & The CEGUI Development Team
  *
@@ -29,26 +29,21 @@
 #include "CEGUI/ImageCodec.h"
 
 // Start of CEGUI namespace section 
-namespace CEGUI
-{
+namespace CEGUI {
 
-ImageCodec::ImageCodec(const String& name)
-    : d_identifierString(name)
-{    
-}
+    ImageCodec::ImageCodec(const String& name)
+    : d_identifierString(name) {
+    }
 
-ImageCodec::~ImageCodec()
-{
-}
+    ImageCodec::~ImageCodec() {
+    }
 
-const String& ImageCodec::getIdentifierString() const
-{
-    return d_identifierString;
-}
+    const String& ImageCodec::getIdentifierString() const {
+        return d_identifierString;
+    }
 
-const String& ImageCodec::getSupportedFormat() const
-{
-    return d_supportedFormat;
-}
+    const String& ImageCodec::getSupportedFormat() const {
+        return d_supportedFormat;
+    }
 
 } // End of CEGUI namespace section 

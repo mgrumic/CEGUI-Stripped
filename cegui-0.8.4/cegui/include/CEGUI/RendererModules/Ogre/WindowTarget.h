@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 17 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,37 +30,36 @@
 #include "CEGUI/RendererModules/Ogre/RenderTarget.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//! CEGUI::RenderTarget that targets an existing gre::RenderTarget
-class OGRE_GUIRENDERER_API OgreWindowTarget : public OgreRenderTarget<>
-{
-public:
-    //! Constructor
-    OgreWindowTarget(OgreRenderer& owner, Ogre::RenderSystem& rs,
-                     Ogre::RenderTarget& target);
+namespace CEGUI {
+    //! CEGUI::RenderTarget that targets an existing gre::RenderTarget
 
-    //! Destructor
-    virtual ~OgreWindowTarget();
+    class OGRE_GUIRENDERER_API OgreWindowTarget : public OgreRenderTarget<> {
+    public:
+        //! Constructor
+        OgreWindowTarget(OgreRenderer& owner, Ogre::RenderSystem& rs,
+                Ogre::RenderTarget& target);
 
-    /*!
-    \brief
-        Set the Ogre::RenderTarget that the output from the OgreWindowTarget
-        should be rendered to.
+        //! Destructor
+        virtual ~OgreWindowTarget();
 
-    \param target
-        Reference to an Ogre::RenderTarget object that will receive the rendered
-        output.
-    */
-    void setOgreRenderTarget(Ogre::RenderTarget& target);
+        /*!
+        \brief
+            Set the Ogre::RenderTarget that the output from the OgreWindowTarget
+            should be rendered to.
 
-    // implement parts of CEGUI::RenderTarget interface
-    bool isImageryCache() const;
+        \param target
+            Reference to an Ogre::RenderTarget object that will receive the rendered
+            output.
+         */
+        void setOgreRenderTarget(Ogre::RenderTarget& target);
 
-protected:
-    //! helper function to initialise the render target details
-    void initRenderTarget(Ogre::RenderTarget& target);
-};
+        // implement parts of CEGUI::RenderTarget interface
+        bool isImageryCache() const;
+
+    protected:
+        //! helper function to initialise the render target details
+        void initRenderTarget(Ogre::RenderTarget& target);
+    };
 
 } // End of  CEGUI namespace section
 

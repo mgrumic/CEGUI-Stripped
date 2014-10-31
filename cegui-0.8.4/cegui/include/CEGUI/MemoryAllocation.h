@@ -1,9 +1,9 @@
 /***********************************************************************
-	created:	14/10/2010
-	author:		Martin Preisler (inspired by Ogre3D)
+        created:	14/10/2010
+        author:		Martin Preisler (inspired by Ogre3D)
 
-	purpose:	Allows custom memory allocators to be used within CEGUI
-*************************************************************************/
+        purpose:	Allows custom memory allocators to be used within CEGUI
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2010 Paul D Turner & The CEGUI Development Team
  *
@@ -30,7 +30,7 @@
 #define _CEGUIMemoryAllocation_h_
 
 #ifndef _CEGUIBase_h_
-#   error Dont include this directly! Include CEGUIBase.h instead.
+#error Dont include this directly! Include CEGUIBase.h instead.
 #endif
 
 #define CEGUI_SET_DEFAULT_ALLOCATOR(A)\
@@ -49,58 +49,59 @@ struct AllocatorConfig<Class>\
 
 #ifdef CEGUI_CUSTOM_ALLOCATORS
 
-namespace CEGUI
-{
+namespace CEGUI {
 
-// stub classes uses for allocator configuration
-class STLAllocator {};
-class BufferAllocator {};
+    // stub classes uses for allocator configuration
 
-// borrowed from Ogre, used to construct arrays
-template<typename T>
-T* constructN(T* basePtr, size_t count)
-{
-	for (size_t i = 0; i < count; ++i)
-	{
-		new ((void*)(basePtr+i)) T();
-	}
-	return basePtr;
-}
+    class STLAllocator {
+    };
 
-// ogre doesn't do this template but I added it because it works even for types without
-// destructors where I was getting syntax errors with just the macro
-template<typename T>
-void destructN(T* basePtr, size_t count)
-{
-    // iterate in reverse for consistency with delete []
-	for (size_t i = count - 1; i-- > 0;)
-	{
-		basePtr[i].~T();
+    class BufferAllocator {
+    };
+
+    // borrowed from Ogre, used to construct arrays
+
+    template<typename T>
+    T* constructN(T* basePtr, size_t count) {
+        for (size_t i = 0; i < count; ++i) {
+            new ((void*) (basePtr + i)) T();
+        }
+        return basePtr;
     }
-}
+
+    // ogre doesn't do this template but I added it because it works even for types without
+    // destructors where I was getting syntax errors with just the macro
+
+    template<typename T>
+    void destructN(T* basePtr, size_t count) {
+        // iterate in reverse for consistency with delete []
+        for (size_t i = count - 1; i-- > 0;) {
+            basePtr[i].~T();
+        }
+    }
 
 } // CEGUI namespace
 
 #ifndef CEGUI_CUSTOM_ALLOCATORS_DEBUG
-#   define CEGUI_NEW_AO new
-#   define CEGUI_DELETE_AO delete
+#define CEGUI_NEW_AO new
+#define CEGUI_DELETE_AO delete
 // for primitive types, types not inherited from AllocatedObject
-#   define CEGUI_NEW_PT(T, A) new (::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T))) T
-#   define CEGUI_NEW_ARRAY_PT(T, count, A) ::CEGUI::constructN(static_cast<T*>(::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T)*(count))), count)
-#   define CEGUI_DELETE_PT(ptr, T, A) do{if(ptr){(ptr)->~T(); ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
-#   define CEGUI_DELETE_ARRAY_PT(ptr, T, count, A) do{if(ptr){ ::CEGUI::destructN(static_cast<T*>(ptr), count); ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
+#define CEGUI_NEW_PT(T, A) new (::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T))) T
+#define CEGUI_NEW_ARRAY_PT(T, count, A) ::CEGUI::constructN(static_cast<T*>(::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T)*(count))), count)
+#define CEGUI_DELETE_PT(ptr, T, A) do{if(ptr){(ptr)->~T(); ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
+#define CEGUI_DELETE_ARRAY_PT(ptr, T, count, A) do{if(ptr){ ::CEGUI::destructN(static_cast<T*>(ptr), count); ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
 #else
-#   define CEGUI_NEW_AO new(__FILE__, __LINE__, __FUNCTION__)
-#   define CEGUI_DELETE_AO delete
+#define CEGUI_NEW_AO new(__FILE__, __LINE__, __FUNCTION__)
+#define CEGUI_DELETE_AO delete
 // for primitive types, types not inherited from AllocatedObject
-#   define CEGUI_NEW_PT(T, A) new (::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T), __FILE__, __LINE__, __FUNCTION__)) T
-#   define CEGUI_NEW_ARRAY_PT(T, count, A) ::CEGUI::constructN(static_cast<T*>(::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T)*(count), __FILE__, __LINE__, __FUNCTION__)), count)
-#   define CEGUI_DELETE_PT(ptr, T, A) do{if(ptr){(ptr)->~T(); ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
-#   define CEGUI_DELETE_ARRAY_PT(ptr, T, count, A) do{if(ptr){for (size_t b = count; b-- > 0;){ (ptr)[b].~T();} ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
+#define CEGUI_NEW_PT(T, A) new (::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T), __FILE__, __LINE__, __FUNCTION__)) T
+#define CEGUI_NEW_ARRAY_PT(T, count, A) ::CEGUI::constructN(static_cast<T*>(::CEGUI::AllocatorConfig<A>::Allocator::allocateBytes(sizeof(T)*(count), __FILE__, __LINE__, __FUNCTION__)), count)
+#define CEGUI_DELETE_PT(ptr, T, A) do{if(ptr){(ptr)->~T(); ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
+#define CEGUI_DELETE_ARRAY_PT(ptr, T, count, A) do{if(ptr){for (size_t b = count; b-- > 0;){ (ptr)[b].~T();} ::CEGUI::AllocatorConfig<A>::Allocator::deallocateBytes((void*)ptr);}}while(0)
 #endif
 
 #ifndef CEGUI_CUSTOM_ALLOCATORS_INCLUDE
-#   define CEGUI_CUSTOM_ALLOCATORS_INCLUDE "CEGUI/MemoryStdAllocator.h"
+#define CEGUI_CUSTOM_ALLOCATORS_INCLUDE "CEGUI/MemoryStdAllocator.h"
 #endif
 
 // all the wrappers have been declared, now we include the chosen memory allocator file

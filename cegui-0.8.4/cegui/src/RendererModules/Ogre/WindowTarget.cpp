@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 17 2009
     author:     Paul D Turner
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,53 +30,52 @@
 #include <OgreViewport.h>
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-OgreWindowTarget::OgreWindowTarget(OgreRenderer& owner,
-                                   Ogre::RenderSystem& rs,
-                                   Ogre::RenderTarget& target) :
-    OgreRenderTarget<>(owner, rs)
-{
-    initRenderTarget(target);
-}
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-OgreWindowTarget::~OgreWindowTarget()
-{
-}
+    OgreWindowTarget::OgreWindowTarget(OgreRenderer& owner,
+            Ogre::RenderSystem& rs,
+            Ogre::RenderTarget& target) :
+    OgreRenderTarget<>(owner, rs) {
+        initRenderTarget(target);
+    }
 
-//----------------------------------------------------------------------------//
-void OgreWindowTarget::setOgreRenderTarget(Ogre::RenderTarget& target)
-{
-    // cleanup viewport since it's RT dependent.
-    OGRE_DELETE d_viewport;
-    d_viewport = 0;
-    d_viewportValid = false;
+    //----------------------------------------------------------------------------//
 
-    initRenderTarget(target);
-}
+    OgreWindowTarget::~OgreWindowTarget() {
+    }
 
-//----------------------------------------------------------------------------//
-bool OgreWindowTarget::isImageryCache() const
-{
-    return false;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void OgreWindowTarget::initRenderTarget(Ogre::RenderTarget& target)
-{
-    d_renderTarget = &target;
+    void OgreWindowTarget::setOgreRenderTarget(Ogre::RenderTarget& target) {
+        // cleanup viewport since it's RT dependent.
+        OGRE_DELETE d_viewport;
+        d_viewport = 0;
+        d_viewportValid = false;
 
-    Rectf init_area(
-        Vector2f(0, 0),
-        Sizef(d_renderTarget->getWidth(), d_renderTarget->getHeight())
-    );
+        initRenderTarget(target);
+    }
 
-    setArea(init_area);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool OgreWindowTarget::isImageryCache() const {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void OgreWindowTarget::initRenderTarget(Ogre::RenderTarget& target) {
+        d_renderTarget = &target;
+
+        Rectf init_area(
+                Vector2f(0, 0),
+                Sizef(d_renderTarget->getWidth(), d_renderTarget->getHeight())
+                );
+
+        setArea(init_area);
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Tue Feb 28 2012
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -26,111 +26,103 @@
  ***************************************************************************/
 #include "CEGUI/widgets/RadioButton.h"
 
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-const String RadioButton::WidgetTypeName("CEGUI/RadioButton");
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    const String RadioButton::WidgetTypeName("CEGUI/RadioButton");
 
-//----------------------------------------------------------------------------//
-RadioButton::RadioButton(const String& type, const String& name) :
+    //----------------------------------------------------------------------------//
+
+    RadioButton::RadioButton(const String& type, const String& name) :
     ToggleButton(type, name),
-    d_groupID(0)
-{
-    addRadioButtonProperties();
-}
+    d_groupID(0) {
+        addRadioButtonProperties();
+    }
 
-//----------------------------------------------------------------------------//
-void RadioButton::addRadioButtonProperties(void)
-{
-    const String& propertyOrigin(WidgetTypeName);
+    //----------------------------------------------------------------------------//
 
-    CEGUI_DEFINE_PROPERTY(RadioButton, ulong,
-        "GroupID",
-        "Property to access the radio button group ID. "
-        "Value is an unsigned integer number.",
-        &RadioButton::setGroupID, &RadioButton::getGroupID, 0
-    );
-}
+    void RadioButton::addRadioButtonProperties(void) {
+        const String & propertyOrigin(WidgetTypeName);
 
-//----------------------------------------------------------------------------//
-void RadioButton::setGroupID(ulong group)
-{
-    d_groupID = group;
+        CEGUI_DEFINE_PROPERTY(RadioButton, ulong,
+                "GroupID",
+                "Property to access the radio button group ID. "
+                "Value is an unsigned integer number.",
+                &RadioButton::setGroupID, &RadioButton::getGroupID, 0
+                );
+    }
 
-    if (d_selected)
-        deselectSiblingRadioButtonsInGroup();
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RadioButton::deselectSiblingRadioButtonsInGroup() const
-{
-    if (!d_parent)
-        return;
+    void RadioButton::setGroupID(ulong group) {
+        d_groupID = group;
 
-    const size_t child_count = d_parent->getChildCount();
-    for (size_t child = 0; child < child_count; ++child)
-    {
-        if (RadioButton* rb = dynamic_cast<RadioButton*>(
-                getParent()->getChildAtIdx(child)))
-        {
-            if (rb->isSelected() && (rb != this) &&
-                (rb->getGroupID() == d_groupID))
-            {
-                rb->setSelected(false);
+        if (d_selected)
+            deselectSiblingRadioButtonsInGroup();
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void RadioButton::deselectSiblingRadioButtonsInGroup() const {
+        if (!d_parent)
+            return;
+
+        const size_t child_count = d_parent->getChildCount();
+        for (size_t child = 0; child < child_count; ++child) {
+            if (RadioButton * rb = dynamic_cast<RadioButton*> (
+                    getParent()->getChildAtIdx(child))) {
+                if (rb->isSelected() && (rb != this) &&
+                        (rb->getGroupID() == d_groupID)) {
+                    rb->setSelected(false);
+                }
             }
         }
     }
-}
 
-//----------------------------------------------------------------------------//
-RadioButton* RadioButton::getSelectedButtonInGroup() const
-{
-    // Only search we we are a child window
-    if (d_parent)
-    {
-        size_t child_count = d_parent->getChildCount();
+    //----------------------------------------------------------------------------//
 
-        // scan all children
-        for (size_t child = 0; child < child_count; ++child)
-        {
-            // is this child same type as we are?
-            if (getParent()->getChildAtIdx(child)->getType() == getType())
-            {
-                RadioButton* rb = (RadioButton*)getParent()->getChildAtIdx(child);
+    RadioButton* RadioButton::getSelectedButtonInGroup() const {
+        // Only search we we are a child window
+        if (d_parent) {
+            size_t child_count = d_parent->getChildCount();
 
-                // is child same group and selected?
-                if (rb->isSelected() && (rb->getGroupID() == d_groupID))
-                {
-                    // return the matching RadioButton pointer (may even be 'this').
-                    return rb;
+            // scan all children
+            for (size_t child = 0; child < child_count; ++child) {
+                // is this child same type as we are?
+                if (getParent()->getChildAtIdx(child)->getType() == getType()) {
+                    RadioButton* rb = (RadioButton*) getParent()->getChildAtIdx(child);
+
+                    // is child same group and selected?
+                    if (rb->isSelected() && (rb->getGroupID() == d_groupID)) {
+                        // return the matching RadioButton pointer (may even be 'this').
+                        return rb;
+                    }
+
                 }
 
             }
 
         }
 
+        // no selected button attached to this window is in same group
+        return 0;
     }
 
-    // no selected button attached to this window is in same group
-    return 0;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RadioButton::onSelectStateChange(WindowEventArgs& e)
-{
-    if (d_selected)
-        deselectSiblingRadioButtonsInGroup();
+    void RadioButton::onSelectStateChange(WindowEventArgs& e) {
+        if (d_selected)
+            deselectSiblingRadioButtonsInGroup();
 
-    ToggleButton::onSelectStateChange(e);
-}
+        ToggleButton::onSelectStateChange(e);
+    }
 
-//----------------------------------------------------------------------------//
-bool RadioButton::getPostClickSelectState() const
-{
-    return true;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    bool RadioButton::getPostClickSelectState() const {
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
 
 }
 

@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -28,22 +28,21 @@
 #ifndef _CEGUIOpenGL3StandardShaderFrag_h_
 #define _CEGUIOpenGL3StandardShaderFrag_h_
 
-namespace CEGUI
-{
-const char StandardShaderFrag[] = 
-    "#version 150 core\n"
+namespace CEGUI {
+    const char StandardShaderFrag[] =
+            "#version 150 core\n"
 
-    "uniform sampler2D texture0;\n"
+            "uniform sampler2D texture0;\n"
 
-    "in vec2 exTexCoord;\n"
-    "in vec4 exColour;\n"
+            "in vec2 exTexCoord;\n"
+            "in vec4 exColour;\n"
 
-    "out vec4 out0;\n"
+            "out vec4 out0;\n"
 
-    "void main(void)\n"
-    "{\n"
-        "out0 = texture(texture0, exTexCoord) * exColour;\n"
-    "}"
-    ;
+            "void main(void)\n"
+            "{\n"
+            "out0 = texture(texture0, exTexCoord) * exColour;\n"
+            "}"
+            ;
 }
 #endif

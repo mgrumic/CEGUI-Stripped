@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Dec 26 2009
     author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2009 Paul D Turner & The CEGUI Development Team
  *
@@ -30,52 +30,53 @@
 #include "CEGUI/RenderEffect.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-/*!
-\brief
-    Interface for factory objects that create RenderEffect instances.
-    Currently this interface is intended for internal use only.
-*/
-class RenderEffectFactory : public
-    AllocatedObject<RenderEffectFactory>
-{
-public:
-    //! base class virtual destructor.
-    virtual ~RenderEffectFactory() {}
+namespace CEGUI {
 
-    //! Create an instance of the RenderEffect that this factory creates.
-    virtual RenderEffect& create(Window* window) = 0;
+    /*!
+    \brief
+        Interface for factory objects that create RenderEffect instances.
+        Currently this interface is intended for internal use only.
+     */
+    class RenderEffectFactory : public
+    AllocatedObject<RenderEffectFactory> {
+    public:
+        //! base class virtual destructor.
 
-    //! Destroy an instance of the RenderEffect that this factory creates.
-    virtual void destroy(RenderEffect& effect) = 0;
-};
+        virtual ~RenderEffectFactory() {
+        }
 
-//! Templatised RenderEffectFactory subclass used internally by the system.
-template <typename T>
-class TplRenderEffectFactory : public RenderEffectFactory
-{
-public:
-    // Implement RenderEffectFactory interface
-    RenderEffect& create(Window* window);
-    void destroy(RenderEffect& effect);
-};
+        //! Create an instance of the RenderEffect that this factory creates.
+        virtual RenderEffect& create(Window* window) = 0;
 
-//---------------------------------------------------------------------------//
-template <typename T>
-RenderEffect& TplRenderEffectFactory<T>::create(Window* window)
-{
-    return *CEGUI_NEW_AO T(window);
-}
+        //! Destroy an instance of the RenderEffect that this factory creates.
+        virtual void destroy(RenderEffect& effect) = 0;
+    };
 
-//---------------------------------------------------------------------------//
-template <typename T>
-void TplRenderEffectFactory<T>::destroy(RenderEffect& effect)
-{
-    CEGUI_DELETE_AO &effect;
-}
+    //! Templatised RenderEffectFactory subclass used internally by the system.
 
-//---------------------------------------------------------------------------//
+    template <typename T>
+    class TplRenderEffectFactory : public RenderEffectFactory {
+    public:
+        // Implement RenderEffectFactory interface
+        RenderEffect& create(Window* window);
+        void destroy(RenderEffect& effect);
+    };
+
+    //---------------------------------------------------------------------------//
+
+    template <typename T>
+    RenderEffect& TplRenderEffectFactory<T>::create(Window* window) {
+        return *CEGUI_NEW_AO T(window);
+    }
+
+    //---------------------------------------------------------------------------//
+
+    template <typename T>
+    void TplRenderEffectFactory<T>::destroy(RenderEffect& effect) {
+        CEGUI_DELETE_AO &effect;
+    }
+
+    //---------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 #endif //PE_NO_RENDEREFFECT

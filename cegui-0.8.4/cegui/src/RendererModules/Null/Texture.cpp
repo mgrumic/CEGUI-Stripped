@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Sat Jan 16 2010
     author:     Eugene Marcotte
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -30,125 +30,124 @@
 #include "CEGUI/System.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
-//----------------------------------------------------------------------------//
-uint32 NullTexture::d_textureNumber = 0;
+namespace CEGUI {
+    //----------------------------------------------------------------------------//
+    uint32 NullTexture::d_textureNumber = 0;
 
-//----------------------------------------------------------------------------//
-const String& NullTexture::getName() const
-{
-    return d_name;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-const Sizef& NullTexture::getSize() const
-{
-    return d_size;
-}
+    const String& NullTexture::getName() const {
+        return d_name;
+    }
 
-//----------------------------------------------------------------------------//
-const Sizef& NullTexture::getOriginalDataSize() const
-{
-    return d_dataSize;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-const Vector2f& NullTexture::getTexelScaling() const
-{
-    return d_texelScaling;
-}
+    const Sizef& NullTexture::getSize() const {
+        return d_size;
+    }
 
-//----------------------------------------------------------------------------//
-void NullTexture::loadFromFile(const String& filename,
-                               const String& resourceGroup)
-{
-    // get and check existence of CEGUI::System object
-    System* sys = System::getSingletonPtr();
-    if (!sys)
-        CEGUI_THROW(RendererException(
-            "CEGUI::System object has not been created!"));
+    //----------------------------------------------------------------------------//
 
-    // load file to memory via resource provider
-    RawDataContainer texFile;
-    sys->getResourceProvider()->loadRawDataContainer(filename, texFile,
-                                                     resourceGroup);
+    const Sizef& NullTexture::getOriginalDataSize() const {
+        return d_dataSize;
+    }
 
-    Texture* res = sys->getImageCodec().load(texFile, this);
+    //----------------------------------------------------------------------------//
 
-    // unload file data buffer
-    sys->getResourceProvider()->unloadRawDataContainer(texFile);
+    const Vector2f& NullTexture::getTexelScaling() const {
+        return d_texelScaling;
+    }
 
-    // throw exception if data was load loaded to texture.
-    if (!res)
-        CEGUI_THROW(RendererException(
-            sys->getImageCodec().getIdentifierString() +
-            " failed to load image '" + filename + "'."));
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void NullTexture::loadFromMemory(const void* /*buffer*/,
-                                 const Sizef& buffer_size,
-                                 PixelFormat)
-{
-    d_size = d_dataSize = buffer_size;
-}
+    void NullTexture::loadFromFile(const String& filename,
+            const String& resourceGroup) {
+        // get and check existence of CEGUI::System object
+        System* sys = System::getSingletonPtr();
+        if (!sys)
+            CEGUI_THROW(RendererException(
+                "CEGUI::System object has not been created!"));
 
-//----------------------------------------------------------------------------//
-void NullTexture::blitFromMemory(const void* /*sourceData*/, const Rectf& /*area*/)
-{
-    // do nothing
-}
+        // load file to memory via resource provider
+        RawDataContainer texFile;
+        sys->getResourceProvider()->loadRawDataContainer(filename, texFile,
+                resourceGroup);
 
-//----------------------------------------------------------------------------//
-void NullTexture::blitToMemory(void* /*targetData*/)
-{
-    // do nothing
-}
+        Texture* res = sys->getImageCodec().load(texFile, this);
 
-//----------------------------------------------------------------------------//
-NullTexture::NullTexture(const String& name) :
+        // unload file data buffer
+        sys->getResourceProvider()->unloadRawDataContainer(texFile);
+
+        // throw exception if data was load loaded to texture.
+        if (!res)
+            CEGUI_THROW(RendererException(
+                sys->getImageCodec().getIdentifierString() +
+                " failed to load image '" + filename + "'."));
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullTexture::loadFromMemory(const void* /*buffer*/,
+            const Sizef& buffer_size,
+            PixelFormat) {
+        d_size = d_dataSize = buffer_size;
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullTexture::blitFromMemory(const void* /*sourceData*/, const Rectf& /*area*/) {
+        // do nothing
+    }
+
+    //----------------------------------------------------------------------------//
+
+    void NullTexture::blitToMemory(void* /*targetData*/) {
+        // do nothing
+    }
+
+    //----------------------------------------------------------------------------//
+
+    NullTexture::NullTexture(const String& name) :
     d_size(0, 0),
     d_dataSize(0, 0),
     d_texelScaling(0, 0),
-    d_name(name)
-{
-}
+    d_name(name) {
+    }
 
-//----------------------------------------------------------------------------//
-NullTexture::NullTexture(const String& name, const String& filename,
-                         const String& resourceGroup) :
+    //----------------------------------------------------------------------------//
+
+    NullTexture::NullTexture(const String& name, const String& filename,
+            const String& resourceGroup) :
     d_size(0, 0),
     d_dataSize(0, 0),
     d_texelScaling(0, 0),
-    d_name(name)
-{
-    loadFromFile(filename, resourceGroup);
-}
+    d_name(name) {
+        loadFromFile(filename, resourceGroup);
+    }
 
-//----------------------------------------------------------------------------//
-NullTexture::NullTexture(const String& name, const Sizef& sz) :
+    //----------------------------------------------------------------------------//
+
+    NullTexture::NullTexture(const String& name, const Sizef& sz) :
     d_size(0, 0),
     d_dataSize(0, 0),
     d_texelScaling(0, 0),
-    d_name(name)
-{
-    d_size.d_width = sz.d_width;
-    d_size.d_height = sz.d_height;
-    d_dataSize = sz;
-}
+    d_name(name) {
+        d_size.d_width = sz.d_width;
+        d_size.d_height = sz.d_height;
+        d_dataSize = sz;
+    }
 
-//----------------------------------------------------------------------------//
-NullTexture::~NullTexture()
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool NullTexture::isPixelFormatSupported(const PixelFormat) const
-{
-    return true;
-}
+    NullTexture::~NullTexture() {
+    }
 
-//----------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------//
+
+    bool NullTexture::isPixelFormatSupported(const PixelFormat) const {
+        return true;
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section

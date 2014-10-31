@@ -3,7 +3,7 @@
     author:     Lars 'Levia' Wesselius (Content Pane based on Tomas Lindquist Olsen's code)
 
     purpose:    Interface for the GroupBox widget
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -35,76 +35,75 @@
 #include <vector>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
-namespace CEGUI
-{
-/*!
-\brief
-    Base class for standard GroupBox widget.
-
-\deprecated
-    You should consider not using this class. It performs no useful function
-    and can be replicated 100% accurately via an XML based WidgetLook
-    definition.  If you are already using this and need to migrate, you can
-    usually do so by changing the following:
-    - in the looknfeel (WidgetLook) change the the \<Child\> element for
-    "__auto_contentpane__" into a \<NamedArea\> with the name "inner_rect" (and
-    remove anything other than the \<Area\> definition).
-    - in the scheme file, change the targetType from "CEGUI/GroupBox" to
-    "DefaultWindow".
-*/
-class CEGUIEXPORT GroupBox : public Window
-{
-public:
-    //! Namespace for global events
-    static const String EventNamespace;
-
-    static const String WidgetTypeName;
-    static const String ContentPaneName;
-
-
-    GroupBox(const String& type, const String& name);
-
+namespace CEGUI {
 
     /*!
     \brief
-        Draws the GroupBox around a widget. The size and position of the
-        GroupBox are overriden. Once the window that is drawn around resizes,
-        you'll have to call the function again. FIXME
-    */
-    bool drawAroundWidget(const CEGUI::Window* wnd);
-    bool drawAroundWidget(const String& name);
+        Base class for standard GroupBox widget.
 
-    /*!
-    \brief
-        Returns the content pane held by this GroupBox.
+    \deprecated
+        You should consider not using this class. It performs no useful function
+        and can be replicated 100% accurately via an XML based WidgetLook
+        definition.  If you are already using this and need to migrate, you can
+        usually do so by changing the following:
+        - in the looknfeel (WidgetLook) change the the \<Child\> element for
+        "__auto_contentpane__" into a \<NamedArea\> with the name "inner_rect" (and
+        remove anything other than the \<Area\> definition).
+        - in the scheme file, change the targetType from "CEGUI/GroupBox" to
+        "DefaultWindow".
+     */
+    class CEGUIEXPORT GroupBox : public Window {
+    public:
+        //! Namespace for global events
+        static const String EventNamespace;
 
-    \return
-        Pointer to a Window instance.
-    */
-    Window * getContentPane() const;
-
-protected:
-    /*!
-    \copydoc Window::addChild_impl
-    */
-    virtual void addChild_impl(Element* element);
-
-    /*!
-    \copydoc Window::removeChild_impl
-    */
-    virtual void removeChild_impl(Element* element);
+        static const String WidgetTypeName;
+        static const String ContentPaneName;
 
 
-};
+        GroupBox(const String& type, const String& name);
+
+
+        /*!
+        \brief
+            Draws the GroupBox around a widget. The size and position of the
+            GroupBox are overriden. Once the window that is drawn around resizes,
+            you'll have to call the function again. FIXME
+         */
+        bool drawAroundWidget(const CEGUI::Window* wnd);
+        bool drawAroundWidget(const String& name);
+
+        /*!
+        \brief
+            Returns the content pane held by this GroupBox.
+
+        \return
+            Pointer to a Window instance.
+         */
+        Window * getContentPane() const;
+
+    protected:
+        /*!
+        \copydoc Window::addChild_impl
+         */
+        virtual void addChild_impl(Element* element);
+
+        /*!
+        \copydoc Window::removeChild_impl
+         */
+        virtual void removeChild_impl(Element* element);
+
+
+    };
 
 }
 
 #if defined(_MSC_VER)
-#   pragma warning(pop)
+#pragma warning(pop)
 #endif
 
 #endif

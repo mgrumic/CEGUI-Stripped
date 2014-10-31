@@ -1,7 +1,7 @@
 /***********************************************************************
     created:    Wed, 8th Feb 2012
     author:     Lukas E Meindl
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2012 Paul D Turner & The CEGUI Development Team
  *
@@ -35,25 +35,22 @@
 #include <string>
 
 #if defined(_MSC_VER)
-#   pragma warning(push)
-#   pragma warning(disable : 4251)
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #endif
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
     class OpenGL3Shader;
 
-    enum OpenGL3ShaderID
-    {
+    enum OpenGL3ShaderID {
         SHADER_ID_STANDARDSHADER,
 
         SHADER_ID_COUNT
     };
 
     class OpenGL3ShaderManager :
-        public AllocatedObject<OpenGL3ShaderManager>
-    {
+    public AllocatedObject<OpenGL3ShaderManager> {
     public:
         OpenGL3ShaderManager();
         virtual ~OpenGL3ShaderManager();

@@ -3,7 +3,7 @@
     author:     Hans Mackowiak
 
     purpose:    
-*************************************************************************/
+ *************************************************************************/
 /***************************************************************************
  *   Copyright (C) 2004 - 2011 Paul D Turner & The CEGUI Development Team
  *
@@ -32,61 +32,59 @@
 #include "CEGUI/TplProperty.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
- 
-template<class C, typename T>
-class TplWindowRendererProperty : public TplProperty<C, T>
-{
-public:
-    TplWindowRendererProperty(
-        const String& name, const String& help, const String& origin,
-        typename TplProperty<C, T>::Setter setter,
-        typename TplProperty<C, T>::GetterFunctor getter,
-        typename TplProperty<C, T>::Helper::pass_type defaultValue = T(),
-        bool writesXML = true) :
+namespace CEGUI {
+
+    template<class C, typename T>
+    class TplWindowRendererProperty : public TplProperty<C, T> {
+    public:
+
+        TplWindowRendererProperty(
+                const String& name, const String& help, const String& origin,
+                typename TplProperty<C, T>::Setter setter,
+                typename TplProperty<C, T>::GetterFunctor getter,
+                typename TplProperty<C, T>::Helper::pass_type defaultValue = T(),
+                bool writesXML = true) :
 
         TplProperty<C, T>(name, help, origin,
-                          setter, getter,
-                          defaultValue, writesXML)
-    {}
+        setter, getter,
+        defaultValue, writesXML) {
+        }
 
-    virtual Property* clone() const
+        virtual Property* clone() const {
+            return CEGUI_NEW_AO TplWindowRendererProperty<C, T>(*this);
+        }
+
+    protected:
+        //! \copydoc TypedProperty::setNative_impl
+
+        void setNative_impl(PropertyReceiver* receiver,
+                typename TplProperty<C, T>::Helper::pass_type value) {
+            C* instance = static_cast<C*> (
+                    static_cast<const Window*> (receiver)->getWindowRenderer());
+
+            CEGUI_CALL_MEMBER_FN(*instance, this->d_setter)(value);
+        }
+
+        //! \copydoc TypedProperty::getNative_impl
+
+        typename TplProperty<C, T>::Helper::safe_method_return_type
+        getNative_impl(const PropertyReceiver* receiver) const {
+            const C* instance = static_cast<const C*> (
+                    static_cast<const Window*> (receiver)->getWindowRenderer());
+
+            return this->d_getter(instance);
+        }
+    };
+
+    /*!
+    Example of usage inside addStandardProperties or similar method.
     {
-        return CEGUI_NEW_AO TplWindowRendererProperty<C, T>(*this);
-    }
+        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(Window, float, "Alpha",
+            "Property to get/set the alpha value of the Window. Value is floating point number.",
+            &Window::setAlpha, &Window::getAlpha, 1.0f)
+    };
 
-protected:
-    //! \copydoc TypedProperty::setNative_impl
-    void setNative_impl(PropertyReceiver* receiver,
-                        typename TplProperty<C, T>::Helper::pass_type value)
-    {
-        C* instance = static_cast<C*>(
-            static_cast<const Window*>(receiver)->getWindowRenderer());
-
-        CEGUI_CALL_MEMBER_FN(*instance, this->d_setter)(value);
-    }
-
-    //! \copydoc TypedProperty::getNative_impl
-    typename TplProperty<C, T>::Helper::safe_method_return_type
-    getNative_impl(const PropertyReceiver* receiver) const
-    {
-        const C* instance = static_cast<const C*>(
-            static_cast<const Window*>(receiver)->getWindowRenderer());
-
-        return this->d_getter(instance);
-    }
-};
-
-/*!
-Example of usage inside addStandardProperties or similar method.
-{
-    CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(Window, float, "Alpha",
-        "Property to get/set the alpha value of the Window. Value is floating point number.",
-        &Window::setAlpha, &Window::getAlpha, 1.0f)
-};
-
-*/
+     */
 #define CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY(class_type, property_native_type, name, help, setter, getter, default_value)\
 {\
     static ::CEGUI::TplWindowRendererProperty<class_type, property_native_type> sProperty(\
@@ -96,17 +94,17 @@ Example of usage inside addStandardProperties or similar method.
 }
 
 
-/*!
-Same as CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY but writeXML is set to false
+    /*!
+    Same as CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY but writeXML is set to false
 
-Example of usage inside addStandardProperties or similar method.
-{
-    CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY_NO_XML(Window, float, "Alpha",
-        "Property to get/set the alpha value of the Window. Value is floating point number.",
-        &Window::setAlpha, &Window::getAlpha, 1.0f)
-};
+    Example of usage inside addStandardProperties or similar method.
+    {
+        CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY_NO_XML(Window, float, "Alpha",
+            "Property to get/set the alpha value of the Window. Value is floating point number.",
+            &Window::setAlpha, &Window::getAlpha, 1.0f)
+    };
 
-*/
+     */
 #define CEGUI_DEFINE_WINDOW_RENDERER_PROPERTY_NO_XML(class_type, property_native_type, name, help, setter, getter, default_value)\
 {\
     static ::CEGUI::TplWindowRendererProperty<class_type, property_native_type> sProperty(\

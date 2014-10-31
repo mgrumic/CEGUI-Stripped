@@ -6,38 +6,38 @@
 
 namespace bp = boost::python;
 
-void register_Clipboard_class(){
+void register_Clipboard_class() {
 
     { //::CEGUI::Clipboard
         typedef bp::class_< CEGUI::Clipboard > Clipboard_exposer_t;
-        Clipboard_exposer_t Clipboard_exposer = Clipboard_exposer_t( "Clipboard", bp::init< >("*!\n\
+        Clipboard_exposer_t Clipboard_exposer = Clipboard_exposer_t("Clipboard", bp::init< >("*!\n\
          constructor\n\
-        *\n") );
-        bp::scope Clipboard_scope( Clipboard_exposer );
+        *\n"));
+        bp::scope Clipboard_scope(Clipboard_exposer);
         { //::CEGUI::Clipboard::getText
-        
-            typedef ::CEGUI::String ( ::CEGUI::Clipboard::*getText_function_type )(  ) ;
-            
-            Clipboard_exposer.def( 
-                "getText"
-                , getText_function_type( &::CEGUI::Clipboard::getText )
-                , "*!\n\
+
+            typedef ::CEGUI::String(::CEGUI::Clipboard::*getText_function_type)();
+
+            Clipboard_exposer.def(
+                    "getText"
+                    , getText_function_type(&::CEGUI::Clipboard::getText)
+                    , "*!\n\
              convenience method that retrieves contents as a string\n\
-            *\n" );
-        
+            *\n");
+
         }
         { //::CEGUI::Clipboard::setText
-        
-            typedef void ( ::CEGUI::Clipboard::*setText_function_type )( ::CEGUI::String const & ) ;
-            
-            Clipboard_exposer.def( 
-                "setText"
-                , setText_function_type( &::CEGUI::Clipboard::setText )
-                , ( bp::arg("text") )
-                , "*!\n\
+
+            typedef void ( ::CEGUI::Clipboard::*setText_function_type)(::CEGUI::String const &);
+
+            Clipboard_exposer.def(
+                    "setText"
+                    , setText_function_type(&::CEGUI::Clipboard::setText)
+                    , (bp::arg("text"))
+                    , "*!\n\
              convenience method that sets contents to given string\n\
-            *\n" );
-        
+            *\n");
+
         }
     }
 

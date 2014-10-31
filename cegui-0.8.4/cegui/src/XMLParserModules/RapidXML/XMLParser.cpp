@@ -39,169 +39,157 @@
 #include "CEGUI/Exceptions.h"
 
 // Start of CEGUI namespace section
-namespace CEGUI
-{
+namespace CEGUI {
 
-//----------------------------------------------------------------------------//
-class RapidXMLDocument : public rapidxml::xml_document<>
-{
-public:
-    RapidXMLDocument(XMLHandler& handler, const RawDataContainer& source,
-                     const String& schemaName);
+    //----------------------------------------------------------------------------//
 
-    ~RapidXMLDocument()
-    {
-    }
+    class RapidXMLDocument : public rapidxml::xml_document<> {
+    public:
+        RapidXMLDocument(XMLHandler& handler, const RawDataContainer& source,
+                const String& schemaName);
 
-protected:
-    void processElement(const rapidxml::xml_node<>* element);
-
-private:
-    XMLHandler* d_handler;
-};
-
-//----------------------------------------------------------------------------//
-RapidXMLDocument::RapidXMLDocument(XMLHandler& handler,
-                                   const RawDataContainer& source,
-                                   const String& /*schemaName*/)
-{
-    d_handler = &handler;
-
-    // Create a buffer with extra bytes for a newline and a terminating null
-    size_t size = source.getSize();
-    char* buf = new char[size + 2];
-    memcpy(buf, source.getDataPtr(), size);
-    // PDT: The addition of the newline is a kludge to resolve an issue
-    // whereby parse returns 0 if the xml file has no newline at the end but
-    // is otherwise well formed.
-    buf[size] = '\n';
-    buf[size + 1] = 0;
-
-    // Parse the document
-    rapidxml::xml_document<> doc;    // character type defaults to char
-
-    try
-    {
-        doc.parse<0>(buf);          // 0 means default parse flags
-    }
-    catch (...)
-    {
-        // error detected, cleanup out buffers
-        delete[] buf;
-        CEGUI_THROW(FileIOException(
-#ifdef PE_NO_THROW_MSGS
-            ""));
-#else
-                "an error occurred while "
-                              "parsing the XML data - check it for "
-                              "potential errors!."));
-#endif //PE_NO_THROW_MSGS
-    }
-
-    rapidxml::xml_node<>* currElement = doc.first_node();
-
-    if (currElement)
-    {
-        try
-        {
-            // function called recursively to parse xml data
-            processElement(currElement);
+        ~RapidXMLDocument() {
         }
-        catch (...)
-        {
+
+    protected:
+        void processElement(const rapidxml::xml_node<>* element);
+
+    private:
+        XMLHandler* d_handler;
+    };
+
+    //----------------------------------------------------------------------------//
+
+    RapidXMLDocument::RapidXMLDocument(XMLHandler& handler,
+            const RawDataContainer& source,
+            const String& /*schemaName*/) {
+        d_handler = &handler;
+
+        // Create a buffer with extra bytes for a newline and a terminating null
+        size_t size = source.getSize();
+        char* buf = new char[size + 2];
+        memcpy(buf, source.getDataPtr(), size);
+        // PDT: The addition of the newline is a kludge to resolve an issue
+        // whereby parse returns 0 if the xml file has no newline at the end but
+        // is otherwise well formed.
+        buf[size] = '\n';
+        buf[size + 1] = 0;
+
+        // Parse the document
+        rapidxml::xml_document<> doc; // character type defaults to char
+
+        try {
+            doc.parse<0>(buf); // 0 means default parse flags
+        } catch (...) {
+            // error detected, cleanup out buffers
             delete[] buf;
-            throw;
+            CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+                    ""));
+#else
+                    "an error occurred while "
+                    "parsing the XML data - check it for "
+                    "potential errors!."));
+#endif //PE_NO_THROW_MSGS
         }
+
+        rapidxml::xml_node<>* currElement = doc.first_node();
+
+        if (currElement) {
+            try {
+                // function called recursively to parse xml data
+                processElement(currElement);
+            } catch (...) {
+                delete[] buf;
+                throw;
+            }
+        }
+
+        // Free memory
+        delete[] buf;
     }
 
-    // Free memory
-    delete[] buf;
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-void RapidXMLDocument::processElement(const rapidxml::xml_node<>* element)
-{
-    // build attributes block for the element
-    XMLAttributes attrs;
+    void RapidXMLDocument::processElement(const rapidxml::xml_node<>* element) {
+        // build attributes block for the element
+        XMLAttributes attrs;
 
-    rapidxml::xml_attribute<>* currAttr = element->first_attribute(0);
+        rapidxml::xml_attribute<>* currAttr = element->first_attribute(0);
 
-    while (currAttr)
-    {
-        attrs.add(reinterpret_cast<encoded_char*>(currAttr->name()),
-                  reinterpret_cast<encoded_char*>(currAttr->value()));
-        currAttr = currAttr->next_attribute();
+        while (currAttr) {
+            attrs.add(reinterpret_cast<encoded_char*> (currAttr->name()),
+                    reinterpret_cast<encoded_char*> (currAttr->value()));
+            currAttr = currAttr->next_attribute();
+        }
+
+        // start element
+        d_handler->elementStart(reinterpret_cast<encoded_char*> (element->name()),
+                attrs);
+
+        // do children
+        rapidxml::xml_node<>* childNode = element->first_node();
+
+        while (childNode) {
+            switch (childNode->type()) {
+                case rapidxml::node_element:
+                    processElement(childNode);
+                    break;
+
+                case rapidxml::node_data:
+                    if (childNode->value() != '\0')
+                        d_handler->text(
+                            reinterpret_cast<encoded_char*> (childNode->value()));
+
+                    break;
+
+                    // Silently ignore unhandled node type
+            };
+
+            childNode = childNode->next_sibling();
+        }
+
+
+        // end element
+        d_handler->elementEnd(reinterpret_cast<encoded_char*> (element->name()));
     }
 
-    // start element
-    d_handler->elementStart(reinterpret_cast<encoded_char*>(element->name()),
-                            attrs);
+    //----------------------------------------------------------------------------//
 
-    // do children
-    rapidxml::xml_node<>* childNode = element->first_node();
-
-    while (childNode)
-    {
-        switch (childNode->type())
-        {
-        case rapidxml::node_element:
-            processElement(childNode);
-            break;
-
-        case rapidxml::node_data:
-            if (childNode->value() != '\0')
-                d_handler->text(
-                    reinterpret_cast<encoded_char*>(childNode->value()));
-
-            break;
-
-            // Silently ignore unhandled node type
-        };
-
-        childNode = childNode->next_sibling();
+    RapidXMLParser::RapidXMLParser(void) {
+        // set ID string
+        d_identifierString = "CEGUI::RapidXMLParser - "
+                "Official RapidXML based parser module for CEGUI";
     }
 
+    //----------------------------------------------------------------------------//
 
-    // end element
-    d_handler->elementEnd(reinterpret_cast<encoded_char*>(element->name()));
-}
+    RapidXMLParser::~RapidXMLParser(void) {
+    }
 
-//----------------------------------------------------------------------------//
-RapidXMLParser::RapidXMLParser(void)
-{
-    // set ID string
-    d_identifierString = "CEGUI::RapidXMLParser - "
-                         "Official RapidXML based parser module for CEGUI";
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-RapidXMLParser::~RapidXMLParser(void)
-{
-}
+    void RapidXMLParser::parseXML(XMLHandler& handler,
+            const RawDataContainer& source,
+            const String& schemaName) {
+        RapidXMLDocument doc(handler, source, schemaName);
+    }
 
-//----------------------------------------------------------------------------//
-void RapidXMLParser::parseXML(XMLHandler& handler,
-                              const RawDataContainer& source,
-                              const String& schemaName)
-{
-    RapidXMLDocument doc(handler, source, schemaName);
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
-bool RapidXMLParser::initialiseImpl(void)
-{
-    // This used to prevent deletion of line ending in the middle of a text.
-    // WhiteSpace cleaning will be available throught the use of String methods
-    // directly: rapidxml::xml_document<>::SetCondenseWhiteSpace(false);
-    return true;
-}
+    bool RapidXMLParser::initialiseImpl(void) {
+        // This used to prevent deletion of line ending in the middle of a text.
+        // WhiteSpace cleaning will be available throught the use of String methods
+        // directly: rapidxml::xml_document<>::SetCondenseWhiteSpace(false);
+        return true;
+    }
 
-//----------------------------------------------------------------------------//
-void RapidXMLParser::cleanupImpl(void)
-{
-}
+    //----------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------//
+    void RapidXMLParser::cleanupImpl(void) {
+    }
+
+    //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
 
