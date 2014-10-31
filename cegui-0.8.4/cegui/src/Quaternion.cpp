@@ -33,7 +33,7 @@
 #include "CEGUI/PropertyHelper.h"
 #include "CEGUI/Exceptions.h"
 #include <limits>
-
+#ifndef PE_NO_QUATERNION
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -196,3 +196,4 @@ String QuaternionSlerpInterpolator::interpolateRelativeMultiply(
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_QUATERNION

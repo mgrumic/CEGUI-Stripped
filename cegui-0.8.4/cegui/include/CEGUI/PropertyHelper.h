@@ -593,6 +593,7 @@ public:
     }
 };
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
 template<>
 class PropertyHelper<Quaternion>
 {
@@ -625,7 +626,7 @@ public:
             return Quaternion::eulerAnglesDegrees(x, y, z);
         }
     }
-
+    
     static string_return_type toString(pass_type val)
     {
         char buff[128];
@@ -634,6 +635,7 @@ public:
         return String(buff);
     }
 };
+#endif //PE_NO_QUATERNION
 
 template<>
 class PropertyHelper<Rectf >

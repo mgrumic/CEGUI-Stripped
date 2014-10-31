@@ -40,7 +40,9 @@ NullGeometryBuffer::NullGeometryBuffer() :
 #ifndef PE_NO_VECTOR3D
     d_translation(0, 0, 0),
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     d_rotation(),
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
     d_pivot(0, 0, 0),
 #endif
@@ -75,11 +77,13 @@ void NullGeometryBuffer::setTranslation(const Vector3f& v)
     d_translation = v;
 }
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setRotation(const Quaternion& r)
 {
     d_rotation = r;
 }
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setPivot(const Vector3f& p)

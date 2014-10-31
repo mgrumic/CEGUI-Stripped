@@ -859,6 +859,7 @@ public:
         solution than using Quaternions. You can still use Euler angles, see
         the CEGUI::Quaternion class for more info about that.
     */
+#ifndef PE_NO_QUATERNION
     void setRotation(const Quaternion& rotation);
 
     /*!
@@ -870,6 +871,7 @@ public:
     {
         return d_rotation;
     }
+#endif //PE_NO_QUATERNION
 
     /*!
     \brief
@@ -1320,8 +1322,10 @@ protected:
     bool d_pixelAligned;
     //! Current constrained pixel size of the element.
     Sizef d_pixelSize;
+#ifndef PE_NO_QUATERNION
     //! Rotation of this element (relative to the parent)
     Quaternion d_rotation;
+#endif //PE_NO_QUATERNION
 
     //! outer area rect in screen pixels
     CachedRectf d_unclippedOuterRect;

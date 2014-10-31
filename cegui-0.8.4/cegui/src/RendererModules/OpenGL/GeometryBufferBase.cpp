@@ -48,7 +48,9 @@ OpenGLGeometryBufferBase::OpenGLGeometryBufferBase(OpenGLRendererBase& owner) :
 #ifndef PE_NO_VECTOR3D
     d_translation(0, 0, 0),
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     d_rotation(Quaternion::IDENTITY),
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
     d_pivot(0, 0, 0),
 #endif  // PE_NO_VECTOR3D
@@ -81,12 +83,14 @@ void OpenGLGeometryBufferBase::setTranslation(const Vector3f& v)
     d_matrixValid = false;
 }
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setRotation(const Quaternion& r)
 {
     d_rotation = r;
     d_matrixValid = false;
 }
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
 void OpenGLGeometryBufferBase::setPivot(const Vector3f& p)
@@ -217,10 +221,12 @@ void OpenGLGeometryBufferBase::updateMatrix() const
 
     modelMatrix = glm::translate(modelMatrix, final_trans);
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     glm::quat rotationQuat = glm::quat(d_rotation.d_w, d_rotation.d_x, d_rotation.d_y, d_rotation.d_z);
     glm::mat4 rotation_matrix = glm::mat4_cast(rotationQuat);
 
     modelMatrix = modelMatrix * rotation_matrix;
+#endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
     glm::vec3 transl = glm::vec3(-d_pivot.d_x, -d_pivot.d_y, -d_pivot.d_z);
     glm::mat4 translMatrix = glm::translate(glm::mat4(1.f), transl);

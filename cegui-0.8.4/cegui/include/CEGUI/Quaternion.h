@@ -34,6 +34,8 @@
 #include "CEGUI/Vector.h"
 #include <cmath>
 
+#ifndef PE_NO_QUATERNION
+
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -300,5 +302,5 @@ public:
 };
 
 } // End of  CEGUI namespace section
-
+#endif //PE_NO_QUATERNION
 #endif	// end of guard _CEGUIQuaternion_h_

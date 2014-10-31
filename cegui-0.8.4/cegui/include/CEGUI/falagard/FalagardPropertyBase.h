@@ -46,8 +46,8 @@ public:
                          const String& fireEvent, const String& eventNamespace) :
         PropertyDefinitionBase(name, help, initialValue,
                                redrawOnWrite, layoutOnWrite,
-                               fireEvent, eventNamespace),
-        TypedProperty<T>(name, help, origin,
+                               fireEvent, eventNamespace)
+        ,TypedProperty<T>(name, help, origin,
                          Helper::fromString(initialValue))
     {}
 
@@ -55,6 +55,7 @@ public:
     ~FalagardPropertyBase() {}
 
 protected:
+    
     //------------------------------------------------------------------------//
     void setNative_impl(PropertyReceiver* receiver,
                         typename Helper::pass_type /*value*/)

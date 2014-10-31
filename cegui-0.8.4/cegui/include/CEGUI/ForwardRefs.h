@@ -92,7 +92,9 @@ class Property;
 template<typename T> class PropertyHelper;
 class PropertyReceiver;
 class PropertySet;
+#ifndef PE_NO_QUATERNION
 class Quaternion;
+#endif //PE_NO_QUATERNION
 class RawDataContainer;
 template<typename T> class Rect;
 class RegexMatcher;

@@ -245,13 +245,14 @@ static int tolua_collect_CEGUI__RenderTargetEventArgs (lua_State* tolua_S)
  delete self;
  return 0;
 }
-
+#ifndef PE_NO_QUATERNION
 static int tolua_collect_CEGUI__Quaternion (lua_State* tolua_S)
 {
  CEGUI::Quaternion* self = (CEGUI::Quaternion*) tolua_tousertype(tolua_S,1,0);
  delete self;
  return 0;
 }
+#endif //PE_NO_QUATERNION
 
 static int tolua_collect_CEGUI__ColourRect (lua_State* tolua_S)
 {
@@ -631,7 +632,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::GUIContext");
  tolua_usertype(tolua_S,"CEGUI::PopupMenu");
  tolua_usertype(tolua_S,"CEGUI::MouseCursorEventArgs");
+#ifndef PE_NO_QUATERNION
  tolua_usertype(tolua_S,"CEGUI::Quaternion");
+#endif //PE_NO_QUATERNION 
  tolua_usertype(tolua_S,"CEGUI::ImageFactory");
  tolua_usertype(tolua_S,"CEGUI::Listbox");
  tolua_usertype(tolua_S,"CEGUI::ScrolledItemListBase");
@@ -2708,7 +2711,7 @@ static int tolua_CEGUI_CEGUI_Rectf__add00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_QUATERNION
 /* get function: d_w of class  CEGUI::Quaternion */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__Quaternion_w
 static int tolua_get_CEGUI__Quaternion_w(lua_State* tolua_S)
@@ -3470,6 +3473,7 @@ static int tolua_CEGUI_CEGUI_Quaternion_normalise00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_QUATERNION
 
 /* method: getAlpha of class  CEGUI::Colour */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Colour_getAlpha00
@@ -17368,8 +17372,10 @@ static int tolua_CEGUI_CEGUI_Element_getRotation00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRotation'",NULL);
 #endif
  {
+#ifndef PE_NO_QUATERNION
   const CEGUI::Quaternion& tolua_ret = (const CEGUI::Quaternion&)  self->getRotation();
  tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CEGUI::Quaternion");
+#endif //PE_NO_QUATERNION
  }
  }
  return 1;
@@ -29824,7 +29830,9 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_setRotation00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
  !tolua_isusertype(tolua_S,1,"CEGUI::GeometryBuffer",0,&tolua_err) ||
+#ifndef PE_NO_QUATERNION
  !tolua_isusertype(tolua_S,2,"const CEGUI::Quaternion",0,&tolua_err) ||
+#endif //PE_NO_QUATERNION
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
  goto tolua_lerror;
@@ -29832,12 +29840,16 @@ static int tolua_CEGUI_CEGUI_GeometryBuffer_setRotation00(lua_State* tolua_S)
 #endif
  {
   CEGUI::GeometryBuffer* self = (CEGUI::GeometryBuffer*)  tolua_tousertype(tolua_S,1,0);
+#ifndef PE_NO_QUATERNION
   const CEGUI::Quaternion* r = ((const CEGUI::Quaternion*)  tolua_tousertype(tolua_S,2,0));
+#endif //PE_NO_QUATERNION
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setRotation'",NULL);
 #endif
  {
+#ifndef PE_NO_QUATERNION
   self->setRotation(*r);
+#endif //PE_NO_QUATERNION
  }
  }
  return 0;
@@ -31266,7 +31278,9 @@ static int tolua_CEGUI_CEGUI_RenderingWindow_setRotation00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
  !tolua_isusertype(tolua_S,1,"CEGUI::RenderingWindow",0,&tolua_err) ||
+#ifndef PE_NO_QUATERNION
  !tolua_isusertype(tolua_S,2,"const CEGUI::Quaternion",0,&tolua_err) ||
+#endif //PE_NO_QUATERNION
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
  goto tolua_lerror;
@@ -31274,12 +31288,16 @@ static int tolua_CEGUI_CEGUI_RenderingWindow_setRotation00(lua_State* tolua_S)
 #endif
  {
   CEGUI::RenderingWindow* self = (CEGUI::RenderingWindow*)  tolua_tousertype(tolua_S,1,0);
+ #ifndef PE_NO_QUATERNION
   const CEGUI::Quaternion* rotation = ((const CEGUI::Quaternion*)  tolua_tousertype(tolua_S,2,0));
+#endif //PE_NO_QUATERNION
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setRotation'",NULL);
 #endif
  {
+#ifndef PE_NO_QUATERNION
   self->setRotation(*rotation);
+#endif //PE_NO_QUATERNION
  }
  }
  return 0;
@@ -31408,8 +31426,10 @@ static int tolua_CEGUI_CEGUI_RenderingWindow_getRotation00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRotation'",NULL);
 #endif
  {
+#ifndef PE_NO_QUATERNION
   const CEGUI::Quaternion& tolua_ret = (const CEGUI::Quaternion&)  self->getRotation();
  tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CEGUI::Quaternion");
+#endif //PE_NO_QUATERNION
  }
  }
  return 1;
@@ -65319,10 +65339,15 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,".add",tolua_CEGUI_CEGUI_Rectf__add00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
+#ifndef PE_NO_QUATERNION
   tolua_cclass(tolua_S,"Quaternion","CEGUI::Quaternion","",tolua_collect_CEGUI__Quaternion);
+#endif //PE_NO_QUATERNION
   #else
+#ifndef PE_NO_QUATERNION
   tolua_cclass(tolua_S,"Quaternion","CEGUI::Quaternion","",NULL);
+#endif //PE_NO_QUATERNION
   #endif
+#ifndef PE_NO_QUATERNION
   tolua_beginmodule(tolua_S,"Quaternion");
    tolua_variable(tolua_S,"w",tolua_get_CEGUI__Quaternion_w,tolua_set_CEGUI__Quaternion_w);
    tolua_variable(tolua_S,"x",tolua_get_CEGUI__Quaternion_x,tolua_set_CEGUI__Quaternion_x);
@@ -65352,6 +65377,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"length",tolua_CEGUI_CEGUI_Quaternion_length00);
    tolua_function(tolua_S,"normalise",tolua_CEGUI_CEGUI_Quaternion_normalise00);
   tolua_endmodule(tolua_S);
+#endif //PE_NO_QUATERNION
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Colour","CEGUI::Colour","",tolua_collect_CEGUI__Colour);
   #else

@@ -78,7 +78,9 @@ AnimationManager::AnimationManager(void)
 #ifndef PE_NO_VECTOR3D
     addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Vector3f >("Vector3f"));
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     addBasicInterpolator(CEGUI_NEW_AO QuaternionSlerpInterpolator());
+#endif //PE_NO_QUATERNION
     addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Rectf >("Rectf"));
     addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<Colour>("Colour"));
     addBasicInterpolator(CEGUI_NEW_AO TplLinearInterpolator<ColourRect>("ColourRect"));

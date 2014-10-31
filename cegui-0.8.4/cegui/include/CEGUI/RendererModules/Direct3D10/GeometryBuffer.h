@@ -60,7 +60,9 @@ public:
     // Implement GeometryBuffer interface.
     void draw() const;
     void setTranslation(const Vector3f& v);
+#ifndef PE_NO_QUATERNION
     void setRotation(const Quaternion& r);
+#endif //PE_NO_QUATERNION
     void setPivot(const Vector3f& p);
     void setClippingRegion(const Rectf& region);
     void appendVertex(const Vertex& vertex);
@@ -130,8 +132,10 @@ protected:
     bool d_clippingActive;
     //! translation vector
     Vector3f d_translation;
+#ifndef PE_NO_QUATERNION
     //! rotation Quaternion
     Quaternion d_rotation;
+#endif //PE_NO_QUATERNION
     //! pivot point for rotation
     Vector3f d_pivot;
     //! RenderEffect that will be used by the GeometryBuffer

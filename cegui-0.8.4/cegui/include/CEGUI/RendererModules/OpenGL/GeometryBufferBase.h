@@ -61,7 +61,9 @@ public:
     void setTranslation(const Vector3f& t);
     void setPivot(const Vector3f& p);
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     void setRotation(const Quaternion& r);
+#endif //PE_NO_QUATERNION
     void setClippingRegion(const Rectf& region);
     void appendVertex(const Vertex& vertex);
     void appendGeometry(const Vertex* const vbuff, uint vertex_count);
@@ -121,8 +123,10 @@ protected:
 #ifndef PE_NO_VECTOR3D
     Vector3f d_translation;
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_QUATERNION
     //! rotation quaternion
     Quaternion d_rotation;
+#endif //PE_NO_QUATERNION
     //! pivot point for rotation
 #ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;

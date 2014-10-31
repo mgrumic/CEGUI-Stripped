@@ -75,7 +75,9 @@ Element::Element():
     d_aspectRatio(1.0 / 1.0),
     d_pixelAligned(true),
     d_pixelSize(0.0f, 0.0f),
+#ifndef PE_NO_QUATERNION
     d_rotation(Quaternion::IDENTITY),
+#endif //PE_NO_QUATERNION
 
     d_unclippedOuterRect(this, &Element::getUnclippedOuterRect_impl),
     d_unclippedInnerRect(this, &Element::getUnclippedInnerRect_impl)
@@ -338,7 +340,7 @@ const Sizef& Element::getRootContainerSize() const
 {
     return System::getSingleton().getRenderer()->getDisplaySize();
 }
-
+#ifndef PE_NO_QUATERNION
 //----------------------------------------------------------------------------//
 void Element::setRotation(const Quaternion& rotation)
 {
@@ -347,6 +349,7 @@ void Element::setRotation(const Quaternion& rotation)
     ElementEventArgs args(this);
     onRotated(args);
 }
+#endif //PE_NO_QUATERNION
 
 //----------------------------------------------------------------------------//
 void Element::addChild(Element* element)
@@ -494,13 +497,14 @@ void Element::addElementProperties()
         "Value is either \"true\" or \"false\".",
         &Element::setPixelAligned, &Element::isPixelAligned, true
     );
-
+#ifndef PE_NO_QUATERNION
     CEGUI_DEFINE_PROPERTY(Element, Quaternion,
         "Rotation", "Property to get/set the Element's rotation. Value is a quaternion: "
         "\"w:[w_float] x:[x_float] y:[y_float] z:[z_float]\""
         "or \"x:[x_float] y:[y_float] z:[z_float]\" to convert from Euler angles (in degrees).",
         &Element::setRotation, &Element::getRotation, Quaternion(1.0,0.0,0.0,0.0)
     );
+#endif //PE_NO_QUATERNION
 
     CEGUI_DEFINE_PROPERTY(Element, bool,
         "NonClient", "Property to get/set whether the Element is 'non-client'. "

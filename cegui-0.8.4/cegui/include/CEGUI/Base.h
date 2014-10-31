@@ -41,7 +41,8 @@
 //#define PE_NO_REGEX_MATCHER
 //#define PE_NO_CLIPBOARD
 ////#define PE_NO_VECTOR3D
-//
+//#define PE_NO_QUATERNION
+//#define PE_NO_FONT_GLYPH
 //
 //#define PE_NO_WGT_SPINNER
 //#define PE_NO_WGT_SLIDER

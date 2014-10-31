@@ -71,7 +71,9 @@ public:
     \param r
         Quaternion describing the rotation to be used.
     */
+#ifndef PE_NO_QUATERNION
     virtual void setRotation(const Quaternion& r) = 0;
+#endif //PE_NO_QUATERNION
 
     /*!
     \brief
