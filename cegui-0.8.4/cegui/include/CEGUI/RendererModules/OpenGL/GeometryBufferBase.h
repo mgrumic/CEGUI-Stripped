@@ -70,8 +70,10 @@ public:
     Texture* getActiveTexture() const;
     uint getVertexCount() const;
     uint getBatchCount() const;
+#ifndef PE_NO_RENDEREFFECT
     void setRenderEffect(RenderEffect* effect);
     RenderEffect* getRenderEffect();
+#endif //PE_NO_RENDEREFFECT
     void setClippingActive(const bool active);
     bool isClippingActive() const;
 
@@ -128,7 +130,9 @@ protected:
     Vector3f d_pivot;
 #endif  // PE_NO_VECTOR3D
     //! RenderEffect that will be used by the GeometryBuffer
+#ifndef PE_NO_RENDEREFFECT
     RenderEffect* d_effect;
+#endif //PE_NO_RENDEREFFECT
     //! model matrix cache - we use double because gluUnproject takes double
     mutable mat4Pimpl*              d_matrix;
     //! true when d_matrix is valid and up to date

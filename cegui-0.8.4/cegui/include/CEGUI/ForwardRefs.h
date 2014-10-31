@@ -103,7 +103,9 @@ class RenderedStringParser;
 class RenderedStringTextComponent;
 class RenderedStringWidgetComponent;
 class Renderer;
+#ifndef PE_NO_RENDEREFFECT
 class RenderEffect;
+#endif //PE_NO_RENDEREFFECT
 class RenderEffectManager;
 struct RenderingContext;
 class RenderingSurface;

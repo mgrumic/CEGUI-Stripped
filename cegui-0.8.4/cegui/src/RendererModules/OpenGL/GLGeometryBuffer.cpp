@@ -63,11 +63,12 @@ void OpenGLGeometryBuffer::draw() const
 
     // activate desired blending mode
     d_owner->setupRenderingBlendMode(d_blendMode);
-
+#ifndef PE_NO_RENDEREFFECT
     const int pass_count = d_effect ? d_effect->getPassCount() : 1;
     for (int pass = 0; pass < pass_count; ++pass)
     {
         // set up RenderEffect
+
         if (d_effect)
             d_effect->performPreRenderFunctions(pass);
 
@@ -98,6 +99,7 @@ void OpenGLGeometryBuffer::draw() const
     // clean up RenderEffect
     if (d_effect)
         d_effect->performPostRenderFunctions();
+#endif //PE_NO_RENDEREFFECT
 }
 
 //----------------------------------------------------------------------------//

@@ -1610,11 +1610,11 @@ void Window::update(float elapsed)
 {       
     // perform update for 'this' Window
     updateSelf(elapsed);
-
+#ifndef PE_NO_RENDEREFFECT
     // update underlying RenderingWinodw if needed
     if (d_surface && d_surface->isRenderingWindow())
         static_cast<RenderingWindow*>(d_surface)->update(elapsed);
-
+#endif //PE_NO_RENDEREFFECT
     UpdateEventArgs e(this,elapsed);
     fireEvent(EventUpdated,e,EventNamespace);
 

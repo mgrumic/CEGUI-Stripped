@@ -52,6 +52,7 @@ class CEGUIEXPORT RenderEffectManager :
     public AllocatedObject<RenderEffectManager>
 {
 private:
+#ifndef PE_NO_RENDEREFFECT
     //! Collection type used for the render effect registry
     typedef std::map<String, RenderEffectFactory*, StringFastLessCompare
         CEGUI_MAP_ALLOC(String, RenderEffectFactory*)> RenderEffectRegistry;
@@ -74,6 +75,7 @@ public:
 
     //! Destructor for RenderEffectManager objects.
     ~RenderEffectManager();
+#endif //PE_NO_RENDEREFFECT
 
     /*!
     \brief
@@ -114,6 +116,7 @@ public:
         removed while instances are still active, it will not be possible to
         safely delete those RenderEffect object instances.
     */
+#ifndef PE_NO_RENDEREFFECT
     void removeEffect(const String& name);
 
     /*!
@@ -129,7 +132,7 @@ public:
         - false if no RenderEffect with the specified name is registered.
     */
     bool isEffectAvailable(const String& name) const;
-
+#endif //PE_NO_RENDEREFFECT
     /*!
     \brief
         Create an instance of the RenderEffect based class identified by the
@@ -150,6 +153,7 @@ public:
         thrown if no RenderEffect class has been registered using the
         identifier \a name.
     */
+#ifndef PE_NO_RENDEREFFECT
     RenderEffect& create(const String& name, Window* window);
 
     /*!
@@ -170,8 +174,9 @@ public:
         thrown if \a effect was not created by the RenderEffectManager.
     */
     void destroy(RenderEffect& effect);
+#endif //PE_NO_RENDEREFFECT
 };
-
+#ifndef PE_NO_RENDEREFFECT
 //---------------------------------------------------------------------------//
 template <typename T>
 void RenderEffectManager::addEffect(const String& name)
@@ -192,6 +197,7 @@ void RenderEffectManager::addEffect(const String& name)
         "Registered RenderEffect named '" + name + "'");
 #endif //PE_NO_LOGGER
 }
+#endif //PE_NO_RENDEREFFECT
 
 //---------------------------------------------------------------------------//
 
@@ -201,6 +207,5 @@ void RenderEffectManager::addEffect(const String& name)
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
-
 #endif  // end of guard _CEGUIRenderEffectManager_h_
 

@@ -40,6 +40,8 @@
 #define PE_NO_ANIMATION
 #define PE_NO_REGEX_MATCHER
 #define PE_NO_CLIPBOARD
+#define PE_NO_RENDEREFFECT
+
 //#define PE_NO_VECTOR3D
 
 

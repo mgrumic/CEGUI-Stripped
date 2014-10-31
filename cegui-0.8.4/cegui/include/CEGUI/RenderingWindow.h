@@ -222,6 +222,7 @@ public:
         not delete a RenderEffect assigned to it when the RenderingWindow is
         destroyed.
     */
+#ifndef PE_NO_RENDEREFFECT
     void setRenderEffect(RenderEffect* effect);
 
     /*!
@@ -235,7 +236,7 @@ public:
         none.
     */
     RenderEffect* getRenderEffect();
-
+#endif //PE_NO_RENDEREFFECT
     /*!
     \brief
         generate geometry to be used when rendering back the RenderingWindow to

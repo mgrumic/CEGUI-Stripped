@@ -181,6 +181,7 @@ public:
         you need to be careful not to delete the RenderEffect if it might still
         be in use!
     */
+#ifndef PE_NO_RENDEREFFECT
     virtual void setRenderEffect(RenderEffect* effect) = 0;
 
     /*!
@@ -189,7 +190,7 @@ public:
         or 0 if none.
     */
     virtual RenderEffect* getRenderEffect() = 0;
-
+#endif //PE_NO_RENDEREFFECT
     /*!
     \brief
         Set the blend mode option to use when rendering this GeometryBuffer.
