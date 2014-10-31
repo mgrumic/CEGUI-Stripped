@@ -73,8 +73,10 @@ public:
     Texture* getActiveTexture() const;
     uint getVertexCount() const;
     uint getBatchCount() const;
+#ifndef PE_NO_RENDEREFFECT
     void setRenderEffect(RenderEffect* effect);
     RenderEffect* getRenderEffect();
+#endif //PE_NO_RENDEREFFECT
     void setClippingActive(const bool active);
     bool isClippingActive() const;
 
@@ -97,8 +99,10 @@ protected:
 #ifndef PE_NO_VECTOR3D
     Vector3f d_pivot;
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_RENDEREFFECT
     //! RenderEffect that will be used by the GeometryBuffer
     RenderEffect* d_effect;
+#endif //PE_NO_RENDEREFFECT
     //! type of container used to queue the geometry
     typedef std::vector<Vertex> VertexList;
     //! container where added geometry is stored.

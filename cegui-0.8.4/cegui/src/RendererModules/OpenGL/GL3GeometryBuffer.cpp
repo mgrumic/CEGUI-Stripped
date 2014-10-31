@@ -88,15 +88,16 @@ void OpenGL3GeometryBuffer::draw() const
 
     // Bind our vao
     d_glStateChanger->bindVertexArray(d_verticesVAO);
-
+#ifndef PE_NO_RENDEREFFECT
     const int pass_count = d_effect ? d_effect->getPassCount() : 1;
+#endif //PE_NO_RENDEREFFECT
      size_t pos = 0;
+#ifndef PE_NO_RENDEREFFECT
     for (int pass = 0; pass < pass_count; ++pass)
     {
         // set up RenderEffect
         if (d_effect)
             d_effect->performPreRenderFunctions(pass);
-
         // draw the batches
        
         BatchList::const_iterator i = d_batches.begin();
@@ -118,10 +119,12 @@ void OpenGL3GeometryBuffer::draw() const
             pos += numVertices;
         }
     }
-
+#endif //PE_NO_RENDEREFFECT
+#ifndef PE_NO_RENDEREFFECT
     // clean up RenderEffect
     if (d_effect)
         d_effect->performPostRenderFunctions();
+#endif //PE_NO_RENDEREFFECT
 }
 
 //----------------------------------------------------------------------------//

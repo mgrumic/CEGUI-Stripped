@@ -44,9 +44,11 @@ NullGeometryBuffer::NullGeometryBuffer() :
     d_rotation(),
 #endif //PE_NO_QUATERNION
 #ifndef PE_NO_VECTOR3D
-    d_pivot(0, 0, 0),
-#endif
-    d_effect(0)
+    d_pivot(0, 0, 0)
+#endif //PE_NO_VECTOR3D
+#ifndef PE_NO_RENDEREFFECT
+    ,d_effect(0)
+#endif //PE_NO_RENDEREFFECT
 {
 }
 
@@ -58,6 +60,7 @@ NullGeometryBuffer::~NullGeometryBuffer()
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::draw() const
 {
+ #ifndef PE_NO_RENDEREFFECT
     const int pass_count = d_effect ? d_effect->getPassCount() : 1;
     for (int pass = 0; pass < pass_count; ++pass)
     {
@@ -65,10 +68,10 @@ void NullGeometryBuffer::draw() const
         if (d_effect)
             d_effect->performPreRenderFunctions(pass);
     }
-
     // clean up RenderEffect
     if (d_effect)
         d_effect->performPostRenderFunctions();
+#endif //PE_NO_RENDEREFFECT
 }
 #ifndef PE_NO_VECTOR3D
 //----------------------------------------------------------------------------//
@@ -144,18 +147,20 @@ uint NullGeometryBuffer::getBatchCount() const
 {
     return 1;
 }
-
+#ifndef PE_NO_RENDEREFFECT
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setRenderEffect(RenderEffect* effect)
 {
     d_effect = effect;
 }
-
+#endif //PE_NO_RENDEREFFECT
+#ifndef PE_NO_RENDEREFFECT
 //----------------------------------------------------------------------------//
 RenderEffect* NullGeometryBuffer::getRenderEffect()
 {
     return d_effect;
 }
+#endif //PE_NO_RENDEREFFECT
 
 //----------------------------------------------------------------------------//
 void NullGeometryBuffer::setClippingActive(const bool active)
