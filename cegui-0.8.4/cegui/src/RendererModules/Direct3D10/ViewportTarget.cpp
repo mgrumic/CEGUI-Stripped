@@ -40,8 +40,12 @@ Direct3D10ViewportTarget::Direct3D10ViewportTarget(Direct3D10Renderer& owner) :
     d_device.RSGetViewports(&vp_count, &vp);
     if (vp_count != 1)
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Unable to access required view port information from "
             "ID3D10Device."));
+#endif //PE_NO_THROW_MSGS
 
     Rectf area(
         Vector2f(static_cast<float>(vp.TopLeftX), static_cast<float>(vp.TopLeftY)),

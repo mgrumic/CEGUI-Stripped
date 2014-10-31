@@ -67,9 +67,14 @@ void NamedElement::setName(const String& name)
 
         if (parent && parent->isChild(name))
         {
-            CEGUI_THROW(AlreadyExistsException("Failed to rename "
+            CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
+                ""));
+#else
+                    "Failed to rename "
                 "NamedElement at: " + getNamePath() + " as: " + name + ". A Window "
                 "with that name is already attached as a sibling."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 #ifndef PE_NO_LOGGER
@@ -146,9 +151,14 @@ NamedElement* NamedElement::getChildElement(const String& name_path) const
     if (e)
         return e;
 
-    CEGUI_THROW(UnknownObjectException("The Element object "
+    CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+            "The Element object "
         "referenced by '" + name_path + "' is not attached to Element at '"
         + getNamePath() + "'."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -165,9 +175,14 @@ void NamedElement::removeChild(const String& name_path)
     if (e)
         removeChild(e);
     else
-        CEGUI_THROW(UnknownObjectException("The Element object "
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "The Element object "
             "referenced by '" + name_path + "' is not attached to Element at '"
             + getNamePath() + "'."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -180,10 +195,15 @@ void NamedElement::addChild_impl(Element* element)
         const NamedElement* const existing = getChildByNamePath_impl(named_element->getName());
 
         if (existing && named_element != existing)
-            CEGUI_THROW(AlreadyExistsException("Failed to add "
+            CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                    "Failed to add "
                 "Element named: " + named_element->getName() + " to element at: " +
                 getNamePath() + " since an Element with that name is already "
                 "attached."));
+#endif //PE_NO_THROW_MSGS
     }
 
     Element::addChild_impl(element);

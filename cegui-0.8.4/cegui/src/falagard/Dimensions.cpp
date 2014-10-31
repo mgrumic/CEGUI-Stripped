@@ -150,7 +150,11 @@ void OperatorDim::setNextOperand(const BaseDim* operand)
         d_right = operand ? operand->clone() : 0;
     else
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Both operands are already set."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -195,7 +199,11 @@ float OperatorDim::getValueImpl(const float lval, const float rval) const
 
     default:
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Unknown DimensionOperator value."));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
@@ -330,7 +338,11 @@ float ImageDimBase::getValue(const Window& wnd) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "unknown or unsupported DimensionType encountered."));
+#endif //PE_NO_THROW_MSGS
             break;
     }
 }
@@ -538,7 +550,11 @@ float WidgetDim::getValue(const Window& wnd) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "unknown or unsupported DimensionType encountered."));
+#endif //PE_NO_THROW_MSGS
             break;
     }
 }
@@ -667,7 +683,11 @@ float FontDim::getValue(const Window& wnd) const
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                     "unknown or unsupported FontMetricType encountered."));
+#endif //PE_NO_THROW_MSGS
                 break;
         }
     }
@@ -805,7 +825,11 @@ float PropertyDim::getValue(const Window& wnd) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "unknown or unsupported DimensionType encountered."));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
@@ -984,7 +1008,11 @@ float UnifiedDim::getValue(const Window& wnd) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
-                "unknown or unsupported DimensionType encountered."));
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+        "unknown or unsupported DimensionType encountered."));
+#endif //PE_NO_THROW_MSGS
             break;
     }
 }
@@ -1012,7 +1040,11 @@ float UnifiedDim::getValue(const Window&, const Rectf& container) const
 
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "unknown or unsupported DimensionType encountered."));
+#endif //PE_NO_THROW_MSGS
             break;
     }
 }

@@ -30,6 +30,7 @@
 #define _CEGUIAffector_h_
 
 #include "CEGUI/String.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/KeyFrame.h"
 #include <map>
 
@@ -75,7 +76,10 @@ public:
     /** internal constructor, please construct Affectors via
      * Animation::createAffector only
      */
+    
+    #ifndef PE_NO_ANIMATION
     Affector(Animation* parent);
+    #endif //PE_NO_ANIMATION
 
     //! destructor, this destroys all key frames defined inside this affector
     ~Affector(void);
@@ -84,10 +88,12 @@ public:
     \brief
     	Retrieves the parent animation of this keyframe
     */
+#ifndef PE_NO_ANIMATION
     inline Animation* getParent() const
     {
     	return d_parent;
     }
+#endif //PE_NO_ANIMATION
 
     /*!
     \brief
@@ -222,7 +228,9 @@ public:
         So their values are still known after
         they've been affected.
      */
+#ifndef PE_NO_ANIMATION
     void savePropertyValues(AnimationInstance* instance);
+#endif //PE_NO_ANIMATION
 
     /*!
     \brief
@@ -236,7 +244,9 @@ public:
     \see
         AnimationInstance
     */
+#ifndef PE_NO_ANIMATION
     void apply(AnimationInstance* instance);
+#endif //PE_NO_ANIMATION
 
     /*!
     \brief
@@ -249,7 +259,9 @@ public:
 
 private:
     //! parent animation definition
+    #ifndef PE_NO_ANIMATION
     Animation* d_parent;
+#endif //PE_NO_ANIMATION
     //! application method
     ApplicationMethod d_applicationMethod;
     //! property that gets affected by this affector
@@ -271,5 +283,6 @@ private:
 #   pragma warning(pop)
 #endif
 
+#endif //PE_NO_ANIMATION
 #endif  // end of guard _CEGUIAffector_h_
 

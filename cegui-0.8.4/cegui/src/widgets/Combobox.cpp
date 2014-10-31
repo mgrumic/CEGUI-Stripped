@@ -52,7 +52,9 @@ const String Combobox::WidgetTypeName("CEGUI/Combobox");
 *************************************************************************/
 // event names from edit box
 const String Combobox::EventReadOnlyModeChanged( "ReadOnlyModeChanged" );
+#ifndef PE_NO_REGEX_MATCHER
 const String Combobox::EventValidationStringChanged( "ValidationStringChanged" );
+#endif //PE_NO_REGEX_MATCHER
 const String Combobox::EventMaximumTextLengthChanged( "MaximumTextLengthChanged" );
 const String Combobox::EventTextValidityChanged( "TextValidityChanged" );
 const String Combobox::EventCaretMoved( "CaretMoved" );
@@ -134,9 +136,13 @@ void Combobox::initialiseComponents(void)
 #ifndef PE_NO_WGT_COMBOBOX
 	// event forwarding setup
 	editbox->subscribeEvent(Editbox::EventReadOnlyModeChanged, Event::Subscriber(&CEGUI::Combobox::editbox_ReadOnlyChangedHandler, this));
+#ifndef PE_NO_REGEX_MATCHER
 	editbox->subscribeEvent(Editbox::EventValidationStringChanged, Event::Subscriber(&CEGUI::Combobox::editbox_ValidationStringChangedHandler, this));
+#endif //PE_NO_REGEX_MATCHER
 	editbox->subscribeEvent(Editbox::EventMaximumTextLengthChanged, Event::Subscriber(&CEGUI::Combobox::editbox_MaximumTextLengthChangedHandler, this));
+#ifndef PE_NO_REGEX_MATCHER
 	editbox->subscribeEvent(Editbox::EventTextValidityChanged, Event::Subscriber(&CEGUI::Combobox::editbox_TextValidityChangedHandler, this));
+#endif //PE_NO_REGEX_MATCHER
 	editbox->subscribeEvent(Editbox::EventCaretMoved, Event::Subscriber(&CEGUI::Combobox::editbox_CaretMovedHandler, this));
 	editbox->subscribeEvent(Editbox::EventTextSelectionChanged, Event::Subscriber(&CEGUI::Combobox::editbox_TextSelectionChangedHandler, this));
 	editbox->subscribeEvent(Editbox::EventEditboxFull, Event::Subscriber(&CEGUI::Combobox::editbox_EditboxFullEventHandler, this));
@@ -206,6 +212,7 @@ bool Combobox::isReadOnly(void) const
 	return true if the Editbox text is valid given the currently set
 	validation string.
 *************************************************************************/
+#ifndef PE_NO_REGEX_MATCHER
 Combobox::MatchState Combobox::getTextMatchState() const
 {
 	return getEditbox()->getTextMatchState();
@@ -219,6 +226,7 @@ const String& Combobox::getValidationString(void) const
 {
 	return getEditbox()->getValidationString();
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 /*************************************************************************
@@ -275,6 +283,7 @@ void Combobox::setReadOnly(bool setting)
 }
 
 
+#ifndef PE_NO_REGEX_MATCHER
 /*************************************************************************
 	Set the text validation string.
 *************************************************************************/
@@ -282,6 +291,7 @@ void Combobox::setValidationString(const String& validation_string)
 {
 	getEditbox()->setValidationString(validation_string);
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 /*************************************************************************
@@ -523,6 +533,7 @@ void Combobox::onReadOnlyChanged(WindowEventArgs& e)
 }
 
 
+#ifndef PE_NO_REGEX_MATCHER
 /*************************************************************************
 	Handler for when
 *************************************************************************/
@@ -530,6 +541,7 @@ void Combobox::onValidationStringChanged(WindowEventArgs& e)
 {
 	fireEvent(EventValidationStringChanged, e, EventNamespace);
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 /*************************************************************************
@@ -544,10 +556,12 @@ void Combobox::onMaximumTextLengthChanged(WindowEventArgs& e)
 /*************************************************************************
 	Handler for when
 *************************************************************************/
+#ifndef PE_NO_REGEX_MATCHER
 void Combobox::onTextValidityChanged(RegexMatchStateEventArgs& e)
 {
 	fireEvent(EventTextValidityChanged, e, EventNamespace);
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 /*************************************************************************
@@ -884,10 +898,12 @@ void Combobox::addComboboxProperties(void)
           "ReadOnly","Property to get/set the read-only setting for the Editbox.  Value is either \"true\" or \"false\".",
           &Combobox::setReadOnly, &Combobox::isReadOnly, false
     );
+#ifndef PE_NO_REGEX_MATCHER
     CEGUI_DEFINE_PROPERTY(Combobox, String,
           "ValidationString","Property to get/set the validation string Editbox.  Value is a text string.",
           &Combobox::setValidationString, &Combobox::getValidationString, ".*"
     );
+#endif //PE_NO_REGEX_MATCHER
     CEGUI_DEFINE_PROPERTY(Combobox, size_t,
           "CaretIndex","Property to get/set the current caret index.  Value is \"[uint]\".",
           &Combobox::setCaretIndex, &Combobox::getCaretIndex, 0
@@ -1069,6 +1085,7 @@ bool Combobox::editbox_ReadOnlyChangedHandler(const EventArgs&)
 }
 
 
+#ifndef PE_NO_REGEX_MATCHER
 bool Combobox::editbox_ValidationStringChangedHandler(const EventArgs&)
 {
 	WindowEventArgs	args(this);
@@ -1076,6 +1093,7 @@ bool Combobox::editbox_ValidationStringChangedHandler(const EventArgs&)
 
 	return true;
 }
+#endif //PE_NO_REGEX_MATCHER
 
 
 bool Combobox::editbox_MaximumTextLengthChangedHandler(const EventArgs&)
@@ -1089,11 +1107,13 @@ bool Combobox::editbox_MaximumTextLengthChangedHandler(const EventArgs&)
 
 bool Combobox::editbox_TextValidityChangedHandler(const EventArgs& e)
 {
+#ifndef PE_NO_REGEX_MATCHER
 	RegexMatchStateEventArgs args(
         this, static_cast<const RegexMatchStateEventArgs&>(e).matchState);
 	onTextValidityChanged(args);
 
 	return args.handled > 0;
+#endif //PE_NO_REGEX_MATCHER
 }
 
 

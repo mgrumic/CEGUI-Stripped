@@ -56,7 +56,11 @@ Direct3D11Renderer& Direct3D11Renderer::bootstrapSystem(
 
     if (System::getSingletonPtr())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "CEGUI::System object is already initialised."));
+#endif //PE_NO_THROW_MSGS
 
     Direct3D11Renderer& renderer(create(device, context));
     DefaultResourceProvider* rp = new CEGUI::DefaultResourceProvider();
@@ -71,7 +75,11 @@ void Direct3D11Renderer::destroySystem()
     System* sys;
     if (!(sys = System::getSingletonPtr()))
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "CEGUI::System object is not created or was already destroyed."));
+#endif //PE_NO_THROW_MSGS
 
     Direct3D11Renderer* renderer =
         static_cast<Direct3D11Renderer*>(sys->getRenderer());
@@ -211,7 +219,11 @@ void Direct3D11Renderer::throwIfNameExists(const String& name) const
 {
     if (d_textures.find(name) != d_textures.end())
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "[Direct3D11Renderer] Texture already exists: " + name));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -262,7 +274,12 @@ Texture& Direct3D11Renderer::getTexture(const String& name) const
     TextureMap::const_iterator i = d_textures.find(name);
     
     if (i == d_textures.end())
-        CEGUI_THROW(UnknownObjectException("Texture does not exist: " + name));
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Texture does not exist: " + name));
+#endif //PE_NO_THROW_MSGS
 
     return *i->second;
 }

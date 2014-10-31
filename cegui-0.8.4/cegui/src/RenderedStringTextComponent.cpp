@@ -192,7 +192,11 @@ void RenderedStringTextComponent::draw(const Window* ref_wnd,
 
     default:
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "unknown VerticalFormatting option specified."));
+#endif //PE_NO_THROW_MSGS
     }
 
     // apply padding to position:
@@ -261,7 +265,11 @@ RenderedStringTextComponent* RenderedStringTextComponent::split(
     // extent would be 0 and we would never cause a split to be needed here.
     if (!fnt)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "unable to split with no font set."));
+#endif //PE_NO_THROW_MSGS
 
     // create 'left' side of split and clone our basic configuration
     RenderedStringTextComponent* lhs = CEGUI_NEW_AO RenderedStringTextComponent();

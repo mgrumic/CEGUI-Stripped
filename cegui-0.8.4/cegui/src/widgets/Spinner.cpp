@@ -46,11 +46,13 @@ namespace CEGUI
     const String Spinner::EventMaximumValueChanged("MaximumValueChanged");
     const String Spinner::EventMinimumValueChanged("MinimumValueChanged");
     const String Spinner::EventTextInputModeChanged("TextInputModeChanged");
+#ifndef PE_NO_REGEX_MATCHER
     // Validator strings
     const String Spinner::FloatValidator("-?\\d*\\.?\\d*");
     const String Spinner::IntegerValidator("-?\\d*");
     const String Spinner::HexValidator("[0-9a-fA-F]*");
     const String Spinner::OctalValidator("[0-7]*");
+#endif //PE_NO_REGEX_MATCHER
     // component widget name strings
     const String Spinner::EditboxName( "__auto_editbox__" );
     const String Spinner::IncreaseButtonName( "__auto_incbtn__" );
@@ -84,18 +86,11 @@ namespace CEGUI
         // setup component controls
 #ifndef PE_NO_MOUSE
         increaseButton->setWantsMultiClickEvents(false);
-#endif //PE_NO_MOUSE
-#ifndef PE_NO_MOUSE
         increaseButton->setMouseAutoRepeatEnabled(true);
-#endif
-#ifndef PE_NO_MOUSE
         decreaseButton->setWantsMultiClickEvents(false);
-#endif //PE_NO_MOUSE
-#ifndef PE_NO_MOUSE
         decreaseButton->setMouseAutoRepeatEnabled(true);
-#endif
 
-#ifndef PE_NO_MOUSE
+
         // perform event subscriptions.
         increaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleIncreaseButton, this));
         decreaseButton->subscribeEvent(Window::EventMouseButtonDown, Event::Subscriber(&Spinner::handleDecreaseButton, this));
@@ -184,6 +179,7 @@ namespace CEGUI
     {
         if (mode != d_inputMode)
         {
+#ifndef PE_NO_REGEX_MATCHER
             switch (mode)
             {
             case FloatingPoint:
@@ -200,8 +196,13 @@ namespace CEGUI
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                     "An unknown TextInputMode was specified."));
+#endif //PE_NO_THROW_MSGS
             }
+#endif //PE_NO_REGEX_MATCHER
 
             d_inputMode = mode;
 
@@ -273,7 +274,11 @@ namespace CEGUI
             break;
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "An unknown TextInputMode was encountered."));
+#endif //PE_NO_THROW_MSGS
         }
 
         if (res)
@@ -282,8 +287,12 @@ namespace CEGUI
         }
 
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "The string '" + getEditbox()->getText() +
             "' can not be converted to numerical representation."));
+#endif //PE_NO_THROW_MSGS
     }
 
     String Spinner::getTextFromValue(void) const
@@ -306,7 +315,11 @@ namespace CEGUI
             break;
         default:
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "An unknown TextInputMode was encountered."));
+#endif //PE_NO_THROW_MSGS
         }
 
         return String(tmp.str().c_str());

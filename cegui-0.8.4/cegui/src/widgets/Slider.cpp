@@ -300,7 +300,11 @@ void Slider::updateThumb(void)
     {
         //updateThumb_impl();
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
@@ -319,7 +323,11 @@ float Slider::getValueFromThumb(void) const
     {
         //return getValueFromThumb_impl();
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
@@ -338,7 +346,11 @@ float Slider::getAdjustDirectionFromPoint(const Vector2f& pt) const
     {
         //return getAdjustDirectionFromPoint_impl(pt);
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 

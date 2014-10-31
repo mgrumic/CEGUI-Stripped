@@ -27,7 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/System.h"
+#ifndef PE_NO_CLIPBOARD
 #include "CEGUI/Clipboard.h"
+#endif  // PE_NO_CLIPBOARD
 #include "CEGUI/DefaultLogger.h"
 #include "CEGUI/ImageManager.h"
 #include "CEGUI/FontManager.h"
@@ -35,7 +37,9 @@
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/SchemeManager.h"
 #include "CEGUI/RenderEffectManager.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/AnimationManager.h"
+#endif //PE_NO_ANIMATION
 #include "CEGUI/MouseCursor.h"
 #include "CEGUI/Window.h"
 #include "CEGUI/Exceptions.h"
@@ -120,7 +124,9 @@ System::System(Renderer& renderer,
 : d_renderer(&renderer),
   d_resourceProvider(resourceProvider),
   d_ourResourceProvider(false),
+#ifndef PE_NO_CLIPBOARD
   d_clipboard(CEGUI_NEW_AO Clipboard()),
+#endif  // PE_NO_CLIPBOARD
   d_scriptModule(scriptModule),
   d_xmlParser(xmlParser),
   d_ourXmlParser(false),
@@ -323,8 +329,9 @@ System::~System(void)
         CEGUI_DELETE_AO Logger::getSingletonPtr();
 #endif //PE_NO_LOGGER
 #endif
-    
+#ifndef PE_NO_CLIPBOARD
     CEGUI_DELETE_AO d_clipboard;
+#endif  // PE_NO_CLIPBOARD
 }
 
 //---------------------------------------------------------------------------//
@@ -500,7 +507,11 @@ void System::executeScriptFile(const String& filename, const String& resourceGro
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "An exception was thrown during the execution of the script file."));
+#endif //PE_NO_THROW_MSGS
 		}
 
 	}
@@ -534,7 +545,11 @@ int	System::executeScriptGlobal(const String& function_name) const
 		CEGUI_CATCH(...)
 		{
 			CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "An exception was thrown during execution of the scripted function."));
+#endif //PE_NO_THROW_MSGS
 		}
 
 	}
@@ -569,7 +584,11 @@ void System::executeScriptString(const String& str) const
         CEGUI_CATCH(...)
         {
             CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "An exception was thrown during execution of the script code."));
+#endif //PE_NO_THROW_MSGS
         }
 
     }
@@ -586,7 +605,9 @@ void System::executeScriptString(const String& str) const
 *************************************************************************/
 bool System::injectTimePulse(float timeElapsed)
 {
+#ifndef PE_NO_ANIMATION
     AnimationManager::getSingleton().autoStepInstances(timeElapsed);
+#endif //PE_NO_ANIMATION
     return true;
 }
 
@@ -729,7 +750,9 @@ void System::createSingletons()
     CEGUI_NEW_AO WindowManager();
     CEGUI_NEW_AO SchemeManager();
     CEGUI_NEW_AO GlobalEventSet();
+#ifndef PE_NO_ANIMATION
     CEGUI_NEW_AO AnimationManager();
+#endif //PE_NO_ANIMATION
     CEGUI_NEW_AO WidgetLookManager();
     CEGUI_NEW_AO WindowRendererManager();
     CEGUI_NEW_AO RenderEffectManager();
@@ -742,7 +765,9 @@ void System::destroySingletons()
     CEGUI_DELETE_AO WindowFactoryManager::getSingletonPtr();
     CEGUI_DELETE_AO WidgetLookManager::getSingletonPtr();
     CEGUI_DELETE_AO WindowRendererManager::getSingletonPtr();
+#ifndef PE_NO_ANIMATION
     CEGUI_DELETE_AO AnimationManager::getSingletonPtr();
+#endif //PE_NO_ANIMATION
     CEGUI_DELETE_AO RenderEffectManager::getSingletonPtr();
     CEGUI_DELETE_AO FontManager::getSingletonPtr();
     CEGUI_DELETE_AO ImageManager::getSingletonPtr();
@@ -946,7 +971,11 @@ void System::performVersionTest(const int expected, const int received,
                                 const String& func)
 {
     if (expected != received)
-        CEGUI_THROW(InvalidRequestException("Version mismatch detected! "
+        CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Version mismatch detected! "
             "Called from function: " + func +
             " Expected abi: " + PropertyHelper<int>::toString(expected) +
             " received abi: " + PropertyHelper<int>::toString(received) +
@@ -954,6 +983,7 @@ void System::performVersionTest(const int expected, const int received,
             "against a CEGUI version that is incompatible with the library "
             "containing the function. Usually this means that you have "
             "old binary library versions that have been used by mistake."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -1006,11 +1036,14 @@ void System::invalidateAllWindows()
     }
 }
 
+#ifndef PE_NO_REGEX_MATCHER
 //----------------------------------------------------------------------------//
 RegexMatcher* System::createRegexMatcher() const
 {
 #ifdef CEGUI_HAS_PCRE_REGEX
+#ifndef PE_NO_ANIMATION
     return CEGUI_NEW_AO PCRERegexMatcher();
+#endif //PE_NO_ANIMATION
 #else
     return 0;
 #endif
@@ -1021,6 +1054,7 @@ void System::destroyRegexMatcher(RegexMatcher* rm) const
 {
     CEGUI_DELETE_AO rm;
 }
+#endif //PE_NO_REGEX_MATCHER
 
 //----------------------------------------------------------------------------//
 GUIContext& System::getDefaultGUIContext() const

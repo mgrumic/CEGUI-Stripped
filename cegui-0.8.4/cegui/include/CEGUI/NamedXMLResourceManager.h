@@ -342,8 +342,12 @@ T& NamedXMLResourceManager<T, U>::get(const String& object_name) const
 
     if (i == d_objects.end())
         CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "No object of type '" + d_resourceType + "' named '" + object_name +
             "' is present in the collection."));
+#endif //PE_NO_THROW_MSGS
 
     return *i->second;
 }
@@ -414,13 +418,21 @@ T& NamedXMLResourceManager<T, U>::doExistingObjectAction(
         case XREA_THROW:
             CEGUI_DELETE_AO object;
             CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "an object of type '" + d_resourceType + "' named '" +
                 object_name + "' already exists in the collection."));
+#endif //PE_NO_THROW_MSGS
 
         default:
             CEGUI_DELETE_AO object;
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "Invalid CEGUI::XMLResourceExistsAction was specified."));
+#endif //PE_NO_THROW_MSGS
         }
     }
     else

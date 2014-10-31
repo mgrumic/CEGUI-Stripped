@@ -152,7 +152,11 @@ void DefaultLogger::setLogFilename(const String& filename, bool append)
 
     if (!d_ostream)
         CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Failed to open file '" + filename + "' for writing"));
+#endif //PE_NO_THROW_MSGS
 
     // initialise width for date & time alignment.
     d_ostream.width(2);

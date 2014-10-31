@@ -200,7 +200,12 @@ namespace CEGUI
         }
         else
         {
-            CEGUI_THROW(GenericException("Internal Error: Could not create UTF-8 string transcoder."));
+            CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                    "Internal Error: Could not create UTF-8 string transcoder."));
+#endif //PE_NO_THROW_MSGS
         }
 
     }

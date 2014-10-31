@@ -115,7 +115,11 @@ ListHeaderSegment& ListHeader::getSegmentFromColumn(uint column) const
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "requested column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -139,7 +143,11 @@ ListHeaderSegment& ListHeader::getSegmentFromID(uint id) const
 
 	// No such segment found, throw exception
 	CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "no segment with the requested ID is attached to this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 }
 
 
@@ -151,7 +159,11 @@ ListHeaderSegment& ListHeader::getSortSegment(void) const
 	if (!d_sortSegment)
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Sort segment was invalid!  (No segments are attached to the ListHeader?)"));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -183,7 +195,11 @@ uint ListHeader::getColumnFromSegment(const ListHeaderSegment& segment) const
 
 	// No such segment found, throw exception
 	CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "the given ListHeaderSegment is not attached to this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 }
 
 
@@ -203,7 +219,11 @@ uint ListHeader::getColumnFromID(uint id) const
 
 	// No such segment found, throw exception
 	CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "no column with the requested ID is available on this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 }
 
 
@@ -233,7 +253,11 @@ uint ListHeader::getColumnWithText(const String& text) const
 
 	// No such segment found, throw exception
 	CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "no column with the text '" + text + "' is attached to this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 }
 
 
@@ -256,7 +280,11 @@ float ListHeader::getPixelOffsetToSegment(const ListHeaderSegment& segment) cons
 
 	// No such segment found, throw exception
 	CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "the given ListHeaderSegment is not attached to this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 }
 
 
@@ -268,7 +296,11 @@ float ListHeader::getPixelOffsetToColumn(uint column) const
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "requested column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -309,7 +341,11 @@ UDim ListHeader::getColumnWidth(uint column) const
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "requested column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -419,7 +455,11 @@ void ListHeader::setSortColumn(uint column)
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "specified column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -550,7 +590,11 @@ void ListHeader::removeColumn(uint column)
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "specified column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -601,7 +645,11 @@ void ListHeader::moveColumn(uint column, uint position)
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "specified column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -701,7 +749,11 @@ void ListHeader::setColumnWidth(uint column, const UDim& width)
 	if (column >= getColumnCount())
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "specified column index is out of range for this ListHeader."));
+#endif //PE_NO_THROW_MSGS
 	}
 	else
 	{
@@ -1096,7 +1148,11 @@ ListHeaderSegment* ListHeader::createNewSegment(const String& name) const
     {
         //return createNewSegment_impl(name);
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 
@@ -1114,7 +1170,11 @@ void ListHeader::destroyListSegment(ListHeaderSegment* segment) const
     {
         //return destroyListSegment_impl(segment);
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 

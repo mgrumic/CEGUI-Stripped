@@ -53,7 +53,11 @@ Direct3D10Renderer& Direct3D10Renderer::bootstrapSystem(ID3D10Device* device,
 
     if (System::getSingletonPtr())
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "CEGUI::System object is already initialised."));
+#endif //PE_NO_THROW_MSGS
 
     Direct3D10Renderer& renderer(create(device));
     DefaultResourceProvider* rp = new CEGUI::DefaultResourceProvider();
@@ -68,7 +72,11 @@ void Direct3D10Renderer::destroySystem()
     System* sys;
     if (!(sys = System::getSingletonPtr()))
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "CEGUI::System object is not created or was already destroyed."));
+#endif //PE_NO_THROW_MSGS
 
     Direct3D10Renderer* renderer =
         static_cast<Direct3D10Renderer*>(sys->getRenderer());
@@ -207,7 +215,11 @@ void Direct3D10Renderer::throwIfNameExists(const String& name) const
 {
     if (d_textures.find(name) != d_textures.end())
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "[Direct3D10Renderer] Texture already exists: " + name));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -258,7 +270,12 @@ Texture& Direct3D10Renderer::getTexture(const String& name) const
     TextureMap::const_iterator i = d_textures.find(name);
     
     if (i == d_textures.end())
-        CEGUI_THROW(UnknownObjectException("Texture does not exist: " + name));
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Texture does not exist: " + name));
+#endif //PE_NO_THROW_MSGS
 
     return *i->second;
 }
@@ -379,14 +396,23 @@ Direct3D10Renderer::Direct3D10Renderer(ID3D10Device* device) :
     D3D10_PASS_DESC pass_desc;
     if (FAILED(d_normalClippedTechnique->GetPassByIndex(0)->GetDesc(&pass_desc)))
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "failed to obtain technique description for pass 0."));
+#endif //PE_NO_THROW_MSGS
 
     if (FAILED(d_device->CreateInputLayout(vertex_layout, element_count,
                                             pass_desc.pIAInputSignature,
                                             pass_desc.IAInputSignatureSize,
                                             &d_inputLayout)))
     {
-        CEGUI_THROW(RendererException("failed to create D3D 10 input layout."));
+        CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "failed to create D3D 10 input layout."));
+#endif //PE_NO_THROW_MSGS
     }
 
     d_defaultTarget = new Direct3D10ViewportTarget(*this);
@@ -419,8 +445,12 @@ Sizef Direct3D10Renderer::getViewportSize()
 
     if (vp_count != 1)
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Unable to access required view port information from "
             "IDirect3DDevice10."));
+#endif //PE_NO_THROW_MSGS
     else
         return Sizef(static_cast<float>(vp.Width),
                       static_cast<float>(vp.Height));

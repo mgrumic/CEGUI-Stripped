@@ -86,7 +86,12 @@ Texture* FreeImageImageCodec::load(const RawDataContainer& data, Texture* result
     {
         mem = FreeImage_OpenMemory(static_cast<BYTE*>(const_cast<uint8*>(data.getDataPtr())), len);
         if (mem == 0)
-            CEGUI_THROW(MemoryException("Unable to open memory stream, FreeImage_OpenMemory failed"));
+            CEGUI_THROW(MemoryException(
+#ifdef PE_NO_THROW_MSGS
+                                ""));
+#else
+"Unable to open memory stream, FreeImage_OpenMemory failed"));
+#endif //PE_NO_THROW_MSGS
 
         FREE_IMAGE_FORMAT fif = FreeImage_GetFileTypeFromMemory(mem, len);
 
@@ -105,11 +110,21 @@ Texture* FreeImageImageCodec::load(const RawDataContainer& data, Texture* result
             img = FreeImage_LoadFromMemory(fif, mem, 0);
 
         if (img == 0)
-            CEGUI_THROW(GenericException("Unable to load image, FreeImage_LoadFromMemory failed"));
+            CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                    "Unable to load image, FreeImage_LoadFromMemory failed"));
+#endif //PE_NO_THROW_MSGS
 
         FIBITMAP *newImg = FreeImage_ConvertTo32Bits(img);
         if (newImg == 0)
-            CEGUI_THROW(GenericException("Unable to convert image, FreeImage_ConvertTo32Bits failed"));
+            CEGUI_THROW(GenericException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                    "Unable to convert image, FreeImage_ConvertTo32Bits failed"));
+#endif //PE_NO_THROW_MSGS
         FreeImage_Unload(img);
         img = newImg;
         newImg = 0;

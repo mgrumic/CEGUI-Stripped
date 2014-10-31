@@ -59,7 +59,11 @@ namespace CEGUI
         if (d_tabButtonType.empty())
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "d_tabButtonType has not been set!"));
+#endif //PE_NO_THROW_MSGS
         }
 
         Window* button = WindowManager::getSingleton().createWindow(d_tabButtonType, name);

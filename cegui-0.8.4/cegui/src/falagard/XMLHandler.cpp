@@ -216,7 +216,9 @@ namespace CEGUI
         registerElementStartHandler(FontPropertyElement, &Falagard_xmlHandler::elementFontPropertyStart);
         registerElementStartHandler(ColourElement, &Falagard_xmlHandler::elementColourStart);
         registerElementStartHandler(PropertyLinkTargetElement, &Falagard_xmlHandler::elementPropertyLinkTargetStart);
+        #ifndef PE_NO_ANIMATION
         registerElementStartHandler(AnimationDefinitionHandler::ElementName, &Falagard_xmlHandler::elementAnimationDefinitionStart);
+        #endif //PE_NO_ANIMATION
         registerElementStartHandler(EventLinkDefinitionElement, &Falagard_xmlHandler::elementEventLinkDefinitionStart);
         registerElementStartHandler(EventLinkTargetElement, &Falagard_xmlHandler::elementEventLinkTargetStart);
         registerElementStartHandler(NamedAreaSourceElement, &Falagard_xmlHandler::elementNamedAreaSourceStart);
@@ -327,7 +329,11 @@ namespace CEGUI
                 break;
             default:
                 CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                     "Invalid DimensionType specified for area component."));
+#endif //PE_NO_THROW_MSGS
             }
         }
     }
@@ -384,10 +390,14 @@ namespace CEGUI
         if (version != NativeVersion)
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "You are attempting to load a looknfeel of version '" + version +
                 "' but this CEGUI version is only meant to load looknfeels of "
                 "version '" + NativeVersion + "'. Consider using the migrate.py "
                 "script bundled with CEGUI Unified Editor to migrate your data."));
+#endif //PE_NO_THROW_MSGS
         }
     }
 
@@ -593,11 +603,15 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         VertFormatElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "LeftEdge, RightEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -641,11 +655,15 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         HorzFormatElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "TopEdge, BottomEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -1172,11 +1190,15 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         VertFormatPropertyElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "LeftEdge, RightEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -1212,11 +1234,15 @@ namespace CEGUI
                     break;
                 default:
                     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         HorzFormatPropertyElement + " within " +
                         FrameComponentElement + " may only be used for "
                         "TopEdge, BottomEdge or Background components. "
                         "Received: " +
                         attributes.getValueAsString(ComponentAttribute)));
+#endif //PE_NO_THROW_MSGS
             }
         }
         else if (d_imagerycomponent)
@@ -1644,7 +1670,7 @@ namespace CEGUI
         const String anim_name(anim_name_prefix +
                         attributes.getValueAsString(NameAttribute));
 
-
+#ifndef PE_NO_ANIMATION
         if (AnimationManager::getSingleton().isAnimationPresent(anim_name))
         {
 #ifndef PE_NO_LOGGER
@@ -1657,6 +1683,7 @@ namespace CEGUI
             d_chainedHandler = CEGUI_NEW_AO AnimationDefinitionHandler(
                 attributes, anim_name_prefix);
         }
+#endif //PE_NO_ANIMATION
 
         // This is a little bit of abuse here, ideally we would get the name
         // somewhere else.

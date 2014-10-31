@@ -30,6 +30,7 @@
 #define _CEGUIKeyFrame_h_
 
 #include "CEGUI/String.h"
+#ifndef PE_NO_ANIMATION
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -224,4 +225,5 @@ private:
 } // End of  CEGUI namespace section
 
 #endif  // end of guard _CEGUIKeyFrame_h_
+#endif //PE_NO_ANIMATION
 

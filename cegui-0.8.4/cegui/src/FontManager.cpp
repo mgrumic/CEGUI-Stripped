@@ -104,7 +104,11 @@ Font& FontManager::createFreeTypeFont(const String& font_name,
 
 #else
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "CEGUI was compiled without freetype support."));
+#endif //PE_NO_THROW_MSGS
 #endif
 }
 

@@ -55,7 +55,9 @@ WidgetLookFeel::WidgetLookFeel(const WidgetLookFeel& other) :
     d_properties(other.d_properties),
     d_namedAreas(other.d_namedAreas),
     d_animations(other.d_animations),
+#ifndef PE_NO_ANIMATION
     d_animationInstances(other.d_animationInstances),
+#endif //PE_NO_ANIMATION
     d_eventLinkDefinitions(other.d_eventLinkDefinitions)
 {
     for (PropertyDefinitionList::iterator i = other.d_propertyDefinitions.begin();
@@ -98,7 +100,9 @@ void WidgetLookFeel::swap(WidgetLookFeel& other)
     std::swap(d_propertyDefinitions, other.d_propertyDefinitions);
     std::swap(d_propertyLinkDefinitions, other.d_propertyLinkDefinitions);
     std::swap(d_animations, other.d_animations);
+#ifndef PE_NO_ANIMATION
     std::swap(d_animationInstances, other.d_animationInstances);
+#endif //PE_NO_ANIMATION
     std::swap(d_eventLinkDefinitions, other.d_eventLinkDefinitions);
 }
 
@@ -124,8 +128,12 @@ const StateImagery& WidgetLookFeel::getStateImagery(
         return (*imagery).second;
 
     if (d_inheritedLookName.empty())
-        CEGUI_THROW(UnknownObjectException("unknown state '" + state +
-            "' in look '" + d_lookName + "'."));
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+                            ""));
+#else
+            "unknown state '" + state + "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     return WidgetLookManager::getSingleton().
         getWidgetLook(d_inheritedLookName).getStateImagery(state);
@@ -141,8 +149,12 @@ const ImagerySection& WidgetLookFeel::getImagerySection(
         return (*imgSect).second;
 
     if (d_inheritedLookName.empty())
-        CEGUI_THROW(UnknownObjectException("unknown imagery section '" +
-            section +  "' in look '" + d_lookName + "'."));
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+            "unknown imagery section '" + section +  "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     return WidgetLookManager::getSingleton().
         getWidgetLook(d_inheritedLookName).getImagerySection(section);
@@ -157,8 +169,8 @@ const String& WidgetLookFeel::getName() const
 //---------------------------------------------------------------------------//
 void WidgetLookFeel::addImagerySection(const ImagerySection& section)
 {
-    if (d_imagerySections.find(section.getName()) != d_imagerySections.end())
 #ifndef PE_NO_LOGGER
+    if (d_imagerySections.find(section.getName()) != d_imagerySections.end())
         Logger::getSingleton().logEvent(
             "WidgetLookFeel::addImagerySection - Defintion for imagery "
             "section '" + section.getName() + "' already exists.  "
@@ -172,12 +184,21 @@ void WidgetLookFeel::renameImagerySection(const String& oldName, const String& n
 {
 	ImageryList::iterator oldsection = d_imagerySections.find(oldName);
     if (oldsection == d_imagerySections.end())
-        CEGUI_THROW(UnknownObjectException("unknown imagery section: '" +
-            oldName + "' in look '" + d_lookName + "'."));
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "unknown imagery section: '" + oldName + "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     if (d_imagerySections.find(newName) != d_imagerySections.end())
-        CEGUI_THROW(UnknownObjectException("imagery section: '" + newName +
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "imagery section: '" + newName +
             "' already exists in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     oldsection->second.setName(newName);
     d_imagerySections[newName] = d_imagerySections[oldName];
@@ -193,8 +214,8 @@ void WidgetLookFeel::addWidgetComponent(const WidgetComponent& widget)
 //---------------------------------------------------------------------------//
 void WidgetLookFeel::addStateSpecification(const StateImagery& state)
 {
-    if (d_stateImagery.find(state.getName()) != d_stateImagery.end())
 #ifndef PE_NO_LOGGER
+    if (d_stateImagery.find(state.getName()) != d_stateImagery.end())
         Logger::getSingleton().logEvent(
             "WidgetLookFeel::addStateSpecification - Defintion for state '" +
             state.getName() + "' already exists.  Replacing previous "
@@ -292,6 +313,7 @@ void WidgetLookFeel::initialiseWidget(Window& widget) const
     // create animation instances
     AnimationNameSet ans;
     appendAnimationNames(ans);
+    #ifndef PE_NO_ANIMATION
     for (AnimationNameSet::const_iterator ani = ans.begin();
          ani != ans.end();
          ++ani)
@@ -302,6 +324,7 @@ void WidgetLookFeel::initialiseWidget(Window& widget) const
         d_animationInstances.insert(std::make_pair(&widget, instance));
         instance->setTargetWindow(&widget);
     }
+    #endif //PE_NO_ANIMATION
 }
 
 //---------------------------------------------------------------------------//
@@ -309,8 +332,13 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
 {
     if (widget.getLookNFeel() != getName())
     {
-        CEGUI_THROW(InvalidRequestException("The window '" + 
+        CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "The window '" + 
             widget.getNamePath() + "' does not have this WidgetLook assigned"));
+#endif //PE_NO_THROW_MSGS
     }
 
     // remove added child widgets
@@ -354,14 +382,17 @@ void WidgetLookFeel::cleanUpWidget(Window& widget) const
         // remove the property from the window
         widget.removeProperty((*pldi)->getPropertyName());
     }
-
+#ifndef PE_NO_ANIMATION
     // clean up animation instances assoicated wit the window.
     AnimationInstanceMap::iterator anim;
     while ((anim = d_animationInstances.find(&widget)) != d_animationInstances.end())
     {
+        #ifndef PE_NO_ANIMATION
         AnimationManager::getSingleton().destroyAnimationInstance(anim->second);
+        #endif //PE_NO_ANIMATION
         d_animationInstances.erase(anim);
     }
+#endif //PE_NO_ANIMATION
 }
 
 //---------------------------------------------------------------------------//
@@ -382,8 +413,8 @@ bool WidgetLookFeel::isStateImageryPresent(const String& state) const
 //---------------------------------------------------------------------------//
 void WidgetLookFeel::addNamedArea(const NamedArea& area)
 {
-    if (d_namedAreas.find(area.getName()) != d_namedAreas.end())
 #ifndef PE_NO_LOGGER
+    if (d_namedAreas.find(area.getName()) != d_namedAreas.end())
         Logger::getSingleton().logEvent(
             "WidgetLookFeel::addNamedArea - Defintion for area '" +
             area.getName() + "' already exists.  Replacing previous "
@@ -400,12 +431,22 @@ void WidgetLookFeel::renameNamedArea(const String& oldName, const String& newNam
     NamedAreaList::iterator oldarea = d_namedAreas.find(oldName);
     NamedAreaList::const_iterator newarea = d_namedAreas.find(newName);
     if (oldarea == d_namedAreas.end())
-        CEGUI_THROW(UnknownObjectException("unknown named area: '" + oldName +
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "unknown named area: '" + oldName +
             "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     if (newarea != d_namedAreas.end())
-        CEGUI_THROW(UnknownObjectException("named area: '" + newName +
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "named area: '" + newName +
             "' already exists in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     oldarea->second.setName(newName);
     d_namedAreas[newName] = d_namedAreas[oldName];
@@ -426,8 +467,13 @@ const NamedArea& WidgetLookFeel::getNamedArea(const String& name) const
         return (*area).second;
 
     if (d_inheritedLookName.empty())
-        CEGUI_THROW(UnknownObjectException("unknown named area: '" + name +
+        CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "unknown named area: '" + name +
             "' in look '" + d_lookName + "'."));
+#endif //PE_NO_THROW_MSGS
 
     return WidgetLookManager::getSingleton().
         getWidgetLook(d_inheritedLookName).getNamedArea(name);

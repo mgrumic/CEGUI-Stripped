@@ -70,7 +70,11 @@ namespace CEGUI
         if (d_segmentWidgetType.empty())
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                 "Segment widget type has not been set!"));
+#endif //PE_NO_THROW_MSGS
         }
 
         Window* segment = WindowManager::getSingleton().createWindow(d_segmentWidgetType, name);

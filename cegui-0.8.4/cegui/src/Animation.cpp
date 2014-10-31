@@ -36,6 +36,7 @@
 #include "CEGUI/PropertyHelper.h"
 #include <algorithm>
 
+#ifndef PE_NO_ANIMATION
 // Start of CEGUI namespace section
 namespace CEGUI
 {
@@ -132,7 +133,12 @@ void Animation::destroyAffector(Affector* affector)
 
     if (it == d_affectors.end())
     {
-        CEGUI_THROW(InvalidRequestException("Given affector not found!"));
+        CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Given affector not found!"));
+#endif //PE_NO_THROW_MSGS
     }
 
     d_affectors.erase(it);
@@ -144,7 +150,12 @@ Affector* Animation::getAffectorAtIdx(size_t index) const
 {
     if (index >= d_affectors.size())
     {
-        CEGUI_THROW(InvalidRequestException("Out of bounds."));
+        CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Out of bounds."));
+#endif //PE_NO_THROW_MSGS
     }
 
     AffectorList::const_iterator it = d_affectors.begin();
@@ -170,8 +181,12 @@ void Animation::defineAutoSubscription(const String& eventName,
         if (it->second == action)
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                             "Unable to define given Auto Subscription - exactly "
                             "the same auto subscription is already there!"));
+#endif //PE_NO_THROW_MSGS
         }
 
         ++it;
@@ -198,7 +213,11 @@ void Animation::undefineAutoSubscription(const String& eventName,
     }
 
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "Unable to undefine given Auto Subscription - not found!"));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -253,8 +272,12 @@ void Animation::autoSubscribe(AnimationInstance* instance)
         else
         {
             CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                             "Unable to auto subscribe! "
                             "'" + a + "' is not a valid action."));
+#endif //PE_NO_THROW_MSGS
         }
 
         instance->addAutoConnection(connection);
@@ -335,6 +358,7 @@ void Animation::writeXMLToStream(XMLSerializer& xml_stream, const String& name_o
 }
 
 //----------------------------------------------------------------------------//
-
 } // End of  CEGUI namespace section
+
+#endif //PE_NO_ANIMATION
 

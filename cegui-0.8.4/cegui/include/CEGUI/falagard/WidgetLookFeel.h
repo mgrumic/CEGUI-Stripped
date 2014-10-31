@@ -420,8 +420,10 @@ private:
         CEGUI_VECTOR_ALLOC(WidgetComponent)> WidgetList;
     typedef std::vector<String
         CEGUI_VECTOR_ALLOC(String)> AnimationList;
+#ifndef PE_NO_ANIMATION
     typedef std::multimap<Window*, AnimationInstance*
         /*CEGUI_MULTIMAP_ALLOC(Window*, AnimationInstance*)*/> AnimationInstanceMap;
+#endif //PE_NO_ANIMATION
     typedef std::vector<EventLinkDefinition
         CEGUI_VECTOR_ALLOC(EventLinkDefinition)> EventLinkDefinitionList;
 
@@ -446,7 +448,9 @@ private:
     //! Collection of animation names associated with this WidgetLookFeel.
     AnimationList d_animations;
     //! map of windows and their associated animation instances
+#ifndef PE_NO_ANIMATION
     mutable AnimationInstanceMap d_animationInstances;
+#endif //PE_NO_ANIMATION
     //! Collection of EventLinkDefinition objects.
     EventLinkDefinitionList d_eventLinkDefinitions;
 

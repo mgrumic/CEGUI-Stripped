@@ -181,7 +181,11 @@ void Direct3D10Texture::loadFromFile(const String& filename,
     System* sys = System::getSingletonPtr();
     if (!sys)
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "CEGUI::System object has not been created!"));
+#endif //PE_NO_THROW_MSGS
 
     // load file to memory via resource provider
     RawDataContainer texFile;
@@ -196,8 +200,12 @@ void Direct3D10Texture::loadFromFile(const String& filename,
     if (!res)
         // It's an error
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             sys->getImageCodec().getIdentifierString() +
             " failed to load image '" + filename + "'."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -207,7 +215,11 @@ void Direct3D10Texture::loadFromMemory(const void* buffer,
 {
     if (!isPixelFormatSupported(pixel_format))
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Data was supplied in an unsupported pixel format."));
+#endif //PE_NO_THROW_MSGS
 
     cleanupDirect3D10Texture();
 
@@ -254,7 +266,11 @@ void Direct3D10Texture::loadFromMemory(const void* buffer,
 
     if (FAILED(hr))
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Failed to create texture from memory buffer."));
+#endif //PE_NO_THROW_MSGS
 
     initialiseShaderResourceView();
 
@@ -443,7 +459,11 @@ Direct3D10Texture::Direct3D10Texture(ID3D10Device& device, const String& name,
 
     if (FAILED(d_device.CreateTexture2D(&tex_desc, 0, &d_texture)))
         CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Failed to create texture with specified size."));
+#endif //PE_NO_THROW_MSGS
 
     initialiseShaderResourceView();
 

@@ -27,6 +27,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/Affector.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/KeyFrame.h"
 #include "CEGUI/Animation.h"
 #include "CEGUI/AnimationManager.h"
@@ -56,7 +57,6 @@ Affector::~Affector(void)
         destroyKeyFrame(getKeyFrameAtIdx(0));
     }
 }
-
 //----------------------------------------------------------------------------//
 size_t Affector::getIdxInParent() const
 {
@@ -75,7 +75,11 @@ size_t Affector::getIdxInParent() const
     }
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "Affector wasn't found in parent, therefore its index is unknown!"));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -127,8 +131,12 @@ KeyFrame* Affector::createKeyFrame(float position)
     if (d_keyFrames.find(position) != d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         "Unable to create KeyFrame at given position, there "
                         "already is a KeyFrame on that position."));
+#endif //PE_NO_THROW_MSGS
     }
 
     KeyFrame* ret = CEGUI_NEW_AO KeyFrame(this, position);
@@ -157,8 +165,12 @@ void Affector::destroyKeyFrame(KeyFrame* keyframe)
     if (it == d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         "Unable to destroy given KeyFrame! "
                         "No such KeyFrame was found."));
+#endif //PE_NO_THROW_MSGS
     }
 
     d_keyFrames.erase(it);
@@ -173,7 +185,11 @@ KeyFrame* Affector::getKeyFrameAtPosition(float position) const
     if (it == d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                         "Can't find a KeyFrame with given position."));
+#endif //PE_NO_THROW_MSGS
     }
 
     return it->second;
@@ -190,7 +206,12 @@ KeyFrame* Affector::getKeyFrameAtIdx(size_t index) const
 {
     if (index >= d_keyFrames.size())
     {
-        CEGUI_THROW(InvalidRequestException("Out of bounds!"));
+        CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Out of bounds!"));
+#endif //PE_NO_THROW_MSGS
     }
 
     KeyFrameMap::const_iterator it = d_keyFrames.begin();
@@ -214,8 +235,12 @@ void Affector::moveKeyFrameToPosition(KeyFrame* keyframe, float newPosition)
     if (d_keyFrames.find(newPosition) != d_keyFrames.end())
     {
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                     "There is already a key frame at position: " +
                     PropertyHelper<float>::toString(newPosition) + "."));
+#endif //PE_NO_THROW_MSGS
 	}
 
     for (KeyFrameMap::iterator it = d_keyFrames.begin(); it != d_keyFrames.end(); ++it)
@@ -231,7 +256,11 @@ void Affector::moveKeyFrameToPosition(KeyFrame* keyframe, float newPosition)
     }
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "passed key frame wasn't found within this affector"));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -437,4 +466,4 @@ void Affector::writeXMLToStream(XMLSerializer& xml_stream) const
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
-
+#endif //PE_NO_ANIMATION

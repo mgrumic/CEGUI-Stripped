@@ -168,8 +168,10 @@ static int tolua_collect_CEGUI__ImageryComponent (lua_State* tolua_S)
 
 static int tolua_collect_CEGUI__RegexMatchStateEventArgs (lua_State* tolua_S)
 {
+#ifndef PE_NO_REGEX_MATCHER
  CEGUI::RegexMatchStateEventArgs* self = (CEGUI::RegexMatchStateEventArgs*) tolua_tousertype(tolua_S,1,0);
  delete self;
+#endif //PE_NO_REGEX_MATCHER
  return 0;
 }
 
@@ -505,7 +507,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::EventIterator");
  tolua_usertype(tolua_S,"CEGUI::WindowFactoryIterator");
  tolua_usertype(tolua_S,"CEGUI::ToggleButton");
+#ifndef PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::AnimationManager");
+#endif //PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::UVector2");
  tolua_usertype(tolua_S,"CEGUI::Vertex");
  tolua_usertype(tolua_S,"CEGUI::GUIContextEventArgs");
@@ -543,7 +547,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::ScrollablePane");
  tolua_usertype(tolua_S,"CEGUI::Window");
  tolua_usertype(tolua_S,"CEGUI::OperatorDim");
+#ifndef PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::KeyFrame");
+#endif //PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::URect");
  tolua_usertype(tolua_S,"CEGUI::ceguiLua_PropertyHelper");
  tolua_usertype(tolua_S,"CEGUI::RenderingSurface");
@@ -555,7 +561,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::Scrollbar");
  tolua_usertype(tolua_S,"CEGUI::MouseEventArgs");
  tolua_usertype(tolua_S,"CEGUI::ImageIterator");
+#ifndef PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::AnimationEventArgs");
+#endif //PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::Dimension");
  tolua_usertype(tolua_S,"CEGUI::DragDropEventArgs");
  tolua_usertype(tolua_S,"CEGUI::ItemListbox");
@@ -600,14 +608,18 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::Size<float>");
  tolua_usertype(tolua_S,"CEGUI::Colour");
  tolua_usertype(tolua_S,"CEGUI::ImageDimBase");
+#ifndef PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::Affector");
+#endif //PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::FontManager");
  tolua_usertype(tolua_S,"CEGUI::BaseDim");
  tolua_usertype(tolua_S,"CEGUI::GridLayoutContainer");
 #ifndef PE_NO_VECTOR3D
  tolua_usertype(tolua_S,"CEGUI::Vector3<float>");
 #endif  // PE_NO_VECTOR3D
+#ifndef PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::Animation");
+#endif //PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::PushButton");
  tolua_usertype(tolua_S,"CEGUI::RenderQueue");
  tolua_usertype(tolua_S,"CEGUI::SequentialLayoutContainer");
@@ -649,7 +661,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CEGUI::RegexMatcher");
  tolua_usertype(tolua_S,"CEGUI::TreeEventArgs");
  tolua_usertype(tolua_S,"CEGUI::CoordConverter");
+#ifndef PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::AnimationInstance");
+#endif //PE_NO_ANIMATION
  tolua_usertype(tolua_S,"CEGUI::GUISheet");
  tolua_usertype(tolua_S,"CEGUI::FalagardWindowMapping");
  tolua_usertype(tolua_S,"CEGUI::UDim");
@@ -26472,6 +26486,7 @@ static int tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonTripleClick00(lua_State
 #endif //#ifndef TOLUA_DISABLE
 #endif //PE_NO_MOUSE
 
+#ifndef PE_NO_CLIPBOARD
 /* method: injectCopyRequest of class  CEGUI::GUIContext */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00
 static int tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00(lua_State* tolua_S)
@@ -26567,6 +26582,7 @@ static int tolua_CEGUI_CEGUI_GUIContext_injectPasteRequest00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif  // PE_NO_CLIPBOARD
 
 /* method: getSingleton of class  CEGUI::WindowManager */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_WindowManager_getSingleton00
@@ -29365,11 +29381,13 @@ static int tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00(lua_State* tolua_S)
 #endif
  {
   CEGUI::Window* wnd = ((CEGUI::Window*)  tolua_tousertype(tolua_S,2,0));
+#ifndef PE_NO_REGEX_MATCHER
   CEGUI::RegexMatcher::MatchState state = ((CEGUI::RegexMatcher::MatchState) (int)  tolua_tonumber(tolua_S,3,0));
  {
   CEGUI::RegexMatchStateEventArgs* tolua_ret = (CEGUI::RegexMatchStateEventArgs*)  new CEGUI::RegexMatchStateEventArgs(wnd,state);
  tolua_pushusertype(tolua_S,(void*)tolua_ret,"CEGUI::RegexMatchStateEventArgs");
  }
+#endif //PE_NO_REGEX_MATCHER
  }
  return 1;
 #ifndef TOLUA_RELEASE
@@ -29397,11 +29415,13 @@ static int tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local(lua_State* tol
 #endif
  {
   CEGUI::Window* wnd = ((CEGUI::Window*)  tolua_tousertype(tolua_S,2,0));
+#ifndef PE_NO_REGEX_MATCHER
   CEGUI::RegexMatcher::MatchState state = ((CEGUI::RegexMatcher::MatchState) (int)  tolua_tonumber(tolua_S,3,0));
  {
   CEGUI::RegexMatchStateEventArgs* tolua_ret = (CEGUI::RegexMatchStateEventArgs*)  new CEGUI::RegexMatchStateEventArgs(wnd,state);
  tolua_pushusertype_and_takeownership(tolua_S,(void *)tolua_ret,"CEGUI::RegexMatchStateEventArgs");
  }
+#endif //PE_NO_REGEX_MATCHER
  }
  return 1;
 #ifndef TOLUA_RELEASE
@@ -29411,7 +29431,7 @@ static int tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local(lua_State* tol
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_REGEX_MATCHER
 /* get function: matchState of class  CEGUI::RegexMatchStateEventArgs */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__RegexMatchStateEventArgs_matchState
 static int tolua_get_CEGUI__RegexMatchStateEventArgs_matchState(lua_State* tolua_S)
@@ -29424,7 +29444,9 @@ static int tolua_get_CEGUI__RegexMatchStateEventArgs_matchState(lua_State* tolua
  return 1;
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_REGEX_MATCHER
 
+#ifndef PE_NO_REGEX_MATCHER
 /* set function: matchState of class  CEGUI::RegexMatchStateEventArgs */
 #ifndef TOLUA_DISABLE_tolua_set_CEGUI__RegexMatchStateEventArgs_matchState
 static int tolua_set_CEGUI__RegexMatchStateEventArgs_matchState(lua_State* tolua_S)
@@ -29540,6 +29562,7 @@ static int tolua_CEGUI_CEGUI_RegexMatcher_getMatchStateOfString00(lua_State* tol
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_REGEX_MATCHER
 
 /* get function: position of class  CEGUI::Vertex */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__Vertex_position
@@ -32635,6 +32658,7 @@ static int tolua_CEGUI_CEGUI_TextureTarget_isRenderingInverted00(lua_State* tolu
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_NO_ANIMATION
 /* method: getParent of class  CEGUI::KeyFrame */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_KeyFrame_getParent00
 static int tolua_CEGUI_CEGUI_KeyFrame_getParent00(lua_State* tolua_S)
@@ -33311,6 +33335,7 @@ static int tolua_CEGUI_CEGUI_Affector_getNumKeyFrames00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+
 
 /* get function: instance of class  CEGUI::AnimationEventArgs */
 #ifndef TOLUA_DISABLE_tolua_get_CEGUI__AnimationEventArgs_instance_ptr
@@ -35300,6 +35325,7 @@ static int tolua_CEGUI_CEGUI_AnimationManager_getDefaultResourceGroup00(lua_Stat
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_ANIMATION
 
 /* method: getType of class  CEGUI::Interpolator */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Interpolator_getType00
@@ -42695,10 +42721,12 @@ static int tolua_CEGUI_CEGUI_Editbox_getTextMatchState00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTextMatchState'",NULL);
 #endif
+#ifndef PE_NO_REGEX_MATCHER
  {
   CEGUI::RegexMatcher::MatchState tolua_ret = (CEGUI::RegexMatcher::MatchState)  self->getTextMatchState();
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
  }
+#endif //PE_NO_REGEX_MATCHER
  }
  return 1;
 #ifndef TOLUA_RELEASE
@@ -42709,6 +42737,7 @@ static int tolua_CEGUI_CEGUI_Editbox_getTextMatchState00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_NO_REGEX_MATCHER
 /* method: getValidationString of class  CEGUI::Editbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Editbox_getValidationString00
 static int tolua_CEGUI_CEGUI_Editbox_getValidationString00(lua_State* tolua_S)
@@ -42740,6 +42769,7 @@ static int tolua_CEGUI_CEGUI_Editbox_getValidationString00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif // PE_NO_REGEX_MATCHER
 
 /* method: getCaretIndex of class  CEGUI::Editbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Editbox_getCaretIndex00
@@ -42999,6 +43029,7 @@ static int tolua_CEGUI_CEGUI_Editbox_setTextMasked00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+#ifndef PE_NO_REGEX_MATCHER
 /* method: setValidationString of class  CEGUI::Editbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Editbox_setValidationString00
 static int tolua_CEGUI_CEGUI_Editbox_setValidationString00(lua_State* tolua_S)
@@ -43031,6 +43062,7 @@ static int tolua_CEGUI_CEGUI_Editbox_setValidationString00(lua_State* tolua_S)
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_REGEX_MATCHER
 
 /* method: setCaretIndex of class  CEGUI::Editbox */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Editbox_setCaretIndex00
@@ -66566,7 +66598,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"executeScriptString",tolua_CEGUI_CEGUI_System_executeScriptString00);
    tolua_function(tolua_S,"notifyDisplaySizeChanged",tolua_CEGUI_CEGUI_System_notifyDisplaySizeChanged00);
    tolua_function(tolua_S,"invalidateAllCachedRendering",tolua_CEGUI_CEGUI_System_invalidateAllCachedRendering00);
+#ifndef PE_NO_ANIMATION
    tolua_function(tolua_S,"injectTimePulse",tolua_CEGUI_CEGUI_System_injectTimePulse00);
+#endif //PE_NO_ANIMATION
    tolua_function(tolua_S,"createGUIContext",tolua_CEGUI_CEGUI_System_createGUIContext00);
    tolua_function(tolua_S,"destroyGUIContext",tolua_CEGUI_CEGUI_System_destroyGUIContext00);
    tolua_function(tolua_S,"addStandardWindowFactories",tolua_CEGUI_CEGUI_System_addStandardWindowFactories00);
@@ -66638,9 +66672,11 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"injectMouseButtonDoubleClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonDoubleClick00);
    tolua_function(tolua_S,"injectMouseButtonTripleClick",tolua_CEGUI_CEGUI_GUIContext_injectMouseButtonTripleClick00);
 #endif //PE_NO_MOUSE
+#ifndef PE_NO_CLIPBOARD
    tolua_function(tolua_S,"injectCopyRequest",tolua_CEGUI_CEGUI_GUIContext_injectCopyRequest00);
    tolua_function(tolua_S,"injectCutRequest",tolua_CEGUI_CEGUI_GUIContext_injectCutRequest00);
    tolua_function(tolua_S,"injectPasteRequest",tolua_CEGUI_CEGUI_GUIContext_injectPasteRequest00);
+#endif  // PE_NO_CLIPBOARD
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"WindowManager","CEGUI::WindowManager","CEGUI::EventSet",NULL);
   tolua_beginmodule(tolua_S,"WindowManager");
@@ -66761,16 +66797,19 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"new",tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00);
    tolua_function(tolua_S,"new_local",tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local);
    tolua_function(tolua_S,".call",tolua_CEGUI_CEGUI_RegexMatchStateEventArgs_new00_local);
+#ifndef PE_NO_REGEX_MATCHER
    tolua_variable(tolua_S,"matchState",tolua_get_CEGUI__RegexMatchStateEventArgs_matchState,tolua_set_CEGUI__RegexMatchStateEventArgs_matchState);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"RegexMatcher","CEGUI::RegexMatcher","",NULL);
   tolua_beginmodule(tolua_S,"RegexMatcher");
+
    tolua_constant(tolua_S,"MS_VALID",CEGUI::RegexMatcher::MS_VALID);
    tolua_constant(tolua_S,"MS_INVALID",CEGUI::RegexMatcher::MS_INVALID);
    tolua_constant(tolua_S,"MS_PARTIAL",CEGUI::RegexMatcher::MS_PARTIAL);
    tolua_function(tolua_S,"setRegexString",tolua_CEGUI_CEGUI_RegexMatcher_setRegexString00);
    tolua_function(tolua_S,"getRegexString",tolua_CEGUI_CEGUI_RegexMatcher_getRegexString00);
    tolua_function(tolua_S,"getMatchStateOfString",tolua_CEGUI_CEGUI_RegexMatcher_getMatchStateOfString00);
+#endif //PE_NO_REGEX_MATCHER
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Vertex","CEGUI::Vertex","",NULL);
   tolua_beginmodule(tolua_S,"Vertex");
@@ -66935,6 +66974,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"declareRenderSize",tolua_CEGUI_CEGUI_TextureTarget_declareRenderSize00);
    tolua_function(tolua_S,"isRenderingInverted",tolua_CEGUI_CEGUI_TextureTarget_isRenderingInverted00);
   tolua_endmodule(tolua_S);
+#ifndef PE_NO_ANIMATION
   tolua_cclass(tolua_S,"KeyFrame","CEGUI::KeyFrame","",NULL);
   tolua_beginmodule(tolua_S,"KeyFrame");
    tolua_constant(tolua_S,"P_Linear",CEGUI::KeyFrame::P_Linear);
@@ -67038,6 +67078,7 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getAnimationDefinitionAsString",tolua_CEGUI_CEGUI_AnimationManager_getAnimationDefinitionAsString00);
    tolua_function(tolua_S,"setDefaultResourceGroup",tolua_CEGUI_CEGUI_AnimationManager_setDefaultResourceGroup00);
    tolua_function(tolua_S,"getDefaultResourceGroup",tolua_CEGUI_CEGUI_AnimationManager_getDefaultResourceGroup00);
+#endif //PE_NO_ANIMATION
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Interpolator","CEGUI::Interpolator","",NULL);
   tolua_beginmodule(tolua_S,"Interpolator");
@@ -67351,7 +67392,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"isReadOnly",tolua_CEGUI_CEGUI_Editbox_isReadOnly00);
    tolua_function(tolua_S,"isTextMasked",tolua_CEGUI_CEGUI_Editbox_isTextMasked00);
    tolua_function(tolua_S,"getTextMatchState",tolua_CEGUI_CEGUI_Editbox_getTextMatchState00);
+#ifndef PE_NO_REGEX_MATCHER
    tolua_function(tolua_S,"getValidationString",tolua_CEGUI_CEGUI_Editbox_getValidationString00);
+#endif //#ifndef TOLUA_DISABLE
    tolua_function(tolua_S,"getCaretIndex",tolua_CEGUI_CEGUI_Editbox_getCaretIndex00);
    tolua_function(tolua_S,"getSelectionStartIndex",tolua_CEGUI_CEGUI_Editbox_getSelectionStartIndex00);
    tolua_function(tolua_S,"getSelectionEndIndex",tolua_CEGUI_CEGUI_Editbox_getSelectionEndIndex00);
@@ -67360,7 +67403,9 @@ int tolua_CEGUI_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getMaxTextLength",tolua_CEGUI_CEGUI_Editbox_getMaxTextLength00);
    tolua_function(tolua_S,"setReadOnly",tolua_CEGUI_CEGUI_Editbox_setReadOnly00);
    tolua_function(tolua_S,"setTextMasked",tolua_CEGUI_CEGUI_Editbox_setTextMasked00);
+#ifndef PE_NO_REGEX_MATCHER
    tolua_function(tolua_S,"setValidationString",tolua_CEGUI_CEGUI_Editbox_setValidationString00);
+#endif //#ifndef TOLUA_DISABLE
    tolua_function(tolua_S,"setCaretIndex",tolua_CEGUI_CEGUI_Editbox_setCaretIndex00);
    tolua_function(tolua_S,"setSelection",tolua_CEGUI_CEGUI_Editbox_setSelection00);
    tolua_function(tolua_S,"setMaskCodePoint",tolua_CEGUI_CEGUI_Editbox_setMaskCodePoint00);

@@ -131,7 +131,11 @@ ItemEntry* ItemListBase::getItemFromIndex(size_t index) const
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "the specified index is out of range for this ItemListBase."));
+#endif //PE_NO_THROW_MSGS
 	}
 }
 
@@ -150,7 +154,11 @@ size_t ItemListBase::getItemIndex(const ItemEntry* item) const
 	else
 	{
 		CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "the specified ItemEntry is not attached to this ItemListBase."));
+#endif //PE_NO_THROW_MSGS
 	}
 }
 
@@ -259,7 +267,11 @@ void ItemListBase::insertItem(ItemEntry* item, const ItemEntry* position)
 			if (ins_pos == d_listItems.end())
 			{
 				CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
                     "the specified ItemEntry for parameter 'position' is not attached to this ItemListBase."));
+#endif //PE_NO_THROW_MSGS
 			}
 
 		}
@@ -557,7 +569,11 @@ Rectf ItemListBase::getItemRenderArea(void) const
     {
         //return getItemRenderArea_impl();
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "This function must be implemented by the window renderer module"));
+#endif //PE_NO_THROW_MSGS
     }
 }
 

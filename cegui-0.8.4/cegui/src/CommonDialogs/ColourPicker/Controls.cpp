@@ -47,7 +47,6 @@
 #include "CEGUI/TextureTarget.h"
 #include "CEGUI/Texture.h"
 #include "CEGUI/PropertyHelper.h"
-
 #include "CEGUI/RegexMatcher.h"
 
 #include <sstream>
@@ -138,8 +137,10 @@ ColourPickerControls::ColourPickerControls(const String& type, const String& nam
     d_draggingColourPickerCursor(false),
     d_colourPickingTexture(new RGB_Colour[d_colourPickerControlsTextureSize *
                                           d_colourPickerControlsTextureSize]),
-    d_ignoreEvents(false),
-    d_regexMatcher(*System::getSingleton().createRegexMatcher())
+    d_ignoreEvents(false)
+#ifndef PE_NO_REGEX_MATCHER
+,d_regexMatcher(*System::getSingleton().createRegexMatcher())
+#endif //PE_NO_REGEX_MATCHER
 {
 }
 
@@ -152,8 +153,9 @@ ColourPickerControls::~ColourPickerControls()
         WindowManager::getSingleton().destroyWindow(d_colourPickerCursor);
 
     delete[] d_colourPickingTexture;
-
+#ifndef PE_NO_REGEX_MATCHER
     System::getSingleton().destroyRegexMatcher(&d_regexMatcher);
+#endif //PE_NO_REGEX_MATCHER
 }
 
 
@@ -927,16 +929,20 @@ bool ColourPickerControls::handleLABEditboxTextChanged(const EventArgs&)
         return true;
 
     static const String labRegEx = "[-+]?[0-9]*\\.?[0-9]+";
+#ifndef PE_NO_REGEX_MATCHER
     d_regexMatcher.setRegexString(labRegEx);
+#endif //PE_NO_REGEX_MATCHER
 
     String LabLString = getLabEditBoxL()->getText();
     String LabAString = getLabEditBoxA()->getText();
     String LabBString = getLabEditBoxB()->getText();
 
     bool matchingRegEx = true;
+#ifndef PE_NO_REGEX_MATCHER
     matchingRegEx &= d_regexMatcher.getMatchStateOfString(LabLString) == RegexMatcher::MS_VALID;
     matchingRegEx &= d_regexMatcher.getMatchStateOfString(LabAString) == RegexMatcher::MS_VALID;
     matchingRegEx &= d_regexMatcher.getMatchStateOfString(LabBString) == RegexMatcher::MS_VALID;
+#endif //PE_NO_REGEX_MATCHER
 
     if (!matchingRegEx)
         return true;
@@ -965,16 +971,20 @@ bool ColourPickerControls::handleHSVEditboxTextChanged(const EventArgs&)
         return true;
 
     static const String labRegEx = "[-+]?[0-9]*\\.?[0-9]+";
+#ifndef PE_NO_REGEX_MATCHER
     d_regexMatcher.setRegexString(labRegEx);
+#endif //PE_NO_REGEX_MATCHER
 
     String HString = getHSVEditBoxH()->getText();
     String SString = getHSVEditBoxS()->getText();
     String VString = getHSVEditBoxV()->getText();
 
     bool matchingRegEx = true;
+#ifndef PE_NO_REGEX_MATCHER
     matchingRegEx &= d_regexMatcher.getMatchStateOfString(HString) == RegexMatcher::MS_VALID;
     matchingRegEx &= d_regexMatcher.getMatchStateOfString(SString) == RegexMatcher::MS_VALID;
     matchingRegEx &= d_regexMatcher.getMatchStateOfString(VString) == RegexMatcher::MS_VALID;
+#endif //PE_NO_REGEX_MATCHER
 
     if (!matchingRegEx)
         return true;
@@ -1003,13 +1013,17 @@ bool ColourPickerControls::handleAlphaEditboxTextChanged(const EventArgs&)
         return true;
 
     static const String labRegEx = "[-+]?[0-9]*\\.?[0-9]+";
+#ifndef PE_NO_REGEX_MATCHER
     d_regexMatcher.setRegexString(labRegEx);
+#endif //PE_NO_REGEX_MATCHER
 
     String ValueString = getAlphaEditBox()->getText();
+#ifndef PE_NO_REGEX_MATCHER
     bool matchingRegEx = d_regexMatcher.getMatchStateOfString(ValueString) == RegexMatcher::MS_VALID;
 
     if (!matchingRegEx)
         return true;
+#endif //PE_NO_REGEX_MATCHER
 
     float value = PropertyHelper<float>::fromString(ValueString);
 

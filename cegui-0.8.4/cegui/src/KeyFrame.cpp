@@ -27,6 +27,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/KeyFrame.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/AnimationInstance.h"
 #include "CEGUI/Affector.h"
 #include "CEGUI/Animation_xmlHandler.h"
@@ -75,7 +76,11 @@ size_t KeyFrame::getIdxInParent() const
     }
 
     CEGUI_THROW(UnknownObjectException(
+#ifdef PE_NO_THROW_MSGS
+        ""));
+#else
         "KeyFrame wasn't found in parent, therefore its index is unknown!"));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -115,7 +120,6 @@ const String& KeyFrame::getSourceProperty() const
 {
     return d_sourceProperty;
 }
-
 //----------------------------------------------------------------------------//
 const String& KeyFrame::getValueForAnimation(AnimationInstance* instance) const
 {
@@ -173,6 +177,7 @@ void KeyFrame::savePropertyValue(AnimationInstance* instance)
     }
 }
 
+
 //----------------------------------------------------------------------------//
 void KeyFrame::notifyPositionChanged(float newPosition)
 {
@@ -222,3 +227,4 @@ void KeyFrame::writeXMLToStream(XMLSerializer& xml_stream) const
 //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_ANIMATION

@@ -249,6 +249,7 @@ namespace CEGUI
         void setTextInputMode(TextInputMode mode);
 
     protected:
+#ifndef PE_NO_REGEX_MATCHER
         /*************************************************************************
         	Constants
         *************************************************************************/
@@ -256,6 +257,7 @@ namespace CEGUI
         static const String IntegerValidator;    //!< Validator regex used for decimal integer mode.
         static const String HexValidator;        //!< Validator regex used for hexadecimal mode.
         static const String OctalValidator;      //!< Validator regex used for octal mode.
+#endif //PE_NO_REGEX_MATCHER
 
         /*************************************************************************
         	Protected Implementation Methods

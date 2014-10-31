@@ -25,6 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/PCRERegexMatcher.h"
+#ifndef PE_NO_REGEX_MATCHER
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/PropertyHelper.h"
 
@@ -58,8 +59,12 @@ void PCRERegexMatcher::setRegexString(const String& regex)
     // handle failure
     if (!d_regex)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Bad RegEx set: '" + regex + "'.  Additional Information: " +
             prce_error));
+#endif //PE_NO_THROW_MSGS
 
     // set this last so that upon failure object is in consistant state.
     d_string = regex;
@@ -78,7 +83,11 @@ RegexMatcher::MatchState PCRERegexMatcher::getMatchStateOfString(
     // if the regex is not valid, then an exception is thrown
     if (!d_regex)
         CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "Attempt to use invalid RegEx '" + d_string + "'."));
+#endif //PE_NO_THROW_MSGS
 
     int match[3];
     const char* utf8_str = str.c_str();
@@ -113,9 +122,13 @@ RegexMatcher::MatchState PCRERegexMatcher::getMatchStateOfString(
 
     // anything else is an error
     CEGUI_THROW(InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
         "PCRE Error: " + PropertyHelper<int>::toString(result) +
         " occurred while attempting to match the RegEx '" +
         d_string + "'."));
+#endif //PE_NO_THROW_MSGS
 }
 
 //----------------------------------------------------------------------------//
@@ -129,3 +142,4 @@ void PCRERegexMatcher::release()
 }
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_REGEX_MATCHER

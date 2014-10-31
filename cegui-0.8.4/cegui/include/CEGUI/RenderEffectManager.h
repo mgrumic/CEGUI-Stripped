@@ -178,8 +178,12 @@ void RenderEffectManager::addEffect(const String& name)
 {
     if (isEffectAvailable(name))
         CEGUI_THROW(AlreadyExistsException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
             "A RenderEffect is already registered under the name '" +
             name + "'"));
+#endif //PE_NO_THROW_MSGS
 
     // create an instance of a factory to create effects of type T
     d_effectRegistry[name] = CEGUI_NEW_AO TplRenderEffectFactory<T>;

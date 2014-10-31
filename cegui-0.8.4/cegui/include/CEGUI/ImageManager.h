@@ -237,7 +237,11 @@ void ImageManager::addImageType(const String& name)
 {
     if (isImageTypeAvailable(name))
         CEGUI_THROW(AlreadyExistsException(
-            "Image type already exists: " + name));
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+    "Image type already exists: " + name));
+#endif //PE_NO_THROW_MSGS
 
     d_factories[name] = CEGUI_NEW_AO TplImageFactory<T>;
 

@@ -81,8 +81,13 @@ namespace CEGUI
             delete[] buf;
 
             // throw exception
-            CEGUI_THROW(FileIOException("an error occurred while "
+            CEGUI_THROW(FileIOException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                    "an error occurred while "
                 "parsing the XML document - check it for potential errors!."));
+#endif //PE_NO_THROW_MSGS
         }
 
         const TiXmlElement* currElement = doc.RootElement();

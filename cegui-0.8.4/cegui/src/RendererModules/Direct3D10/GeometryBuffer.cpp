@@ -271,7 +271,12 @@ void Direct3D10GeometryBuffer::syncHardwareBuffer() const
     {
         void* buff;
         if (FAILED(d_vertexBuffer->Map(D3D10_MAP_WRITE_DISCARD, 0, &buff)))
-            CEGUI_THROW(RendererException("failed to map buffer."));
+            CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                    "failed to map buffer."));
+#endif //PE_NO_THROW_MSGS
 
         std::memcpy(buff, &d_vertices[0], sizeof(D3DVertex) * vertex_count);
         d_vertexBuffer->Unmap();
@@ -291,7 +296,12 @@ void Direct3D10GeometryBuffer::allocateVertexBuffer(const size_t count) const
     buffer_desc.MiscFlags      = 0;
 
     if (FAILED(d_device.CreateBuffer(&buffer_desc, 0, &d_vertexBuffer)))
-        CEGUI_THROW(RendererException("failed to allocate vertex buffer."));
+        CEGUI_THROW(RendererException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "failed to allocate vertex buffer."));
+#endif //PE_NO_THROW_MSGS
 
     d_bufferSize = count;
 }

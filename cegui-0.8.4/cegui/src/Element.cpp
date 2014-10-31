@@ -353,12 +353,22 @@ void Element::addChild(Element* element)
 {
     if (!element)
         CEGUI_THROW(
-                InvalidRequestException("Can't add NULL to Element as a child!"));
+                InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Can't add NULL to Element as a child!"));
+#endif //PE_NO_THROW_MSGS
 
     if (element == this)
         CEGUI_THROW(
-                InvalidRequestException("Can't make element its own child - "
+                InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "Can't make element its own child - "
                                         "this->addChild(this); is forbidden."));
+#endif //PE_NO_THROW_MSGS
 
     addChild_impl(element);
     ElementEventArgs args(element);
@@ -370,9 +380,14 @@ void Element::removeChild(Element* element)
 {
     if (!element)
         CEGUI_THROW(
-                InvalidRequestException("NULL can't be a child of any Element, "
+                InvalidRequestException(
+#ifdef PE_NO_THROW_MSGS
+            ""));
+#else
+                "NULL can't be a child of any Element, "
                                         "it makes little sense to ask for its "
                                         "removal"));
+#endif //PE_NO_THROW_MSGS
 
     removeChild_impl(element);
     ElementEventArgs args(element);
