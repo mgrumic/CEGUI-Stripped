@@ -60,14 +60,14 @@ namespace CEGUI {
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the PopupMenu that was opened.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         static const String EventPopupOpened;
         /** Event fired when a MenuItem attached to this menu closed a PopupMenu.
          * Handlers are passed a const WindowEventArgs reference with
          * WindowEventArgs::window set to the PopupMenu that was closed.
          */
         static const String EventPopupClosed;
-#endif
+#endif // PE_NO_POPUP_MENU_H
 
         /*************************************************************************
             Accessor type functions
@@ -113,12 +113,12 @@ namespace CEGUI {
         \return
             Pointer to the MenuItem currently open.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
         MenuItem* getPopupMenuItem(void) const {
             return d_popupItem;
         }
-#endif
+#endif // PE_NO_POPUP_MENU_H
 
         /*************************************************************************
             Manipulators
@@ -141,7 +141,7 @@ namespace CEGUI {
         \param item
             Pointer to a MenuItem to open or NULL to close any opened.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         void changePopupMenuItem(MenuItem* item);
 
 
@@ -164,7 +164,7 @@ namespace CEGUI {
          */
         void setPopupMenuItemClosing();
 
-#endif
+#endif // PE_NO_POPUP_MENU_H
         /*************************************************************************
             Construction and Destruction
          *************************************************************************/
@@ -190,7 +190,7 @@ namespace CEGUI {
         \brief
             handler invoked internally when the a MenuItem attached to this menu opens its popup.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         virtual void onPopupOpened(WindowEventArgs& e);
 
 
@@ -199,7 +199,7 @@ namespace CEGUI {
             handler invoked internally when the a MenuItem attached to this menu closes its popup.
          */
         virtual void onPopupClosed(WindowEventArgs& e);
-#endif
+#endif // PE_NO_POPUP_MENU_H
         // overridden from base
         virtual void onChildRemoved(ElementEventArgs& e);
         virtual void onHidden(WindowEventArgs& e);

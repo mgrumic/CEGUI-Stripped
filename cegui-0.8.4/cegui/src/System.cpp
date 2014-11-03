@@ -661,9 +661,9 @@ namespace CEGUI {
         WindowFactoryManager::addWindowType<ListHeader>();
         WindowFactoryManager::addWindowType<ListHeaderSegment>();
         WindowFactoryManager::addWindowType<Menubar>();
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         WindowFactoryManager::addWindowType<PopupMenu>();
-#endif
+#endif //PE_NO_POPUP_MENU_H
         WindowFactoryManager::addWindowType<MenuItem>();
         WindowFactoryManager::addWindowType<MultiColumnList>();
 #ifndef PE_NO_WGT_MULTILINE_EDITBOX

@@ -27,9 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/widgets/Menubar.h"
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/PopupMenu.h"
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/MenuItem.h"
 #include "CEGUI/CoordConverter.h"
 

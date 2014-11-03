@@ -31,7 +31,7 @@
 
 #include "../Base.h"
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "../Window.h"
 #include "./MenuBase.h"
 
@@ -234,6 +234,6 @@ namespace CEGUI {
 #if defined(_MSC_VER)
 #pragma warning(pop)
 #endif
-#endif // PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
 
 #endif    // end of guard _CEGUIPopupMenu_h_

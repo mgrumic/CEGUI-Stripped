@@ -94,7 +94,7 @@ namespace CEGUI {
         \brief
             Returns true if the popup menu attached to the menu item is open.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
         bool isOpened(void) const {
             return d_opened;
@@ -219,7 +219,7 @@ namespace CEGUI {
             starts the opening timer for the popup, which will open it if the timer is enabled.
          */
         void startPopupOpening(void);
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
         /*************************************************************************
             Construction and Destruction
          *************************************************************************/
@@ -245,7 +245,7 @@ namespace CEGUI {
         \brief
             handler invoked internally when the MenuItem is clicked.
          */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef PE_NO_MOUSE
         virtual void onClicked(WindowEventArgs& e);
 
@@ -257,7 +257,7 @@ namespace CEGUI {
         virtual void onMouseButtonDown(MouseEventArgs& e);
 #endif //PE_NO_MOUSE
         virtual void updateSelf(float elapsed);
-#endif //PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
 #ifndef PE_NO_MOUSE
         virtual void onMouseMove(MouseEventArgs& e);
 
@@ -311,7 +311,7 @@ namespace CEGUI {
 #ifndef PE_NO_MOUSE
         bool d_hovering; //!< true when the button is in 'hover' state and requires the hover rendering.
 #endif //PE_NO_MOUSE
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         void setPopupMenu_impl(PopupMenu* popup, bool add_as_child = true);
 
         /*************************************************************************
@@ -328,15 +328,15 @@ namespace CEGUI {
         bool d_popupWasClosed; //!< Used internally to determine if a popup was just closed on a Clicked event
 
         UVector2 d_popupOffset; //!< current offset for popup placement.
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
     private:
 
         /*************************************************************************
             Private methods
          *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         void addMenuItemProperties(void);
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
         /*!
         \copydoc Window::addChild_impl
          */
