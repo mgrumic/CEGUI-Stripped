@@ -26,7 +26,7 @@
  ***************************************************************************/
 #ifndef _CEGUIToggleButton_h_
 #define _CEGUIToggleButton_h_
-
+#ifndef PE_NO_WGT_TOGGLEBUTTON
 #include "CEGUI/widgets/ButtonBase.h"
 
 #if defined(_MSC_VER)
@@ -75,6 +75,6 @@ namespace CEGUI {
     };
 
 }
-
+#endif //PE_NO_WGT_TOGGLEBUTTON
 #endif
 

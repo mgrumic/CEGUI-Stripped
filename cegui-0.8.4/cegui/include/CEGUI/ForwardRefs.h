@@ -211,7 +211,9 @@ namespace CEGUI {
     class TabControl;
     class Thumb;
     class Titlebar;
+#ifndef PE_NO_WGT_TOGGLEBUTTON
     class ToggleButton;
+#endif //PE_NO_WGT_TOGGLEBUTTON
     class Tooltip;
 #ifndef PE_NO_WGT_TREE
     class Tree;

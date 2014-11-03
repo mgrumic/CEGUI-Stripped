@@ -36054,7 +36054,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#ifndef PE_NO_WGT_TOGGLEBUTTON
 /* method: isSelected of class  CEGUI::ToggleButton */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_ToggleButton_isSelected00
 
@@ -36119,7 +36119,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif //PE_NO_WGT_TOGGLEBUTTON
 /* method: isHotTracked of class  CEGUI::Thumb */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Thumb_isHotTracked00
 
@@ -66797,11 +66797,13 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
 #endif //PE_NO_MOUSE
     tolua_function(tolua_S, "isPushed", tolua_CEGUI_CEGUI_ButtonBase_isPushed00);
     tolua_endmodule(tolua_S);
+#ifndef PE_NO_WGT_TOGGLEBUTTON
     tolua_cclass(tolua_S, "ToggleButton", "CEGUI::ToggleButton", "CEGUI::ButtonBase", NULL);
     tolua_beginmodule(tolua_S, "ToggleButton");
     tolua_function(tolua_S, "isSelected", tolua_CEGUI_CEGUI_ToggleButton_isSelected00);
     tolua_function(tolua_S, "setSelected", tolua_CEGUI_CEGUI_ToggleButton_setSelected00);
     tolua_endmodule(tolua_S);
+#endif //PE_NO_WGT_TOGGLEBUTTON
     tolua_cclass(tolua_S, "PushButton", "CEGUI::PushButton", "CEGUI::ButtonBase", NULL);
     tolua_beginmodule(tolua_S, "PushButton");
     tolua_endmodule(tolua_S);

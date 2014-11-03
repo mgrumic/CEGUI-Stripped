@@ -684,7 +684,9 @@ namespace CEGUI {
         WindowFactoryManager::addWindowType<TabControl>();
         WindowFactoryManager::addWindowType<Thumb>();
         WindowFactoryManager::addWindowType<Titlebar>();
+#ifndef PE_NO_WGT_TOGGLEBUTTON
         WindowFactoryManager::addWindowType<ToggleButton>();
+#endif //PE_NO_WGT_TOGGLEBUTTON
 #ifndef PE_NO_MOUSE 
         WindowFactoryManager::addWindowType<Tooltip>();
 #endif //PE_NO_MOUSE 
