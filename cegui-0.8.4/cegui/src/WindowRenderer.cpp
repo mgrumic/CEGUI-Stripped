@@ -46,17 +46,19 @@ namespace CEGUI {
      *************************************************************************/
     WindowRenderer::~WindowRenderer() {
     }
-
+#ifndef PE_NO_LOOK_FEEL
     /************************************************************************
         Get the Look'N'Feel assigned to our window
      *************************************************************************/
     const WidgetLookFeel& WindowRenderer::getLookNFeel() const {
         return WidgetLookManager::getSingleton().getWidgetLook(d_window->getLookNFeel());
     }
+#endif //PE_NO_LOOK_FEEL
 
     /************************************************************************
         Get unclipped inner rectangle.
      *************************************************************************/
+#ifndef PE_NO_LOOK_FEEL
     Rectf WindowRenderer::getUnclippedInnerRect() const {
         const WidgetLookFeel & lf(getLookNFeel());
 
@@ -66,6 +68,7 @@ namespace CEGUI {
         else
             return d_window->getUnclippedOuterRect().get();
     }
+#endif //PE_NO_LOOK_FEEL        
 
     /************************************************************************
         Register property with window renderer
@@ -119,11 +122,12 @@ namespace CEGUI {
     }
 
     //----------------------------------------------------------------------------//
-
+#ifndef PE_NO_LOOK_FEEL
     bool WindowRenderer::handleFontRenderSizeChange(const Font * const font) {
         const WidgetLookFeel & lf(getLookNFeel());
         return lf.handleFontRenderSizeChange(*d_window, font);
     }
+#endif //PE_NO_LOOK_FEEL
 
     //----------------------------------------------------------------------------//
 

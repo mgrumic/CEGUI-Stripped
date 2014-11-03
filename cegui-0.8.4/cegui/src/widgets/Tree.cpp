@@ -94,11 +94,13 @@ namespace CEGUI {
      *************************************************************************/
     void Tree::initialise(void) {
         // get WidgetLookFeel for the assigned look.
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel &wlf = WidgetLookManager::getSingleton().getWidgetLook(d_lookName);
         const ImagerySection &tempOpenImagery = wlf.getImagerySection("OpenTreeButton");
         const ImagerySection &tempCloseImagery = wlf.getImagerySection("CloseTreeButton");
         d_openButtonImagery = &tempOpenImagery;
         d_closeButtonImagery = &tempCloseImagery;
+#endif //PE_NO_LOOK_FEEL        
 
         // create the component sub-widgets
         d_vertScrollbar = createVertScrollbar("__auto_vscrollbar__");

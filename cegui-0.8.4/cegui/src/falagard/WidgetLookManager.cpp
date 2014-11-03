@@ -136,14 +136,16 @@ namespace CEGUI {
             CEGUI_RETHROW;
         }
     }
-
+#ifndef PE_NO_LOOK_FEEL
     bool WidgetLookManager::isWidgetLookAvailable(const String& widget) const {
         return d_widgetLooks.find(widget) != d_widgetLooks.end();
     }
+#endif //PE_NO_LOOK_FEEL
 
+#ifndef PE_NO_LOOK_FEEL
     const WidgetLookFeel& WidgetLookManager::getWidgetLook(const String& widget) const {
+        
         WidgetLookList::const_iterator wlf = d_widgetLooks.find(widget);
-
         if (wlf != d_widgetLooks.end()) {
             return (*wlf).second;
         }
@@ -155,7 +157,9 @@ namespace CEGUI {
                 "WidgetLook '" + widget + "' does not exist."));
 #endif //PE_NO_THROW_MSGS
     }
+#endif //PE_NO_LOOK_FEEL
 
+#ifndef PE_NO_LOOK_FEEL
     void WidgetLookManager::eraseWidgetLook(const String& widget) {
         WidgetLookList::iterator wlf = d_widgetLooks.find(widget);
         if (wlf != d_widgetLooks.end()) {
@@ -167,11 +171,13 @@ namespace CEGUI {
 #endif //PE_NO_LOGGER
         }
     }
-
+#endif //PE_NO_LOOK_FEEL        
+#ifndef PE_NO_LOOK_FEEL
     void WidgetLookManager::eraseAllWidgetLooks() {
         d_widgetLooks.clear();
     }
-
+#endif //PE_NO_LOOK_FEEL
+#ifndef PE_NO_LOOK_FEEL
     void WidgetLookManager::addWidgetLook(const WidgetLookFeel& look) {
         if (isWidgetLookAvailable(look.getName())) {
 #ifndef PE_NO_LOGGER
@@ -182,6 +188,7 @@ namespace CEGUI {
 
         d_widgetLooks[look.getName()] = look;
     }
+#endif //PE_NO_LOOK_FEEL
 
     void WidgetLookManager::writeWidgetLookToStream(const String& name, OutStream& out_stream) const {
         // start of file
@@ -192,8 +199,10 @@ namespace CEGUI {
         xml.attribute(Falagard_xmlHandler::VersionAttribute, Falagard_xmlHandler::NativeVersion);
 
         CEGUI_TRY{
+#ifndef PE_NO_LOOK_FEEL
             // output the desired widget look data
             getWidgetLook(name).writeXMLToStream(xml);
+#endif //PE_NO_LOOK_FEEL            
         }
 
         CEGUI_CATCH(UnknownObjectException&) {
@@ -221,10 +230,12 @@ namespace CEGUI {
         xml.openTag(Falagard_xmlHandler::FalagardElement);
         xml.attribute(Falagard_xmlHandler::VersionAttribute, Falagard_xmlHandler::NativeVersion);
 
+#ifndef PE_NO_LOOK_FEEL
         for (WidgetLookList::const_iterator curr = d_widgetLooks.begin(); curr != d_widgetLooks.end(); ++curr) {
             if ((*curr).first.compare(0, prefix.length(), prefix) == 0)
                 (*curr).second.writeXMLToStream(xml);
         }
+#endif //PE_NO_LOOK_FEEL                
 
         // close the root tags to terminate the file
         xml.closeTag();
@@ -240,9 +251,10 @@ namespace CEGUI {
 
         for (WidgetLookNameSet::const_iterator iter = widgetLookNameSet.begin(); iter != widgetLookNameSet.end(); ++iter) {
             const CEGUI::String& currentWidgetLookName = *iter;
-
+#ifndef PE_NO_LOOK_FEEL
             const WidgetLookFeel& curWidgetLookFeel = this->getWidgetLook(currentWidgetLookName);
             curWidgetLookFeel.writeXMLToStream(xml);
+#endif //PE_NO_LOOK_FEEL
         }
 
         // close the root tags to terminate the file
@@ -255,11 +267,12 @@ namespace CEGUI {
 
         return String(reinterpret_cast<const encoded_char*> (str.str().c_str()));
     }
-
+#ifndef PE_NO_LOOK_FEEL
     WidgetLookManager::WidgetLookIterator
     WidgetLookManager::getWidgetLookIterator() const {
         return WidgetLookIterator(d_widgetLooks.begin(), d_widgetLooks.end());
     }
+#endif //PE_NO_LOOK_FEEL
 
 
 } // End of  CEGUI namespace section

@@ -50,6 +50,7 @@ namespace CEGUI {
     //----------------------------------------------------------------------------//
 
     const NamedArea& FalagardMenuItem::getContentNamedArea() const {
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel & wlf(getLookNFeel());
 
 #ifndef PE_NO_POPUP_MENU_H
@@ -62,6 +63,7 @@ namespace CEGUI {
 #else
         return wlf.getNamedArea("ContentSize");
 #endif //PE_NO_POPUP_MENU_H
+#endif //PE_NO_LOOK_FEEL           
     }
 
     //----------------------------------------------------------------------------//
@@ -96,6 +98,7 @@ namespace CEGUI {
 
 
         const StateImagery* imagery;
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
 
@@ -109,6 +112,7 @@ namespace CEGUI {
 
         // peform the rendering operation.
         imagery->render(*w);
+#endif //PE_NO_LOOK_FEEL           
 
         // only draw popup-open/closed-icon if we have a popup menu, and parent is not a menubar
         Window* parent_window = w->getParent();
@@ -116,9 +120,11 @@ namespace CEGUI {
 
 #ifndef PE_NO_POPUP_MENU_H
         if (w->getPopupMenu() && not_menubar) {
+#ifndef PE_NO_LOOK_FEEL
             // get imagery for popup open/closed state
             imagery = &wlf.getStateImagery(w->isOpened() ? "PopupOpenIcon" : "PopupClosedIcon");
             // peform the rendering operation.
+#endif //PE_NO_LOOK_FEEL               
             imagery->render(*w);
         }
 #endif //PE_NO_POPUP_MENU_H

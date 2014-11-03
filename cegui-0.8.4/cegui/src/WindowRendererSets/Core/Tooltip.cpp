@@ -38,26 +38,30 @@ namespace CEGUI {
     }
 
     void FalagardTooltip::render() {
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         const StateImagery* imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         // peform the rendering operation.
         imagery->render(*d_window);
+#endif //PE_NO_LOOK_FEEL           
     }
 
     Sizef FalagardTooltip::getTextSize() const {
         Tooltip* w = (Tooltip*) d_window;
         Sizef sz(w->getTextSize_impl());
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
 
         const Rectf textArea(wlf.getNamedArea("TextArea").getArea().getPixelRect(*w));
+#endif //PE_NO_LOOK_FEEL   
         const Rectf wndArea(CoordConverter::asAbsolute(w->getArea(), w->getParentPixelSize()));
-
+#ifndef PE_NO_LOOK_FEEL
         sz.d_width = CoordConverter::alignToPixels(sz.d_width + wndArea.getWidth() - textArea.getWidth());
         sz.d_height = CoordConverter::alignToPixels(sz.d_height + wndArea.getHeight() - textArea.getHeight());
+#endif //PE_NO_LOOK_FEEL   
         return sz;
     }
 

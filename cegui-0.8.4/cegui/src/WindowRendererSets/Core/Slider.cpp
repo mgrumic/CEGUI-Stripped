@@ -56,12 +56,13 @@ namespace CEGUI {
 
     void FalagardSlider::render() {
         const StateImagery* imagery;
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         // peform the rendering operation.
+#endif //PE_NO_LOOK_FEEL   
         imagery->render(*d_window);
     }
 
@@ -72,18 +73,21 @@ namespace CEGUI {
     void FalagardSlider::updateThumb(void) {
         Slider* w = (Slider*) d_window;
         // get area the thumb is supposed to use as it's area.
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
         Rectf area(wlf.getNamedArea("ThumbTrackArea").getArea().getPixelRect(*w));
+#endif //PE_NO_LOOK_FEEL           
         // get accesss to the thumb
         Thumb* theThumb = w->getThumb();
 
         const Sizef w_pixel_size(w->getPixelSize());
 
+#ifndef PE_NO_LOOK_FEEL
         const float thumbRelXPos = w_pixel_size.d_width == 0.0f ? 0.0f : (area.left() / w_pixel_size.d_width);
         const float thumbRelYPos = w_pixel_size.d_height == 0.0f ? 0.0f : (area.top() / w_pixel_size.d_height);
         // get base location for thumb widget
         UVector2 thumbPosition(cegui_reldim(thumbRelXPos), cegui_reldim(thumbRelYPos));
-
+        
         // Is this a vertical slider
         if (d_vertical) {
             // pixel extent of total available area the thumb moves in
@@ -125,9 +129,11 @@ namespace CEGUI {
 
         // set new position for thumb.
         theThumb->setPosition(thumbPosition);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     float FalagardSlider::getValueFromThumb(void) const {
+#ifndef PE_NO_LOOK_FEEL
         Slider* w = (Slider*) d_window;
         // get area the thumb is supposed to use as it's area.
         const WidgetLookFeel& wlf = getLookNFeel();
@@ -154,6 +160,7 @@ namespace CEGUI {
             // return final thumb value according to slider settings
             return d_reversed ? w->getMaxValue() - thumbValue : thumbValue;
         }
+#endif //PE_NO_LOOK_FEEL           
     }
 
     float FalagardSlider::getAdjustDirectionFromPoint(const Vector2f& pt) const {

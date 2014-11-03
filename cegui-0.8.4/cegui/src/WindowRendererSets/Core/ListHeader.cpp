@@ -44,11 +44,13 @@ namespace CEGUI {
 
     void FalagardListHeader::render() {
         const StateImagery* imagery;
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // render basic imagery
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         imagery->render(*d_window);
+#endif //PE_NO_LOOK_FEEL           
     }
 
     const String& FalagardListHeader::getSegmentWidgetType() const {

@@ -38,7 +38,9 @@ namespace CEGUI {
 
     void FalagardButton::render() {
         ButtonBase* w = (ButtonBase*) d_window;
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL        
 
         bool norm = false;
         String state;
@@ -65,12 +67,13 @@ namespace CEGUI {
             state = "Normal";
             norm = true;
         }
-
+#ifndef PE_NO_LOOK_FEEL
         if (!norm && !wlf.isStateImageryPresent(actualStateName(state))) {
             state = "Normal";
         }
 
         wlf.getStateImagery(actualStateName(state)).render(*w);
+#endif //PE_NO_LOOK_FEEL   
     }
 
 } // End of  CEGUI namespace section

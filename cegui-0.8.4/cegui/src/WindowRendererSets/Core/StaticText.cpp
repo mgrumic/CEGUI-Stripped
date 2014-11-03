@@ -216,9 +216,10 @@ namespace CEGUI {
         Scrollbar* horzScrollbar = getHorzScrollbar();
         bool v_visible = vertScrollbar->isVisible();
         bool h_visible = horzScrollbar->isVisible();
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL   
 
         String area_name(d_frameEnabled ? "WithFrameTextRenderArea" : "NoFrameTextRenderArea");
 
@@ -232,13 +233,14 @@ namespace CEGUI {
             }
             area_name += "Scroll";
         }
-
+#ifndef PE_NO_LOOK_FEEL
         if (wlf.isNamedAreaDefined(area_name)) {
             return wlf.getNamedArea(area_name).getArea().getPixelRect(*d_window);
         }
 
         // default to plain WithFrameTextRenderArea
         return wlf.getNamedArea("WithFrameTextRenderArea").getArea().getPixelRect(*d_window);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     /************************************************************************
@@ -554,15 +556,18 @@ namespace CEGUI {
     //----------------------------------------------------------------------------//
 
     bool FalagardStaticText::handleFontRenderSizeChange(const Font * const font) {
+#ifndef PE_NO_LOOK_FEEL
         const bool res = WindowRenderer::handleFontRenderSizeChange(font);
+#endif //PE_NO_LOOK_FEEL           
 
         if (d_window->getFont() == font) {
             d_window->invalidate();
             d_formatValid = false;
             return true;
         }
-
+#ifndef PE_NO_LOOK_FEEL
         return res;
+#endif //PE_NO_LOOK_FEEL   
     }
 
     //----------------------------------------------------------------------------//

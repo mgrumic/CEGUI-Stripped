@@ -39,6 +39,7 @@ namespace CEGUI {
 
     void FalagardListHeaderSegment::render() {
         ListHeaderSegment* w = (ListHeaderSegment*) d_window;
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
 
@@ -61,15 +62,20 @@ namespace CEGUI {
 
         // do main rendering
         imagery->render(*w);
+#endif //PE_NO_LOOK_FEEL           
 
         // Render sorting icon as needed
         ListHeaderSegment::SortDirection sort_dir = w->getSortDirection();
         if (sort_dir == ListHeaderSegment::Ascending) {
+#ifndef PE_NO_LOOK_FEEL
             imagery = &wlf.getStateImagery("AscendingSortIcon");
             imagery->render(*w);
+#endif //PE_NO_LOOK_FEEL               
         } else if (sort_dir == ListHeaderSegment::Descending) {
+#ifndef PE_NO_LOOK_FEEL
             imagery = &wlf.getStateImagery("DescendingSortIcon");
             imagery->render(*w);
+#endif //PE_NO_LOOK_FEEL               
         }
 #ifndef PE_NO_MOUSE
         // draw ghost copy if the segment is being dragged.
@@ -77,17 +83,21 @@ namespace CEGUI {
             Sizef pixel_size = w->getPixelSize();
             Rectf targetArea(0, 0, pixel_size.d_width, pixel_size.d_height);
             targetArea.offset(w->getDragMoveOffset());
+#ifndef PE_NO_LOOK_FEEL
             imagery = &wlf.getStateImagery("DragGhost");
             imagery->render(*w, targetArea);
+#endif //PE_NO_LOOK_FEEL               
 
+#ifndef PE_NO_LOOK_FEEL
             // Render sorting icon as needed
             if (sort_dir == ListHeaderSegment::Ascending) {
                 imagery = &wlf.getStateImagery("GhostAscendingSortIcon");
-                imagery->render(*w, targetArea);
+                imagery->render(*w, targetArea);                 
             } else if (sort_dir == ListHeaderSegment::Descending) {
                 imagery = &wlf.getStateImagery("GhostDescendingSortIcon");
                 imagery->render(*w, targetArea);
             }
+#endif //PE_NO_LOOK_FEEL                   
         }
 #endif //PE_NO_MOUSE
     }

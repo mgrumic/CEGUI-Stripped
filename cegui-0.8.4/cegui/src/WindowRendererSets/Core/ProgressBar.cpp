@@ -55,8 +55,8 @@ namespace CEGUI {
     }
 
     void FalagardProgressBar::render() {
+#ifndef PE_NO_LOOK_FEEL
         const StateImagery* imagery;
-
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
@@ -71,7 +71,7 @@ namespace CEGUI {
         Rectf progressRect(wlf.getNamedArea("ProgressArea").getArea().getPixelRect(*d_window));
 
         // calculate a clipper according to the current progress.
-        Rectf progressClipper(progressRect);
+        Rectf progressClipper(progressRect);  
 
         ProgressBar* w = (ProgressBar*) d_window;
         if (d_vertical) {
@@ -94,6 +94,7 @@ namespace CEGUI {
 
         // peform the rendering operation.
         imagery->render(*d_window, progressRect, 0, &progressClipper);
+#endif //PE_NO_LOOK_FEEL               
     }
 
     bool FalagardProgressBar::isVertical() const {

@@ -49,10 +49,12 @@ namespace CEGUI {
 
         // render image if there is one
         if (d_image != 0) {
+#ifndef PE_NO_LOOK_FEEL
             // get WidgetLookFeel for the assigned look.
             const WidgetLookFeel& wlf = getLookNFeel();
             String imagery_name = (!d_frameEnabled && wlf.isStateImageryPresent("NoFrameImage")) ? "NoFrameImage" : "WithFrameImage";
             wlf.getStateImagery(imagery_name).render(*d_window);
+#endif //PE_NO_LOOK_FEEL               
         }
     }
 

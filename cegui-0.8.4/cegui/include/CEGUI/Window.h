@@ -3383,7 +3383,9 @@ namespace CEGUI {
             This function is different from Property::isDefatult as it takes the assigned look'n'feel
             (if the is one) into account.
          */
+#ifndef PE_NO_LOOK_FEEL
         bool isPropertyAtDefault(const Property* property) const;
+#endif //PE_NO_LOOK_FEEL        
 
         /*!
         \brief

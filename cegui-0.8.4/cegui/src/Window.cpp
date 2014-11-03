@@ -543,11 +543,13 @@ namespace CEGUI {
     }
 
     //----------------------------------------------------------------------------//
-
     Rectf Window::getUnclippedInnerRect_impl(bool skipAllPixelAlignment) const {
+#ifndef PE_NO_LOOK_FEEL
         // TODO: skip all pixel alignment!
+        
         return d_windowRenderer ? d_windowRenderer->getUnclippedInnerRect() :
                 (skipAllPixelAlignment ? getUnclippedOuterRect().getFresh(true) : getUnclippedOuterRect().get());
+#endif //PE_NO_LOOK_FEEL
     }
 
     //----------------------------------------------------------------------------//
@@ -1725,8 +1727,10 @@ namespace CEGUI {
         // clean up looknfeel related things
         if (!d_lookName.empty()) {
             d_windowRenderer->onLookNFeelUnassigned();
+#ifndef PE_NO_LOOK_FEEL
             WidgetLookManager::getSingleton().getWidgetLook(d_lookName).
                     cleanUpWidget(*this);
+#endif //PE_NO_LOOK_FEEL
         }
 
         // free any assigned WindowRenderer
@@ -1895,8 +1899,10 @@ namespace CEGUI {
         WidgetLookManager& wlMgr = WidgetLookManager::getSingleton();
         if (!d_lookName.empty()) {
             d_windowRenderer->onLookNFeelUnassigned();
+#ifndef PE_NO_LOOK_FEEL
             const WidgetLookFeel& wlf = wlMgr.getWidgetLook(d_lookName);
             wlf.cleanUpWidget(*this);
+#endif //PE_NO_LOOK_FEEL            
         }
 
         d_lookName = look;
@@ -1904,11 +1910,12 @@ namespace CEGUI {
         Logger::getSingleton().logEvent("Assigning LookNFeel '" + look +
                 "' to window '" + d_name + "'.", Informative);
 #endif //PE_NO_LOGGER
-
+#ifndef PE_NO_LOOK_FEEL
         // Work to initialise the look and feel...
         const WidgetLookFeel& wlf = wlMgr.getWidgetLook(look);
         // Get look and feel to initialise the widget as it needs.
         wlf.initialiseWidget(*this);
+#endif //PE_NO_LOOK_FEEL
         // do the necessary binding to the stuff added by the look and feel
         initialiseComponents();
         // let the window renderer know about this
@@ -1962,8 +1969,10 @@ namespace CEGUI {
             return;
 
         CEGUI_TRY{
+#ifndef PE_NO_LOOK_FEEL
             WidgetLookManager::getSingleton().
             getWidgetLook(d_lookName).layoutChildWidgets(*this);
+#endif //PE_NO_LOOK_FEEL
         }
 
         CEGUI_CATCH(UnknownObjectException&) {
@@ -2033,6 +2042,7 @@ namespace CEGUI {
         int propertiesWritten = 0;
         PropertySet::PropertyIterator iter = getPropertyIterator();
 
+#ifndef PE_NO_LOOK_FEEL
         while (!iter.isAtEnd()) {
             // first we check to make sure the property is'nt banned from XML
             if (!isPropertyBannedFromXML(iter.getCurrentValue())) {
@@ -2056,6 +2066,7 @@ namespace CEGUI {
 
             ++iter;
         }
+#endif //PE_NO_LOOK_FEEL                    
 
         return propertiesWritten;
     }
@@ -2908,6 +2919,7 @@ namespace CEGUI {
 
     //----------------------------------------------------------------------------//
 
+#ifndef PE_NO_LOOK_FEEL
     bool Window::isPropertyAtDefault(const Property* property) const {
         // if we have a looknfeel we examine it for defaults
         if (!d_lookName.empty()) {
@@ -2957,6 +2969,7 @@ namespace CEGUI {
         // on the hardcoded default
         return property->isDefault(this);
     }
+#endif //PE_NO_LOOK_FEEL            
 
     //----------------------------------------------------------------------------//
 
@@ -3796,13 +3809,14 @@ namespace CEGUI {
     }
 
     //----------------------------------------------------------------------------//
-
     bool Window::handleFontRenderSizeChange(const EventArgs& args) {
+#ifndef PE_NO_LOOK_FEEL
         if (!d_windowRenderer)
             return false;
 
         return d_windowRenderer->handleFontRenderSizeChange(
                 static_cast<const FontEventArgs&> (args).font);
+#endif //PE_NO_LOOK_FEEL
     }
 
 

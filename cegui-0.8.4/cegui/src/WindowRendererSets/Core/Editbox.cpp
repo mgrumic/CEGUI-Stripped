@@ -75,9 +75,11 @@ namespace CEGUI {
     //----------------------------------------------------------------------------//
 
     void FalagardEditbox::render() {
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
 
         renderBaseImagery(wlf);
+#endif //PE_NO_LOOK_FEEL           
 
         // no font == no more rendering
         const Font* font = d_window->getFont();
@@ -86,33 +88,41 @@ namespace CEGUI {
 
         String visual_text;
         setupVisualString(visual_text);
-
+#ifndef PE_NO_LOOK_FEEL
         const ImagerySection& caret_imagery = wlf.getImagerySection("Caret");
-
+#endif //PE_NO_LOOK_FEEL   
+#ifndef PE_NO_LOOK_FEEL
         // get destination area for text
         const Rectf text_area(wlf.getNamedArea("TextArea").getArea().getPixelRect(*d_window));
+#endif //PE_NO_LOOK_FEEL   
 
         const size_t caret_index = getCaretIndex(visual_text);
         const float extent_to_caret = font->getTextAdvance(visual_text.substr(0, caret_index));
+#ifndef PE_NO_LOOK_FEEL
         const float caret_width = caret_imagery.getBoundingRect(*d_window, text_area).getWidth();
+#endif //PE_NO_LOOK_FEEL           
         const float text_extent = font->getTextExtent(visual_text);
+#ifndef PE_NO_LOOK_FEEL
         const float text_offset = calculateTextOffset(text_area, text_extent, caret_width, extent_to_caret);
-
+#endif //PE_NO_LOOK_FEEL   
+#ifndef PE_NO_LOOK_FEEL
 #ifdef CEGUI_BIDI_SUPPORT
         renderTextBidi(wlf, visual_text, text_area, text_offset);
-#else
+#else        
         renderTextNoBidi(wlf, visual_text, text_area, text_offset);
 #endif
-
+#endif //PE_NO_LOOK_FEEL   
+#ifndef PE_NO_LOOK_FEEL
         // remember this for next time.
         d_lastTextOffset = text_offset;
 
         renderCaret(caret_imagery, text_area, text_offset, extent_to_caret);
+#endif //PE_NO_LOOK_FEEL   
 
     }
 
     //----------------------------------------------------------------------------//
-
+#ifndef PE_NO_LOOK_FEEL
     void FalagardEditbox::renderBaseImagery(const WidgetLookFeel& wlf) const {
         Editbox* w = static_cast<Editbox*> (d_window);
 
@@ -121,6 +131,7 @@ namespace CEGUI {
 
         imagery->render(*w);
     }
+#endif //PE_NO_LOOK_FEEL   
 
     //----------------------------------------------------------------------------//
 
@@ -214,7 +225,7 @@ namespace CEGUI {
     }
 
     //----------------------------------------------------------------------------//
-
+#ifndef PE_NO_LOOK_FEEL
     void FalagardEditbox::renderTextNoBidi(const WidgetLookFeel& wlf,
             const String& text,
             const Rectf& text_area,
@@ -279,8 +290,9 @@ namespace CEGUI {
                 &text_area, colours);
     }
 
+#endif //PE_NO_LOOK_FEEL   
     //----------------------------------------------------------------------------//
-
+#ifndef PE_NO_LOOK_FEEL
     void FalagardEditbox::renderTextBidi(const WidgetLookFeel& wlf,
             const String& text,
             const Rectf& text_area,
@@ -365,6 +377,7 @@ namespace CEGUI {
         }
 #endif
     }
+#endif //PE_NO_LOOK_FEEL   
 
     //----------------------------------------------------------------------------//
 
@@ -513,7 +526,7 @@ namespace CEGUI {
     }
 
     //----------------------------------------------------------------------------//
-
+#ifndef PE_NO_LOOK_FEEL
     bool FalagardEditbox::handleFontRenderSizeChange(const Font * const font) {
         const bool res = WindowRenderer::handleFontRenderSizeChange(font);
 
@@ -524,6 +537,7 @@ namespace CEGUI {
 
         return res;
     }
+#endif //PE_NO_LOOK_FEEL   
 
     //----------------------------------------------------------------------------//
 

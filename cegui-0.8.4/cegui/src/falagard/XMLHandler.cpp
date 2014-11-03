@@ -160,7 +160,9 @@ namespace CEGUI {
 
     Falagard_xmlHandler::Falagard_xmlHandler(WidgetLookManager* mgr) :
     d_manager(mgr),
+#ifndef PE_NO_LOOK_FEEL
     d_widgetlook(0),
+#endif //PE_NO_LOOK_FEEL            
     d_childcomponent(0),
     d_imagerysection(0),
     d_stateimagery(0),
@@ -383,11 +385,13 @@ namespace CEGUI {
      *************************************************************************/
     void Falagard_xmlHandler::elementWidgetLookStart(const XMLAttributes& attributes) {
         assert(d_widgetlook == 0);
+#ifndef PE_NO_LOOK_FEEL
         d_widgetlook = CEGUI_NEW_AO WidgetLookFeel(attributes.getValueAsString(NameAttribute),
                 attributes.getValueAsString(InheritsAttribute));
 #ifndef PE_NO_LOGGER
         Logger::getSingleton().logEvent("---> Start of definition for widget look '" + d_widgetlook->getName() + "'.", Informative);
 #endif //PE_NO_LOGGER
+#endif //PE_NO_LOOK_FEEL        
     }
 
     /*************************************************************************
@@ -451,12 +455,14 @@ namespace CEGUI {
         assert(d_section == 0);
         assert(d_widgetlook != 0);
         String owner(attributes.getValueAsString(LookAttribute));
+#ifndef PE_NO_LOOK_FEEL
         d_section =
                 CEGUI_NEW_AO SectionSpecification(owner.empty() ? d_widgetlook->getName() : owner,
                 attributes.getValueAsString(SectionNameAttribute),
                 attributes.getValueAsString(ControlPropertyAttribute),
                 attributes.getValueAsString(ControlValueAttribute),
                 attributes.getValueAsString(ControlWidgetAttribute));
+#endif //PE_NO_LOOK_FEEL        
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("---------> Layer references imagery section '" + d_section->getSectionName() + "'.");
 #endif //PE_NO_LOGGER
@@ -661,7 +667,9 @@ namespace CEGUI {
             CEGUI_LOGINSANE("-------> Added property initialiser for property: " + prop.getTargetPropertyName() + " with value: " + prop.getInitialiserValue());
 #endif //PE_NO_LOGGER            
         } else {
+#ifndef PE_NO_LOOK_FEEL
             d_widgetlook->addPropertyInitialiser(prop);
+#endif //PE_NO_LOOK_FEEL
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("---> Added property initialiser for property: " + prop.getTargetPropertyName() + " with value: " + prop.getInitialiserValue());
 #endif //PE_NO_LOGGER            
@@ -818,7 +826,7 @@ namespace CEGUI {
         bool layout(attributes.getValueAsBool(LayoutOnWriteAttribute, false));
         const String eventName(attributes.getValueAsString(FireEventAttribute));
         typedef std::pair<float, float> Range;
-
+#ifndef PE_NO_LOOK_FEEL
         if (type == PropertyHelper<Colour>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Colour>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<ColourRect>::getDataTypeName())
@@ -910,6 +918,7 @@ namespace CEGUI {
 #endif //PE_NO_LOGGER
 
         d_widgetlook->addPropertyDefinition(prop);
+#endif //PE_NO_LOOK_FEEL
     }
 
     /*************************************************************************
@@ -928,7 +937,7 @@ namespace CEGUI {
         bool layout(attributes.getValueAsBool(LayoutOnWriteAttribute, false));
         const String eventName(attributes.getValueAsString(FireEventAttribute));
         typedef std::pair<float, float> Range;
-
+#ifndef PE_NO_LOOK_FEEL
         if (type == PropertyHelper<Colour>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<Colour>(name,
                 widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
@@ -1062,6 +1071,7 @@ namespace CEGUI {
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<String>(name,
                     widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         }
+#endif //PE_NO_LOOK_FEEL
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("-----> Adding PropertyLinkDefiniton. Name: " +
                 name);
@@ -1239,6 +1249,7 @@ namespace CEGUI {
         Method that handles the closing WidgetLook XML element.
      *************************************************************************/
     void Falagard_xmlHandler::elementWidgetLookEnd() {
+#ifndef PE_NO_LOOK_FEEL
         if (d_widgetlook) {
 #ifndef PE_NO_LOGGER
             Logger::getSingleton().logEvent("---< End of definition for widget look '" + d_widgetlook->getName() + "'.", Informative);
@@ -1247,6 +1258,7 @@ namespace CEGUI {
             CEGUI_DELETE_AO d_widgetlook;
             d_widgetlook = 0;
         }
+#endif //PE_NO_LOOK_FEEL        
     }
 
     /*************************************************************************
@@ -1259,7 +1271,9 @@ namespace CEGUI {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for child widget. Type: " + d_childcomponent->getBaseWidgetType() + ".");
 #endif //PE_NO_LOGGER
+#ifndef PE_NO_LOOK_FEEL
             d_widgetlook->addWidgetComponent(*d_childcomponent);
+#endif //PE_NO_LOOK_FEEL            
             CEGUI_DELETE_AO d_childcomponent;
             d_childcomponent = 0;
         }
@@ -1274,8 +1288,10 @@ namespace CEGUI {
         if (d_imagerysection) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for imagery section '" + d_imagerysection->getName() + "'.");
-#endif //PE_NO_LOGGER            
+#endif //PE_NO_LOGGER   
+#ifndef PE_NO_LOOK_FEEL
             d_widgetlook->addImagerySection(*d_imagerysection);
+#endif //PE_NO_LOOK_FEEL            
             CEGUI_DELETE_AO d_imagerysection;
             d_imagerysection = 0;
         }
@@ -1290,8 +1306,10 @@ namespace CEGUI {
         if (d_stateimagery) {
 #ifndef PE_NO_LOGGER
             CEGUI_LOGINSANE("-----< End of definition for imagery for state '" + d_stateimagery->getName() + "'.");
-#endif //PE_NO_LOGGER            
+#endif //PE_NO_LOGGER   
+#ifndef PE_NO_LOOK_FEEL
             d_widgetlook->addStateSpecification(*d_stateimagery);
+#endif //PE_NO_LOOK_FEEL            
             CEGUI_DELETE_AO d_stateimagery;
             d_stateimagery = 0;
         }
@@ -1395,7 +1413,9 @@ namespace CEGUI {
         assert(d_widgetlook != 0);
 
         if (d_namedArea) {
+#ifndef PE_NO_LOOK_FEEL
             d_widgetlook->addNamedArea(*d_namedArea);
+#endif //PE_NO_LOOK_FEEL            
             CEGUI_DELETE_AO d_namedArea;
             d_namedArea = 0;
         }
@@ -1424,7 +1444,9 @@ namespace CEGUI {
 
     void Falagard_xmlHandler::elementPropertyLinkDefinitionEnd() {
         assert(d_propertyLink);
+#ifndef PE_NO_LOOK_FEEL
         d_widgetlook->addPropertyLinkDefinition(d_propertyLink);
+#endif //PE_NO_LOOK_FEEL        
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("<----- End of PropertyLinkDefiniton. Name: " +
                 d_propertyLink->getPropertyName());
@@ -1533,13 +1555,14 @@ namespace CEGUI {
     void Falagard_xmlHandler::elementAnimationDefinitionStart(
             const XMLAttributes& attributes) {
         assert(d_widgetlook != 0);
-
+#ifndef PE_NO_LOOK_FEEL
         String anim_name_prefix(d_widgetlook->getName());
         anim_name_prefix.append("/");
 
         const String anim_name(anim_name_prefix +
                 attributes.getValueAsString(NameAttribute));
-
+#endif //PE_NO_LOOK_FEEL
+#ifndef PE_NO_LOOK_FEEL
 #ifndef PE_NO_ANIMATION
         if (AnimationManager::getSingleton().isAnimationPresent(anim_name)) {
 #ifndef PE_NO_LOGGER
@@ -1551,12 +1574,14 @@ namespace CEGUI {
                     attributes, anim_name_prefix);
         }
 #endif //PE_NO_ANIMATION
-
+#endif //PE_NO_LOOK_FEEL
+#ifndef PE_NO_LOOK_FEEL
         // This is a little bit of abuse here, ideally we would get the name
         // somewhere else.
         d_widgetlook->addAnimationName(
                 anim_name_prefix +
                 attributes.getValueAsString("name"));
+#endif //PE_NO_LOOK_FEEL
     }
 
     void Falagard_xmlHandler::elementEventLinkDefinitionStart(
@@ -1599,7 +1624,9 @@ namespace CEGUI {
 
     void Falagard_xmlHandler::elementEventLinkDefinitionEnd() {
         assert(d_eventLink);
+#ifndef PE_NO_LOOK_FEEL
         d_widgetlook->addEventLinkDefinition(*d_eventLink);
+#endif //PE_NO_LOOK_FEEL        
 #ifndef PE_NO_LOGGER
         CEGUI_LOGINSANE("<----- End of EventLinkDefiniton. Name: " +
                 d_eventLink->getName());
@@ -1613,9 +1640,10 @@ namespace CEGUI {
         assert(d_area != 0);
 
         const String look(attributes.getValueAsString(LookAttribute));
-
+#ifndef PE_NO_LOOK_FEEL
         d_area->setNamedAreaSouce(look.empty() ? d_widgetlook->getName() : look,
                 attributes.getValueAsString(NameAttribute));
+#endif //PE_NO_LOOK_FEEL
     }
 
     void Falagard_xmlHandler::elementEventActionStart(const XMLAttributes& attributes) {

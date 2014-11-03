@@ -65,30 +65,36 @@ namespace CEGUI {
     }
 
     void FalagardStatic::render() {
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
 
         bool is_enabled = !d_window->isEffectiveDisabled();
-
+#ifndef PE_NO_LOOK_FEEL
         // render frame section
         if (d_frameEnabled) {
             wlf.getStateImagery(is_enabled ? "EnabledFrame" : "DisabledFrame").render(*d_window);
         }
+#endif //PE_NO_LOOK_FEEL   
 
         // render background section
         if (d_backgroundEnabled) {
             const StateImagery* imagery;
+#ifndef PE_NO_LOOK_FEEL
             if (d_frameEnabled) {
                 imagery = &wlf.getStateImagery(is_enabled ? "WithFrameEnabledBackground" : "WithFrameDisabledBackground");
             } else {
                 imagery = &wlf.getStateImagery(is_enabled ? "NoFrameEnabledBackground" : "NoFrameDisabledBackground");
             }
+#endif //PE_NO_LOOK_FEEL               
             // peform the rendering operation.
             imagery->render(*d_window);
         }
-
+#ifndef PE_NO_LOOK_FEEL
         // render basic imagery
         wlf.getStateImagery(is_enabled ? "Enabled" : "Disabled").render(*d_window);
+#endif //PE_NO_LOOK_FEEL   
     }
 
 } // End of  CEGUI namespace section

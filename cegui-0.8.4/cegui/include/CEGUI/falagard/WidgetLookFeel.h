@@ -38,6 +38,8 @@
 #include "./NamedDefinitionCollator.h"
 #include <map>
 
+#ifndef PE_NO_LOOK_FEEL
+
 #if defined(_MSC_VER)
 #pragma warning(push)
 #pragma warning(disable : 4251)
@@ -518,6 +520,6 @@ namespace CEGUI {
 #if defined(_MSC_VER)
 #pragma warning(pop)
 #endif
-
+#endif //PE_NO_LOOK_FEEL
 #endif  // end of guard _CEGUIFalWidgetLookFeel_h_
 

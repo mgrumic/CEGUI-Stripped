@@ -1085,11 +1085,13 @@ namespace CEGUI {
             pixelRect = CoordConverter::asAbsolute(
                     wnd.getProperty<URect>(d_namedSource), wnd.getPixelSize());
         } else if (isAreaFetchedFromNamedArea()) {
+#ifndef PE_NO_LOOK_FEEL
             return WidgetLookManager::getSingleton()
                     .getWidgetLook(d_namedAreaSourceLook)
                     .getNamedArea(d_namedSource)
                     .getArea()
                     .getPixelRect(wnd);
+#endif //PE_NO_LOOK_FEEL            
         }            // not via property or named area- calculate using Dimensions
         else {
             // sanity check, we mus be able to form a Rect from what we represent.
@@ -1125,11 +1127,13 @@ namespace CEGUI {
             pixelRect = CoordConverter::asAbsolute(
                     wnd.getProperty<URect>(d_namedSource), wnd.getPixelSize());
         } else if (isAreaFetchedFromNamedArea()) {
+#ifndef PE_NO_LOOK_FEEL
             return WidgetLookManager::getSingleton()
                     .getWidgetLook(d_namedAreaSourceLook)
                     .getNamedArea(d_namedSource)
                     .getArea()
                     .getPixelRect(wnd, container);
+#endif //PE_NO_LOOK_FEEL            
         }            // not via property or named area- calculate using Dimensions
         else {
             // sanity check, we mus be able to form a Rect from what we represent.
@@ -1221,10 +1225,12 @@ namespace CEGUI {
             return false;
 
         if (isAreaFetchedFromNamedArea()) {
+#ifndef PE_NO_LOOK_FEEL
             return WidgetLookManager::getSingleton()
                     .getWidgetLook(d_namedAreaSourceLook)
                     .getNamedArea(d_namedSource)
                     .handleFontRenderSizeChange(window, font);
+#endif //PE_NO_LOOK_FEEL            
         }
 
         bool result = d_left.handleFontRenderSizeChange(window, font);

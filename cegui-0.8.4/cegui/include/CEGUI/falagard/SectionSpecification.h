@@ -33,8 +33,10 @@
 
 // Start of CEGUI namespace section
 namespace CEGUI {
+#ifndef PE_NO_LOOK_FEEL
     // forward refs
     class WidgetLookFeel;
+#endif //PE_NO_LOOK_FEEL
 
     /*!
     \brief

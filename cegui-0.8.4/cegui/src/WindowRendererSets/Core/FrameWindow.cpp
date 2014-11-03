@@ -52,10 +52,12 @@ namespace CEGUI {
         const StateImagery* imagery;
 
         CEGUI_TRY{
+#ifndef PE_NO_LOOK_FEEL
             // get WidgetLookFeel for the assigned look.
             const WidgetLookFeel& wlf = getLookNFeel();
             // try and get imagery for our current state
             imagery = &wlf.getStateImagery(stateName);
+#endif //PE_NO_LOOK_FEEL               
         }
 
         CEGUI_CATCH(UnknownObjectException&) {
@@ -76,10 +78,11 @@ namespace CEGUI {
         String areaName("Client");
         areaName += w->isTitleBarEnabled() ? "WithTitle" : "NoTitle";
         areaName += w->isFrameEnabled() ? "WithFrame" : "NoFrame";
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         return wlf.getNamedArea(areaName).getArea().getPixelRect(*w, w->getUnclippedOuterRect().get());
+#endif //PE_NO_LOOK_FEEL   
     }
 
 } // End of  CEGUI namespace section

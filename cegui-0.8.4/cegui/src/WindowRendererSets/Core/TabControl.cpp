@@ -45,10 +45,12 @@ namespace CEGUI {
 
     void FalagardTabControl::render() {
         const StateImagery* imagery;
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // render basic imagery
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
+#endif //PE_NO_LOOK_FEEL           
         imagery->render(*d_window);
     }
 

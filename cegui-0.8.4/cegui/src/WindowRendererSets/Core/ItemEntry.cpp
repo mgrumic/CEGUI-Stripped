@@ -38,7 +38,7 @@ namespace CEGUI {
 
     void FalagardItemEntry::render() {
         ItemEntry* item = static_cast<ItemEntry*> (d_window);
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
 
@@ -51,12 +51,15 @@ namespace CEGUI {
             imagery = &wlf.getStateImagery(item->isEffectiveDisabled() ? "Disabled" : "Enabled");
         }
         imagery->render(*d_window);
+#endif //PE_NO_LOOK_FEEL   
     }
-
+    
     Sizef FalagardItemEntry::getItemPixelSize() const {
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         return wlf.getNamedArea("ContentSize").getArea().getPixelRect(*d_window).getSize();
+#endif //PE_NO_LOOK_FEEL   
     }
 
 } // End of  CEGUI namespace section

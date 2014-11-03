@@ -39,18 +39,21 @@ namespace CEGUI {
 
     void FalagardPopupMenu::render() {
         const StateImagery* imagery;
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         // peform the rendering operation.
         imagery->render(*d_window);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     Rectf FalagardPopupMenu::getItemRenderArea(void) const {
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
         return wlf.getNamedArea("ItemRenderArea").getArea().getPixelRect(*d_window);
+#endif //PE_NO_LOOK_FEEL           
     }
 
 } // End of  CEGUI namespace section

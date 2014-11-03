@@ -49,12 +49,13 @@ namespace CEGUI {
 
     void FalagardScrollbar::render() {
         const StateImagery* imagery;
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         // peform the rendering operation.
+#endif //PE_NO_LOOK_FEEL   
         imagery->render(*d_window);
     }
 
@@ -64,14 +65,17 @@ namespace CEGUI {
 
     void FalagardScrollbar::updateThumb(void) {
         Scrollbar* w = (Scrollbar*) d_window;
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
         Rectf area(wlf.getNamedArea("ThumbTrackArea").getArea().getPixelRect(*w));
+#endif //PE_NO_LOOK_FEEL           
 
         Thumb* theThumb = w->getThumb();
 
         float posExtent = w->getDocumentSize() - w->getPageSize();
         float slideExtent;
 
+#ifndef PE_NO_LOOK_FEEL
         if (d_vertical) {
             if (w->getPixelSize().d_height != 0.0f && posExtent != 0.0f) {
                 slideExtent = area.getHeight() - theThumb->getPixelSize().d_height;
@@ -81,7 +85,7 @@ namespace CEGUI {
             } else {
                 theThumb->setVertRange(0.0f, 0.0f);
                 theThumb->setPosition(UVector2(cegui_absdim(area.left()), cegui_reldim(0.0f)));
-            }
+            }               
         } else {
             if (w->getPixelSize().d_width != 0.0f && posExtent != 0.0f) {
                 slideExtent = area.getWidth() - theThumb->getPixelSize().d_width;
@@ -93,22 +97,29 @@ namespace CEGUI {
                 theThumb->setPosition(UVector2(cegui_reldim(0.0f), cegui_absdim(area.top())));
             }
         }
+#endif //PE_NO_LOOK_FEEL                   
     }
 
     float FalagardScrollbar::getValueFromThumb(void) const {
         Scrollbar* w = (Scrollbar*) d_window;
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
         const Rectf area(wlf.getNamedArea("ThumbTrackArea").getArea().getPixelRect(*w));
+#endif //PE_NO_LOOK_FEEL           
 
         Thumb* theThumb = w->getThumb();
         float posExtent = w->getDocumentSize() - w->getPageSize();
 
         if (d_vertical) {
+#ifndef PE_NO_LOOK_FEEL
             float slideExtent = area.getHeight() - theThumb->getPixelSize().d_height;
             return (CoordConverter::asAbsolute(theThumb->getYPosition(), w->getPixelSize().d_height) - area.top()) / (slideExtent / posExtent);
+#endif //PE_NO_LOOK_FEEL               
         } else {
+#ifndef PE_NO_LOOK_FEEL
             float slideExtent = area.getWidth() - theThumb->getPixelSize().d_width;
             return (CoordConverter::asAbsolute(theThumb->getXPosition(), w->getPixelSize().d_width) - area.left()) / (slideExtent / posExtent);
+#endif //PE_NO_LOOK_FEEL               
         }
     }
 

@@ -145,7 +145,9 @@ namespace CEGUI {
 
         \exception UnknownObjectException   thrown if no WidgetLookFeel is available with the requested name.
          */
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& getWidgetLook(const String& widget) const;
+#endif //PE_NO_LOOK_FEEL        
 
 
         /*!
@@ -180,7 +182,9 @@ namespace CEGUI {
         \return
             Nothing.
          */
+#ifndef PE_NO_LOOK_FEEL
         void addWidgetLook(const WidgetLookFeel& look);
+#endif //PE_NO_LOOK_FEEL        
 
 
         /*!
@@ -285,14 +289,17 @@ namespace CEGUI {
 
     private:
         static const String FalagardSchemaName; //!< Name of schema file used for XML validation.
-
+#ifndef PE_NO_LOOK_FEEL
         typedef std::map<String, WidgetLookFeel, StringFastLessCompare> WidgetLookList;
         WidgetLookList d_widgetLooks;
+#endif //PE_NO_LOOK_FEEL
 
         static String d_defaultResourceGroup; //!< holds default resource group
     public:
+#ifndef PE_NO_LOOK_FEEL
         typedef ConstMapIterator<WidgetLookList> WidgetLookIterator;
         WidgetLookIterator getWidgetLookIterator() const;
+#endif //PE_NO_LOOK_FEEL     
 
     };
 

@@ -148,11 +148,15 @@ namespace CEGUI {
         size_t getTextIndexFromPosition(const Vector2f& pt) const;
         // overridden from WindowRenderer class
         void update(float elapsed);
+#ifndef PE_NO_LOOK_FEEL
         bool handleFontRenderSizeChange(const Font * const font);
+#endif //PE_NO_LOOK_FEEL           
 
     protected:
+#ifndef PE_NO_LOOK_FEEL
         //! helper to draw the base imagery (container and what have you)
         void renderBaseImagery(const WidgetLookFeel& wlf) const;
+#endif //PE_NO_LOOK_FEEL           
         //! helper to set 'visual' to the string we will render (part of)
         void setupVisualString(String& visual) const;
         size_t getCaretIndex(const String& visual_string) const;
@@ -160,6 +164,7 @@ namespace CEGUI {
                 const float text_extent,
                 const float caret_width,
                 const float extent_to_caret);
+#ifndef PE_NO_LOOK_FEEL
         void renderTextNoBidi(const WidgetLookFeel& wlf,
                 const String& text,
                 const Rectf& text_area,
@@ -168,6 +173,7 @@ namespace CEGUI {
                 const String& text,
                 const Rectf& text_area,
                 float text_offset);
+#endif //PE_NO_LOOK_FEEL           
         bool editboxIsFocussed() const;
         bool editboxIsReadOnly() const;
         void renderCaret(const ImagerySection& imagery,

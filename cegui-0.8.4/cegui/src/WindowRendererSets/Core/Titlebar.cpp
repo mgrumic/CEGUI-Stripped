@@ -41,6 +41,7 @@ namespace CEGUI {
         const StateImagery* imagery;
 
         CEGUI_TRY{
+#ifndef PE_NO_LOOK_FEEL
             // get WidgetLookFeel for the assigned look.
             const WidgetLookFeel& wlf = getLookNFeel();
             // try and get imagery for our current state
@@ -48,6 +49,7 @@ namespace CEGUI {
                 imagery = &wlf.getStateImagery((d_window->getParent() && d_window->getParent()->isActive()) ? "Active" : "Inactive");
             else
                 imagery = &wlf.getStateImagery("Disabled");
+#endif //PE_NO_LOOK_FEEL               
         }
 
         CEGUI_CATCH(UnknownObjectException&) {

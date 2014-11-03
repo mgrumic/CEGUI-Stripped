@@ -41,8 +41,10 @@ namespace CEGUI {
 
     void FalagardTabButton::render() {
         TabButton* w = static_cast<TabButton*> (d_window);
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
 
         TabControl* tc = w->getParent() ? dynamic_cast<TabControl*> (w->getParent()->getParent()) : 0;
         String prefix((tc && tc->getTabPanePosition() == TabControl::Bottom) ? "Bottom" : "Top");
@@ -60,7 +62,7 @@ namespace CEGUI {
 #endif //PE_NO_MOUSE
         else
             state = "Normal";
-
+#ifndef PE_NO_LOOK_FEEL
         if (!wlf.isStateImageryPresent(prefix + state)) {
             state = "Normal";
             if (!wlf.isStateImageryPresent(prefix + state))
@@ -68,6 +70,7 @@ namespace CEGUI {
         }
 
         wlf.getStateImagery(prefix + state).render(*w);
+#endif //PE_NO_LOOK_FEEL   
     }
 
 } // End of  CEGUI namespace section

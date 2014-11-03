@@ -36,7 +36,9 @@
 namespace CEGUI {
     // forward refs
     class WidgetLookManager;
+#ifndef PE_NO_LOOK_FEEL
     class WidgetLookFeel;
+#endif //PE_NO_LOOK_FEEL    
     class WidgetComponent;
     class ImagerySection;
     class StateImagery;
@@ -584,7 +586,9 @@ namespace CEGUI {
         ElementEndHandlerMap d_endHandlersMap;
 
         // these hold pointers to various objects under construction.
+#ifndef PE_NO_LOOK_FEEL
         WidgetLookFeel* d_widgetlook;
+#endif //PE_NO_LOOK_FEEL        
         WidgetComponent* d_childcomponent;
         ImagerySection* d_imagerysection;
         StateImagery* d_stateimagery;

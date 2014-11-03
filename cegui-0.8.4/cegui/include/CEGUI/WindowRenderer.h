@@ -113,14 +113,18 @@ namespace CEGUI {
         \brief
             Get the Look'N'Feel assigned to our window
          */
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& getLookNFeel() const;
+#endif //PE_NO_LOOK_FEEL        
 
         /*!
         \brief
             Get unclipped inner rectangle that our window should return from its
             member function with the same name.
          */
+#ifndef PE_NO_LOOK_FEEL
         virtual Rectf getUnclippedInnerRect() const;
+#endif //PE_NO_LOOK_FEEL        
 
         /*!
         \brief
@@ -159,7 +163,9 @@ namespace CEGUI {
             - true if some action was taken.
             - false if no action was taken (i.e font is not used here).
          */
+#ifndef PE_NO_LOOK_FEEL
         virtual bool handleFontRenderSizeChange(const Font * const font);
+#endif //PE_NO_LOOK_FEEL        
 
     protected:
         /*************************************************************************

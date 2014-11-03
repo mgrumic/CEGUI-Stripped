@@ -78,9 +78,11 @@ namespace CEGUI {
             return;
 
         CEGUI_TRY{
+#ifndef PE_NO_LOOK_FEEL
             // get the imagery section object with the name we're set up to use
             const ImagerySection* sect =
             &WidgetLookManager::getSingleton().getWidgetLook(d_owner).getImagerySection(d_sectionName);
+#endif //PE_NO_LOOK_FEEL            
 
             // decide what colours are to be used
             ColourRect finalColours;
@@ -89,9 +91,10 @@ namespace CEGUI {
 
             if (modcols)
                 finalColours *= *modcols;
-
+#ifndef PE_NO_LOOK_FEEL
             // render the imagery section
             sect->render(srcWindow, &finalColours, clipper, clipToDisplay);
+#endif //PE_NO_LOOK_FEEL
         }
         // do nothing here, errors are non-faltal and are logged for debugging purposes.
 
@@ -108,9 +111,11 @@ namespace CEGUI {
             return;
 
         CEGUI_TRY{
+#ifndef PE_NO_LOOK_FEEL
             // get the imagery section object with the name we're set up to use
             const ImagerySection* sect =
             &WidgetLookManager::getSingleton().getWidgetLook(d_owner).getImagerySection(d_sectionName);
+#endif //PE_NO_LOOK_FEEL            
 
             // decide what colours are to be used
             ColourRect finalColours;
@@ -119,9 +124,10 @@ namespace CEGUI {
 
             if (modcols)
                 finalColours *= *modcols;
-
+#ifndef PE_NO_LOOK_FEEL
             // render the imagery section
             sect->render(srcWindow, baseRect, &finalColours, clipper, clipToDisplay);
+#endif //PE_NO_LOOK_FEEL
         }
         // do nothing here, errors are non-faltal and are logged for debugging purposes.
 

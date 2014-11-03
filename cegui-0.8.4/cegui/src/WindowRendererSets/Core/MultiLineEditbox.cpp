@@ -67,7 +67,9 @@ namespace CEGUI {
 
     Rectf FalagardMultiLineEditbox::getTextRenderArea(void) const {
         MultiLineEditbox* w = (MultiLineEditbox*) d_window;
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
         bool v_visible = w->getVertScrollbar()->isVisible();
         bool h_visible = w->getHorzScrollbar()->isVisible();
 
@@ -82,26 +84,29 @@ namespace CEGUI {
                 area_name += "V";
             }
             area_name += "Scroll";
-
+#ifndef PE_NO_LOOK_FEEL
             if (wlf.isNamedAreaDefined(area_name)) {
                 return wlf.getNamedArea(area_name).getArea().getPixelRect(*w);
             }
+#endif //PE_NO_LOOK_FEEL   
         }
-
+#ifndef PE_NO_LOOK_FEEL
         // default to plain TextArea
         return wlf.getNamedArea("TextArea").getArea().getPixelRect(*w);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     void FalagardMultiLineEditbox::cacheEditboxBaseImagery() {
         MultiLineEditbox* w = (MultiLineEditbox*) d_window;
         const StateImagery* imagery;
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         imagery = &wlf.getStateImagery(w->isEffectiveDisabled() ? "Disabled" : (w->isReadOnly() ? "ReadOnly" : "Enabled"));
         // peform the rendering operation.
         imagery->render(*w);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     void FalagardMultiLineEditbox::cacheCaretImagery(const Rectf& textArea) {
@@ -125,22 +130,26 @@ namespace CEGUI {
                 //             // get base offset to target layer for cursor.
                 //             Renderer* renderer = System::getSingleton().getRenderer();
                 //             float baseZ = renderer->getZLayer(7) - renderer->getCurrentZ();
-
+#ifndef PE_NO_LOOK_FEEL
                 // get WidgetLookFeel for the assigned look.
                 const WidgetLookFeel& wlf = getLookNFeel();
                 // get caret imagery
                 const ImagerySection& caretImagery = wlf.getImagerySection("Caret");
+#endif //PE_NO_LOOK_FEEL   
 
                 // calculate finat destination area for caret
                 Rectf caretArea;
                 caretArea.left(textArea.left() + xpos);
                 caretArea.top(textArea.top() + ypos);
+#ifndef PE_NO_LOOK_FEEL
                 caretArea.setWidth(caretImagery.getBoundingRect(*w).getSize().d_width);
+#endif //PE_NO_LOOK_FEEL                   
                 caretArea.setHeight(fnt->getLineSpacing());
                 caretArea.offset(Vector2f(-w->getHorzScrollbar()->getScrollPosition(), -w->getVertScrollbar()->getScrollPosition()));
-
+#ifndef PE_NO_LOOK_FEEL
                 // cache the caret image for rendering.
                 caretImagery.render(*w, caretArea, 0, &textArea);
+#endif //PE_NO_LOOK_FEEL   
             }
         }
     }
@@ -385,6 +394,7 @@ namespace CEGUI {
     //----------------------------------------------------------------------------//
 
     bool FalagardMultiLineEditbox::handleFontRenderSizeChange(const Font * const font) {
+#ifndef PE_NO_LOOK_FEEL
         const bool res = WindowRenderer::handleFontRenderSizeChange(font);
 
         if (d_window->getFont() == font) {
@@ -394,6 +404,7 @@ namespace CEGUI {
         }
 
         return res;
+#endif //PE_NO_LOOK_FEEL           
     }
 
 } // End of  CEGUI namespace section

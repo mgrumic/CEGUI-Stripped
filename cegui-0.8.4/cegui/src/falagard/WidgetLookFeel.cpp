@@ -35,6 +35,7 @@
 #include <iostream>
 #include <algorithm>
 
+#ifndef PE_NO_LOOK_FEEL
 // Start of CEGUI namespace section
 namespace CEGUI {
     //---------------------------------------------------------------------------//
@@ -1027,3 +1028,4 @@ namespace CEGUI {
 
 } // End of  CEGUI namespace section
 
+#endif //PE_NO_LOOK_FEEL

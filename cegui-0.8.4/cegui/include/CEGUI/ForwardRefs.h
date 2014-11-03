@@ -137,7 +137,9 @@ namespace CEGUI {
     template<typename T> class Vector3;
 #endif  // PE_NO_VECTOR3D
     struct Vertex;
+#ifndef PE_NO_LOOK_FEEL
     class WidgetLookFeel;
+#endif //PE_NO_LOOK_FEEL    
     class Window;
     class WindowFactory;
     class WindowFactoryManager;

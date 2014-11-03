@@ -41,13 +41,14 @@ namespace CEGUI {
 
     void FalagardItemListbox::render() {
         const StateImagery* imagery;
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         // peform the rendering operation.
         imagery->render(*d_window);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     Rectf FalagardItemListbox::getItemRenderArea(void) const {
@@ -59,12 +60,14 @@ namespace CEGUI {
     Rectf FalagardItemListbox::getItemRenderingArea(bool hscroll,
             bool vscroll) const {
         const ItemListbox * const lb = static_cast<ItemListbox*> (d_window);
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
         const String area_name("ItemRenderArea");
         const String alternate_name("ItemRenderingArea");
         const String scroll_suffix(
                 vscroll ? hscroll ? "HVScroll" : "VScroll" : hscroll ? "HScroll" : "");
-
+#ifndef PE_NO_LOOK_FEEL
         if (wlf.isNamedAreaDefined(area_name + scroll_suffix))
             return wlf.getNamedArea(area_name + scroll_suffix).getArea().getPixelRect(*lb);
 
@@ -76,6 +79,7 @@ namespace CEGUI {
             return wlf.getNamedArea(area_name).getArea().getPixelRect(*lb);
         else
             return wlf.getNamedArea(alternate_name).getArea().getPixelRect(*lb);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     void FalagardItemListbox::onLookNFeelAssigned() {

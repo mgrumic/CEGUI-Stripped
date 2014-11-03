@@ -42,8 +42,10 @@ namespace CEGUI {
 
     Rectf FalagardScrollablePane::getViewableArea(void) const {
         ScrollablePane* w = (ScrollablePane*) d_window;
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
         bool v_visible = w->getVertScrollbar()->isVisible();
         bool h_visible = w->getHorzScrollbar()->isVisible();
 
@@ -58,24 +60,27 @@ namespace CEGUI {
                 area_name += "V";
             }
             area_name += "Scroll";
-
+#ifndef PE_NO_LOOK_FEEL
             if (wlf.isNamedAreaDefined(area_name)) {
                 return wlf.getNamedArea(area_name).getArea().getPixelRect(*w);
             }
+#endif //PE_NO_LOOK_FEEL   
         }
-
+#ifndef PE_NO_LOOK_FEEL
         // default to plain ViewableArea
         return wlf.getNamedArea("ViewableArea").getArea().getPixelRect(*w);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     void FalagardScrollablePane::render() {
         const StateImagery* imagery;
-
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
         // try and get imagery for our current state
         imagery = &wlf.getStateImagery(d_window->isEffectiveDisabled() ? "Disabled" : "Enabled");
         // peform the rendering operation.
+#endif //PE_NO_LOOK_FEEL   
         imagery->render(*d_window);
     }
 

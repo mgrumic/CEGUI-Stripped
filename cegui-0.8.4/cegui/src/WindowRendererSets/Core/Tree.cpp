@@ -47,8 +47,10 @@ namespace CEGUI {
     }
 
     Rectf FalagardTree::getTreeRenderArea(void) const {
+#ifndef PE_NO_LOOK_FEEL
         // get WidgetLookFeel for the assigned look.
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
         Tree* tree = (Tree*) d_window;
 
         bool v_visible = tree->getVertScrollbar()->isVisible();
@@ -65,14 +67,16 @@ namespace CEGUI {
                 area_name += "V";
             }
             area_name += "Scroll";
-
+#ifndef PE_NO_LOOK_FEEL
             if (wlf.isNamedAreaDefined(area_name)) {
                 return wlf.getNamedArea(area_name).getArea().getPixelRect(*tree);
             }
+#endif //PE_NO_LOOK_FEEL   
         }
-
+#ifndef PE_NO_LOOK_FEEL
         // default to plain ItemRenderingArea
         return wlf.getNamedArea("ItemRenderingArea").getArea().getPixelRect(*tree);
+#endif //PE_NO_LOOK_FEEL   
     }
 
     void FalagardTree::render() {
@@ -80,11 +84,15 @@ namespace CEGUI {
         //Set the render area for this.
         Rectf rect = getTreeRenderArea();
         tree->setItemRenderArea(rect);
+#ifndef PE_NO_LOOK_FEEL
         const WidgetLookFeel& wlf = getLookNFeel();
+#endif //PE_NO_LOOK_FEEL           
 
         const StateImagery* imagery;
         //Get the Falagard imagery to render
+#ifndef PE_NO_LOOK_FEEL
         imagery = &wlf.getStateImagery(tree->isEffectiveDisabled() ? "Disabled" : "Enabled");
+#endif //PE_NO_LOOK_FEEL           
         //Render the window
         imagery->render(*tree);
         //Fix Scrollbars
