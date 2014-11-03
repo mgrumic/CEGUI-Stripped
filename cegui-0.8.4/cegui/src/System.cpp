@@ -680,8 +680,10 @@ namespace CEGUI {
 #ifndef PE_NO_WGT_SPINNER
         WindowFactoryManager::addWindowType<Spinner>();
 #endif  //PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_TAB_CONTROL
         WindowFactoryManager::addWindowType<TabButton>();
         WindowFactoryManager::addWindowType<TabControl>();
+#endif //PE_NO_WGT_TAB_CONTROL
         WindowFactoryManager::addWindowType<Thumb>();
         WindowFactoryManager::addWindowType<Titlebar>();
         WindowFactoryManager::addWindowType<ToggleButton>();

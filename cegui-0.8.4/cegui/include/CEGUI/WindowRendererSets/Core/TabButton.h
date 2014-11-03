@@ -28,6 +28,7 @@
 #define _FalTabButton_h_
 
 #include "CEGUI/WindowRendererSets/Core/Module.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 
 // Start of CEGUI namespace section
 namespace CEGUI {
@@ -60,4 +61,5 @@ namespace CEGUI {
 } // End of  CEGUI namespace section
 
 
+#endif //PE_NO_WGT_TAB_CONTROL
 #endif  // end of guard _FalTabButton_h_

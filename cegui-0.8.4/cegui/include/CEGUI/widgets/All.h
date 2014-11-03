@@ -63,8 +63,10 @@
 #include "./ScrolledContainer.h"
 #include "./Slider.h"
 #include "./Spinner.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "./TabButton.h"
 #include "./TabControl.h"
+#endif //PE_NO_WGT_TAB_CONTROL
 #include "./Thumb.h"
 #include "./Titlebar.h"
 #include "./ToggleButton.h"

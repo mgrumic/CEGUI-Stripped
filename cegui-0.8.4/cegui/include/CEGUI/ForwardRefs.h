@@ -207,8 +207,10 @@ namespace CEGUI {
 #ifndef PE_NO_WGT_SPINNER
     class Spinner;
 #endif //PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_TAB_CONTROL
     class TabButton;
     class TabControl;
+#endif //PE_NO_WGT_TAB_CONTROL
     class Thumb;
     class Titlebar;
     class ToggleButton;

@@ -48,8 +48,10 @@
 #include "CEGUI/WindowRendererSets/Core/Static.h"
 #include "CEGUI/WindowRendererSets/Core/StaticImage.h"
 #include "CEGUI/WindowRendererSets/Core/StaticText.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/WindowRendererSets/Core/TabButton.h"
 #include "CEGUI/WindowRendererSets/Core/TabControl.h"
+#endif //PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/WindowRendererSets/Core/Titlebar.h"
 #include "CEGUI/WindowRendererSets/Core/ToggleButton.h"
 #include "CEGUI/WindowRendererSets/Core/Tooltip.h"
@@ -96,8 +98,10 @@ namespace CEGUI {
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStatic>());
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticImage>());
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardStaticText>());
+#ifndef PE_NO_WGT_TAB_CONTROL
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabButton>());
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTabControl>());
+#endif //PE_NO_WGT_TAB_CONTROL
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTitlebar>());
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardToggleButton>());
 #ifndef PE_NO_MOUSE

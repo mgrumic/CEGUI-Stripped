@@ -30,6 +30,7 @@
 #define _CEGUITabButton_h_
 
 #include "../Base.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "./ButtonBase.h"
 
 // Start of CEGUI namespace section
@@ -153,4 +154,5 @@ namespace CEGUI {
 } // End of  CEGUI namespace section
 
 
+#endif //PE_NO_WGT_TAB_CONTROL
 #endif	// end of guard _CEGUITabButton_h_

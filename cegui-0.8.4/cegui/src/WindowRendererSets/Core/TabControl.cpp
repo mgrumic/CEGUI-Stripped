@@ -25,6 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/WindowRendererSets/Core/TabControl.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/falagard/WidgetLookManager.h"
 #include "CEGUI/falagard/WidgetLookFeel.h"
 #include "CEGUI/WindowManager.h"
@@ -75,3 +76,4 @@ namespace CEGUI {
     }
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TAB_CONTROL

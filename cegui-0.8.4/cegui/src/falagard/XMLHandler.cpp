@@ -42,7 +42,9 @@
 #include "CEGUI/AnimationManager.h"
 
 #include "CEGUI/widgets/Thumb.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/widgets/TabControl.h"
+#endif //PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/widgets/Spinner.h"
 #include "CEGUI/widgets/ItemListBase.h"
 #include "CEGUI/widgets/ListHeaderSegment.h"
@@ -873,8 +875,10 @@ namespace CEGUI {
             prop = CEGUI_NEW_AO PropertyDefinition<float>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
         else if (type == PropertyHelper<double>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<double>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#ifndef PE_NO_WGT_TAB_CONTROL
         else if (type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<TabControl::TabPanePosition>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#endif //PE_NO_WGT_TAB_CONTROL
 #ifndef PE_NO_WGT_SPINNER
         else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
             prop = CEGUI_NEW_AO PropertyDefinition<Spinner::TextInputMode>(name, init, help, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
@@ -1012,10 +1016,12 @@ namespace CEGUI {
         else if (type == PropertyHelper<double>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<double>(name,
                 widget, target, init, d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#ifndef PE_NO_WGT_TAB_CONTROL
         else if (type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
                 TabControl::TabPanePosition>(name, widget, target, init,
                 d_widgetlook->getName(), redraw, layout, eventName, d_widgetlook->getName());
+#endif //PE_NO_WGT_TAB_CONTROL
 #ifndef PE_NO_WGT_SPINNER
         else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
             d_propertyLink = CEGUI_NEW_AO PropertyLinkDefinition<
@@ -1495,8 +1501,10 @@ namespace CEGUI {
                 dynamic_cast<PropertyLinkDefinition<float>*> (d_propertyLink)->addLinkTarget(w, p);
             else if (type == PropertyHelper<double>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<double>*> (d_propertyLink)->addLinkTarget(w, p);
+#ifndef PE_NO_WGT_TAB_CONTROL
             else if (type == PropertyHelper<TabControl::TabPanePosition>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<TabControl::TabPanePosition>*> (d_propertyLink)->addLinkTarget(w, p);
+#endif //PE_NO_WGT_TAB_CONTROL
 #ifndef PE_NO_WGT_SPINNER
             else if (type == PropertyHelper<Spinner::TextInputMode>::getDataTypeName())
                 dynamic_cast<PropertyLinkDefinition<Spinner::TextInputMode>*> (d_propertyLink)->addLinkTarget(w, p);

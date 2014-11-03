@@ -540,7 +540,9 @@ static void tolua_reg_types(lua_State* tolua_S) {
     tolua_usertype(tolua_S, "CEGUI::KeyEventArgs");
     tolua_usertype(tolua_S, "CEGUI::Element");
     tolua_usertype(tolua_S, "CEGUI::TextComponent");
+#ifndef PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::TabControl");
+#endif //PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::FrameComponent");
     tolua_usertype(tolua_S, "CEGUI::GlobalEventSet");
     tolua_usertype(tolua_S, "CEGUI::PropertyInitialiser");
@@ -584,7 +586,9 @@ static void tolua_reg_types(lua_State* tolua_S) {
     tolua_usertype(tolua_S, "CEGUI::ListboxTextItem");
     tolua_usertype(tolua_S, "CEGUI::Menubar");
     tolua_usertype(tolua_S, "CEGUI::ItemListBase");
+#ifndef PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::TabButton");
+#endif //PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::UnifiedDim");
     tolua_usertype(tolua_S, "CEGUI::NamedArea");
     tolua_usertype(tolua_S, "CEGUI::ListHeader");
@@ -36556,6 +36560,7 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 #endif // PE_NO_WGT_RADIOBUTTON
 
+#ifndef PE_NO_WGT_TAB_CONTROL
 /* method: isSelected of class  CEGUI::TabButton */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabButton_isSelected00
 
@@ -36686,6 +36691,7 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+
 /* method: getTabCount of class  CEGUI::TabControl */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabControl_getTabCount00
 
@@ -36717,6 +36723,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+
 
 /* method: setSelectedTab of class  CEGUI::TabControl */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabControl_setSelectedTab00
@@ -37195,6 +37202,7 @@ tolua_lerror:
     return tolua_CEGUI_CEGUI_TabControl_removeTab00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_TAB_CONTROL
 
 #ifndef PE_NO_MOUSE
 /* method: isDraggingEnabled of class  CEGUI::Titlebar */
@@ -66829,6 +66837,7 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "getSelectedButtonInGroup", tolua_CEGUI_CEGUI_RadioButton_getSelectedButtonInGroup00);
     tolua_endmodule(tolua_S);
 #endif //PE_NO_WGT_RADIOBUTTON
+#ifndef PE_NO_WGT_TAB_CONTROL
     tolua_cclass(tolua_S, "TabButton", "CEGUI::TabButton", "CEGUI::ButtonBase", NULL);
     tolua_beginmodule(tolua_S, "TabButton");
     tolua_function(tolua_S, "isSelected", tolua_CEGUI_CEGUI_TabButton_isSelected00);
@@ -66855,6 +66864,7 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "removeTab", tolua_CEGUI_CEGUI_TabControl_removeTab00);
     tolua_function(tolua_S, "removeTab", tolua_CEGUI_CEGUI_TabControl_removeTab01);
     tolua_endmodule(tolua_S);
+#endif //PE_NO_WGT_TAB_CONTROL
     tolua_cclass(tolua_S, "Titlebar", "CEGUI::Titlebar", "CEGUI::Window", NULL);
     tolua_beginmodule(tolua_S, "Titlebar");
 #ifndef PE_NO_MOUSE

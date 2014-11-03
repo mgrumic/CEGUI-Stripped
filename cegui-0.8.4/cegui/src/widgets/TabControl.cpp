@@ -27,6 +27,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/Exceptions.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/widgets/TabControl.h"
 #include "CEGUI/widgets/TabButton.h"
 #include "CEGUI/widgets/PushButton.h"
@@ -803,3 +804,4 @@ bool TabControl::handleDraggedPane(const EventArgs& e) {
     }
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TAB_CONTROL
