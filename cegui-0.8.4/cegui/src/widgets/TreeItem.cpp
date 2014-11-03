@@ -29,6 +29,7 @@
 #endif
 
 #include "CEGUI/widgets/Tree.h"
+#ifndef PE_NO_WGT_TREE
 #include "CEGUI/widgets/TreeItem.h"
 #include "CEGUI/System.h"
 #include "CEGUI/ImageManager.h"
@@ -372,3 +373,4 @@ namespace CEGUI {
     //----------------------------------------------------------------------------//
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TREE

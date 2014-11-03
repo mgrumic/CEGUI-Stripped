@@ -25,6 +25,7 @@ author:		Jonathan Welch (Based on Code by David Durant)
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/WindowRendererSets/Core/Tree.h"
+#ifndef PE_NO_WGT_TREE
 #include "CEGUI/falagard/WidgetLookManager.h"
 #include "CEGUI/falagard/WidgetLookFeel.h"
 #include "CEGUI/WindowManager.h"
@@ -92,3 +93,4 @@ namespace CEGUI {
         tree->doTreeRender();
     }
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TREE

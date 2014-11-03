@@ -28,6 +28,7 @@
 #define _CEGUITree_h_
 
 #include "../Base.h"
+#ifndef PE_NO_WGT_TREE
 #include "../Window.h"
 #include "../WindowManager.h"
 #include "./TreeItem.h"
@@ -892,4 +893,5 @@ namespace CEGUI {
 #pragma warning(pop)
 #endif
 
+#endif //PE_NO_WGT_TREE
 #endif	// end of guard _CEGUITree_h_

@@ -213,8 +213,10 @@ namespace CEGUI {
     class Titlebar;
     class ToggleButton;
     class Tooltip;
+#ifndef PE_NO_WGT_TREE
     class Tree;
     class TreeItem;
+#endif //PE_NO_WGT_TREE
     class VerticalLayoutContainer;
     /*************************************************************************
     Forward declare EventArg based classes.
@@ -228,11 +230,15 @@ namespace CEGUI {
     class KeyEventArgs;
     class MouseCursorEventArgs;
     class MouseEventArgs;
+#ifndef PE_NO_REGEX_MATCHER
     class RegexMatchStateArgs;
+#endif //PE_NO_REGEX_MATCHER
     class RenderQueueEventArgs;
     class RenderTargetEventArgs;
     class ResourceEventArgs;
+#ifndef PE_NO_WGT_TREE
     class TreeEventArgs;
+#endif //PE_NO_WGT_TREE
     class UpdateEventArgs;
     class WindowEventArgs;
 

@@ -54,7 +54,9 @@
 #include "CEGUI/WindowRendererSets/Core/ToggleButton.h"
 #include "CEGUI/WindowRendererSets/Core/Tooltip.h"
 #include "CEGUI/WindowRendererSets/Core/ItemListbox.h"
+#ifndef PE_NO_WGT_TREE
 #include "CEGUI/WindowRendererSets/Core/Tree.h"
+#endif //PE_NO_WGT_TREE
 
 //----------------------------------------------------------------------------//
 
@@ -102,7 +104,9 @@ namespace CEGUI {
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTooltip>());
 #endif //PE_NO_MOUSE
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardItemListbox>());
+#ifndef PE_NO_WGT_TREE
         d_registry.push_back(CEGUI_NEW_AO TplWRFactoryRegisterer<FalagardTree>());
+#endif //PE_NO_WGT_TREE
     }
 
     //----------------------------------------------------------------------------//

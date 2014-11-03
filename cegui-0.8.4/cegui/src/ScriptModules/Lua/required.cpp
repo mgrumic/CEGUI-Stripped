@@ -64,6 +64,7 @@ namespace CEGUI {
         return new ListboxTextItem(text, item_id, item_data, disabled, auto_delete);
     }
 
+#ifndef PE_NO_WGT_TREE
     /*************************************************************************
     Functions for creating tree items
      *************************************************************************/
@@ -73,6 +74,7 @@ namespace CEGUI {
     TreeItem* ceguiLua_createTreeItem(const String& text, uint item_id, void* item_data, bool disabled, bool auto_delete) {
         return new TreeItem(text, item_id, item_data, disabled, auto_delete);
     }
+#endif //PE_NO_WGT_TREE
 
     /************************************************************************
         OutStream

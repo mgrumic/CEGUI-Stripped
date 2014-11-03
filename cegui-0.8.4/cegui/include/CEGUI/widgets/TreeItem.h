@@ -28,6 +28,7 @@
 #define _CEGUITreeItem_h_
 
 #include "../Base.h"
+#ifndef PE_NO_WGT_TREE
 #include "../String.h"
 #include "../ColourRect.h"
 #include "../BasicRenderedStringParser.h"
@@ -727,4 +728,5 @@ namespace CEGUI {
 #pragma warning(pop)
 #endif
 
+#endif //PE_NO_WGT_TREE
 #endif   // end of guard _CEGUITreeItem_h_

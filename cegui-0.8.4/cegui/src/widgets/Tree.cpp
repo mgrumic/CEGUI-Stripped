@@ -25,6 +25,7 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/Exceptions.h"
+#ifndef PE_NO_WGT_TREE
 #include "CEGUI/WindowManager.h"
 #include "CEGUI/CoordConverter.h"
 #include "CEGUI/WindowManager.h"
@@ -1245,3 +1246,4 @@ namespace CEGUI {
     }
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TREE
