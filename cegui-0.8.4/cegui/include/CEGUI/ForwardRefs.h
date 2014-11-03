@@ -45,7 +45,9 @@ namespace CEGUI {
     class BasicRenderedStringParser;
     class BidiVisualMapping;
     class CentredRenderedString;
+#ifndef PE_NO_CLIPBOARD
     class Clipboard;
+#endif  // PE_NO_CLIPBOARD
     class Colour;
     class ColourRect;
     class CoordConverter;
@@ -76,7 +78,9 @@ namespace CEGUI {
     class ImageCodec;
     class ImageManager;
     class ImagerySection;
+#ifndef PE_NO_ANIMATION
     class Interpolator;
+#endif  //PE_NO_ANIMATION
     class JustifiedRenderedString;
     class KeyFrame;
     class LeftAlignedRenderedString;

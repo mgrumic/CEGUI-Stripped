@@ -32,6 +32,8 @@
 #include "CEGUI/Base.h"
 #include "CEGUI/String.h"
 
+#ifndef PE_NO_ANIMATION
+
 // Start of CEGUI namespace section
 namespace CEGUI {
 
@@ -91,4 +93,4 @@ namespace CEGUI {
 } // End of  CEGUI namespace section
 
 #endif  // end of guard _CEGUIInterpolator_h_
-
+#endif  // PE_NO_ANIMATION

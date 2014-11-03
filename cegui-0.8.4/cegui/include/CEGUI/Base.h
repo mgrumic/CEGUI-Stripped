@@ -62,8 +62,6 @@
 //#define PE_NO_WGT_TAB_CONTROL
 
 
-
-
 // bring in configuration options
 #include "CEGUI/Config.h"
 

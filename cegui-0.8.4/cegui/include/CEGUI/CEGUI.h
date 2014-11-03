@@ -109,7 +109,9 @@
 #include "CEGUI/Texture.h"
 #include "CEGUI/TextureTarget.h"
 #include "CEGUI/TextUtils.h"
+#ifndef PE_NO_ANIMATION
 #include "CEGUI/TplInterpolators.h"
+#endif  //PE_NO_ANIMATION
 #include "CEGUI/TplWindowFactory.h"
 #include "CEGUI/TplWindowRendererFactory.h"
 #include "CEGUI/TplWindowFactoryRegisterer.h"

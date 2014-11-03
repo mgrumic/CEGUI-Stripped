@@ -626,7 +626,9 @@ static void tolua_reg_types(lua_State* tolua_S) {
     tolua_usertype(tolua_S, "CEGUI::GUISheet");
     tolua_usertype(tolua_S, "CEGUI::FalagardWindowMapping");
     tolua_usertype(tolua_S, "CEGUI::UDim");
+#ifndef PE_NO_ANIMATION
     tolua_usertype(tolua_S, "CEGUI::Interpolator");
+#endif  //PE_NO_ANIMATION
     tolua_usertype(tolua_S, "CEGUI::Texture");
     tolua_usertype(tolua_S, "CEGUI::SystemKeys");
     tolua_usertype(tolua_S, "CEGUI::RenderingContext");
@@ -35058,7 +35060,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-#endif //PE_NO_ANIMATION
+
 
 /* method: getType of class  CEGUI::Interpolator */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Interpolator_getType00
@@ -35169,7 +35171,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-
+#endif //PE_NO_ANIMATION
 #ifndef PE_NO_WGT_TREE
 /* method: getItemCount of class  CEGUI::Tree */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_Tree_getItemCount00
@@ -66780,12 +66782,14 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "getDefaultResourceGroup", tolua_CEGUI_CEGUI_AnimationManager_getDefaultResourceGroup00);
 #endif //PE_NO_ANIMATION
     tolua_endmodule(tolua_S);
+#ifndef PE_NO_ANIMATION
     tolua_cclass(tolua_S, "Interpolator", "CEGUI::Interpolator", "", NULL);
     tolua_beginmodule(tolua_S, "Interpolator");
     tolua_function(tolua_S, "getType", tolua_CEGUI_CEGUI_Interpolator_getType00);
     tolua_function(tolua_S, "interpolateAbsolute", tolua_CEGUI_CEGUI_Interpolator_interpolateAbsolute00);
     tolua_function(tolua_S, "interpolateRelative", tolua_CEGUI_CEGUI_Interpolator_interpolateRelative00);
     tolua_endmodule(tolua_S);
+#endif //PE_NO_ANIMATION
     tolua_cclass(tolua_S, "GUISheet", "CEGUI::GUISheet", "CEGUI::Window", NULL);
     tolua_beginmodule(tolua_S, "GUISheet");
     tolua_endmodule(tolua_S);

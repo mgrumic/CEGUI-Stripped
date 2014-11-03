@@ -2332,6 +2332,7 @@ namespace CEGUI {
         \return
             true if the copy was successful and allowed, false otherwise
          */
+#ifndef PE_NO_CLIPBOARD
         virtual bool performCopy(Clipboard& clipboard);
 
         /*!
@@ -2357,7 +2358,7 @@ namespace CEGUI {
             true if the paste was successful and allowed, false otherwise
          */
         virtual bool performPaste(Clipboard& clipboard);
-
+#endif  // PE_NO_CLIPBOARD
         /*!
         \brief
             Writes an xml representation of this window object to \a out_stream.

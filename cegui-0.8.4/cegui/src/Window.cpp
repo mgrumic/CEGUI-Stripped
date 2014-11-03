@@ -1623,7 +1623,7 @@ namespace CEGUI {
     }
 
     //----------------------------------------------------------------------------//
-
+#ifndef PE_NO_CLIPBOARD
     bool Window::performCopy(Clipboard& /*clipboard*/) {
         // deny copying by default
         return false;
@@ -1642,7 +1642,7 @@ namespace CEGUI {
         // deny pasting by default
         return false;
     }
-
+#endif  // PE_NO_CLIPBOARD
     //----------------------------------------------------------------------------//
 
     bool Window::distributesCapturedInputs(void) const {

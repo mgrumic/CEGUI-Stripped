@@ -33,6 +33,8 @@
 #include "CEGUI/Interpolator.h"
 #include "CEGUI/PropertyHelper.h"
 
+#ifndef PE_NO_ANIMATION
+
 // Start of CEGUI namespace section
 namespace CEGUI {
 
@@ -230,5 +232,5 @@ namespace CEGUI {
     };
 
 } // End of  CEGUI namespace section
-
+#endif  //PE_NO_ANIMATION
 #endif  // end of guard _CEGUITplInterpolators_h_
