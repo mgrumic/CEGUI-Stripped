@@ -28,6 +28,7 @@
  ***************************************************************************/
 #include "CEGUI/widgets/TabButton.h"
 
+#ifndef PE_NO_WGT_TAB_CONTROL
 // Start of CEGUI namespace section
 namespace CEGUI {
     const String TabButton::EventNamespace("TabButton");
@@ -141,3 +142,4 @@ namespace CEGUI {
 #endif //PE_NO_MOUSE
 
 } // End of  CEGUI namespace section
+#endif //PE_NO_WGT_TAB_CONTROL

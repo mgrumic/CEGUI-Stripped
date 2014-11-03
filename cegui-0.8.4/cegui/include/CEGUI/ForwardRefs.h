@@ -186,9 +186,9 @@ namespace CEGUI {
 #ifndef PE_NO_WGT_MULTILINE_EDITBOX
     class MultiLineEditbox;
 #endif //PE_NO_WGT_MULTILINE_EDITBOX
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     class PopupMenu;
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
 #ifndef PE_NO_WGT_PROGRESS_BAR
     class ProgressBar;
 #endif //PE_NO_WGT_PROGRESS_BAR
@@ -207,8 +207,10 @@ namespace CEGUI {
 #ifndef PE_NO_WGT_SPINNER
     class Spinner;
 #endif //PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_TAB_CONTROL
     class TabButton;
     class TabControl;
+#endif //PE_NO_WGT_TAB_CONTROL
     class Thumb;
     class Titlebar;
 #ifndef PE_NO_WGT_TOGGLEBUTTON

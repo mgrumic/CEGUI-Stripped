@@ -30,6 +30,7 @@
 #define _CEGUITabControl_h_
 
 #include "../Base.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "../Window.h"
 #include <vector>
 
@@ -554,4 +555,5 @@ namespace CEGUI {
 #pragma warning(pop)
 #endif
 
+#endif //PE_NO_WGT_TAB_CONTROL
 #endif	// end of guard _CEGUITabControl_h_

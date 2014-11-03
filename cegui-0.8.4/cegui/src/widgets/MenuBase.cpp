@@ -27,9 +27,9 @@
  *   OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************/
 #include "CEGUI/widgets/MenuBase.h"
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/PopupMenu.h"
-#endif
+#endif //PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/MenuItem.h"
 
 // Start of CEGUI namespace section
@@ -40,10 +40,10 @@ namespace CEGUI {
      *************************************************************************/
     // event strings
     const String MenuBase::EventNamespace("MenuBase");
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     const String MenuBase::EventPopupOpened("PopupOpened");
     const String MenuBase::EventPopupClosed("PopupClosed");
-#endif
+#endif //PE_NO_POPUP_MENU_H
 
 /*************************************************************************
         Constructor for MenuBase base class.
@@ -51,12 +51,12 @@ namespace CEGUI {
     MenuBase::MenuBase(const String& type, const String& name)
     : ItemListBase(type, name),
     d_itemSpacing(0.0f)
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     ,
     d_popupItem(0),
     d_allowMultiplePopups(false),
     d_autoCloseNestedPopups(false)
-#endif
+#endif //PE_NO_POPUP_MENU_H
     {
         // add properties for MenuBase class
         addMenuBaseProperties();
@@ -68,7 +68,7 @@ namespace CEGUI {
     MenuBase::~MenuBase(void) {
     }
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
     /*************************************************************************
         Change the currently open MenuItem PopupMenu
@@ -109,7 +109,7 @@ namespace CEGUI {
         fireEvent(EventPopupClosed, e, EventNamespace);
     }
 
-#endif
+#endif //PE_NO_POPUP_MENU_H
 
 /************************************************************************
         Add properties for this widget
@@ -121,7 +121,7 @@ namespace CEGUI {
                 "ItemSpacing", "Property to get/set the item spacing of the menu.  Value is a float.",
                 &MenuBase::setItemSpacing, &MenuBase::getItemSpacing, 10.0f
                 );
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
         CEGUI_DEFINE_PROPERTY(MenuBase, bool,
                 "AllowMultiplePopups", "Property to get/set the state of the allow multiple popups setting for the menu.  Value is either \"true\" or \"false\".",
@@ -132,14 +132,14 @@ namespace CEGUI {
                 "AutoCloseNestedPopups", "Property to set if the menu should close all its open child popups, when it gets hidden. Value is either \"true\" or \"false\".",
                 &MenuBase::setAutoCloseNestedPopups, &MenuBase::getAutoCloseNestedPopups, false
                 );
-#endif
+#endif //PE_NO_POPUP_MENU_H
     }
 
 
     /************************************************************************
         Set if multiple child popup menus are allowed simultaneously
      *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
     void MenuBase::setAllowMultiplePopups(bool setting) {
         if (d_allowMultiplePopups != setting) {
@@ -154,7 +154,7 @@ namespace CEGUI {
             d_popupItem->startPopupClosing();
         }
     }
-#endif
+#endif //PE_NO_POPUP_MENU_H
     //----------------------------------------------------------------------------//
 
     void MenuBase::onChildRemoved(ElementEventArgs& e) {
@@ -169,10 +169,10 @@ namespace CEGUI {
     void MenuBase::onHidden(WindowEventArgs&) {
         if (!getAutoCloseNestedPopups())
             return;
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
         changePopupMenuItem(0);
-#endif
+#endif //PE_NO_POPUP_MENU_H
         if (d_allowMultiplePopups) {
             for (size_t i = 0; i < d_listItems.size(); ++i) {
                 if (!d_listItems[i])
@@ -181,7 +181,7 @@ namespace CEGUI {
                 MenuItem* menuItem = dynamic_cast<MenuItem*> (d_listItems[i]);
                 if (!menuItem)
                     continue;
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
                 if (!menuItem->getPopupMenu())
                     continue;
@@ -189,7 +189,7 @@ namespace CEGUI {
                 WindowEventArgs we(menuItem->getPopupMenu());
                 menuItem->closePopupMenu(false);
                 onPopupClosed(we);
-#endif
+#endif //PE_NO_POPUP_MENU_H
             }
         }
     }

@@ -540,7 +540,9 @@ static void tolua_reg_types(lua_State* tolua_S) {
     tolua_usertype(tolua_S, "CEGUI::KeyEventArgs");
     tolua_usertype(tolua_S, "CEGUI::Element");
     tolua_usertype(tolua_S, "CEGUI::TextComponent");
+#ifndef PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::TabControl");
+#endif //PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::FrameComponent");
     tolua_usertype(tolua_S, "CEGUI::GlobalEventSet");
     tolua_usertype(tolua_S, "CEGUI::PropertyInitialiser");
@@ -584,7 +586,9 @@ static void tolua_reg_types(lua_State* tolua_S) {
     tolua_usertype(tolua_S, "CEGUI::ListboxTextItem");
     tolua_usertype(tolua_S, "CEGUI::Menubar");
     tolua_usertype(tolua_S, "CEGUI::ItemListBase");
+#ifndef PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::TabButton");
+#endif //PE_NO_WGT_TAB_CONTROL
     tolua_usertype(tolua_S, "CEGUI::UnifiedDim");
     tolua_usertype(tolua_S, "CEGUI::NamedArea");
     tolua_usertype(tolua_S, "CEGUI::ListHeader");
@@ -36556,6 +36560,7 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 #endif // PE_NO_WGT_RADIOBUTTON
 
+#ifndef PE_NO_WGT_TAB_CONTROL
 /* method: isSelected of class  CEGUI::TabButton */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabButton_isSelected00
 
@@ -36686,6 +36691,7 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+
 /* method: getTabCount of class  CEGUI::TabControl */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabControl_getTabCount00
 
@@ -36717,6 +36723,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
+
 
 /* method: setSelectedTab of class  CEGUI::TabControl */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_TabControl_setSelectedTab00
@@ -37195,6 +37202,7 @@ tolua_lerror:
     return tolua_CEGUI_CEGUI_TabControl_removeTab00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
+#endif //PE_NO_WGT_TAB_CONTROL
 
 #ifndef PE_NO_MOUSE
 /* method: isDraggingEnabled of class  CEGUI::Titlebar */
@@ -52867,7 +52875,7 @@ tolua_lerror:
 
 /* method: isMultiplePopupsAllowed of class  CEGUI::MenuBase */
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_MenuBase_isMultiplePopupsAllowed00
 
 static int tolua_CEGUI_CEGUI_MenuBase_isMultiplePopupsAllowed00(lua_State* tolua_S) {
@@ -52930,7 +52938,8 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-#endif //PE_NO_POPUP
+#endif // // PE_NO_POPUP_MENU_H
+
 /* method: setItemSpacing of class  CEGUI::MenuBase */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_MenuBase_setItemSpacing00
 
@@ -52965,7 +52974,7 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: changePopupMenuItem of class  CEGUI::MenuBase */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_MenuBase_changePopupMenuItem00
 
 static int tolua_CEGUI_CEGUI_MenuBase_changePopupMenuItem00(lua_State* tolua_S) {
@@ -53280,7 +53289,9 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-#endif //PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
+
+
 #ifndef PE_NO_MOUSE
 /* method: isHovering of class  CEGUI::MenuItem */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_MenuItem_isHovering00
@@ -53348,7 +53359,7 @@ tolua_lerror:
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getPopupMenu of class  CEGUI::MenuItem */
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_MenuItem_getPopupMenu00
 
 static int tolua_CEGUI_CEGUI_MenuItem_getPopupMenu00(lua_State* tolua_S) {
@@ -53670,7 +53681,7 @@ tolua_lerror:
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
-#endif //PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
 /* method: isVertScrollbarAlwaysShown of class  CEGUI::ScrolledItemListBase */
 #ifndef TOLUA_DISABLE_tolua_CEGUI_CEGUI_ScrolledItemListBase_isVertScrollbarAlwaysShown00
 
@@ -66828,6 +66839,7 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "getSelectedButtonInGroup", tolua_CEGUI_CEGUI_RadioButton_getSelectedButtonInGroup00);
     tolua_endmodule(tolua_S);
 #endif //PE_NO_WGT_RADIOBUTTON
+#ifndef PE_NO_WGT_TAB_CONTROL
     tolua_cclass(tolua_S, "TabButton", "CEGUI::TabButton", "CEGUI::ButtonBase", NULL);
     tolua_beginmodule(tolua_S, "TabButton");
     tolua_function(tolua_S, "isSelected", tolua_CEGUI_CEGUI_TabButton_isSelected00);
@@ -66854,6 +66866,7 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "removeTab", tolua_CEGUI_CEGUI_TabControl_removeTab00);
     tolua_function(tolua_S, "removeTab", tolua_CEGUI_CEGUI_TabControl_removeTab01);
     tolua_endmodule(tolua_S);
+#endif //PE_NO_WGT_TAB_CONTROL
     tolua_cclass(tolua_S, "Titlebar", "CEGUI::Titlebar", "CEGUI::Window", NULL);
     tolua_beginmodule(tolua_S, "Titlebar");
 #ifndef PE_NO_MOUSE
@@ -67487,14 +67500,14 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_cclass(tolua_S, "MenuBase", "CEGUI::MenuBase", "CEGUI::ItemListBase", NULL);
     tolua_beginmodule(tolua_S, "MenuBase");
     tolua_function(tolua_S, "getItemSpacing", tolua_CEGUI_CEGUI_MenuBase_getItemSpacing00);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     tolua_function(tolua_S, "isMultiplePopupsAllowed", tolua_CEGUI_CEGUI_MenuBase_isMultiplePopupsAllowed00);
     tolua_function(tolua_S, "getPopupMenuItem", tolua_CEGUI_CEGUI_MenuBase_getPopupMenuItem00);
     tolua_function(tolua_S, "changePopupMenuItem", tolua_CEGUI_CEGUI_MenuBase_changePopupMenuItem00);
     tolua_function(tolua_S, "setAllowMultiplePopups", tolua_CEGUI_CEGUI_MenuBase_setAllowMultiplePopups00);
     tolua_function(tolua_S, "getAutoCloseNestedPopups", tolua_CEGUI_CEGUI_MenuBase_getAutoCloseNestedPopups00);
     tolua_function(tolua_S, "getPopupMenuItem", tolua_CEGUI_CEGUI_MenuBase_getPopupMenuItem01);
-#endif //PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
 
     tolua_function(tolua_S, "setItemSpacing", tolua_CEGUI_CEGUI_MenuBase_setItemSpacing00);
 
@@ -67502,7 +67515,7 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_cclass(tolua_S, "Menubar", "CEGUI::Menubar", "CEGUI::MenuBase", NULL);
     tolua_beginmodule(tolua_S, "Menubar");
     tolua_endmodule(tolua_S);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     tolua_cclass(tolua_S, "PopupMenu", "CEGUI::PopupMenu", "CEGUI::MenuBase", NULL);
     tolua_beginmodule(tolua_S, "PopupMenu");
     tolua_function(tolua_S, "getFadeInTime", tolua_CEGUI_CEGUI_PopupMenu_getFadeInTime00);
@@ -67512,14 +67525,14 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "openPopupMenu", tolua_CEGUI_CEGUI_PopupMenu_openPopupMenu00);
     tolua_function(tolua_S, "closePopupMenu", tolua_CEGUI_CEGUI_PopupMenu_closePopupMenu00);
     tolua_endmodule(tolua_S);
-#endif //PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
     tolua_cclass(tolua_S, "MenuItem", "CEGUI::MenuItem", "CEGUI::ItemEntry", NULL);
     tolua_beginmodule(tolua_S, "MenuItem");
 #ifndef PE_NO_MOUSE
     tolua_function(tolua_S, "isHovering", tolua_CEGUI_CEGUI_MenuItem_isHovering00);
 #endif //PE_NO_MOUSE
     tolua_function(tolua_S, "isPushed", tolua_CEGUI_CEGUI_MenuItem_isPushed00);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     tolua_function(tolua_S, "getPopupMenu", tolua_CEGUI_CEGUI_MenuItem_getPopupMenu00);
     tolua_function(tolua_S, "setPopupMenu", tolua_CEGUI_CEGUI_MenuItem_setPopupMenu00);
     tolua_function(tolua_S, "openPopupMenu", tolua_CEGUI_CEGUI_MenuItem_openPopupMenu00);
@@ -67530,7 +67543,7 @@ int tolua_CEGUI_open(lua_State* tolua_S) {
     tolua_function(tolua_S, "setAutoPopupTimeout", tolua_CEGUI_CEGUI_MenuItem_setAutoPopupTimeout00);
     tolua_function(tolua_S, "getPopupOffset", tolua_CEGUI_CEGUI_MenuItem_getPopupOffset00);
     tolua_function(tolua_S, "setPopupOffset", tolua_CEGUI_CEGUI_MenuItem_setPopupOffset00);
-#endif //PE_NO_POPUP
+#endif //PE_NO_POPUP_MENU_H
     tolua_endmodule(tolua_S);
     tolua_cclass(tolua_S, "ScrolledItemListBase", "CEGUI::ScrolledItemListBase", "CEGUI::ItemListBase", NULL);
     tolua_beginmodule(tolua_S, "ScrolledItemListBase");

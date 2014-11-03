@@ -28,6 +28,7 @@
 #define _FalTabControl_h_
 
 #include "CEGUI/WindowRendererSets/Core/Module.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "CEGUI/widgets/TabControl.h"
 
 #if defined(_MSC_VER)
@@ -91,4 +92,5 @@ namespace CEGUI {
 #pragma warning(pop)
 #endif
 
+#endif //PE_NO_WGT_TAB_CONTROL
 #endif  // end of guard _FalTabControl_h_

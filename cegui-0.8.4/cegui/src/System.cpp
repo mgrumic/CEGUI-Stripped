@@ -661,9 +661,9 @@ namespace CEGUI {
         WindowFactoryManager::addWindowType<ListHeader>();
         WindowFactoryManager::addWindowType<ListHeaderSegment>();
         WindowFactoryManager::addWindowType<Menubar>();
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         WindowFactoryManager::addWindowType<PopupMenu>();
-#endif
+#endif //PE_NO_POPUP_MENU_H
         WindowFactoryManager::addWindowType<MenuItem>();
         WindowFactoryManager::addWindowType<MultiColumnList>();
 #ifndef PE_NO_WGT_MULTILINE_EDITBOX
@@ -680,8 +680,10 @@ namespace CEGUI {
 #ifndef PE_NO_WGT_SPINNER
         WindowFactoryManager::addWindowType<Spinner>();
 #endif  //PE_NO_WGT_SPINNER
+#ifndef PE_NO_WGT_TAB_CONTROL
         WindowFactoryManager::addWindowType<TabButton>();
         WindowFactoryManager::addWindowType<TabControl>();
+#endif //PE_NO_WGT_TAB_CONTROL
         WindowFactoryManager::addWindowType<Thumb>();
         WindowFactoryManager::addWindowType<Titlebar>();
 #ifndef PE_NO_WGT_TOGGLEBUTTON

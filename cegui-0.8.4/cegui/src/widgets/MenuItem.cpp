@@ -28,9 +28,9 @@
  ***************************************************************************/
 #include "CEGUI/widgets/MenuItem.h"
 #include "CEGUI/widgets/Menubar.h"
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "CEGUI/widgets/PopupMenu.h"
-#endif
+#endif //PE_NO_POPUP_MENU_H
 #include "CEGUI/Logger.h"
 #include "CEGUI/WindowManager.h"
 
@@ -53,27 +53,27 @@ namespace CEGUI {
 #ifndef PE_NO_MOUSE
     d_hovering(false),
 #endif //PE_NO_MOUSE
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
     d_opened(false),
     d_popupClosing(false),
     d_popupOpening(false),
     d_autoPopupTimeout(0.0f),
     d_autoPopupTimeElapsed(0.0f),
     d_popup(0),
-#endif
+#endif //PE_NO_POPUP_MENU_H
     d_pushed(false) {
         // menuitems dont want multi-click events
 #ifndef PE_NO_MOUSE
         setWantsMultiClickEvents(false);
 #endif //PE_NO_MOUSE
         // add the new properties
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
         addMenuItemProperties();
         d_popupOffset.d_x = cegui_absdim(0);
 
         d_popupOffset.d_y = cegui_absdim(0);
-#endif
+#endif //PE_NO_POPUP_MENU_H
     }
 
     /*************************************************************************
@@ -107,7 +107,7 @@ namespace CEGUI {
             // are we attached to a menu ?
             MenuBase* menu = dynamic_cast<MenuBase*> (d_ownerList);
             if (menu) {
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
                 if (d_hovering) {
                     // does this menubar only allow one popup open? and is there a popup open?
 
@@ -128,7 +128,7 @@ namespace CEGUI {
                         }
                     }
                 }
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
             }
 
             invalidate();
@@ -136,7 +136,7 @@ namespace CEGUI {
     }
 #endif //PE_NO_MOUSE
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
 /*************************************************************************
         Set the popup menu for this item.
@@ -336,7 +336,7 @@ namespace CEGUI {
     }
 #endif //PE_NO_MOUSE
 
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
 #ifndef PE_NO_MOUSE
 
 /*************************************************************************
@@ -361,7 +361,7 @@ namespace CEGUI {
     /*************************************************************************
         Handler for mouse button pressed events
      *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #ifndef PE_NO_MOUSE
 
 void MenuItem::onMouseButtonDown(MouseEventArgs& e) {
@@ -384,7 +384,7 @@ void MenuItem::onMouseButtonDown(MouseEventArgs& e) {
 
     }
 #endif //PE_NO_MOUSE
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
 
 #ifndef PE_NO_MOUSE
 
@@ -401,15 +401,15 @@ void MenuItem::onMouseButtonDown(MouseEventArgs& e) {
             // was the button released over this window?
             // (use mouse position, as e.position in args has been unprojected)
             if (
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
                     !d_popupWasClosed &&
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
                     getGUIContext().getRootWindow()->getTargetChildAtPosition(
                     getGUIContext().getMouseCursor().getPosition()) == this) {
                 WindowEventArgs we(this);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
                 onClicked(we);
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
             }
 
             // event was handled by us.
@@ -473,7 +473,7 @@ void MenuItem::onMouseButtonDown(MouseEventArgs& e) {
     /*************************************************************************
     Perform actual update processing for this Window.
      *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
 void MenuItem::updateSelf(float elapsed) {
         ItemEntry::updateSelf(elapsed);
@@ -503,7 +503,7 @@ void MenuItem::updateSelf(float elapsed) {
             }
         }
     }
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
 
 /*************************************************************************
         Internal version of adding a child window.
@@ -521,19 +521,19 @@ void MenuItem::updateSelf(float elapsed) {
 #endif //PE_NO_THROW_MSGS
 
         ItemEntry::addChild_impl(wnd);
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
         PopupMenu* pop = dynamic_cast<PopupMenu*> (wnd);
         // if this is a PopupMenu we add it like one
         if (pop) {
             setPopupMenu_impl(pop, false);
         }
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
     }
 
     /*************************************************************************
     Add MenuItem specific properties
      *************************************************************************/
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 
 void MenuItem::addMenuItemProperties(void) {
         const String& propertyOrigin = WidgetTypeName;
@@ -549,5 +549,5 @@ void MenuItem::addMenuItemProperties(void) {
                 &MenuItem::setAutoPopupTimeout, &MenuItem::getAutoPopupTimeout, 0.0f
                 );
     }
-#endif //PE_NO_POPUP_MENU_H
+#endif // PE_NO_POPUP_MENU_H
 } // End of  CEGUI namespace section

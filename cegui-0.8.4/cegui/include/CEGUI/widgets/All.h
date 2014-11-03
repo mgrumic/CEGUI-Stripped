@@ -51,9 +51,9 @@
 #include "./MultiColumnList.h"
 #include "./MultiLineEditbox.h"
 
-#ifdef PE_NO_POPUP_MENU_H
+#ifndef PE_NO_POPUP_MENU_H
 #include "./PopupMenu.h"
-#endif
+#endif // PE_NO_POPUP_MENU_H
 
 #include "./ProgressBar.h"
 #include "./PushButton.h"
@@ -63,8 +63,10 @@
 #include "./ScrolledContainer.h"
 #include "./Slider.h"
 #include "./Spinner.h"
+#ifndef PE_NO_WGT_TAB_CONTROL
 #include "./TabButton.h"
 #include "./TabControl.h"
+#endif //PE_NO_WGT_TAB_CONTROL
 #include "./Thumb.h"
 #include "./Titlebar.h"
 #include "./ToggleButton.h"
